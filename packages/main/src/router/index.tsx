@@ -1,4 +1,4 @@
-import { Route, Routes, BrowserRouter } from "react-router-dom";
+import { Route, Routes, BrowserRouter, Navigate } from "react-router-dom";
 import { Layout } from "./Layout";
 import * as _ from "../pages";
 
@@ -8,7 +8,9 @@ export const Router = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="" element={<_.Landing />} />
+          <Route path="error/:code" element={<_.Error />} />
         </Route>
+        <Route path="/*" element={<Navigate replace to="/error/404" />} />
       </Routes>
     </BrowserRouter>
   );
