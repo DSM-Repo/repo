@@ -3710,6 +3710,44 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ufo@npm:^1.4.0":
+  version: 1.5.3
+  resolution: "ufo@npm:1.5.3"
+  checksum: 10c0/1df10702582aa74f4deac4486ecdfd660e74be057355f1afb6adfa14243476cf3d3acff734ccc3d0b74e9bfdefe91d578f3edbbb0a5b2430fe93cd672370e024
+  languageName: node
+  linkType: hard
+
+"uglify-js@npm:^3.1.4":
+  version: 3.18.0
+  resolution: "uglify-js@npm:3.18.0"
+  bin:
+    uglifyjs: bin/uglifyjs
+  checksum: 10c0/57f5f6213a2c4e8c551be9c875c085d565dc88af6b7caaab40a197aa639183cdce7c9dc2f858675eca72a5323f850ab7e88b9cc0a52dfbe3e0768aee6ab6e102
+  languageName: node
+  linkType: hard
+
+"ui@workspace:common/ui":
+  version: 0.0.0-use.local
+  resolution: "ui@workspace:common/ui"
+  dependencies:
+    "@chromatic-com/storybook": "npm:^1.5.0"
+    "@radix-ui/react-use-layout-effect": "npm:^1.1.0"
+    "@storybook/addon-essentials": "npm:^8.1.10"
+    "@storybook/addon-interactions": "npm:^8.1.10"
+    "@storybook/addon-links": "npm:^8.1.10"
+    "@storybook/addon-onboarding": "npm:^8.1.10"
+    "@storybook/blocks": "npm:^8.1.10"
+    "@storybook/manager-api": "npm:^8.1.10"
+    "@storybook/react": "npm:^8.1.10"
+    "@storybook/react-vite": "npm:^8.1.10"
+    "@storybook/test": "npm:^8.1.10"
+    "@storybook/theming": "npm:^8.1.10"
+    prop-types: "npm:^15.8.1"
+    storybook: "npm:^8.1.10"
+    vite: "npm:^5.3.1"
+  languageName: unknown
+  linkType: soft
+
 "undici-types@npm:~5.26.4":
   version: 5.26.5
   resolution: "undici-types@npm:5.26.5"
