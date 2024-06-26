@@ -7434,6 +7434,7 @@ __metadata:
     react-router-dom: "npm:^6.23.1"
     tailwindcss: "npm:^3.4.4"
     typescript: "npm:^5.2.2"
+    ui: "workspace:^"
     vite: "npm:^5.2.0"
     vite-plugin-svgr: "npm:^4.2.0"
   languageName: unknown
@@ -10081,7 +10082,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ui@workspace:common/ui":
+"ui@workspace:^, ui@workspace:common/ui":
   version: 0.0.0-use.local
   resolution: "ui@workspace:common/ui"
   dependencies:

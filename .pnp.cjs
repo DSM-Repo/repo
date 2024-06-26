@@ -10300,6 +10300,7 @@ const RAW_RUNTIME_STATE =
           ["react-router-dom", "virtual:630bd6b1835fb13223e0a656ceb0e6da2fd1911c16f7db5cc941dbdab0c36f5a822e0704c10dcae82063ce6b8972a8f1177d70950ac9bd3853a81e1ba4c4b3c4#npm:6.23.1"],\
           ["tailwindcss", "npm:3.4.4"],\
           ["typescript", "patch:typescript@npm%3A5.4.5#optional!builtin<compat/typescript>::version=5.4.5&hash=5adc0c"],\
+          ["ui", "workspace:common/ui"],\
           ["vite", "virtual:24a8445d90c5195edf5d4f518b9621a54cd6a11c9c2ed4e81edd4d9994091ed0e544a77b652ab357fc0443220eccfee4555c52aa358cfb2a81dbd08405e762be#npm:5.3.1"],\
           ["vite-plugin-svgr", "virtual:630bd6b1835fb13223e0a656ceb0e6da2fd1911c16f7db5cc941dbdab0c36f5a822e0704c10dcae82063ce6b8972a8f1177d70950ac9bd3853a81e1ba4c4b3c4#npm:4.2.0"]\
         ],\
