@@ -9,3 +9,15 @@
 .sbdocs-content {
   background: #333333;
 }
+
+@font-face {
+  font-family: "PretendardVariable";
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+  src: url("./PretendardVariable.woff2") format("woff2-variations");
+}
+
+* {
+  font-family: "PretendardVariable" !important;
+}
