@@ -13,7 +13,8 @@
   "scripts": {
     "main": "yarn workspace main",
     "student": "yarn workspace student",
-    "teacher": "yarn workspace teacher"
+    "teacher": "yarn workspace teacher",
+    "ui": "yarn workspace ui"
   },
   "devDependencies": {
     "@types/node": "^20.14.6",
