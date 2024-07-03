@@ -20,4 +20,31 @@
 
 * {
   font-family: "PretendardVariable" !important;
+  user-select: none;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  overscroll-behavior: none;
+}
+
+.line-fit {
+  line-height: 1;
+}
+
+.line-fit-br {
+  margin-top: -4px;
+  margin-bottom: -4px;
+}
+
+.pointable {
+  cursor: pointer;
+  transition: 100ms ease-in-out all;
+}
+
+.pointable:hover {
+  opacity: 0.6;
 }

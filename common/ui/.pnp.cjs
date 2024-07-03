@@ -32,7 +32,7 @@ const RAW_RUNTIME_STATE =
           ["@storybook/addon-essentials", "npm:8.1.10"],\
           ["@storybook/addon-interactions", "npm:8.1.10"],\
           ["@storybook/addon-links", "virtual:abd86f0db4e628a3d1844be9352358a814881ef2b82dee67188058dec9fd0f37a9154622d1055dbe04477d6e93c1d74ae4e55efba208fff05df26b9f136509a2#npm:8.1.10"],\
-          ["@storybook/addon-onboarding", "npm:8.1.10"],\
+          ["@storybook/addon-onboarding", "npm:8.1.11"],\
           ["@storybook/addon-postcss", "npm:2.0.0"],\
           ["@storybook/blocks", "virtual:abd86f0db4e628a3d1844be9352358a814881ef2b82dee67188058dec9fd0f37a9154622d1055dbe04477d6e93c1d74ae4e55efba208fff05df26b9f136509a2#npm:8.1.10"],\
           ["@storybook/manager-api", "npm:8.1.10"],\
@@ -4378,10 +4378,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@storybook/addon-onboarding", [\
-      ["npm:8.1.10", {\
-        "packageLocation": "./.yarn/cache/@storybook-addon-onboarding-npm-8.1.10-9f6b25cdd1-2dad8ad4db.zip/node_modules/@storybook/addon-onboarding/",\
+      ["npm:8.1.11", {\
+        "packageLocation": "./.yarn/cache/@storybook-addon-onboarding-npm-8.1.11-407819809e-10545c2d60.zip/node_modules/@storybook/addon-onboarding/",\
         "packageDependencies": [\
-          ["@storybook/addon-onboarding", "npm:8.1.10"],\
+          ["@storybook/addon-onboarding", "npm:8.1.11"],\
           ["react-confetti", "virtual:a1cb9ce426e87f1a3ad3bc8e00eef6b02921ac7ea9bca61a2ba32b3432bed85be85c76d5e1e34eb89bc45c4fc777f1d38bb5b96e90ea1498072f0b5d3fce61e3#npm:6.1.0"]\
         ],\
         "linkType": "HARD"\
@@ -12864,7 +12864,7 @@ const RAW_RUNTIME_STATE =
           ["@storybook/addon-essentials", "npm:8.1.10"],\
           ["@storybook/addon-interactions", "npm:8.1.10"],\
           ["@storybook/addon-links", "virtual:abd86f0db4e628a3d1844be9352358a814881ef2b82dee67188058dec9fd0f37a9154622d1055dbe04477d6e93c1d74ae4e55efba208fff05df26b9f136509a2#npm:8.1.10"],\
-          ["@storybook/addon-onboarding", "npm:8.1.10"],\
+          ["@storybook/addon-onboarding", "npm:8.1.11"],\
           ["@storybook/addon-postcss", "npm:2.0.0"],\
           ["@storybook/blocks", "virtual:abd86f0db4e628a3d1844be9352358a814881ef2b82dee67188058dec9fd0f37a9154622d1055dbe04477d6e93c1d74ae4e55efba208fff05df26b9f136509a2#npm:8.1.10"],\
           ["@storybook/manager-api", "npm:8.1.10"],\
