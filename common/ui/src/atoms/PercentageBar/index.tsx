@@ -26,11 +26,12 @@ export const PercentageBar = ({
   progress,
   type = "Full",
   color = "Green",
+  ...props
 }: IProp) => {
   return (
     <div className="w-full">
       {type === "Full" && (
-        <div className="pb-3">
+        <div className="pb-3" {...props}>
           <span className="inline text-white font-semibold text-[16px]">
             {title.title}
           </span>
