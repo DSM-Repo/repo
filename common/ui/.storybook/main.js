@@ -1,4 +1,6 @@
 import { join, dirname } from "path";
+import { mergeConfig } from "vite";
+import svgr from "vite-plugin-svgr";
 
 /**
  * This function is used to resolve the absolute path of a package.
@@ -55,6 +57,11 @@ const config = {
       include: path.resolve(__dirname, "../"),
     });
     return config;
+  },
+  viteFinal: async (config) => {
+    return mergeConfig(config, {
+      plugins: [svgr()],
+    });
   },
 };
 export default config;
