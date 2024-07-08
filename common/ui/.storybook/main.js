@@ -22,6 +22,7 @@ const config = {
     getAbsolutePath("@storybook/addon-essentials"),
     getAbsolutePath("@chromatic-com/storybook"),
     getAbsolutePath("@storybook/addon-interactions"),
+    getAbsolutePath("storybook-addon-remix-react-router"),
     {
       name: "@storybook/addon-postcss",
       options: {
