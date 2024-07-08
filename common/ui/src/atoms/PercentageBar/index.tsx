@@ -29,9 +29,9 @@ export const PercentageBar = ({
   ...props
 }: IProp) => {
   return (
-    <div className="w-full">
+    <div className="w-full" {...props}>
       {type === "Full" && (
-        <div className="pb-3" {...props}>
+        <div className="pb-3">
           <span className="inline text-white font-semibold text-[16px]">
             {title.title}
           </span>
