@@ -11,5 +11,5 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: { icon: "test", children: "내 정보", selected: false },
+  args: { icon: "Library", children: "내 정보", selected: true },
 };
