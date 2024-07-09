@@ -4,7 +4,7 @@ import {
   require_react
 } from "./chunk-NWFN7RY3.js";
 
-// ../../.yarn/__virtual__/@iconify-react-virtual-bc1d7262f8/0/cache/@iconify-react-npm-5.0.1-9638fe18b7-d3fce5b2d8.zip/node_modules/@iconify/react/dist/iconify.js
+// ../../.yarn/__virtual__/@iconify-react-virtual-1977427229/0/cache/@iconify-react-npm-5.0.1-9638fe18b7-d3fce5b2d8.zip/node_modules/@iconify/react/dist/iconify.js
 var import_react = __toESM(require_react());
 var defaultIconDimensions = Object.freeze(
   {

@@ -6,11 +6,11 @@ import {
   require_react
 } from "./chunk-NWFN7RY3.js";
 
-// ../../.yarn/__virtual__/react-router-dom-virtual-b70f8a3f85/0/cache/react-router-dom-npm-6.24.1-4b9b65fc27-458c6c5393.zip/node_modules/react-router-dom/dist/index.js
+// ../../.yarn/__virtual__/react-router-dom-virtual-66a9c73c32/0/cache/react-router-dom-npm-6.24.1-4b9b65fc27-458c6c5393.zip/node_modules/react-router-dom/dist/index.js
 var React2 = __toESM(require_react());
 var ReactDOM = __toESM(require_react_dom());
 
-// ../../.yarn/__virtual__/react-router-virtual-f65ccb0b5a/0/cache/react-router-npm-6.24.1-efe5d544b3-f50c78ca52.zip/node_modules/react-router/dist/index.js
+// ../../.yarn/__virtual__/react-router-virtual-2f9ff91d6f/0/cache/react-router-npm-6.24.1-efe5d544b3-f50c78ca52.zip/node_modules/react-router/dist/index.js
 var React = __toESM(require_react());
 
 // ../../.yarn/cache/@remix-run-router-npm-1.17.1-66731364d9-bee1631feb.zip/node_modules/@remix-run/router/dist/router.js
@@ -3653,7 +3653,7 @@ function persistAppliedTransitions(_window, transitions) {
   }
 }
 
-// ../../.yarn/__virtual__/react-router-virtual-f65ccb0b5a/0/cache/react-router-npm-6.24.1-efe5d544b3-f50c78ca52.zip/node_modules/react-router/dist/index.js
+// ../../.yarn/__virtual__/react-router-virtual-2f9ff91d6f/0/cache/react-router-npm-6.24.1-efe5d544b3-f50c78ca52.zip/node_modules/react-router/dist/index.js
 function _extends2() {
   _extends2 = Object.assign ? Object.assign.bind() : function(target) {
     for (var i = 1; i < arguments.length; i++) {
@@ -4647,7 +4647,7 @@ function createMemoryRouter(routes, opts) {
   }).initialize();
 }
 
-// ../../.yarn/__virtual__/react-router-dom-virtual-b70f8a3f85/0/cache/react-router-dom-npm-6.24.1-4b9b65fc27-458c6c5393.zip/node_modules/react-router-dom/dist/index.js
+// ../../.yarn/__virtual__/react-router-dom-virtual-66a9c73c32/0/cache/react-router-dom-npm-6.24.1-4b9b65fc27-458c6c5393.zip/node_modules/react-router-dom/dist/index.js
 function _extends3() {
   _extends3 = Object.assign ? Object.assign.bind() : function(target) {
     for (var i = 1; i < arguments.length; i++) {
