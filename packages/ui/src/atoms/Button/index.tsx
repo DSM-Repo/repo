@@ -9,8 +9,8 @@ interface IProp extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const colorList = {
-  light: "bg-[#454545] ",
-  dark: "bg-[#222222] ",
+  light: "bg-[#454545]",
+  dark: "bg-[#222222]",
 };
 
 const sizeList = {
@@ -22,28 +22,22 @@ const sizeList = {
   full: "w-full p-3",
 };
 
-const disabledStyle = "cursor-not-allowed bg-[#373737]";
-
 export const Button = ({
   children,
-  disabled = false,
+  disabled,
   onClick,
   color = "dark",
   size = "small",
   ...props
 }: IProp) => {
+  const point = !!disabled ? "disable" : "pointable";
+
   return (
     <button
-      className={
-        `text-white rounded-[5px] h-full transition-all duration-300 ${
-          disabled ? disabledStyle : "pointable"
-        } ` +
-        colorList[color] +
-        sizeList[size]
-      }
-      {...props}
-      disabled={disabled}
+      className={`text-white rounded-[5px] h-full transition-all duration-300 ${point} ${colorList[color]} ${sizeList[size]}`}
+      disabled={!!disabled}
       onClick={onClick}
+      {...props}
     >
       {children}
     </button>

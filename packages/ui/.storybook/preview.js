@@ -1,5 +1,5 @@
 /** @type { import('@storybook/react').Preview } */
-import "font";
+import "@configs/tailwindcss";
 
 const preview = {
   parameters: {
