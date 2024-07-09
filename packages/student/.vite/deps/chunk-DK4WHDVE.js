@@ -1,7 +1,7 @@
 import {
   __commonJS,
   require_react
-} from "./chunk-XZK5Q32F.js";
+} from "./chunk-NWFN7RY3.js";
 
 // ../../.yarn/cache/scheduler-npm-0.23.2-6d1dd9c2b7-26383305e2.zip/node_modules/scheduler/cjs/scheduler.development.js
 var require_scheduler_development = __commonJS({
@@ -465,9 +465,9 @@ var require_scheduler = __commonJS({
   }
 });
 
-// ../../.yarn/__virtual__/react-dom-virtual-0b8b2db0b7/0/cache/react-dom-npm-18.3.1-a805663f38-a752496c19.zip/node_modules/react-dom/cjs/react-dom.development.js
+// ../../.yarn/__virtual__/react-dom-virtual-cf1d6710c9/0/cache/react-dom-npm-18.3.1-a805663f38-a752496c19.zip/node_modules/react-dom/cjs/react-dom.development.js
 var require_react_dom_development = __commonJS({
-  "../../.yarn/__virtual__/react-dom-virtual-0b8b2db0b7/0/cache/react-dom-npm-18.3.1-a805663f38-a752496c19.zip/node_modules/react-dom/cjs/react-dom.development.js"(exports) {
+  "../../.yarn/__virtual__/react-dom-virtual-cf1d6710c9/0/cache/react-dom-npm-18.3.1-a805663f38-a752496c19.zip/node_modules/react-dom/cjs/react-dom.development.js"(exports) {
     "use strict";
     if (true) {
       (function() {
@@ -21571,9 +21571,9 @@ var require_react_dom_development = __commonJS({
   }
 });
 
-// ../../.yarn/__virtual__/react-dom-virtual-0b8b2db0b7/0/cache/react-dom-npm-18.3.1-a805663f38-a752496c19.zip/node_modules/react-dom/index.js
+// ../../.yarn/__virtual__/react-dom-virtual-cf1d6710c9/0/cache/react-dom-npm-18.3.1-a805663f38-a752496c19.zip/node_modules/react-dom/index.js
 var require_react_dom = __commonJS({
-  "../../.yarn/__virtual__/react-dom-virtual-0b8b2db0b7/0/cache/react-dom-npm-18.3.1-a805663f38-a752496c19.zip/node_modules/react-dom/index.js"(exports, module) {
+  "../../.yarn/__virtual__/react-dom-virtual-cf1d6710c9/0/cache/react-dom-npm-18.3.1-a805663f38-a752496c19.zip/node_modules/react-dom/index.js"(exports, module) {
     "use strict";
     if (false) {
       checkDCE();
@@ -21584,36 +21584,9 @@ var require_react_dom = __commonJS({
   }
 });
 
-// ../../.yarn/__virtual__/react-dom-virtual-0b8b2db0b7/0/cache/react-dom-npm-18.3.1-a805663f38-a752496c19.zip/node_modules/react-dom/client.js
-var require_client = __commonJS({
-  "../../.yarn/__virtual__/react-dom-virtual-0b8b2db0b7/0/cache/react-dom-npm-18.3.1-a805663f38-a752496c19.zip/node_modules/react-dom/client.js"(exports) {
-    var m = require_react_dom();
-    if (false) {
-      exports.createRoot = m.createRoot;
-      exports.hydrateRoot = m.hydrateRoot;
-    } else {
-      i = m.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
-      exports.createRoot = function(c, o) {
-        i.usingClientEntryPoint = true;
-        try {
-          return m.createRoot(c, o);
-        } finally {
-          i.usingClientEntryPoint = false;
-        }
-      };
-      exports.hydrateRoot = function(c, h, o) {
-        i.usingClientEntryPoint = true;
-        try {
-          return m.hydrateRoot(c, h, o);
-        } finally {
-          i.usingClientEntryPoint = false;
-        }
-      };
-    }
-    var i;
-  }
-});
-export default require_client();
+export {
+  require_react_dom
+};
 /*! Bundled license information:
 
 scheduler/cjs/scheduler.development.js:
@@ -21651,4 +21624,4 @@ react-dom/cjs/react-dom.development.js:
    * @license Modernizr 3.0.0pre (Custom Build) | MIT
    *)
 */
-//# sourceMappingURL=react-dom_client.js.map
+//# sourceMappingURL=chunk-DK4WHDVE.js.map
