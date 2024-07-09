@@ -1,0 +1,12 @@
+{
+  "name": "@configs/eslint",
+  "packageManager": "yarn@4.3.0",
+  "main": "./eslint.cjs",
+  "devDependencies": {
+    "eslint": "^9.6.0",
+    "eslint-plugin-react-refresh": "^0.4.7"
+  },
+  "dependencies": {
+    "eslint-plugin-react-hooks": "^4.6.2"
+  }
+}
