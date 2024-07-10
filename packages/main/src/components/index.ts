@@ -1,1 +1,1 @@
-export { Footer, Header } from "./layouts";
+export { Footer } from "./layouts";
