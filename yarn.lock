@@ -2169,33 +2169,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@packages/main@workspace:packages/main":
-  version: 0.0.0-use.local
-  resolution: "@packages/main@workspace:packages/main"
-  dependencies:
-    "@configs/eslint": "workspace:^"
-    "@configs/tailwindcss": "workspace:^"
-    "@types/react": "npm:^18.2.66"
-    "@types/react-dom": "npm:^18.2.22"
-    "@typescript-eslint/eslint-plugin": "npm:^7.2.0"
-    "@typescript-eslint/parser": "npm:^7.2.0"
-    "@vitejs/plugin-react": "npm:^4.2.1"
-    autoprefixer: "npm:^10.4.19"
-    eslint: "npm:^8.57.0"
-    eslint-plugin-react-hooks: "npm:^4.6.0"
-    eslint-plugin-react-refresh: "npm:^0.4.6"
-    postcss: "npm:^8.4.39"
-    react: "npm:^18.2.0"
-    react-dom: "npm:^18.2.0"
-    react-router-dom: "npm:^6.23.1"
-    tailwindcss: "npm:^3.4.4"
-    typescript: "npm:^5.2.2"
-    ui: "workspace:^"
-    vite: "npm:^5.2.0"
-    vite-plugin-svgr: "npm:^4.2.0"
-  languageName: unknown
-  linkType: soft
-
 "@pkgjs/parseargs@npm:^0.11.0":
   version: 0.11.0
   resolution: "@pkgjs/parseargs@npm:0.11.0"
@@ -5504,7 +5477,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dotenv@npm:^16.0.0":
+"dotenv@npm:^16.0.0, dotenv@npm:^16.4.5":
   version: 16.4.5
   resolution: "dotenv@npm:16.4.5"
   checksum: 10c0/48d92870076832af0418b13acd6e5a5a3e83bb00df690d9812e94b24aff62b88ade955ac99a05501305b8dc8f1b0ee7638b18493deb6fe93d680e5220936292f
@@ -7699,6 +7672,33 @@ __metadata:
   languageName: node
   linkType: hard
 
+"main@workspace:packages/main":
+  version: 0.0.0-use.local
+  resolution: "main@workspace:packages/main"
+  dependencies:
+    "@configs/eslint": "workspace:^"
+    "@configs/tailwindcss": "workspace:^"
+    "@types/react": "npm:^18.2.66"
+    "@types/react-dom": "npm:^18.2.22"
+    "@typescript-eslint/eslint-plugin": "npm:^7.2.0"
+    "@typescript-eslint/parser": "npm:^7.2.0"
+    "@vitejs/plugin-react": "npm:^4.2.1"
+    autoprefixer: "npm:^10.4.19"
+    eslint: "npm:^8.57.0"
+    eslint-plugin-react-hooks: "npm:^4.6.0"
+    eslint-plugin-react-refresh: "npm:^0.4.6"
+    postcss: "npm:^8.4.39"
+    react: "npm:^18.2.0"
+    react-dom: "npm:^18.2.0"
+    react-router-dom: "npm:^6.23.1"
+    tailwindcss: "npm:^3.4.4"
+    typescript: "npm:^5.2.2"
+    ui: "workspace:^"
+    vite: "npm:^5.2.0"
+    vite-plugin-svgr: "npm:^4.2.0"
+  languageName: unknown
+  linkType: soft
+
 "make-dir@npm:^2.0.0, make-dir@npm:^2.1.0":
   version: 2.1.0
   resolution: "make-dir@npm:2.1.0"
@@ -9421,6 +9421,7 @@ __metadata:
     "@types/node": "npm:^20.14.6"
     "@types/react": "npm:^18.3.3"
     "@types/react-router-dom": "npm:^5.3.3"
+    dotenv: "npm:^16.4.5"
     typescript: "npm:^5.4.5"
   languageName: unknown
   linkType: soft

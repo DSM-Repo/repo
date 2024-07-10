@@ -22,5 +22,8 @@
     "@types/react": "^18.3.3",
     "@types/react-router-dom": "^5.3.3",
     "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
   }
 }
