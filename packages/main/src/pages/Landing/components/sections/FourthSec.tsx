@@ -2,7 +2,7 @@ import { Background } from "@/assets";
 
 export const FourthSec = () => {
   return (
-    <div className="relative flex items-center justify-center h-[95vh] w-[100vw]">
+    <div className="relative flex items-center justify-center h-[95vh] w-full">
       <div className="flex flex-col items-center gap-2 absolute z-20">
         <span className="text-white font-semibold text-[50px] line-fit">
           깔끔한
