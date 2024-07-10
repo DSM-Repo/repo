@@ -1,0 +1,52 @@
+{
+  "hash": "b80955ea",
+  "configHash": "65475585",
+  "lockfileHash": "101b39dd",
+  "browserHash": "8190eee6",
+  "optimized": {
+    "react": {
+      "src": "../../../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "95b5e420",
+      "needsInterop": true
+    },
+    "react/jsx-dev-runtime": {
+      "src": "../../../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/jsx-dev-runtime.js",
+      "file": "react_jsx-dev-runtime.js",
+      "fileHash": "0c924cbf",
+      "needsInterop": true
+    },
+    "react/jsx-runtime": {
+      "src": "../../../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/jsx-runtime.js",
+      "file": "react_jsx-runtime.js",
+      "fileHash": "7ab5972c",
+      "needsInterop": true
+    },
+    "@iconify/react": {
+      "src": "../../../../.yarn/__virtual__/@iconify-react-virtual-1977427229/0/cache/@iconify-react-npm-5.0.1-9638fe18b7-d3fce5b2d8.zip/node_modules/@iconify/react/dist/iconify.js",
+      "file": "@iconify_react.js",
+      "fileHash": "27a0e15e",
+      "needsInterop": false
+    },
+    "react-dom/client": {
+      "src": "../../../../.yarn/__virtual__/react-dom-virtual-cf1d6710c9/0/cache/react-dom-npm-18.3.1-a805663f38-a752496c19.zip/node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "efd0bd36",
+      "needsInterop": true
+    },
+    "react-router-dom": {
+      "src": "../../../../.yarn/__virtual__/react-router-dom-virtual-66a9c73c32/0/cache/react-router-dom-npm-6.24.1-4b9b65fc27-458c6c5393.zip/node_modules/react-router-dom/dist/index.js",
+      "file": "react-router-dom.js",
+      "fileHash": "3d877a89",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-DK4WHDVE": {
+      "file": "chunk-DK4WHDVE.js"
+    },
+    "chunk-NWFN7RY3": {
+      "file": "chunk-NWFN7RY3.js"
+    }
+  }
+}

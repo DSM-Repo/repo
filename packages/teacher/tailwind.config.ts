@@ -1,9 +1,4 @@
 import type { Config } from "tailwindcss";
+import baseConfig from "@configs/tailwindcss/tailwind.config";
 
-export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
-} satisfies Config;
+export default baseConfig satisfies Config;
