@@ -53,9 +53,9 @@ export const Box = ({
 
   return (
     <div
-      className={`flex flex-col justify-between ${colors[color]}`}
-      style={{ width, height, padding, borderRadius }}
       {...props}
+      className={`flex flex-col justify-between gap-10 ${colors[color]} ${props.className}`}
+      style={{ width, height, padding, borderRadius }}
     >
       {children}
     </div>

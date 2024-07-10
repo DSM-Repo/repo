@@ -28,8 +28,9 @@ export const PercentageBar = ({
   color = "Green",
   ...props
 }: IProp) => {
+  const checkType = type === "Simple" ? "h-1" : "h-8";
   return (
-    <div className="w-full" {...props}>
+    <div {...props} className={`w-full ${props.className}`}>
       {type === "Full" && (
         <div className="pb-3">
           <span className="inline text-white font-semibold text-[16px]">
@@ -41,16 +42,11 @@ export const PercentageBar = ({
           </span>
         </div>
       )}
-
       <div
-        className={`rounded-full w-full bg-[#454545] relative overflow-hidden ${
-          type === "Simple" ? "h-1" : "h-8"
-        }`}
+        className={`rounded-full w-full bg-[#454545] relative overflow-hidden ${checkType}`}
       >
         <div
-          className={
-            "absolute h-full transition-all duration-300 " + colors[color]
-          }
+          className={`absolute h-full transition-all duration-300 ${colors[color]}`}
           style={{ width: progress + "%" }}
         />
       </div>

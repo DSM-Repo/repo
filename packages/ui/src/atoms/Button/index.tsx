@@ -34,10 +34,10 @@ export const Button = ({
 
   return (
     <button
-      className={`text-white rounded-[5px] h-full transition-all duration-300 ${point} ${colorList[color]} ${sizeList[size]}`}
+      {...props}
+      className={`text-white rounded-[5px] h-full transition-all duration-300 ${point} ${colorList[color]} ${sizeList[size]} ${props.className}`}
       disabled={!!disabled}
       onClick={onClick}
-      {...props}
     >
       {children}
     </button>

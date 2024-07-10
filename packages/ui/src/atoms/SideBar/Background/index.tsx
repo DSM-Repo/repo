@@ -7,24 +7,13 @@ interface IProp extends HTMLAttributes<HTMLDivElement> {
 
 export const Background = ({ children, selected, ...props }: IProp) => {
   const style = selected
-    ? {
-        bg: "bg-[#1E1E1E]",
-        blw: "border-l-[5px]",
-        blc: "border-l-[#141414]",
-        pl: "pl-[calc(1rem-5px)]",
-        pr: "pr-[1rem]",
-      }
-    : {
-        bg: "bg-[#1E1E1E]",
-        px: "px-4",
-      };
+    ? "bg-[#1E1E1E] border-l-[5px] pl-[calc(1rem-5px)] pr-[1rem]"
+    : "bg-[#222222] pl-[calc(1rem-5px)] pr-[1rem]";
 
   return (
     <div
-      className={
-        Object.values(style).join(" ") +
-        " flex flex-col w-[14rem] min-h-[2.5rem] py-2 rounded-[5px] box-border cursor-pointer gap-2 "
-      }
+      {...props}
+      className={`${style} border-l-[#141414] flex flex-col w-full min-h-[2.5rem] py-2 rounded-[5px] box-border cursor-pointer gap-2 transition-all ${props.className}`}
     >
       {children}
     </div>

@@ -10,23 +10,29 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
-  args: {
-    children: <></>,
-    selected: false,
-  },
+const Template = (args) => (
+  <div className="w-[300px]">
+    <Background {...args} />
+  </div>
+);
+
+export const Default: Story = Template.bind({});
+
+Default.args = {
+  children: <></>,
+  selected: false,
 };
 
-export const selected = Background.bind({});
+export const selected = Template.bind({});
 
 selected.args = {
   ...Default.args,
   selected: true,
 };
 
-export const list = Background.bind({});
+export const list = Template.bind({});
 
 list.args = {
-  selected: true,
   children: <div className="w-full h-[15rem]"></div>,
+  selected: true,
 };

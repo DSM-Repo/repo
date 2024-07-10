@@ -8,7 +8,7 @@ interface IProp extends HTMLAttributes<HTMLInputElement> {
 
 export const CheckBox = ({ state, onChange, label, ...props }: IProp) => {
   return (
-    <div className="flex gap-2 items-center" {...props}>
+    <div {...props} className={`flex gap-2 items-center ${props.className}`}>
       <input
         id="checkBox"
         type="checkbox"

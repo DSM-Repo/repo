@@ -3,12 +3,12 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { HTMLAttributes } from "react";
 import { Icon } from "@iconify/react";
 
-type TUrl = {
+export type TUrl = {
   url: string;
   title: string;
 };
 
-interface IProp extends HTMLAttributes<HTMLDivElement> {
+export interface IProp extends HTMLAttributes<HTMLDivElement> {
   urls: Array<TUrl>;
   title: string;
   icon: iconType;

@@ -9,7 +9,7 @@ interface IProp extends HTMLAttributes<HTMLDivElement> {
   selected: boolean;
 }
 
-export const Content = ({ icon, children, selected }: IProp) => {
+export const Content = ({ icon, children, selected, ...props }: IProp) => {
   const font = selected
     ? "text-white font-semibold"
     : "text-[#999999] font-regular";
@@ -17,7 +17,7 @@ export const Content = ({ icon, children, selected }: IProp) => {
   const Icon = Icons[icon];
 
   return (
-    <div className="flex items-center gap-2">
+    <div {...props} className={`flex items-center gap-2 ${props.className}`}>
       <div className="flex items-center justify-center w-8 h-8 bg-[#333333] rounded-md">
         <Icon />
       </div>

@@ -2,7 +2,7 @@ import { HTMLAttributes } from "react";
 import { Background, Content, iconType } from "../../atoms";
 import { useNavigate, useLocation } from "react-router-dom";
 
-interface IProp extends HTMLAttributes<HTMLDivElement> {
+export interface IProp extends HTMLAttributes<HTMLDivElement> {
   icon: iconType;
   title: string;
   url: string;
