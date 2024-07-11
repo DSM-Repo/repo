@@ -1,5 +1,5 @@
+import { Footer } from "ui";
 import * as _ from "./components";
-import { Footer } from "@/components";
 
 export const Landing = () => {
   return (
