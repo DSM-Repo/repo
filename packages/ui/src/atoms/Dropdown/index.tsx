@@ -52,11 +52,13 @@ export const Dropdown = ({
       {...props}
       className={`${commonStyle} ${props.className} ${error && errorStyle} ${
         disabled && disabledStyle
-      } ${size === "full" ? "w-full" : "w-fit"} cursor-pointer`}
+      } ${disabled ? "cursor-not-allowed" : "cursor-pointer"} ${
+        size === "full" ? "w-full" : "w-fit"
+      }`}
     >
       <div
         className={`flex w-full justify-between items-center py-3 ${sizeList[size]}`}
-        onClick={() => setOpened((prev) => !prev)}
+        onClick={() => !disabled && setOpened((prev) => !prev)}
       >
         <span className={`${!!selected ? "text-white" : "test-[#999999]"}`}>
           {!!selected ? selected : placeholder}
