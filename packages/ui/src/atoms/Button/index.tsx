@@ -14,12 +14,12 @@ const colorList = {
 };
 
 const sizeList = {
-  extraSmall: "min-w-[5rem] p-2",
-  small: "min-w-[8rem] p-2",
-  medium: "min-w-[11rem] p-2",
-  large: "min-w-[14rem] p-3",
-  extraLarge: "min-w-[28rem] p-3",
-  full: "w-full p-3",
+  extraSmall: "min-w-[5rem] px-2",
+  small: "min-w-[8rem] px-2",
+  medium: "min-w-[11rem] px-2",
+  large: "min-w-[14rem] px-3",
+  extraLarge: "min-w-[28rem] px-3",
+  full: "w-full px-3",
 };
 
 export const Button = ({
@@ -35,7 +35,7 @@ export const Button = ({
   return (
     <button
       {...props}
-      className={`text-white rounded-[5px] h-full transition-all duration-300 ${point} ${colorList[color]} ${sizeList[size]} ${props.className}`}
+      className={`text-white rounded-[5px] h-full transition-all py-3 duration-300 ${point} ${colorList[color]} ${sizeList[size]} ${props.className}`}
       disabled={!!disabled}
       onClick={onClick}
     >
