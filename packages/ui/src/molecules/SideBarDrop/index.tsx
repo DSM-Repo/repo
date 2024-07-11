@@ -33,7 +33,7 @@ export const SideBarDrop = ({
   const rotate = storySelected ? "rotate-180 " : "rotate-90 ";
 
   const text = (item: string) =>
-    pathname === item ? "text-white font-semibold " : "";
+    pathname === item ? "text-white font-semibold " : "pointable";
 
   return (
     <Background
@@ -58,10 +58,9 @@ export const SideBarDrop = ({
             <li
               onClick={() => navigate(item.url)}
               key={index}
-              className={
-                text(item.url) +
-                "text-[#999999] font-light list-disc ml-4 pointable"
-              }
+              className={`${text(
+                item.url
+              )} text-[#999999] font-light list-disc ml-4`}
             >
               {item.title}
             </li>
