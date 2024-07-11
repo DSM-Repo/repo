@@ -14,7 +14,8 @@ export const Default: Story = {
   args: {
     onChange: () => console.log("change"),
     disabled: false,
-    inputSize: "extraSmall",
+    value: "splash",
+    size: "extraSmall",
   },
 };
 

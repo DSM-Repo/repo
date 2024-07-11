@@ -1,46 +1,55 @@
-import { InputHTMLAttributes, useState } from "react";
+import { HTMLAttributes } from "react";
 
-interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
+type TSize =
+  | "extraSmall"
+  | "small"
+  | "medium"
+  | "large"
+  | "extraLarge"
+  | "full";
+
+interface IProps extends HTMLAttributes<HTMLInputElement> {
   error?: boolean;
   disabled?: boolean;
-  inputSize?: "extraSmall" | "small" | "medium" | "large" | "extraLarge" | "full";
-  initialValue?: string;
+  size?: TSize;
+  value: string;
+  placeholder?: string;
+  onChange: () => void;
 }
 
 const sizeList = {
-  extraSmall: "min-w-[5rem] pl-2 pr-1 py-1",
-  small: "min-w-[8rem] pl-2 pr-2 py-2",
-  medium: "min-w-[11rem] pl-2 pr-2 py-2",
-  large: "min-w-[14rem] pl-2 pr-3 py-3",
-  extraLarge: "min-w-[28rem] pl-2 pr-3 py-3",
-  full: "w-full pl-2 pr-3 py-3",
+  extraSmall: "w-[8rem] px-4",
+  small: "w-[11rem] px-4",
+  medium: "w-[14rem] px-4",
+  large: "w-[28rem] px-4",
+  extraLarge: "w-[36rem] px-4",
+  full: "w-full px-4",
 };
 
-const commonStyle = "bg-[#454545] text-[#999999] border-l-4 border-l-[#6C6C6C]";
-const disabledStyle = "cursor-not-allowed bg-[#6C6C6C] text-[#999999]";
-const errorStyle = "bg-[#454545] text-[#999999] border-l-4 border-l-[#FF5D5D]";
+const commonStyle =
+  "outline-none rounded-[5px] transition-all duration-300 box-border bg-[#454545] py-3 text-[#999999] border-l-[5px] border-l-[#6C6C6C]";
+const disabledStyle = "cursor-not-allowed bg-[#6C6C6C]";
+const errorStyle = "border-l-[#FF5D5D]";
 
 export const Input = ({
-  error = false,
-  disabled = false,
-  inputSize = "small",
-  initialValue = "Input",
+  error,
+  disabled,
+  size = "small",
+  value,
+  onChange,
+  placeholder,
   ...props
-}: IInputProps) => {
-  const [value, setValue] = useState(initialValue);
-
+}: IProps) => {
   return (
     <input
-      className={
-        `rounded-[5px] transition-all duration-300 ${commonStyle} ${
-          disabled ? disabledStyle : "" || error ? errorStyle : ""
-        } ` +
-        sizeList[inputSize]
-      }
-      disabled={disabled}
-      value={value}
-      onChange={(e) => setValue(e.target.value)}
       {...props}
+      className={`${commonStyle} ${disabled && disabledStyle} ${
+        error && errorStyle
+      } ${sizeList[size]} ${props.className}`}
+      disabled={!!disabled}
+      placeholder={placeholder}
+      value={value}
+      onChange={onChange}
     />
   );
 };
