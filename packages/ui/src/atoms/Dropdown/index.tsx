@@ -20,12 +20,12 @@ interface IProps extends Omit<HTMLAttributes<HTMLInputElement>, "onSelect"> {
 }
 
 const sizeList = {
-  extraSmall: "w-[8rem] px-4",
-  small: "w-[11rem] px-4",
-  medium: "w-[14rem] px-4",
-  large: "w-[28rem] px-4",
-  extraLarge: "w-[36rem] px-4",
-  full: "w-full px-4",
+  extraSmall: "w-[8rem]",
+  small: "w-[11rem]",
+  medium: "w-[14rem]",
+  large: "w-[28rem] ",
+  extraLarge: "w-[36rem]",
+  full: "w-full",
 };
 
 const commonStyle =
@@ -50,10 +50,10 @@ export const Dropdown = ({
   return (
     <div
       {...props}
-      className={`${commonStyle} ${props.className} ${error && errorStyle} ${
-        disabled && disabledStyle
-      } ${disabled ? "cursor-not-allowed" : "cursor-pointer"} ${
-        size === "full" ? "w-full" : "w-fit"
+      className={`${commonStyle} ${sizeList[size]} ${props.className} ${
+        error && errorStyle
+      } ${disabled && disabledStyle} ${
+        disabled ? "cursor-not-allowed" : "cursor-pointer"
       }`}
     >
       <div

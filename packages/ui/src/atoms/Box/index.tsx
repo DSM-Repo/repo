@@ -3,10 +3,10 @@ import { HTMLAttributes } from "react";
 type TColor = "dark" | "light";
 
 type TRound = {
-  tr?: string;
-  tl?: string;
-  br?: string;
-  bl?: string;
+  tr?: string | number;
+  tl?: string | number;
+  br?: string | number;
+  bl?: string | number;
 };
 
 type TSize = {
@@ -54,7 +54,7 @@ export const Box = ({
   return (
     <div
       {...props}
-      className={`flex flex-col justify-between gap-10 ${colors[color]} ${props.className}`}
+      className={`flex flex-col gap-10 ${colors[color]} ${props.className}`}
       style={{ width, height, padding, borderRadius }}
     >
       {children}

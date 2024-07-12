@@ -1,29 +1,6 @@
 import { Box, PercentageBar, Prefix, Profile } from "../../atoms";
+import { IProp } from "./types";
 
-interface IUser {
-  profile?: string;
-  name: string;
-}
-
-export interface IStudent extends IUser {
-  type: "student";
-  major?: string; // 전공 타입 따로 지정 예정
-  grade: number;
-  class: number;
-  number: number;
-  progress: number;
-}
-
-export interface ITeacher extends IUser {
-  type: "teacher";
-}
-
-type TUser = IStudent | ITeacher;
-
-interface IProp {
-  user: TUser;
-  children: React.ReactElement | React.ReactElement[];
-}
 const rounded = { tr: "0", tl: "0", br: "0", bl: "0" };
 
 export const SideBar = ({ user, children }: IProp) => {
@@ -32,36 +9,38 @@ export const SideBar = ({ user, children }: IProp) => {
 
   return (
     <Box
-      size={{ width: "290px", height: "100%", padding: "20px" }}
+      size={{ width: "270px", height: "100%", padding: "20px" }}
       color="dark"
       round={rounded}
-      className="border-r-[1px] border-r-[#333333]"
+      className="grid grid-rows-[0.1fr_1fr_0.1fr] border-r-[1px] border-r-[#333333] gap-8"
     >
-      <div className="flex flex-col gap-10">
-        <div className="w-full flex items-center gap-3">
-          <Profile size={40} img={user.profile} />
-          <div className={`flex flex-col h-full ${align}`}>
-            <span className="text-white font-medium text-[18px] line-fit flex items-center gap-2">
-              {user.name}
-              <Prefix color={isStudent ? "green" : "blue"}>
-                {isStudent
-                  ? `${user.grade}${user.class}${user.number
-                      .toString()
-                      .padStart(2, "0")}`
-                  : "Teacher"}
-              </Prefix>
+      <div className="w-full flex gap-2 items-center">
+        <Profile size={40} img={user.profile} />
+        <div className="grid gap-x-2 gap-y-1 grid-rows-[fit-content(2ch)_fit-content(2ch)] grid-cols-[auto_fit-content(2ch)]">
+          <span className="text-white font-medium text-[18px] line-fit w-fit">
+            {user.name}
+          </span>
+          <Prefix
+            color={isStudent ? "green" : "blue"}
+            className="col-start-2 row-start-1"
+          >
+            {isStudent
+              ? `${user.grade}${user.class}${user.number
+                  .toString()
+                  .padStart(2, "0")}`
+              : "Teacher"}
+          </Prefix>
+
+          {isStudent && (
+            <span className="text-[#999999] font-light text-[15px] line-fit col-[1/5] row-start-2">
+              {user.major || "전공 미정"}
             </span>
-            {isStudent && (
-              <span className="text-[#999999] font-light text-[15px] line-fit">
-                {user.major || "전공 미정"}
-              </span>
-            )}
-          </div>
+          )}
         </div>
-        <div className="flex flex-col gap-3">
-          <span className="text-white">메인</span>
-          <div className="flex flex-col gap-1">{children}</div>
-        </div>
+      </div>
+      <div className="flex flex-col gap-3">
+        <span className="text-white">메인</span>
+        <div className="flex flex-col gap-1">{children}</div>
       </div>
       {isStudent && (
         <div className="flex flex-col gap-3 w-full mb-5">
