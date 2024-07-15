@@ -6,7 +6,7 @@ export const Layout = () => {
     <>
       <div className="fixed z-30 w-full flex items-center">
         <Header />
-        <span className="pointable absolute right-48 text-[#ffffff] font-bold line-fit">
+        <span className="pointable absolute right-48 font-bold line-fit">
           Login →
         </span>
       </div>

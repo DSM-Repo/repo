@@ -3,14 +3,10 @@ import { Background } from "@/assets";
 export const FourthSec = () => {
   return (
     <div className="relative flex items-center justify-center h-[95vh] w-full">
-      <div className="flex flex-col items-center gap-2 absolute z-20">
-        <span className="text-white font-semibold text-[50px] line-fit">
-          깔끔한
-        </span>
-        <span className="text-white font-semibold text-[30px] line-fit">
-          나만의 레주메
-        </span>
-        <button className="mt-4 text-white w-[fit-content] px-4 py-2 border-2 border-white rounded-[2px] pointable">
+      <div className="flex flex-col items-center gap-4 absolute z-20">
+        <span className="font-semibold text-5xl line-fit">깔끔한</span>
+        <span className="font-semibold text-3xl line-fit">나만의 레주메</span>
+        <button className="w-fit mt-4 px-4 py-2 border-2 border-white rounded-sm pointable">
           Repo 시작하기
         </button>
       </div>

@@ -5,7 +5,7 @@ export const Header = (props: HTMLAttributes<HTMLDivElement>) => {
   return (
     <div
       {...props}
-      className={`flex items-center justify-center w-full h-fit bg-[#222222] border-b-[1px] border-b-[#333333] py-3 ${props.className}`}
+      className={`flex items-center justify-center w-full h-fit box-border bg-[#222222] border-b-[1px] border-b-[#333333] py-3 ${props.className}`}
     >
       <Logo
         width="72px"

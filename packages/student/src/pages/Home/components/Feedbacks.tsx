@@ -27,7 +27,7 @@ export const Feedbacks = ({ feedbacks }: IProp) => {
     <Box
       size={boxSizes.layout.size}
       round={boxSizes.layout.round}
-      className="gap-[12px] border-l-[1px] border-[#333333]"
+      className="gap-3 border-l-[1px] border-[#333333]"
     >
       <span className="text-white font-semibold">피드백 목록</span>
       <Box

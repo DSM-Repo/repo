@@ -49,4 +49,11 @@ export const feedbacks = [
   },
 ];
 
+export const introduce = {
+  title:
+    "안녕하세요 :) 항상 좋은 코드를 만들어나가는 뿌듯함으로 하루하루 나아가고 있습니다. 👍",
+  content:
+    "문제파악부터 설계, 평가까지 복잡한 프로세스를 거쳐 만든 프로그램이 좋은 평가를 받을 때, 그 어떤 일보다 큰 성취감을 느낍니다. 읽기 쉬운 코드, 모듈화가 쉬운 코드를 지향하며 꾸준히 성장하는 개발자가 되고싶습니다.",
+};
+
 export { userDefault as user } from "ui/src/organisms/SideBar/index.stories";

@@ -14,12 +14,12 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     selected: undefined,
-    selections: ["selection", "another", "helloWOrld"],
+    selections: ["selection", "another", "helloWOrld", "repoisBest"],
     onSelect: () => {},
     placeholder: "test",
     size: "extraSmall",
     error: false,
-    disabled: false
+    disabled: false,
   },
   render: function Render(args) {
     const [ch, setCh] = useState<string>(args.selected);

@@ -4,7 +4,7 @@ interface IProp {
 
 export const Layout = ({ children }: IProp) => {
   return (
-    <div className="w-[75%] h-[100vh] flex gap-10 items-center justify-between">
+    <div className="flex gap-10 items-center justify-between w-3/4 h-[100vh]">
       {children}
     </div>
   );

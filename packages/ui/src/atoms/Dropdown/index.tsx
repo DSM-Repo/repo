@@ -1,38 +1,13 @@
 import { Icon } from "@iconify/react";
-import { HTMLAttributes, useState } from "react";
-
-type TSize =
-  | "extraSmall"
-  | "small"
-  | "medium"
-  | "large"
-  | "extraLarge"
-  | "full";
-
-interface IProps extends Omit<HTMLAttributes<HTMLInputElement>, "onSelect"> {
-  error?: boolean;
-  disabled?: boolean;
-  size?: TSize;
-  placeholder: string;
-  selected: string;
-  selections: string[];
-  onSelect: (selected: string) => void;
-}
-
-const sizeList = {
-  extraSmall: "w-[8rem]",
-  small: "w-[11rem]",
-  medium: "w-[14rem]",
-  large: "w-[28rem] ",
-  extraLarge: "w-[36rem]",
-  full: "w-full",
-};
-
-const commonStyle =
-  "outline-none rounded-[5px] transition-all duration-300 box-border bg-[#454545] text-[#999999] border-l-[5px] border-l-[#6C6C6C]";
-const disabledStyle = "cursor-not-allowed bg-[#6C6C6C]";
-const errorStyle = "border-l-[#FF5D5D]";
-const selectStyle = "bg-[#6c6c6c]";
+import { useState } from "react";
+import {
+  IProp,
+  commonStyle,
+  sizeList,
+  errorStyle,
+  disabledStyle,
+  selectStyle,
+} from "./constants";
 
 export const Dropdown = ({
   error,
@@ -43,7 +18,7 @@ export const Dropdown = ({
   onSelect,
   placeholder,
   ...props
-}: IProps) => {
+}: IProp) => {
   const [opened, setOpened] = useState(false);
   const rotate = opened ? "rotate-180" : "rotate-90";
 
@@ -57,7 +32,7 @@ export const Dropdown = ({
       }`}
     >
       <div
-        className={`flex w-full justify-between items-center py-3 ${sizeList[size]}`}
+        className={`flex w-full justify-between items-center py-3 px-4 ${sizeList[size]}`}
         onClick={() => !disabled && setOpened((prev) => !prev)}
       >
         <span className={`${!!selected ? "text-white" : "test-[#999999]"}`}>
@@ -71,19 +46,21 @@ export const Dropdown = ({
         />
       </div>
       {opened && (
-        <div>
-          {selections.map((i, j) => (
+        <div
+          className={`${commonStyle} w-inherit z-20 mt-[-10px] ml-[-5px] w-[inherit] absolute max-h-[144px] overflow-auto rounded-r-[5px]`}
+        >
+          {selections.map((item: string, index: number) => (
             <div
-              className={`${sizeList[size]} py-3 block text-white ${
-                i === selected && selectStyle
+              className={`py-3 pl-4 w-fitblock text-white ${
+                item === selected && selectStyle
               }`}
-              key={j}
+              key={index}
               onClick={() => {
                 setOpened(false);
-                onSelect(i);
+                onSelect(item);
               }}
             >
-              {i}
+              {item}
             </div>
           ))}
         </div>

@@ -1,5 +1,5 @@
-import { Footer } from "ui";
 import * as _ from "./components";
+import { Footer } from "ui";
 
 export const Landing = () => {
   return (
@@ -8,7 +8,7 @@ export const Landing = () => {
       <_.SecondSec />
       <_.ThirdSec />
       <_.FourthSec />
-      <Footer />
+      <Footer className="px-[12rem_!important]" />
     </div>
   );
 };
