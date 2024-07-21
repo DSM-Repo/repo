@@ -1,53 +1,62 @@
 {
-  "hash": "39175ccc",
+  "hash": "0def2e3f",
   "configHash": "65475585",
-  "lockfileHash": "7298cef8",
-  "browserHash": "1c768f0e",
+  "lockfileHash": "a957cc41",
+  "browserHash": "661c697f",
   "optimized": {
     "react": {
       "src": "../../../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/index.js",
       "file": "react.js",
-      "fileHash": "ce514213",
+      "fileHash": "392b3d09",
       "needsInterop": true
     },
     "react/jsx-dev-runtime": {
       "src": "../../../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/jsx-dev-runtime.js",
       "file": "react_jsx-dev-runtime.js",
-      "fileHash": "1118be9a",
+      "fileHash": "5c15708b",
       "needsInterop": true
     },
     "react/jsx-runtime": {
       "src": "../../../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/jsx-runtime.js",
       "file": "react_jsx-runtime.js",
-      "fileHash": "0a2b5d41",
+      "fileHash": "8af966e8",
       "needsInterop": true
+    },
+    "@iconify/react": {
+      "src": "../../../../.yarn/__virtual__/@iconify-react-virtual-1977427229/0/cache/@iconify-react-npm-5.0.1-9638fe18b7-d3fce5b2d8.zip/node_modules/@iconify/react/dist/iconify.js",
+      "file": "@iconify_react.js",
+      "fileHash": "7d8d76ec",
+      "needsInterop": false
     },
     "react-dom/client": {
       "src": "../../../../.yarn/__virtual__/react-dom-virtual-cf1d6710c9/0/cache/react-dom-npm-18.3.1-a805663f38-a752496c19.zip/node_modules/react-dom/client.js",
       "file": "react-dom_client.js",
-      "fileHash": "ad9f0c63",
+      "fileHash": "55792ba5",
       "needsInterop": true
     },
     "react-router-dom": {
       "src": "../../../../.yarn/__virtual__/react-router-dom-virtual-66a9c73c32/0/cache/react-router-dom-npm-6.24.1-4b9b65fc27-458c6c5393.zip/node_modules/react-router-dom/dist/index.js",
       "file": "react-router-dom.js",
-      "fileHash": "20e8456d",
+      "fileHash": "f0038277",
       "needsInterop": false
     },
     "storybook-addon-remix-react-router": {
       "src": "../../../../.yarn/__virtual__/storybook-addon-remix-react-router-virtual-e2ef7b2303/0/cache/storybook-addon-remix-react-router-npm-3.0.0-c761d80030-a601dc297d.zip/node_modules/storybook-addon-remix-react-router/dist/index.js",
       "file": "storybook-addon-remix-react-router.js",
-      "fileHash": "22baec41",
+      "fileHash": "eb1af4a1",
       "needsInterop": false
     },
-    "@iconify/react": {
+    "@iconify/react/dist/iconify.js": {
       "src": "../../../../.yarn/__virtual__/@iconify-react-virtual-1977427229/0/cache/@iconify-react-npm-5.0.1-9638fe18b7-d3fce5b2d8.zip/node_modules/@iconify/react/dist/iconify.js",
-      "file": "@iconify_react.js",
-      "fileHash": "4fa8c5c6",
+      "file": "@iconify_react_dist_iconify__js.js",
+      "fileHash": "7242d2f6",
       "needsInterop": false
     }
   },
   "chunks": {
+    "chunk-7FF6OZHY": {
+      "file": "chunk-7FF6OZHY.js"
+    },
     "chunk-555AQM7I": {
       "file": "chunk-555AQM7I.js"
     },

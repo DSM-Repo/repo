@@ -72,7 +72,7 @@ import {
   useScrollRestoration,
   useSearchParams,
   useSubmit,
-  useViewTransitionState,
+  useViewTransitionState
 } from "./chunk-555AQM7I.js";
 import "./chunk-NMURMXV3.js";
 import "./chunk-6ENKNRI7.js";
@@ -151,6 +151,6 @@ export {
   useRouteLoaderData,
   useRoutes,
   useSearchParams,
-  useSubmit,
+  useSubmit
 };
 //# sourceMappingURL=react-router-dom.js.map

@@ -1,8 +1,7 @@
-"use client";
 import {
   __toESM,
   require_react
-} from "./chunk-NWFN7RY3.js";
+} from "./chunk-6ENKNRI7.js";
 
 // ../../.yarn/__virtual__/@iconify-react-virtual-1977427229/0/cache/@iconify-react-npm-5.0.1-9638fe18b7-d3fce5b2d8.zip/node_modules/@iconify/react/dist/iconify.js
 var import_react = __toESM(require_react());
@@ -1872,23 +1871,23 @@ var _api = {
   getFetch,
   listAPIProviders
 };
+
 export {
+  listIcons,
+  addIcon,
+  addCollection,
+  iconLoaded,
+  getIcon,
+  calculateSize,
+  iconToSVG,
+  replaceIDs,
+  addAPIProvider,
+  loadIcons,
+  loadIcon,
+  enableCache,
+  disableCache,
   Icon,
   InlineIcon,
-  _api,
-  addAPIProvider,
-  addCollection,
-  addIcon,
-  iconToSVG as buildIcon,
-  calculateSize,
-  disableCache,
-  enableCache,
-  getIcon,
-  iconLoaded as iconExists,
-  iconLoaded,
-  listIcons,
-  loadIcon,
-  loadIcons,
-  replaceIDs
+  _api
 };
-//# sourceMappingURL=@iconify_react.js.map
+//# sourceMappingURL=chunk-7FF6OZHY.js.map
