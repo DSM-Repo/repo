@@ -10,7 +10,7 @@ export const Router = () => {
           <Route path="" element={<_.Landing />} />
           <Route path="error/:code" element={<_.Error />} />
         </Route>
-        <Route path="/*" element={<Navigate replace to="/error/404" />} />
+        <Route path="/*" element={<Navigate to="/error/404" />} />
       </Routes>
     </BrowserRouter>
   );

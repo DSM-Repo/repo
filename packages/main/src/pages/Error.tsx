@@ -5,18 +5,17 @@ const string: { [key: string]: string } = {
   401: "Unauthorized",
   403: "Forbidden",
   404: "Not found",
+  unsigned: "Unsigned Error",
 };
 
 export const Error = () => {
   const { code } = useParams();
 
   return (
-    <div className="flex flex-col gap-4 items-center justify-center w-full h-[100vh] bg-[#2E2E2E]">
-      <span className="text-white text-[7rem] font-black leading-none">
-        {code}
-      </span>
-      <span className="text-white text-[1.5rem] font-medium leading-none">
-        {string[code || "404"] || "Unsigned Error"}
+    <div className="col-flex flex-center size-full">
+      <span className="text-[7rem] font-black">{code}</span>
+      <span className="text-[1.5rem] font-medium">
+        {string[code || "unsigned"]}
       </span>
     </div>
   );

@@ -3,12 +3,12 @@ import { Footer } from "ui";
 
 export const Landing = () => {
   return (
-    <div className="flex flex-col items-center w-full min-h-[100vh] gap-40 bg-[#373737]">
+    <div className="col-flex items-center gap-40">
       <_.FirstSec />
       <_.SecondSec />
       <_.ThirdSec />
       <_.FourthSec />
-      <Footer className="px-[12rem_!important] mt-[-10rem]" />
+      <Footer className="px-[12rem_!important] -mt-40" />
     </div>
   );
 };
