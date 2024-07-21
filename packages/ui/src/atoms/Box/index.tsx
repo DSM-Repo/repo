@@ -14,7 +14,7 @@ export const Box = ({
   return (
     <div
       {...props}
-      className={`flex flex-col gap-10 ${colors[color]} ${props.className}`}
+      className={`col-flex gap-10 ${colors[color]} ${props.className}`}
       style={{ width, height, padding, borderRadius, ...props.style }}
     >
       {children}
