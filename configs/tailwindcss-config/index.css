@@ -34,10 +34,6 @@ body {
   overscroll-behavior: none;
 }
 
-.line-fit {
-  line-height: 1;
-}
-
 .line-fit-br {
   margin-top: -4px;
   margin-bottom: -4px;
@@ -58,6 +54,17 @@ body {
 }
 
 span,
-button {
+button,
+label {
   color: white;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: gray;
 }
