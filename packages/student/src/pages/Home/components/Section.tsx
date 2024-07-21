@@ -48,7 +48,10 @@ export const Section = ({ user }: IProp) => {
           </li>
         </ul>
       </Box>
-      <Box size={layout} className="row-[1/span_2] col-start-2 gap-2">
+      <Box
+        size={{ ...layout, height: "350px" }}
+        className="row-[1/span_2] col-start-2 gap-2"
+      >
         <span className="text-white font-medium text-[18px] line-fit">
           자기소개
         </span>

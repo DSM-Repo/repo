@@ -4,3 +4,4 @@ export * from "./Projects";
 export * from "./Activity";
 export * from "./Inform";
 export * from "./Layout";
+export * from "./Footer";

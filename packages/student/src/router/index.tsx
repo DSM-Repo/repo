@@ -1,5 +1,4 @@
 import { Route, Routes, BrowserRouter } from "react-router-dom";
-import { Write } from "@/pages/Write";
 import { Layout } from "./Layout";
 import * as _ from "@/pages";
 
@@ -14,7 +13,7 @@ export const Router = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="" element={<_.Home />} />
-          <Route path="write/:section" element={<Write />} />
+          <Route path="write/:section" element={<_.Write />} />
           <Route path="library" element={<_.Library />} />
           <Route path="book/:id" element={<></>} />
         </Route>
