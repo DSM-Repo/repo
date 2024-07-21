@@ -11,22 +11,19 @@
     @apply justify-center items-center;
   }
 
+  .line-fit-br {
+    @apply -my-1
+  }
 
-}
+  .disable {
+    @apply cursor-not-allowed bg-[#373737];
+  }
 
-body {
-  background: #2e2e2e;
-}
-.css-k7lbue {
-  padding: 0 !important;
-}
+  .disable {
+    @apply cursor-pointer transition-all duration-100 hover:opacity-60;
+  }
 
-.css-qa4clq {
-  max-width: 100% !important;
-}
 
-.sbdocs-content {
-  background: #333333;
 }
 
 @font-face {
@@ -40,35 +37,9 @@ body {
 * {
   font-family: "PretendardVariable" !important;
   user-select: none;
-}
-
-body {
-  overscroll-behavior: none;
-}
-
-.line-fit-br {
-  margin-top: -4px;
-  margin-bottom: -4px;
-}
-
-.pointable {
-  cursor: pointer;
-  transition: 100ms ease-in-out all;
-}
-
-.disable {
-  cursor: not-allowed;
-  background: #373737;
-}
-
-.pointable:hover {
-  opacity: 0.6;
-}
-
-span,
-button,
-label {
   color: white;
+  border-color: white;
+  overscroll-behavior: none;
 }
 
 ::-webkit-scrollbar {
@@ -79,4 +50,20 @@ label {
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
   background-color: gray;
+}
+
+body {
+  background: #2e2e2e;
+}
+
+.css-k7lbue {
+  padding: 0 !important;
+}
+
+.css-qa4clq {
+  max-width: 100% !important;
+}
+
+.sbdocs-content {
+  background: #333333;
 }
