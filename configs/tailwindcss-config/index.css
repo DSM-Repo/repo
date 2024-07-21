@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .col-flex {
+    @apply flex flex-col;
+  }
+
+  .flex-center {
+    @apply justify-center items-center;
+  }
+
+
+}
+
 body {
   background: #2e2e2e;
 }
