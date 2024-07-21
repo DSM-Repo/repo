@@ -13,7 +13,7 @@ export const Button = ({
   return (
     <button
       {...props}
-      className={`text-white rounded-[5px] h-full transition-all py-3 duration-300 ${point} ${colorList[color]} ${sizeList[size]} ${props.className}`}
+      className={`text-body7 rounded-[5px] h-full transition-all py-3 duration-300 ${point} ${colorList[color]} ${sizeList[size]} ${props.className}`}
       disabled={!!disabled}
       onClick={onClick}
     >
