@@ -1,3 +1,5 @@
+import { HTMLAttributes } from "react";
+
 interface IUser {
   profile?: string;
   name: string;
@@ -18,7 +20,7 @@ export interface ITeacher extends IUser {
 
 type TUser = IStudent | ITeacher;
 
-export interface IProp {
+export interface IProp extends Omit<HTMLAttributes<HTMLDivElement>, "color"> {
   user: TUser;
   children: React.ReactElement | React.ReactElement[];
 }

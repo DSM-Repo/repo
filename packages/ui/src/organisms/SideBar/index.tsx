@@ -3,16 +3,17 @@ import { IProp } from "./types";
 
 const rounded = { tr: "0", tl: "0", br: "0", bl: "0" };
 
-export const SideBar = ({ user, children }: IProp) => {
+export const SideBar = ({ user, children, ...props }: IProp) => {
   const isStudent = user.type === "student";
   const align = isStudent ? "justify-between" : "justify-center";
 
   return (
     <Box
+      {...props}
       size={{ width: "270px", height: "100%", padding: "20px" }}
       color="dark"
       round={rounded}
-      className="grid grid-rows-[0.1fr_1fr_0.1fr] border-r-[1px] border-r-[#333333] gap-8"
+      className={`grid grid-rows-[0.1fr_1fr_0.1fr] border-r-[1px] border-r-[#333333] gap-8 ${props.className}`}
     >
       <div className="w-full flex gap-2 items-center">
         <Profile size={40} img={user.profile} />
