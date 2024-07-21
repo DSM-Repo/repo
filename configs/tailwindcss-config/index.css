@@ -19,7 +19,7 @@
     @apply cursor-not-allowed bg-[#373737];
   }
 
-  .disable {
+  .pointable {
     @apply cursor-pointer transition-all duration-100 hover:opacity-60;
   }
 
