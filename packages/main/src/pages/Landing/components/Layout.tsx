@@ -1,10 +1,15 @@
-interface IProp {
+import { HTMLAttributes } from "react";
+
+interface IProp extends HTMLAttributes<HTMLDivElement> {
   children: React.ReactElement | React.ReactElement[];
 }
 
-export const Layout = ({ children }: IProp) => {
+export const Layout = ({ children, ...props }: IProp) => {
   return (
-    <div className="w-[75%] h-[100vh] flex gap-10 items-center justify-between">
+    <div
+      {...props}
+      className="flex gap-20 items-center justify-between w-9/12 max-w-[1400px] h-screen"
+    >
       {children}
     </div>
   );

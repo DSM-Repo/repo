@@ -1,25 +1,4 @@
-import { HTMLAttributes } from "react";
-
-type TTitle = {
-  title: string;
-  subTitle?: string;
-};
-
-interface IProp extends Omit<HTMLAttributes<HTMLDivElement>, "title"> {
-  title?: TTitle;
-  progress: number;
-  type?: "Full" | "NoTitle" | "Simple";
-  color?: "Blue" | "Green";
-}
-
-const colors = {
-  Blue: "bg-[#2492E2]",
-  Green: "bg-[#42E224]",
-};
-
-const defaultTitle = {
-  title: "진행도",
-};
+import { IProp, colors, defaultTitle } from "./constants";
 
 export const PercentageBar = ({
   title = defaultTitle,

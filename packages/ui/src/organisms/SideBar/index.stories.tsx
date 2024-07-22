@@ -1,7 +1,8 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { IStudent, SideBar } from ".";
 import { withRouter } from "storybook-addon-remix-react-router";
 import { SideBarButton, SideBarDrop } from "../../molecules";
+import type { Meta, StoryObj } from "@storybook/react";
+import { IStudent } from "./types";
+import { SideBar } from ".";
 
 const meta = {
   title: "organisms/SideBar",
@@ -12,21 +13,22 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
+export const userDefault: IStudent = {
+  name: "육기준",
+  type: "student",
+  major: "", //Frontend Developer
+  grade: 2,
+  class: 1,
+  number: 11,
+  progress: 40,
+};
+
 export const Default: Story = {
   args: {
-    user: {
-      name: "육기준",
-      type: "student",
-      major: "Frontend Developer",
-      grade: 2,
-      class: 1,
-      number: 11,
-      progress: 40,
-    },
+    user: userDefault,
     children: (
       <>
-        <SideBarButton title="내 정보" icon="My" url="/" />
-        <SideBarButton title="도서관" icon="Library" url="/library" />
+        <SideBarButton title="" icon="My" url="/" />
         <SideBarDrop
           title="포트폴리오 수정"
           icon="Edit"

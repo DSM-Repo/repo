@@ -61,6 +61,7 @@ const RAW_RUNTIME_STATE =
           ["@types/react", "npm:18.3.3"],\
           ["@types/react-router-dom", "npm:5.3.3"],\
           ["dotenv", "npm:16.4.5"],\
+          ["prettier", "npm:3.3.3"],\
           ["typescript", "patch:typescript@npm%3A5.4.5#optional!builtin<compat/typescript>::version=5.4.5&hash=5adc0c"]\
         ],\
         "linkType": "SOFT"\
@@ -5586,7 +5587,7 @@ const RAW_RUNTIME_STATE =
           ["semver", "npm:7.6.2"],\
           ["ts-dedent", "npm:2.2.0"],\
           ["type-fest", "npm:2.19.0"],\
-          ["typescript", "patch:typescript@npm%3A5.5.2#optional!builtin<compat/typescript>::version=5.5.2&hash=b45daf"],\
+          ["typescript", "patch:typescript@npm%3A5.5.2#optional!builtin<compat/typescript>::version=5.5.2&hash=379a07"],\
           ["util-deprecate", "npm:1.0.2"]\
         ],\
         "packagePeers": [\
@@ -10930,6 +10931,7 @@ const RAW_RUNTIME_STATE =
           ["main", "workspace:packages/main"],\
           ["@configs/eslint", "workspace:configs/eslint-config"],\
           ["@configs/tailwindcss", "workspace:configs/tailwindcss-config"],\
+          ["@iconify/react", "virtual:9dce388d82c018b4a7af5edc7243e51f7023d1ab93a923b3959d0066ac6881c93b965a0932486426cbefa96c9c8e47849d5ff541d2404b8aca246480fa32f0d2#npm:5.0.1"],\
           ["@types/react", "npm:18.3.3"],\
           ["@types/react-dom", "npm:18.3.0"],\
           ["@typescript-eslint/eslint-plugin", "virtual:630bd6b1835fb13223e0a656ceb0e6da2fd1911c16f7db5cc941dbdab0c36f5a822e0704c10dcae82063ce6b8972a8f1177d70950ac9bd3853a81e1ba4c4b3c4#npm:7.13.1"],\
@@ -12287,6 +12289,13 @@ const RAW_RUNTIME_STATE =
           ["prettier", "npm:3.3.2"]\
         ],\
         "linkType": "HARD"\
+      }],\
+      ["npm:3.3.3", {\
+        "packageLocation": "./.yarn/unplugged/prettier-npm-3.3.3-e811f023f3/node_modules/prettier/",\
+        "packageDependencies": [\
+          ["prettier", "npm:3.3.3"]\
+        ],\
+        "linkType": "HARD"\
       }]\
     ]],\
     ["pretty-format", [\
@@ -13166,6 +13175,7 @@ const RAW_RUNTIME_STATE =
           ["@types/react", "npm:18.3.3"],\
           ["@types/react-router-dom", "npm:5.3.3"],\
           ["dotenv", "npm:16.4.5"],\
+          ["prettier", "npm:3.3.3"],\
           ["typescript", "patch:typescript@npm%3A5.4.5#optional!builtin<compat/typescript>::version=5.4.5&hash=5adc0c"]\
         ],\
         "linkType": "SOFT"\
@@ -13868,6 +13878,7 @@ const RAW_RUNTIME_STATE =
           ["student", "workspace:packages/student"],\
           ["@configs/eslint", "workspace:configs/eslint-config"],\
           ["@configs/tailwindcss", "workspace:configs/tailwindcss-config"],\
+          ["@iconify/react", "virtual:9dce388d82c018b4a7af5edc7243e51f7023d1ab93a923b3959d0066ac6881c93b965a0932486426cbefa96c9c8e47849d5ff541d2404b8aca246480fa32f0d2#npm:5.0.1"],\
           ["@types/react", "npm:18.3.3"],\
           ["@types/react-dom", "npm:18.3.0"],\
           ["@typescript-eslint/eslint-plugin", "virtual:630bd6b1835fb13223e0a656ceb0e6da2fd1911c16f7db5cc941dbdab0c36f5a822e0704c10dcae82063ce6b8972a8f1177d70950ac9bd3853a81e1ba4c4b3c4#npm:7.13.1"],\
@@ -14379,10 +14390,10 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "HARD"\
       }],\
-      ["patch:typescript@npm%3A5.5.2#optional!builtin<compat/typescript>::version=5.5.2&hash=b45daf", {\
-        "packageLocation": "./.yarn/cache/typescript-patch-719176cb0c-6721ac8933.zip/node_modules/typescript/",\
+      ["patch:typescript@npm%3A5.5.2#optional!builtin<compat/typescript>::version=5.5.2&hash=379a07", {\
+        "packageLocation": "./.yarn/cache/typescript-patch-7885ea9a13-a7b7ede75d.zip/node_modules/typescript/",\
         "packageDependencies": [\
-          ["typescript", "patch:typescript@npm%3A5.5.2#optional!builtin<compat/typescript>::version=5.5.2&hash=b45daf"]\
+          ["typescript", "patch:typescript@npm%3A5.5.2#optional!builtin<compat/typescript>::version=5.5.2&hash=379a07"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -14442,7 +14453,7 @@ const RAW_RUNTIME_STATE =
           ["storybook", "npm:8.1.11"],\
           ["storybook-addon-remix-react-router", "virtual:9dce388d82c018b4a7af5edc7243e51f7023d1ab93a923b3959d0066ac6881c93b965a0932486426cbefa96c9c8e47849d5ff541d2404b8aca246480fa32f0d2#npm:3.0.0"],\
           ["tailwindcss", "npm:3.4.4"],\
-          ["typescript", "patch:typescript@npm%3A5.5.2#optional!builtin<compat/typescript>::version=5.5.2&hash=b45daf"],\
+          ["typescript", "patch:typescript@npm%3A5.5.2#optional!builtin<compat/typescript>::version=5.5.2&hash=379a07"],\
           ["vite", "virtual:9dce388d82c018b4a7af5edc7243e51f7023d1ab93a923b3959d0066ac6881c93b965a0932486426cbefa96c9c8e47849d5ff541d2404b8aca246480fa32f0d2#npm:5.3.1"],\
           ["vite-plugin-svgr", "virtual:9dce388d82c018b4a7af5edc7243e51f7023d1ab93a923b3959d0066ac6881c93b965a0932486426cbefa96c9c8e47849d5ff541d2404b8aca246480fa32f0d2#npm:4.2.0"]\
         ],\

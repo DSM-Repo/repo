@@ -2,19 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  background: #2e2e2e;
-}
-.css-k7lbue {
-  padding: 0 !important;
-}
+@layer components {
+  .col-flex {
+    @apply flex flex-col;
+  }
 
-.css-qa4clq {
-  max-width: 100% !important;
-}
+  .flex-center {
+    @apply justify-center items-center;
+  }
 
-.sbdocs-content {
-  background: #333333;
+  .line-fit-br {
+    @apply -my-1
+  }
+
+  .disable {
+    @apply cursor-not-allowed bg-[#373737];
+  }
+
+  .pointable {
+    @apply cursor-pointer transition-all duration-100 hover:opacity-60;
+  }
+
+
 }
 
 @font-face {
@@ -28,31 +37,37 @@ body {
 * {
   font-family: "PretendardVariable" !important;
   user-select: none;
-}
-
-body {
+  color: white;
+  border-color: white;
   overscroll-behavior: none;
 }
 
-.line-fit {
-  line-height: 1;
+textarea {
+  resize: none;
 }
 
-.line-fit-br {
-  margin-top: -4px;
-  margin-bottom: -4px;
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
 }
 
-.pointable {
-  cursor: pointer;
-  transition: 100ms ease-in-out all;
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: gray;
 }
 
-.disable {
-  cursor: not-allowed;
-  background: #373737;
+body {
+  background: #2e2e2e;
 }
 
-.pointable:hover {
-  opacity: 0.6;
+.css-k7lbue {
+  padding: 0 !important;
+}
+
+.css-qa4clq {
+  max-width: 100% !important;
+}
+
+.sbdocs-content {
+  background: #333333;
 }

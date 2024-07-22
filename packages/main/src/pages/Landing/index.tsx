@@ -1,14 +1,14 @@
-import { Footer } from "ui";
 import * as _ from "./components";
+import { Footer } from "ui";
 
 export const Landing = () => {
   return (
-    <div className="flex flex-col items-center w-full min-h-[100vh] bg-[#373737]">
+    <div className="relative col-flex w-full items-center gap-40">
       <_.FirstSec />
       <_.SecondSec />
       <_.ThirdSec />
       <_.FourthSec />
-      <Footer />
+      <Footer className="px-[12rem_!important] -mt-40" />
     </div>
   );
 };

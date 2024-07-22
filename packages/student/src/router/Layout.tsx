@@ -1,21 +1,12 @@
+import { userDefault as user } from "ui/src/organisms/SideBar/index.stories";
+import { SideBar, SideBarButton, SideBarDrop } from "ui";
 import { Outlet } from "react-router-dom";
 import { Header } from "ui";
-import { IStudent, SideBar, SideBarButton, SideBarDrop } from "ui";
-
-const user: IStudent = {
-  name: "육기준",
-  type: "student",
-  major: "Frontend Developer",
-  grade: 2,
-  class: 1,
-  number: 11,
-  progress: 40,
-};
 
 export const Layout = () => {
   return (
     <div className="w-full h-[100vh] flex">
-      <SideBar user={user}>
+      <SideBar user={user} className="min-w-[250px]">
         <SideBarButton title="내 정보" icon="My" url="/" />
         <SideBarButton title="도서관" icon="Library" url="/library" />
         <SideBarDrop
@@ -32,7 +23,9 @@ export const Layout = () => {
       </SideBar>
       <div className="flex flex-col w-full h-full">
         <Header />
-        <Outlet />
+        <div className="w-full h-full overflow-scroll">
+          <Outlet />
+        </div>
       </div>
     </div>
   );

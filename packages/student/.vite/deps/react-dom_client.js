@@ -1,9 +1,9 @@
 import {
   require_react_dom
-} from "./chunk-DK4WHDVE.js";
+} from "./chunk-NMURMXV3.js";
 import {
   __commonJS
-} from "./chunk-NWFN7RY3.js";
+} from "./chunk-6ENKNRI7.js";
 
 // ../../.yarn/__virtual__/react-dom-virtual-cf1d6710c9/0/cache/react-dom-npm-18.3.1-a805663f38-a752496c19.zip/node_modules/react-dom/client.js
 var require_client = __commonJS({
