@@ -42,6 +42,10 @@
   overscroll-behavior: none;
 }
 
+textarea {
+  resize: none;
+}
+
 ::-webkit-scrollbar {
   width: 4px;
   height: 4px;

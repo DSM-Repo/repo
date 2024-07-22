@@ -15,20 +15,34 @@ export const Input = ({
   onChange,
   placeholder,
   label,
+  multiLine,
   ...props
 }: IProp) => {
   return (
     <Label label={label}>
-      <input
-        {...props}
-        className={`${commonStyle} ${disabled && disabledStyle} ${
-          error && errorStyle
-        } ${sizeList[size]} ${props.className}`}
-        disabled={!!disabled}
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
-      />
+      {!!!multiLine ? (
+        <input
+          {...props}
+          className={`${commonStyle} ${disabled && disabledStyle} ${
+            error && errorStyle
+          } ${sizeList[size]} ${props.className}`}
+          disabled={!!disabled}
+          placeholder={placeholder}
+          value={value}
+          onChange={onChange}
+        />
+      ) : (
+        <textarea
+          rows={multiLine}
+          className={`${commonStyle} ${disabled && disabledStyle} ${
+            error && errorStyle
+          } ${sizeList[size]} ${props.className}`}
+          disabled={!!disabled}
+          placeholder={placeholder}
+          value={value}
+          onChange={onChange}
+        />
+      )}
     </Label>
   );
 };

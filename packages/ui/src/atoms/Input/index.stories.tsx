@@ -73,3 +73,10 @@ disabled.args = {
   size: "large",
   disabled: true,
 };
+
+export const multiLine = Input.bind({});
+
+multiLine.args = {
+  ...Default.args,
+  multiLine: 5,
+};

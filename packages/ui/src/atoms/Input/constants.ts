@@ -8,14 +8,18 @@ type TSize =
   | "extraLarge"
   | "full";
 
-export interface IProp extends HTMLAttributes<HTMLInputElement> {
+export interface IProp
+  extends HTMLAttributes<HTMLInputElement | HTMLTextAreaElement> {
   error?: boolean;
   disabled?: boolean;
   size?: TSize;
   value: string;
   placeholder?: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => void;
   label?: string;
+  multiLine?: number;
 }
 
 export const sizeList = {
@@ -28,6 +32,6 @@ export const sizeList = {
 };
 
 export const commonStyle =
-  "outline-none rounded-[5px] transition-all duration-300 box-border bg-[#454545] py-3 px-4 text-[#999999] border-l-[5px] border-l-[#6C6C6C]";
+  "outline-none rounded-[5px] transition-all duration-300 box-border bg-[#454545] py-3 px-4 placeholder:text-[#999999] border-l-[5px] border-l-[#6C6C6C]";
 export const disabledStyle = "cursor-not-allowed bg-[#6C6C6C]";
 export const errorStyle = "border-l-[#FF5D5D]";
