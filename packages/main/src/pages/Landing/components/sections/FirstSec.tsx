@@ -12,10 +12,10 @@ export const FirstSec = () => {
         <StartButton />
         <img
           src={image}
-          className="absolute right-0 -bottom-96 min-w-[684px] w-full max-w-[1000px] z-10"
+          className="absolute right-0 -bottom-72 min-w-[684px] w-full max-w-[1000px] z-10"
         />
       </div>
-      <div className="w-full h-52 absolute -bottom-24 left-0 bg-[#1B1B1B]" />
+      <div className="w-full h-52 absolute top-[45rem] left-0 bg-[#1B1B1B]" />
     </Layout>
   );
 };

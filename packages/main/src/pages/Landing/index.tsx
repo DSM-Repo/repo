@@ -3,7 +3,7 @@ import { Footer } from "ui";
 
 export const Landing = () => {
   return (
-    <div className="col-flex items-center gap-40">
+    <div className="relative col-flex w-full items-center gap-40">
       <_.FirstSec />
       <_.SecondSec />
       <_.ThirdSec />
