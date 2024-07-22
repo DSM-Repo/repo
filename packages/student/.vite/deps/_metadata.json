@@ -1,62 +1,53 @@
 {
-  "hash": "0def2e3f",
+  "hash": "a402eda9",
   "configHash": "65475585",
-  "lockfileHash": "a957cc41",
-  "browserHash": "661c697f",
+  "lockfileHash": "6eaaec03",
+  "browserHash": "ee2f18cb",
   "optimized": {
     "react": {
       "src": "../../../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/index.js",
       "file": "react.js",
-      "fileHash": "392b3d09",
+      "fileHash": "8a302c13",
       "needsInterop": true
     },
     "react/jsx-dev-runtime": {
       "src": "../../../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/jsx-dev-runtime.js",
       "file": "react_jsx-dev-runtime.js",
-      "fileHash": "5c15708b",
+      "fileHash": "5feb82c4",
       "needsInterop": true
     },
     "react/jsx-runtime": {
       "src": "../../../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/jsx-runtime.js",
       "file": "react_jsx-runtime.js",
-      "fileHash": "8af966e8",
+      "fileHash": "b1281a08",
       "needsInterop": true
     },
     "@iconify/react": {
       "src": "../../../../.yarn/__virtual__/@iconify-react-virtual-1977427229/0/cache/@iconify-react-npm-5.0.1-9638fe18b7-d3fce5b2d8.zip/node_modules/@iconify/react/dist/iconify.js",
       "file": "@iconify_react.js",
-      "fileHash": "7d8d76ec",
+      "fileHash": "a1269206",
       "needsInterop": false
     },
     "react-dom/client": {
       "src": "../../../../.yarn/__virtual__/react-dom-virtual-cf1d6710c9/0/cache/react-dom-npm-18.3.1-a805663f38-a752496c19.zip/node_modules/react-dom/client.js",
       "file": "react-dom_client.js",
-      "fileHash": "55792ba5",
+      "fileHash": "d1f7578f",
       "needsInterop": true
     },
     "react-router-dom": {
       "src": "../../../../.yarn/__virtual__/react-router-dom-virtual-66a9c73c32/0/cache/react-router-dom-npm-6.24.1-4b9b65fc27-458c6c5393.zip/node_modules/react-router-dom/dist/index.js",
       "file": "react-router-dom.js",
-      "fileHash": "f0038277",
+      "fileHash": "2c23a23e",
       "needsInterop": false
     },
     "storybook-addon-remix-react-router": {
       "src": "../../../../.yarn/__virtual__/storybook-addon-remix-react-router-virtual-e2ef7b2303/0/cache/storybook-addon-remix-react-router-npm-3.0.0-c761d80030-a601dc297d.zip/node_modules/storybook-addon-remix-react-router/dist/index.js",
       "file": "storybook-addon-remix-react-router.js",
-      "fileHash": "eb1af4a1",
-      "needsInterop": false
-    },
-    "@iconify/react/dist/iconify.js": {
-      "src": "../../../../.yarn/__virtual__/@iconify-react-virtual-1977427229/0/cache/@iconify-react-npm-5.0.1-9638fe18b7-d3fce5b2d8.zip/node_modules/@iconify/react/dist/iconify.js",
-      "file": "@iconify_react_dist_iconify__js.js",
-      "fileHash": "7242d2f6",
+      "fileHash": "49bb9081",
       "needsInterop": false
     }
   },
   "chunks": {
-    "chunk-7FF6OZHY": {
-      "file": "chunk-7FF6OZHY.js"
-    },
     "chunk-555AQM7I": {
       "file": "chunk-555AQM7I.js"
     },
