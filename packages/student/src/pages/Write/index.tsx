@@ -6,10 +6,10 @@ export const Write = () => {
 
   if (section) {
     return (
-      <div className="flex w-full h-full overflow-auto">
-        <div className="flex flex-col w-7/12 h-full overflow-hidden">
+      <div className="flex w-full h-full">
+        <div className="flex flex-col w-7/12 h-full overflow-x-hidden">
           <div
-            className="flex w-full h-full transition-all duration-300"
+            className="flex w-full h-full transition-all duration-300 shrink"
             style={{
               transform: `translateX(${(section - 1) * -100}%)`,
             }}
