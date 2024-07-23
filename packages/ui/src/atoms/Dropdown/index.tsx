@@ -1,5 +1,5 @@
 import { Icon } from "@iconify/react";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import {
   IProp,
   commonStyle,
@@ -8,6 +8,7 @@ import {
   disabledStyle,
   selectStyle,
 } from "./constants";
+import { Label } from "../Label";
 
 export const Dropdown = ({
   error,
@@ -15,6 +16,7 @@ export const Dropdown = ({
   size = "small",
   selected,
   selections,
+  label,
   onSelect,
   placeholder,
   ...props
@@ -24,46 +26,48 @@ export const Dropdown = ({
   const rounded = opened ? "rounded-t-[5px]" : "rounded-[5px]";
 
   return (
-    <div
-      {...props}
-      className={`${commonStyle} ${rounded} ${sizeList[size]}  ${
-        error && errorStyle
-      } ${disabled && disabledStyle} ${
-        disabled ? "cursor-not-allowed" : "cursor-pointer"
-      } ${props.className}`}
-    >
+    <Label label={label}>
       <div
-        className={`flex w-full justify-between items-center py-3 px-4 ${sizeList[size]}`}
-        onClick={() => !disabled && setOpened((prev) => !prev)}
+        {...props}
+        className={`${commonStyle} ${rounded} ${sizeList[size]}  ${
+          error && errorStyle
+        } ${disabled && disabledStyle} ${
+          disabled ? "cursor-not-allowed" : "cursor-pointer"
+        } ${props.className}`}
       >
-        <span className={`${!!!selected && "text-[#999999]"}`}>
-          {!!selected ? selected : placeholder}
-        </span>
-        <Icon
-          icon="ep:arrow-up-bold"
-          width={15}
-          color={!!selected ? "white" : "#999999"}
-          className={rotate + " transition-all duration-150"}
-        />
-      </div>
-      {opened && (
         <div
-          className={`${commonStyle} rounded-none rounded-b-[5px] w-[inherit] ml-[-5px] z-20 absolute max-h-[135px] overflow-auto`}
+          className={`flex w-full justify-between items-center py-3 px-4 ${sizeList[size]}`}
+          onClick={() => !disabled && setOpened((prev) => !prev)}
         >
-          {selections.map((item: string, index: number) => (
-            <span
-              className={`text-body7 py-3 pl-4 block ${item === selected && selectStyle}`}
-              key={index}
-              onClick={() => {
-                setOpened(false);
-                onSelect(item);
-              }}
-            >
-              {item}
-            </span>
-          ))}
+          <span className={`${!!!selected && "text-[#999999]"}`}>
+            {!!selected ? selected : placeholder}
+          </span>
+          <Icon
+            icon="ep:arrow-up-bold"
+            width={15}
+            color={!!selected ? "white" : "#999999"}
+            className={rotate + " transition-all duration-150"}
+          />
         </div>
-      )}
-    </div>
+        {opened && (
+          <div
+            className={`${commonStyle} rounded-none rounded-b-[5px] w-[inherit] ml-[-5px] z-20 absolute max-h-[135px] overflow-auto`}
+          >
+            {selections.map((item: string, index: number) => (
+              <span
+                className={`text-body7 py-3 pl-4 block ${item === selected && selectStyle}`}
+                key={index}
+                onClick={() => {
+                  setOpened(false);
+                  onSelect(item, props.id);
+                }}
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
+    </Label>
   );
 };
