@@ -14,9 +14,10 @@ export interface IProp
   disabled?: boolean;
   size?: TSize;
   placeholder: string;
-  selected: string;
+  label?: string;
+  selected?: string;
   selections: string[];
-  onSelect: (selected: string) => void;
+  onSelect: (data: string, name?: string) => void;
 }
 
 export const sizeList = {
