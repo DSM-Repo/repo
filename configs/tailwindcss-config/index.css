@@ -37,9 +37,12 @@
 * {
   font-family: "PretendardVariable" !important;
   user-select: none;
-  color: white;
   border-color: white;
   overscroll-behavior: none;
+}
+
+span, label, input, textarea {
+  color: white;
 }
 
 textarea {
