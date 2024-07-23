@@ -33,6 +33,7 @@ export const Input = ({
         />
       ) : (
         <textarea
+          {...props}
           rows={multiLine}
           className={`${commonStyle} ${disabled && disabledStyle} ${
             error && errorStyle
