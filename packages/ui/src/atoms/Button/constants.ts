@@ -14,10 +14,10 @@ export const colorList = {
 };
 
 export const sizeList = {
-  extraSmall: "w-[5rem] px-2",
-  small: "w-[8rem] px-2",
-  medium: "w-[11rem] px-2",
-  large: "w-[14rem] px-3",
-  extraLarge: "w-[28rem] px-3",
-  full: "w-full px-3",
+  extraSmall: "w-[8rem]",
+  small: "w-[11rem]",
+  medium: "w-[14rem]",
+  large: "w-[28rem]",
+  extraLarge: "w-[36rem]",
+  full: "w-full",
 };
