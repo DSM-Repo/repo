@@ -15,6 +15,7 @@ export interface IProp
   size?: TSize;
   value: string;
   placeholder?: string;
+  password?: boolean;
   onChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => void;
