@@ -1,28 +1,3 @@
-import { HTMLAttributes } from "react";
-
-type TSize =
-  | "extraSmall"
-  | "small"
-  | "medium"
-  | "large"
-  | "extraLarge"
-  | "full";
-
-export interface IProp
-  extends HTMLAttributes<HTMLInputElement | HTMLTextAreaElement> {
-  error?: boolean;
-  disabled?: boolean;
-  size?: TSize;
-  value: string;
-  placeholder?: string;
-  password?: boolean;
-  onChange: (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => void;
-  label?: string;
-  multiLine?: number;
-}
-
 export const sizeList = {
   extraSmall: "w-[8rem]",
   small: "w-[11rem]",
