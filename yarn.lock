@@ -1515,6 +1515,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@configs/axios@workspace:^, @configs/axios@workspace:configs/axios-config":
+  version: 0.0.0-use.local
+  resolution: "@configs/axios@workspace:configs/axios-config"
+  dependencies:
+    axios: "npm:^1.7.2"
+    react-cookie: "npm:^7.2.0"
+  languageName: unknown
+  linkType: soft
+
 "@configs/eslint@workspace:^, @configs/eslint@workspace:configs/eslint-config":
   version: 0.0.0-use.local
   resolution: "@configs/eslint@workspace:configs/eslint-config"
@@ -3685,6 +3694,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/cookie@npm:^0.6.0":
+  version: 0.6.0
+  resolution: "@types/cookie@npm:0.6.0"
+  checksum: 10c0/5b326bd0188120fb32c0be086b141b1481fec9941b76ad537f9110e10d61ee2636beac145463319c71e4be67a17e85b81ca9e13ceb6e3bb63b93d16824d6c149
+  languageName: node
+  linkType: hard
+
 "@types/cross-spawn@npm:^6.0.2":
   version: 6.0.6
   resolution: "@types/cross-spawn@npm:6.0.6"
@@ -3811,6 +3827,16 @@ __metadata:
   version: 4.7.11
   resolution: "@types/history@npm:4.7.11"
   checksum: 10c0/3facf37c2493d1f92b2e93a22cac7ea70b06351c2ab9aaceaa3c56aa6099fb63516f6c4ec1616deb5c56b4093c026a043ea2d3373e6c0644d55710364d02c934
+  languageName: node
+  linkType: hard
+
+"@types/hoist-non-react-statics@npm:^3.3.5":
+  version: 3.3.5
+  resolution: "@types/hoist-non-react-statics@npm:3.3.5"
+  dependencies:
+    "@types/react": "npm:*"
+    hoist-non-react-statics: "npm:^3.3.0"
+  checksum: 10c0/2a3b64bf3d9817d7830afa60ee314493c475fb09570a64e7737084cd482d2177ebdddf888ce837350bac51741278b077683facc9541f052d4bbe8487b4e3e618
   languageName: node
   linkType: hard
 
@@ -5163,7 +5189,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cookie@npm:0.6.0":
+"cookie@npm:0.6.0, cookie@npm:^0.6.0":
   version: 0.6.0
   resolution: "cookie@npm:0.6.0"
   checksum: 10c0/f2318b31af7a31b4ddb4a678d024514df5e705f9be5909a192d7f116cfb6d45cbacf96a473fa733faa95050e7cff26e7832bb3ef94751592f1387b71c8956686
@@ -6934,6 +6960,15 @@ __metadata:
   dependencies:
     "@types/hast": "npm:^3.0.0"
   checksum: 10c0/649edd993cf244563ad86d861aa0863759a4fbec49c43b3d92240e42aa4b69f0c3332ddff9e80954bbd8756c86b0fddc20e97d281c6da59d00427f45da8dab68
+  languageName: node
+  linkType: hard
+
+"hoist-non-react-statics@npm:^3.3.0, hoist-non-react-statics@npm:^3.3.2":
+  version: 3.3.2
+  resolution: "hoist-non-react-statics@npm:3.3.2"
+  dependencies:
+    react-is: "npm:^16.7.0"
+  checksum: 10c0/fe0889169e845d738b59b64badf5e55fa3cf20454f9203d1eb088df322d49d4318df774828e789898dcb280e8a5521bb59b3203385662ca5e9218a6ca5820e74
   languageName: node
   linkType: hard
 
@@ -9124,6 +9159,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-cookie@npm:^7.2.0":
+  version: 7.2.0
+  resolution: "react-cookie@npm:7.2.0"
+  dependencies:
+    "@types/hoist-non-react-statics": "npm:^3.3.5"
+    hoist-non-react-statics: "npm:^3.3.2"
+    universal-cookie: "npm:^7.0.0"
+  peerDependencies:
+    react: ">= 16.3.0"
+  checksum: 10c0/434e8d8a4836ca14cc00edc06c55afdb291ed99f7ea0703e88e50b5071df0ff1773c06a1b516e7f5353886ed866a195dfb9baa07cf60affd2336b8b7eaf8498b
+  languageName: node
+  linkType: hard
+
 "react-docgen-typescript@npm:^2.2.2":
   version: 2.2.2
   resolution: "react-docgen-typescript@npm:2.2.2"
@@ -9193,7 +9241,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-is@npm:^16.13.1":
+"react-is@npm:^16.13.1, react-is@npm:^16.7.0":
   version: 16.13.1
   resolution: "react-is@npm:16.13.1"
   checksum: 10c0/33977da7a5f1a287936a0c85639fec6ca74f4f15ef1e59a6bc20338fc73dc69555381e211f7a3529b8150a1f71e4225525b41b60b52965bda53ce7d47377ada1
@@ -9508,11 +9556,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "repo2024@workspace:."
   dependencies:
-    "@tanstack/react-query": "npm:^5.51.11"
     "@types/node": "npm:^20.14.6"
     "@types/react": "npm:^18.3.3"
     "@types/react-router-dom": "npm:^5.3.3"
-    axios: "npm:^1.7.2"
     dotenv: "npm:^16.4.5"
     prettier: "npm:^3.3.3"
     typescript: "npm:^5.4.5"
@@ -10178,9 +10224,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "student@workspace:packages/student"
   dependencies:
+    "@configs/axios": "workspace:^"
     "@configs/eslint": "workspace:^"
     "@configs/tailwindcss": "workspace:^"
     "@iconify/react": "npm:^5.0.1"
+    "@tanstack/react-query": "npm:^5.51.11"
     "@types/react": "npm:^18.2.66"
     "@types/react-dom": "npm:^18.2.22"
     "@typescript-eslint/eslint-plugin": "npm:^7.2.0"
@@ -10192,6 +10240,7 @@ __metadata:
     eslint-plugin-react-refresh: "npm:^0.4.6"
     postcss: "npm:^8.4.39"
     react: "npm:^18.2.0"
+    react-cookie: "npm:^7.2.0"
     react-dom: "npm:^18.2.0"
     react-router-dom: "npm:^6.24.1"
     tailwindcss: "npm:^3.4.4"
@@ -10799,6 +10848,16 @@ __metadata:
     unist-util-is: "npm:^6.0.0"
     unist-util-visit-parents: "npm:^6.0.0"
   checksum: 10c0/51434a1d80252c1540cce6271a90fd1a106dbe624997c09ed8879279667fb0b2d3a685e02e92bf66598dcbe6cdffa7a5f5fb363af8fdf90dda6c855449ae39a5
+  languageName: node
+  linkType: hard
+
+"universal-cookie@npm:^7.0.0":
+  version: 7.2.0
+  resolution: "universal-cookie@npm:7.2.0"
+  dependencies:
+    "@types/cookie": "npm:^0.6.0"
+    cookie: "npm:^0.6.0"
+  checksum: 10c0/70dec5aaae247bd1e5b310097226be45464ef1b701da17ff4598180c205320871584dcee2021ab71339c47cbee0227ca7f327475b93641160f986f631fd6b8e0
   languageName: node
   linkType: hard
 
