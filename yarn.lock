@@ -1520,6 +1520,7 @@ __metadata:
   resolution: "@configs/axios@workspace:configs/axios-config"
   dependencies:
     axios: "npm:^1.7.2"
+    react: "npm:^18.3.1"
     react-cookie: "npm:^7.2.0"
   languageName: unknown
   linkType: soft

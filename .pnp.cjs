@@ -2701,6 +2701,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@configs/axios", "workspace:configs/axios-config"],\
           ["axios", "npm:1.7.2"],\
+          ["react", "npm:18.3.1"],\
           ["react-cookie", "virtual:3f8e84454bbe8c4d112955fea2bdcd4085c5649f05402047afa75eb458ecaf64a18f6dc83e15aa23b5bff2aff706e9f222e8b0c0b89d9b17accaec6cb8f497cd#npm:7.2.0"]\
         ],\
         "linkType": "SOFT"\
@@ -12776,7 +12777,7 @@ const RAW_RUNTIME_STATE =
           ["@types/hoist-non-react-statics", "npm:3.3.5"],\
           ["@types/react", null],\
           ["hoist-non-react-statics", "npm:3.3.2"],\
-          ["react", null],\
+          ["react", "npm:18.3.1"],\
           ["universal-cookie", "npm:7.2.0"]\
         ],\
         "packagePeers": [\
