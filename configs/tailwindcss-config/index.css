@@ -23,7 +23,6 @@
     @apply cursor-pointer transition-all duration-100 hover:opacity-60;
   }
 
-
 }
 
 @font-face {
@@ -37,9 +36,12 @@
 * {
   font-family: "PretendardVariable" !important;
   user-select: none;
-  color: white;
   border-color: white;
   overscroll-behavior: none;
+}
+
+span, label, input, textarea, li {
+  color: white;
 }
 
 textarea {

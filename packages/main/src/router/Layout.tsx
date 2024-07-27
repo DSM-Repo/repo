@@ -39,7 +39,11 @@ export const Layout = () => {
           <span>로그인 유형을 선택해주세요</span>
           <div
             className="relative w-96 h-12 rounded-md bg-[#2E2E2E] flex gap-6 items-center cursor-pointer"
-            onClick={() => window.location.replace("http://localhost:3001")} // 임시 코드, 나중엔 OAuth로 변경 예정
+            onClick={() =>
+              window.location.replace(
+                `${process.env.VITE_APP_URL_STUDENT}/login`,
+              )
+            }
           >
             <div className="rounded-l-md bg-black w-[70px] h-full flex flex-center">
               <Icon icon="ph:student-bold" color="white" width={25} />
@@ -48,7 +52,11 @@ export const Layout = () => {
           </div>
           <div
             className="relative w-96 h-12 rounded-md bg-[#2E2E2E] flex gap-6 items-center cursor-pointer"
-            onClick={() => window.localStorage.replace("http://localhost:3002")}
+            onClick={() =>
+              window.localStorage.replace(
+                `${process.env.VITE_APP_URL_STUDENT}/login`,
+              )
+            }
           >
             <div className="rounded-l-md bg-black w-[70px] h-full flex flex-center">
               <Icon icon="mdi:book-outline" color="white" width={25} />

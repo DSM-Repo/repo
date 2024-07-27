@@ -11,7 +11,7 @@ export const Footer = ({ section }: IProp) => {
 
   return (
     <Box
-      size={{ width: "100%", height: "55px", padding: "10px" }}
+      size={{ width: "100%", height: "55px", padding: "20px" }}
       style={{ flexDirection: "row" }}
       className="px-[1.5rem_!important] justify-between"
     >

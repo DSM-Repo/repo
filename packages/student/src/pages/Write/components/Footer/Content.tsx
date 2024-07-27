@@ -28,7 +28,7 @@ export const Content = ({
       onClick={!disabled ? onClick : () => {}}
       className={`flex gap-1 items-center ${iconLoc}`}
     >
-      <Icon icon={icon} width={22} className={disable} />
+      <Icon icon={icon} width={22} color={disabled ? "#999999" : "white"} />
       <span className={`text-body8 leading-none ${disable}`}>{children}</span>
     </button>
   );

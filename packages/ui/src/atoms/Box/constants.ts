@@ -3,20 +3,20 @@ import { HTMLAttributes } from "react";
 type TColor = "dark" | "light";
 
 type TRound = {
-  tr?: string | number;
-  tl?: string | number;
-  br?: string | number;
-  bl?: string | number;
+  tr?: string | number,
+  tl?: string | number,
+  br?: string | number,
+  bl?: string | number,
 };
 
 type TSize = {
-  width: string;
-  height: string;
-  padding: string;
+  width: string,
+  height: string,
+  padding: string,
 };
 
 export interface IProp extends HTMLAttributes<HTMLDivElement> {
-  children: React.ReactElement | React.ReactElement[];
+  children: React.ReactElement | React.ReactElement[] | string;
   color?: TColor;
   size?: TSize;
   round?: TRound;
