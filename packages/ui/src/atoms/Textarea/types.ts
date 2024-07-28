@@ -1,19 +1,13 @@
-import { HTMLAttributes } from "react";
-
-export type TSize =
-  | "extraSmall"
-  | "small"
-  | "medium"
-  | "large"
-  | "extraLarge"
-  | "full";
+import { ChangeEvent, HTMLAttributes } from "react";
+import { sizeType } from "../../common";
 
 export interface IProp extends HTMLAttributes<HTMLTextAreaElement> {
   error?: boolean;
   disabled?: boolean;
-  size?: TSize;
+  size?: sizeType;
   placeholder: string;
   label?: string;
-  value?: string;
+  onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
+  value: string;
   rows: number;
 }

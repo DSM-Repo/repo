@@ -1,13 +1,10 @@
 import { withRouter } from "storybook-addon-remix-react-router";
 import { SideBarButton, SideBarDrop } from "../../molecules";
 import type { Meta, StoryObj } from "@storybook/react";
+import { SideBar as component } from ".";
 import { IStudent } from "./types";
-import { SideBar } from ".";
 
-const meta = {
-  title: "organisms/SideBar",
-  component: SideBar,
-} satisfies Meta<typeof SideBar>;
+const meta = { component } satisfies Meta<typeof component>;
 
 export default meta;
 

@@ -1,22 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Box } from "./index";
+import { Box as component } from ".";
 
-const meta = {
-  component: Box,
-} satisfies Meta<typeof Box>;
+const meta = { component } satisfies Meta<typeof component>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
-  args: {
-    children: <></>,
-    color: "dark",
-    size: {
-      width: "100%",
-      height: "10vh",
-      padding: "10px",
-    },
-  },
-};
+export const Default: Story = { args: { children: <></> } };

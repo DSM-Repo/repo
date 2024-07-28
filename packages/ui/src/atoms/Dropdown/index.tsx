@@ -1,14 +1,20 @@
+import { IProp as IInput } from "../Input";
+import { sizeList } from "../../common";
 import { Icon } from "@iconify/react";
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
+import { Label } from "../Label";
 import {
-  IProp,
   commonStyle,
-  sizeList,
   errorStyle,
   disabledStyle,
   selectStyle,
 } from "./constants";
-import { Label } from "../Label";
+
+interface IProp extends Omit<IInput, "onSelect" | "onChange" | "value"> {
+  selected?: string;
+  selections: string[];
+  onSelect: (data: string, name?: string) => void;
+}
 
 export const Dropdown = ({
   error,
@@ -19,6 +25,7 @@ export const Dropdown = ({
   label,
   onSelect,
   placeholder,
+  id,
   ...props
 }: IProp) => {
   const [opened, setOpened] = useState(false);
@@ -26,10 +33,10 @@ export const Dropdown = ({
   const rounded = opened ? "rounded-t-[5px]" : "rounded-[5px]";
 
   return (
-    <Label label={label}>
+    <Label label={label} full={size === "full"}>
       <div
         {...props}
-        className={`${commonStyle} ${rounded} ${sizeList[size]}  ${
+        className={`${commonStyle} ${rounded} ${sizeList[size]} ${
           error && errorStyle
         } ${disabled && disabledStyle} ${
           disabled ? "cursor-not-allowed" : "cursor-pointer"
@@ -46,20 +53,20 @@ export const Dropdown = ({
             icon="ep:arrow-up-bold"
             width={15}
             color={!!selected ? "white" : "#999999"}
-            className={rotate + " transition-all duration-150"}
+            className={`transition-all duration-150 ${rotate} `}
           />
         </div>
         {opened && (
           <div
-            className={`${commonStyle} rounded-none rounded-b-[5px] w-[inherit] ml-[-5px] z-20 absolute max-h-[135px] overflow-auto`}
+            className={`${commonStyle} rounded-none rounded-b-[5px] w-[inherit] -ml-1 z-20 absolute max-h-[135px] overflow-auto`}
           >
-            {selections.map((item: string, index: number) => (
+            {selections.map((item: string) => (
               <span
                 className={`text-body7 py-3 pl-4 block ${item === selected && selectStyle}`}
-                key={index}
+                key=""
                 onClick={() => {
                   setOpened(false);
-                  onSelect(item, props.id);
+                  onSelect(item, id);
                 }}
               >
                 {item}

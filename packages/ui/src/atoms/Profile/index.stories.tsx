@@ -1,23 +1,17 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { Profile as component } from "./index";
 
-import { Profile } from "./index";
-
-const meta = {
-  title: "atoms/Profile",
-  component: Profile,
-} satisfies Meta<typeof Profile>;
+const meta = { component } satisfies Meta<typeof component>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {
-    size: 300,
-  },
+  args: { size: 300 },
 };
 
-export const withProfile = Profile.bind({});
+export const withProfile = component.bind({});
 
 withProfile.args = {
   ...Default.args,

@@ -26,14 +26,14 @@ const studId = {
 };
 
 const skills = [
-  "Frontend Developer",
-  "Backend Developer",
-  "Game Developer",
-  "Embedded Developer",
-  "Android Developer",
-  "AI Developer",
-  "iOS Developer",
-  "Security",
+  {
+    id: "qwkenwqeqwdndios",
+    name: "백엔드",
+  },
+  {
+    id: "gfdegthrgfdsfgre",
+    name: "프론트엔드",
+  },
 ];
 
 interface IData {
@@ -88,7 +88,7 @@ export const Inform = () => {
         label="전공"
         placeholder="전공을 선택하세요"
         selected={data.major}
-        selections={skills}
+        selections={skills.map((i) => i.name)}
         onSelect={handleDropChange}
         size="large"
         id="major"

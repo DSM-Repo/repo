@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Prefix as component } from ".";
+
+import { Textarea as component } from "./index";
 
 const meta = { component } satisfies Meta<typeof component>;
 
@@ -9,7 +10,9 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    children: "2111",
-    color: "green",
+    placeholder: "placeholder",
+    onChange: () => {},
+    value: "value",
+    rows: 0,
   },
 };

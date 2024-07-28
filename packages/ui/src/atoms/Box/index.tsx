@@ -1,10 +1,12 @@
-import { IProp, DSize, DRound, colors } from "./constants.ts";
+import { sizeDefault, roundDefault } from "./constants";
+import { colorBox } from "../../common";
+import { IProp } from "./types";
 
 export const Box = ({
   children,
   color = "dark",
-  size = DSize,
-  round = DRound,
+  size = sizeDefault,
+  round = roundDefault,
   ...props
 }: IProp) => {
   const { width, height, padding } = size;
@@ -14,7 +16,7 @@ export const Box = ({
   return (
     <div
       {...props}
-      className={`col-flex gap-10 ${colors[color]} ${props.className}`}
+      className={`col-flex gap-10 ${colorBox[color]} ${props.className}`}
       style={{ width, height, padding, borderRadius, ...props.style }}
     >
       {children}

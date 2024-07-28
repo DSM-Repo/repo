@@ -18,9 +18,9 @@ export interface ITeacher extends IUser {
   type: "teacher";
 }
 
-type TUser = IStudent | ITeacher;
+type userType = IStudent | ITeacher;
 
 export interface IProp extends Omit<HTMLAttributes<HTMLDivElement>, "color"> {
-  user: TUser;
+  user: userType;
   children: React.ReactElement | React.ReactElement[];
 }

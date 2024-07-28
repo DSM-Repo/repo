@@ -1,4 +1,4 @@
-import { Input } from "ui";
+import { Input, Textarea } from "ui";
 import { Layout } from "./Layout";
 import { ChangeEvent, useState } from "react";
 
@@ -26,14 +26,14 @@ export const Introduce = () => {
         size="large"
         id="short"
       />
-      <Input
+      <Textarea
         label="자기소개"
         placeholder="한 줄 소개를 입력하세요"
         value={data.long}
         onChange={handleChange}
         size="large"
         id="long"
-        multiLine={10}
+        rows={10}
       />
     </Layout>
   );

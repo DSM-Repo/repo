@@ -1,10 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Content } from ".";
+import { Content as component } from ".";
 
-const meta = {
-  title: "atoms/SideBar/Content",
-  component: Content,
-} satisfies Meta<typeof Content>;
+const meta = { component } satisfies Meta<typeof component>;
 
 export default meta;
 

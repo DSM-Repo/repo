@@ -7,8 +7,8 @@ interface IProp extends HTMLAttributes<HTMLDivElement> {
 
 export const Background = ({ children, selected, ...props }: IProp) => {
   const style = selected
-    ? "bg-[#1E1E1E] border-l-[5px] pl-[calc(1rem-5px)] pr-[1rem]"
-    : "bg-[#222222] pl-[calc(1rem-5px)] pr-[1rem]";
+    ? "bg-[#1E1E1E] border-l-[5px] pl-[calc(1rem-5px)] pr-4"
+    : "bg-[#222222] pl-[calc(1rem-5px)] pr-4";
 
   return (
     <div

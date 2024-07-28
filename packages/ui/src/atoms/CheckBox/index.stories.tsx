@@ -1,11 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { CheckBox } from ".";
-import { useState } from "@storybook/preview-api";
+import { CheckBox as component } from ".";
 
-const meta = {
-  title: "atoms/CheckBox",
-  component: CheckBox,
-} satisfies Meta<typeof CheckBox>;
+const meta = { component } satisfies Meta<typeof component>;
 
 export default meta;
 
@@ -17,22 +13,16 @@ export const Default: Story = {
     onChange: () => {},
     label: "with label",
   },
-  render: function Render(args) {
-    const [ch, setCh] = useState<boolean>(args.state);
-    return (
-      <CheckBox {...args} state={ch} onChange={() => setCh((prev) => !prev)} />
-    );
-  },
 };
 
-export const checked = CheckBox.bind({});
+export const checked = component.bind({});
 
 checked.args = {
   ...Default.args,
   state: true,
 };
 
-export const withoutLabel = CheckBox.bind({});
+export const withoutLabel = component.bind({});
 
 withoutLabel.args = {
   ...Default.args,

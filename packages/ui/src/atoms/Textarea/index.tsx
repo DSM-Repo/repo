@@ -1,11 +1,7 @@
-import { Label } from "../Label";
-import {
-  commonStyle,
-  disabledStyle,
-  errorStyle,
-  sizeList,
-} from "../Input/constants";
+import { commonStyle, disabledStyle, errorStyle } from "../Input";
+import { sizeList } from "../../common";
 import { IProp } from "./types";
+import { Label } from "../Label";
 
 export const Textarea = ({
   error,
@@ -17,7 +13,7 @@ export const Textarea = ({
   ...props
 }: IProp) => {
   return (
-    <Label label={label}>
+    <Label label={label} full={size === "full"}>
       <textarea
         {...props}
         rows={rows}

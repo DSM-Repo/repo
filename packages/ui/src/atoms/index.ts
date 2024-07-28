@@ -8,3 +8,5 @@ export * from "./Profile";
 export * from "./Prefix";
 export * from "./Label";
 export * from "./Dropdown";
+export * from "./Textarea";
+export * from "./File";

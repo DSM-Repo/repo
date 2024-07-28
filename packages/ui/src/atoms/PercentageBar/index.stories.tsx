@@ -1,10 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { PercentageBar } from ".";
+import { PercentageBar as component } from ".";
 
-const meta = {
-  title: "atoms/PercentageBar",
-  component: PercentageBar,
-} satisfies Meta<typeof PercentageBar>;
+const meta = { component } satisfies Meta<typeof component>;
 
 export default meta;
 
@@ -22,14 +19,14 @@ export const Default: Story = {
   },
 };
 
-export const withoutText = PercentageBar.bind({});
+export const withoutText = component.bind({});
 
 withoutText.args = {
   ...Default.args,
   type: "NoTitle",
 };
 
-export const simple = PercentageBar.bind({});
+export const simple = component.bind({});
 
 simple.args = {
   ...Default.args,
