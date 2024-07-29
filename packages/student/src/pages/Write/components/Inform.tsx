@@ -1,6 +1,7 @@
 import { Box, Dropdown, Input, Label } from "ui";
 import { Layout } from "./Layout";
 import { ChangeEvent, useState } from "react";
+import { Icon } from "@iconify/react";
 
 const studId = {
   grade: ["1", "2", "3"],
@@ -142,8 +143,20 @@ export const Inform = () => {
                 height: "fit-content",
                 padding: "8px 13px",
               }}
+              className="flex flex-row items-center gap-2"
             >
               <span className="text-body7">{i}</span>
+              <Icon
+                icon="ph:x-bold"
+                color="white"
+                className="cursor-pointer"
+                onClick={() =>
+                  setData({
+                    ...data,
+                    skills: data.skills.filter((j) => j !== i),
+                  })
+                }
+              />
             </Box>
           ))}
         </div>
