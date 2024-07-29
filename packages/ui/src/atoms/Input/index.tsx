@@ -19,7 +19,6 @@ export interface IProp extends HTMLAttributes<HTMLInputElement> {
 }
 
 export const Input = ({
-  id,
   error,
   disabled,
   size = "small",
