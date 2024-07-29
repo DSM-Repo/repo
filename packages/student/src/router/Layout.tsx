@@ -12,7 +12,7 @@ export const Layout = () => {
       </SideBar>
       <div className="flex flex-col w-full h-full">
         <Header />
-        <div className="w-full h-full">
+        <div className="w-full h-full overflow-scroll">
           <Outlet />
         </div>
       </div>
