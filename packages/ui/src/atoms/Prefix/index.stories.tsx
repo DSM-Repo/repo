@@ -1,9 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Prefix } from "./index";
+import { Prefix as component } from ".";
 
-const meta = {
-  component: Prefix,
-} satisfies Meta<typeof Prefix>;
+const meta = { component } satisfies Meta<typeof component>;
 
 export default meta;
 

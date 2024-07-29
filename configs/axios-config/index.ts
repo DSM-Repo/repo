@@ -8,6 +8,14 @@ export const instance = axios.create({
   timeout: 5000,
 });
 
+export const path = {
+  auth: "/auth",
+  document: "/document",
+  user: "/user",
+  feedback: "/feedback",
+  major: "/major",
+};
+
 instance.interceptors.request.use(
   (res) => {
     const accessToken = cookie.get("accessToken");

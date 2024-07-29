@@ -1,6 +1,6 @@
-import { HTMLAttributes } from "react";
-import { Background, Content, iconType } from "../../atoms";
 import { useNavigate, useLocation } from "react-router-dom";
+import { Background, Content, iconType } from "../../atoms";
+import { HTMLAttributes } from "react";
 
 export interface IProp extends HTMLAttributes<HTMLDivElement> {
   icon: iconType;

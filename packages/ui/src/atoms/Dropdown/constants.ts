@@ -1,34 +1,3 @@
-import { HTMLAttributes } from "react";
-
-type TSize =
-  | "extraSmall"
-  | "small"
-  | "medium"
-  | "large"
-  | "extraLarge"
-  | "full";
-
-export interface IProp
-  extends Omit<HTMLAttributes<HTMLInputElement>, "onSelect"> {
-  error?: boolean;
-  disabled?: boolean;
-  size?: TSize;
-  placeholder: string;
-  label?: string;
-  selected?: string;
-  selections: string[];
-  onSelect: (data: string, name?: string) => void;
-}
-
-export const sizeList = {
-  extraSmall: "w-[8rem]",
-  small: "w-[11rem]",
-  medium: "w-[14rem]",
-  large: "w-[28rem] ",
-  extraLarge: "w-[36rem]",
-  full: "w-full",
-};
-
 export const commonStyle =
   "h-fit text-body7 box-border bg-[#454545] text-[#999999] border-l-[5px] border-l-[#6C6C6C]";
 export const disabledStyle = "cursor-not-allowed bg-[#6C6C6C]";

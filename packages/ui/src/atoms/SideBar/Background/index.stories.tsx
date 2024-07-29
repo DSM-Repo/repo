@@ -1,36 +1,27 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Background } from ".";
+import { Background as component } from ".";
 
-const meta = {
-  title: "atoms/SideBar/Background",
-  component: Background,
-} satisfies Meta<typeof Background>;
+const meta = { component } satisfies Meta<typeof component>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-const Template = (args) => (
-  <div className="w-[300px]">
-    <Background {...args} />
-  </div>
-);
-
-export const Default: Story = Template.bind({});
+export const Default: Story = component.bind({});
 
 Default.args = {
   children: <></>,
   selected: false,
 };
 
-export const selected = Template.bind({});
+export const selected = component.bind({});
 
 selected.args = {
   ...Default.args,
   selected: true,
 };
 
-export const list = Template.bind({});
+export const list = component.bind({});
 
 list.args = {
   children: <div className="w-full h-[15rem]"></div>,

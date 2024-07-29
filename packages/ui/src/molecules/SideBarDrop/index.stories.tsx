@@ -1,11 +1,8 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { SideBarDrop } from ".";
 import { withRouter } from "storybook-addon-remix-react-router";
+import type { Meta, StoryObj } from "@storybook/react";
+import { SideBarDrop as component } from ".";
 
-const meta = {
-  title: "molecules/SideBarDrop",
-  component: SideBarDrop,
-} satisfies Meta<typeof SideBarDrop>;
+const meta = { component } satisfies Meta<typeof component>;
 
 export default meta;
 

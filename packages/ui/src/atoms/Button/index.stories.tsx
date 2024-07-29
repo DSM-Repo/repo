@@ -1,10 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Button } from ".";
+import { Button as component } from ".";
 
-const meta = {
-  title: "atoms/Button",
-  component: Button,
-} satisfies Meta<typeof Button>;
+const meta = { component } satisfies Meta<typeof component>;
 
 export default meta;
 
@@ -14,50 +11,48 @@ export const Default: Story = {
   args: {
     children: "Button",
     onClick: () => console.log("Clicked!"),
-    disabled: false,
-    color: "dark",
     size: "extraSmall",
   },
 };
 
 Default.storyName = "Extra Small";
 
-export const small = Button.bind({});
+export const small = component.bind({});
 
 small.args = {
   ...Default.args,
   size: "small",
 };
 
-export const medium = Button.bind({});
+export const medium = component.bind({});
 
 medium.args = {
   ...Default.args,
   size: "medium",
 };
 
-export const large = Button.bind({});
+export const large = component.bind({});
 
 large.args = {
   ...Default.args,
   size: "large",
 };
 
-export const extraLarge = Button.bind({});
+export const extraLarge = component.bind({});
 
 extraLarge.args = {
   ...Default.args,
   size: "extraLarge",
 };
 
-export const full = Button.bind({});
+export const full = component.bind({});
 
 full.args = {
   ...Default.args,
   size: "full",
 };
 
-export const disabled = Button.bind({});
+export const disabled = component.bind({});
 
 disabled.args = {
   ...Default.args,

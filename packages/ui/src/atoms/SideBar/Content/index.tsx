@@ -10,9 +10,7 @@ interface IProp extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const Content = ({ icon, children, selected, ...props }: IProp) => {
-  const font = selected
-    ? "text-white font-semibold"
-    : "text-[#999999] font-regular";
+  const font = selected ? "font-semibold" : "text-[#999999] font-regular";
 
   const Icon = Icons[icon];
 

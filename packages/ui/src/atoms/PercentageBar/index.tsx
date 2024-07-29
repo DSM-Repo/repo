@@ -1,4 +1,5 @@
-import { IProp, colors, defaultTitle } from "./constants";
+import { colors, defaultTitle } from "./constants";
+import { IProp } from "./types";
 
 export const PercentageBar = ({
   title = defaultTitle,
@@ -12,7 +13,7 @@ export const PercentageBar = ({
     <div {...props} className={`w-full ${props.className}`}>
       {type === "Full" && (
         <div className="pb-3">
-          <span className="inline text-white font-semibold text-[16px]">
+          <span className="inline font-semibold text-[16px]">
             {title.title}
           </span>
           <span className="inline text-[#999999] font-semibold text-[14px]">

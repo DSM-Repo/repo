@@ -1,11 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { Dropdown as component } from ".";
 
-import { Dropdown } from "./index";
-import { useState } from "@storybook/preview-api";
-
-const meta = {
-  component: Dropdown,
-} satisfies Meta<typeof Dropdown>;
+const meta = { component } satisfies Meta<typeof component>;
 
 export default meta;
 
@@ -14,57 +10,51 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     selected: undefined,
-    selections: ["selection", "another", "helloWOrld", "repoisBest"],
+    selections: ["data1", "data2", "data3", "data4"],
     onSelect: () => {},
-    placeholder: "test",
+    placeholder: "placeholder",
     size: "extraSmall",
-    error: false,
-    disabled: false,
-  },
-  render: function Render(args) {
-    const [ch, setCh] = useState<string>(args.selected);
-    return <Dropdown {...args} selected={ch} onSelect={(i) => setCh(i)} />;
   },
 };
 
 Default.storyName = "Extra Small";
 
-export const small = Dropdown.bind({});
+export const small = component.bind({});
 
 small.args = {
   ...Default.args,
   size: "small",
 };
 
-export const medium = Dropdown.bind({});
+export const medium = component.bind({});
 
 medium.args = {
   ...Default.args,
   size: "medium",
 };
 
-export const large = Dropdown.bind({});
+export const large = component.bind({});
 
 large.args = {
   ...Default.args,
   size: "large",
 };
 
-export const extraLarge = Dropdown.bind({});
+export const extraLarge = component.bind({});
 
 extraLarge.args = {
   ...Default.args,
   size: "extraLarge",
 };
 
-export const full = Dropdown.bind({});
+export const full = component.bind({});
 
 full.args = {
   ...Default.args,
   size: "full",
 };
 
-export const error = Dropdown.bind({});
+export const error = component.bind({});
 
 error.args = {
   ...Default.args,
@@ -72,7 +62,7 @@ error.args = {
   error: true,
 };
 
-export const disabled = Dropdown.bind({});
+export const disabled = component.bind({});
 
 disabled.args = {
   ...Default.args,
