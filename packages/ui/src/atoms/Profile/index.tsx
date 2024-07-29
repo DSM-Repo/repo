@@ -1,5 +1,5 @@
 import { HTMLAttributes } from "react";
-import Default from "./Default.svg?react";
+import Default from "./Default.svg";
 
 interface IProp extends HTMLAttributes<HTMLImageElement> {
   img?: string;

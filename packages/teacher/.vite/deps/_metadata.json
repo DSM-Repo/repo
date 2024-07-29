@@ -1,37 +1,52 @@
 {
-  "hash": "d685e6d9",
-  "configHash": "1837467e",
-  "lockfileHash": "b1eba850",
-  "browserHash": "1dfda62d",
+  "hash": "0466746e",
+  "configHash": "ae3e6bc1",
+  "lockfileHash": "7f0ed05f",
+  "browserHash": "d1f39ae7",
   "optimized": {
     "react": {
       "src": "../../../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/index.js",
       "file": "react.js",
-      "fileHash": "cfb10924",
+      "fileHash": "58e0cc42",
       "needsInterop": true
     },
     "react/jsx-dev-runtime": {
       "src": "../../../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/jsx-dev-runtime.js",
       "file": "react_jsx-dev-runtime.js",
-      "fileHash": "102761a7",
+      "fileHash": "d0acb637",
       "needsInterop": true
     },
     "react/jsx-runtime": {
       "src": "../../../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/jsx-runtime.js",
       "file": "react_jsx-runtime.js",
-      "fileHash": "408d2e21",
+      "fileHash": "415bcc11",
       "needsInterop": true
     },
     "react-dom/client": {
-      "src": "../../../../.yarn/__virtual__/react-dom-virtual-0b8b2db0b7/0/cache/react-dom-npm-18.3.1-a805663f38-a752496c19.zip/node_modules/react-dom/client.js",
+      "src": "../../../../.yarn/__virtual__/react-dom-virtual-cf1d6710c9/0/cache/react-dom-npm-18.3.1-a805663f38-a752496c19.zip/node_modules/react-dom/client.js",
       "file": "react-dom_client.js",
-      "fileHash": "0b2fd12a",
+      "fileHash": "992b1184",
       "needsInterop": true
+    },
+    "react-router-dom": {
+      "src": "../../../../.yarn/__virtual__/react-router-dom-virtual-66a9c73c32/0/cache/react-router-dom-npm-6.24.1-4b9b65fc27-458c6c5393.zip/node_modules/react-router-dom/dist/index.js",
+      "file": "react-router-dom.js",
+      "fileHash": "02bca960",
+      "needsInterop": false
+    },
+    "@iconify/react": {
+      "src": "../../../../.yarn/__virtual__/@iconify-react-virtual-1977427229/0/cache/@iconify-react-npm-5.0.1-9638fe18b7-d3fce5b2d8.zip/node_modules/@iconify/react/dist/iconify.js",
+      "file": "@iconify_react.js",
+      "fileHash": "8696aedc",
+      "needsInterop": false
     }
   },
   "chunks": {
-    "chunk-XZK5Q32F": {
-      "file": "chunk-XZK5Q32F.js"
+    "chunk-DK4WHDVE": {
+      "file": "chunk-DK4WHDVE.js"
+    },
+    "chunk-NWFN7RY3": {
+      "file": "chunk-NWFN7RY3.js"
     }
   }
 }

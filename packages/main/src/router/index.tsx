@@ -1,6 +1,6 @@
-import { Route, Routes, BrowserRouter, Navigate } from "react-router-dom";
-import { Layout } from "./Layout";
 import * as _ from "@/pages";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { Layout } from "./Layout";
 
 export const Router = () => {
   return (
