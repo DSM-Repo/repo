@@ -1,5 +1,4 @@
 import { StartButton } from "../StartButton";
-import image from "@/assets/Mockup.png";
 import { Layout } from "../Layout";
 import { Logo } from "@/assets";
 
@@ -11,8 +10,8 @@ export const FirstSec = () => {
         <span className="text-title4">이력서 온라인 작성 서비스</span>
         <StartButton />
         <img
-          src={image}
-          className="absolute right-0 -bottom-72 min-w-[684px] w-full max-w-[1000px] z-10"
+          src="/Mockup.png"
+          className="absolute -right-20 -bottom-72 min-w-[684px] w-full max-w-[1000px] z-10"
         />
       </div>
       <div className="w-full h-52 absolute top-[45rem] left-0 bg-[#1B1B1B]" />
