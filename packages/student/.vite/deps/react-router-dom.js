@@ -1,21 +1,40 @@
+import __buffer_polyfill from 'vite-plugin-node-polyfills/shims/buffer'
+globalThis.Buffer = globalThis.Buffer || __buffer_polyfill
+import __global_polyfill from 'vite-plugin-node-polyfills/shims/global'
+globalThis.global = globalThis.global || __global_polyfill
+import __process_polyfill from 'vite-plugin-node-polyfills/shims/process'
+globalThis.process = globalThis.process || __process_polyfill
+
 import {
   require_react_dom
-} from "./chunk-IIANDLFK.js";
+} from "./chunk-O2Y2RFMM.js";
 import {
   require_react
-} from "./chunk-QQACB65X.js";
+} from "./chunk-DPHQ433O.js";
 import {
-  __toESM
-} from "./chunk-SNAQBZPT.js";
+  __toESM,
+  require_dist,
+  require_dist2,
+  require_dist3
+} from "./chunk-FEJZCXNB.js";
 
 // ../../.yarn/__virtual__/react-router-dom-virtual-66a9c73c32/0/cache/react-router-dom-npm-6.24.1-4b9b65fc27-458c6c5393.zip/node_modules/react-router-dom/dist/index.js
+var import_dist7 = __toESM(require_dist());
+var import_dist8 = __toESM(require_dist2());
+var import_dist9 = __toESM(require_dist3());
 var React2 = __toESM(require_react());
 var ReactDOM = __toESM(require_react_dom());
 
 // ../../.yarn/__virtual__/react-router-virtual-2f9ff91d6f/0/cache/react-router-npm-6.24.1-efe5d544b3-f50c78ca52.zip/node_modules/react-router/dist/index.js
+var import_dist4 = __toESM(require_dist());
+var import_dist5 = __toESM(require_dist2());
+var import_dist6 = __toESM(require_dist3());
 var React = __toESM(require_react());
 
 // ../../.yarn/cache/@remix-run-router-npm-1.17.1-66731364d9-bee1631feb.zip/node_modules/@remix-run/router/dist/router.js
+var import_dist = __toESM(require_dist());
+var import_dist2 = __toESM(require_dist2());
+var import_dist3 = __toESM(require_dist3());
 function _extends() {
   _extends = Object.assign ? Object.assign.bind() : function(target) {
     for (var i = 1; i < arguments.length; i++) {
@@ -3671,23 +3690,23 @@ function _extends2() {
   return _extends2.apply(this, arguments);
 }
 var DataRouterContext = React.createContext(null);
-if (true) {
+if (process.env.NODE_ENV !== "production") {
   DataRouterContext.displayName = "DataRouter";
 }
 var DataRouterStateContext = React.createContext(null);
-if (true) {
+if (process.env.NODE_ENV !== "production") {
   DataRouterStateContext.displayName = "DataRouterState";
 }
 var AwaitContext = React.createContext(null);
-if (true) {
+if (process.env.NODE_ENV !== "production") {
   AwaitContext.displayName = "Await";
 }
 var NavigationContext = React.createContext(null);
-if (true) {
+if (process.env.NODE_ENV !== "production") {
   NavigationContext.displayName = "Navigation";
 }
 var LocationContext = React.createContext(null);
-if (true) {
+if (process.env.NODE_ENV !== "production") {
   LocationContext.displayName = "Location";
 }
 var RouteContext = React.createContext({
@@ -3695,18 +3714,18 @@ var RouteContext = React.createContext({
   matches: [],
   isDataRoute: false
 });
-if (true) {
+if (process.env.NODE_ENV !== "production") {
   RouteContext.displayName = "Route";
 }
 var RouteErrorContext = React.createContext(null);
-if (true) {
+if (process.env.NODE_ENV !== "production") {
   RouteErrorContext.displayName = "RouteError";
 }
 function useHref(to, _temp) {
   let {
     relative
   } = _temp === void 0 ? {} : _temp;
-  !useInRouterContext() ? true ? invariant(
+  !useInRouterContext() ? process.env.NODE_ENV !== "production" ? invariant(
     false,
     // TODO: This error is probably because they somehow have 2 versions of the
     // router loaded. We can help them understand how to avoid that.
@@ -3737,7 +3756,7 @@ function useInRouterContext() {
   return React.useContext(LocationContext) != null;
 }
 function useLocation() {
-  !useInRouterContext() ? true ? invariant(
+  !useInRouterContext() ? process.env.NODE_ENV !== "production" ? invariant(
     false,
     // TODO: This error is probably because they somehow have 2 versions of the
     // router loaded. We can help them understand how to avoid that.
@@ -3749,7 +3768,7 @@ function useNavigationType() {
   return React.useContext(LocationContext).navigationType;
 }
 function useMatch(pattern) {
-  !useInRouterContext() ? true ? invariant(
+  !useInRouterContext() ? process.env.NODE_ENV !== "production" ? invariant(
     false,
     // TODO: This error is probably because they somehow have 2 versions of the
     // router loaded. We can help them understand how to avoid that.
@@ -3774,7 +3793,7 @@ function useNavigate() {
   return isDataRoute ? useNavigateStable() : useNavigateUnstable();
 }
 function useNavigateUnstable() {
-  !useInRouterContext() ? true ? invariant(
+  !useInRouterContext() ? process.env.NODE_ENV !== "production" ? invariant(
     false,
     // TODO: This error is probably because they somehow have 2 versions of the
     // router loaded. We can help them understand how to avoid that.
@@ -3801,7 +3820,7 @@ function useNavigateUnstable() {
     if (options === void 0) {
       options = {};
     }
-    true ? warning(activeRef.current, navigateEffectWarning) : void 0;
+    process.env.NODE_ENV !== "production" ? warning(activeRef.current, navigateEffectWarning) : void 0;
     if (!activeRef.current) return;
     if (typeof to === "number") {
       navigator.go(to);
@@ -3855,7 +3874,7 @@ function useRoutes(routes, locationArg) {
   return useRoutesImpl(routes, locationArg);
 }
 function useRoutesImpl(routes, locationArg, dataRouterState, future) {
-  !useInRouterContext() ? true ? invariant(
+  !useInRouterContext() ? process.env.NODE_ENV !== "production" ? invariant(
     false,
     // TODO: This error is probably because they somehow have 2 versions of the
     // router loaded. We can help them understand how to avoid that.
@@ -3872,7 +3891,7 @@ function useRoutesImpl(routes, locationArg, dataRouterState, future) {
   let parentPathname = routeMatch ? routeMatch.pathname : "/";
   let parentPathnameBase = routeMatch ? routeMatch.pathnameBase : "/";
   let parentRoute = routeMatch && routeMatch.route;
-  if (true) {
+  if (process.env.NODE_ENV !== "production") {
     let parentPath = parentRoute && parentRoute.path || "";
     warningOnce(parentPathname, !parentRoute || parentPath.endsWith("*"), "You rendered descendant <Routes> (or called `useRoutes()`) at " + ('"' + parentPathname + '" (under <Route path="' + parentPath + '">) but the ') + `parent route path has no trailing "*". This means if you navigate deeper, the parent won't match anymore and therefore the child routes will never render.
 
@@ -3883,7 +3902,7 @@ function useRoutesImpl(routes, locationArg, dataRouterState, future) {
   if (locationArg) {
     var _parsedLocationArg$pa;
     let parsedLocationArg = typeof locationArg === "string" ? parsePath(locationArg) : locationArg;
-    !(parentPathnameBase === "/" || ((_parsedLocationArg$pa = parsedLocationArg.pathname) == null ? void 0 : _parsedLocationArg$pa.startsWith(parentPathnameBase))) ? true ? invariant(false, "When overriding the location using `<Routes location>` or `useRoutes(routes, location)`, the location pathname must begin with the portion of the URL pathname that was " + ('matched by all parent routes. The current pathname base is "' + parentPathnameBase + '" ') + ('but pathname "' + parsedLocationArg.pathname + '" was given in the `location` prop.')) : invariant(false) : void 0;
+    !(parentPathnameBase === "/" || ((_parsedLocationArg$pa = parsedLocationArg.pathname) == null ? void 0 : _parsedLocationArg$pa.startsWith(parentPathnameBase))) ? process.env.NODE_ENV !== "production" ? invariant(false, "When overriding the location using `<Routes location>` or `useRoutes(routes, location)`, the location pathname must begin with the portion of the URL pathname that was " + ('matched by all parent routes. The current pathname base is "' + parentPathnameBase + '" ') + ('but pathname "' + parsedLocationArg.pathname + '" was given in the `location` prop.')) : invariant(false) : void 0;
     location = parsedLocationArg;
   } else {
     location = locationFromContext;
@@ -3898,9 +3917,9 @@ function useRoutesImpl(routes, locationArg, dataRouterState, future) {
   let matches = matchRoutes(routes, {
     pathname: remainingPathname
   });
-  if (true) {
-    true ? warning(parentRoute || matches != null, 'No routes matched location "' + location.pathname + location.search + location.hash + '" ') : void 0;
-    true ? warning(matches == null || matches[matches.length - 1].route.element !== void 0 || matches[matches.length - 1].route.Component !== void 0 || matches[matches.length - 1].route.lazy !== void 0, 'Matched leaf route at location "' + location.pathname + location.search + location.hash + '" does not have an element or Component. This means it will render an <Outlet /> with a null value by default resulting in an "empty" page.') : void 0;
+  if (process.env.NODE_ENV !== "production") {
+    process.env.NODE_ENV !== "production" ? warning(parentRoute || matches != null, 'No routes matched location "' + location.pathname + location.search + location.hash + '" ') : void 0;
+    process.env.NODE_ENV !== "production" ? warning(matches == null || matches[matches.length - 1].route.element !== void 0 || matches[matches.length - 1].route.Component !== void 0 || matches[matches.length - 1].route.lazy !== void 0, 'Matched leaf route at location "' + location.pathname + location.search + location.hash + '" does not have an element or Component. This means it will render an <Outlet /> with a null value by default resulting in an "empty" page.') : void 0;
   }
   let renderedMatches = _renderMatches(matches && matches.map((match) => Object.assign({}, match, {
     params: Object.assign({}, parentParams, match.params),
@@ -3945,7 +3964,7 @@ function DefaultErrorComponent() {
     backgroundColor: lightgrey
   };
   let devInfo = null;
-  if (true) {
+  if (process.env.NODE_ENV !== "production") {
     console.error("Error handled by React Router default ErrorBoundary:", error);
     devInfo = React.createElement(React.Fragment, null, React.createElement("p", null, "💿 Hey developer 👋"), React.createElement("p", null, "You can provide a way better UX than this when your app throws errors by providing your own ", React.createElement("code", {
       style: codeStyles
@@ -4039,7 +4058,7 @@ function _renderMatches(matches, parentMatches, dataRouterState, future) {
   let errors = (_dataRouterState2 = dataRouterState) == null ? void 0 : _dataRouterState2.errors;
   if (errors != null) {
     let errorIndex = renderedMatches.findIndex((m) => m.route.id && (errors == null ? void 0 : errors[m.route.id]) !== void 0);
-    !(errorIndex >= 0) ? true ? invariant(false, "Could not find a matching route for errors on route IDs: " + Object.keys(errors).join(",")) : invariant(false) : void 0;
+    !(errorIndex >= 0) ? process.env.NODE_ENV !== "production" ? invariant(false, "Could not find a matching route for errors on route IDs: " + Object.keys(errors).join(",")) : invariant(false) : void 0;
     renderedMatches = renderedMatches.slice(0, Math.min(renderedMatches.length, errorIndex + 1));
   }
   let renderFallback = false;
@@ -4149,23 +4168,23 @@ function getDataRouterConsoleError(hookName) {
 }
 function useDataRouterContext(hookName) {
   let ctx = React.useContext(DataRouterContext);
-  !ctx ? true ? invariant(false, getDataRouterConsoleError(hookName)) : invariant(false) : void 0;
+  !ctx ? process.env.NODE_ENV !== "production" ? invariant(false, getDataRouterConsoleError(hookName)) : invariant(false) : void 0;
   return ctx;
 }
 function useDataRouterState(hookName) {
   let state = React.useContext(DataRouterStateContext);
-  !state ? true ? invariant(false, getDataRouterConsoleError(hookName)) : invariant(false) : void 0;
+  !state ? process.env.NODE_ENV !== "production" ? invariant(false, getDataRouterConsoleError(hookName)) : invariant(false) : void 0;
   return state;
 }
 function useRouteContext(hookName) {
   let route = React.useContext(RouteContext);
-  !route ? true ? invariant(false, getDataRouterConsoleError(hookName)) : invariant(false) : void 0;
+  !route ? process.env.NODE_ENV !== "production" ? invariant(false, getDataRouterConsoleError(hookName)) : invariant(false) : void 0;
   return route;
 }
 function useCurrentRouteId(hookName) {
   let route = useRouteContext(hookName);
   let thisRoute = route.matches[route.matches.length - 1];
-  !thisRoute.route.id ? true ? invariant(false, hookName + ' can only be used on routes that contain a unique "id"') : invariant(false) : void 0;
+  !thisRoute.route.id ? process.env.NODE_ENV !== "production" ? invariant(false, hookName + ' can only be used on routes that contain a unique "id"') : invariant(false) : void 0;
   return thisRoute.route.id;
 }
 function useRouteId() {
@@ -4281,7 +4300,7 @@ function useNavigateStable() {
     if (options === void 0) {
       options = {};
     }
-    true ? warning(activeRef.current, navigateEffectWarning) : void 0;
+    process.env.NODE_ENV !== "production" ? warning(activeRef.current, navigateEffectWarning) : void 0;
     if (!activeRef.current) return;
     if (typeof to === "number") {
       router.navigate(to);
@@ -4297,7 +4316,7 @@ var alreadyWarned = {};
 function warningOnce(key, cond, message) {
   if (!cond && !alreadyWarned[key]) {
     alreadyWarned[key] = true;
-    true ? warning(false, message) : void 0;
+    process.env.NODE_ENV !== "production" ? warning(false, message) : void 0;
   }
 }
 var START_TRANSITION = "startTransition";
@@ -4346,7 +4365,7 @@ function Navigate(_ref4) {
     state,
     relative
   } = _ref4;
-  !useInRouterContext() ? true ? invariant(
+  !useInRouterContext() ? process.env.NODE_ENV !== "production" ? invariant(
     false,
     // TODO: This error is probably because they somehow have 2 versions of
     // the router loaded. We can help them understand how to avoid that.
@@ -4356,7 +4375,7 @@ function Navigate(_ref4) {
     future,
     static: isStatic
   } = React.useContext(NavigationContext);
-  true ? warning(!isStatic, "<Navigate> must not be used on the initial render in a <StaticRouter>. This is a no-op, but you should modify your code so the <Navigate> is only ever rendered in response to some user interaction or state change.") : void 0;
+  process.env.NODE_ENV !== "production" ? warning(!isStatic, "<Navigate> must not be used on the initial render in a <StaticRouter>. This is a no-op, but you should modify your code so the <Navigate> is only ever rendered in response to some user interaction or state change.") : void 0;
   let {
     matches
   } = React.useContext(RouteContext);
@@ -4377,7 +4396,7 @@ function Outlet(props) {
   return useOutlet(props.context);
 }
 function Route(_props) {
-  true ? invariant(false, "A <Route> is only ever to be used as the child of <Routes> element, never rendered directly. Please wrap your <Route> in a <Routes>.") : invariant(false);
+  process.env.NODE_ENV !== "production" ? invariant(false, "A <Route> is only ever to be used as the child of <Routes> element, never rendered directly. Please wrap your <Route> in a <Routes>.") : invariant(false);
 }
 function Router(_ref5) {
   let {
@@ -4389,7 +4408,7 @@ function Router(_ref5) {
     static: staticProp = false,
     future
   } = _ref5;
-  !!useInRouterContext() ? true ? invariant(false, "You cannot render a <Router> inside another <Router>. You should never have more than one in your app.") : invariant(false) : void 0;
+  !!useInRouterContext() ? process.env.NODE_ENV !== "production" ? invariant(false, "You cannot render a <Router> inside another <Router>. You should never have more than one in your app.") : invariant(false) : void 0;
   let basename = basenameProp.replace(/^\/*/, "/");
   let navigationContext = React.useMemo(() => ({
     basename,
@@ -4425,7 +4444,7 @@ function Router(_ref5) {
       navigationType
     };
   }, [basename, pathname, search, hash, state, key, navigationType]);
-  true ? warning(locationContext != null, '<Router basename="' + basename + '"> is not able to match the URL ' + ('"' + pathname + search + hash + '" because it does not start with the ') + "basename, so the <Router> won't render anything.") : void 0;
+  process.env.NODE_ENV !== "production" ? warning(locationContext != null, '<Router basename="' + basename + '"> is not able to match the URL ' + ('"' + pathname + search + hash + '" because it does not start with the ') + "basename, so the <Router> won't render anything.") : void 0;
   if (locationContext == null) {
     return null;
   }
@@ -4562,8 +4581,8 @@ function createRoutesFromChildren(children, parentPath) {
       routes.push.apply(routes, createRoutesFromChildren(element.props.children, treePath));
       return;
     }
-    !(element.type === Route) ? true ? invariant(false, "[" + (typeof element.type === "string" ? element.type : element.type.name) + "] is not a <Route> component. All component children of <Routes> must be a <Route> or <React.Fragment>") : invariant(false) : void 0;
-    !(!element.props.index || !element.props.children) ? true ? invariant(false, "An index route cannot have child routes.") : invariant(false) : void 0;
+    !(element.type === Route) ? process.env.NODE_ENV !== "production" ? invariant(false, "[" + (typeof element.type === "string" ? element.type : element.type.name) + "] is not a <Route> component. All component children of <Routes> must be a <Route> or <React.Fragment>") : invariant(false) : void 0;
+    !(!element.props.index || !element.props.children) ? process.env.NODE_ENV !== "production" ? invariant(false, "An index route cannot have child routes.") : invariant(false) : void 0;
     let route = {
       id: element.props.id || treePath.join("-"),
       caseSensitive: element.props.caseSensitive,
@@ -4597,9 +4616,9 @@ function mapRouteProperties(route) {
     hasErrorBoundary: route.ErrorBoundary != null || route.errorElement != null
   };
   if (route.Component) {
-    if (true) {
+    if (process.env.NODE_ENV !== "production") {
       if (route.element) {
-        true ? warning(false, "You should not include both `Component` and `element` on your route - `Component` will be used.") : void 0;
+        process.env.NODE_ENV !== "production" ? warning(false, "You should not include both `Component` and `element` on your route - `Component` will be used.") : void 0;
       }
     }
     Object.assign(updates, {
@@ -4608,9 +4627,9 @@ function mapRouteProperties(route) {
     });
   }
   if (route.HydrateFallback) {
-    if (true) {
+    if (process.env.NODE_ENV !== "production") {
       if (route.hydrateFallbackElement) {
-        true ? warning(false, "You should not include both `HydrateFallback` and `hydrateFallbackElement` on your route - `HydrateFallback` will be used.") : void 0;
+        process.env.NODE_ENV !== "production" ? warning(false, "You should not include both `HydrateFallback` and `hydrateFallbackElement` on your route - `HydrateFallback` will be used.") : void 0;
       }
     }
     Object.assign(updates, {
@@ -4619,9 +4638,9 @@ function mapRouteProperties(route) {
     });
   }
   if (route.ErrorBoundary) {
-    if (true) {
+    if (process.env.NODE_ENV !== "production") {
       if (route.errorElement) {
-        true ? warning(false, "You should not include both `ErrorBoundary` and `errorElement` on your route - `ErrorBoundary` will be used.") : void 0;
+        process.env.NODE_ENV !== "production" ? warning(false, "You should not include both `ErrorBoundary` and `errorElement` on your route - `ErrorBoundary` will be used.") : void 0;
       }
     }
     Object.assign(updates, {
@@ -4739,7 +4758,7 @@ function isFormDataSubmitterSupported() {
 var supportedFormEncTypes = /* @__PURE__ */ new Set(["application/x-www-form-urlencoded", "multipart/form-data", "text/plain"]);
 function getFormEncType(encType) {
   if (encType != null && !supportedFormEncTypes.has(encType)) {
-    true ? warning(false, '"' + encType + '" is not a valid `encType` for `<Form>`/`<fetcher.Form>` ' + ('and will default to "' + defaultEncType + '"')) : void 0;
+    process.env.NODE_ENV !== "production" ? warning(false, '"' + encType + '" is not a valid `encType` for `<Form>`/`<fetcher.Form>` ' + ('and will default to "' + defaultEncType + '"')) : void 0;
     return null;
   }
   return encType;
@@ -4885,11 +4904,11 @@ function deserializeErrors(errors) {
 var ViewTransitionContext = React2.createContext({
   isTransitioning: false
 });
-if (true) {
+if (process.env.NODE_ENV !== "production") {
   ViewTransitionContext.displayName = "ViewTransition";
 }
 var FetchersContext = React2.createContext(/* @__PURE__ */ new Map());
-if (true) {
+if (process.env.NODE_ENV !== "production") {
   FetchersContext.displayName = "Fetchers";
 }
 var START_TRANSITION2 = "startTransition";
@@ -5067,7 +5086,7 @@ function RouterProvider(_ref) {
     }
   }, [vtContext.isTransitioning, interruption]);
   React2.useEffect(() => {
-    true ? warning(fallbackElement == null || !router.future.v7_partialHydration, "`<RouterProvider fallbackElement>` is deprecated when using `v7_partialHydration`, use a `HydrateFallback` component instead") : void 0;
+    process.env.NODE_ENV !== "production" ? warning(fallbackElement == null || !router.future.v7_partialHydration, "`<RouterProvider fallbackElement>` is deprecated when using `v7_partialHydration`, use a `HydrateFallback` component instead") : void 0;
   }, []);
   let navigator = React2.useMemo(() => {
     return {
@@ -5219,7 +5238,7 @@ function HistoryRouter(_ref6) {
     future
   });
 }
-if (true) {
+if (process.env.NODE_ENV !== "production") {
   HistoryRouter.displayName = "unstable_HistoryRouter";
 }
 var isBrowser = typeof window !== "undefined" && typeof window.document !== "undefined" && typeof window.document.createElement !== "undefined";
@@ -5254,7 +5273,7 @@ var Link = React2.forwardRef(function LinkWithRef(_ref7, ref) {
           isExternal = true;
         }
       } catch (e) {
-        true ? warning(false, '<Link to="' + to + '"> contains an invalid URL which will probably break when clicked - please update to a valid URL path.') : void 0;
+        process.env.NODE_ENV !== "production" ? warning(false, '<Link to="' + to + '"> contains an invalid URL which will probably break when clicked - please update to a valid URL path.') : void 0;
       }
     }
   }
@@ -5285,7 +5304,7 @@ var Link = React2.forwardRef(function LinkWithRef(_ref7, ref) {
     }))
   );
 });
-if (true) {
+if (process.env.NODE_ENV !== "production") {
   Link.displayName = "Link";
 }
 var NavLink = React2.forwardRef(function NavLinkWithRef(_ref8, ref) {
@@ -5347,7 +5366,7 @@ var NavLink = React2.forwardRef(function NavLinkWithRef(_ref8, ref) {
     unstable_viewTransition
   }), typeof children === "function" ? children(renderProps) : children);
 });
-if (true) {
+if (process.env.NODE_ENV !== "production") {
   NavLink.displayName = "NavLink";
 }
 var Form = React2.forwardRef((_ref9, forwardedRef) => {
@@ -5393,7 +5412,7 @@ var Form = React2.forwardRef((_ref9, forwardedRef) => {
     onSubmit: reloadDocument ? onSubmit : submitHandler
   }, props));
 });
-if (true) {
+if (process.env.NODE_ENV !== "production") {
   Form.displayName = "Form";
 }
 function ScrollRestoration(_ref10) {
@@ -5407,7 +5426,7 @@ function ScrollRestoration(_ref10) {
   });
   return null;
 }
-if (true) {
+if (process.env.NODE_ENV !== "production") {
   ScrollRestoration.displayName = "ScrollRestoration";
 }
 var DataRouterHook2;
@@ -5429,12 +5448,12 @@ function getDataRouterConsoleError2(hookName) {
 }
 function useDataRouterContext2(hookName) {
   let ctx = React2.useContext(DataRouterContext);
-  !ctx ? true ? invariant(false, getDataRouterConsoleError2(hookName)) : invariant(false) : void 0;
+  !ctx ? process.env.NODE_ENV !== "production" ? invariant(false, getDataRouterConsoleError2(hookName)) : invariant(false) : void 0;
   return ctx;
 }
 function useDataRouterState2(hookName) {
   let state = React2.useContext(DataRouterStateContext);
-  !state ? true ? invariant(false, getDataRouterConsoleError2(hookName)) : invariant(false) : void 0;
+  !state ? process.env.NODE_ENV !== "production" ? invariant(false, getDataRouterConsoleError2(hookName)) : invariant(false) : void 0;
   return state;
 }
 function useLinkClickHandler(to, _temp) {
@@ -5466,7 +5485,7 @@ function useLinkClickHandler(to, _temp) {
   }, [location, navigate, path, replaceProp, state, target, to, preventScrollReset, relative, unstable_viewTransition]);
 }
 function useSearchParams(defaultInit) {
-  true ? warning(typeof URLSearchParams !== "undefined", "You cannot use the `useSearchParams` hook in a browser that does not support the URLSearchParams API. If you need to support Internet Explorer 11, we recommend you load a polyfill such as https://github.com/ungap/url-search-params.") : void 0;
+  process.env.NODE_ENV !== "production" ? warning(typeof URLSearchParams !== "undefined", "You cannot use the `useSearchParams` hook in a browser that does not support the URLSearchParams API. If you need to support Internet Explorer 11, we recommend you load a polyfill such as https://github.com/ungap/url-search-params.") : void 0;
   let defaultSearchParamsRef = React2.useRef(createSearchParams(defaultInit));
   let hasSetSearchParamsRef = React2.useRef(false);
   let location = useLocation();
@@ -5545,7 +5564,7 @@ function useFormAction(action, _temp2) {
     basename
   } = React2.useContext(NavigationContext);
   let routeContext = React2.useContext(RouteContext);
-  !routeContext ? true ? invariant(false, "useFormAction must be used inside a RouteContext") : invariant(false) : void 0;
+  !routeContext ? process.env.NODE_ENV !== "production" ? invariant(false, "useFormAction must be used inside a RouteContext") : invariant(false) : void 0;
   let [match] = routeContext.matches.slice(-1);
   let path = _extends3({}, useResolvedPath(action ? action : ".", {
     relative
@@ -5579,9 +5598,9 @@ function useFetcher(_temp3) {
   let fetcherData = React2.useContext(FetchersContext);
   let route = React2.useContext(RouteContext);
   let routeId = (_route$matches = route.matches[route.matches.length - 1]) == null ? void 0 : _route$matches.route.id;
-  !fetcherData ? true ? invariant(false, "useFetcher must be used inside a FetchersContext") : invariant(false) : void 0;
-  !route ? true ? invariant(false, "useFetcher must be used inside a RouteContext") : invariant(false) : void 0;
-  !(routeId != null) ? true ? invariant(false, 'useFetcher can only be used on routes that contain a unique "id"') : invariant(false) : void 0;
+  !fetcherData ? process.env.NODE_ENV !== "production" ? invariant(false, "useFetcher must be used inside a FetchersContext") : invariant(false) : void 0;
+  !route ? process.env.NODE_ENV !== "production" ? invariant(false, "useFetcher must be used inside a RouteContext") : invariant(false) : void 0;
+  !(routeId != null) ? process.env.NODE_ENV !== "production" ? invariant(false, 'useFetcher can only be used on routes that contain a unique "id"') : invariant(false) : void 0;
   let defaultKey = useIdImpl ? useIdImpl() : "";
   let [fetcherKey, setFetcherKey] = React2.useState(key || defaultKey);
   if (key && key !== fetcherKey) {
@@ -5596,7 +5615,7 @@ function useFetcher(_temp3) {
     };
   }, [router, fetcherKey]);
   let load = React2.useCallback((href, opts) => {
-    !routeId ? true ? invariant(false, "No routeId available for fetcher.load()") : invariant(false) : void 0;
+    !routeId ? process.env.NODE_ENV !== "production" ? invariant(false, "No routeId available for fetcher.load()") : invariant(false) : void 0;
     router.fetch(fetcherKey, routeId, href, opts);
   }, [fetcherKey, routeId, router]);
   let submitImpl = useSubmit();
@@ -5614,7 +5633,7 @@ function useFetcher(_temp3) {
         ref
       }));
     });
-    if (true) {
+    if (process.env.NODE_ENV !== "production") {
       FetcherForm2.displayName = "fetcher.Form";
     }
     return FetcherForm2;
@@ -5673,7 +5692,7 @@ function useScrollRestoration(_temp4) {
     try {
       sessionStorage.setItem(storageKey || SCROLL_RESTORATION_STORAGE_KEY, JSON.stringify(savedScrollPositions));
     } catch (error) {
-      true ? warning(false, "Failed to save scroll positions in sessionStorage, <ScrollRestoration /> will not work properly (" + error + ").") : void 0;
+      process.env.NODE_ENV !== "production" ? warning(false, "Failed to save scroll positions in sessionStorage, <ScrollRestoration /> will not work properly (" + error + ").") : void 0;
     }
     window.history.scrollRestoration = "auto";
   }, [storageKey, getKey, navigation.state, location, matches]));
@@ -5775,7 +5794,7 @@ function useViewTransitionState(to, opts) {
     opts = {};
   }
   let vtContext = React2.useContext(ViewTransitionContext);
-  !(vtContext != null) ? true ? invariant(false, "`unstable_useViewTransitionState` must be used within `react-router-dom`'s `RouterProvider`.  Did you accidentally import `RouterProvider` from `react-router`?") : invariant(false) : void 0;
+  !(vtContext != null) ? process.env.NODE_ENV !== "production" ? invariant(false, "`unstable_useViewTransitionState` must be used within `react-router-dom`'s `RouterProvider`.  Did you accidentally import `RouterProvider` from `react-router`?") : invariant(false) : void 0;
   let {
     basename
   } = useDataRouterContext2(DataRouterHook2.useViewTransitionState);
