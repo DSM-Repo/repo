@@ -13,17 +13,17 @@ import {
   mergeProps,
   render,
   setupStyleSheet
-} from "./chunk-3FHNXZII.js";
+} from "./chunk-FJ6PQSLO.js";
 import {
   onlineManager,
   useQueryClient
-} from "./chunk-DGNPZNBW.js";
+} from "./chunk-AKS6AMB6.js";
 import {
   require_jsx_runtime
-} from "./chunk-ZOZM766I.js";
+} from "./chunk-DOVVW7WR.js";
 import {
   require_react
-} from "./chunk-DPHQ433O.js";
+} from "./chunk-YB44LMLZ.js";
 import {
   __privateAdd,
   __privateGet,
@@ -32,7 +32,7 @@ import {
   require_dist,
   require_dist2,
   require_dist3
-} from "./chunk-FEJZCXNB.js";
+} from "./chunk-7DBM7V7E.js";
 
 // ../../.yarn/__virtual__/@tanstack-react-query-devtools-virtual-1174dfeaef/0/cache/@tanstack-react-query-devtools-npm-5.51.15-08d1994d17-cafe075d66.zip/node_modules/@tanstack/react-query-devtools/build/modern/index.js
 var import_dist7 = __toESM(require_dist());
@@ -118,7 +118,7 @@ var TanstackQueryDevtools = (_a = class {
       if (__privateGet(this, _Component)) {
         Devtools = __privateGet(this, _Component);
       } else {
-        Devtools = lazy(() => import("./Q436JGP5-5CZDJQ3W.js"));
+        Devtools = lazy(() => import("./Q436JGP5-UQ2G3ML4.js"));
         __privateSet(this, _Component, Devtools);
       }
       setupStyleSheet(__privateGet(this, _styleNonce), __privateGet(this, _shadowDOMTarget));

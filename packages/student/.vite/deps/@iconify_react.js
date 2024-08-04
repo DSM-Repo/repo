@@ -8,13 +8,13 @@ globalThis.process = globalThis.process || __process_polyfill
 "use client";
 import {
   require_react
-} from "./chunk-DPHQ433O.js";
+} from "./chunk-YB44LMLZ.js";
 import {
   __toESM,
   require_dist,
   require_dist2,
   require_dist3
-} from "./chunk-FEJZCXNB.js";
+} from "./chunk-7DBM7V7E.js";
 
 // ../../.yarn/__virtual__/@iconify-react-virtual-1977427229/0/cache/@iconify-react-npm-5.0.1-9638fe18b7-d3fce5b2d8.zip/node_modules/@iconify/react/dist/iconify.js
 var import_dist = __toESM(require_dist());

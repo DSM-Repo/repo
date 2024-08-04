@@ -7,7 +7,7 @@ globalThis.process = globalThis.process || __process_polyfill
 
 import {
   require_react
-} from "./chunk-DPHQ433O.js";
-import "./chunk-FEJZCXNB.js";
+} from "./chunk-YB44LMLZ.js";
+import "./chunk-7DBM7V7E.js";
 export default require_react();
 //# sourceMappingURL=react.js.map

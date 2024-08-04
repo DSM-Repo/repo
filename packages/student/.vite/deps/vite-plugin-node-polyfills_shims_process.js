@@ -10,7 +10,7 @@ import {
   require_dist,
   require_dist2,
   require_dist3
-} from "./chunk-FEJZCXNB.js";
+} from "./chunk-7DBM7V7E.js";
 
 // ../../.yarn/__virtual__/vite-plugin-node-polyfills-virtual-ce92590d8b/0/cache/vite-plugin-node-polyfills-npm-0.22.0-b49f4f8ad0-f8ddc452eb.zip/node_modules/vite-plugin-node-polyfills/shims/process/dist/index.js
 var import_dist = __toESM(require_dist());
