@@ -9,11 +9,11 @@ export const instance = axios.create({
 });
 
 export const path = {
-  auth: "/auth",
-  document: "/document",
-  user: "/user",
-  feedback: "/feedback",
-  major: "/major",
+  auth: "/auth/",
+  document: "/document/",
+  user: "/user/",
+  feedback: "/feedback/",
+  major: "/major/",
 };
 
 instance.interceptors.request.use(
