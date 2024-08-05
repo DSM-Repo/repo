@@ -1,3 +1,4 @@
+import { TeacherLogin } from '@/modal/TeacherLogin.tsx';
 import { Home } from '@/page/Home';
 import { Library } from '@/page/Library';
 import { ResumeDetail } from '@/page/ResumeDetail';
@@ -13,6 +14,7 @@ export const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path='' element={<TeacherLogin/>}/>
         <Route path="/" element={<Layout />}>
           <Route path="/home" element={<Home />} />
           <Route path="/resume" element={<ResumeDetail />} />
