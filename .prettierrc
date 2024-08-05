@@ -1,5 +1,6 @@
 {
+  "endOfLine": "lf",
   "tabWidth": 2,
-  "bracketSpacing": true,
-  "parser": "flow"
+  "trailingComma": "none",
+  "semi": true
 }
