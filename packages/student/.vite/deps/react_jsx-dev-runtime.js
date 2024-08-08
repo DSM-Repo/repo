@@ -2,32 +2,16 @@ import __buffer_polyfill from 'vite-plugin-node-polyfills/shims/buffer'
 globalThis.Buffer = globalThis.Buffer || __buffer_polyfill
 import __global_polyfill from 'vite-plugin-node-polyfills/shims/global'
 globalThis.global = globalThis.global || __global_polyfill
-import __process_polyfill from 'vite-plugin-node-polyfills/shims/process'
-globalThis.process = globalThis.process || __process_polyfill
 
 import {
   require_react
-} from "./chunk-YB44LMLZ.js";
+} from "./chunk-QZW2PNRO.js";
 import {
   __commonJS,
   __toESM,
   require_dist,
-  require_dist2,
-  require_dist3
-} from "./chunk-7DBM7V7E.js";
-
-// ../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/cjs/react-jsx-dev-runtime.production.min.js
-var require_react_jsx_dev_runtime_production_min = __commonJS({
-  "../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/cjs/react-jsx-dev-runtime.production.min.js"(exports) {
-    "use strict";
-    var import_dist = __toESM(require_dist());
-    var import_dist2 = __toESM(require_dist2());
-    var import_dist3 = __toESM(require_dist3());
-    var a = Symbol.for("react.fragment");
-    exports.Fragment = a;
-    exports.jsxDEV = void 0;
-  }
-});
+  require_dist2
+} from "./chunk-IRKP4GRN.js";
 
 // ../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/cjs/react-jsx-dev-runtime.development.js
 var require_react_jsx_dev_runtime_development = __commonJS({
@@ -35,8 +19,7 @@ var require_react_jsx_dev_runtime_development = __commonJS({
     "use strict";
     var import_dist = __toESM(require_dist());
     var import_dist2 = __toESM(require_dist2());
-    var import_dist3 = __toESM(require_dist3());
-    if (process.env.NODE_ENV !== "production") {
+    if (true) {
       (function() {
         "use strict";
         var React = require_react();
@@ -918,9 +901,8 @@ var require_jsx_dev_runtime = __commonJS({
   "../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/jsx-dev-runtime.js"(exports, module) {
     var import_dist = __toESM(require_dist());
     var import_dist2 = __toESM(require_dist2());
-    var import_dist3 = __toESM(require_dist3());
-    if (process.env.NODE_ENV === "production") {
-      module.exports = require_react_jsx_dev_runtime_production_min();
+    if (false) {
+      module.exports = null;
     } else {
       module.exports = require_react_jsx_dev_runtime_development();
     }
@@ -928,17 +910,6 @@ var require_jsx_dev_runtime = __commonJS({
 });
 export default require_jsx_dev_runtime();
 /*! Bundled license information:
-
-react/cjs/react-jsx-dev-runtime.production.min.js:
-  (**
-   * @license React
-   * react-jsx-dev-runtime.production.min.js
-   *
-   * Copyright (c) Facebook, Inc. and its affiliates.
-   *
-   * This source code is licensed under the MIT license found in the
-   * LICENSE file in the root directory of this source tree.
-   *)
 
 react/cjs/react-jsx-dev-runtime.development.js:
   (**

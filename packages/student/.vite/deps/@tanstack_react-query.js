@@ -2,8 +2,6 @@ import __buffer_polyfill from 'vite-plugin-node-polyfills/shims/buffer'
 globalThis.Buffer = globalThis.Buffer || __buffer_polyfill
 import __global_polyfill from 'vite-plugin-node-polyfills/shims/global'
 globalThis.global = globalThis.global || __global_polyfill
-import __process_polyfill from 'vite-plugin-node-polyfills/shims/process'
-globalThis.process = globalThis.process || __process_polyfill
 
 import {
   CancelledError,
@@ -52,10 +50,10 @@ import {
   useSuspenseInfiniteQuery,
   useSuspenseQueries,
   useSuspenseQuery
-} from "./chunk-AKS6AMB6.js";
-import "./chunk-DOVVW7WR.js";
-import "./chunk-YB44LMLZ.js";
-import "./chunk-7DBM7V7E.js";
+} from "./chunk-BNGGKOW5.js";
+import "./chunk-7PI6QFIN.js";
+import "./chunk-QZW2PNRO.js";
+import "./chunk-IRKP4GRN.js";
 export {
   CancelledError,
   HydrationBoundary,

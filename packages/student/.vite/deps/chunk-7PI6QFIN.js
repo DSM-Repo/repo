@@ -2,47 +2,16 @@ import __buffer_polyfill from 'vite-plugin-node-polyfills/shims/buffer'
 globalThis.Buffer = globalThis.Buffer || __buffer_polyfill
 import __global_polyfill from 'vite-plugin-node-polyfills/shims/global'
 globalThis.global = globalThis.global || __global_polyfill
-import __process_polyfill from 'vite-plugin-node-polyfills/shims/process'
-globalThis.process = globalThis.process || __process_polyfill
 
 import {
   require_react
-} from "./chunk-YB44LMLZ.js";
+} from "./chunk-QZW2PNRO.js";
 import {
   __commonJS,
   __toESM,
   require_dist,
-  require_dist2,
-  require_dist3
-} from "./chunk-7DBM7V7E.js";
-
-// ../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/cjs/react-jsx-runtime.production.min.js
-var require_react_jsx_runtime_production_min = __commonJS({
-  "../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/cjs/react-jsx-runtime.production.min.js"(exports) {
-    "use strict";
-    var import_dist = __toESM(require_dist());
-    var import_dist2 = __toESM(require_dist2());
-    var import_dist3 = __toESM(require_dist3());
-    var f = require_react();
-    var k = Symbol.for("react.element");
-    var l = Symbol.for("react.fragment");
-    var m = Object.prototype.hasOwnProperty;
-    var n = f.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner;
-    var p = { key: true, ref: true, __self: true, __source: true };
-    function q(c, a, g) {
-      var b, d = {}, e = null, h = null;
-      void 0 !== g && (e = "" + g);
-      void 0 !== a.key && (e = "" + a.key);
-      void 0 !== a.ref && (h = a.ref);
-      for (b in a) m.call(a, b) && !p.hasOwnProperty(b) && (d[b] = a[b]);
-      if (c && c.defaultProps) for (b in a = c.defaultProps, a) void 0 === d[b] && (d[b] = a[b]);
-      return { $$typeof: k, type: c, key: e, ref: h, props: d, _owner: n.current };
-    }
-    exports.Fragment = l;
-    exports.jsx = q;
-    exports.jsxs = q;
-  }
-});
+  require_dist2
+} from "./chunk-IRKP4GRN.js";
 
 // ../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/cjs/react-jsx-runtime.development.js
 var require_react_jsx_runtime_development = __commonJS({
@@ -50,8 +19,7 @@ var require_react_jsx_runtime_development = __commonJS({
     "use strict";
     var import_dist = __toESM(require_dist());
     var import_dist2 = __toESM(require_dist2());
-    var import_dist3 = __toESM(require_dist3());
-    if (process.env.NODE_ENV !== "production") {
+    if (true) {
       (function() {
         "use strict";
         var React = require_react();
@@ -945,9 +913,8 @@ var require_jsx_runtime = __commonJS({
   "../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/jsx-runtime.js"(exports, module) {
     var import_dist = __toESM(require_dist());
     var import_dist2 = __toESM(require_dist2());
-    var import_dist3 = __toESM(require_dist3());
-    if (process.env.NODE_ENV === "production") {
-      module.exports = require_react_jsx_runtime_production_min();
+    if (false) {
+      module.exports = null;
     } else {
       module.exports = require_react_jsx_runtime_development();
     }
@@ -958,17 +925,6 @@ export {
   require_jsx_runtime
 };
 /*! Bundled license information:
-
-react/cjs/react-jsx-runtime.production.min.js:
-  (**
-   * @license React
-   * react-jsx-runtime.production.min.js
-   *
-   * Copyright (c) Facebook, Inc. and its affiliates.
-   *
-   * This source code is licensed under the MIT license found in the
-   * LICENSE file in the root directory of this source tree.
-   *)
 
 react/cjs/react-jsx-runtime.development.js:
   (**
@@ -981,4 +937,4 @@ react/cjs/react-jsx-runtime.development.js:
    * LICENSE file in the root directory of this source tree.
    *)
 */
-//# sourceMappingURL=chunk-DOVVW7WR.js.map
+//# sourceMappingURL=chunk-7PI6QFIN.js.map

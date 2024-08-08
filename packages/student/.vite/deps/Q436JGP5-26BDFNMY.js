@@ -2,8 +2,6 @@ import __buffer_polyfill from 'vite-plugin-node-polyfills/shims/buffer'
 globalThis.Buffer = globalThis.Buffer || __buffer_polyfill
 import __global_polyfill from 'vite-plugin-node-polyfills/shims/global'
 globalThis.global = globalThis.global || __global_polyfill
-import __process_polyfill from 'vite-plugin-node-polyfills/shims/process'
-globalThis.process = globalThis.process || __process_polyfill
 
 import {
   $TRACK,
@@ -57,19 +55,17 @@ import {
   use,
   useContext,
   useTransition
-} from "./chunk-FJ6PQSLO.js";
+} from "./chunk-AMECJF67.js";
 import {
   __publicField,
   __toESM,
   require_dist,
-  require_dist2,
-  require_dist3
-} from "./chunk-7DBM7V7E.js";
+  require_dist2
+} from "./chunk-IRKP4GRN.js";
 
 // ../../.yarn/cache/@tanstack-query-devtools-npm-5.51.15-3f226c52fa-9f7d8cbaf8.zip/node_modules/@tanstack/query-devtools/build/Devtools/Q436JGP5.js
 var import_dist = __toESM(require_dist(), 1);
 var import_dist2 = __toESM(require_dist2(), 1);
-var import_dist3 = __toESM(require_dist3(), 1);
 var characterMap = {
   À: "A",
   Á: "A",
@@ -12370,4 +12366,4 @@ export {
      *)
   *)
 */
-//# sourceMappingURL=Q436JGP5-UQ2G3ML4.js.map
+//# sourceMappingURL=Q436JGP5-26BDFNMY.js.map

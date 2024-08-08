@@ -2,8 +2,6 @@ import __buffer_polyfill from 'vite-plugin-node-polyfills/shims/buffer'
 globalThis.Buffer = globalThis.Buffer || __buffer_polyfill
 import __global_polyfill from 'vite-plugin-node-polyfills/shims/global'
 globalThis.global = globalThis.global || __global_polyfill
-import __process_polyfill from 'vite-plugin-node-polyfills/shims/process'
-globalThis.process = globalThis.process || __process_polyfill
 
 "use client";
 import {
@@ -13,42 +11,38 @@ import {
   mergeProps,
   render,
   setupStyleSheet
-} from "./chunk-FJ6PQSLO.js";
+} from "./chunk-AMECJF67.js";
 import {
   onlineManager,
   useQueryClient
-} from "./chunk-AKS6AMB6.js";
+} from "./chunk-BNGGKOW5.js";
 import {
   require_jsx_runtime
-} from "./chunk-DOVVW7WR.js";
+} from "./chunk-7PI6QFIN.js";
 import {
   require_react
-} from "./chunk-YB44LMLZ.js";
+} from "./chunk-QZW2PNRO.js";
 import {
   __privateAdd,
   __privateGet,
   __privateSet,
   __toESM,
   require_dist,
-  require_dist2,
-  require_dist3
-} from "./chunk-7DBM7V7E.js";
+  require_dist2
+} from "./chunk-IRKP4GRN.js";
 
 // ../../.yarn/__virtual__/@tanstack-react-query-devtools-virtual-1174dfeaef/0/cache/@tanstack-react-query-devtools-npm-5.51.15-08d1994d17-cafe075d66.zip/node_modules/@tanstack/react-query-devtools/build/modern/index.js
-var import_dist7 = __toESM(require_dist());
-var import_dist8 = __toESM(require_dist2());
-var import_dist9 = __toESM(require_dist3());
+var import_dist5 = __toESM(require_dist());
+var import_dist6 = __toESM(require_dist2());
 
 // ../../.yarn/__virtual__/@tanstack-react-query-devtools-virtual-1174dfeaef/0/cache/@tanstack-react-query-devtools-npm-5.51.15-08d1994d17-cafe075d66.zip/node_modules/@tanstack/react-query-devtools/build/modern/devtools.js
-var import_dist4 = __toESM(require_dist(), 1);
-var import_dist5 = __toESM(require_dist2(), 1);
-var import_dist6 = __toESM(require_dist3(), 1);
+var import_dist3 = __toESM(require_dist(), 1);
+var import_dist4 = __toESM(require_dist2(), 1);
 var React = __toESM(require_react(), 1);
 
 // ../../.yarn/cache/@tanstack-query-devtools-npm-5.51.15-3f226c52fa-9f7d8cbaf8.zip/node_modules/@tanstack/query-devtools/build/dev.js
 var import_dist = __toESM(require_dist());
 var import_dist2 = __toESM(require_dist2());
-var import_dist3 = __toESM(require_dist3());
 var _client, _onlineManager, _queryFlavor, _version, _isMounted, _styleNonce, _shadowDOMTarget, _buttonPosition, _position, _initialIsOpen, _errorTypes, _Component, _dispose, _a;
 var TanstackQueryDevtools = (_a = class {
   constructor(config) {
@@ -118,7 +112,7 @@ var TanstackQueryDevtools = (_a = class {
       if (__privateGet(this, _Component)) {
         Devtools = __privateGet(this, _Component);
       } else {
-        Devtools = lazy(() => import("./Q436JGP5-UQ2G3ML4.js"));
+        Devtools = lazy(() => import("./Q436JGP5-26BDFNMY.js"));
         __privateSet(this, _Component, Devtools);
       }
       setupStyleSheet(__privateGet(this, _styleNonce), __privateGet(this, _shadowDOMTarget));
@@ -224,7 +218,7 @@ function ReactQueryDevtools(props) {
 }
 
 // ../../.yarn/__virtual__/@tanstack-react-query-devtools-virtual-1174dfeaef/0/cache/@tanstack-react-query-devtools-npm-5.51.15-08d1994d17-cafe075d66.zip/node_modules/@tanstack/react-query-devtools/build/modern/index.js
-var ReactQueryDevtools2 = process.env.NODE_ENV !== "development" ? function() {
+var ReactQueryDevtools2 = false ? function() {
   return null;
 } : ReactQueryDevtools;
 export {

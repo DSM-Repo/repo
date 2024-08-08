@@ -15,8 +15,8 @@ const RAW_RUNTIME_STATE =
       "reference": "workspace:."\
     },\
     {\
-      "name": "@configs/axios",\
-      "reference": "workspace:configs/axios-config"\
+      "name": "@configs/api",\
+      "reference": "workspace:configs/api-config"\
     },\
     {\
       "name": "@configs/default",\
@@ -50,7 +50,7 @@ const RAW_RUNTIME_STATE =
   "enableTopLevelFallback": true,\
   "ignorePatternData": "(^(?:\\\\.yarn\\\\/sdks(?:\\\\/(?!\\\\.{1,2}(?:\\\\/|$))(?:(?:(?!(?:^|\\\\/)\\\\.{1,2}(?:\\\\/|$)).)*?)|$))$)",\
   "fallbackExclusionList": [\
-    ["@configs/axios", ["workspace:configs/axios-config"]],\
+    ["@configs/api", ["workspace:configs/api-config"]],\
     ["@configs/default", ["workspace:configs/default-datas"]],\
     ["@configs/eslint", ["workspace:configs/eslint-config"]],\
     ["@configs/tailwindcss", ["workspace:configs/tailwindcss-config"]],\
@@ -2708,14 +2708,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
-    ["@configs/axios", [\
-      ["workspace:configs/axios-config", {\
-        "packageLocation": "./configs/axios-config/",\
+    ["@configs/api", [\
+      ["workspace:configs/api-config", {\
+        "packageLocation": "./configs/api-config/",\
         "packageDependencies": [\
-          ["@configs/axios", "workspace:configs/axios-config"],\
+          ["@configs/api", "workspace:configs/api-config"],\
+          ["@tanstack/react-query", "virtual:5e3219a4e6fc1cde2cc1ef6e3217ec1d00cf42ac7422e263a94ba12343fb0ac27ccd43b9f3a7d26c1e4d49ac8682540ba8cd3c41d11ddb512c71f9ab69205a10#npm:5.51.21"],\
           ["axios", "npm:1.7.2"],\
           ["react", "npm:18.3.1"],\
-          ["react-cookie", "virtual:3f8e84454bbe8c4d112955fea2bdcd4085c5649f05402047afa75eb458ecaf64a18f6dc83e15aa23b5bff2aff706e9f222e8b0c0b89d9b17accaec6cb8f497cd#npm:7.2.0"]\
+          ["react-cookie", "virtual:5e3219a4e6fc1cde2cc1ef6e3217ec1d00cf42ac7422e263a94ba12343fb0ac27ccd43b9f3a7d26c1e4d49ac8682540ba8cd3c41d11ddb512c71f9ab69205a10#npm:7.2.0"]\
         ],\
         "linkType": "SOFT"\
       }]\
@@ -2724,10 +2725,7 @@ const RAW_RUNTIME_STATE =
       ["workspace:configs/default-datas", {\
         "packageLocation": "./configs/default-datas/",\
         "packageDependencies": [\
-          ["@configs/default", "workspace:configs/default-datas"],\
-          ["axios", "npm:1.7.2"],\
-          ["react", "npm:18.3.1"],\
-          ["react-cookie", "virtual:3f8e84454bbe8c4d112955fea2bdcd4085c5649f05402047afa75eb458ecaf64a18f6dc83e15aa23b5bff2aff706e9f222e8b0c0b89d9b17accaec6cb8f497cd#npm:7.2.0"]\
+          ["@configs/default", "workspace:configs/default-datas"]\
         ],\
         "linkType": "SOFT"\
       }]\
@@ -4427,6 +4425,7 @@ const RAW_RUNTIME_STATE =
           ["crypto-js", "npm:4.2.0"],\
           ["fontkit", "npm:2.0.2"],\
           ["jay-peg", "npm:1.0.2"],\
+          ["pako", "npm:2.1.0"],\
           ["vite-compatible-readable-stream", "npm:3.6.1"]\
         ],\
         "linkType": "HARD"\
@@ -6356,6 +6355,13 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@tanstack/query-core", [\
+      ["npm:5.51.21", {\
+        "packageLocation": "./.yarn/cache/@tanstack-query-core-npm-5.51.21-04adc2d019-bb9e03391f.zip/node_modules/@tanstack/query-core/",\
+        "packageDependencies": [\
+          ["@tanstack/query-core", "npm:5.51.21"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
       ["npm:5.51.9", {\
         "packageLocation": "./.yarn/cache/@tanstack-query-core-npm-5.51.9-6ef6539693-05ae00d0f4.zip/node_modules/@tanstack/query-core/",\
         "packageDependencies": [\
@@ -6380,6 +6386,27 @@ const RAW_RUNTIME_STATE =
           ["@tanstack/react-query", "npm:5.51.11"]\
         ],\
         "linkType": "SOFT"\
+      }],\
+      ["npm:5.51.21", {\
+        "packageLocation": "./.yarn/cache/@tanstack-react-query-npm-5.51.21-f2a91d0ca1-6dc1b51250.zip/node_modules/@tanstack/react-query/",\
+        "packageDependencies": [\
+          ["@tanstack/react-query", "npm:5.51.21"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:5e3219a4e6fc1cde2cc1ef6e3217ec1d00cf42ac7422e263a94ba12343fb0ac27ccd43b9f3a7d26c1e4d49ac8682540ba8cd3c41d11ddb512c71f9ab69205a10#npm:5.51.21", {\
+        "packageLocation": "./.yarn/__virtual__/@tanstack-react-query-virtual-d85e7b282b/0/cache/@tanstack-react-query-npm-5.51.21-f2a91d0ca1-6dc1b51250.zip/node_modules/@tanstack/react-query/",\
+        "packageDependencies": [\
+          ["@tanstack/react-query", "virtual:5e3219a4e6fc1cde2cc1ef6e3217ec1d00cf42ac7422e263a94ba12343fb0ac27ccd43b9f3a7d26c1e4d49ac8682540ba8cd3c41d11ddb512c71f9ab69205a10#npm:5.51.21"],\
+          ["@tanstack/query-core", "npm:5.51.21"],\
+          ["@types/react", null],\
+          ["react", "npm:18.3.1"]\
+        ],\
+        "packagePeers": [\
+          "@types/react",\
+          "react"\
+        ],\
+        "linkType": "HARD"\
       }],\
       ["virtual:c55271692ea67efd86b2df7d4ca7cdd20f5f0115e2c4411d163771a77f3db06f3da65a7d74f9340ec7cb21efa63a22efa5ea3844792d19fb49399f1610502666#npm:5.51.11", {\
         "packageLocation": "./.yarn/__virtual__/@tanstack-react-query-virtual-718898855d/0/cache/@tanstack-react-query-npm-5.51.11-04a9122bed-318aea36ff.zip/node_modules/@tanstack/react-query/",\
@@ -12907,6 +12934,13 @@ const RAW_RUNTIME_STATE =
           ["pako", "npm:1.0.11"]\
         ],\
         "linkType": "HARD"\
+      }],\
+      ["npm:2.1.0", {\
+        "packageLocation": "./.yarn/cache/pako-npm-2.1.0-78df11948c-8e86465814.zip/node_modules/pako/",\
+        "packageDependencies": [\
+          ["pako", "npm:2.1.0"]\
+        ],\
+        "linkType": "HARD"\
       }]\
     ]],\
     ["parent-module", [\
@@ -13860,10 +13894,10 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:3f8e84454bbe8c4d112955fea2bdcd4085c5649f05402047afa75eb458ecaf64a18f6dc83e15aa23b5bff2aff706e9f222e8b0c0b89d9b17accaec6cb8f497cd#npm:7.2.0", {\
-        "packageLocation": "./.yarn/__virtual__/react-cookie-virtual-20b6ee0613/0/cache/react-cookie-npm-7.2.0-ca92e0b084-434e8d8a48.zip/node_modules/react-cookie/",\
+      ["virtual:5e3219a4e6fc1cde2cc1ef6e3217ec1d00cf42ac7422e263a94ba12343fb0ac27ccd43b9f3a7d26c1e4d49ac8682540ba8cd3c41d11ddb512c71f9ab69205a10#npm:7.2.0", {\
+        "packageLocation": "./.yarn/__virtual__/react-cookie-virtual-74a8ac8f82/0/cache/react-cookie-npm-7.2.0-ca92e0b084-434e8d8a48.zip/node_modules/react-cookie/",\
         "packageDependencies": [\
-          ["react-cookie", "virtual:3f8e84454bbe8c4d112955fea2bdcd4085c5649f05402047afa75eb458ecaf64a18f6dc83e15aa23b5bff2aff706e9f222e8b0c0b89d9b17accaec6cb8f497cd#npm:7.2.0"],\
+          ["react-cookie", "virtual:5e3219a4e6fc1cde2cc1ef6e3217ec1d00cf42ac7422e263a94ba12343fb0ac27ccd43b9f3a7d26c1e4d49ac8682540ba8cd3c41d11ddb512c71f9ab69205a10#npm:7.2.0"],\
           ["@types/hoist-non-react-statics", "npm:3.3.5"],\
           ["@types/react", null],\
           ["hoist-non-react-statics", "npm:3.3.2"],\
@@ -15312,7 +15346,8 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./packages/student/",\
         "packageDependencies": [\
           ["student", "workspace:packages/student"],\
-          ["@configs/axios", "workspace:configs/axios-config"],\
+          ["@configs/api", "workspace:configs/api-config"],\
+          ["@configs/default", "workspace:configs/default-datas"],\
           ["@configs/eslint", "workspace:configs/eslint-config"],\
           ["@configs/tailwindcss", "workspace:configs/tailwindcss-config"],\
           ["@iconify/react", "virtual:9dce388d82c018b4a7af5edc7243e51f7023d1ab93a923b3959d0066ac6881c93b965a0932486426cbefa96c9c8e47849d5ff541d2404b8aca246480fa32f0d2#npm:5.0.1"],\
@@ -15905,6 +15940,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["ui", "workspace:packages/ui"],\
           ["@chromatic-com/storybook", "npm:1.5.0"],\
+          ["@configs/default", "workspace:configs/default-datas"],\
           ["@configs/tailwindcss", "workspace:configs/tailwindcss-config"],\
           ["@iconify/react", "virtual:9dce388d82c018b4a7af5edc7243e51f7023d1ab93a923b3959d0066ac6881c93b965a0932486426cbefa96c9c8e47849d5ff541d2404b8aca246480fa32f0d2#npm:5.0.1"],\
           ["@radix-ui/react-use-layout-effect", "virtual:351a745b83450b8596499a48cd2c490b5e61c120c4a9055e461751d48b9d107f733f6afd79279024769027ff6629c6084ad44e02e67584592d4078ffa1ceefec#npm:1.1.0"],\

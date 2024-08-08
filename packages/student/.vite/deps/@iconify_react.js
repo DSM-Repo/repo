@@ -2,24 +2,20 @@ import __buffer_polyfill from 'vite-plugin-node-polyfills/shims/buffer'
 globalThis.Buffer = globalThis.Buffer || __buffer_polyfill
 import __global_polyfill from 'vite-plugin-node-polyfills/shims/global'
 globalThis.global = globalThis.global || __global_polyfill
-import __process_polyfill from 'vite-plugin-node-polyfills/shims/process'
-globalThis.process = globalThis.process || __process_polyfill
 
 "use client";
 import {
   require_react
-} from "./chunk-YB44LMLZ.js";
+} from "./chunk-QZW2PNRO.js";
 import {
   __toESM,
   require_dist,
-  require_dist2,
-  require_dist3
-} from "./chunk-7DBM7V7E.js";
+  require_dist2
+} from "./chunk-IRKP4GRN.js";
 
 // ../../.yarn/__virtual__/@iconify-react-virtual-1977427229/0/cache/@iconify-react-npm-5.0.1-9638fe18b7-d3fce5b2d8.zip/node_modules/@iconify/react/dist/iconify.js
 var import_dist = __toESM(require_dist());
 var import_dist2 = __toESM(require_dist2());
-var import_dist3 = __toESM(require_dist3());
 var import_react = __toESM(require_react());
 var defaultIconDimensions = Object.freeze(
   {

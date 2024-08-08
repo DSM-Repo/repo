@@ -1,20 +1,32 @@
+import { QueryClient } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
 import { Cookies } from "react-cookie";
+export * from "./hooks";
 
 const cookie = new Cookies();
 
 export const instance = axios.create({
   baseURL: process.env.VITE_APP_BASE_URL,
-  timeout: 5000,
+  timeout: 5000
 });
 
 export const path = {
-  auth: "/auth/",
-  document: "/document/",
-  user: "/user/",
-  feedback: "/feedback/",
-  major: "/major/",
+  auth: "/auth",
+  document: "/document",
+  user: "/user",
+  feedback: "/feedback",
+  major: "/major"
 };
+
+export const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 3,
+      staleTime: 1000 * 60 * 2,
+      refetchOnWindowFocus: false
+    }
+  }
+});
 
 instance.interceptors.request.use(
   (res) => {
@@ -24,7 +36,7 @@ instance.interceptors.request.use(
     }
     return res;
   },
-  (err: AxiosError) => Promise.reject(err),
+  (err: AxiosError) => Promise.reject(err)
 );
 
 instance.interceptors.response.use(
@@ -38,22 +50,25 @@ instance.interceptors.response.use(
           cookie.set("accessToken", res.data.accessToken, {
             secure: true,
             sameSite: "none",
-            expires: res.data.accessExpiredat,
+            expires: res.data.accessExpiredat
           });
           cookie.set("refreshToken", res.data.refreshToken, {
             secure: true,
             sameSite: "none",
-            expires: res.data.refreshExpiredat,
+            expires: res.data.refreshExpiredat
           });
         })
         .catch(() => {
           cookie.remove("accessToken");
           cookie.remove("refreshToken");
-          window.location.replace(`${process.env.VITE_APP_URL_MAIN}`);
+          window.location.replace(`${process.env.VITE_APP_URL_STUDENT}/login`);
         });
     } else if (err.response?.status === 403) {
-      window.location.replace(`${process.env.VITE_APP_URL_MAIN}`);
+      window.location.replace(`${process.env.VITE_APP_URL_STUDENT}/login`);
     }
+    // } else {
+    //   window.location.replace(`${process.env.VITE_APP_URL_MAIN}`);
+    // }
     return err;
-  },
+  }
 );

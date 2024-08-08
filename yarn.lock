@@ -1524,23 +1524,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@configs/axios@workspace:^, @configs/axios@workspace:configs/axios-config":
+"@configs/api@workspace:^, @configs/api@workspace:configs/api-config":
   version: 0.0.0-use.local
-  resolution: "@configs/axios@workspace:configs/axios-config"
+  resolution: "@configs/api@workspace:configs/api-config"
   dependencies:
+    "@tanstack/react-query": "npm:^5.51.21"
     axios: "npm:^1.7.2"
     react: "npm:^18.3.1"
     react-cookie: "npm:^7.2.0"
   languageName: unknown
   linkType: soft
 
-"@configs/default@workspace:configs/default-datas":
+"@configs/default@workspace:^, @configs/default@workspace:configs/default-datas":
   version: 0.0.0-use.local
   resolution: "@configs/default@workspace:configs/default-datas"
-  dependencies:
-    axios: "npm:^1.7.2"
-    react: "npm:^18.3.1"
-    react-cookie: "npm:^7.2.0"
   languageName: unknown
   linkType: soft
 
@@ -3764,6 +3761,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tanstack/query-core@npm:5.51.21":
+  version: 5.51.21
+  resolution: "@tanstack/query-core@npm:5.51.21"
+  checksum: 10c0/bb9e03391facd21c431d6571f3e088f47dc996b42a10ef636d3fd4444a483019d0e9bd4eb971d554bb4317ac3ee3ab23d5ce9221345753b792fb6fae030d1ad7
+  languageName: node
+  linkType: hard
+
 "@tanstack/query-core@npm:5.51.9":
   version: 5.51.9
   resolution: "@tanstack/query-core@npm:5.51.9"
@@ -3798,6 +3802,17 @@ __metadata:
   peerDependencies:
     react: ^18.0.0
   checksum: 10c0/318aea36ffafc3e5123d970442c1358058137c069ef65dddcef87ea2406bc2f943f5e6da286df581885ba192b962b96eb785e57ef29366ee2178f18e39190f76
+  languageName: node
+  linkType: hard
+
+"@tanstack/react-query@npm:^5.51.21":
+  version: 5.51.21
+  resolution: "@tanstack/react-query@npm:5.51.21"
+  dependencies:
+    "@tanstack/query-core": "npm:5.51.21"
+  peerDependencies:
+    react: ^18.0.0
+  checksum: 10c0/6dc1b512503da7236a9ad2fd31be8466016d60323133c05906f49a318fb9320d92d54f280e1a297cbe38cc4da32cecec876c8fde2cdd1da8c609ec17006be459
   languageName: node
   linkType: hard
 
@@ -9358,6 +9373,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"pako@npm:*":
+  version: 2.1.0
+  resolution: "pako@npm:2.1.0"
+  checksum: 10c0/8e8646581410654b50eb22a5dfd71159cae98145bd5086c9a7a816ec0370b5f72b4648d08674624b3870a521e6a3daffd6c2f7bc00fdefc7063c9d8232ff5116
+  languageName: node
+  linkType: hard
+
 "pako@npm:^0.2.5, pako@npm:~0.2.0":
   version: 0.2.9
   resolution: "pako@npm:0.2.9"
@@ -11279,7 +11301,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "student@workspace:packages/student"
   dependencies:
-    "@configs/axios": "workspace:^"
+    "@configs/api": "workspace:^"
+    "@configs/default": "workspace:^"
     "@configs/eslint": "workspace:^"
     "@configs/tailwindcss": "workspace:^"
     "@iconify/react": "npm:^5.0.1"
@@ -11804,6 +11827,7 @@ __metadata:
   resolution: "ui@workspace:packages/ui"
   dependencies:
     "@chromatic-com/storybook": "npm:^1.5.0"
+    "@configs/default": "workspace:^"
     "@configs/tailwindcss": "workspace:^"
     "@iconify/react": "npm:^5.0.1"
     "@radix-ui/react-use-layout-effect": "npm:^1.1.0"

@@ -10,7 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@configs/axios": "workspace:^",
+    "@configs/api": "workspace:^",
+    "@configs/default": "workspace:^",
     "@iconify/react": "^5.0.1",
     "@react-pdf/renderer": "^3.4.4",
     "@tanstack/react-query": "^5.51.11",
@@ -23,7 +24,9 @@
     "react-toastify": "^10.0.5",
     "tailwindcss": "^3.4.4",
     "ui": "workspace:^",
-    "vite-plugin-node-polyfills": "^0.22.0"
+    "universal-cookie": "^7.2.0",
+    "vite-plugin-node-polyfills": "^0.22.0",
+    "zustand": "^4.5.4"
   },
   "devDependencies": {
     "@configs/eslint": "workspace:^",
