@@ -15,7 +15,8 @@ export const path = {
   document: "/document",
   user: "/user",
   feedback: "/feedback",
-  major: "/major"
+  major: "/major",
+  file: "/file"
 };
 
 export const queryClient = new QueryClient({
