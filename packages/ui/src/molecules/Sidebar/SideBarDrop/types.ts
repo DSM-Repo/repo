@@ -1,5 +1,5 @@
+import { iconType } from "../../../atoms";
 import { HTMLAttributes } from "react";
-import { iconType } from "../../atoms";
 
 export type urlType = {
   url: string,

@@ -1,5 +1,5 @@
+import { Background, Content, iconType } from "../../../atoms";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Background, Content, iconType } from "../../atoms";
 import { HTMLAttributes } from "react";
 
 interface IProp extends HTMLAttributes<HTMLDivElement> {

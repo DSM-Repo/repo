@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { Background, Content } from "../../atoms";
+import { Background, Content } from "../../../atoms";
 import { IProp, urlType } from "./types";
 import { Icon } from "@iconify/react";
 

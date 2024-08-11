@@ -2,7 +2,7 @@ import { withRouter } from "storybook-addon-remix-react-router";
 import { SideBarButton, SideBarDrop } from "../../molecules";
 import type { Meta, StoryObj } from "@storybook/react";
 import { SideBar as component } from ".";
-import { IStudent } from "./types";
+import { userDefault } from "./constants";
 
 const meta = { component } satisfies Meta<typeof component>;
 
@@ -10,22 +10,14 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const userDefault: IStudent = {
-  name: "육기준",
-  type: "student",
-  major: "", //Frontend Developer
-  grade: 2,
-  class: 1,
-  number: 11,
-  progress: 40,
-};
-
 export const Default: Story = {
   args: {
+    type: "student",
     user: userDefault,
+    progress: 40,
     children: (
       <>
-        <SideBarButton title="" icon="My" url="/" />
+        <SideBarButton title="내 정보" icon="My" url="/" />
         <SideBarDrop
           title="포트폴리오 수정"
           icon="Edit"

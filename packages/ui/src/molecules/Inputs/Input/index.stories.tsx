@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Dropdown as component } from ".";
+import { Input as component } from ".";
 
 const meta = { component } satisfies Meta<typeof component>;
 
@@ -9,11 +9,10 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    selected: undefined,
-    selections: ["data1", "data2", "data3", "data4"],
-    onSelect: () => {},
-    placeholder: "placeholder",
+    onChange: () => console.log("change"),
+    value: "test",
     size: "extraSmall",
+    placeholder: "placeholder",
   },
 };
 
