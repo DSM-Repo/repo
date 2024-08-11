@@ -12,7 +12,7 @@
   }
 
   .line-fit-br {
-    @apply -my-1
+    @apply -my-1;
   }
 
   .disable {
@@ -22,7 +22,6 @@
   .pointable {
     @apply cursor-pointer transition-all duration-100 hover:opacity-60;
   }
-
 }
 
 @font-face {
@@ -40,8 +39,17 @@
   overscroll-behavior: none;
 }
 
-span, label, input, textarea, li {
+span,
+label,
+input,
+textarea,
+li {
   color: white;
+}
+
+input,
+textarea {
+  background-color: transparent;
 }
 
 textarea {
