@@ -34,17 +34,23 @@ export type activityType = {
   startDate?: string;
   endDate?: string;
   description: string;
+  isPeriod: boolean;
+};
+
+type imageType = {
+  imagePath: string;
+  originalName: string;
 };
 
 export type projectType = {
   elementId: string;
   name: string;
-  imagePath?: string;
-  type: "PERSONAL" | "TEAM" | "CLUB";
+  imageInfo?: imageType;
+  type: "PERSONAL" | "TEAM";
   startDate?: string;
   endDate?: string;
   skillSet: string[];
-  description?: string;
+  description: string;
   url: string;
 };
 
@@ -53,9 +59,9 @@ export type writerType = {
   email: string;
   majorName: string;
   classInfo: {
-    grade?: Number;
-    classNumber?: Number;
-    number?: Number;
+    grade?: number;
+    classNumber?: number;
+    number?: number;
     schoolNumber?: string;
   };
   department?: string;

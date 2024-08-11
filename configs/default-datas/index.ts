@@ -49,7 +49,7 @@ export const resumeData: IResume = {
     heading: "",
     introduce: ""
   },
-  archievementList: [],
+  achievementList: [],
   activityList: [],
   projectList: []
 };
