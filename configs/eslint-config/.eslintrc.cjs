@@ -15,7 +15,6 @@ module.exports = {
       { allowConstantExport: true }
     ],
     "react/jsx-pascal-case": "warn",
-    // 반복문으로 생성하는 요소에 key 강제
     "react/jsx-key": "warn"
   }
 };
