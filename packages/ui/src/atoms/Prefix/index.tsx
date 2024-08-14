@@ -14,7 +14,7 @@ export const Prefix = ({ children, color = "green", ...props }: IProp) => {
   return (
     <span
       {...props}
-      className={`${colors[color]} text-[12px] self-center w-fit h-fit py-1 px-2 rounded-md leading-none ${props.className}`}
+      className={`text-[12px] self-center w-fit h-fit py-1 px-2 rounded-md leading-none ${colors[color]} ${props.className}`}
     >
       {children}
     </span>

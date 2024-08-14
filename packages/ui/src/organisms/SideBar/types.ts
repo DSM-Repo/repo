@@ -1,26 +1,9 @@
+import { IStudent } from "@configs/default";
 import { HTMLAttributes } from "react";
 
-interface IUser {
-  profile?: string;
-  name: string;
-}
-
-export interface IStudent extends IUser {
-  type: "student";
-  major?: string; // 전공 타입 따로 지정 예정
-  grade: number;
-  class: number;
-  number: number;
-  progress: number;
-}
-
-export interface ITeacher extends IUser {
-  type: "teacher";
-}
-
-type userType = IStudent | ITeacher;
-
 export interface IProp extends Omit<HTMLAttributes<HTMLDivElement>, "color"> {
-  user: userType;
+  type: "student" | "teacher";
+  user: IStudent;
+  progress?: Number;
   children: React.ReactElement | React.ReactElement[];
 }
