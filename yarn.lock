@@ -1532,6 +1532,7 @@ __metadata:
     axios: "npm:^1.7.2"
     react: "npm:^18.3.1"
     react-cookie: "npm:^7.2.0"
+    react-toastify: "npm:^10.0.5"
   languageName: unknown
   linkType: soft
 
@@ -9370,13 +9371,6 @@ __metadata:
   version: 1.0.0
   resolution: "package-json-from-dist@npm:1.0.0"
   checksum: 10c0/e3ffaf6ac1040ab6082a658230c041ad14e72fabe99076a2081bb1d5d41210f11872403fc09082daf4387fc0baa6577f96c9c0e94c90c394fd57794b66aa4033
-  languageName: node
-  linkType: hard
-
-"pako@npm:*":
-  version: 2.1.0
-  resolution: "pako@npm:2.1.0"
-  checksum: 10c0/8e8646581410654b50eb22a5dfd71159cae98145bd5086c9a7a816ec0370b5f72b4648d08674624b3870a521e6a3daffd6c2f7bc00fdefc7063c9d8232ff5116
   languageName: node
   linkType: hard
 
