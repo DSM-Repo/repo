@@ -1,10 +1,8 @@
 import { UseQueryResult, useQuery } from "@tanstack/react-query";
-import { instance, path } from "..";
-
-type pathNameType = "auth" | "document" | "user" | "feedback" | "major";
+import { instance, path, pathType } from "..";
 
 export const useMyQuery = <T>(
-  pathname: pathNameType,
+  pathname: pathType,
   url: string
 ): UseQueryResult<T> => {
   return useQuery<T>({

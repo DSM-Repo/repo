@@ -1,18 +1,11 @@
 import { UseMutationResult, useMutation } from "@tanstack/react-query";
-import { instance, path } from "..";
+import { instance, path, pathType } from "..";
 
-type pathNameType =
-  | "auth"
-  | "document"
-  | "user"
-  | "feedback"
-  | "major"
-  | "file";
-type apiType = "post" | "patch" | "delete";
+type apiType = "post" | "patch" | "delete" | "put";
 
 export const useMyMutation = <T, K>(
   type: apiType,
-  pathname: pathNameType,
+  pathname: pathType,
   url: string
 ): UseMutationResult<K, Error, T> => {
   return useMutation<K, Error, T>({
