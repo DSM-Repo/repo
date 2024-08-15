@@ -9,7 +9,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    children: <span>안녕하세요 박스입니다</span>,
+    children: <span>Content</span>,
     color: "dark",
     width: "fit-content",
     height: "fit-content",

@@ -20,15 +20,17 @@ export const Content = ({
   ...props
 }: IProp) => {
   const iconLoc = direction === "left" ? "" : "flex-row-reverse";
-  const disable = !disabled ? "text-white" : "text-[#999999]";
+  const disable = !disabled
+    ? "text-white"
+    : "text-[#999999] cursor-not-allowed";
 
   return (
     <button
       {...props}
       onClick={!disabled ? onClick : () => {}}
-      className={`flex gap-1 items-center ${iconLoc}`}
+      className={`flex gap-1 items-center ${iconLoc} ${disable}`}
     >
-      <Icon icon={icon} width={22} color={disabled ? "#999999" : "white"} />
+      <Icon icon={icon} width={22} />
       <span className={`text-body8 leading-none ${disable}`}>{children}</span>
     </button>
   );

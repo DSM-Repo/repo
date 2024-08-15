@@ -6,7 +6,7 @@ export const Layout = () => {
   const [opened, setOpened] = useState(false);
 
   return (
-    <div className="w-full h-screen bg-[#2E2E2E]">
+    <div className="w-full h-screen bg-gray-900">
       <Header setOpened={setOpened} />
       <Modal opened={opened} setOpened={setOpened} />
       <Outlet />

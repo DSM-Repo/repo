@@ -3,9 +3,9 @@ import { libraries } from "./constants";
 import { useNavigate } from "react-router-dom";
 
 type TLibrary = {
-  year: number,
-  grade: number,
-  uuid: string,
+  year: number;
+  grade: number;
+  uuid: string;
 };
 
 export const Library = () => {
@@ -15,7 +15,7 @@ export const Library = () => {
     <div className="flex justify-center py-10 w-full h-full">
       <div className="flex flex-col w-fit gap-4">
         <div className="flex flex-col gap-3">
-          <span className="text-white text-title2 leading-none">도서관</span>
+          <span className="text-title2 leading-none">도서관</span>
           <span className="text-[#999999] text-body3 leading-none">
             지금까지 공개된 레주메북들을 읽어보세요
           </span>
@@ -23,7 +23,8 @@ export const Library = () => {
 
         {libraries.map((item: TLibrary) => (
           <Box
-            size={{ width: "900px", height: "fit-content", padding: "25px" }}
+            width="900px"
+            padding="25px"
             onClick={() => navigate(`/books/${item.uuid}`)}
             className="cursor-pointer"
           >

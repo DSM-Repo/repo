@@ -13,11 +13,8 @@ export const Modal = ({ opened, setOpened }: IProp) => {
       className={`fixed size-full bg-[#00000060] z-40 flex-center ${opened ? "flex" : "hidden"}`}
     >
       <Box
-        size={{
-          width: "560px",
-          height: "fit-content",
-          padding: "40px 40px 60px 40px",
-        }}
+        width="560px"
+        padding="40px 40px 60px 40px"
         className="flex-center gap-5"
       >
         <Icon
@@ -44,7 +41,7 @@ export const Modal = ({ opened, setOpened }: IProp) => {
           className="relative w-96 h-12 rounded-md bg-[#2E2E2E] flex gap-6 items-center cursor-pointer"
           onClick={() =>
             window.localStorage.replace(
-              `${process.env.VITE_APP_URL_STUDENT}/login`,
+              `${process.env.VITE_APP_URL_STUDENT}/login`
             )
           }
         >
