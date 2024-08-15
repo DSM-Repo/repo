@@ -1,39 +1,65 @@
+import { Box, Button, Calander, Dropdown, Input } from "ui";
+import { achievementType } from "@configs/default";
+import { setType } from "@/hooks/useResumeData";
+import { ChangeEvent, useState } from "react";
 import { Icon } from "@iconify/react";
-import { ChangeEvent } from "react";
-import { Box, Button, Dropdown, Input } from "ui";
-import { dataType } from ".";
 
-const type = {
+const typeChange = {
   수상: "수여",
-  자격증: "발급",
+  자격증: "발급"
+};
+
+const typeChangeAPI = {
+  수상: "AWARD",
+  자격증: "CERTIFICATE"
+};
+
+const koreanChangeAPI = {
+  AWARD: "수상",
+  CERTIFICATE: "자격증"
 };
 
 interface IProp {
-  data: dataType;
-  setData: React.Dispatch<React.SetStateAction<dataType[]>>;
+  data: achievementType;
+  setData: setType;
 }
 
 export const Item = ({ data, setData }: IProp) => {
-  const set = (id: string, value: string) =>
-    setData((prev) =>
-      prev.map((i) => (i.id === data.id ? { ...data, [id]: value } : i)),
-    );
+  const [type, setType] = useState<"수상" | "자격증">(
+    koreanChangeAPI[data.type] as "수상" | "자격증"
+  );
+  const set = (id: string, value?: string) =>
+    setData((prev) => ({
+      data: {
+        ...prev.data,
+        achievementList: prev.data.achievementList.map((i) =>
+          i.elementId === data.elementId ? { ...data, [id]: value } : i
+        )
+      }
+    }));
+
+  const del = () => {
+    setData((prev) => ({
+      data: {
+        ...prev.data,
+        achievementList: prev.data.achievementList.filter(
+          (item) => item.elementId !== data.elementId
+        )
+      }
+    }));
+  };
 
   const handleChange = ({ target }: ChangeEvent<HTMLInputElement>) =>
     set(target.id, target.value);
 
-  const handleSelect = (data: string, name?: string) => set(name || "", data);
+  const handleType = (value: "수상" | "자격증") => {
+    setType(value);
+    set("type", typeChangeAPI[value]);
+  };
 
   return (
-    <Box
-      size={{ width: "28rem", height: "fit-content", padding: "20px" }}
-      className="gap-6"
-    >
-      <Button
-        onClick={() => setData((prev) => prev.filter((i) => i.id !== data.id))}
-        size="full"
-        color="light"
-      >
+    <Box width="28rem" padding="20px" className="gap-6">
+      <Button onClick={del} size="full" color="light">
         <Icon icon="ph:trash-bold" width={20} className="self-center" />
       </Button>
       <Input
@@ -50,23 +76,24 @@ export const Item = ({ data, setData }: IProp) => {
         label="형태"
         placeholder="형태를 선택하세요"
         selections={["수상", "자격증"]}
-        selected={data.type}
-        onSelect={handleSelect}
+        selected={type}
+        onSelect={(data: string) => handleType(data as "수상" | "자격증")}
       />
-      <Input
+      <Calander
+        label={`${typeChange[type]}일`}
+        onDelete={() => set("date", undefined)}
+        size="full"
         id="date"
-        size="full"
-        label={`${type[data.type]}일`}
-        placeholder={`${type[data.type]}일을 입력하세요`}
+        placeholder={`${typeChange[type]}일을 입력하세요`}
         value={data.date}
-        onChange={handleChange}
+        onChange={set}
       />
       <Input
-        id="certificator"
+        id="institution"
         size="full"
-        label={`${type[data.type]} 기관`}
-        placeholder={`${type[data.type]} 기관을 입력하세요`}
-        value={data.certificator}
+        label={`${typeChange[type]} 기관`}
+        placeholder={`${typeChange[type]} 기관을 입력하세요`}
+        value={data.institution}
         onChange={handleChange}
       />
     </Box>
