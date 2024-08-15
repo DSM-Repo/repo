@@ -42,6 +42,12 @@ type imageType = {
   originalName: string;
 };
 
+type descriptionType = {
+  motive: string;
+  role: string;
+  retrospective: string;
+};
+
 export type projectType = {
   elementId: string;
   name: string;
@@ -50,7 +56,7 @@ export type projectType = {
   startDate?: string;
   endDate?: string;
   skillSet: string[];
-  description: string;
+  description: descriptionType;
   url: string;
 };
 
@@ -76,7 +82,7 @@ export type introduceType = {
 };
 
 export interface IResume {
-  documentId: string;
+  id?: string;
   status: string;
   writer: writerType;
   introduce: introduceType;
