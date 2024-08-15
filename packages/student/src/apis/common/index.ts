@@ -1,5 +1,5 @@
-import { instance, path } from "@configs/axios";
+import { useMyQuery } from "@configs/api";
+import { IGetMajors } from "./types";
+export * from "./types";
 
-export const getMajor = async () => {
-  const { data } = await instance.get(path.major);
-};
+export const major = () => useMyQuery<IGetMajors>("major", "");
