@@ -1,13 +1,11 @@
-FROM node:16-alpine AS builder
+FROM node:22-alpine AS builder
 WORKDIR /app
 
 RUN apk add --no-cache libc6-compat
 
-COPY manifests ./
+COPY . .
 
 RUN yarn install --immutable
-
-COPY packs ./
 
 ARG VITE_APP_BASE_URL
 ENV VITE_APP_BASE_URL=${VITE_APP_BASE_URL}
