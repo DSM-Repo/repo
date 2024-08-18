@@ -15,7 +15,8 @@ export default ({ mode }: { mode: string }) => {
       nodePolyfills({
         include: ["buffer", "util", "stream", "crypto", "events"],
         globals: {
-          process: false
+          process: false,
+          Buffer: false
         }
       })
     ],
@@ -24,6 +25,15 @@ export default ({ mode }: { mode: string }) => {
       alias: [{ find: "@", replacement: path.resolve(__dirname, "src") }]
     },
     server: { port: 3001 },
-    define: { "process.env": process.env }
+    define: { "process.env": process.env },
+    build: {
+      rollupOptions: {
+        external: [
+          "vite-plugin-node-polyfills/shims/buffer",
+          "vite-plugin-node-polyfills/shims/global",
+          "vite-plugin-node-polyfills/shims/process"
+        ]
+      }
+    }
   });
 };

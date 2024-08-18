@@ -1,28 +1,34 @@
-import __buffer_polyfill from 'vite-plugin-node-polyfills/shims/buffer'
-globalThis.Buffer = globalThis.Buffer || __buffer_polyfill
 import __global_polyfill from 'vite-plugin-node-polyfills/shims/global'
 globalThis.global = globalThis.global || __global_polyfill
 
 import {
   __toESM,
-  require_dist,
-  require_dist2
-} from "./chunk-IRKP4GRN.js";
+  require_dist
+} from "./chunk-WFPLDLJJ.js";
 
-// ../../.yarn/cache/@tanstack-query-devtools-npm-5.51.15-3f226c52fa-9f7d8cbaf8.zip/node_modules/@tanstack/query-devtools/build/chunk/6EPU3DES.js
+// ../../.yarn/cache/@tanstack-query-devtools-npm-5.51.16-c98e81abc7-40f1fbad77.zip/node_modules/@tanstack/query-devtools/build/chunk/GMHTURR6.js
 var import_dist = __toESM(require_dist(), 1);
-var import_dist2 = __toESM(require_dist2(), 1);
 var sharedConfig = {
   context: void 0,
-  registry: void 0
+  registry: void 0,
+  getContextId() {
+    return getContextId(this.context.count);
+  },
+  getNextContextId() {
+    return getContextId(this.context.count++);
+  }
 };
+function getContextId(count) {
+  const num = String(count), len = num.length - 1;
+  return sharedConfig.context.id + (len ? String.fromCharCode(96 + len) : "") + num;
+}
 function setHydrateContext(context) {
   sharedConfig.context = context;
 }
 function nextHydrateContext() {
   return {
     ...sharedConfig.context,
-    id: `${sharedConfig.context.id}${sharedConfig.context.count++}-`,
+    id: sharedConfig.getNextContextId(),
     count: 0
   };
 }
@@ -132,18 +138,18 @@ function createResource(pSource, pFetcher, pOptions) {
   if (arguments.length === 2 && typeof pFetcher === "object" || arguments.length === 1) {
     source = true;
     fetcher = pSource;
-    options = pFetcher || {};
+    options = {};
   } else {
     source = pSource;
     fetcher = pFetcher;
-    options = pOptions || {};
+    options = {};
   }
   let pr = null, initP = NO_INIT, id = null, loadedUnderTransition = false, scheduled = false, resolved = "initialValue" in options, dynamic = typeof source === "function" && createMemo(source);
   const contexts = /* @__PURE__ */ new Set(), [value, setValue] = (options.storage || createSignal)(options.initialValue), [error, setError] = createSignal(void 0), [track, trigger] = createSignal(void 0, {
     equals: false
   }), [state, setState] = createSignal(resolved ? "ready" : "unresolved");
   if (sharedConfig.context) {
-    id = `${sharedConfig.context.id}${sharedConfig.context.count++}`;
+    id = sharedConfig.getNextContextId();
     let v;
     if (options.ssrLoadFrom === "initial")
       initP = options.initialValue;
@@ -155,11 +161,9 @@ function createResource(pSource, pFetcher, pOptions) {
       pr = null;
       key !== void 0 && (resolved = true);
       if ((p === initP || v === initP) && options.onHydrated)
-        queueMicrotask(
-          () => options.onHydrated(key, {
-            value: v
-          })
-        );
+        queueMicrotask(() => options.onHydrated(key, {
+          value: v
+        }));
       initP = NO_INIT;
       if (Transition && p && loadedUnderTransition) {
         Transition.promises.delete(p);
@@ -215,12 +219,10 @@ function createResource(pSource, pFetcher, pOptions) {
     }
     if (Transition && pr)
       Transition.promises.delete(pr);
-    const p = initP !== NO_INIT ? initP : untrack(
-      () => fetcher(lookup, {
-        value: value(),
-        refetching
-      })
-    );
+    const p = initP !== NO_INIT ? initP : untrack(() => fetcher(lookup, {
+      value: value(),
+      refetching
+    }));
     if (!isPromise(p)) {
       loadEnd(pr, p, void 0, lookup);
       return p;
@@ -230,7 +232,7 @@ function createResource(pSource, pFetcher, pOptions) {
       if (p.status === "success")
         loadEnd(pr, p.value, void 0, lookup);
       else
-        loadEnd(pr, void 0, void 0, lookup);
+        loadEnd(pr, void 0, castError(p.value), lookup);
       return p;
     }
     scheduled = true;
@@ -239,10 +241,7 @@ function createResource(pSource, pFetcher, pOptions) {
       setState(resolved ? "refreshing" : "pending");
       trigger();
     }, false);
-    return p.then(
-      (v) => loadEnd(p, v, void 0, lookup),
-      (e) => loadEnd(p, void 0, castError(e), lookup)
-    );
+    return p.then((v) => loadEnd(p, v, void 0, lookup), (e) => loadEnd(p, void 0, castError(e), lookup));
   }
   Object.defineProperties(read, {
     state: {
@@ -272,13 +271,10 @@ function createResource(pSource, pFetcher, pOptions) {
     createComputed(() => load(false));
   else
     load(false);
-  return [
-    read,
-    {
-      refetch: load,
-      mutate: setValue
-    }
-  ];
+  return [read, {
+    refetch: load,
+    mutate: setValue
+  }];
 }
 function batch(fn) {
   return runUpdates(fn, false);
@@ -387,7 +383,8 @@ function createContext(defaultValue, options) {
   };
 }
 function useContext(context) {
-  return Owner && Owner.context && Owner.context[context.id] !== void 0 ? Owner.context[context.id] : context.defaultValue;
+  let value;
+  return Owner && Owner.context && (value = Owner.context[context.id]) !== void 0 ? value : context.defaultValue;
 }
 function children(fn) {
   const children2 = createMemo(fn);
@@ -481,11 +478,7 @@ function updateComputation(node) {
     return;
   cleanNode(node);
   const time = ExecCount;
-  runComputation(
-    node,
-    Transition && Transition.running && Transition.sources.has(node) ? node.tValue : node.value,
-    time
-  );
+  runComputation(node, Transition && Transition.running && Transition.sources.has(node) ? node.tValue : node.value, time);
   if (Transition && !Transition.running && Transition.sources.has(node)) {
     queueMicrotask(() => {
       runUpdates(() => {
@@ -863,16 +856,13 @@ function resolveChildren(children2) {
 function createProvider(id, options) {
   return function provider(props) {
     let res;
-    createRenderEffect(
-      () => res = untrack(() => {
-        Owner.context = {
-          ...Owner.context,
-          [id]: props.value
-        };
-        return children(() => props.children);
-      }),
-      void 0
-    );
+    createRenderEffect(() => res = untrack(() => {
+      Owner.context = {
+        ...Owner.context,
+        [id]: props.value
+      };
+      return children(() => props.children);
+    }), void 0);
     return res;
   };
 }
@@ -885,10 +875,10 @@ function mapArray(list, mapFn, options = {}) {
   let items = [], mapped = [], disposers = [], len = 0, indexes = mapFn.length > 1 ? [] : null;
   onCleanup(() => dispose(disposers));
   return () => {
-    let newItems = list() || [], i, j;
+    let newItems = list() || [], newLen = newItems.length, i, j;
     newItems[$TRACK];
     return untrack(() => {
-      let newLen = newItems.length, newIndices, newIndicesNext, temp, tempdisposers, tempIndexes, start, end, newEnd, item;
+      let newIndices, newIndicesNext, temp, tempdisposers, tempIndexes, start, end, newEnd, item;
       if (newLen === 0) {
         if (len !== 0) {
           dispose(disposers);
@@ -975,10 +965,10 @@ function indexArray(list, mapFn, options = {}) {
   let items = [], mapped = [], disposers = [], signals = [], len = 0, i;
   onCleanup(() => dispose(disposers));
   return () => {
-    const newItems = list() || [];
+    const newItems = list() || [], newLen = newItems.length;
     newItems[$TRACK];
     return untrack(() => {
-      if (newItems.length === 0) {
+      if (newLen === 0) {
         if (len !== 0) {
           dispose(disposers);
           disposers = [];
@@ -1004,7 +994,7 @@ function indexArray(list, mapFn, options = {}) {
         mapped = [];
         len = 0;
       }
-      for (i = 0; i < newItems.length; i++) {
+      for (i = 0; i < newLen; i++) {
         if (i < items.length && items[i] !== newItems[i]) {
           signals[i](() => newItems[i]);
         } else if (i >= items.length) {
@@ -1014,7 +1004,7 @@ function indexArray(list, mapFn, options = {}) {
       for (; i < items.length; i++) {
         disposers[i]();
       }
-      len = signals.length = disposers.length = newItems.length;
+      len = signals.length = disposers.length = newLen;
       items = newItems.slice(0);
       return mapped = mapped.slice(0, len);
     });
@@ -1088,31 +1078,28 @@ function mergeProps(...sources) {
     sources[i] = typeof s === "function" ? (proxy = true, createMemo(s)) : s;
   }
   if (proxy) {
-    return new Proxy(
-      {
-        get(property) {
-          for (let i = sources.length - 1; i >= 0; i--) {
-            const v = resolveSource(sources[i])[property];
-            if (v !== void 0)
-              return v;
-          }
-        },
-        has(property) {
-          for (let i = sources.length - 1; i >= 0; i--) {
-            if (property in resolveSource(sources[i]))
-              return true;
-          }
-          return false;
-        },
-        keys() {
-          const keys = [];
-          for (let i = 0; i < sources.length; i++)
-            keys.push(...Object.keys(resolveSource(sources[i])));
-          return [...new Set(keys)];
+    return new Proxy({
+      get(property) {
+        for (let i = sources.length - 1; i >= 0; i--) {
+          const v = resolveSource(sources[i])[property];
+          if (v !== void 0)
+            return v;
         }
       },
-      propTraps
-    );
+      has(property) {
+        for (let i = sources.length - 1; i >= 0; i--) {
+          if (property in resolveSource(sources[i]))
+            return true;
+        }
+        return false;
+      },
+      keys() {
+        const keys = [];
+        for (let i = 0; i < sources.length; i++)
+          keys.push(...Object.keys(resolveSource(sources[i])));
+        return [...new Set(keys)];
+      }
+    }, propTraps);
   }
   const sourcesMap = {};
   const defined = /* @__PURE__ */ Object.create(null);
@@ -1158,37 +1145,29 @@ function splitProps(props, ...keys) {
   if ($PROXY in props) {
     const blocked = new Set(keys.length > 1 ? keys.flat() : keys[0]);
     const res = keys.map((k) => {
-      return new Proxy(
-        {
-          get(property) {
-            return k.includes(property) ? props[property] : void 0;
-          },
-          has(property) {
-            return k.includes(property) && property in props;
-          },
-          keys() {
-            return k.filter((property) => property in props);
-          }
+      return new Proxy({
+        get(property) {
+          return k.includes(property) ? props[property] : void 0;
         },
-        propTraps
-      );
+        has(property) {
+          return k.includes(property) && property in props;
+        },
+        keys() {
+          return k.filter((property) => property in props);
+        }
+      }, propTraps);
     });
-    res.push(
-      new Proxy(
-        {
-          get(property) {
-            return blocked.has(property) ? void 0 : props[property];
-          },
-          has(property) {
-            return blocked.has(property) ? false : property in props;
-          },
-          keys() {
-            return Object.keys(props).filter((k) => !blocked.has(k));
-          }
-        },
-        propTraps
-      )
-    );
+    res.push(new Proxy({
+      get(property) {
+        return blocked.has(property) ? void 0 : props[property];
+      },
+      has(property) {
+        return blocked.has(property) ? false : property in props;
+      },
+      keys() {
+        return Object.keys(props).filter((k) => !blocked.has(k));
+      }
+    }, propTraps));
     return res;
   }
   const otherObject = {};
@@ -1232,19 +1211,17 @@ function lazy(fn) {
       comp = s;
     }
     let Comp;
-    return createMemo(
-      () => (Comp = comp()) && untrack(() => {
-        if (false)
-          ;
-        if (!ctx)
-          return Comp(props);
-        const c = sharedConfig.context;
-        setHydrateContext(ctx);
-        const r = Comp(props);
-        setHydrateContext(c);
-        return r;
-      })
-    );
+    return createMemo(() => (Comp = comp()) && untrack(() => {
+      if (false)
+        ;
+      if (!ctx)
+        return Comp(props);
+      const c = sharedConfig.context;
+      setHydrateContext(ctx);
+      const r = Comp(props);
+      setHydrateContext(c);
+      return r;
+    }));
   };
   wrap.preload = () => p || ((p = fn()).then((mod) => comp = () => mod.default), p);
   return wrap;
@@ -1252,7 +1229,7 @@ function lazy(fn) {
 var counter = 0;
 function createUniqueId() {
   const ctx = sharedConfig.context;
-  return ctx ? `${ctx.id}${ctx.count++}` : `cl-${counter++}`;
+  return ctx ? sharedConfig.getNextContextId() : `cl-${counter++}`;
 }
 var narrowedError = (name) => `Stale read from <${name}>.`;
 function For(props) {
@@ -1272,118 +1249,58 @@ function Show(props) {
   const condition = createMemo(() => props.when, void 0, {
     equals: (a, b) => keyed ? a === b : !a === !b
   });
-  return createMemo(
-    () => {
-      const c = condition();
-      if (c) {
-        const child = props.children;
-        const fn = typeof child === "function" && child.length > 0;
-        return fn ? untrack(
-          () => child(
-            keyed ? c : () => {
-              if (!untrack(condition))
-                throw narrowedError("Show");
-              return props.when;
-            }
-          )
-        ) : child;
-      }
-      return props.fallback;
-    },
-    void 0,
-    void 0
-  );
+  return createMemo(() => {
+    const c = condition();
+    if (c) {
+      const child = props.children;
+      const fn = typeof child === "function" && child.length > 0;
+      return fn ? untrack(() => child(keyed ? c : () => {
+        if (!untrack(condition))
+          throw narrowedError("Show");
+        return props.when;
+      })) : child;
+    }
+    return props.fallback;
+  }, void 0, void 0);
 }
 function Switch(props) {
   let keyed = false;
   const equals = (a, b) => (keyed ? a[1] === b[1] : !a[1] === !b[1]) && a[2] === b[2];
-  const conditions = children(() => props.children), evalConditions = createMemo(
-    () => {
-      let conds = conditions();
-      if (!Array.isArray(conds))
-        conds = [conds];
-      for (let i = 0; i < conds.length; i++) {
-        const c = conds[i].when;
-        if (c) {
-          keyed = !!conds[i].keyed;
-          return [i, c, conds[i]];
-        }
+  const conditions = children(() => props.children), evalConditions = createMemo(() => {
+    let conds = conditions();
+    if (!Array.isArray(conds))
+      conds = [conds];
+    for (let i = 0; i < conds.length; i++) {
+      const c = conds[i].when;
+      if (c) {
+        keyed = !!conds[i].keyed;
+        return [i, c, conds[i]];
       }
-      return [-1];
-    },
-    void 0,
-    {
-      equals
     }
-  );
-  return createMemo(
-    () => {
-      const [index, when, cond] = evalConditions();
-      if (index < 0)
-        return props.fallback;
-      const c = cond.children;
-      const fn = typeof c === "function" && c.length > 0;
-      return fn ? untrack(
-        () => c(
-          keyed ? when : () => {
-            if (untrack(evalConditions)[0] !== index)
-              throw narrowedError("Match");
-            return cond.when;
-          }
-        )
-      ) : c;
-    },
-    void 0,
-    void 0
-  );
+    return [-1];
+  }, void 0, {
+    equals
+  });
+  return createMemo(() => {
+    const [index, when, cond] = evalConditions();
+    if (index < 0)
+      return props.fallback;
+    const c = cond.children;
+    const fn = typeof c === "function" && c.length > 0;
+    return fn ? untrack(() => c(keyed ? when : () => {
+      if (untrack(evalConditions)[0] !== index)
+        throw narrowedError("Match");
+      return cond.when;
+    })) : c;
+  }, void 0, void 0);
 }
 function Match(props) {
   return props;
 }
 var DEV = void 0;
-var booleans = [
-  "allowfullscreen",
-  "async",
-  "autofocus",
-  "autoplay",
-  "checked",
-  "controls",
-  "default",
-  "disabled",
-  "formnovalidate",
-  "hidden",
-  "indeterminate",
-  "inert",
-  "ismap",
-  "loop",
-  "multiple",
-  "muted",
-  "nomodule",
-  "novalidate",
-  "open",
-  "playsinline",
-  "readonly",
-  "required",
-  "reversed",
-  "seamless",
-  "selected"
-];
-var Properties = /* @__PURE__ */ new Set([
-  "className",
-  "value",
-  "readOnly",
-  "formNoValidate",
-  "isMap",
-  "noModule",
-  "playsInline",
-  ...booleans
-]);
-var ChildProperties = /* @__PURE__ */ new Set([
-  "innerHTML",
-  "textContent",
-  "innerText",
-  "children"
-]);
+var booleans = ["allowfullscreen", "async", "autofocus", "autoplay", "checked", "controls", "default", "disabled", "formnovalidate", "hidden", "indeterminate", "inert", "ismap", "loop", "multiple", "muted", "nomodule", "novalidate", "open", "playsinline", "readonly", "required", "reversed", "seamless", "selected"];
+var Properties = /* @__PURE__ */ new Set(["className", "value", "readOnly", "formNoValidate", "isMap", "noModule", "playsInline", ...booleans]);
+var ChildProperties = /* @__PURE__ */ new Set(["innerHTML", "textContent", "innerText", "children"]);
 var Aliases = Object.assign(/* @__PURE__ */ Object.create(null), {
   className: "class",
   htmlFor: "for"
@@ -1417,30 +1334,7 @@ function getPropAlias(prop, tagName) {
   const a = PropAliases[prop];
   return typeof a === "object" ? a[tagName] ? a["$"] : void 0 : a;
 }
-var DelegatedEvents = /* @__PURE__ */ new Set([
-  "beforeinput",
-  "click",
-  "dblclick",
-  "contextmenu",
-  "focusin",
-  "focusout",
-  "input",
-  "keydown",
-  "keyup",
-  "mousedown",
-  "mousemove",
-  "mouseout",
-  "mouseover",
-  "mouseup",
-  "pointerdown",
-  "pointermove",
-  "pointerout",
-  "pointerover",
-  "pointerup",
-  "touchend",
-  "touchmove",
-  "touchstart"
-]);
+var DelegatedEvents = /* @__PURE__ */ new Set(["beforeinput", "click", "dblclick", "contextmenu", "focusin", "focusout", "input", "keydown", "keyup", "mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "pointerdown", "pointermove", "pointerout", "pointerover", "pointerup", "touchend", "touchmove", "touchstart"]);
 var SVGElements = /* @__PURE__ */ new Set([
   "altGlyph",
   "altGlyphDef",
@@ -1702,13 +1596,9 @@ function style(node, value, prev) {
 function spread(node, props = {}, isSVG, skipChildren) {
   const prevProps = {};
   if (!skipChildren) {
-    createRenderEffect(
-      () => prevProps.children = insertExpression(node, props.children, prevProps.children)
-    );
+    createRenderEffect(() => prevProps.children = insertExpression(node, props.children, prevProps.children));
   }
-  createRenderEffect(
-    () => typeof props.ref === "function" ? use(props.ref, node) : props.ref = node
-  );
+  createRenderEffect(() => typeof props.ref === "function" && use(props.ref, node));
   createRenderEffect(() => assign(node, props, isSVG, true, prevProps, true));
   return prevProps;
 }
@@ -1733,8 +1623,6 @@ function assign(node, props, isSVG, skipChildren, prevProps = {}, skipRef = fals
   }
   for (const prop in props) {
     if (prop === "children") {
-      if (!skipChildren)
-        insertExpression(node, props.children);
       continue;
     }
     const value = props[prop];
@@ -1863,8 +1751,11 @@ function insertExpression(parent, value, current, marker, unwrapArray) {
   if (t === "string" || t === "number") {
     if (hydrating)
       return current;
-    if (t === "number")
+    if (t === "number") {
       value = value.toString();
+      if (value === current)
+        return current;
+    }
     if (multi) {
       let node = current[0];
       if (node && node.nodeType === 3) {
@@ -1952,11 +1843,7 @@ function normalizeIncomingArray(normalized, array, current, unwrap) {
       if (unwrap) {
         while (typeof item === "function")
           item = item();
-        dynamic = normalizeIncomingArray(
-          normalized,
-          Array.isArray(item) ? item : [item],
-          Array.isArray(prev) ? prev : [prev]
-        ) || dynamic;
+        dynamic = normalizeIncomingArray(normalized, Array.isArray(item) ? item : [item], Array.isArray(prev) ? prev : [prev]) || dynamic;
       } else {
         normalized.push(item);
         dynamic = true;
@@ -1997,8 +1884,7 @@ function cleanChildren(parent, current, marker, replacement) {
   return [node];
 }
 function getHydrationKey() {
-  const hydrate = sharedConfig.context;
-  return `${hydrate.id}${hydrate.count++}`;
+  return sharedConfig.getNextContextId();
 }
 var isServer = false;
 var SVG_NAMESPACE = "http://www.w3.org/2000/svg";
@@ -2006,41 +1892,39 @@ function createElement(tagName, isSVG = false) {
   return isSVG ? document.createElementNS(SVG_NAMESPACE, tagName) : document.createElement(tagName);
 }
 function Portal(props) {
-  const { useShadow } = props, marker = document.createTextNode(""), mount = () => props.mount || document.body, owner = getOwner();
+  const {
+    useShadow
+  } = props, marker = document.createTextNode(""), mount = () => props.mount || document.body, owner = getOwner();
   let content;
   let hydrating = !!sharedConfig.context;
-  createEffect(
-    () => {
-      if (hydrating)
-        getOwner().user = hydrating = false;
-      content || (content = runWithOwner(owner, () => createMemo(() => props.children)));
-      const el = mount();
-      if (el instanceof HTMLHeadElement) {
-        const [clean, setClean] = createSignal(false);
-        const cleanup = () => setClean(true);
-        createRoot((dispose2) => insert(el, () => !clean() ? content() : dispose2(), null));
-        onCleanup(cleanup);
-      } else {
-        const container = createElement(props.isSVG ? "g" : "div", props.isSVG), renderRoot = useShadow && container.attachShadow ? container.attachShadow({
-          mode: "open"
-        }) : container;
-        Object.defineProperty(container, "_$host", {
-          get() {
-            return marker.parentNode;
-          },
-          configurable: true
-        });
-        insert(renderRoot, content);
-        el.appendChild(container);
-        props.ref && props.ref(container);
-        onCleanup(() => el.removeChild(container));
-      }
-    },
-    void 0,
-    {
-      render: !hydrating
+  createEffect(() => {
+    if (hydrating)
+      getOwner().user = hydrating = false;
+    content || (content = runWithOwner(owner, () => createMemo(() => props.children)));
+    const el = mount();
+    if (el instanceof HTMLHeadElement) {
+      const [clean, setClean] = createSignal(false);
+      const cleanup = () => setClean(true);
+      createRoot((dispose2) => insert(el, () => !clean() ? content() : dispose2(), null));
+      onCleanup(cleanup);
+    } else {
+      const container = createElement(props.isSVG ? "g" : "div", props.isSVG), renderRoot = useShadow && container.attachShadow ? container.attachShadow({
+        mode: "open"
+      }) : container;
+      Object.defineProperty(container, "_$host", {
+        get() {
+          return marker.parentNode;
+        },
+        configurable: true
+      });
+      insert(renderRoot, content);
+      el.appendChild(container);
+      props.ref && props.ref(container);
+      onCleanup(() => el.removeChild(container));
     }
-  );
+  }, void 0, {
+    render: !hydrating
+  });
   return marker;
 }
 function Dynamic(props) {
@@ -2679,14 +2563,14 @@ var walker = (object, identities, superJson, dedupe, path = [], objectsInThisPat
 function getType2(payload) {
   return Object.prototype.toString.call(payload).slice(8, -1);
 }
+function isArray2(payload) {
+  return getType2(payload) === "Array";
+}
 function isPlainObject2(payload) {
   if (getType2(payload) !== "Object")
     return false;
   const prototype = Object.getPrototypeOf(payload);
   return !!prototype && prototype.constructor === Object && prototype === Object.prototype;
-}
-function isArray2(payload) {
-  return getType2(payload) === "Array";
 }
 function assignProp2(carry, key, newVal, originalObject, includeNonenumerable) {
   const propType = {}.propertyIsEnumerable.call(originalObject, key) ? "enumerable" : "nonenumerable";
@@ -3026,4 +2910,4 @@ export {
   deleteNestedDataByPath,
   setupStyleSheet
 };
-//# sourceMappingURL=chunk-AMECJF67.js.map
+//# sourceMappingURL=chunk-REQOPLM3.js.map

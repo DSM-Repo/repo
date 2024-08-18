@@ -1,5 +1,3 @@
-import __buffer_polyfill from 'vite-plugin-node-polyfills/shims/buffer'
-globalThis.Buffer = globalThis.Buffer || __buffer_polyfill
 import __global_polyfill from 'vite-plugin-node-polyfills/shims/global'
 globalThis.global = globalThis.global || __global_polyfill
 
@@ -8,6 +6,7 @@ import {
   HydrationBoundary,
   InfiniteQueryObserver,
   IsRestoringProvider,
+  Mutation,
   MutationCache,
   MutationObserver,
   QueriesObserver,
@@ -50,15 +49,16 @@ import {
   useSuspenseInfiniteQuery,
   useSuspenseQueries,
   useSuspenseQuery
-} from "./chunk-BNGGKOW5.js";
-import "./chunk-7PI6QFIN.js";
-import "./chunk-QZW2PNRO.js";
-import "./chunk-IRKP4GRN.js";
+} from "./chunk-NYJP25S2.js";
+import "./chunk-YM7SOALI.js";
+import "./chunk-IF3FXHGJ.js";
+import "./chunk-WFPLDLJJ.js";
 export {
   CancelledError,
   HydrationBoundary,
   InfiniteQueryObserver,
   IsRestoringProvider,
+  Mutation,
   MutationCache,
   MutationObserver,
   QueriesObserver,

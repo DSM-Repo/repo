@@ -1,21 +1,17 @@
-import __buffer_polyfill from 'vite-plugin-node-polyfills/shims/buffer'
-globalThis.Buffer = globalThis.Buffer || __buffer_polyfill
 import __global_polyfill from 'vite-plugin-node-polyfills/shims/global'
 globalThis.global = globalThis.global || __global_polyfill
 
 import {
   __commonJS,
   __toESM,
-  require_dist,
-  require_dist2
-} from "./chunk-IRKP4GRN.js";
+  require_dist
+} from "./chunk-WFPLDLJJ.js";
 
 // ../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/cjs/react.development.js
 var require_react_development = __commonJS({
   "../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/cjs/react.development.js"(exports, module) {
     "use strict";
     var import_dist = __toESM(require_dist());
-    var import_dist2 = __toESM(require_dist2());
     if (true) {
       (function() {
         "use strict";
@@ -1890,7 +1886,6 @@ var require_react_development = __commonJS({
 var require_react = __commonJS({
   "../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/index.js"(exports, module) {
     var import_dist = __toESM(require_dist());
-    var import_dist2 = __toESM(require_dist2());
     if (false) {
       module.exports = null;
     } else {
@@ -1915,4 +1910,4 @@ react/cjs/react.development.js:
    * LICENSE file in the root directory of this source tree.
    *)
 */
-//# sourceMappingURL=chunk-QZW2PNRO.js.map
+//# sourceMappingURL=chunk-IF3FXHGJ.js.map

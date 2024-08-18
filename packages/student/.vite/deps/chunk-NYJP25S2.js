@@ -1,14 +1,12 @@
-import __buffer_polyfill from 'vite-plugin-node-polyfills/shims/buffer'
-globalThis.Buffer = globalThis.Buffer || __buffer_polyfill
 import __global_polyfill from 'vite-plugin-node-polyfills/shims/global'
 globalThis.global = globalThis.global || __global_polyfill
 
 import {
   require_jsx_runtime
-} from "./chunk-7PI6QFIN.js";
+} from "./chunk-YM7SOALI.js";
 import {
   require_react
-} from "./chunk-QZW2PNRO.js";
+} from "./chunk-IF3FXHGJ.js";
 import {
   __privateAdd,
   __privateGet,
@@ -16,29 +14,23 @@ import {
   __privateSet,
   __privateWrapper,
   __toESM,
-  require_dist,
-  require_dist2
-} from "./chunk-IRKP4GRN.js";
+  require_dist
+} from "./chunk-WFPLDLJJ.js";
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-718898855d/0/cache/@tanstack-react-query-npm-5.51.11-04a9122bed-318aea36ff.zip/node_modules/@tanstack/react-query/build/modern/index.js
-var import_dist83 = __toESM(require_dist());
-var import_dist84 = __toESM(require_dist2());
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a9868b6fb2/0/cache/@tanstack-react-query-npm-5.51.23-45e5787442-913566a677.zip/node_modules/@tanstack/react-query/build/modern/index.js
+var import_dist42 = __toESM(require_dist());
 
-// ../../.yarn/cache/@tanstack-query-core-npm-5.51.9-6ef6539693-05ae00d0f4.zip/node_modules/@tanstack/query-core/build/modern/index.js
-var import_dist39 = __toESM(require_dist());
-var import_dist40 = __toESM(require_dist2());
+// ../../.yarn/cache/@tanstack-query-core-npm-5.51.21-04adc2d019-bb9e03391f.zip/node_modules/@tanstack/query-core/build/modern/index.js
+var import_dist20 = __toESM(require_dist());
 
-// ../../.yarn/cache/@tanstack-query-core-npm-5.51.9-6ef6539693-05ae00d0f4.zip/node_modules/@tanstack/query-core/build/modern/retryer.js
-var import_dist9 = __toESM(require_dist(), 1);
-var import_dist10 = __toESM(require_dist2(), 1);
-
-// ../../.yarn/cache/@tanstack-query-core-npm-5.51.9-6ef6539693-05ae00d0f4.zip/node_modules/@tanstack/query-core/build/modern/focusManager.js
+// ../../.yarn/cache/@tanstack-query-core-npm-5.51.21-04adc2d019-bb9e03391f.zip/node_modules/@tanstack/query-core/build/modern/retryer.js
 var import_dist5 = __toESM(require_dist(), 1);
-var import_dist6 = __toESM(require_dist2(), 1);
 
-// ../../.yarn/cache/@tanstack-query-core-npm-5.51.9-6ef6539693-05ae00d0f4.zip/node_modules/@tanstack/query-core/build/modern/subscribable.js
+// ../../.yarn/cache/@tanstack-query-core-npm-5.51.21-04adc2d019-bb9e03391f.zip/node_modules/@tanstack/query-core/build/modern/focusManager.js
+var import_dist3 = __toESM(require_dist(), 1);
+
+// ../../.yarn/cache/@tanstack-query-core-npm-5.51.21-04adc2d019-bb9e03391f.zip/node_modules/@tanstack/query-core/build/modern/subscribable.js
 var import_dist = __toESM(require_dist(), 1);
-var import_dist2 = __toESM(require_dist2(), 1);
 var Subscribable = class {
   constructor() {
     this.listeners = /* @__PURE__ */ new Set();
@@ -61,9 +53,8 @@ var Subscribable = class {
   }
 };
 
-// ../../.yarn/cache/@tanstack-query-core-npm-5.51.9-6ef6539693-05ae00d0f4.zip/node_modules/@tanstack/query-core/build/modern/utils.js
-var import_dist3 = __toESM(require_dist(), 1);
-var import_dist4 = __toESM(require_dist2(), 1);
+// ../../.yarn/cache/@tanstack-query-core-npm-5.51.21-04adc2d019-bb9e03391f.zip/node_modules/@tanstack/query-core/build/modern/utils.js
+var import_dist2 = __toESM(require_dist(), 1);
 var isServer = typeof window === "undefined" || "Deno" in globalThis;
 function noop() {
   return void 0;
@@ -275,7 +266,7 @@ function ensureQueryFn(options, fetchOptions) {
   return options.queryFn;
 }
 
-// ../../.yarn/cache/@tanstack-query-core-npm-5.51.9-6ef6539693-05ae00d0f4.zip/node_modules/@tanstack/query-core/build/modern/focusManager.js
+// ../../.yarn/cache/@tanstack-query-core-npm-5.51.21-04adc2d019-bb9e03391f.zip/node_modules/@tanstack/query-core/build/modern/focusManager.js
 var _focused, _cleanup, _setup, _a;
 var FocusManager = (_a = class extends Subscribable {
   constructor() {
@@ -341,9 +332,8 @@ var FocusManager = (_a = class extends Subscribable {
 }, _focused = new WeakMap(), _cleanup = new WeakMap(), _setup = new WeakMap(), _a);
 var focusManager = new FocusManager();
 
-// ../../.yarn/cache/@tanstack-query-core-npm-5.51.9-6ef6539693-05ae00d0f4.zip/node_modules/@tanstack/query-core/build/modern/onlineManager.js
-var import_dist7 = __toESM(require_dist(), 1);
-var import_dist8 = __toESM(require_dist2(), 1);
+// ../../.yarn/cache/@tanstack-query-core-npm-5.51.21-04adc2d019-bb9e03391f.zip/node_modules/@tanstack/query-core/build/modern/onlineManager.js
+var import_dist4 = __toESM(require_dist(), 1);
 var _online, _cleanup2, _setup2, _a2;
 var OnlineManager = (_a2 = class extends Subscribable {
   constructor() {
@@ -398,15 +388,16 @@ var OnlineManager = (_a2 = class extends Subscribable {
 }, _online = new WeakMap(), _cleanup2 = new WeakMap(), _setup2 = new WeakMap(), _a2);
 var onlineManager = new OnlineManager();
 
-// ../../.yarn/cache/@tanstack-query-core-npm-5.51.9-6ef6539693-05ae00d0f4.zip/node_modules/@tanstack/query-core/build/modern/retryer.js
+// ../../.yarn/cache/@tanstack-query-core-npm-5.51.21-04adc2d019-bb9e03391f.zip/node_modules/@tanstack/query-core/build/modern/retryer.js
 function defaultRetryDelay(failureCount) {
   return Math.min(1e3 * 2 ** failureCount, 3e4);
 }
 function canFetch(networkMode) {
   return (networkMode ?? "online") === "online" ? onlineManager.isOnline() : true;
 }
-var CancelledError = class {
+var CancelledError = class extends Error {
   constructor(options) {
+    super("CancelledError");
     this.revert = options == null ? void 0 : options.revert;
     this.silent = options == null ? void 0 : options.silent;
   }
@@ -533,17 +524,14 @@ function createRetryer(config) {
   };
 }
 
-// ../../.yarn/cache/@tanstack-query-core-npm-5.51.9-6ef6539693-05ae00d0f4.zip/node_modules/@tanstack/query-core/build/modern/queryCache.js
-var import_dist17 = __toESM(require_dist(), 1);
-var import_dist18 = __toESM(require_dist2(), 1);
+// ../../.yarn/cache/@tanstack-query-core-npm-5.51.21-04adc2d019-bb9e03391f.zip/node_modules/@tanstack/query-core/build/modern/queryCache.js
+var import_dist9 = __toESM(require_dist(), 1);
 
-// ../../.yarn/cache/@tanstack-query-core-npm-5.51.9-6ef6539693-05ae00d0f4.zip/node_modules/@tanstack/query-core/build/modern/query.js
-var import_dist15 = __toESM(require_dist(), 1);
-var import_dist16 = __toESM(require_dist2(), 1);
+// ../../.yarn/cache/@tanstack-query-core-npm-5.51.21-04adc2d019-bb9e03391f.zip/node_modules/@tanstack/query-core/build/modern/query.js
+var import_dist8 = __toESM(require_dist(), 1);
 
-// ../../.yarn/cache/@tanstack-query-core-npm-5.51.9-6ef6539693-05ae00d0f4.zip/node_modules/@tanstack/query-core/build/modern/notifyManager.js
-var import_dist11 = __toESM(require_dist(), 1);
-var import_dist12 = __toESM(require_dist2(), 1);
+// ../../.yarn/cache/@tanstack-query-core-npm-5.51.21-04adc2d019-bb9e03391f.zip/node_modules/@tanstack/query-core/build/modern/notifyManager.js
+var import_dist6 = __toESM(require_dist(), 1);
 function createNotifyManager() {
   let queue = [];
   let transactions = 0;
@@ -616,9 +604,8 @@ function createNotifyManager() {
 }
 var notifyManager = createNotifyManager();
 
-// ../../.yarn/cache/@tanstack-query-core-npm-5.51.9-6ef6539693-05ae00d0f4.zip/node_modules/@tanstack/query-core/build/modern/removable.js
-var import_dist13 = __toESM(require_dist(), 1);
-var import_dist14 = __toESM(require_dist2(), 1);
+// ../../.yarn/cache/@tanstack-query-core-npm-5.51.21-04adc2d019-bb9e03391f.zip/node_modules/@tanstack/query-core/build/modern/removable.js
+var import_dist7 = __toESM(require_dist(), 1);
 var _gcTimeout, _a3;
 var Removable = (_a3 = class {
   constructor() {
@@ -649,7 +636,7 @@ var Removable = (_a3 = class {
   }
 }, _gcTimeout = new WeakMap(), _a3);
 
-// ../../.yarn/cache/@tanstack-query-core-npm-5.51.9-6ef6539693-05ae00d0f4.zip/node_modules/@tanstack/query-core/build/modern/query.js
+// ../../.yarn/cache/@tanstack-query-core-npm-5.51.21-04adc2d019-bb9e03391f.zip/node_modules/@tanstack/query-core/build/modern/query.js
 var _initialState, _revertState, _cache, _retryer, _defaultOptions, _abortSignalConsumed, _Query_instances, dispatch_fn, _a4;
 var Query = (_a4 = class extends Removable {
   constructor(config) {
@@ -668,8 +655,8 @@ var Query = (_a4 = class extends Removable {
     __privateSet(this, _cache, config.cache);
     this.queryKey = config.queryKey;
     this.queryHash = config.queryHash;
-    __privateSet(this, _initialState, config.state || getDefaultState(this.options));
-    this.state = __privateGet(this, _initialState);
+    __privateSet(this, _initialState, getDefaultState(this.options));
+    this.state = config.state ?? __privateGet(this, _initialState);
     this.scheduleGc();
   }
   get meta() {
@@ -1026,7 +1013,7 @@ function getDefaultState(options) {
   };
 }
 
-// ../../.yarn/cache/@tanstack-query-core-npm-5.51.9-6ef6539693-05ae00d0f4.zip/node_modules/@tanstack/query-core/build/modern/queryCache.js
+// ../../.yarn/cache/@tanstack-query-core-npm-5.51.21-04adc2d019-bb9e03391f.zip/node_modules/@tanstack/query-core/build/modern/queryCache.js
 var _queries, _a5;
 var QueryCache = (_a5 = class extends Subscribable {
   constructor(config = {}) {
@@ -1117,17 +1104,14 @@ var QueryCache = (_a5 = class extends Subscribable {
   }
 }, _queries = new WeakMap(), _a5);
 
-// ../../.yarn/cache/@tanstack-query-core-npm-5.51.9-6ef6539693-05ae00d0f4.zip/node_modules/@tanstack/query-core/build/modern/queryClient.js
-var import_dist25 = __toESM(require_dist(), 1);
-var import_dist26 = __toESM(require_dist2(), 1);
+// ../../.yarn/cache/@tanstack-query-core-npm-5.51.21-04adc2d019-bb9e03391f.zip/node_modules/@tanstack/query-core/build/modern/queryClient.js
+var import_dist13 = __toESM(require_dist(), 1);
 
-// ../../.yarn/cache/@tanstack-query-core-npm-5.51.9-6ef6539693-05ae00d0f4.zip/node_modules/@tanstack/query-core/build/modern/mutationCache.js
-var import_dist21 = __toESM(require_dist(), 1);
-var import_dist22 = __toESM(require_dist2(), 1);
+// ../../.yarn/cache/@tanstack-query-core-npm-5.51.21-04adc2d019-bb9e03391f.zip/node_modules/@tanstack/query-core/build/modern/mutationCache.js
+var import_dist11 = __toESM(require_dist(), 1);
 
-// ../../.yarn/cache/@tanstack-query-core-npm-5.51.9-6ef6539693-05ae00d0f4.zip/node_modules/@tanstack/query-core/build/modern/mutation.js
-var import_dist19 = __toESM(require_dist(), 1);
-var import_dist20 = __toESM(require_dist2(), 1);
+// ../../.yarn/cache/@tanstack-query-core-npm-5.51.21-04adc2d019-bb9e03391f.zip/node_modules/@tanstack/query-core/build/modern/mutation.js
+var import_dist10 = __toESM(require_dist(), 1);
 var _observers, _mutationCache, _retryer2, _Mutation_instances, dispatch_fn2, _a6;
 var Mutation = (_a6 = class extends Removable {
   constructor(config) {
@@ -1365,7 +1349,7 @@ function getDefaultState2() {
   };
 }
 
-// ../../.yarn/cache/@tanstack-query-core-npm-5.51.9-6ef6539693-05ae00d0f4.zip/node_modules/@tanstack/query-core/build/modern/mutationCache.js
+// ../../.yarn/cache/@tanstack-query-core-npm-5.51.21-04adc2d019-bb9e03391f.zip/node_modules/@tanstack/query-core/build/modern/mutationCache.js
 var _mutations, _mutationId, _a7;
 var MutationCache = (_a7 = class extends Subscribable {
   constructor(config = {}) {
@@ -1458,9 +1442,8 @@ function scopeFor(mutation) {
   return ((_a12 = mutation.options.scope) == null ? void 0 : _a12.id) ?? String(mutation.mutationId);
 }
 
-// ../../.yarn/cache/@tanstack-query-core-npm-5.51.9-6ef6539693-05ae00d0f4.zip/node_modules/@tanstack/query-core/build/modern/infiniteQueryBehavior.js
-var import_dist23 = __toESM(require_dist(), 1);
-var import_dist24 = __toESM(require_dist2(), 1);
+// ../../.yarn/cache/@tanstack-query-core-npm-5.51.21-04adc2d019-bb9e03391f.zip/node_modules/@tanstack/query-core/build/modern/infiniteQueryBehavior.js
+var import_dist12 = __toESM(require_dist(), 1);
 function infiniteQueryBehavior(pages) {
   return {
     onFetch: (context, query) => {
@@ -1530,6 +1513,9 @@ function infiniteQueryBehavior(pages) {
           const remainingPages = pages ?? oldPages.length;
           for (let i = 1; i < remainingPages; i++) {
             const param = getNextPageParam(options, result);
+            if (param == null) {
+              break;
+            }
             result = await fetchPage(result, param);
           }
         }
@@ -1579,7 +1565,7 @@ function hasPreviousPage(options, data) {
   return getPreviousPageParam(options, data) != null;
 }
 
-// ../../.yarn/cache/@tanstack-query-core-npm-5.51.9-6ef6539693-05ae00d0f4.zip/node_modules/@tanstack/query-core/build/modern/queryClient.js
+// ../../.yarn/cache/@tanstack-query-core-npm-5.51.21-04adc2d019-bb9e03391f.zip/node_modules/@tanstack/query-core/build/modern/queryClient.js
 var _queryCache, _mutationCache2, _defaultOptions2, _queryDefaults, _mutationDefaults, _mountCount, _unsubscribeFocus, _unsubscribeOnline, _a8;
 var QueryClient = (_a8 = class {
   constructor(config = {}) {
@@ -1856,9 +1842,8 @@ var QueryClient = (_a8 = class {
   }
 }, _queryCache = new WeakMap(), _mutationCache2 = new WeakMap(), _defaultOptions2 = new WeakMap(), _queryDefaults = new WeakMap(), _mutationDefaults = new WeakMap(), _mountCount = new WeakMap(), _unsubscribeFocus = new WeakMap(), _unsubscribeOnline = new WeakMap(), _a8);
 
-// ../../.yarn/cache/@tanstack-query-core-npm-5.51.9-6ef6539693-05ae00d0f4.zip/node_modules/@tanstack/query-core/build/modern/queryObserver.js
-var import_dist27 = __toESM(require_dist(), 1);
-var import_dist28 = __toESM(require_dist2(), 1);
+// ../../.yarn/cache/@tanstack-query-core-npm-5.51.21-04adc2d019-bb9e03391f.zip/node_modules/@tanstack/query-core/build/modern/queryObserver.js
+var import_dist14 = __toESM(require_dist(), 1);
 var _client, _currentQuery, _currentQueryInitialState, _currentResult, _currentResultState, _currentResultOptions, _selectError, _selectFn, _selectResult, _lastQueryWithDefinedData, _staleTimeoutId, _refetchIntervalId, _currentRefetchInterval, _trackedProps, _QueryObserver_instances, executeFetch_fn, updateStaleTimeout_fn, computeRefetchInterval_fn, updateRefetchInterval_fn, updateTimers_fn, clearStaleTimeout_fn, clearRefetchInterval_fn, updateQuery_fn, notify_fn, _a9;
 var QueryObserver = (_a9 = class extends Subscribable {
   constructor(client, options) {
@@ -2275,9 +2260,8 @@ function shouldAssignObserverCurrentProperties(observer, optimisticResult) {
   return false;
 }
 
-// ../../.yarn/cache/@tanstack-query-core-npm-5.51.9-6ef6539693-05ae00d0f4.zip/node_modules/@tanstack/query-core/build/modern/queriesObserver.js
-var import_dist29 = __toESM(require_dist(), 1);
-var import_dist30 = __toESM(require_dist2(), 1);
+// ../../.yarn/cache/@tanstack-query-core-npm-5.51.21-04adc2d019-bb9e03391f.zip/node_modules/@tanstack/query-core/build/modern/queriesObserver.js
+var import_dist15 = __toESM(require_dist(), 1);
 function difference(array1, array2) {
   return array1.filter((x) => !array2.includes(x));
 }
@@ -2452,9 +2436,8 @@ var QueriesObserver = (_a10 = class extends Subscribable {
   });
 }, _a10);
 
-// ../../.yarn/cache/@tanstack-query-core-npm-5.51.9-6ef6539693-05ae00d0f4.zip/node_modules/@tanstack/query-core/build/modern/infiniteQueryObserver.js
-var import_dist31 = __toESM(require_dist(), 1);
-var import_dist32 = __toESM(require_dist2(), 1);
+// ../../.yarn/cache/@tanstack-query-core-npm-5.51.21-04adc2d019-bb9e03391f.zip/node_modules/@tanstack/query-core/build/modern/infiniteQueryObserver.js
+var import_dist16 = __toESM(require_dist(), 1);
 var InfiniteQueryObserver = class extends QueryObserver {
   constructor(client, options) {
     super(client, options);
@@ -2520,9 +2503,8 @@ var InfiniteQueryObserver = class extends QueryObserver {
   }
 };
 
-// ../../.yarn/cache/@tanstack-query-core-npm-5.51.9-6ef6539693-05ae00d0f4.zip/node_modules/@tanstack/query-core/build/modern/mutationObserver.js
-var import_dist33 = __toESM(require_dist(), 1);
-var import_dist34 = __toESM(require_dist2(), 1);
+// ../../.yarn/cache/@tanstack-query-core-npm-5.51.21-04adc2d019-bb9e03391f.zip/node_modules/@tanstack/query-core/build/modern/mutationObserver.js
+var import_dist17 = __toESM(require_dist(), 1);
 var _client3, _currentResult2, _currentMutation, _mutateOptions, _MutationObserver_instances, updateResult_fn, notify_fn3, _a11;
 var MutationObserver = (_a11 = class extends Subscribable {
   constructor(client, options) {
@@ -2624,9 +2606,8 @@ var MutationObserver = (_a11 = class extends Subscribable {
   });
 }, _a11);
 
-// ../../.yarn/cache/@tanstack-query-core-npm-5.51.9-6ef6539693-05ae00d0f4.zip/node_modules/@tanstack/query-core/build/modern/hydration.js
-var import_dist35 = __toESM(require_dist(), 1);
-var import_dist36 = __toESM(require_dist2(), 1);
+// ../../.yarn/cache/@tanstack-query-core-npm-5.51.21-04adc2d019-bb9e03391f.zip/node_modules/@tanstack/query-core/build/modern/hydration.js
+var import_dist18 = __toESM(require_dist(), 1);
 function defaultTransformerFn(data) {
   return data;
 }
@@ -2741,22 +2722,18 @@ function hydrate(client, dehydratedState, options) {
   });
 }
 
-// ../../.yarn/cache/@tanstack-query-core-npm-5.51.9-6ef6539693-05ae00d0f4.zip/node_modules/@tanstack/query-core/build/modern/types.js
-var import_dist37 = __toESM(require_dist(), 1);
-var import_dist38 = __toESM(require_dist2(), 1);
+// ../../.yarn/cache/@tanstack-query-core-npm-5.51.21-04adc2d019-bb9e03391f.zip/node_modules/@tanstack/query-core/build/modern/types.js
+var import_dist19 = __toESM(require_dist(), 1);
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-718898855d/0/cache/@tanstack-react-query-npm-5.51.11-04a9122bed-318aea36ff.zip/node_modules/@tanstack/react-query/build/modern/types.js
-var import_dist41 = __toESM(require_dist(), 1);
-var import_dist42 = __toESM(require_dist2(), 1);
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a9868b6fb2/0/cache/@tanstack-react-query-npm-5.51.23-45e5787442-913566a677.zip/node_modules/@tanstack/react-query/build/modern/types.js
+var import_dist21 = __toESM(require_dist(), 1);
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-718898855d/0/cache/@tanstack-react-query-npm-5.51.11-04a9122bed-318aea36ff.zip/node_modules/@tanstack/react-query/build/modern/useQueries.js
-var import_dist55 = __toESM(require_dist(), 1);
-var import_dist56 = __toESM(require_dist2(), 1);
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a9868b6fb2/0/cache/@tanstack-react-query-npm-5.51.23-45e5787442-913566a677.zip/node_modules/@tanstack/react-query/build/modern/useQueries.js
+var import_dist28 = __toESM(require_dist(), 1);
 var React5 = __toESM(require_react(), 1);
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-718898855d/0/cache/@tanstack-react-query-npm-5.51.11-04a9122bed-318aea36ff.zip/node_modules/@tanstack/react-query/build/modern/QueryClientProvider.js
-var import_dist43 = __toESM(require_dist(), 1);
-var import_dist44 = __toESM(require_dist2(), 1);
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a9868b6fb2/0/cache/@tanstack-react-query-npm-5.51.23-45e5787442-913566a677.zip/node_modules/@tanstack/react-query/build/modern/QueryClientProvider.js
+var import_dist22 = __toESM(require_dist(), 1);
 var React = __toESM(require_react(), 1);
 var import_jsx_runtime = __toESM(require_jsx_runtime(), 1);
 var QueryClientContext = React.createContext(
@@ -2785,17 +2762,15 @@ var QueryClientProvider = ({
   return (0, import_jsx_runtime.jsx)(QueryClientContext.Provider, { value: client, children });
 };
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-718898855d/0/cache/@tanstack-react-query-npm-5.51.11-04a9122bed-318aea36ff.zip/node_modules/@tanstack/react-query/build/modern/isRestoring.js
-var import_dist45 = __toESM(require_dist(), 1);
-var import_dist46 = __toESM(require_dist2(), 1);
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a9868b6fb2/0/cache/@tanstack-react-query-npm-5.51.23-45e5787442-913566a677.zip/node_modules/@tanstack/react-query/build/modern/isRestoring.js
+var import_dist23 = __toESM(require_dist(), 1);
 var React2 = __toESM(require_react(), 1);
 var IsRestoringContext = React2.createContext(false);
 var useIsRestoring = () => React2.useContext(IsRestoringContext);
 var IsRestoringProvider = IsRestoringContext.Provider;
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-718898855d/0/cache/@tanstack-react-query-npm-5.51.11-04a9122bed-318aea36ff.zip/node_modules/@tanstack/react-query/build/modern/QueryErrorResetBoundary.js
-var import_dist47 = __toESM(require_dist(), 1);
-var import_dist48 = __toESM(require_dist2(), 1);
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a9868b6fb2/0/cache/@tanstack-react-query-npm-5.51.23-45e5787442-913566a677.zip/node_modules/@tanstack/react-query/build/modern/QueryErrorResetBoundary.js
+var import_dist24 = __toESM(require_dist(), 1);
 var React3 = __toESM(require_react(), 1);
 var import_jsx_runtime2 = __toESM(require_jsx_runtime(), 1);
 function createValue() {
@@ -2821,14 +2796,12 @@ var QueryErrorResetBoundary = ({
   return (0, import_jsx_runtime2.jsx)(QueryErrorResetBoundaryContext.Provider, { value, children: typeof children === "function" ? children(value) : children });
 };
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-718898855d/0/cache/@tanstack-react-query-npm-5.51.11-04a9122bed-318aea36ff.zip/node_modules/@tanstack/react-query/build/modern/errorBoundaryUtils.js
-var import_dist51 = __toESM(require_dist(), 1);
-var import_dist52 = __toESM(require_dist2(), 1);
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a9868b6fb2/0/cache/@tanstack-react-query-npm-5.51.23-45e5787442-913566a677.zip/node_modules/@tanstack/react-query/build/modern/errorBoundaryUtils.js
+var import_dist26 = __toESM(require_dist(), 1);
 var React4 = __toESM(require_react(), 1);
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-718898855d/0/cache/@tanstack-react-query-npm-5.51.11-04a9122bed-318aea36ff.zip/node_modules/@tanstack/react-query/build/modern/utils.js
-var import_dist49 = __toESM(require_dist(), 1);
-var import_dist50 = __toESM(require_dist2(), 1);
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a9868b6fb2/0/cache/@tanstack-react-query-npm-5.51.23-45e5787442-913566a677.zip/node_modules/@tanstack/react-query/build/modern/utils.js
+var import_dist25 = __toESM(require_dist(), 1);
 function shouldThrowError(throwError, params) {
   if (typeof throwError === "function") {
     return throwError(...params);
@@ -2838,7 +2811,7 @@ function shouldThrowError(throwError, params) {
 function noop2() {
 }
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-718898855d/0/cache/@tanstack-react-query-npm-5.51.11-04a9122bed-318aea36ff.zip/node_modules/@tanstack/react-query/build/modern/errorBoundaryUtils.js
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a9868b6fb2/0/cache/@tanstack-react-query-npm-5.51.23-45e5787442-913566a677.zip/node_modules/@tanstack/react-query/build/modern/errorBoundaryUtils.js
 var ensurePreventErrorBoundaryRetry = (options, errorResetBoundary) => {
   if (options.suspense || options.throwOnError) {
     if (!errorResetBoundary.isReset()) {
@@ -2860,14 +2833,16 @@ var getHasError = ({
   return result.isError && !errorResetBoundary.isReset() && !result.isFetching && query && shouldThrowError(throwOnError, [result.error, query]);
 };
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-718898855d/0/cache/@tanstack-react-query-npm-5.51.11-04a9122bed-318aea36ff.zip/node_modules/@tanstack/react-query/build/modern/suspense.js
-var import_dist53 = __toESM(require_dist(), 1);
-var import_dist54 = __toESM(require_dist2(), 1);
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a9868b6fb2/0/cache/@tanstack-react-query-npm-5.51.23-45e5787442-913566a677.zip/node_modules/@tanstack/react-query/build/modern/suspense.js
+var import_dist27 = __toESM(require_dist(), 1);
 var defaultThrowOnError = (_error, query) => query.state.data === void 0;
-var ensureStaleTime = (defaultedOptions) => {
+var ensureSuspenseTimers = (defaultedOptions) => {
   if (defaultedOptions.suspense) {
     if (typeof defaultedOptions.staleTime !== "number") {
       defaultedOptions.staleTime = 1e3;
+    }
+    if (typeof defaultedOptions.gcTime === "number") {
+      defaultedOptions.gcTime = Math.max(defaultedOptions.gcTime, 1e3);
     }
   }
 };
@@ -2877,7 +2852,7 @@ var fetchOptimistic = (defaultedOptions, observer, errorResetBoundary) => observ
   errorResetBoundary.clearReset();
 });
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-718898855d/0/cache/@tanstack-react-query-npm-5.51.11-04a9122bed-318aea36ff.zip/node_modules/@tanstack/react-query/build/modern/useQueries.js
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a9868b6fb2/0/cache/@tanstack-react-query-npm-5.51.23-45e5787442-913566a677.zip/node_modules/@tanstack/react-query/build/modern/useQueries.js
 function useQueries({
   queries,
   ...options
@@ -2896,7 +2871,7 @@ function useQueries({
     [queries, client, isRestoring]
   );
   defaultedQueries.forEach((query) => {
-    ensureStaleTime(query);
+    ensureSuspenseTimers(query);
     ensurePreventErrorBoundaryRetry(query, errorResetBoundary);
   });
   useClearResetErrorBoundary(errorResetBoundary);
@@ -2963,13 +2938,11 @@ function useQueries({
   return getCombinedResult(trackResult());
 }
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-718898855d/0/cache/@tanstack-react-query-npm-5.51.11-04a9122bed-318aea36ff.zip/node_modules/@tanstack/react-query/build/modern/useQuery.js
-var import_dist59 = __toESM(require_dist(), 1);
-var import_dist60 = __toESM(require_dist2(), 1);
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a9868b6fb2/0/cache/@tanstack-react-query-npm-5.51.23-45e5787442-913566a677.zip/node_modules/@tanstack/react-query/build/modern/useQuery.js
+var import_dist30 = __toESM(require_dist(), 1);
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-718898855d/0/cache/@tanstack-react-query-npm-5.51.11-04a9122bed-318aea36ff.zip/node_modules/@tanstack/react-query/build/modern/useBaseQuery.js
-var import_dist57 = __toESM(require_dist(), 1);
-var import_dist58 = __toESM(require_dist2(), 1);
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a9868b6fb2/0/cache/@tanstack-react-query-npm-5.51.23-45e5787442-913566a677.zip/node_modules/@tanstack/react-query/build/modern/useBaseQuery.js
+var import_dist29 = __toESM(require_dist(), 1);
 var React6 = __toESM(require_react(), 1);
 function useBaseQuery(options, Observer, queryClient) {
   var _a12, _b, _c, _d;
@@ -2989,7 +2962,7 @@ function useBaseQuery(options, Observer, queryClient) {
     defaultedOptions
   );
   defaultedOptions._optimisticResults = isRestoring ? "isRestoring" : "optimistic";
-  ensureStaleTime(defaultedOptions);
+  ensureSuspenseTimers(defaultedOptions);
   ensurePreventErrorBoundaryRetry(defaultedOptions, errorResetBoundary);
   useClearResetErrorBoundary(errorResetBoundary);
   const [observer] = React6.useState(
@@ -3034,14 +3007,13 @@ function useBaseQuery(options, Observer, queryClient) {
   return !defaultedOptions.notifyOnChangeProps ? observer.trackResult(result) : result;
 }
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-718898855d/0/cache/@tanstack-react-query-npm-5.51.11-04a9122bed-318aea36ff.zip/node_modules/@tanstack/react-query/build/modern/useQuery.js
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a9868b6fb2/0/cache/@tanstack-react-query-npm-5.51.23-45e5787442-913566a677.zip/node_modules/@tanstack/react-query/build/modern/useQuery.js
 function useQuery(options, queryClient) {
   return useBaseQuery(options, QueryObserver, queryClient);
 }
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-718898855d/0/cache/@tanstack-react-query-npm-5.51.11-04a9122bed-318aea36ff.zip/node_modules/@tanstack/react-query/build/modern/useSuspenseQuery.js
-var import_dist61 = __toESM(require_dist(), 1);
-var import_dist62 = __toESM(require_dist2(), 1);
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a9868b6fb2/0/cache/@tanstack-react-query-npm-5.51.23-45e5787442-913566a677.zip/node_modules/@tanstack/react-query/build/modern/useSuspenseQuery.js
+var import_dist31 = __toESM(require_dist(), 1);
 function useSuspenseQuery(options, queryClient) {
   if (true) {
     if (options.queryFn === skipToken) {
@@ -3061,10 +3033,14 @@ function useSuspenseQuery(options, queryClient) {
   );
 }
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-718898855d/0/cache/@tanstack-react-query-npm-5.51.11-04a9122bed-318aea36ff.zip/node_modules/@tanstack/react-query/build/modern/useSuspenseInfiniteQuery.js
-var import_dist63 = __toESM(require_dist(), 1);
-var import_dist64 = __toESM(require_dist2(), 1);
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a9868b6fb2/0/cache/@tanstack-react-query-npm-5.51.23-45e5787442-913566a677.zip/node_modules/@tanstack/react-query/build/modern/useSuspenseInfiniteQuery.js
+var import_dist32 = __toESM(require_dist(), 1);
 function useSuspenseInfiniteQuery(options, queryClient) {
+  if (true) {
+    if (options.queryFn === skipToken) {
+      console.error("skipToken is not allowed for useSuspenseInfiniteQuery");
+    }
+  }
   return useBaseQuery(
     {
       ...options,
@@ -3077,28 +3053,33 @@ function useSuspenseInfiniteQuery(options, queryClient) {
   );
 }
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-718898855d/0/cache/@tanstack-react-query-npm-5.51.11-04a9122bed-318aea36ff.zip/node_modules/@tanstack/react-query/build/modern/useSuspenseQueries.js
-var import_dist65 = __toESM(require_dist(), 1);
-var import_dist66 = __toESM(require_dist2(), 1);
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a9868b6fb2/0/cache/@tanstack-react-query-npm-5.51.23-45e5787442-913566a677.zip/node_modules/@tanstack/react-query/build/modern/useSuspenseQueries.js
+var import_dist33 = __toESM(require_dist(), 1);
 function useSuspenseQueries(options, queryClient) {
   return useQueries(
     {
       ...options,
-      queries: options.queries.map((query) => ({
-        ...query,
-        suspense: true,
-        throwOnError: defaultThrowOnError,
-        enabled: true,
-        placeholderData: void 0
-      }))
+      queries: options.queries.map((query) => {
+        if (true) {
+          if (query.queryFn === skipToken) {
+            console.error("skipToken is not allowed for useSuspenseQueries");
+          }
+        }
+        return {
+          ...query,
+          suspense: true,
+          throwOnError: defaultThrowOnError,
+          enabled: true,
+          placeholderData: void 0
+        };
+      })
     },
     queryClient
   );
 }
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-718898855d/0/cache/@tanstack-react-query-npm-5.51.11-04a9122bed-318aea36ff.zip/node_modules/@tanstack/react-query/build/modern/prefetch.js
-var import_dist67 = __toESM(require_dist(), 1);
-var import_dist68 = __toESM(require_dist2(), 1);
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a9868b6fb2/0/cache/@tanstack-react-query-npm-5.51.23-45e5787442-913566a677.zip/node_modules/@tanstack/react-query/build/modern/prefetch.js
+var import_dist34 = __toESM(require_dist(), 1);
 function usePrefetchQuery(options) {
   const queryClient = useQueryClient();
   if (!queryClient.getQueryState(options.queryKey)) {
@@ -3112,23 +3093,20 @@ function usePrefetchInfiniteQuery(options) {
   }
 }
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-718898855d/0/cache/@tanstack-react-query-npm-5.51.11-04a9122bed-318aea36ff.zip/node_modules/@tanstack/react-query/build/modern/queryOptions.js
-var import_dist69 = __toESM(require_dist(), 1);
-var import_dist70 = __toESM(require_dist2(), 1);
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a9868b6fb2/0/cache/@tanstack-react-query-npm-5.51.23-45e5787442-913566a677.zip/node_modules/@tanstack/react-query/build/modern/queryOptions.js
+var import_dist35 = __toESM(require_dist(), 1);
 function queryOptions(options) {
   return options;
 }
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-718898855d/0/cache/@tanstack-react-query-npm-5.51.11-04a9122bed-318aea36ff.zip/node_modules/@tanstack/react-query/build/modern/infiniteQueryOptions.js
-var import_dist71 = __toESM(require_dist(), 1);
-var import_dist72 = __toESM(require_dist2(), 1);
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a9868b6fb2/0/cache/@tanstack-react-query-npm-5.51.23-45e5787442-913566a677.zip/node_modules/@tanstack/react-query/build/modern/infiniteQueryOptions.js
+var import_dist36 = __toESM(require_dist(), 1);
 function infiniteQueryOptions(options) {
   return options;
 }
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-718898855d/0/cache/@tanstack-react-query-npm-5.51.11-04a9122bed-318aea36ff.zip/node_modules/@tanstack/react-query/build/modern/HydrationBoundary.js
-var import_dist73 = __toESM(require_dist(), 1);
-var import_dist74 = __toESM(require_dist2(), 1);
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a9868b6fb2/0/cache/@tanstack-react-query-npm-5.51.23-45e5787442-913566a677.zip/node_modules/@tanstack/react-query/build/modern/HydrationBoundary.js
+var import_dist37 = __toESM(require_dist(), 1);
 var React7 = __toESM(require_react(), 1);
 var HydrationBoundary = ({
   children,
@@ -3182,9 +3160,8 @@ var HydrationBoundary = ({
   return children;
 };
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-718898855d/0/cache/@tanstack-react-query-npm-5.51.11-04a9122bed-318aea36ff.zip/node_modules/@tanstack/react-query/build/modern/useIsFetching.js
-var import_dist75 = __toESM(require_dist(), 1);
-var import_dist76 = __toESM(require_dist2(), 1);
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a9868b6fb2/0/cache/@tanstack-react-query-npm-5.51.23-45e5787442-913566a677.zip/node_modules/@tanstack/react-query/build/modern/useIsFetching.js
+var import_dist38 = __toESM(require_dist(), 1);
 var React8 = __toESM(require_react(), 1);
 function useIsFetching(filters, queryClient) {
   const client = useQueryClient(queryClient);
@@ -3199,9 +3176,8 @@ function useIsFetching(filters, queryClient) {
   );
 }
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-718898855d/0/cache/@tanstack-react-query-npm-5.51.11-04a9122bed-318aea36ff.zip/node_modules/@tanstack/react-query/build/modern/useMutationState.js
-var import_dist77 = __toESM(require_dist(), 1);
-var import_dist78 = __toESM(require_dist2(), 1);
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a9868b6fb2/0/cache/@tanstack-react-query-npm-5.51.23-45e5787442-913566a677.zip/node_modules/@tanstack/react-query/build/modern/useMutationState.js
+var import_dist39 = __toESM(require_dist(), 1);
 var React9 = __toESM(require_react(), 1);
 function useIsMutating(filters, queryClient) {
   const client = useQueryClient(queryClient);
@@ -3244,9 +3220,8 @@ function useMutationState(options = {}, queryClient) {
   );
 }
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-718898855d/0/cache/@tanstack-react-query-npm-5.51.11-04a9122bed-318aea36ff.zip/node_modules/@tanstack/react-query/build/modern/useMutation.js
-var import_dist79 = __toESM(require_dist(), 1);
-var import_dist80 = __toESM(require_dist2(), 1);
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a9868b6fb2/0/cache/@tanstack-react-query-npm-5.51.23-45e5787442-913566a677.zip/node_modules/@tanstack/react-query/build/modern/useMutation.js
+var import_dist40 = __toESM(require_dist(), 1);
 var React10 = __toESM(require_react(), 1);
 function useMutation(options, queryClient) {
   const client = useQueryClient(queryClient);
@@ -3279,9 +3254,8 @@ function useMutation(options, queryClient) {
   return { ...result, mutate, mutateAsync: result.mutate };
 }
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-718898855d/0/cache/@tanstack-react-query-npm-5.51.11-04a9122bed-318aea36ff.zip/node_modules/@tanstack/react-query/build/modern/useInfiniteQuery.js
-var import_dist81 = __toESM(require_dist(), 1);
-var import_dist82 = __toESM(require_dist2(), 1);
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a9868b6fb2/0/cache/@tanstack-react-query-npm-5.51.23-45e5787442-913566a677.zip/node_modules/@tanstack/react-query/build/modern/useInfiniteQuery.js
+var import_dist41 = __toESM(require_dist(), 1);
 function useInfiniteQuery(options, queryClient) {
   return useBaseQuery(
     options,
@@ -3305,6 +3279,7 @@ export {
   notifyManager,
   Query,
   QueryCache,
+  Mutation,
   MutationCache,
   QueryClient,
   QueryObserver,
@@ -3338,4 +3313,4 @@ export {
   useMutation,
   useInfiniteQuery
 };
-//# sourceMappingURL=chunk-BNGGKOW5.js.map
+//# sourceMappingURL=chunk-NYJP25S2.js.map
