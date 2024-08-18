@@ -25,7 +25,7 @@ const typeChange = {
   팀: "TEAM"
 };
 
-const typeAgainChange = {
+export const typeAgainChange = {
   PERSONAL: "개인",
   TEAM: "팀"
 };
@@ -60,11 +60,13 @@ export const Item = ({ data, setData }: IProp) => {
 
   const handleLogo = ({ target }: ChangeEvent<HTMLInputElement>) => {
     const file = (target.files as FileList)[0];
-    const form = new FormData();
-    form.append("file", file);
-    mutate(form, {
-      onSuccess: (res) => set("imageInfo", res)
-    });
+    if (file) {
+      const form = new FormData();
+      form.append("file", file);
+      mutate(form, {
+        onSuccess: (res) => set("imageInfo", res)
+      });
+    }
   };
 
   const handleType = (data: string, name: string) => {
@@ -93,7 +95,7 @@ export const Item = ({ data, setData }: IProp) => {
       <Button onClick={del} size="full" color="light">
         <Icon icon="ph:trash-bold" width={20} className="self-center" />
       </Button>
-      <div className="flex gap-5 w-full">
+      <div className="grid grid-cols-[47%_47%] gap-2 justify-between w-full">
         <Input
           id="name"
           label="프로젝트 이름"
