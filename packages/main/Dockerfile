@@ -5,7 +5,7 @@ RUN apk add --no-cache libc6-compat git curl unzip
 RUN curl -L -o ../repo.zip https://github.com/DSM-Repo/repo/archive/main.zip && \
     unzip repo.zip -d /
 
-RUN cd /repo-main/packages/main
+RUN cd /repo-main
 
 RUN yarn install --immutable
 
