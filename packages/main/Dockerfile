@@ -3,7 +3,7 @@ FROM node:22-alpine AS builder
 RUN apk add --no-cache libc6-compat git curl unzip
 
 RUN curl -L -o ../repo.zip https://github.com/DSM-Repo/repo/archive/main.zip && \
-    unzip ../repo.zip -d ../
+    unzip repo.zip -d /
 
 RUN cd /repo-main/packages/main
 
