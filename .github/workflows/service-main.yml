@@ -1,0 +1,30 @@
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "configs/**"
+      - "packages/main/**"
+
+jobs:
+  build:
+    permissions:
+      id-token: write
+      contents: read
+    name: Build
+    runs-on: ubuntu-latest
+    env:
+      SERVICE_NAME: main
+    steps:
+      - name: Check Out The Repository
+        uses: actions/checkout@v3
+
+      - name: Deploy to xquare
+        uses: team-xquare/xquare-deployment-action@master
+        with:
+          environment: prod
+          access_key: ${{ secrets.MAIN_ACCESS_KEY }}
+          base_url: packages/${{ env.SERVICE_NAME }}
+          config_file_path: packages/${{ env.SERVICE_NAME }}/.xquare/config.yaml
+          yarn_docker_build: true
+          yarn_workspace: "${{ env.SERVICE_NAME }}"

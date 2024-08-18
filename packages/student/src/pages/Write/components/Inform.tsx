@@ -1,7 +1,10 @@
+import { useResumeData } from "@/hooks/useResumeData";
 import { Box, Dropdown, Input, Label } from "ui";
-import { Layout } from "./Layout";
+import { dataType } from "@/apis/common/types";
 import { ChangeEvent, useState } from "react";
 import { Icon } from "@iconify/react";
+import { major } from "@/apis/common";
+import { Layout } from "./Layout";
 
 const studId = {
   grade: ["1", "2", "3"],
@@ -22,104 +25,78 @@ const studId = {
     "13",
     "14",
     "15",
-    "16",
-  ],
+    "16"
+  ]
 };
 
-const skills = [
-  {
-    id: "qwkenwqeqwdndios",
-    name: "백엔드",
-  },
-  {
-    id: "gfdegthrgfdsfgre",
-    name: "프론트엔드",
-  },
-];
-
-interface IData {
-  name: string;
-  major: string;
-  grade: string;
-  class: string;
-  num: string;
-  skills: string[];
-  email: string;
-  url: string;
-}
-
 export const Inform = () => {
-  const [data, setData] = useState<IData>({
-    name: "",
-    major: "",
-    grade: "",
-    class: "",
-    num: "",
-    skills: [],
-    email: "",
-    url: "",
-  });
   const [skill, setSkill] = useState("");
+  const { data: resume, setPartial } = useResumeData();
+  const { data: majors } = major();
+  const { writer } = resume;
 
-  const handleChangeInput = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    setData((prev) => {
-      return { ...prev, [e.target.id]: e.target.value };
-    });
-  };
+  const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) =>
+    setPartial("writer", e.target.value, e.target.id);
 
-  const handleDropChange = (data: string, name?: string) => {
-    setData((prev) => {
-      return { ...prev, [name as string]: data };
-    });
-  };
+  const handleDropChange = (data: string, name: string) =>
+    setPartial("writer", data, name);
+
+  const handleClassChange = (data: string, name: string) =>
+    setPartial(
+      "writer",
+      { ...resume.writer.classInfo, [name]: data },
+      "classInfo"
+    );
 
   return (
     <Layout title="내 정보" subTitle="내 정보를 작성하세요">
       <Input
         label="이름"
         placeholder="이름을 입력하세요"
-        value={data.name}
+        value={writer?.name}
         onChange={handleChangeInput}
         size="large"
         id="name"
-      />
-      <Dropdown
-        label="전공"
-        placeholder="전공을 선택하세요"
-        selected={data.major}
-        selections={skills.map((i) => i.name)}
-        onSelect={handleDropChange}
-        size="large"
-        id="major"
+        disabled
       />
       <Label label="학번" className="flex gap-8">
         <Dropdown
           placeholder="학년"
-          selected={data.grade && data.grade + "학년"}
+          selected={(writer?.classInfo?.grade || "") + "학년"}
           selections={studId.grade}
-          onSelect={handleDropChange}
+          onSelect={handleClassChange}
           size="extraSmall"
           id="grade"
+          disabled
         />
         <Dropdown
           placeholder="반"
-          selected={data.class && data.class + "반"}
+          selected={(writer?.classInfo?.classNumber || "") + "반"}
           selections={studId.class}
-          onSelect={handleDropChange}
+          onSelect={handleClassChange}
           size="extraSmall"
-          id="class"
+          id="classNumber"
+          disabled
         />
         <Dropdown
           placeholder="번호"
-          selected={data.num && data.num + "번"}
+          selected={(writer?.classInfo?.number || "") + "번"}
           selections={studId.num}
-          onSelect={handleDropChange}
+          onSelect={handleClassChange}
           size="extraSmall"
-          id="num"
+          id="number"
+          disabled
         />
       </Label>
+      <Dropdown
+        label="전공"
+        placeholder="전공을 선택하세요"
+        selected={writer?.majorName}
+        selections={majors ? majors?.data.map((i: dataType) => i.name) : []}
+        onSelect={handleDropChange}
+        size="large"
+        id="majorName"
+      />
       <div className="col-flex gap-3 w-fit">
         <Input
           label="기술 스택"
@@ -127,8 +104,16 @@ export const Inform = () => {
           value={skill}
           onChange={(e) => setSkill(e.target.value)}
           onKeyDown={(e) => {
-            if (e.key === "Enter" && skill !== "") {
-              setData({ ...data, skills: [...data.skills, skill] });
+            if (
+              e.key === "Enter" &&
+              skill !== "" &&
+              !e.nativeEvent.isComposing
+            ) {
+              setPartial(
+                "writer",
+                [...resume.writer.skillSet, skill],
+                "skillSet"
+              );
               setSkill("");
             }
           }}
@@ -136,13 +121,9 @@ export const Inform = () => {
           id="skills"
         />
         <div className="flex flex-wrap gap-2 w-[28rem]">
-          {data.skills.map((i) => (
+          {writer?.skillSet?.map((i) => (
             <Box
-              size={{
-                width: "fit-content",
-                height: "fit-content",
-                padding: "8px 13px",
-              }}
+              padding="8px 13px"
               className="flex flex-row items-center gap-2"
             >
               <span className="text-body7">{i}</span>
@@ -151,10 +132,11 @@ export const Inform = () => {
                 color="white"
                 className="cursor-pointer"
                 onClick={() =>
-                  setData({
-                    ...data,
-                    skills: data.skills.filter((j) => j !== i),
-                  })
+                  setPartial(
+                    "writer",
+                    resume.writer?.skillSet?.filter((j) => j !== i),
+                    "skillSet"
+                  )
                 }
               />
             </Box>
@@ -165,7 +147,7 @@ export const Inform = () => {
       <Input
         label="이메일"
         placeholder="이메일을 입력하세요"
-        value={data.email}
+        value={writer?.email}
         onChange={handleChangeInput}
         size="large"
         id="email"
@@ -173,7 +155,7 @@ export const Inform = () => {
       <Input
         label="추가 URL"
         placeholder="포트폴리오나, 깃허브의 URL 등을 입력하세요"
-        value={data.url}
+        value={writer?.url}
         onChange={handleChangeInput}
         size="large"
         id="url"

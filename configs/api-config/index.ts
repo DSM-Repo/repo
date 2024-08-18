@@ -1,7 +1,9 @@
-import { QueryClient } from "@tanstack/react-query";
-import axios, { AxiosError } from "axios";
 import { Cookies } from "react-cookie";
+import { toast } from "react-toastify";
+import { refresh } from "./refresh";
+import axios from "axios";
 export * from "./hooks";
+export * from "./paths";
 
 const cookie = new Cookies();
 
@@ -10,66 +12,30 @@ export const instance = axios.create({
   timeout: 5000
 });
 
-export const path = {
-  auth: "/auth",
-  document: "/document",
-  user: "/user",
-  feedback: "/feedback",
-  major: "/major",
-  file: "/file"
-};
-
-export const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      retry: 3,
-      staleTime: 1000 * 60 * 2,
-      refetchOnWindowFocus: false
-    }
-  }
-});
-
 instance.interceptors.request.use(
   (res) => {
-    const accessToken = cookie.get("accessToken");
-    if (accessToken) {
-      res.headers.Authorization = `Bearer ${accessToken}`;
-    }
-    return res;
+    const config = refresh().then(() => {
+      const accessToken = cookie.get("accessToken");
+      if (accessToken) res.headers.Authorization = `Bearer ${accessToken}`;
+      return res;
+    });
+    return config;
   },
-  (err: AxiosError) => Promise.reject(err)
+  (err) => Promise.reject(err)
 );
 
 instance.interceptors.response.use(
   (res) => res,
-  (err: AxiosError) => {
-    if (err.response?.status === 401) {
-      const refreshToken = cookie.get("refreshToken");
-      axios
-        .post(`${process.env.VITE_APP_BASE_URL}/refresh`, { refreshToken })
-        .then((res) => {
-          cookie.set("accessToken", res.data.accessToken, {
-            secure: true,
-            sameSite: "none",
-            expires: res.data.accessExpiredat
-          });
-          cookie.set("refreshToken", res.data.refreshToken, {
-            secure: true,
-            sameSite: "none",
-            expires: res.data.refreshExpiredat
-          });
-        })
-        .catch(() => {
-          cookie.remove("accessToken");
-          cookie.remove("refreshToken");
-          window.location.replace(`${process.env.VITE_APP_URL_STUDENT}/login`);
-        });
-    } else if (err.response?.status === 403) {
+  (err) => {
+    const { response } = err;
+    if (response.status === 401 || response.status === 403) {
       window.location.replace(`${process.env.VITE_APP_URL_STUDENT}/login`);
+    } else {
+      toast.error(
+        `오류가 발생했습니다\n(${response.status}: ${response.data})`
+      );
+      console.log(err);
+      return err;
     }
-    // } else {
-    //   window.location.replace(`${process.env.VITE_APP_URL_MAIN}`);
-    // }
-    return err;
   }
 );

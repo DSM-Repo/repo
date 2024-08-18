@@ -1,11 +1,30 @@
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button, Header, Input } from "ui";
+import { toast } from "react-toastify";
+import { useAuth } from "@/hooks";
+import { useState } from "react";
+import { login } from "@/apis";
 
 export const Login = () => {
+  const { setToken } = useAuth();
+  const navigate = useNavigate();
+
   const [data, setData] = useState({
     account_id: "",
-    password: "",
+    password: ""
   });
+
+  const { mutate } = login();
+
+  const handleLogin = () => {
+    mutate(data, {
+      onSuccess: (res) => {
+        setToken(res);
+        toast.success("성공적으로 로그인되었습니다");
+        navigate("/");
+      }
+    });
+  };
 
   return (
     <div className="flex w-full h-screen relative flex-center">
@@ -27,7 +46,7 @@ export const Login = () => {
           size="large"
           password
         />
-        <Button onClick={() => {}} size="large">
+        <Button onClick={handleLogin} size="large">
           로그인
         </Button>
       </div>

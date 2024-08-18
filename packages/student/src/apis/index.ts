@@ -1,5 +1,4 @@
-export const paths = {
-  main: "main",
-  write: "write",
-  libraries: "libraries",
-};
+export * from "./document";
+export * from "./common";
+export * from "./auth";
+export * from "./user";

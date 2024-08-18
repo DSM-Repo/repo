@@ -1,6 +1,6 @@
 import { MouseEvent, useState } from "react";
 import { Icon } from "@iconify/react";
-import { Input, Box } from "../..";
+import { Box } from "../..";
 import { IInput } from "..";
 import dayjs from "dayjs";
 import { Layout } from "../Inputs/Layout";

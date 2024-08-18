@@ -1,2 +1,2 @@
-export * from "./useMyQuery";
 export * from "./useMyMutation";
+export * from "./useMyQuery";
