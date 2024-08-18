@@ -21,6 +21,7 @@ ARG VITE_APP_URL_TEACHER
 ENV VITE_APP_URL_TEACHER=${VITE_APP_URL_TEACHER}
 
 RUN YARN_ENABLE_IMMUTABLE_INSTALLS=false yarn install
+RUN yarn dlx @yarnpkg/sdks base
 
 WORKDIR /repo-main/packages/main
 RUN YARN_ENABLE_IMMUTABLE_INSTALLS=false yarn install
