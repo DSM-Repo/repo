@@ -20,7 +20,7 @@ export const resumeData = () => useMyQuery<IResume>("document", "/detail");
 export const introduce = () => useMyQuery<IIntroduce>("document", "");
 
 export const submit = () =>
-  useMyMutation<undefined, undefined>("patch", "document", "/submit");
+  useMyMutation<undefined, undefined>("post", "document", "/submit");
 
 export type urlType =
   | "writer-info"
