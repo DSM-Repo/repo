@@ -7,7 +7,7 @@ RUN curl -L -o ../repo.zip https://github.com/DSM-Repo/repo/archive/main.zip && 
     unzip ../repo.zip -d ../ && \
     mv ../repo-main ../
 
-RUN cd repo/packages/main
+RUN cd /app/repo/packages/main
 
 RUN yarn install --immutable
 
