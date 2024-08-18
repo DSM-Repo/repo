@@ -1,0 +1,6 @@
+config:
+  name: repo-main
+  service_type: fe
+  port: 3000
+  domain:
+    prod: www.dsm-repo.com
