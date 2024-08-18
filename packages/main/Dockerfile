@@ -21,7 +21,8 @@ ENV VITE_APP_URL_STUDENT=${VITE_APP_URL_STUDENT}
 ARG VITE_APP_URL_TEACHER
 ENV VITE_APP_URL_TEACHER=${VITE_APP_URL_TEACHER}
 
-RUN yarn workspace main build
+RUN cd /repo-main/packages/main
+RUN yarn build
 
 FROM nginx:alpine AS runner
 
