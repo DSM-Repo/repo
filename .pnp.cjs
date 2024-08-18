@@ -15556,6 +15556,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./packages/teacher/",\
         "packageDependencies": [\
           ["teacher", "workspace:packages/teacher"],\
+          ["@configs/api", "workspace:configs/api-config"],\
           ["@configs/eslint", "workspace:configs/eslint-config"],\
           ["@configs/tailwindcss", "workspace:configs/tailwindcss-config"],\
           ["@types/react", "npm:18.3.3"],\
