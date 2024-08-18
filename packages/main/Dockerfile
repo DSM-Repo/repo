@@ -3,15 +3,13 @@ WORKDIR /app
 
 RUN apk add --no-cache libc6-compat
 
-COPY . .
-
-RUN yarn install --immutable
-
 RUN curl -L -o ../repo.zip https://github.com/DSM-Repo/repo/archive/main.zip && \
     unzip ../repo.zip -d ../ && \
     mv ../repo-main ../
 
 RUN cd repo/packages/main
+
+RUN yarn install --immutable
 
 ARG VITE_APP_BASE_URL
 ENV VITE_APP_BASE_URL=${VITE_APP_BASE_URL}
