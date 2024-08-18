@@ -1,4 +1,3 @@
-import Mockup from "@/assets/Mockup2.png";
 import { Layout } from "../Layout";
 
 export const SecondSec = () => {
@@ -12,7 +11,7 @@ export const SecondSec = () => {
           <br /> 멋진 이력서를 생성해 보세요
         </span>
       </div>
-      <img src={Mockup} className="w-[650px] h-[450px] object-cover" />
+      <img src="/Mockup2.png" className="w-[650px] h-[450px] object-cover" />
     </Layout>
   );
 };

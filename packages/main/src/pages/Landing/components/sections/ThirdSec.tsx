@@ -1,5 +1,4 @@
 import { Layout } from "../Layout";
-import Mockup from "@/assets/Mockup3.png";
 
 export const ThirdSec = () => {
   return (
@@ -12,7 +11,7 @@ export const ThirdSec = () => {
           <br /> 레주메를 수정해 보세요
         </span>
       </div>
-      <img src={Mockup} className="w-[650px] h-[450px] object-cover" />
+      <img src="Mockup3.png" className="w-[650px] h-[450px] object-cover" />
     </Layout>
   );
 };
