@@ -1,8 +1,9 @@
 import { ReactElement } from 'react';
-import { Box } from 'ui';
 import { useNavigate } from 'react-router-dom';
+import { Box } from 'ui';
 
 interface StudentBoxProps {
+  documentId: string;
   profileImage: string;
   schoolNumber: string;
   name: string;
@@ -10,6 +11,7 @@ interface StudentBoxProps {
 }
 
 const StudentBox = ({
+  documentId,
   profileImage,
   schoolNumber,
   name,
@@ -18,7 +20,7 @@ const StudentBox = ({
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/resume/${schoolNumber}`);
+    navigate(`/document/student/${documentId}`);
   };
 
   return (
@@ -27,16 +29,16 @@ const StudentBox = ({
       size={{ width: '100%', height: 'auto', padding: '20px' }}
       round={{ tl: '10px', tr: '10px', br: '10px', bl: '10px' }}
     >
-      <div className="flex items-center space-x-4" onClick={handleClick}>
+      <div className="flex items-center space-x-4 cursor-pointer" onClick={handleClick}>
         <img
           src={profileImage}
-          alt="Profile"
+          alt={`${name}'s profile`} // better alt text
           className="w-16 h-16 rounded-full"
         />
-        <div className="flex items-center cursor-pointer">
-          <p className="font-bold text-[25px] ml-2">{schoolNumber}</p> {/* bold 25px */}
-          <p className="font-bold text-[25px] ml-2">{name}</p> {/* bold 25px */}
-          <p className="font-bold text-[20px] ml-3 text-[#999999]">피드백 {feedbackNumber}개</p> {/* bold 20px */}
+        <div className="flex items-center">
+          <p className="font-bold text-[25px] mr-2">{schoolNumber}</p>
+          <p className="font-bold text-[25px]">{name}</p>
+          <p className="font-bold text-[20px] text-[#999999] ml-4">피드백 {feedbackNumber}개</p>
         </div>
       </div>
     </Box>

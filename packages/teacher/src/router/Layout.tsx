@@ -1,21 +1,27 @@
 import { Outlet } from "react-router-dom";
-import { ITeacher, Header, SideBar, SideBarButton } from "ui";
+import { Header, SideBar, SideBarButton } from "ui";
+import { ITeacher } from "ui/src/organisms/SideBar/types";
 
-const user: ITeacher = {
-  name: "육기준",
+export const userDefault: ITeacher = {
+  name: "이태윤",
   type: "teacher",
 };
 
 export const Layout = () => {
+  const user = userDefault;
   return (
     <div className="w-full h-[100vh] flex">
-      <SideBar user={user}>
-        <SideBarButton title="내 정보" icon="My" url="/" />
-        <SideBarButton title="도서관" icon="Library" url="/library" />
+      <SideBar user={user} className="min-w-[250px]">
+        <SideBarButton title="레주메 관리" icon="Resume" url="/home" />
+        <SideBarButton title="도서관" icon="TLibrary" url="/library" />
+        <SideBarButton title="전공 추가" icon="Major" url="/majoradd" />
+        {/* <SideBarButton title="피드백 관리" icon="Feedback" url="/feedbacklist" /> */}
       </SideBar>
       <div className="flex flex-col w-full h-full">
         <Header />
-        <Outlet />
+        <div className="w-full h-full">
+          <Outlet />
+        </div>
       </div>
     </div>
   );

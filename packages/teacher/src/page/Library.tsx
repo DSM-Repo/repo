@@ -1,27 +1,76 @@
-import { Button } from "../../../ui/src/atoms/Button";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Dropdown } from "ui";
+
+interface LibraryItem {
+    id: string; // Adjusted to match the response data
+    access_right: 'PUBLIC' | 'PRIVATE';
+    year: number;
+    grade: number;
+    generation: number;
+    document_url: string;
+}
 
 export const Library = () => {
-  return (
-    <div className="p-6 space-y-6">
-      {/* Title Section */}
-      <h1 className="text-white text-3xl font-bold">도서관</h1>
-      <h2 className="text-customSubHeaderText text-2xl font-bold">
-        지금까지 작성된 레주메북들을 읽어보세요
-      </h2>
+    const [libraryItems, setLibraryItems] = useState<LibraryItem[]>([]);
+    const [error, setError] = useState<string | null>(null);
+    const navigate = useNavigate();
 
-      {/* Content Section */}
-      <div className="w-[1000px] h-[101px] bg-libraryBackground flex justify-between items-center px-4">
-        <span className="text-white text-xl font-bold">2024 2학년 10기</span>
-        <Button size="small" color="dark" onClick={() => alert("공유 버튼 클릭됨!")}>
-          공유
-        </Button>
-      </div>
+    useEffect(() => {
+        fetchLibraryItems();
+    }, []);
 
-      {/* Add Box Section */}
-      <div className="w-[1000px] h-[101px] bg-libraryBackground flex items-center justify-center">
-        {/* Plus Button */}
-        <div className="w-[33px] h-[33px] bg-#FFFFFF"/>
-      </div>
-    </div>
-  );
+    const fetchLibraryItems = async () => {
+        const accessToken = localStorage.getItem('accessToken');
+        if (!accessToken) {
+            console.error('No access token found');
+            navigate('/login'); // Redirect to login if token is not found
+            return;
+        }
+
+        try {
+            const response = await fetch('https://prod-server.xquare.app/whopper/library', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${accessToken}`,
+                },
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                setLibraryItems(data.data || []);
+            } else {
+                throw new Error('Failed to fetch library items');
+            }
+        } catch (err) {
+            setError((err as Error).message);
+        }
+    };
+
+    return (
+        <div className="flex justify-center">
+            <div className="flex flex-col p-12 text-white w-[1100px]">
+                <h1 className="text-4xl font-bold mb-2">도서관</h1>
+                <p className="text-2xl font-bold text-gray-500 mb-8">지금까지 작성된 레주메북들을 읽어보세요</p>
+                {error && <p className="text-red-500 mb-4">{error}</p>}
+                <div className="mt-4 grid grid-cols-1 gap-4 w-full max-w-[1000px]">
+                    {libraryItems.map(item => (
+                        <div
+                            key={item.id}
+                            className="bg-libraryBackground w-[1000px] h-[101px] flex justify-between rounded-[5px] items-center px-4 cursor-pointer"
+                        >
+                            <span className="text-white text-xl font-bold">{item.year} {item.grade}학년 {item.generation}기</span>
+                            <Dropdown
+                                size="small"
+                                placeholder="공유"
+                                selections={["학생만", "전체"]}
+                                selected={item.access_right}
+                                onSelect={() => {}}
+                            />
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
 };

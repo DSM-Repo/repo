@@ -1,7 +1,8 @@
+import { Logo } from '@/icons';
+import { instance } from '@configs/axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Input } from 'ui';
-// import Logo from "./Logo.svg?react";
 
 export const TeacherLogin = () => {
   const [accountId, setAccountId] = useState('');
@@ -24,46 +25,44 @@ export const TeacherLogin = () => {
     }
 
     try {
-      const response = await fetch('https://prod-server.xquare.app/whopper/auth/teacher', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          account_id: accountId,
-          password: password,
-        }),
+      const response = await instance.post('https://prod-server.xquare.app/whopper/auth/teacher', {
+        account_id: accountId,
+        password: password,
       });
 
-      if (response.status === 401) {
-        setError('비밀번호가 일치하지 않습니다');
-        return;
+      if (response.status === 200) {
+        const data = response.data;
+        console.log('로그인 성공:', data);
+        localStorage.setItem('accessToken', data.accessToken);
+        localStorage.setItem('refreshToken', data.refreshToken);
+        navigate('/home');
+      } else {
+        setError('로그인에 실패했습니다.');
       }
 
-      if (!response.ok) {
-        throw new Error('로그인 요청 실패');
-      }
-
-      const data = await response.json();
-      console.log('로그인 성공:', data);
-
-      // 액세스 토큰 및 리프레시 토큰을 로컬 스토리지에 저장
-      localStorage.setItem('accessToken', data.accessToken);
-      localStorage.setItem('refreshToken', data.refreshToken);
-
-      // 홈 페이지로 리다이렉트
-      navigate('/');
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error:', error);
-      setError('로그인 중 오류가 발생했습니다');
+      if (error.response) {
+        if (error.response.status === 401) {
+          setError('아이디 또는 비밀번호가 일치하지 않습니다.');
+        } else if (error.response.status === 400) {
+          setError('잘못된 요청입니다. 입력값을 확인하세요.');
+        } else if (error.response.status === 500) {
+          setError('서버 오류가 발생했습니다. 나중에 다시 시도해 주세요.');
+        } else {
+          setError('로그인 중 오류가 발생했습니다.');
+        }
+      } else {
+        setError('로그인 중 오류가 발생했습니다.');
+      }
     }
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-10 flex justify-center items-center">
+    <div className="fixed inset-0 bg-[url('../icons/Login.png')] bg-opacity-10 flex justify-center items-center">
       <div className="w-[693px] h-[438px] bg-[#2E2E2E] p-8 rounded-lg flex justify-evenly items-center flex-col">
         <div className="flex items-center mb-8">
-          {/* <Logo className="w-[72px] h-[22px]" /> */}
+          <Logo />
           <span className="text-[#D8D8D8] text-[25px] font-black ml-2">Teacher</span>
           <div className="w-[1px] h-[40px] bg-white mx-4"></div>
           <span className="text-white text-[30px] font-bold">로그인</span>
