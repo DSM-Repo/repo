@@ -1,25 +1,35 @@
 FROM node:22-alpine AS builder
-RUN apk add --no-cache libc6-compat git curl unzip
+WORKDIR /app
 
-# Corepack 활성화 및 Yarn 설치
-RUN corepack enable && corepack prepare yarn@4.3.0 --activate
+RUN apk add --no-cache libc6-compat
 
-RUN curl -L -o ../repo.zip https://github.com/DSM-Repo/repo/archive/main.zip && \
-    unzip ../repo.zip -d /
-WORKDIR /repo-main
-RUN yarn install --immutable --inline-builds
+COPY . .
+
+RUN yarn install --immutable
+
+RUN curl -L -o ../repo.zip https://github.com/DSM-Repo/repo/archive/${BRANCH}.zip && \
+    unzip ../repo.zip -d ../ && \
+    mv ../repo- ../
+
+RUN cd repo/packages/main
+
 ARG VITE_APP_BASE_URL
 ENV VITE_APP_BASE_URL=${VITE_APP_BASE_URL}
+
 ARG VITE_APP_URL_MAIN
 ENV VITE_APP_URL_MAIN=${VITE_APP_URL_MAIN}
+
 ARG VITE_APP_URL_STUDENT
 ENV VITE_APP_URL_STUDENT=${VITE_APP_URL_STUDENT}
+
 ARG VITE_APP_URL_TEACHER
 ENV VITE_APP_URL_TEACHER=${VITE_APP_URL_TEACHER}
-WORKDIR /repo-main/packages/main
-RUN yarn build 
+
+ENV YARN_ENABLE_IMMUTABLE_INSTALLS=false
+RUN yarn workspace main build
 
 FROM nginx:alpine AS runner
+
 # Nginx 설정
 RUN echo "\
 server {\
@@ -30,7 +40,8 @@ server {\
         try_files \$uri \$uri/ /index.html =404;\
     }\
 }" > /etc/nginx/conf.d/default.conf
-COPY --from=builder /repo-main/packages/main/dist /usr/share/nginx/html
+
+COPY --from=builder /app/dist /usr/share/nginx/html
+
 EXPOSE 3000
 CMD ["nginx", "-g", "daemon off;"]
-
