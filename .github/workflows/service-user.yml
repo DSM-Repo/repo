@@ -23,8 +23,11 @@ jobs:
         uses: team-xquare/xquare-deployment-action@master
         with:
           environment: prod
-          access_key: ${{ secrets.USER_ACCESS_KEY }}
+          access_key: ${{ secrets.MAIN_ACCESS_KEY }}
           base_url: packages/${{ env.SERVICE_NAME }}
           config_file_path: packages/${{ env.SERVICE_NAME }}/.xquare/config.yaml
-          yarn_docker_build: true
-          yarn_workspace: "${{ env.SERVICE_NAME }}"
+          buildargs: |
+            VITE_APP_BASE_URL=${{ secrets.VITE_SERVER_BASE_URL }}
+            VITE_APP_URL_MAIN=${{ secrets.VITE_APP_URL_MAIN }}
+            VITE_APP_URL_STUDENT=${{ secrets.VITE_APP_URL_STUDENT }}
+            VITE_APP_URL_TEACHER=${{ secrets.VITE_APP_URL_TEACHER }}
