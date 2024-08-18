@@ -20,7 +20,7 @@ ENV VITE_APP_URL_STUDENT=${VITE_APP_URL_STUDENT}
 ARG VITE_APP_URL_TEACHER
 ENV VITE_APP_URL_TEACHER=${VITE_APP_URL_TEACHER}
 
-RUN yarn install --IMMUTABLE
+RUN yarn install --immutable
 
 WORKDIR /repo-main/packages/main
 RUN yarn build
