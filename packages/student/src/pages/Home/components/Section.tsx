@@ -1,6 +1,7 @@
 // import { introduce } from "../constants";
 import { completion, introduce } from "@/apis";
 import { Box, PercentageBar } from "ui";
+import { useNavigate } from "react-router-dom";
 
 const liStyle = "text-body8";
 
@@ -10,9 +11,10 @@ const accent = (status?: boolean) =>
 export const Section = () => {
   const { data: complete } = completion();
   const { data: intro } = introduce();
+  const navigate = useNavigate();
 
   return (
-    <div className="grid grid-cols-[fit-content(100%)_auto] w-full gap-4 grid-rows-[fit-content(3ch)_1fr]">
+    <div className="grid grid-cols-[390px_auto] w-full gap-4 grid-rows-[fit-content(3ch)_210px]">
       <Box width="100%" height="100%" padding="20px" className="gap-3">
         <span className="text-body4 leading-none">완성도</span>
         <span className="text-[#BBBBBB] text-body6 leading-none">
@@ -47,7 +49,7 @@ export const Section = () => {
       </Box>
       <Box
         width="100%"
-        height="350px"
+        height="100%"
         padding="20px"
         className="row-[1/span_2] col-start-2 gap-3"
       >
@@ -57,9 +59,22 @@ export const Section = () => {
           {intro?.introduce.introduce}
         </span>
       </Box>
-      <Box width="100%" height="100%" padding="20px">
+      <Box width="100%" height="100%" padding="20px" className="gap-3">
         <span className="text-body4 leading-none">최근 공개된 레주메북</span>
-        <div>{intro?.recentlyShared.map((i) => <>{i.title}</>)}</div>
+        <div className="overflow-auto col-flex gap-2">
+          {intro?.recentlyShared.map((i) => (
+            <Box
+              width="100%"
+              color="light"
+              className="cursor-pointer"
+              onClick={() => navigate(`/book/${i.id}`)}
+            >
+              <span className="text-body6">
+                {i.year}년 {i.grade}학년 {i.generation}기
+              </span>
+            </Box>
+          ))}
+        </div>
       </Box>
     </div>
   );

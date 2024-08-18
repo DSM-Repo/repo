@@ -33,12 +33,12 @@ export const Layout = ({
 
   return (
     <Label full={size === "full"} label={label}>
-      <label
+      <div
         {...props}
         className={`${commonStyle} ${sizeList[size]} ${disabledStyle} ${errorStyle} ${!disabled ? pointerStyle[cursor] : pointerStyle["banned"]} ${props.className}`}
       >
         <label
-          className={`w-full h-full ${!disabled ? pointerStyle[cursor] : pointerStyle["banned"]}`}
+          className={`${icon ? "w-[80%]" : "w-full"} h-full ${!disabled ? pointerStyle[cursor] : pointerStyle["banned"]}`}
         >
           {children}
         </label>
@@ -59,7 +59,7 @@ export const Layout = ({
             width={20}
           />
         )}
-      </label>
+      </div>
     </Label>
   );
 };

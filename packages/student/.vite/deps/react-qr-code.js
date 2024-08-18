@@ -1,24 +1,20 @@
-import __buffer_polyfill from 'vite-plugin-node-polyfills/shims/buffer'
-globalThis.Buffer = globalThis.Buffer || __buffer_polyfill
 import __global_polyfill from 'vite-plugin-node-polyfills/shims/global'
 globalThis.global = globalThis.global || __global_polyfill
 
 import {
   require_react
-} from "./chunk-QZW2PNRO.js";
+} from "./chunk-IF3FXHGJ.js";
 import {
   __commonJS,
   __toESM,
-  require_dist,
-  require_dist2
-} from "./chunk-IRKP4GRN.js";
+  require_dist
+} from "./chunk-WFPLDLJJ.js";
 
 // ../../.yarn/cache/react-is-npm-16.13.1-a9b9382b4f-33977da7a5.zip/node_modules/react-is/cjs/react-is.development.js
 var require_react_is_development = __commonJS({
   "../../.yarn/cache/react-is-npm-16.13.1-a9b9382b4f-33977da7a5.zip/node_modules/react-is/cjs/react-is.development.js"(exports) {
     "use strict";
     var import_dist = __toESM(require_dist());
-    var import_dist2 = __toESM(require_dist2());
     if (true) {
       (function() {
         "use strict";
@@ -175,7 +171,6 @@ var require_react_is = __commonJS({
   "../../.yarn/cache/react-is-npm-16.13.1-a9b9382b4f-33977da7a5.zip/node_modules/react-is/index.js"(exports, module) {
     "use strict";
     var import_dist = __toESM(require_dist());
-    var import_dist2 = __toESM(require_dist2());
     if (false) {
       module.exports = null;
     } else {
@@ -189,7 +184,6 @@ var require_object_assign = __commonJS({
   "../../.yarn/cache/object-assign-npm-4.1.1-1004ad6dec-1f4df99451.zip/node_modules/object-assign/index.js"(exports, module) {
     "use strict";
     var import_dist = __toESM(require_dist());
-    var import_dist2 = __toESM(require_dist2());
     var getOwnPropertySymbols = Object.getOwnPropertySymbols;
     var hasOwnProperty = Object.prototype.hasOwnProperty;
     var propIsEnumerable = Object.prototype.propertyIsEnumerable;
@@ -261,7 +255,6 @@ var require_ReactPropTypesSecret = __commonJS({
   "../../.yarn/cache/prop-types-npm-15.8.1-17c71ee7ee-59ece7ca2f.zip/node_modules/prop-types/lib/ReactPropTypesSecret.js"(exports, module) {
     "use strict";
     var import_dist = __toESM(require_dist());
-    var import_dist2 = __toESM(require_dist2());
     var ReactPropTypesSecret = "SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED";
     module.exports = ReactPropTypesSecret;
   }
@@ -271,7 +264,6 @@ var require_ReactPropTypesSecret = __commonJS({
 var require_has = __commonJS({
   "../../.yarn/cache/prop-types-npm-15.8.1-17c71ee7ee-59ece7ca2f.zip/node_modules/prop-types/lib/has.js"(exports, module) {
     var import_dist = __toESM(require_dist());
-    var import_dist2 = __toESM(require_dist2());
     module.exports = Function.call.bind(Object.prototype.hasOwnProperty);
   }
 });
@@ -281,7 +273,6 @@ var require_checkPropTypes = __commonJS({
   "../../.yarn/cache/prop-types-npm-15.8.1-17c71ee7ee-59ece7ca2f.zip/node_modules/prop-types/checkPropTypes.js"(exports, module) {
     "use strict";
     var import_dist = __toESM(require_dist());
-    var import_dist2 = __toESM(require_dist2());
     var printWarning = function() {
     };
     if (true) {
@@ -349,7 +340,6 @@ var require_factoryWithTypeCheckers = __commonJS({
   "../../.yarn/cache/prop-types-npm-15.8.1-17c71ee7ee-59ece7ca2f.zip/node_modules/prop-types/factoryWithTypeCheckers.js"(exports, module) {
     "use strict";
     var import_dist = __toESM(require_dist());
-    var import_dist2 = __toESM(require_dist2());
     var ReactIs = require_react_is();
     var assign = require_object_assign();
     var ReactPropTypesSecret = require_ReactPropTypesSecret();
@@ -793,7 +783,6 @@ var require_factoryWithTypeCheckers = __commonJS({
 var require_prop_types = __commonJS({
   "../../.yarn/cache/prop-types-npm-15.8.1-17c71ee7ee-59ece7ca2f.zip/node_modules/prop-types/index.js"(exports, module) {
     var import_dist = __toESM(require_dist());
-    var import_dist2 = __toESM(require_dist2());
     if (true) {
       ReactIs = require_react_is();
       throwOnDirectAccess = true;
@@ -810,7 +799,6 @@ var require_prop_types = __commonJS({
 var require_ErrorCorrectLevel = __commonJS({
   "../../.yarn/cache/qr.js-npm-0.0.0-eea89f459b-1c6a4c7a58.zip/node_modules/qr.js/lib/ErrorCorrectLevel.js"(exports, module) {
     var import_dist = __toESM(require_dist());
-    var import_dist2 = __toESM(require_dist2());
     module.exports = {
       L: 1,
       M: 0,
@@ -824,7 +812,6 @@ var require_ErrorCorrectLevel = __commonJS({
 var require_mode = __commonJS({
   "../../.yarn/cache/qr.js-npm-0.0.0-eea89f459b-1c6a4c7a58.zip/node_modules/qr.js/lib/mode.js"(exports, module) {
     var import_dist = __toESM(require_dist());
-    var import_dist2 = __toESM(require_dist2());
     module.exports = {
       MODE_NUMBER: 1 << 0,
       MODE_ALPHA_NUM: 1 << 1,
@@ -838,7 +825,6 @@ var require_mode = __commonJS({
 var require_BitByte = __commonJS({
   "../../.yarn/cache/qr.js-npm-0.0.0-eea89f459b-1c6a4c7a58.zip/node_modules/qr.js/lib/8BitByte.js"(exports, module) {
     var import_dist = __toESM(require_dist());
-    var import_dist2 = __toESM(require_dist2());
     var mode = require_mode();
     function QR8bitByte(data) {
       this.mode = mode.MODE_8BIT_BYTE;
@@ -862,7 +848,6 @@ var require_BitByte = __commonJS({
 var require_RSBlock = __commonJS({
   "../../.yarn/cache/qr.js-npm-0.0.0-eea89f459b-1c6a4c7a58.zip/node_modules/qr.js/lib/RSBlock.js"(exports, module) {
     var import_dist = __toESM(require_dist());
-    var import_dist2 = __toESM(require_dist2());
     var ECL = require_ErrorCorrectLevel();
     function QRRSBlock(totalCount, dataCount) {
       this.totalCount = totalCount;
@@ -1113,7 +1098,6 @@ var require_RSBlock = __commonJS({
 var require_BitBuffer = __commonJS({
   "../../.yarn/cache/qr.js-npm-0.0.0-eea89f459b-1c6a4c7a58.zip/node_modules/qr.js/lib/BitBuffer.js"(exports, module) {
     var import_dist = __toESM(require_dist());
-    var import_dist2 = __toESM(require_dist2());
     function QRBitBuffer() {
       this.buffer = new Array();
       this.length = 0;
@@ -1150,7 +1134,6 @@ var require_BitBuffer = __commonJS({
 var require_math = __commonJS({
   "../../.yarn/cache/qr.js-npm-0.0.0-eea89f459b-1c6a4c7a58.zip/node_modules/qr.js/lib/math.js"(exports, module) {
     var import_dist = __toESM(require_dist());
-    var import_dist2 = __toESM(require_dist2());
     var QRMath = {
       glog: function(n) {
         if (n < 1) {
@@ -1190,7 +1173,6 @@ var require_math = __commonJS({
 var require_Polynomial = __commonJS({
   "../../.yarn/cache/qr.js-npm-0.0.0-eea89f459b-1c6a4c7a58.zip/node_modules/qr.js/lib/Polynomial.js"(exports, module) {
     var import_dist = __toESM(require_dist());
-    var import_dist2 = __toESM(require_dist2());
     var math = require_math();
     function QRPolynomial(num, shift) {
       if (num.length == void 0) {
@@ -1244,7 +1226,6 @@ var require_Polynomial = __commonJS({
 var require_util = __commonJS({
   "../../.yarn/cache/qr.js-npm-0.0.0-eea89f459b-1c6a4c7a58.zip/node_modules/qr.js/lib/util.js"(exports, module) {
     var import_dist = __toESM(require_dist());
-    var import_dist2 = __toESM(require_dist2());
     var Mode = require_mode();
     var Polynomial = require_Polynomial();
     var math = require_math();
@@ -1477,7 +1458,6 @@ var require_util = __commonJS({
 var require_QRCode = __commonJS({
   "../../.yarn/cache/qr.js-npm-0.0.0-eea89f459b-1c6a4c7a58.zip/node_modules/qr.js/lib/QRCode.js"(exports, module) {
     var import_dist = __toESM(require_dist());
-    var import_dist2 = __toESM(require_dist2());
     var BitByte = require_BitByte();
     var RSBlock = require_RSBlock();
     var BitBuffer = require_BitBuffer();
@@ -1797,7 +1777,6 @@ var require_QRCodeSvg = __commonJS({
   "../../.yarn/__virtual__/react-qr-code-virtual-4f3b30f86f/0/cache/react-qr-code-npm-2.0.15-669b395b3b-6a9d739186.zip/node_modules/react-qr-code/lib/QRCodeSvg/index.js"(exports) {
     "use strict";
     var import_dist = __toESM(require_dist());
-    var import_dist2 = __toESM(require_dist2());
     Object.defineProperty(exports, "__esModule", {
       value: true
     });
@@ -1862,7 +1841,6 @@ var require_QRCodeSvg = __commonJS({
 var require_lib = __commonJS({
   "../../.yarn/__virtual__/react-qr-code-virtual-4f3b30f86f/0/cache/react-qr-code-npm-2.0.15-669b395b3b-6a9d739186.zip/node_modules/react-qr-code/lib/index.js"(exports) {
     var import_dist = __toESM(require_dist());
-    var import_dist2 = __toESM(require_dist2());
     Object.defineProperty(exports, "__esModule", {
       value: true
     });

@@ -32,7 +32,7 @@ export const Dropdown = ({
       size={size}
       icon="ep:arrow-up-bold"
       iconRotation={rotation}
-      iconColor={!selected && "#999999"}
+      iconColor={!selected ? "#999999" : "#ffffff"}
       onClick={() => !disabled && setOpened((prev) => !prev)}
       className={`transition-none ${opened && "rounded-b-none"}`}
       cursor="pointer"

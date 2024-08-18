@@ -38,7 +38,7 @@ export const Projects = () => {
       >
         <Icon icon="mingcute:add-fill" width={25} className="self-center" />
       </Button>
-      <div className="overflow-auto col-flex xl:flex-row gap-4">
+      <div className="overflow-auto col-flex gap-4">
         {projectList.map((i) => (
           <Item data={i} setData={set} />
         ))}

@@ -1,5 +1,3 @@
-import __buffer_polyfill from 'vite-plugin-node-polyfills/shims/buffer'
-globalThis.Buffer = globalThis.Buffer || __buffer_polyfill
 import __global_polyfill from 'vite-plugin-node-polyfills/shims/global'
 globalThis.global = globalThis.global || __global_polyfill
 
@@ -55,17 +53,15 @@ import {
   use,
   useContext,
   useTransition
-} from "./chunk-AMECJF67.js";
+} from "./chunk-REQOPLM3.js";
 import {
   __publicField,
   __toESM,
-  require_dist,
-  require_dist2
-} from "./chunk-IRKP4GRN.js";
+  require_dist
+} from "./chunk-WFPLDLJJ.js";
 
-// ../../.yarn/cache/@tanstack-query-devtools-npm-5.51.15-3f226c52fa-9f7d8cbaf8.zip/node_modules/@tanstack/query-devtools/build/Devtools/Q436JGP5.js
+// ../../.yarn/cache/@tanstack-query-devtools-npm-5.51.16-c98e81abc7-40f1fbad77.zip/node_modules/@tanstack/query-devtools/build/Devtools/E6UWR6XD.js
 var import_dist = __toESM(require_dist(), 1);
-var import_dist2 = __toESM(require_dist2(), 1);
 var characterMap = {
   À: "A",
   Á: "A",
@@ -918,7 +914,6 @@ function enterTransition(classes, events, el, done) {
   });
   function endTransition(e2) {
     if (!e2 || e2.target === el) {
-      done == null ? void 0 : done();
       el.removeEventListener("transitionend", endTransition);
       el.removeEventListener("animationend", endTransition);
       el.classList.remove(...classes.enterActive);
@@ -1372,6 +1367,25 @@ function createResizeObserver(targets, onResize, options) {
     return refs;
   }, []);
 }
+var extractCSSregex = /((?:--)?(?:\w+-?)+)\s*:\s*([^;]*)/g;
+function stringStyleToObject(style) {
+  const object = {};
+  let match;
+  while (match = extractCSSregex.exec(style)) {
+    object[match[1]] = match[2];
+  }
+  return object;
+}
+function combineStyle(a2, b2) {
+  if (typeof a2 === "string") {
+    if (typeof b2 === "string")
+      return `${a2};${b2}`;
+    a2 = stringStyleToObject(a2);
+  } else if (typeof b2 === "string") {
+    b2 = stringStyleToObject(b2);
+  }
+  return { ...a2, ...b2 };
+}
 function addItemToArray(array, item, index = -1) {
   if (!(index in array)) {
     return [...array, item];
@@ -1618,9 +1632,6 @@ function isStyleVisible(element) {
 function isAttributeVisible(element, childElement) {
   return !element.hasAttribute("hidden") && (element.nodeName === "DETAILS" && childElement && childElement.nodeName !== "SUMMARY" ? element.hasAttribute("open") : true);
 }
-function isElementInScope(element, scope) {
-  return scope.some((node) => node.contains(element));
-}
 function getFocusableTreeWalker(root, opts, scope) {
   const selector = (opts == null ? void 0 : opts.tabbable) ? TABBABLE_ELEMENT_SELECTOR : FOCUSABLE_ELEMENT_SELECTOR;
   const walker = document.createTreeWalker(root, NodeFilter.SHOW_ELEMENT, {
@@ -1629,7 +1640,7 @@ function getFocusableTreeWalker(root, opts, scope) {
       if ((_a = opts == null ? void 0 : opts.from) == null ? void 0 : _a.contains(node)) {
         return NodeFilter.FILTER_REJECT;
       }
-      if (node.matches(selector) && isElementVisible(node) && (!scope || isElementInScope(node, scope)) && (!(opts == null ? void 0 : opts.accept) || opts.accept(node))) {
+      if (node.matches(selector) && isElementVisible(node) && !scope && (!(opts == null ? void 0 : opts.accept) || opts.accept(node))) {
         return NodeFilter.FILTER_ACCEPT;
       }
       return NodeFilter.FILTER_SKIP;
@@ -1785,7 +1796,7 @@ function relativeOffset(ancestor, child, axis) {
   return sum;
 }
 function scrollIntoViewport(targetElement, opts) {
-  var _a, _b, _c, _d;
+  var _a, _b;
   if (document.contains(targetElement)) {
     const root = document.scrollingElement || document.documentElement;
     const isScrollPrevented = window.getComputedStyle(root).overflow === "hidden";
@@ -1794,8 +1805,7 @@ function scrollIntoViewport(targetElement, opts) {
       (_a = targetElement == null ? void 0 : targetElement.scrollIntoView) == null ? void 0 : _a.call(targetElement, { block: "nearest" });
       const { left: newLeft, top: newTop } = targetElement.getBoundingClientRect();
       if (Math.abs(originalLeft - newLeft) > 1 || Math.abs(originalTop - newTop) > 1) {
-        (_c = (_b = opts == null ? void 0 : opts.containingElement) == null ? void 0 : _b.scrollIntoView) == null ? void 0 : _c.call(_b, { block: "center", inline: "center" });
-        (_d = targetElement.scrollIntoView) == null ? void 0 : _d.call(targetElement, { block: "nearest" });
+        (_b = targetElement.scrollIntoView) == null ? void 0 : _b.call(targetElement, { block: "nearest" });
       }
     } else {
       let scrollParent = getScrollParent(targetElement);
@@ -1819,6 +1829,180 @@ var visuallyHiddenStyles = {
   width: "1px",
   "white-space": "nowrap"
 };
+function createRegisterId(setter) {
+  return (id) => {
+    setter(id);
+    return () => setter(void 0);
+  };
+}
+function createTagName(ref, fallback) {
+  const [tagName, setTagName] = createSignal(stringOrUndefined(fallback == null ? void 0 : fallback()));
+  createEffect(() => {
+    var _a;
+    setTagName(((_a = ref()) == null ? void 0 : _a.tagName.toLowerCase()) || stringOrUndefined(fallback == null ? void 0 : fallback()));
+  });
+  return tagName;
+}
+function stringOrUndefined(value) {
+  return isString(value) ? value : void 0;
+}
+function Polymorphic(props) {
+  const [local, others] = splitProps(props, ["as"]);
+  if (!local.as) {
+    throw new Error("[kobalte]: Polymorphic is missing the required `as` prop.");
+  }
+  return (
+    // @ts-ignore: Props are valid but not worth calculating
+    createComponent(Dynamic, mergeProps(others, {
+      get component() {
+        return local.as;
+      }
+    }))
+  );
+}
+var FORM_CONTROL_PROP_NAMES = ["id", "name", "validationState", "required", "disabled", "readOnly"];
+function createFormControl(props) {
+  const defaultId = `form-control-${createUniqueId()}`;
+  const mergedProps = mergeDefaultProps({
+    id: defaultId
+  }, props);
+  const [labelId, setLabelId] = createSignal();
+  const [fieldId, setFieldId] = createSignal();
+  const [descriptionId, setDescriptionId] = createSignal();
+  const [errorMessageId, setErrorMessageId] = createSignal();
+  const getAriaLabelledBy = (fieldId2, fieldAriaLabel, fieldAriaLabelledBy) => {
+    const hasAriaLabelledBy = fieldAriaLabelledBy != null || labelId() != null;
+    return [
+      fieldAriaLabelledBy,
+      labelId(),
+      // If there is both an aria-label and aria-labelledby, add the field itself has an aria-labelledby
+      hasAriaLabelledBy && fieldAriaLabel != null ? fieldId2 : void 0
+    ].filter(Boolean).join(" ") || void 0;
+  };
+  const getAriaDescribedBy = (fieldAriaDescribedBy) => {
+    return [
+      descriptionId(),
+      // Use aria-describedby for error message because aria-errormessage is unsupported using VoiceOver or NVDA.
+      // See https://github.com/adobe/react-spectrum/issues/1346#issuecomment-740136268
+      errorMessageId(),
+      fieldAriaDescribedBy
+    ].filter(Boolean).join(" ") || void 0;
+  };
+  const dataset = createMemo(() => ({
+    "data-valid": access(mergedProps.validationState) === "valid" ? "" : void 0,
+    "data-invalid": access(mergedProps.validationState) === "invalid" ? "" : void 0,
+    "data-required": access(mergedProps.required) ? "" : void 0,
+    "data-disabled": access(mergedProps.disabled) ? "" : void 0,
+    "data-readonly": access(mergedProps.readOnly) ? "" : void 0
+  }));
+  const formControlContext = {
+    name: () => access(mergedProps.name) ?? access(mergedProps.id),
+    dataset,
+    validationState: () => access(mergedProps.validationState),
+    isRequired: () => access(mergedProps.required),
+    isDisabled: () => access(mergedProps.disabled),
+    isReadOnly: () => access(mergedProps.readOnly),
+    labelId,
+    fieldId,
+    descriptionId,
+    errorMessageId,
+    getAriaLabelledBy,
+    getAriaDescribedBy,
+    generateId: createGenerateId(() => access(mergedProps.id)),
+    registerLabel: createRegisterId(setLabelId),
+    registerField: createRegisterId(setFieldId),
+    registerDescription: createRegisterId(setDescriptionId),
+    registerErrorMessage: createRegisterId(setErrorMessageId)
+  };
+  return {
+    formControlContext
+  };
+}
+var FormControlContext = createContext();
+function useFormControlContext() {
+  const context = useContext(FormControlContext);
+  if (context === void 0) {
+    throw new Error("[kobalte]: `useFormControlContext` must be used within a `FormControlContext.Provider` component");
+  }
+  return context;
+}
+function FormControlDescription(props) {
+  const context = useFormControlContext();
+  const mergedProps = mergeDefaultProps({
+    id: context.generateId("description")
+  }, props);
+  createEffect(() => onCleanup(context.registerDescription(mergedProps.id)));
+  return createComponent(Polymorphic, mergeProps({
+    as: "div"
+  }, () => context.dataset(), mergedProps));
+}
+function FormControlErrorMessage(props) {
+  const context = useFormControlContext();
+  const mergedProps = mergeDefaultProps({
+    id: context.generateId("error-message")
+  }, props);
+  const [local, others] = splitProps(mergedProps, ["forceMount"]);
+  const isInvalid = () => context.validationState() === "invalid";
+  createEffect(() => {
+    if (!isInvalid()) {
+      return;
+    }
+    onCleanup(context.registerErrorMessage(others.id));
+  });
+  return createComponent(Show, {
+    get when() {
+      return local.forceMount || isInvalid();
+    },
+    get children() {
+      return createComponent(Polymorphic, mergeProps({
+        as: "div"
+      }, () => context.dataset(), others));
+    }
+  });
+}
+function FormControlLabel(props) {
+  let ref;
+  const context = useFormControlContext();
+  const mergedProps = mergeDefaultProps({
+    id: context.generateId("label")
+  }, props);
+  const [local, others] = splitProps(mergedProps, ["ref"]);
+  const tagName = createTagName(() => ref, () => "label");
+  createEffect(() => onCleanup(context.registerLabel(others.id)));
+  return createComponent(Polymorphic, mergeProps({
+    as: "label",
+    ref(r$) {
+      const _ref$ = mergeRefs((el) => ref = el, local.ref);
+      typeof _ref$ === "function" && _ref$(r$);
+    },
+    get ["for"]() {
+      return createMemo(() => tagName() === "label")() ? context.fieldId() : void 0;
+    }
+  }, () => context.dataset(), others));
+}
+function createFormResetListener(element, handler) {
+  createEffect(
+    on(element, (element2) => {
+      if (element2 == null) {
+        return;
+      }
+      const form = getClosestForm(element2);
+      if (form == null) {
+        return;
+      }
+      form.addEventListener("reset", handler, { passive: true });
+      onCleanup(() => {
+        form.removeEventListener("reset", handler);
+      });
+    })
+  );
+}
+function getClosestForm(element) {
+  return isFormElement(element) ? element.form : element.closest("form");
+}
+function isFormElement(element) {
+  return element.matches("textarea, input, select, button");
+}
 function createControllableSignal(props) {
   var _a;
   const [_value, _setValue] = createSignal((_a = props.defaultValue) == null ? void 0 : _a.call(props));
@@ -1855,6 +2039,36 @@ function createControllableArraySignal(props) {
   const value = () => _value() ?? [];
   return [value, setValue];
 }
+function createToggleState(props = {}) {
+  const [isSelected, _setIsSelected] = createControllableBooleanSignal({
+    value: () => access(props.isSelected),
+    defaultValue: () => !!access(props.defaultIsSelected),
+    onChange: (value) => {
+      var _a;
+      return (_a = props.onSelectedChange) == null ? void 0 : _a.call(props, value);
+    }
+  });
+  const setIsSelected = (value) => {
+    if (!access(props.isReadOnly) && !access(props.isDisabled)) {
+      _setIsSelected(value);
+    }
+  };
+  const toggle = () => {
+    if (!access(props.isReadOnly) && !access(props.isDisabled)) {
+      _setIsSelected(!isSelected());
+    }
+  };
+  return {
+    isSelected,
+    setIsSelected,
+    toggle
+  };
+}
+var __defProp = Object.defineProperty;
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
 var DomCollectionContext = createContext();
 function useOptionalDomCollectionContext() {
   return useContext(DomCollectionContext);
@@ -2401,7 +2615,7 @@ function createSelectableCollection(props, ref, scrollRef) {
     selectOnFocus: () => access(props.selectionManager).selectionBehavior() === "replace"
   };
   const mergedProps = mergeProps(defaultProps, props);
-  const finalScrollRef = () => (scrollRef == null ? void 0 : scrollRef()) ?? ref();
+  const finalScrollRef = () => ref();
   const { direction } = useLocale();
   let scrollPos = { top: 0, left: 0 };
   createEventListener(
@@ -2423,6 +2637,7 @@ function createSelectableCollection(props, ref, scrollRef) {
     keyboardDelegate: () => access(mergedProps.keyboardDelegate),
     selectionManager: () => access(mergedProps.selectionManager)
   });
+  const orientation = () => access(mergedProps.orientation) ?? "vertical";
   const onKeyDown = (e2) => {
     var _a, _b, _c, _d, _e, _f, _g, _h;
     callHandler(e2, typeSelectHandlers.onKeyDown);
@@ -2449,7 +2664,7 @@ function createSelectableCollection(props, ref, scrollRef) {
     const shouldFocusWrap = access(mergedProps.shouldFocusWrap);
     const focusedKey = manager.focusedKey();
     switch (e2.key) {
-      case "ArrowDown": {
+      case (orientation() === "vertical" ? "ArrowDown" : "ArrowRight"): {
         if (delegate.getKeyBelow) {
           e2.preventDefault();
           let nextKey;
@@ -2465,7 +2680,7 @@ function createSelectableCollection(props, ref, scrollRef) {
         }
         break;
       }
-      case "ArrowUp": {
+      case (orientation() === "vertical" ? "ArrowUp" : "ArrowLeft"): {
         if (delegate.getKeyAbove) {
           e2.preventDefault();
           let nextKey;
@@ -2481,7 +2696,7 @@ function createSelectableCollection(props, ref, scrollRef) {
         }
         break;
       }
-      case "ArrowLeft": {
+      case (orientation() === "vertical" ? "ArrowLeft" : "ArrowUp"): {
         if (delegate.getKeyLeftOf) {
           e2.preventDefault();
           const isRTL3 = direction() === "rtl";
@@ -2495,7 +2710,7 @@ function createSelectableCollection(props, ref, scrollRef) {
         }
         break;
       }
-      case "ArrowRight": {
+      case (orientation() === "vertical" ? "ArrowRight" : "ArrowDown"): {
         if (delegate.getKeyRightOf) {
           e2.preventDefault();
           const isRTL3 = direction() === "rtl";
@@ -3235,287 +3450,77 @@ function createListState(props) {
     selectionManager: () => selectionManager
   };
 }
-function createPresence(present) {
-  const [node, setNode] = createSignal();
-  let styles = {};
-  let prevPresent = present();
-  let prevAnimationName = "none";
-  const [state, send] = createStateMachine(
-    present() ? "mounted" : "unmounted",
-    {
-      mounted: {
-        UNMOUNT: "unmounted",
-        ANIMATION_OUT: "unmountSuspended"
-      },
-      unmountSuspended: {
-        MOUNT: "mounted",
-        ANIMATION_END: "unmounted"
-      },
-      unmounted: {
-        MOUNT: "mounted"
-      }
-    }
-  );
-  createEffect(
-    on(state, (state2) => {
-      const currentAnimationName = getAnimationName(styles);
-      prevAnimationName = state2 === "mounted" ? currentAnimationName : "none";
-    })
-  );
-  createEffect(
-    on(present, (present2) => {
-      if (prevPresent === present2) {
-        return;
-      }
-      const currentAnimationName = getAnimationName(styles);
-      if (present2) {
-        send("MOUNT");
-      } else if ((styles == null ? void 0 : styles.display) === "none") {
-        send("UNMOUNT");
+var access2 = (v) => typeof v === "function" ? v() : v;
+var createPresence = (props) => {
+  const refStyles = createMemo(() => {
+    const element = access2(props.element);
+    if (!element)
+      return;
+    return getComputedStyle(element);
+  });
+  const getAnimationName = () => {
+    var _a;
+    return ((_a = refStyles()) == null ? void 0 : _a.animationName) ?? "none";
+  };
+  const [presentState, setPresentState] = createSignal(access2(props.show) ? "present" : "hidden");
+  let animationName = "none";
+  createEffect((prevShow) => {
+    const show = access2(props.show);
+    untrack(() => {
+      var _a;
+      if (prevShow === show)
+        return show;
+      const prevAnimationName = animationName;
+      const currentAnimationName = getAnimationName();
+      if (show) {
+        setPresentState("present");
+      } else if (currentAnimationName === "none" || ((_a = refStyles()) == null ? void 0 : _a.display) === "none") {
+        setPresentState("hidden");
       } else {
         const isAnimating = prevAnimationName !== currentAnimationName;
-        if (prevPresent && isAnimating) {
-          send("ANIMATION_OUT");
+        if (prevShow === true && isAnimating) {
+          setPresentState("hiding");
         } else {
-          send("UNMOUNT");
+          setPresentState("hidden");
         }
       }
-      prevPresent = present2;
-    })
-  );
-  createEffect(
-    on(node, (node2) => {
-      if (node2) {
-        const handleAnimationEnd = (event) => {
-          const currentAnimationName = getAnimationName(styles);
-          const isCurrentAnimation = currentAnimationName.includes(
-            event.animationName
-          );
-          if (event.target === node2 && isCurrentAnimation) {
-            send("ANIMATION_END");
-          }
-        };
-        const handleAnimationStart = (event) => {
-          if (event.target === node2) {
-            prevAnimationName = getAnimationName(styles);
-          }
-        };
-        node2.addEventListener("animationstart", handleAnimationStart);
-        node2.addEventListener("animationcancel", handleAnimationEnd);
-        node2.addEventListener("animationend", handleAnimationEnd);
-        onCleanup(() => {
-          node2.removeEventListener("animationstart", handleAnimationStart);
-          node2.removeEventListener("animationcancel", handleAnimationEnd);
-          node2.removeEventListener("animationend", handleAnimationEnd);
-        });
-      } else {
-        send("ANIMATION_END");
-      }
-    })
-  );
-  return {
-    isPresent: () => ["mounted", "unmountSuspended"].includes(state()),
-    setRef: (el) => {
-      if (el) {
-        styles = getComputedStyle(el);
-      }
-      setNode(el);
-    }
-  };
-}
-function getAnimationName(styles) {
-  return (styles == null ? void 0 : styles.animationName) || "none";
-}
-function createStateMachine(initialState, machine) {
-  const reduce = (state2, event) => {
-    const nextState = machine[state2][event];
-    return nextState ?? state2;
-  };
-  const [state, setState] = createSignal(initialState);
-  const send = (event) => {
-    setState((prev) => reduce(prev, event));
-  };
-  return [state, send];
-}
-function Polymorphic(props) {
-  const [local, others] = splitProps(props, ["as"]);
-  if (!local.as) {
-    throw new Error("[kobalte]: Polymorphic is missing the required `as` prop.");
-  }
-  return (
-    // @ts-ignore: Props are valid but not worth calculating
-    createComponent(Dynamic, mergeProps({
-      get component() {
-        return local.as;
-      }
-    }, others))
-  );
-}
-var __defProp = Object.defineProperty;
-var __export = (target, all) => {
-  for (var name in all)
-    __defProp(target, name, { get: all[name], enumerable: true });
-};
-function createRegisterId(setter) {
-  return (id) => {
-    setter(id);
-    return () => setter(void 0);
-  };
-}
-function createTagName(ref, fallback) {
-  const [tagName, setTagName] = createSignal(stringOrUndefined(fallback == null ? void 0 : fallback()));
-  createEffect(() => {
-    var _a;
-    setTagName(((_a = ref()) == null ? void 0 : _a.tagName.toLowerCase()) || stringOrUndefined(fallback == null ? void 0 : fallback()));
+    });
+    return show;
   });
-  return tagName;
-}
-function stringOrUndefined(value) {
-  return isString(value) ? value : void 0;
-}
-var FORM_CONTROL_PROP_NAMES = ["id", "name", "validationState", "required", "disabled", "readOnly"];
-function createFormControl(props) {
-  const defaultId = `form-control-${createUniqueId()}`;
-  const mergedProps = mergeDefaultProps({
-    id: defaultId
-  }, props);
-  const [labelId, setLabelId] = createSignal();
-  const [fieldId, setFieldId] = createSignal();
-  const [descriptionId, setDescriptionId] = createSignal();
-  const [errorMessageId, setErrorMessageId] = createSignal();
-  const getAriaLabelledBy = (fieldId2, fieldAriaLabel, fieldAriaLabelledBy) => {
-    const hasAriaLabelledBy = fieldAriaLabelledBy != null || labelId() != null;
-    return [
-      fieldAriaLabelledBy,
-      labelId(),
-      // If there is both an aria-label and aria-labelledby, add the field itself has an aria-labelledby
-      hasAriaLabelledBy && fieldAriaLabel != null ? fieldId2 : void 0
-    ].filter(Boolean).join(" ") || void 0;
-  };
-  const getAriaDescribedBy = (fieldAriaDescribedBy) => {
-    return [
-      descriptionId(),
-      // Use aria-describedby for error message because aria-errormessage is unsupported using VoiceOver or NVDA.
-      // See https://github.com/adobe/react-spectrum/issues/1346#issuecomment-740136268
-      errorMessageId(),
-      fieldAriaDescribedBy
-    ].filter(Boolean).join(" ") || void 0;
-  };
-  const dataset = createMemo(() => ({
-    "data-valid": access(mergedProps.validationState) === "valid" ? "" : void 0,
-    "data-invalid": access(mergedProps.validationState) === "invalid" ? "" : void 0,
-    "data-required": access(mergedProps.required) ? "" : void 0,
-    "data-disabled": access(mergedProps.disabled) ? "" : void 0,
-    "data-readonly": access(mergedProps.readOnly) ? "" : void 0
-  }));
-  const formControlContext = {
-    name: () => access(mergedProps.name) ?? access(mergedProps.id),
-    dataset,
-    validationState: () => access(mergedProps.validationState),
-    isRequired: () => access(mergedProps.required),
-    isDisabled: () => access(mergedProps.disabled),
-    isReadOnly: () => access(mergedProps.readOnly),
-    labelId,
-    fieldId,
-    descriptionId,
-    errorMessageId,
-    getAriaLabelledBy,
-    getAriaDescribedBy,
-    generateId: createGenerateId(() => access(mergedProps.id)),
-    registerLabel: createRegisterId(setLabelId),
-    registerField: createRegisterId(setFieldId),
-    registerDescription: createRegisterId(setDescriptionId),
-    registerErrorMessage: createRegisterId(setErrorMessageId)
-  };
-  return {
-    formControlContext
-  };
-}
-var FormControlContext = createContext();
-function useFormControlContext() {
-  const context = useContext(FormControlContext);
-  if (context === void 0) {
-    throw new Error("[kobalte]: `useFormControlContext` must be used within a `FormControlContext.Provider` component");
-  }
-  return context;
-}
-function FormControlDescription(props) {
-  const context = useFormControlContext();
-  const mergedProps = mergeDefaultProps({
-    id: context.generateId("description")
-  }, props);
-  createEffect(() => onCleanup(context.registerDescription(mergedProps.id)));
-  return createComponent(Polymorphic, mergeProps({
-    as: "div"
-  }, () => context.dataset(), mergedProps));
-}
-function FormControlErrorMessage(props) {
-  const context = useFormControlContext();
-  const mergedProps = mergeDefaultProps({
-    id: context.generateId("error-message")
-  }, props);
-  const [local, others] = splitProps(mergedProps, ["forceMount"]);
-  const isInvalid = () => context.validationState() === "invalid";
   createEffect(() => {
-    if (!isInvalid()) {
+    const element = access2(props.element);
+    if (!element)
       return;
-    }
-    onCleanup(context.registerErrorMessage(others.id));
-  });
-  return createComponent(Show, {
-    get when() {
-      return local.forceMount || isInvalid();
-    },
-    get children() {
-      return createComponent(Polymorphic, mergeProps({
-        as: "div"
-      }, () => context.dataset(), others));
-    }
-  });
-}
-function FormControlLabel(props) {
-  let ref;
-  const context = useFormControlContext();
-  const mergedProps = mergeDefaultProps({
-    id: context.generateId("label")
-  }, props);
-  const [local, others] = splitProps(mergedProps, ["ref"]);
-  const tagName = createTagName(() => ref, () => "label");
-  createEffect(() => onCleanup(context.registerLabel(others.id)));
-  return createComponent(Polymorphic, mergeProps({
-    as: "label",
-    ref(r$) {
-      const _ref$ = mergeRefs((el) => ref = el, local.ref);
-      typeof _ref$ === "function" && _ref$(r$);
-    },
-    get ["for"]() {
-      return createMemo(() => tagName() === "label")() ? context.fieldId() : void 0;
-    }
-  }, () => context.dataset(), others));
-}
-function createFormResetListener(element, handler) {
-  createEffect(
-    on(element, (element2) => {
-      if (element2 == null) {
-        return;
+    const handleAnimationStart = (event) => {
+      if (event.target === element) {
+        animationName = getAnimationName();
       }
-      const form = getClosestForm(element2);
-      if (form == null) {
-        return;
+    };
+    const handleAnimationEnd = (event) => {
+      const currentAnimationName = getAnimationName();
+      const isCurrentAnimation = currentAnimationName.includes(
+        event.animationName
+      );
+      if (event.target === element && isCurrentAnimation && presentState() === "hiding") {
+        setPresentState("hidden");
       }
-      form.addEventListener("reset", handler, { passive: true });
-      onCleanup(() => {
-        form.removeEventListener("reset", handler);
-      });
-    })
-  );
-}
-function getClosestForm(element) {
-  return isFormElement(element) ? element.form : element.closest("form");
-}
-function isFormElement(element) {
-  return element.matches("textarea, input, select, button");
-}
+    };
+    element.addEventListener("animationstart", handleAnimationStart);
+    element.addEventListener("animationcancel", handleAnimationEnd);
+    element.addEventListener("animationend", handleAnimationEnd);
+    onCleanup(() => {
+      element.removeEventListener("animationstart", handleAnimationStart);
+      element.removeEventListener("animationcancel", handleAnimationEnd);
+      element.removeEventListener("animationend", handleAnimationEnd);
+    });
+  });
+  return {
+    present: () => presentState() === "present" || presentState() === "hiding",
+    state: presentState
+  };
+};
+var presence_default = createPresence;
+var src_default = presence_default;
 var DATA_TOP_LAYER_ATTR = "data-kb-top-layer";
 var originalBodyPointerEvents;
 var hasDisabledBodyPointerEvents = false;
@@ -3665,34 +3670,15 @@ function ButtonRoot(props) {
   }, others));
 }
 var Button = ButtonRoot;
-function createToggleState(props = {}) {
-  const [isSelected, _setIsSelected] = createControllableBooleanSignal({
-    value: () => access(props.isSelected),
-    defaultValue: () => !!access(props.defaultIsSelected),
-    onChange: (value) => {
-      var _a;
-      return (_a = props.onSelectedChange) == null ? void 0 : _a.call(props, value);
-    }
-  });
-  const setIsSelected = (value) => {
-    if (!access(props.isReadOnly) && !access(props.isDisabled)) {
-      _setIsSelected(value);
-    }
-  };
-  const toggle = () => {
-    if (!access(props.isReadOnly) && !access(props.isDisabled)) {
-      _setIsSelected(!isSelected());
-    }
-  };
-  return {
-    isSelected,
-    setIsSelected,
-    toggle
-  };
-}
 var sides = ["top", "right", "bottom", "left"];
 var min = Math.min;
 var max = Math.max;
+var round = Math.round;
+var floor = Math.floor;
+var createCoords = (v) => ({
+  x: v,
+  y: v
+});
 var oppositeSideMap = {
   left: "right",
   right: "left",
@@ -3797,12 +3783,21 @@ function getPaddingObject(padding) {
   };
 }
 function rectToClientRect(rect) {
+  const {
+    x,
+    y,
+    width,
+    height
+  } = rect;
   return {
-    ...rect,
-    top: rect.y,
-    left: rect.x,
-    right: rect.x + rect.width,
-    bottom: rect.y + rect.height
+    width,
+    height,
+    top: y,
+    left: x,
+    right: x + width,
+    bottom: y + height,
+    x,
+    y
   };
 }
 function computeCoordsFromPlacement(_ref, placement, rtl) {
@@ -3933,7 +3928,6 @@ var computePosition = async (reference, floating, config) => {
         } = computeCoordsFromPlacement(rects, statefulPlacement, rtl));
       }
       i2 = -1;
-      continue;
     }
   }
   return {
@@ -3974,9 +3968,10 @@ async function detectOverflow(state, options) {
     strategy
   }));
   const rect = elementContext === "floating" ? {
-    ...rects.floating,
     x,
-    y
+    y,
+    width: rects.floating.width,
+    height: rects.floating.height
   } : rects.reference;
   const offsetParent = await (platform2.getOffsetParent == null ? void 0 : platform2.getOffsetParent(elements.floating));
   const offsetScale = await (platform2.isElement == null ? void 0 : platform2.isElement(offsetParent)) ? await (platform2.getScale == null ? void 0 : platform2.getScale(offsetParent)) || {
@@ -3987,6 +3982,7 @@ async function detectOverflow(state, options) {
     y: 1
   };
   const elementClientRect = rectToClientRect(platform2.convertOffsetParentRelativeRectToViewportRelativeRect ? await platform2.convertOffsetParentRelativeRectToViewportRelativeRect({
+    elements,
     rect,
     offsetParent,
     strategy
@@ -4042,11 +4038,11 @@ var arrow = (options) => ({
     const minPadding = min(paddingObject[minProp], largestPossiblePadding);
     const maxPadding = min(paddingObject[maxProp], largestPossiblePadding);
     const min$1 = minPadding;
-    const max3 = clientSize - arrowDimensions[length] - maxPadding;
+    const max2 = clientSize - arrowDimensions[length] - maxPadding;
     const center = clientSize / 2 - arrowDimensions[length] / 2 + centerToReference;
-    const offset3 = clamp2(min$1, center, max3);
-    const shouldAddOffset = !middlewareData.arrow && getAlignment(placement) != null && center != offset3 && rects.reference[length] / 2 - (center < min$1 ? minPadding : maxPadding) - arrowDimensions[length] / 2 < 0;
-    const alignmentOffset = shouldAddOffset ? center < min$1 ? center - min$1 : center - max3 : 0;
+    const offset3 = clamp2(min$1, center, max2);
+    const shouldAddOffset = !middlewareData.arrow && getAlignment(placement) != null && center !== offset3 && rects.reference[length] / 2 - (center < min$1 ? minPadding : maxPadding) - arrowDimensions[length] / 2 < 0;
+    const alignmentOffset = shouldAddOffset ? center < min$1 ? center - min$1 : center - max2 : 0;
     return {
       [axis]: coords[axis] + alignmentOffset,
       data: {
@@ -4090,10 +4086,12 @@ var flip = function(options) {
         return {};
       }
       const side = getSide(placement);
+      const initialSideAxis = getSideAxis(initialPlacement);
       const isBasePlacement = getSide(initialPlacement) === initialPlacement;
       const rtl = await (platform2.isRTL == null ? void 0 : platform2.isRTL(elements.floating));
       const fallbackPlacements = specifiedFallbackPlacements || (isBasePlacement || !flipAlignment ? [getOppositePlacement(initialPlacement)] : getExpandedPlacements(initialPlacement));
-      if (!specifiedFallbackPlacements && fallbackAxisSideDirection !== "none") {
+      const hasFallbackAxisSideDirection = fallbackAxisSideDirection !== "none";
+      if (!specifiedFallbackPlacements && hasFallbackAxisSideDirection) {
         fallbackPlacements.push(...getOppositeAxisPlacements(initialPlacement, flipAlignment, fallbackAxisSideDirection, rtl));
       }
       const placements2 = [initialPlacement, ...fallbackPlacements];
@@ -4130,8 +4128,16 @@ var flip = function(options) {
         if (!resetPlacement) {
           switch (fallbackStrategy) {
             case "bestFit": {
-              var _overflowsData$map$so;
-              const placement2 = (_overflowsData$map$so = overflowsData.map((d) => [d.placement, d.overflows.filter((overflow2) => overflow2 > 0).reduce((acc, overflow2) => acc + overflow2, 0)]).sort((a2, b2) => a2[1] - b2[1])[0]) == null ? void 0 : _overflowsData$map$so[0];
+              var _overflowsData$filter2;
+              const placement2 = (_overflowsData$filter2 = overflowsData.filter((d) => {
+                if (hasFallbackAxisSideDirection) {
+                  const currentSideAxis = getSideAxis(d.placement);
+                  return currentSideAxis === initialSideAxis || // Create a bias to the `y` side axis due to horizontal
+                  // reading directions favoring greater width.
+                  currentSideAxis === "y";
+                }
+                return true;
+              }).map((d) => [d.placement, d.overflows.filter((overflow2) => overflow2 > 0).reduce((acc, overflow2) => acc + overflow2, 0)]).sort((a2, b2) => a2[1] - b2[1])[0]) == null ? void 0 : _overflowsData$filter2[0];
               if (placement2) {
                 resetPlacement = placement2;
               }
@@ -4260,15 +4266,24 @@ var offset = function(options) {
     name: "offset",
     options,
     async fn(state) {
+      var _middlewareData$offse, _middlewareData$arrow;
       const {
         x,
-        y
+        y,
+        placement,
+        middlewareData
       } = state;
       const diffCoords = await convertValueToCoords(state, options);
+      if (placement === ((_middlewareData$offse = middlewareData.offset) == null ? void 0 : _middlewareData$offse.placement) && (_middlewareData$arrow = middlewareData.arrow) != null && _middlewareData$arrow.alignmentOffset) {
+        return {};
+      }
       return {
         x: x + diffCoords.x,
         y: y + diffCoords.y,
-        data: diffCoords
+        data: {
+          ...diffCoords,
+          placement
+        }
       };
     }
   };
@@ -4315,16 +4330,16 @@ var shift = function(options) {
       if (checkMainAxis) {
         const minSide = mainAxis === "y" ? "top" : "left";
         const maxSide = mainAxis === "y" ? "bottom" : "right";
-        const min3 = mainAxisCoord + overflow[minSide];
-        const max3 = mainAxisCoord - overflow[maxSide];
-        mainAxisCoord = clamp2(min3, mainAxisCoord, max3);
+        const min2 = mainAxisCoord + overflow[minSide];
+        const max2 = mainAxisCoord - overflow[maxSide];
+        mainAxisCoord = clamp2(min2, mainAxisCoord, max2);
       }
       if (checkCrossAxis) {
         const minSide = crossAxis === "y" ? "top" : "left";
         const maxSide = crossAxis === "y" ? "bottom" : "right";
-        const min3 = crossAxisCoord + overflow[minSide];
-        const max3 = crossAxisCoord - overflow[maxSide];
-        crossAxisCoord = clamp2(min3, crossAxisCoord, max3);
+        const min2 = crossAxisCoord + overflow[minSide];
+        const max2 = crossAxisCoord - overflow[maxSide];
+        crossAxisCoord = clamp2(min2, crossAxisCoord, max2);
       }
       const limitedCoords = limiter.fn({
         ...state,
@@ -4377,16 +4392,16 @@ var size = function(options) {
         widthSide = side;
         heightSide = alignment === "end" ? "top" : "bottom";
       }
-      const overflowAvailableHeight = height - overflow[heightSide];
-      const overflowAvailableWidth = width - overflow[widthSide];
+      const maximumClippingHeight = height - overflow.top - overflow.bottom;
+      const maximumClippingWidth = width - overflow.left - overflow.right;
+      const overflowAvailableHeight = min(height - overflow[heightSide], maximumClippingHeight);
+      const overflowAvailableWidth = min(width - overflow[widthSide], maximumClippingWidth);
       const noShift = !state.middlewareData.shift;
       let availableHeight = overflowAvailableHeight;
       let availableWidth = overflowAvailableWidth;
       if (isYAxis) {
-        const maximumClippingWidth = width - overflow.left - overflow.right;
         availableWidth = alignment || noShift ? min(overflowAvailableWidth, maximumClippingWidth) : maximumClippingWidth;
       } else {
-        const maximumClippingHeight = height - overflow.top - overflow.bottom;
         availableHeight = alignment || noShift ? min(overflowAvailableHeight, maximumClippingHeight) : maximumClippingHeight;
       }
       if (noShift && !alignment) {
@@ -4417,14 +4432,6 @@ var size = function(options) {
     }
   };
 };
-var min2 = Math.min;
-var max2 = Math.max;
-var round = Math.round;
-var floor = Math.floor;
-var createCoords = (v) => ({
-  x: v,
-  y: v
-});
 function getNodeName(node) {
   if (isNode(node)) {
     return (node.nodeName || "").toLowerCase();
@@ -4466,9 +4473,18 @@ function isOverflowElement(element) {
 function isTableElement(element) {
   return ["table", "td", "th"].includes(getNodeName(element));
 }
-function isContainingBlock(element) {
+function isTopLayer(element) {
+  return [":popover-open", ":modal"].some((selector) => {
+    try {
+      return element.matches(selector);
+    } catch (e2) {
+      return false;
+    }
+  });
+}
+function isContainingBlock(elementOrCss) {
   const webkit = isWebKit();
-  const css = getComputedStyle2(element);
+  const css = isElement(elementOrCss) ? getComputedStyle2(elementOrCss) : elementOrCss;
   return css.transform !== "none" || css.perspective !== "none" || (css.containerType ? css.containerType !== "normal" : false) || !webkit && (css.backdropFilter ? css.backdropFilter !== "none" : false) || !webkit && (css.filter ? css.filter !== "none" : false) || ["transform", "perspective", "filter"].some((value) => (css.willChange || "").includes(value)) || ["paint", "layout", "strict", "content"].some((value) => (css.contain || "").includes(value));
 }
 function getContainingBlock(element) {
@@ -4476,6 +4492,8 @@ function getContainingBlock(element) {
   while (isHTMLElement(currentNode) && !isLastTraversableNode(currentNode)) {
     if (isContainingBlock(currentNode)) {
       return currentNode;
+    } else if (isTopLayer(currentNode)) {
+      return null;
     }
     currentNode = getParentNode(currentNode);
   }
@@ -4500,8 +4518,8 @@ function getNodeScroll(element) {
     };
   }
   return {
-    scrollLeft: element.pageXOffset,
-    scrollTop: element.pageYOffset
+    scrollLeft: element.scrollX,
+    scrollTop: element.scrollY
   };
 }
 function getParentNode(node) {
@@ -4660,16 +4678,6 @@ function getBoundingClientRect(element, includeScale, isFixedStrategy, offsetPar
     y
   });
 }
-var topLayerSelectors = [":popover-open", ":modal"];
-function isTopLayer(element) {
-  return topLayerSelectors.some((selector) => {
-    try {
-      return element.matches(selector);
-    } catch (e2) {
-      return false;
-    }
-  });
-}
 function convertOffsetParentRelativeRectToViewportRelativeRect(_ref) {
   let {
     elements,
@@ -4718,12 +4726,12 @@ function getDocumentRect(element) {
   const html = getDocumentElement(element);
   const scroll = getNodeScroll(element);
   const body = element.ownerDocument.body;
-  const width = max2(html.scrollWidth, html.clientWidth, body.scrollWidth, body.clientWidth);
-  const height = max2(html.scrollHeight, html.clientHeight, body.scrollHeight, body.clientHeight);
+  const width = max(html.scrollWidth, html.clientWidth, body.scrollWidth, body.clientWidth);
+  const height = max(html.scrollHeight, html.clientHeight, body.scrollHeight, body.clientHeight);
   let x = -scroll.scrollLeft + getWindowScrollBarX(element);
   const y = -scroll.scrollTop;
   if (getComputedStyle2(body).direction === "rtl") {
-    x += max2(html.clientWidth, body.clientWidth) - width;
+    x += max(html.clientWidth, body.clientWidth) - width;
   }
   return {
     width,
@@ -4835,10 +4843,10 @@ function getClippingRect(_ref) {
   const firstClippingAncestor = clippingAncestors[0];
   const clippingRect = clippingAncestors.reduce((accRect, clippingAncestor) => {
     const rect = getClientRectFromClippingAncestor(element, clippingAncestor, strategy);
-    accRect.top = max2(rect.top, accRect.top);
-    accRect.right = min2(rect.right, accRect.right);
-    accRect.bottom = min2(rect.bottom, accRect.bottom);
-    accRect.left = max2(rect.left, accRect.left);
+    accRect.top = max(rect.top, accRect.top);
+    accRect.right = min(rect.right, accRect.right);
+    accRect.bottom = min(rect.bottom, accRect.bottom);
+    accRect.left = max(rect.left, accRect.left);
     return accRect;
   }, getClientRectFromClippingAncestor(element, firstClippingAncestor, strategy));
   return {
@@ -4991,7 +4999,7 @@ function observeMove(element, onMove) {
     const rootMargin = -insetTop + "px " + -insetRight + "px " + -insetBottom + "px " + -insetLeft + "px";
     const options = {
       rootMargin,
-      threshold: max2(0, min2(1, threshold)) || 1
+      threshold: max(0, min(1, threshold)) || 1
     };
     let isFirstUpdate = true;
     function handleObserve(entries2) {
@@ -5121,7 +5129,7 @@ function usePopperContext() {
   }
   return context;
 }
-var _tmpl$ = template(`<svg display="block" viewBox="0 0 30 30"><g><path fill="none" d="M23,27.8c1.1,1.2,3.4,2.2,5,2.2h2H0h2c1.7,0,3.9-1,5-2.2l6.6-7.2c0.7-0.8,2-0.8,2.7,0L23,27.8L23,27.8z"></path><path stroke="none" d="M23,27.8c1.1,1.2,3.4,2.2,5,2.2h2H0h2c1.7,0,3.9-1,5-2.2l6.6-7.2c0.7-0.8,2-0.8,2.7,0L23,27.8L23,27.8z">`);
+var _tmpl$ = template(`<svg display="block" viewBox="0 0 30 30" style="transform:scale(1.02)"><g><path fill="none" d="M23,27.8c1.1,1.2,3.4,2.2,5,2.2h2H0h2c1.7,0,3.9-1,5-2.2l6.6-7.2c0.7-0.8,2-0.8,2.7,0L23,27.8L23,27.8z"></path><path stroke="none" d="M23,27.8c1.1,1.2,3.4,2.2,5,2.2h2H0h2c1.7,0,3.9-1,5-2.2l6.6-7.2c0.7-0.8,2-0.8,2.7,0L23,27.8L23,27.8z">`);
 var DEFAULT_SIZE = 30;
 var HALF_DEFAULT_SIZE = DEFAULT_SIZE / 2;
 var ROTATION_DEG = {
@@ -5151,10 +5159,10 @@ function PopperArrow(props) {
     return ((_a = contentStyle()) == null ? void 0 : _a.getPropertyValue(`border-${dir()}-width`)) || "0px";
   };
   const strokeWidth = () => {
-    return parseInt(borderWidth()) * 2 * (DEFAULT_SIZE / local.size);
+    return Number.parseInt(borderWidth()) * 2 * (DEFAULT_SIZE / local.size);
   };
   const rotate = () => {
-    return `rotate(${ROTATION_DEG[dir()]} ${HALF_DEFAULT_SIZE} ${HALF_DEFAULT_SIZE})`;
+    return `rotate(${ROTATION_DEG[dir()]} ${HALF_DEFAULT_SIZE} ${HALF_DEFAULT_SIZE}) translate(0 2)`;
   };
   return createComponent(Polymorphic, mergeProps({
     as: "div",
@@ -5164,7 +5172,7 @@ function PopperArrow(props) {
     },
     "aria-hidden": "true",
     get style() {
-      return {
+      return combineStyle({
         // server side rendering
         position: "absolute",
         "font-size": `${local.size}px`,
@@ -5173,9 +5181,8 @@ function PopperArrow(props) {
         "pointer-events": "none",
         fill: fill(),
         stroke: stroke(),
-        "stroke-width": strokeWidth(),
-        ...local.style
-      };
+        "stroke-width": strokeWidth()
+      }, local.style);
     }
   }, others, {
     get children() {
@@ -5204,13 +5211,12 @@ function PopperPositioner(props) {
     },
     "data-popper-positioner": "",
     get style() {
-      return {
+      return combineStyle({
         position: "absolute",
         top: 0,
         left: 0,
-        "min-width": "max-content",
-        ...local.style
-      };
+        "min-width": "max-content"
+      }, local.style);
     }
   }, others));
 }
@@ -5865,16 +5871,22 @@ function RadioGroupItemIndicator(props) {
     id: context.generateId("indicator")
   }, props);
   const [local, others] = splitProps(mergedProps, ["ref", "forceMount"]);
-  const presence = createPresence(() => local.forceMount || context.isSelected());
+  const [ref, setRef] = createSignal();
+  const {
+    present
+  } = src_default({
+    show: () => local.forceMount || context.isSelected(),
+    element: () => ref() ?? null
+  });
   return createComponent(Show, {
     get when() {
-      return presence.isPresent();
+      return present();
     },
     get children() {
       return createComponent(Polymorphic, mergeProps({
         as: "div",
         ref(r$) {
-          const _ref$ = mergeRefs(presence.setRef, local.ref);
+          const _ref$ = mergeRefs(setRef, local.ref);
           typeof _ref$ === "function" && _ref$(r$);
         }
       }, () => context.dataset(), others));
@@ -5962,10 +5974,9 @@ function RadioGroupItemInput(props) {
       return formControlContext.isReadOnly();
     },
     get style() {
-      return {
-        ...visuallyHiddenStyles,
-        ...local.style
-      };
+      return combineStyle({
+        ...visuallyHiddenStyles
+      }, local.style);
     },
     get ["aria-labelledby"]() {
       return ariaLabelledBy();
@@ -6229,10 +6240,10 @@ function createSelectableList(props, ref, scrollRef) {
       scrollToKey: (key) => {
         var _a;
         return (_a = access(props.scrollToKey)) == null ? void 0 : _a(key);
-      }
+      },
+      orientation: () => access(props.orientation)
     },
-    ref,
-    scrollRef
+    ref
   );
 }
 var AUTOFOCUS_ON_MOUNT_EVENT = "focusScope.autoFocusOnMount";
@@ -6561,7 +6572,6 @@ function ariaHideOutside(targets, root = document.body) {
     }
   };
 }
-var access2 = (v) => typeof v === "function" ? v() : v;
 var activeStyles = /* @__PURE__ */ new Map();
 var createStyle = (props) => {
   createEffect(() => {
@@ -6657,6 +6667,7 @@ var createPreventScroll = (props) => {
       hideScrollbar: true,
       preventScrollbarShift: true,
       preventScrollbarShiftMode: "padding",
+      restoreScrollPosition: true,
       allowPinchZoom: false
     },
     props
@@ -6680,15 +6691,8 @@ var createPreventScroll = (props) => {
       return;
     const { body } = document;
     const scrollbarWidth = window.innerWidth - body.offsetWidth;
-    style_default({
-      key: "prevent-scroll-overflow",
-      element: body,
-      style: {
-        overflow: "hidden"
-      }
-    });
     if (access2(defaultedProps.preventScrollbarShift)) {
-      const style = {};
+      const style = { overflow: "hidden" };
       const properties = [];
       if (scrollbarWidth > 0) {
         if (access2(defaultedProps.preventScrollbarShiftMode) === "padding") {
@@ -6704,14 +6708,22 @@ var createPreventScroll = (props) => {
       const offsetTop = window.scrollY;
       const offsetLeft = window.scrollX;
       style_default({
-        key: "prevent-scroll-scrollbar",
+        key: "prevent-scroll",
         element: body,
         style,
         properties,
         cleanup: () => {
-          if (scrollbarWidth > 0) {
+          if (access2(defaultedProps.restoreScrollPosition) && scrollbarWidth > 0) {
             window.scrollTo(offsetLeft, offsetTop);
           }
+        }
+      });
+    } else {
+      style_default({
+        key: "prevent-scroll",
+        element: body,
+        style: {
+          overflow: "hidden"
         }
       });
     }
@@ -6824,7 +6836,7 @@ var contains2 = (wrapper, target) => {
   return false;
 };
 var preventScroll_default = createPreventScroll;
-var src_default = preventScroll_default;
+var src_default2 = preventScroll_default;
 var MenuContext = createContext();
 function useOptionalMenuContext() {
   return useContext(MenuContext);
@@ -7043,11 +7055,178 @@ var MenubarContext = createContext();
 function useOptionalMenubarContext() {
   return useContext(MenubarContext);
 }
+var MENUBAR_KEYS = {
+  next: (dir, orientation) => dir === "ltr" ? orientation === "horizontal" ? "ArrowRight" : "ArrowDown" : orientation === "horizontal" ? "ArrowLeft" : "ArrowUp",
+  previous: (dir, orientation) => MENUBAR_KEYS.next(dir === "ltr" ? "rtl" : "ltr", orientation)
+};
+var MENU_KEYS = {
+  first: (orientation) => orientation === "horizontal" ? "ArrowDown" : "ArrowRight",
+  last: (orientation) => orientation === "horizontal" ? "ArrowUp" : "ArrowLeft"
+};
+function MenuTrigger(props) {
+  const rootContext = useMenuRootContext();
+  const context = useMenuContext();
+  const optionalMenubarContext = useOptionalMenubarContext();
+  const {
+    direction
+  } = useLocale();
+  const mergedProps = mergeDefaultProps({
+    id: rootContext.generateId("trigger")
+  }, props);
+  const [local, others] = splitProps(mergedProps, ["ref", "id", "disabled", "onPointerDown", "onClick", "onKeyDown", "onMouseOver", "onFocus"]);
+  let key = () => rootContext.value();
+  if (optionalMenubarContext !== void 0) {
+    key = () => rootContext.value() ?? local.id;
+    if (optionalMenubarContext.lastValue() === void 0)
+      optionalMenubarContext.setLastValue(key);
+  }
+  const tagName = createTagName(() => context.triggerRef(), () => "button");
+  const isNativeLink = createMemo(() => {
+    var _a;
+    return tagName() === "a" && ((_a = context.triggerRef()) == null ? void 0 : _a.getAttribute("href")) != null;
+  });
+  createEffect(on(() => optionalMenubarContext == null ? void 0 : optionalMenubarContext.value(), (value) => {
+    var _a;
+    if (!isNativeLink())
+      return;
+    if (value === key())
+      (_a = context.triggerRef()) == null ? void 0 : _a.focus();
+  }));
+  const handleClick = () => {
+    if (optionalMenubarContext !== void 0) {
+      if (!context.isOpen()) {
+        if (!optionalMenubarContext.autoFocusMenu()) {
+          optionalMenubarContext.setAutoFocusMenu(true);
+        }
+        context.open(false);
+      } else {
+        if (optionalMenubarContext.value() === key())
+          optionalMenubarContext.closeMenu();
+      }
+    } else
+      context.toggle(true);
+  };
+  const onPointerDown = (e2) => {
+    callHandler(e2, local.onPointerDown);
+    e2.currentTarget.dataset.pointerType = e2.pointerType;
+    if (!local.disabled && e2.pointerType !== "touch" && e2.button === 0) {
+      handleClick();
+    }
+  };
+  const onClick = (e2) => {
+    callHandler(e2, local.onClick);
+    if (!local.disabled) {
+      if (e2.currentTarget.dataset.pointerType === "touch")
+        handleClick();
+    }
+  };
+  const onKeyDown = (e2) => {
+    callHandler(e2, local.onKeyDown);
+    if (local.disabled) {
+      return;
+    }
+    if (isNativeLink()) {
+      switch (e2.key) {
+        case "Enter":
+        case " ":
+          return;
+      }
+    }
+    switch (e2.key) {
+      case "Enter":
+      case " ":
+      case MENU_KEYS.first(rootContext.orientation()):
+        e2.stopPropagation();
+        e2.preventDefault();
+        scrollIntoViewport(e2.currentTarget);
+        context.open("first");
+        optionalMenubarContext == null ? void 0 : optionalMenubarContext.setAutoFocusMenu(true);
+        optionalMenubarContext == null ? void 0 : optionalMenubarContext.setValue(key);
+        break;
+      case MENU_KEYS.last(rootContext.orientation()):
+        e2.stopPropagation();
+        e2.preventDefault();
+        context.open("last");
+        break;
+      case MENUBAR_KEYS.next(direction(), rootContext.orientation()):
+        if (optionalMenubarContext === void 0)
+          break;
+        e2.stopPropagation();
+        e2.preventDefault();
+        optionalMenubarContext.nextMenu();
+        break;
+      case MENUBAR_KEYS.previous(direction(), rootContext.orientation()):
+        if (optionalMenubarContext === void 0)
+          break;
+        e2.stopPropagation();
+        e2.preventDefault();
+        optionalMenubarContext.previousMenu();
+        break;
+    }
+  };
+  const onMouseOver = (e2) => {
+    var _a;
+    callHandler(e2, local.onMouseOver);
+    if (((_a = context.triggerRef()) == null ? void 0 : _a.dataset.pointerType) === "touch")
+      return;
+    if (!local.disabled && optionalMenubarContext !== void 0 && optionalMenubarContext.value() !== void 0) {
+      optionalMenubarContext.setValue(key);
+    }
+  };
+  const onFocus = (e2) => {
+    callHandler(e2, local.onFocus);
+    if (optionalMenubarContext !== void 0 && e2.currentTarget.dataset.pointerType !== "touch")
+      optionalMenubarContext.setValue(key);
+  };
+  createEffect(() => onCleanup(context.registerTriggerId(local.id)));
+  return createComponent(ButtonRoot, mergeProps({
+    ref(r$) {
+      const _ref$ = mergeRefs(context.setTriggerRef, local.ref);
+      typeof _ref$ === "function" && _ref$(r$);
+    },
+    get ["data-kb-menu-value-trigger"]() {
+      return rootContext.value();
+    },
+    get id() {
+      return local.id;
+    },
+    get disabled() {
+      return local.disabled;
+    },
+    "aria-haspopup": "true",
+    get ["aria-expanded"]() {
+      return context.isOpen();
+    },
+    get ["aria-controls"]() {
+      return createMemo(() => !!context.isOpen())() ? context.contentId() : void 0;
+    },
+    get ["data-highlighted"]() {
+      return key() !== void 0 && (optionalMenubarContext == null ? void 0 : optionalMenubarContext.value()) === key() ? true : void 0;
+    },
+    get tabIndex() {
+      return optionalMenubarContext !== void 0 ? optionalMenubarContext.value() === key() || optionalMenubarContext.lastValue() === key() ? 0 : -1 : void 0;
+    },
+    onPointerDown,
+    onMouseOver,
+    onClick,
+    onKeyDown,
+    onFocus,
+    role: optionalMenubarContext !== void 0 ? "menuitem" : void 0
+  }, () => context.dataset(), others));
+}
+var NavigationMenuContext = createContext();
+function useOptionalNavigationMenuContext() {
+  return useContext(NavigationMenuContext);
+}
 function MenuContentBase(props) {
   let ref;
   const rootContext = useMenuRootContext();
   const context = useMenuContext();
   const optionalMenubarContext = useOptionalMenubarContext();
+  const optionalNavigationMenuContext = useOptionalNavigationMenuContext();
+  const {
+    direction
+  } = useLocale();
   const mergedProps = mergeDefaultProps({
     id: rootContext.generateId(`content-${createUniqueId()}`)
   }, props);
@@ -7063,7 +7242,8 @@ function MenuContentBase(props) {
     deferAutoFocus: true,
     // ensure all menu items are mounted and collection is not empty before trying to autofocus.
     shouldFocusWrap: true,
-    disallowTypeAhead: () => !context.listState().selectionManager().isFocused()
+    disallowTypeAhead: () => !context.listState().selectionManager().isFocused(),
+    orientation: () => rootContext.orientation() === "horizontal" ? "vertical" : "horizontal"
   }, () => ref);
   createFocusScope({
     trapFocus: () => isRootModalContent() && context.isOpen(),
@@ -7084,14 +7264,14 @@ function MenuContentBase(props) {
     if (optionalMenubarContext !== void 0) {
       if (e2.currentTarget.getAttribute("aria-haspopup") !== "true")
         switch (e2.key) {
-          case "ArrowRight":
+          case MENUBAR_KEYS.next(direction(), rootContext.orientation()):
             e2.stopPropagation();
             e2.preventDefault();
             context.close(true);
             optionalMenubarContext.setAutoFocusMenu(true);
             optionalMenubarContext.nextMenu();
             break;
-          case "ArrowLeft":
+          case MENUBAR_KEYS.previous(direction(), rootContext.orientation()):
             if (e2.currentTarget.hasAttribute("data-closed"))
               break;
             e2.stopPropagation();
@@ -7138,66 +7318,70 @@ function MenuContentBase(props) {
     }
   };
   createEffect(() => onCleanup(context.registerContentId(local.id)));
+  const commonAttributes = {
+    ref: mergeRefs((el) => {
+      context.setContentRef(el);
+      ref = el;
+    }, local.ref),
+    role: "menu",
+    get id() {
+      return local.id;
+    },
+    get tabIndex() {
+      return selectableList.tabIndex();
+    },
+    get "aria-labelledby"() {
+      return context.triggerId();
+    },
+    onKeyDown: composeEventHandlers([local.onKeyDown, selectableList.onKeyDown, onKeyDown]),
+    onMouseDown: composeEventHandlers([local.onMouseDown, selectableList.onMouseDown]),
+    onFocusIn: composeEventHandlers([local.onFocusIn, selectableList.onFocusIn]),
+    onFocusOut: composeEventHandlers([local.onFocusOut, selectableList.onFocusOut]),
+    onPointerEnter,
+    onPointerMove,
+    get "data-orientation"() {
+      return rootContext.orientation();
+    }
+  };
   return createComponent(Show, {
     get when() {
-      return context.contentPresence.isPresent();
+      return context.contentPresent();
     },
     get children() {
-      return createComponent(Popper.Positioner, {
+      return createComponent(Show, {
+        get when() {
+          return optionalNavigationMenuContext === void 0 || context.parentMenuContext() != null;
+        },
+        get fallback() {
+          return createComponent(Polymorphic, mergeProps({
+            as: "div"
+          }, () => context.dataset(), commonAttributes, others));
+        },
         get children() {
-          return createComponent(DismissableLayer, mergeProps({
-            ref(r$) {
-              const _ref$ = mergeRefs((el) => {
-                context.setContentRef(el);
-                context.contentPresence.setRef(el);
-                ref = el;
-              }, local.ref);
-              typeof _ref$ === "function" && _ref$(r$);
-            },
-            role: "menu",
-            get id() {
-              return local.id;
-            },
-            get tabIndex() {
-              return selectableList.tabIndex();
-            },
-            get disableOutsidePointerEvents() {
-              return createMemo(() => !!isRootModalContent())() && context.isOpen();
-            },
-            get excludedElements() {
-              return [context.triggerRef];
-            },
-            bypassTopMostLayerCheck: true,
-            get style() {
-              return {
-                "--kb-menu-content-transform-origin": "var(--kb-popper-content-transform-origin)",
-                position: "relative",
-                ...local.style
-              };
-            },
-            get ["aria-labelledby"]() {
-              return context.triggerId();
-            },
-            onEscapeKeyDown,
-            onFocusOutside,
-            get onDismiss() {
-              return context.close;
-            },
-            get onKeyDown() {
-              return composeEventHandlers([local.onKeyDown, selectableList.onKeyDown, onKeyDown]);
-            },
-            get onMouseDown() {
-              return composeEventHandlers([local.onMouseDown, selectableList.onMouseDown]);
-            },
-            get onFocusIn() {
-              return composeEventHandlers([local.onFocusIn, selectableList.onFocusIn]);
-            },
-            get onFocusOut() {
-              return composeEventHandlers([local.onFocusOut, selectableList.onFocusOut]);
-            },
-            onPointerEnter,
-            onPointerMove
-          }, () => context.dataset(), others));
+          return createComponent(Popper.Positioner, {
+            get children() {
+              return createComponent(DismissableLayer, mergeProps({
+                get disableOutsidePointerEvents() {
+                  return createMemo(() => !!isRootModalContent())() && context.isOpen();
+                },
+                get excludedElements() {
+                  return [context.triggerRef];
+                },
+                bypassTopMostLayerCheck: true,
+                get style() {
+                  return combineStyle({
+                    "--kb-menu-content-transform-origin": "var(--kb-popper-content-transform-origin)",
+                    position: "relative"
+                  }, local.style);
+                },
+                onEscapeKeyDown,
+                onFocusOutside,
+                get onDismiss() {
+                  return context.close;
+                }
+              }, () => context.dataset(), commonAttributes, others));
+            }
+          });
         }
       });
     }
@@ -7208,9 +7392,9 @@ function MenuContent(props) {
   const rootContext = useMenuRootContext();
   const context = useMenuContext();
   const [local, others] = splitProps(props, ["ref"]);
-  src_default({
+  src_default2({
     element: () => ref ?? null,
-    enabled: () => context.isOpen() && rootContext.preventScroll()
+    enabled: () => context.contentPresent() && rootContext.preventScroll()
   });
   return createComponent(MenuContentBase, mergeProps({
     ref(r$) {
@@ -7336,7 +7520,7 @@ function MenuPortal(props) {
   const context = useMenuContext();
   return createComponent(Show, {
     get when() {
-      return context.contentPresence.isPresent();
+      return context.contentPresent();
     },
     get children() {
       return createComponent(Portal, props);
@@ -7445,8 +7629,10 @@ function Menu(props) {
   const rootContext = useMenuRootContext();
   const parentDomCollectionContext = useOptionalDomCollectionContext();
   const parentMenuContext = useOptionalMenuContext();
+  const optionalMenubarContext = useOptionalMenubarContext();
+  const optionalNavigationMenuContext = useOptionalNavigationMenuContext();
   const mergedProps = mergeDefaultProps({
-    placement: "bottom-start"
+    placement: rootContext.orientation() === "horizontal" ? "bottom-start" : "right-start"
   }, props);
   const [local, others] = splitProps(mergedProps, ["open", "defaultOpen", "onOpenChange"]);
   let pointerGraceTimeoutId = 0;
@@ -7474,7 +7660,12 @@ function Menu(props) {
       return (_a = local.onOpenChange) == null ? void 0 : _a.call(local, isOpen);
     }
   });
-  const contentPresence = createPresence(() => rootContext.forceMount() || disclosureState.isOpen());
+  const {
+    present: contentPresent
+  } = src_default({
+    show: () => rootContext.forceMount() || disclosureState.isOpen(),
+    element: () => contentRef() ?? null
+  });
   const listState = createListState({
     selectionMode: "none",
     dataSource: items
@@ -7493,13 +7684,19 @@ function Menu(props) {
     setFocusStrategy(focusStrategy2);
     disclosureState.toggle();
   };
-  const focusContent = () => {
+  const _focusContent = () => {
     const content = contentRef();
     if (content) {
       focusWithoutScrolling(content);
       listState.selectionManager().setFocused(true);
       listState.selectionManager().setFocusedKey(void 0);
     }
+  };
+  const focusContent = () => {
+    if (optionalNavigationMenuContext != null)
+      setTimeout(() => _focusContent());
+    else
+      _focusContent();
   };
   const registerNestedMenu = (element) => {
     setNestedMenus((prev) => [...prev, element]);
@@ -7545,6 +7742,33 @@ function Menu(props) {
       parentUnregister();
     });
   });
+  createEffect(() => {
+    if (parentMenuContext !== void 0)
+      return;
+    optionalMenubarContext == null ? void 0 : optionalMenubarContext.registerMenu(rootContext.value(), [contentRef(), ...nestedMenus()]);
+  });
+  createEffect(() => {
+    var _a;
+    if (parentMenuContext !== void 0 || optionalMenubarContext === void 0)
+      return;
+    if (optionalMenubarContext.value() === rootContext.value()) {
+      (_a = triggerRef()) == null ? void 0 : _a.focus();
+      if (optionalMenubarContext.autoFocusMenu())
+        open(true);
+    } else
+      close();
+  });
+  createEffect(() => {
+    if (parentMenuContext !== void 0 || optionalMenubarContext === void 0)
+      return;
+    if (disclosureState.isOpen())
+      optionalMenubarContext.setValue(rootContext.value());
+  });
+  onCleanup(() => {
+    if (parentMenuContext !== void 0)
+      return;
+    optionalMenubarContext == null ? void 0 : optionalMenubarContext.unregisterMenu(rootContext.value());
+  });
   const dataset = createMemo(() => ({
     "data-expanded": disclosureState.isOpen() ? "" : void 0,
     "data-closed": !disclosureState.isOpen() ? "" : void 0
@@ -7552,7 +7776,7 @@ function Menu(props) {
   const context = {
     dataset,
     isOpen: disclosureState.isOpen,
-    contentPresence,
+    contentPresent,
     nestedMenus,
     currentPlacement,
     pointerGraceTimeoutId: () => pointerGraceTimeoutId,
@@ -7585,11 +7809,19 @@ function Menu(props) {
       return createComponent(MenuContext.Provider, {
         value: context,
         get children() {
-          return createComponent(Popper, mergeProps({
-            anchorRef: triggerRef,
-            contentRef,
-            onCurrentPlacementChange: setCurrentPlacement
-          }, others));
+          return createComponent(Show, {
+            when: optionalNavigationMenuContext === void 0,
+            get fallback() {
+              return others.children;
+            },
+            get children() {
+              return createComponent(Popper, mergeProps({
+                anchorRef: triggerRef,
+                contentRef,
+                onCurrentPlacementChange: setCurrentPlacement
+              }, others));
+            }
+          });
         }
       });
     }
@@ -7607,11 +7839,16 @@ function MenuSub(props) {
   }, props));
 }
 var SUB_CLOSE_KEYS = {
-  ltr: ["ArrowLeft"],
-  rtl: ["ArrowRight"]
+  close: (dir, orientation) => {
+    if (dir === "ltr") {
+      return [orientation === "horizontal" ? "ArrowLeft" : "ArrowUp"];
+    }
+    return [orientation === "horizontal" ? "ArrowRight" : "ArrowDown"];
+  }
 };
 function MenuSubContent(props) {
   const context = useMenuContext();
+  const rootContext = useMenuRootContext();
   const [local, others] = splitProps(props, ["onFocusOutside", "onKeyDown"]);
   const {
     direction
@@ -7633,7 +7870,7 @@ function MenuSubContent(props) {
   const onKeyDown = (e2) => {
     callHandler(e2, local.onKeyDown);
     const isKeyDownInside = contains(e2.currentTarget, e2.target);
-    const isCloseKey = SUB_CLOSE_KEYS[direction()].includes(e2.key);
+    const isCloseKey = SUB_CLOSE_KEYS.close(direction(), rootContext.orientation()).includes(e2.key);
     const isSubMenu = context.parentMenuContext() != null;
     if (isKeyDownInside && isCloseKey && isSubMenu) {
       context.close();
@@ -7649,8 +7886,12 @@ function MenuSubContent(props) {
 }
 var SELECTION_KEYS = ["Enter", " "];
 var SUB_OPEN_KEYS = {
-  ltr: [...SELECTION_KEYS, "ArrowRight"],
-  rtl: [...SELECTION_KEYS, "ArrowLeft"]
+  open: (dir, orientation) => {
+    if (dir === "ltr") {
+      return [...SELECTION_KEYS, orientation === "horizontal" ? "ArrowRight" : "ArrowDown"];
+    }
+    return [...SELECTION_KEYS, orientation === "horizontal" ? "ArrowLeft" : "ArrowUp"];
+  }
 };
 function MenuSubTrigger(props) {
   let ref;
@@ -7765,7 +8006,7 @@ function MenuSubTrigger(props) {
     if (local.disabled) {
       return;
     }
-    if (SUB_OPEN_KEYS[direction()].includes(e2.key)) {
+    if (SUB_OPEN_KEYS.open(direction(), rootContext.orientation()).includes(e2.key)) {
       e2.stopPropagation();
       e2.preventDefault();
       parentSelectionManager().setFocused(false);
@@ -7863,12 +8104,13 @@ function MenuSubTrigger(props) {
   }, () => context.dataset(), others));
 }
 function MenuRoot(props) {
+  const optionalMenubarContext = useOptionalMenubarContext();
   const defaultId = `menu-${createUniqueId()}`;
   const mergedProps = mergeDefaultProps({
     id: defaultId,
     modal: true
   }, props);
-  const [local, others] = splitProps(mergedProps, ["id", "modal", "preventScroll", "forceMount", "open", "defaultOpen", "onOpenChange", "value"]);
+  const [local, others] = splitProps(mergedProps, ["id", "modal", "preventScroll", "forceMount", "open", "defaultOpen", "onOpenChange", "value", "orientation"]);
   const disclosureState = createDisclosureState({
     open: () => local.open,
     defaultOpen: () => local.defaultOpen,
@@ -7882,7 +8124,8 @@ function MenuRoot(props) {
     preventScroll: () => local.preventScroll ?? context.isModal(),
     forceMount: () => local.forceMount ?? false,
     generateId: createGenerateId(() => local.id),
-    value: () => local.value
+    value: () => local.value,
+    orientation: () => local.orientation ?? (optionalMenubarContext == null ? void 0 : optionalMenubarContext.orientation()) ?? "horizontal"
   };
   return createComponent(MenuRootContext.Provider, {
     value: context,
@@ -7897,154 +8140,6 @@ function MenuRoot(props) {
       }, others));
     }
   });
-}
-function MenuTrigger(props) {
-  const rootContext = useMenuRootContext();
-  const context = useMenuContext();
-  const optionalMenubarContext = useOptionalMenubarContext();
-  const mergedProps = mergeDefaultProps({
-    id: rootContext.generateId("trigger")
-  }, props);
-  const [local, others] = splitProps(mergedProps, ["ref", "id", "disabled", "onPointerDown", "onClick", "onKeyDown", "onMouseOver", "onFocus"]);
-  let key;
-  if (optionalMenubarContext !== void 0) {
-    key = rootContext.value() ?? local.id;
-    createEffect(() => {
-      optionalMenubarContext.registerMenu(key, [context.contentRef(), ...context.nestedMenus()]);
-    });
-    createEffect(() => {
-      var _a;
-      if (optionalMenubarContext.value() === key) {
-        (_a = context.triggerRef()) == null ? void 0 : _a.focus();
-        if (optionalMenubarContext.autoFocusMenu())
-          context.open(true);
-      } else
-        context.close(true);
-    });
-    createEffect(() => {
-      if (context.isOpen())
-        optionalMenubarContext.setValue(key);
-    });
-    onCleanup(() => {
-      optionalMenubarContext.unregisterMenu(key);
-    });
-    if (optionalMenubarContext.lastValue() === void 0)
-      optionalMenubarContext.setLastValue(key);
-  }
-  const tagName = createTagName(() => context.triggerRef(), () => "button");
-  const isNativeLink = createMemo(() => {
-    var _a;
-    return tagName() === "a" && ((_a = context.triggerRef()) == null ? void 0 : _a.getAttribute("href")) != null;
-  });
-  const handleClick = () => {
-    optionalMenubarContext == null ? void 0 : optionalMenubarContext.setAutoFocusMenu(true);
-    if (optionalMenubarContext !== void 0)
-      context.toggle(false);
-    else
-      context.toggle(true);
-    if (optionalMenubarContext !== void 0 && !context.isOpen() && optionalMenubarContext.value() === key) {
-      optionalMenubarContext.closeMenu();
-    }
-  };
-  const onPointerDown = (e2) => {
-    callHandler(e2, local.onPointerDown);
-    e2.currentTarget.dataset.pointerType = e2.pointerType;
-    if (!local.disabled && e2.pointerType !== "touch" && e2.button === 0) {
-      handleClick();
-    }
-  };
-  const onClick = (e2) => {
-    callHandler(e2, local.onClick);
-    if (!local.disabled) {
-      if (e2.currentTarget.dataset.pointerType === "touch")
-        handleClick();
-    }
-  };
-  const onKeyDown = (e2) => {
-    callHandler(e2, local.onKeyDown);
-    if (local.disabled) {
-      return;
-    }
-    if (isNativeLink()) {
-      switch (e2.key) {
-        case "Enter":
-        case " ":
-          return;
-      }
-    }
-    switch (e2.key) {
-      case "Enter":
-      case " ":
-      case "ArrowDown":
-        e2.stopPropagation();
-        e2.preventDefault();
-        scrollIntoViewport(e2.currentTarget);
-        context.toggle("first");
-        break;
-      case "ArrowUp":
-        e2.stopPropagation();
-        e2.preventDefault();
-        context.toggle("last");
-        break;
-      case "ArrowRight":
-        if (optionalMenubarContext === void 0)
-          break;
-        e2.stopPropagation();
-        e2.preventDefault();
-        optionalMenubarContext.nextMenu();
-        break;
-      case "ArrowLeft":
-        if (optionalMenubarContext === void 0)
-          break;
-        e2.stopPropagation();
-        e2.preventDefault();
-        optionalMenubarContext.previousMenu();
-        break;
-    }
-  };
-  const onMouseOver = (e2) => {
-    callHandler(e2, local.onMouseOver);
-    if (!local.disabled && optionalMenubarContext !== void 0 && optionalMenubarContext.value() !== void 0) {
-      optionalMenubarContext.setValue(key);
-    }
-  };
-  const onFocus = (e2) => {
-    callHandler(e2, local.onFocus);
-    if (optionalMenubarContext !== void 0)
-      optionalMenubarContext.setValue(key);
-  };
-  createEffect(() => onCleanup(context.registerTriggerId(local.id)));
-  return createComponent(ButtonRoot, mergeProps({
-    ref(r$) {
-      const _ref$ = mergeRefs(context.setTriggerRef, local.ref);
-      typeof _ref$ === "function" && _ref$(r$);
-    },
-    get id() {
-      return local.id;
-    },
-    get disabled() {
-      return local.disabled;
-    },
-    "aria-haspopup": "true",
-    get ["aria-expanded"]() {
-      return context.isOpen();
-    },
-    get ["aria-controls"]() {
-      return createMemo(() => !!context.isOpen())() ? context.contentId() : void 0;
-    },
-    get ["data-highlighted"]() {
-      return key !== void 0 && (optionalMenubarContext == null ? void 0 : optionalMenubarContext.value()) === key ? true : void 0;
-    },
-    get tabIndex() {
-      return optionalMenubarContext !== void 0 ? optionalMenubarContext.value() === key || optionalMenubarContext.lastValue() === key ? 0 : -1 : void 0;
-    },
-    onPointerDown,
-    onMouseOver,
-    onClick,
-    onKeyDown,
-    onFocus,
-    role: optionalMenubarContext !== void 0 ? "menuitem" : void 0
-  }, () => context.dataset(), others));
 }
 var separator_exports = {};
 __export(separator_exports, {
@@ -8483,14 +8578,14 @@ function ArrowDown() {
 }
 function ArrowLeft() {
   return (() => {
-    const _el$6 = _tmpl$5();
+    var _el$6 = _tmpl$5();
     _el$6.style.setProperty("transform", "rotate(90deg)");
     return _el$6;
   })();
 }
 function ArrowRight() {
   return (() => {
-    const _el$7 = _tmpl$5();
+    var _el$7 = _tmpl$5();
     _el$7.style.setProperty("transform", "rotate(-90deg)");
     return _el$7;
   })();
@@ -8521,7 +8616,7 @@ function Copier() {
 }
 function CopiedCopier(props) {
   return (() => {
-    const _el$16 = _tmpl$14(), _el$17 = _el$16.firstChild;
+    var _el$16 = _tmpl$14(), _el$17 = _el$16.firstChild;
     createRenderEffect(() => setAttribute(_el$17, "stroke", props.theme === "dark" ? "#12B76A" : "#027A48"));
     return _el$16;
   })();
@@ -8538,7 +8633,7 @@ function Check(props) {
       return props.checked;
     },
     get children() {
-      const _el$20 = _tmpl$14(), _el$21 = _el$20.firstChild;
+      var _el$20 = _tmpl$14(), _el$21 = _el$20.firstChild;
       createRenderEffect(() => setAttribute(_el$21, "stroke", props.theme === "dark" ? "#9B8AFB" : "#6938EF"));
       return _el$20;
     }
@@ -8547,7 +8642,7 @@ function Check(props) {
       return !props.checked;
     },
     get children() {
-      const _el$22 = _tmpl$17(), _el$23 = _el$22.firstChild;
+      var _el$22 = _tmpl$17(), _el$23 = _el$22.firstChild;
       createRenderEffect(() => setAttribute(_el$23, "stroke", props.theme === "dark" ? "#9B8AFB" : "#6938EF"));
       return _el$22;
     }
@@ -8568,7 +8663,7 @@ function PauseCircle() {
 function TanstackLogo() {
   const id = createUniqueId();
   return (() => {
-    const _el$28 = _tmpl$222(), _el$29 = _el$28.firstChild, _el$30 = _el$29.nextSibling, _el$31 = _el$30.nextSibling, _el$32 = _el$31.firstChild, _el$33 = _el$31.nextSibling, _el$34 = _el$33.firstChild, _el$35 = _el$33.nextSibling, _el$36 = _el$35.nextSibling, _el$37 = _el$36.firstChild, _el$38 = _el$36.nextSibling, _el$39 = _el$38.firstChild, _el$40 = _el$38.nextSibling, _el$41 = _el$40.nextSibling, _el$42 = _el$41.firstChild, _el$43 = _el$41.nextSibling, _el$44 = _el$43.firstChild, _el$45 = _el$43.nextSibling, _el$46 = _el$45.nextSibling, _el$47 = _el$46.firstChild, _el$48 = _el$46.nextSibling, _el$49 = _el$48.firstChild, _el$50 = _el$48.nextSibling, _el$51 = _el$50.nextSibling, _el$52 = _el$51.firstChild, _el$53 = _el$51.nextSibling, _el$54 = _el$53.firstChild, _el$55 = _el$53.nextSibling, _el$56 = _el$55.nextSibling, _el$57 = _el$56.firstChild, _el$58 = _el$56.nextSibling, _el$59 = _el$58.firstChild, _el$60 = _el$58.nextSibling, _el$61 = _el$60.nextSibling, _el$62 = _el$61.firstChild, _el$63 = _el$61.nextSibling, _el$64 = _el$63.firstChild, _el$65 = _el$63.nextSibling, _el$66 = _el$65.firstChild, _el$67 = _el$66.nextSibling, _el$68 = _el$67.nextSibling, _el$69 = _el$68.nextSibling, _el$70 = _el$69.nextSibling, _el$71 = _el$65.nextSibling, _el$72 = _el$71.firstChild, _el$73 = _el$71.nextSibling, _el$74 = _el$73.firstChild, _el$75 = _el$73.nextSibling, _el$76 = _el$75.firstChild, _el$77 = _el$76.nextSibling, _el$78 = _el$77.nextSibling, _el$79 = _el$78.firstChild, _el$80 = _el$79.nextSibling, _el$81 = _el$80.nextSibling, _el$82 = _el$81.nextSibling, _el$83 = _el$82.nextSibling, _el$84 = _el$83.nextSibling, _el$85 = _el$84.nextSibling, _el$86 = _el$85.nextSibling, _el$87 = _el$86.nextSibling, _el$88 = _el$87.nextSibling, _el$89 = _el$88.nextSibling, _el$90 = _el$89.nextSibling, _el$91 = _el$75.nextSibling, _el$92 = _el$91.firstChild, _el$93 = _el$91.nextSibling, _el$94 = _el$93.firstChild, _el$95 = _el$93.nextSibling, _el$96 = _el$95.firstChild, _el$97 = _el$96.nextSibling, _el$98 = _el$95.nextSibling, _el$99 = _el$98.firstChild, _el$100 = _el$98.nextSibling, _el$101 = _el$100.firstChild, _el$102 = _el$100.nextSibling, _el$103 = _el$102.firstChild, _el$104 = _el$103.nextSibling, _el$105 = _el$104.nextSibling, _el$106 = _el$105.nextSibling, _el$107 = _el$106.nextSibling, _el$108 = _el$107.nextSibling, _el$109 = _el$108.nextSibling, _el$110 = _el$109.nextSibling, _el$111 = _el$110.nextSibling, _el$112 = _el$111.nextSibling, _el$113 = _el$112.nextSibling, _el$114 = _el$113.nextSibling, _el$115 = _el$114.nextSibling, _el$116 = _el$115.nextSibling, _el$117 = _el$116.nextSibling, _el$118 = _el$117.nextSibling, _el$119 = _el$118.nextSibling, _el$120 = _el$119.nextSibling;
+    var _el$28 = _tmpl$222(), _el$29 = _el$28.firstChild, _el$30 = _el$29.nextSibling, _el$31 = _el$30.nextSibling, _el$32 = _el$31.firstChild, _el$33 = _el$31.nextSibling, _el$34 = _el$33.firstChild, _el$35 = _el$33.nextSibling, _el$36 = _el$35.nextSibling, _el$37 = _el$36.firstChild, _el$38 = _el$36.nextSibling, _el$39 = _el$38.firstChild, _el$40 = _el$38.nextSibling, _el$41 = _el$40.nextSibling, _el$42 = _el$41.firstChild, _el$43 = _el$41.nextSibling, _el$44 = _el$43.firstChild, _el$45 = _el$43.nextSibling, _el$46 = _el$45.nextSibling, _el$47 = _el$46.firstChild, _el$48 = _el$46.nextSibling, _el$49 = _el$48.firstChild, _el$50 = _el$48.nextSibling, _el$51 = _el$50.nextSibling, _el$52 = _el$51.firstChild, _el$53 = _el$51.nextSibling, _el$54 = _el$53.firstChild, _el$55 = _el$53.nextSibling, _el$56 = _el$55.nextSibling, _el$57 = _el$56.firstChild, _el$58 = _el$56.nextSibling, _el$59 = _el$58.firstChild, _el$60 = _el$58.nextSibling, _el$61 = _el$60.nextSibling, _el$62 = _el$61.firstChild, _el$63 = _el$61.nextSibling, _el$64 = _el$63.firstChild, _el$65 = _el$63.nextSibling, _el$66 = _el$65.firstChild, _el$67 = _el$66.nextSibling, _el$68 = _el$67.nextSibling, _el$69 = _el$68.nextSibling, _el$70 = _el$69.nextSibling, _el$71 = _el$65.nextSibling, _el$72 = _el$71.firstChild, _el$73 = _el$71.nextSibling, _el$74 = _el$73.firstChild, _el$75 = _el$73.nextSibling, _el$76 = _el$75.firstChild, _el$77 = _el$76.nextSibling, _el$78 = _el$77.nextSibling, _el$79 = _el$78.firstChild, _el$80 = _el$79.nextSibling, _el$81 = _el$80.nextSibling, _el$82 = _el$81.nextSibling, _el$83 = _el$82.nextSibling, _el$84 = _el$83.nextSibling, _el$85 = _el$84.nextSibling, _el$86 = _el$85.nextSibling, _el$87 = _el$86.nextSibling, _el$88 = _el$87.nextSibling, _el$89 = _el$88.nextSibling, _el$90 = _el$89.nextSibling, _el$91 = _el$75.nextSibling, _el$92 = _el$91.firstChild, _el$93 = _el$91.nextSibling, _el$94 = _el$93.firstChild, _el$95 = _el$93.nextSibling, _el$96 = _el$95.firstChild, _el$97 = _el$96.nextSibling, _el$98 = _el$95.nextSibling, _el$99 = _el$98.firstChild, _el$100 = _el$98.nextSibling, _el$101 = _el$100.firstChild, _el$102 = _el$100.nextSibling, _el$103 = _el$102.firstChild, _el$104 = _el$103.nextSibling, _el$105 = _el$104.nextSibling, _el$106 = _el$105.nextSibling, _el$107 = _el$106.nextSibling, _el$108 = _el$107.nextSibling, _el$109 = _el$108.nextSibling, _el$110 = _el$109.nextSibling, _el$111 = _el$110.nextSibling, _el$112 = _el$111.nextSibling, _el$113 = _el$112.nextSibling, _el$114 = _el$113.nextSibling, _el$115 = _el$114.nextSibling, _el$116 = _el$115.nextSibling, _el$117 = _el$116.nextSibling, _el$118 = _el$117.nextSibling, _el$119 = _el$118.nextSibling, _el$120 = _el$119.nextSibling;
     setAttribute(_el$29, "id", `a-${id}`);
     setAttribute(_el$30, "fill", `url(#a-${id})`);
     setAttribute(_el$32, "id", `am-${id}`);
@@ -8678,8 +8773,6 @@ var _tmpl$92 = template(`<span>`);
 var _tmpl$102 = template(`<div><span>:`);
 var _tmpl$112 = template(`<div><div><button> [<!>...<!>]`);
 function chunkArray(array, size3) {
-  if (size3 < 1)
-    return [];
   let i2 = 0;
   const result = [];
   while (i2 < array.length) {
@@ -8697,7 +8790,7 @@ var Expander = (props) => {
     return theme() === "dark" ? darkStyles(css) : lightStyles(css);
   });
   return (() => {
-    const _el$ = _tmpl$23();
+    var _el$ = _tmpl$23();
     createRenderEffect(() => className(_el$, clsx(styles().expander, css`
           transform: rotate(${props.expanded ? 90 : 0}deg);
         `, props.expanded && css`
@@ -8718,7 +8811,7 @@ var CopyButton = (props) => {
   });
   const [copyState, setCopyState] = createSignal("NoCopy");
   return (() => {
-    const _el$2 = _tmpl$24();
+    var _el$2 = _tmpl$24();
     addEventListener(_el$2, "click", copyState() === "NoCopy" ? () => {
       navigator.clipboard.writeText(stringify(props.value)).then(() => {
         setCopyState("SuccessCopy");
@@ -8764,13 +8857,13 @@ var CopyButton = (props) => {
       }
     }));
     createRenderEffect((_p$) => {
-      const _v$ = styles().actionButton, _v$2 = `${copyState() === "NoCopy" ? "Copy object to clipboard" : copyState() === "SuccessCopy" ? "Object copied to clipboard" : "Error copying object to clipboard"}`;
-      _v$ !== _p$._v$ && className(_el$2, _p$._v$ = _v$);
-      _v$2 !== _p$._v$2 && setAttribute(_el$2, "aria-label", _p$._v$2 = _v$2);
+      var _v$ = styles().actionButton, _v$2 = `${copyState() === "NoCopy" ? "Copy object to clipboard" : copyState() === "SuccessCopy" ? "Object copied to clipboard" : "Error copying object to clipboard"}`;
+      _v$ !== _p$.e && className(_el$2, _p$.e = _v$);
+      _v$2 !== _p$.t && setAttribute(_el$2, "aria-label", _p$.t = _v$2);
       return _p$;
     }, {
-      _v$: void 0,
-      _v$2: void 0
+      e: void 0,
+      t: void 0
     });
     return _el$2;
   })();
@@ -8785,7 +8878,7 @@ var ClearArrayButton = (props) => {
   });
   const queryClient = useQueryDevtoolsContext().client;
   return (() => {
-    const _el$3 = _tmpl$32();
+    var _el$3 = _tmpl$32();
     _el$3.$$click = () => {
       const oldData = props.activeQuery.state.data;
       const newData = updateNestedDataByPath(oldData, props.dataPath, []);
@@ -8806,7 +8899,7 @@ var DeleteItemButton = (props) => {
   });
   const queryClient = useQueryDevtoolsContext().client;
   return (() => {
-    const _el$4 = _tmpl$42();
+    var _el$4 = _tmpl$42();
     _el$4.$$click = () => {
       const oldData = props.activeQuery.state.data;
       const newData = deleteNestedDataByPath(oldData, props.dataPath);
@@ -8827,7 +8920,7 @@ var ToggleValueButton = (props) => {
   });
   const queryClient = useQueryDevtoolsContext().client;
   return (() => {
-    const _el$5 = _tmpl$52();
+    var _el$5 = _tmpl$52();
     _el$5.$$click = () => {
       const oldData = props.activeQuery.state.data;
       const newData = updateNestedDataByPath(oldData, props.dataPath, !props.value);
@@ -8901,14 +8994,14 @@ function Explorer(props) {
   const subEntryPages = createMemo(() => chunkArray(subEntries(), 100));
   const currentDataPath = props.dataPath ?? [];
   return (() => {
-    const _el$6 = _tmpl$62();
+    var _el$6 = _tmpl$62();
     insert(_el$6, createComponent(Show, {
       get when() {
         return subEntryPages().length;
       },
       get children() {
         return [(() => {
-          const _el$7 = _tmpl$72(), _el$8 = _el$7.firstChild, _el$9 = _el$8.firstChild, _el$10 = _el$9.nextSibling, _el$11 = _el$10.nextSibling, _el$12 = _el$11.nextSibling, _el$13 = _el$12.firstChild;
+          var _el$7 = _tmpl$72(), _el$8 = _el$7.firstChild, _el$9 = _el$8.firstChild, _el$10 = _el$9.nextSibling, _el$11 = _el$10.nextSibling, _el$12 = _el$11.nextSibling, _el$13 = _el$12.firstChild;
           _el$8.$$click = () => toggleExpanded();
           insert(_el$8, createComponent(Expander, {
             get expanded() {
@@ -8924,7 +9017,7 @@ function Explorer(props) {
               return props.editable;
             },
             get children() {
-              const _el$14 = _tmpl$62();
+              var _el$14 = _tmpl$62();
               insert(_el$14, createComponent(CopyButton, {
                 get value() {
                   return props.value;
@@ -8961,15 +9054,15 @@ function Explorer(props) {
             }
           }), null);
           createRenderEffect((_p$) => {
-            const _v$3 = styles().expanderButtonContainer, _v$4 = styles().expanderButton, _v$5 = styles().info;
-            _v$3 !== _p$._v$3 && className(_el$7, _p$._v$3 = _v$3);
-            _v$4 !== _p$._v$4 && className(_el$8, _p$._v$4 = _v$4);
-            _v$5 !== _p$._v$5 && className(_el$12, _p$._v$5 = _v$5);
+            var _v$3 = styles().expanderButtonContainer, _v$4 = styles().expanderButton, _v$5 = styles().info;
+            _v$3 !== _p$.e && className(_el$7, _p$.e = _v$3);
+            _v$4 !== _p$.t && className(_el$8, _p$.t = _v$4);
+            _v$5 !== _p$.a && className(_el$12, _p$.a = _v$5);
             return _p$;
           }, {
-            _v$3: void 0,
-            _v$4: void 0,
-            _v$5: void 0
+            e: void 0,
+            t: void 0,
+            a: void 0
           });
           return _el$7;
         })(), createComponent(Show, {
@@ -8982,7 +9075,7 @@ function Explorer(props) {
                 return subEntryPages().length === 1;
               },
               get children() {
-                const _el$15 = _tmpl$62();
+                var _el$15 = _tmpl$62();
                 insert(_el$15, createComponent(Key, {
                   get each() {
                     return subEntries();
@@ -9022,13 +9115,13 @@ function Explorer(props) {
                 return subEntryPages().length > 1;
               },
               get children() {
-                const _el$16 = _tmpl$62();
+                var _el$16 = _tmpl$62();
                 insert(_el$16, createComponent(Index, {
                   get each() {
                     return subEntryPages();
                   },
                   children: (entries2, index) => (() => {
-                    const _el$22 = _tmpl$112(), _el$23 = _el$22.firstChild, _el$24 = _el$23.firstChild, _el$25 = _el$24.firstChild, _el$29 = _el$25.nextSibling, _el$27 = _el$29.nextSibling, _el$30 = _el$27.nextSibling;
+                    var _el$22 = _tmpl$112(), _el$23 = _el$22.firstChild, _el$24 = _el$23.firstChild, _el$25 = _el$24.firstChild, _el$29 = _el$25.nextSibling, _el$27 = _el$29.nextSibling, _el$30 = _el$27.nextSibling;
                     _el$30.nextSibling;
                     _el$24.$$click = () => setExpandedPages((old) => old.includes(index) ? old.filter((d) => d !== index) : [...old, index]);
                     insert(_el$24, createComponent(Expander, {
@@ -9043,7 +9136,7 @@ function Explorer(props) {
                         return expandedPages().includes(index);
                       },
                       get children() {
-                        const _el$31 = _tmpl$62();
+                        var _el$31 = _tmpl$62();
                         insert(_el$31, createComponent(Key, {
                           get each() {
                             return entries2();
@@ -9075,13 +9168,13 @@ function Explorer(props) {
                       }
                     }), null);
                     createRenderEffect((_p$) => {
-                      const _v$10 = styles().entry, _v$11 = styles().expanderButton;
-                      _v$10 !== _p$._v$10 && className(_el$23, _p$._v$10 = _v$10);
-                      _v$11 !== _p$._v$11 && className(_el$24, _p$._v$11 = _v$11);
+                      var _v$10 = styles().entry, _v$11 = styles().expanderButton;
+                      _v$10 !== _p$.e && className(_el$23, _p$.e = _v$10);
+                      _v$11 !== _p$.t && className(_el$24, _p$.t = _v$11);
                       return _p$;
                     }, {
-                      _v$10: void 0,
-                      _v$11: void 0
+                      e: void 0,
+                      t: void 0
                     });
                     return _el$22;
                   })()
@@ -9099,7 +9192,7 @@ function Explorer(props) {
         return subEntryPages().length === 0;
       },
       get children() {
-        const _el$17 = _tmpl$102(), _el$18 = _el$17.firstChild, _el$19 = _el$18.firstChild;
+        var _el$17 = _tmpl$102(), _el$18 = _el$17.firstChild, _el$19 = _el$18.firstChild;
         insert(_el$18, () => props.label, _el$19);
         insert(_el$17, createComponent(Show, {
           get when() {
@@ -9107,7 +9200,7 @@ function Explorer(props) {
           },
           get fallback() {
             return (() => {
-              const _el$32 = _tmpl$92();
+              var _el$32 = _tmpl$92();
               insert(_el$32, () => displayValue(props.value));
               createRenderEffect(() => className(_el$32, styles().value));
               return _el$32;
@@ -9119,20 +9212,20 @@ function Explorer(props) {
                 return createMemo(() => !!(props.editable && props.activeQuery !== void 0))() && (type() === "string" || type() === "number");
               },
               get children() {
-                const _el$20 = _tmpl$82();
+                var _el$20 = _tmpl$82();
                 _el$20.addEventListener("change", (changeEvent) => {
                   const oldData = props.activeQuery.state.data;
                   const newData = updateNestedDataByPath(oldData, currentDataPath, type() === "number" ? changeEvent.target.valueAsNumber : changeEvent.target.value);
                   queryClient.setQueryData(props.activeQuery.queryKey, newData);
                 });
                 createRenderEffect((_p$) => {
-                  const _v$6 = type() === "number" ? "number" : "text", _v$7 = clsx(styles().value, styles().editableInput);
-                  _v$6 !== _p$._v$6 && setAttribute(_el$20, "type", _p$._v$6 = _v$6);
-                  _v$7 !== _p$._v$7 && className(_el$20, _p$._v$7 = _v$7);
+                  var _v$6 = type() === "number" ? "number" : "text", _v$7 = clsx(styles().value, styles().editableInput);
+                  _v$6 !== _p$.e && setAttribute(_el$20, "type", _p$.e = _v$6);
+                  _v$7 !== _p$.t && className(_el$20, _p$.t = _v$7);
                   return _p$;
                 }, {
-                  _v$6: void 0,
-                  _v$7: void 0
+                  e: void 0,
+                  t: void 0
                 });
                 createRenderEffect(() => _el$20.value = props.value);
                 return _el$20;
@@ -9142,7 +9235,7 @@ function Explorer(props) {
                 return type() === "boolean";
               },
               get children() {
-                const _el$21 = _tmpl$92();
+                var _el$21 = _tmpl$92();
                 insert(_el$21, createComponent(ToggleValueButton, {
                   get activeQuery() {
                     return props.activeQuery;
@@ -9173,13 +9266,13 @@ function Explorer(props) {
           }
         }), null);
         createRenderEffect((_p$) => {
-          const _v$8 = styles().row, _v$9 = styles().label;
-          _v$8 !== _p$._v$8 && className(_el$17, _p$._v$8 = _v$8);
-          _v$9 !== _p$._v$9 && className(_el$18, _p$._v$9 = _v$9);
+          var _v$8 = styles().row, _v$9 = styles().label;
+          _v$8 !== _p$.e && className(_el$17, _p$.e = _v$8);
+          _v$9 !== _p$.t && className(_el$18, _p$.t = _v$9);
           return _p$;
         }, {
-          _v$8: void 0,
-          _v$9: void 0
+          e: void 0,
+          t: void 0
         });
         return _el$17;
       }
@@ -9581,8 +9674,8 @@ var Devtools = (props) => {
       });
     }
   }), (() => {
-    const _el$ = _tmpl$26();
-    const _ref$ = transitionsContainerRef;
+    var _el$ = _tmpl$26();
+    var _ref$ = transitionsContainerRef;
     typeof _ref$ === "function" ? use(_ref$, _el$) : transitionsContainerRef = _el$;
     insert(_el$, createComponent(TransitionGroup, {
       name: "tsqd-panel-transition",
@@ -9612,7 +9705,7 @@ var Devtools = (props) => {
             return !isOpen();
           },
           get children() {
-            const _el$2 = _tmpl$25(), _el$3 = _el$2.firstChild, _el$4 = _el$3.nextSibling;
+            var _el$2 = _tmpl$25(), _el$3 = _el$2.firstChild, _el$4 = _el$3.nextSibling;
             insert(_el$3, createComponent(TanstackLogo, {}));
             _el$4.$$click = () => props.setLocalStore("open", "true");
             insert(_el$4, createComponent(TanstackLogo, {}));
@@ -9695,7 +9788,7 @@ var PiPPanel = (props) => {
     });
   });
   return (() => {
-    const _el$5 = _tmpl$26();
+    var _el$5 = _tmpl$26();
     _el$5.style.setProperty("--tsqd-font-size", "16px");
     _el$5.style.setProperty("max-height", "100vh");
     _el$5.style.setProperty("height", "100vh");
@@ -9821,8 +9914,8 @@ var DevtoolsPanel = (props) => {
     `;
   };
   return (() => {
-    const _el$6 = _tmpl$33(), _el$7 = _el$6.firstChild, _el$8 = _el$7.nextSibling;
-    const _ref$2 = panelRef;
+    var _el$6 = _tmpl$33(), _el$7 = _el$6.firstChild, _el$8 = _el$7.nextSibling;
+    var _ref$2 = panelRef;
     typeof _ref$2 === "function" ? use(_ref$2, _el$6) : panelRef = _el$6;
     _el$7.$$mousedown = handleDragStart;
     _el$8.$$click = () => props.setLocalStore("open", "false");
@@ -9836,23 +9929,23 @@ var DevtoolsPanel = (props) => {
       }
     }), null);
     createRenderEffect((_p$) => {
-      const _v$ = clsx(styles().panel, styles()[`panel-position-${position()}`], getPanelDynamicStyles(), {
+      var _v$ = clsx(styles().panel, styles()[`panel-position-${position()}`], getPanelDynamicStyles(), {
         [css`
             min-width: min-content;
           `]: panelWidth() < thirdBreakpoint && (position() === "right" || position() === "left")
       }, "tsqd-main-panel"), _v$2 = position() === "bottom" || position() === "top" ? `${props.localStore.height || DEFAULT_HEIGHT}px` : "auto", _v$3 = position() === "right" || position() === "left" ? `${props.localStore.width || DEFAULT_WIDTH}px` : "auto", _v$4 = clsx(styles().dragHandle, styles()[`dragHandle-position-${position()}`], "tsqd-drag-handle"), _v$5 = clsx(styles().closeBtn, styles()[`closeBtn-position-${position()}`], "tsqd-minimize-btn");
-      _v$ !== _p$._v$ && className(_el$6, _p$._v$ = _v$);
-      _v$2 !== _p$._v$2 && ((_p$._v$2 = _v$2) != null ? _el$6.style.setProperty("height", _v$2) : _el$6.style.removeProperty("height"));
-      _v$3 !== _p$._v$3 && ((_p$._v$3 = _v$3) != null ? _el$6.style.setProperty("width", _v$3) : _el$6.style.removeProperty("width"));
-      _v$4 !== _p$._v$4 && className(_el$7, _p$._v$4 = _v$4);
-      _v$5 !== _p$._v$5 && className(_el$8, _p$._v$5 = _v$5);
+      _v$ !== _p$.e && className(_el$6, _p$.e = _v$);
+      _v$2 !== _p$.t && ((_p$.t = _v$2) != null ? _el$6.style.setProperty("height", _v$2) : _el$6.style.removeProperty("height"));
+      _v$3 !== _p$.a && ((_p$.a = _v$3) != null ? _el$6.style.setProperty("width", _v$3) : _el$6.style.removeProperty("width"));
+      _v$4 !== _p$.o && className(_el$7, _p$.o = _v$4);
+      _v$5 !== _p$.i && className(_el$8, _p$.i = _v$5);
       return _p$;
     }, {
-      _v$: void 0,
-      _v$2: void 0,
-      _v$3: void 0,
-      _v$4: void 0,
-      _v$5: void 0
+      e: void 0,
+      t: void 0,
+      a: void 0,
+      o: void 0,
+      i: void 0
     });
     return _el$6;
   })();
@@ -9913,8 +10006,8 @@ var ContentView = (props) => {
     el.style.setProperty("--tsqd-font-size", variable);
   };
   return [(() => {
-    const _el$9 = _tmpl$212(), _el$10 = _el$9.firstChild, _el$11 = _el$10.firstChild, _el$12 = _el$11.firstChild, _el$13 = _el$12.firstChild, _el$14 = _el$13.nextSibling, _el$15 = _el$14.firstChild, _el$16 = _el$10.nextSibling, _el$17 = _el$16.firstChild, _el$18 = _el$17.firstChild, _el$19 = _el$18.firstChild, _el$20 = _el$18.nextSibling, _el$23 = _el$20.nextSibling, _el$26 = _el$17.nextSibling, _el$27 = _el$26.firstChild, _el$28 = _el$27.nextSibling;
-    const _ref$3 = containerRef;
+    var _el$9 = _tmpl$212(), _el$10 = _el$9.firstChild, _el$11 = _el$10.firstChild, _el$12 = _el$11.firstChild, _el$13 = _el$12.firstChild, _el$14 = _el$13.nextSibling, _el$15 = _el$14.firstChild, _el$16 = _el$10.nextSibling, _el$17 = _el$16.firstChild, _el$18 = _el$17.firstChild, _el$19 = _el$18.firstChild, _el$20 = _el$18.nextSibling, _el$23 = _el$20.nextSibling, _el$26 = _el$17.nextSibling, _el$27 = _el$26.firstChild, _el$28 = _el$27.nextSibling;
+    var _ref$3 = containerRef;
     typeof _ref$3 === "function" ? use(_ref$3, _el$9) : containerRef = _el$9;
     _el$12.$$click = () => {
       if (!pip().pipWindow) {
@@ -9994,12 +10087,12 @@ var ContentView = (props) => {
         return selectedView() === "queries";
       },
       get children() {
-        const _el$21 = _tmpl$43();
+        var _el$21 = _tmpl$43();
         _el$21.addEventListener("change", (e2) => {
           props.setLocalStore("sort", e2.currentTarget.value);
         });
         insert(_el$21, () => Object.keys(sortFns).map((key) => (() => {
-          const _el$44 = _tmpl$223();
+          var _el$44 = _tmpl$223();
           _el$44.firstChild;
           _el$44.value = key;
           insert(_el$44, key, null);
@@ -10014,12 +10107,12 @@ var ContentView = (props) => {
         return selectedView() === "mutations";
       },
       get children() {
-        const _el$22 = _tmpl$53();
+        var _el$22 = _tmpl$53();
         _el$22.addEventListener("change", (e2) => {
           props.setLocalStore("mutationSort", e2.currentTarget.value);
         });
         insert(_el$22, () => Object.keys(mutationSortFns).map((key) => (() => {
-          const _el$46 = _tmpl$223();
+          var _el$46 = _tmpl$223();
           _el$46.firstChild;
           _el$46.value = key;
           insert(_el$46, key, null);
@@ -10071,7 +10164,7 @@ var ContentView = (props) => {
       }
     };
     insert(_el$28, (() => {
-      const _c$ = createMemo(() => !!offline());
+      var _c$ = createMemo(() => !!offline());
       return () => _c$() ? createComponent(Offline, {}) : createComponent(Wifi, {});
     })());
     insert(_el$26, createComponent(Show, {
@@ -10079,7 +10172,7 @@ var ContentView = (props) => {
         return !pip().pipWindow;
       },
       get children() {
-        const _el$29 = _tmpl$83();
+        var _el$29 = _tmpl$83();
         _el$29.$$click = () => {
           pip().requestPipWindow(Number(window.innerWidth), Number(props.localStore.height ?? 500));
         };
@@ -10110,7 +10203,7 @@ var ContentView = (props) => {
               },
               get children() {
                 return [(() => {
-                  const _el$30 = _tmpl$93();
+                  var _el$30 = _tmpl$93();
                   createRenderEffect(() => className(_el$30, clsx(styles().settingsMenuHeader, "tsqd-settings-menu-header")));
                   return _el$30;
                 })(), createComponent(dropdown_menu_exports.Sub, {
@@ -10260,7 +10353,7 @@ var ContentView = (props) => {
         return selectedView() === "queries";
       },
       get children() {
-        const _el$40 = _tmpl$192(), _el$41 = _el$40.firstChild;
+        var _el$40 = _tmpl$192(), _el$41 = _el$40.firstChild;
         insert(_el$41, createComponent(Key, {
           by: (q) => q.queryHash,
           get each() {
@@ -10281,7 +10374,7 @@ var ContentView = (props) => {
         return selectedView() === "mutations";
       },
       get children() {
-        const _el$42 = _tmpl$202(), _el$43 = _el$42.firstChild;
+        var _el$42 = _tmpl$202(), _el$43 = _el$42.firstChild;
         insert(_el$43, createComponent(Key, {
           by: (m) => m.mutationId,
           get each() {
@@ -10298,55 +10391,55 @@ var ContentView = (props) => {
       }
     }), null);
     createRenderEffect((_p$) => {
-      const _v$6 = clsx(styles().queriesContainer, panelWidth() < secondBreakpoint && (selectedQueryHash() || selectedMutationId()) && css`
+      var _v$6 = clsx(styles().queriesContainer, panelWidth() < secondBreakpoint && (selectedQueryHash() || selectedMutationId()) && css`
               height: 50%;
               max-height: 50%;
             `, panelWidth() < secondBreakpoint && !(selectedQueryHash() || selectedMutationId()) && css`
               height: 100%;
               max-height: 100%;
             `, "tsqd-queries-container"), _v$7 = clsx(styles().row, "tsqd-header"), _v$8 = styles().logoAndToggleContainer, _v$9 = clsx(styles().logo, "tsqd-text-logo-container"), _v$10 = clsx(styles().tanstackLogo, "tsqd-text-logo-tanstack"), _v$11 = clsx(styles().queryFlavorLogo, "tsqd-text-logo-query-flavor"), _v$12 = clsx(styles().row, "tsqd-filters-actions-container"), _v$13 = clsx(styles().filtersContainer, "tsqd-filters-container"), _v$14 = clsx(styles().filterInput, "tsqd-query-filter-textfield-container"), _v$15 = clsx("tsqd-query-filter-textfield"), _v$16 = clsx(styles().filterSelect, "tsqd-query-filter-sort-container"), _v$17 = `Sort order ${(selectedView() === "queries" ? sortOrder() : mutationSortOrder()) === -1 ? "descending" : "ascending"}`, _v$18 = (selectedView() === "queries" ? sortOrder() : mutationSortOrder()) === -1, _v$19 = clsx(styles().actionsContainer, "tsqd-actions-container"), _v$20 = clsx(styles().actionsBtn, "tsqd-actions-btn", "tsqd-action-clear-cache"), _v$21 = `Clear ${selectedView()} cache`, _v$22 = clsx(styles().actionsBtn, offline() && styles().actionsBtnOffline, "tsqd-actions-btn", "tsqd-action-mock-offline-behavior"), _v$23 = `${offline() ? "Unset offline mocking behavior" : "Mock offline behavior"}`, _v$24 = offline(), _v$25 = `${offline() ? "Unset offline mocking behavior" : "Mock offline behavior"}`;
-      _v$6 !== _p$._v$6 && className(_el$9, _p$._v$6 = _v$6);
-      _v$7 !== _p$._v$7 && className(_el$10, _p$._v$7 = _v$7);
-      _v$8 !== _p$._v$8 && className(_el$11, _p$._v$8 = _v$8);
-      _v$9 !== _p$._v$9 && className(_el$12, _p$._v$9 = _v$9);
-      _v$10 !== _p$._v$10 && className(_el$13, _p$._v$10 = _v$10);
-      _v$11 !== _p$._v$11 && className(_el$14, _p$._v$11 = _v$11);
-      _v$12 !== _p$._v$12 && className(_el$16, _p$._v$12 = _v$12);
-      _v$13 !== _p$._v$13 && className(_el$17, _p$._v$13 = _v$13);
-      _v$14 !== _p$._v$14 && className(_el$18, _p$._v$14 = _v$14);
-      _v$15 !== _p$._v$15 && className(_el$19, _p$._v$15 = _v$15);
-      _v$16 !== _p$._v$16 && className(_el$20, _p$._v$16 = _v$16);
-      _v$17 !== _p$._v$17 && setAttribute(_el$23, "aria-label", _p$._v$17 = _v$17);
-      _v$18 !== _p$._v$18 && setAttribute(_el$23, "aria-pressed", _p$._v$18 = _v$18);
-      _v$19 !== _p$._v$19 && className(_el$26, _p$._v$19 = _v$19);
-      _v$20 !== _p$._v$20 && className(_el$27, _p$._v$20 = _v$20);
-      _v$21 !== _p$._v$21 && setAttribute(_el$27, "title", _p$._v$21 = _v$21);
-      _v$22 !== _p$._v$22 && className(_el$28, _p$._v$22 = _v$22);
-      _v$23 !== _p$._v$23 && setAttribute(_el$28, "aria-label", _p$._v$23 = _v$23);
-      _v$24 !== _p$._v$24 && setAttribute(_el$28, "aria-pressed", _p$._v$24 = _v$24);
-      _v$25 !== _p$._v$25 && setAttribute(_el$28, "title", _p$._v$25 = _v$25);
+      _v$6 !== _p$.e && className(_el$9, _p$.e = _v$6);
+      _v$7 !== _p$.t && className(_el$10, _p$.t = _v$7);
+      _v$8 !== _p$.a && className(_el$11, _p$.a = _v$8);
+      _v$9 !== _p$.o && className(_el$12, _p$.o = _v$9);
+      _v$10 !== _p$.i && className(_el$13, _p$.i = _v$10);
+      _v$11 !== _p$.n && className(_el$14, _p$.n = _v$11);
+      _v$12 !== _p$.s && className(_el$16, _p$.s = _v$12);
+      _v$13 !== _p$.h && className(_el$17, _p$.h = _v$13);
+      _v$14 !== _p$.r && className(_el$18, _p$.r = _v$14);
+      _v$15 !== _p$.d && className(_el$19, _p$.d = _v$15);
+      _v$16 !== _p$.l && className(_el$20, _p$.l = _v$16);
+      _v$17 !== _p$.u && setAttribute(_el$23, "aria-label", _p$.u = _v$17);
+      _v$18 !== _p$.c && setAttribute(_el$23, "aria-pressed", _p$.c = _v$18);
+      _v$19 !== _p$.w && className(_el$26, _p$.w = _v$19);
+      _v$20 !== _p$.m && className(_el$27, _p$.m = _v$20);
+      _v$21 !== _p$.f && setAttribute(_el$27, "title", _p$.f = _v$21);
+      _v$22 !== _p$.y && className(_el$28, _p$.y = _v$22);
+      _v$23 !== _p$.g && setAttribute(_el$28, "aria-label", _p$.g = _v$23);
+      _v$24 !== _p$.p && setAttribute(_el$28, "aria-pressed", _p$.p = _v$24);
+      _v$25 !== _p$.b && setAttribute(_el$28, "title", _p$.b = _v$25);
       return _p$;
     }, {
-      _v$6: void 0,
-      _v$7: void 0,
-      _v$8: void 0,
-      _v$9: void 0,
-      _v$10: void 0,
-      _v$11: void 0,
-      _v$12: void 0,
-      _v$13: void 0,
-      _v$14: void 0,
-      _v$15: void 0,
-      _v$16: void 0,
-      _v$17: void 0,
-      _v$18: void 0,
-      _v$19: void 0,
-      _v$20: void 0,
-      _v$21: void 0,
-      _v$22: void 0,
-      _v$23: void 0,
-      _v$24: void 0,
-      _v$25: void 0
+      e: void 0,
+      t: void 0,
+      a: void 0,
+      o: void 0,
+      i: void 0,
+      n: void 0,
+      s: void 0,
+      h: void 0,
+      r: void 0,
+      d: void 0,
+      l: void 0,
+      u: void 0,
+      c: void 0,
+      w: void 0,
+      m: void 0,
+      f: void 0,
+      y: void 0,
+      g: void 0,
+      p: void 0,
+      b: void 0
     });
     createRenderEffect(() => _el$19.value = selectedView() === "queries" ? props.localStore.filter || "" : props.localStore.mutationFilter || "");
     return _el$9;
@@ -10425,7 +10518,7 @@ var QueryRow = (props) => {
       return queryState();
     },
     get children() {
-      const _el$48 = _tmpl$242(), _el$49 = _el$48.firstChild, _el$50 = _el$49.nextSibling;
+      var _el$48 = _tmpl$242(), _el$49 = _el$48.firstChild, _el$50 = _el$49.nextSibling;
       _el$48.$$click = () => setSelectedQueryHash(props.query.queryHash === selectedQueryHash() ? null : props.query.queryHash);
       insert(_el$49, observers);
       insert(_el$50, () => props.query.queryHash);
@@ -10438,15 +10531,15 @@ var QueryRow = (props) => {
         }
       }), null);
       createRenderEffect((_p$) => {
-        const _v$26 = clsx(styles().queryRow, selectedQueryHash() === props.query.queryHash && styles().selectedQueryRow, "tsqd-query-row"), _v$27 = `Query key ${props.query.queryHash}`, _v$28 = clsx(getObserverCountColorStyles(), "tsqd-query-observer-count");
-        _v$26 !== _p$._v$26 && className(_el$48, _p$._v$26 = _v$26);
-        _v$27 !== _p$._v$27 && setAttribute(_el$48, "aria-label", _p$._v$27 = _v$27);
-        _v$28 !== _p$._v$28 && className(_el$49, _p$._v$28 = _v$28);
+        var _v$26 = clsx(styles().queryRow, selectedQueryHash() === props.query.queryHash && styles().selectedQueryRow, "tsqd-query-row"), _v$27 = `Query key ${props.query.queryHash}`, _v$28 = clsx(getObserverCountColorStyles(), "tsqd-query-observer-count");
+        _v$26 !== _p$.e && className(_el$48, _p$.e = _v$26);
+        _v$27 !== _p$.t && setAttribute(_el$48, "aria-label", _p$.t = _v$27);
+        _v$28 !== _p$.a && className(_el$49, _p$.a = _v$28);
         return _p$;
       }, {
-        _v$26: void 0,
-        _v$27: void 0,
-        _v$28: void 0
+        e: void 0,
+        t: void 0,
+        a: void 0
       });
       return _el$48;
     }
@@ -10505,7 +10598,7 @@ var MutationRow = (props) => {
       return mutationState();
     },
     get children() {
-      const _el$52 = _tmpl$242(), _el$53 = _el$52.firstChild, _el$54 = _el$53.nextSibling;
+      var _el$52 = _tmpl$242(), _el$53 = _el$52.firstChild, _el$54 = _el$53.nextSibling;
       _el$52.$$click = () => {
         setSelectedMutationId(props.mutation.mutationId === selectedMutationId() ? null : props.mutation.mutationId);
       };
@@ -10551,15 +10644,15 @@ var MutationRow = (props) => {
       }), null);
       insert(_el$54, () => new Date(props.mutation.state.submittedAt).toLocaleString(), null);
       createRenderEffect((_p$) => {
-        const _v$29 = clsx(styles().queryRow, selectedMutationId() === props.mutation.mutationId && styles().selectedQueryRow, "tsqd-query-row"), _v$30 = `Mutation submitted at ${new Date(props.mutation.state.submittedAt).toLocaleString()}`, _v$31 = clsx(getObserverCountColorStyles(), "tsqd-query-observer-count");
-        _v$29 !== _p$._v$29 && className(_el$52, _p$._v$29 = _v$29);
-        _v$30 !== _p$._v$30 && setAttribute(_el$52, "aria-label", _p$._v$30 = _v$30);
-        _v$31 !== _p$._v$31 && className(_el$53, _p$._v$31 = _v$31);
+        var _v$29 = clsx(styles().queryRow, selectedMutationId() === props.mutation.mutationId && styles().selectedQueryRow, "tsqd-query-row"), _v$30 = `Mutation submitted at ${new Date(props.mutation.state.submittedAt).toLocaleString()}`, _v$31 = clsx(getObserverCountColorStyles(), "tsqd-query-observer-count");
+        _v$29 !== _p$.e && className(_el$52, _p$.e = _v$29);
+        _v$30 !== _p$.t && setAttribute(_el$52, "aria-label", _p$.t = _v$30);
+        _v$31 !== _p$.a && className(_el$53, _p$.a = _v$31);
         return _p$;
       }, {
-        _v$29: void 0,
-        _v$30: void 0,
-        _v$31: void 0
+        e: void 0,
+        t: void 0,
+        a: void 0
       });
       return _el$52;
     }
@@ -10579,7 +10672,7 @@ var QueryStatusCount = () => {
     return theme() === "dark" ? darkStyles2(css) : lightStyles2(css);
   });
   return (() => {
-    const _el$55 = _tmpl$26();
+    var _el$55 = _tmpl$26();
     insert(_el$55, createComponent(QueryStatus, {
       label: "Fresh",
       color: "green",
@@ -10644,7 +10737,7 @@ var MutationStatusCount = () => {
     return theme() === "dark" ? darkStyles2(css) : lightStyles2(css);
   });
   return (() => {
-    const _el$56 = _tmpl$26();
+    var _el$56 = _tmpl$26();
     insert(_el$56, createComponent(QueryStatus, {
       label: "Paused",
       color: "purple",
@@ -10705,8 +10798,8 @@ var QueryStatus = (props) => {
     return true;
   });
   return (() => {
-    const _el$57 = _tmpl$27(), _el$59 = _el$57.firstChild, _el$61 = _el$59.nextSibling;
-    const _ref$4 = tagRef;
+    var _el$57 = _tmpl$27(), _el$59 = _el$57.firstChild, _el$61 = _el$59.nextSibling;
+    var _ref$4 = tagRef;
     typeof _ref$4 === "function" ? use(_ref$4, _el$57) : tagRef = _el$57;
     _el$57.addEventListener("mouseleave", () => {
       setMouseOver(false);
@@ -10735,7 +10828,7 @@ var QueryStatus = (props) => {
         return createMemo(() => !!!showLabel())() && (mouseOver() || focused());
       },
       get children() {
-        const _el$58 = _tmpl$252();
+        var _el$58 = _tmpl$252();
         insert(_el$58, () => props.label);
         createRenderEffect(() => className(_el$58, clsx(styles().statusTooltip, "tsqd-query-status-tooltip")));
         return _el$58;
@@ -10746,7 +10839,7 @@ var QueryStatus = (props) => {
         return showLabel();
       },
       get children() {
-        const _el$60 = _tmpl$262();
+        var _el$60 = _tmpl$262();
         insert(_el$60, () => props.label);
         createRenderEffect(() => className(_el$60, clsx(styles().queryStatusTagLabel, "tsqd-query-status-tag-label")));
         return _el$60;
@@ -10754,7 +10847,7 @@ var QueryStatus = (props) => {
     }), _el$61);
     insert(_el$61, () => props.count);
     createRenderEffect((_p$) => {
-      const _v$32 = clsx(css`
+      var _v$32 = clsx(css`
             width: ${tokens.size[1.5]};
             height: ${tokens.size[1.5]};
             border-radius: ${tokens.border.radius.full};
@@ -10763,12 +10856,12 @@ var QueryStatus = (props) => {
               background-color: ${t2(colors[props.color][100], colors[props.color][900])};
               color: ${t2(colors[props.color][700], colors[props.color][300])};
             `, "tsqd-query-status-tag-count");
-      _v$32 !== _p$._v$32 && className(_el$59, _p$._v$32 = _v$32);
-      _v$33 !== _p$._v$33 && className(_el$61, _p$._v$33 = _v$33);
+      _v$32 !== _p$.e && className(_el$59, _p$.e = _v$32);
+      _v$33 !== _p$.t && className(_el$61, _p$.t = _v$33);
       return _p$;
     }, {
-      _v$32: void 0,
-      _v$33: void 0
+      e: void 0,
+      t: void 0
     });
     return _el$57;
   })();
@@ -10875,7 +10968,7 @@ var QueryDetails = () => {
       return createMemo(() => !!activeQuery())() && activeQueryState();
     },
     get children() {
-      const _el$62 = _tmpl$30(), _el$63 = _el$62.firstChild, _el$64 = _el$63.nextSibling, _el$65 = _el$64.firstChild, _el$66 = _el$65.firstChild, _el$67 = _el$66.firstChild, _el$68 = _el$66.nextSibling, _el$69 = _el$65.nextSibling, _el$70 = _el$69.firstChild, _el$71 = _el$70.nextSibling, _el$72 = _el$69.nextSibling, _el$73 = _el$72.firstChild, _el$74 = _el$73.nextSibling, _el$75 = _el$64.nextSibling, _el$76 = _el$75.nextSibling, _el$77 = _el$76.firstChild, _el$78 = _el$77.firstChild, _el$79 = _el$77.nextSibling, _el$80 = _el$79.firstChild, _el$81 = _el$79.nextSibling, _el$82 = _el$81.firstChild, _el$83 = _el$81.nextSibling, _el$84 = _el$83.firstChild, _el$85 = _el$83.nextSibling, _el$86 = _el$85.firstChild, _el$87 = _el$86.nextSibling, _el$96 = _el$76.nextSibling, _el$97 = _el$96.nextSibling, _el$98 = _el$97.nextSibling, _el$99 = _el$98.nextSibling;
+      var _el$62 = _tmpl$30(), _el$63 = _el$62.firstChild, _el$64 = _el$63.nextSibling, _el$65 = _el$64.firstChild, _el$66 = _el$65.firstChild, _el$67 = _el$66.firstChild, _el$68 = _el$66.nextSibling, _el$69 = _el$65.nextSibling, _el$70 = _el$69.firstChild, _el$71 = _el$70.nextSibling, _el$72 = _el$69.nextSibling, _el$73 = _el$72.firstChild, _el$74 = _el$73.nextSibling, _el$75 = _el$64.nextSibling, _el$76 = _el$75.nextSibling, _el$77 = _el$76.firstChild, _el$78 = _el$77.firstChild, _el$79 = _el$77.nextSibling, _el$80 = _el$79.firstChild, _el$81 = _el$79.nextSibling, _el$82 = _el$81.firstChild, _el$83 = _el$81.nextSibling, _el$84 = _el$83.firstChild, _el$85 = _el$83.nextSibling, _el$86 = _el$85.firstChild, _el$87 = _el$86.nextSibling, _el$96 = _el$76.nextSibling, _el$97 = _el$96.nextSibling, _el$98 = _el$97.nextSibling, _el$99 = _el$98.nextSibling;
       insert(_el$67, () => displayValue(activeQuery().queryKey, true));
       insert(_el$68, statusLabel);
       insert(_el$71, observerCount);
@@ -10921,7 +11014,7 @@ var QueryDetails = () => {
           return errorTypes().length === 0 || queryStatus() === "error";
         },
         get children() {
-          const _el$88 = _tmpl$28(), _el$89 = _el$88.firstChild, _el$90 = _el$89.nextSibling;
+          var _el$88 = _tmpl$28(), _el$89 = _el$88.firstChild, _el$90 = _el$89.nextSibling;
           _el$88.$$click = () => {
             if (!activeQuery().state.error) {
               triggerError();
@@ -10931,19 +11024,19 @@ var QueryDetails = () => {
           };
           insert(_el$88, () => queryStatus() === "error" ? "Restore" : "Trigger", _el$90);
           createRenderEffect((_p$) => {
-            const _v$34 = clsx(css`
+            var _v$34 = clsx(css`
                   color: ${t2(colors.red[500], colors.red[400])};
                 `, "tsqd-query-details-actions-btn", "tsqd-query-details-action-error"), _v$35 = queryStatus() === "pending", _v$36 = css`
                   background-color: ${t2(colors.red[500], colors.red[400])};
                 `;
-            _v$34 !== _p$._v$34 && className(_el$88, _p$._v$34 = _v$34);
-            _v$35 !== _p$._v$35 && (_el$88.disabled = _p$._v$35 = _v$35);
-            _v$36 !== _p$._v$36 && className(_el$89, _p$._v$36 = _v$36);
+            _v$34 !== _p$.e && className(_el$88, _p$.e = _v$34);
+            _v$35 !== _p$.t && (_el$88.disabled = _p$.t = _v$35);
+            _v$36 !== _p$.a && className(_el$89, _p$.a = _v$36);
             return _p$;
           }, {
-            _v$34: void 0,
-            _v$35: void 0,
-            _v$36: void 0
+            e: void 0,
+            t: void 0,
+            a: void 0
           });
           return _el$88;
         }
@@ -10953,7 +11046,7 @@ var QueryDetails = () => {
           return !(errorTypes().length === 0 || queryStatus() === "error");
         },
         get children() {
-          const _el$91 = _tmpl$29(), _el$92 = _el$91.firstChild, _el$93 = _el$92.nextSibling, _el$94 = _el$93.nextSibling;
+          var _el$91 = _tmpl$29(), _el$92 = _el$91.firstChild, _el$93 = _el$92.nextSibling, _el$94 = _el$93.nextSibling;
           _el$94.firstChild;
           _el$94.addEventListener("change", (e2) => {
             const errorType = errorTypes().find((et) => et.name === e2.currentTarget.value);
@@ -10964,7 +11057,7 @@ var QueryDetails = () => {
               return errorTypes();
             },
             children: (errorType) => (() => {
-              const _el$100 = _tmpl$31();
+              var _el$100 = _tmpl$31();
               insert(_el$100, () => errorType.name);
               createRenderEffect(() => _el$100.value = errorType.name);
               return _el$100;
@@ -10972,17 +11065,17 @@ var QueryDetails = () => {
           }), null);
           insert(_el$91, createComponent(ChevronDown, {}), null);
           createRenderEffect((_p$) => {
-            const _v$37 = clsx(styles().actionsSelect, "tsqd-query-details-actions-btn", "tsqd-query-details-action-error-multiple"), _v$38 = css`
+            var _v$37 = clsx(styles().actionsSelect, "tsqd-query-details-actions-btn", "tsqd-query-details-action-error-multiple"), _v$38 = css`
                   background-color: ${tokens.colors.red[400]};
                 `, _v$39 = queryStatus() === "pending";
-            _v$37 !== _p$._v$37 && className(_el$91, _p$._v$37 = _v$37);
-            _v$38 !== _p$._v$38 && className(_el$92, _p$._v$38 = _v$38);
-            _v$39 !== _p$._v$39 && (_el$94.disabled = _p$._v$39 = _v$39);
+            _v$37 !== _p$.e && className(_el$91, _p$.e = _v$37);
+            _v$38 !== _p$.t && className(_el$92, _p$.t = _v$38);
+            _v$39 !== _p$.a && (_el$94.disabled = _p$.a = _v$39);
             return _p$;
           }, {
-            _v$37: void 0,
-            _v$38: void 0,
-            _v$39: void 0
+            e: void 0,
+            t: void 0,
+            a: void 0
           });
           return _el$91;
         }
@@ -11006,7 +11099,7 @@ var QueryDetails = () => {
         }
       }));
       createRenderEffect((_p$) => {
-        const _v$40 = clsx(styles().detailsContainer, "tsqd-query-details-container"), _v$41 = clsx(styles().detailsHeader, "tsqd-query-details-header"), _v$42 = clsx(styles().detailsBody, "tsqd-query-details-summary-container"), _v$43 = clsx(styles().queryDetailsStatus, getQueryStatusColors()), _v$44 = clsx(styles().detailsHeader, "tsqd-query-details-header"), _v$45 = clsx(styles().actionsBody, "tsqd-query-details-actions-container"), _v$46 = clsx(css`
+        var _v$40 = clsx(styles().detailsContainer, "tsqd-query-details-container"), _v$41 = clsx(styles().detailsHeader, "tsqd-query-details-header"), _v$42 = clsx(styles().detailsBody, "tsqd-query-details-summary-container"), _v$43 = clsx(styles().queryDetailsStatus, getQueryStatusColors()), _v$44 = clsx(styles().detailsHeader, "tsqd-query-details-header"), _v$45 = clsx(styles().actionsBody, "tsqd-query-details-actions-container"), _v$46 = clsx(css`
                 color: ${t2(colors.blue[600], colors.blue[400])};
               `, "tsqd-query-details-actions-btn", "tsqd-query-details-action-refetch"), _v$47 = statusLabel() === "fetching", _v$48 = css`
                 background-color: ${t2(colors.blue[600], colors.blue[400])};
@@ -11027,58 +11120,58 @@ var QueryDetails = () => {
               `, "tsqd-query-details-actions-btn", "tsqd-query-details-action-loading"), _v$59 = restoringLoading(), _v$60 = css`
                 background-color: ${t2(colors.cyan[500], colors.cyan[400])};
               `, _v$61 = clsx(styles().detailsHeader, "tsqd-query-details-header"), _v$62 = tokens.size[2], _v$63 = clsx(styles().detailsHeader, "tsqd-query-details-header"), _v$64 = tokens.size[2];
-        _v$40 !== _p$._v$40 && className(_el$62, _p$._v$40 = _v$40);
-        _v$41 !== _p$._v$41 && className(_el$63, _p$._v$41 = _v$41);
-        _v$42 !== _p$._v$42 && className(_el$64, _p$._v$42 = _v$42);
-        _v$43 !== _p$._v$43 && className(_el$68, _p$._v$43 = _v$43);
-        _v$44 !== _p$._v$44 && className(_el$75, _p$._v$44 = _v$44);
-        _v$45 !== _p$._v$45 && className(_el$76, _p$._v$45 = _v$45);
-        _v$46 !== _p$._v$46 && className(_el$77, _p$._v$46 = _v$46);
-        _v$47 !== _p$._v$47 && (_el$77.disabled = _p$._v$47 = _v$47);
-        _v$48 !== _p$._v$48 && className(_el$78, _p$._v$48 = _v$48);
-        _v$49 !== _p$._v$49 && className(_el$79, _p$._v$49 = _v$49);
-        _v$50 !== _p$._v$50 && (_el$79.disabled = _p$._v$50 = _v$50);
-        _v$51 !== _p$._v$51 && className(_el$80, _p$._v$51 = _v$51);
-        _v$52 !== _p$._v$52 && className(_el$81, _p$._v$52 = _v$52);
-        _v$53 !== _p$._v$53 && (_el$81.disabled = _p$._v$53 = _v$53);
-        _v$54 !== _p$._v$54 && className(_el$82, _p$._v$54 = _v$54);
-        _v$55 !== _p$._v$55 && className(_el$83, _p$._v$55 = _v$55);
-        _v$56 !== _p$._v$56 && (_el$83.disabled = _p$._v$56 = _v$56);
-        _v$57 !== _p$._v$57 && className(_el$84, _p$._v$57 = _v$57);
-        _v$58 !== _p$._v$58 && className(_el$85, _p$._v$58 = _v$58);
-        _v$59 !== _p$._v$59 && (_el$85.disabled = _p$._v$59 = _v$59);
-        _v$60 !== _p$._v$60 && className(_el$86, _p$._v$60 = _v$60);
-        _v$61 !== _p$._v$61 && className(_el$96, _p$._v$61 = _v$61);
-        _v$62 !== _p$._v$62 && ((_p$._v$62 = _v$62) != null ? _el$97.style.setProperty("padding", _v$62) : _el$97.style.removeProperty("padding"));
-        _v$63 !== _p$._v$63 && className(_el$98, _p$._v$63 = _v$63);
-        _v$64 !== _p$._v$64 && ((_p$._v$64 = _v$64) != null ? _el$99.style.setProperty("padding", _v$64) : _el$99.style.removeProperty("padding"));
+        _v$40 !== _p$.e && className(_el$62, _p$.e = _v$40);
+        _v$41 !== _p$.t && className(_el$63, _p$.t = _v$41);
+        _v$42 !== _p$.a && className(_el$64, _p$.a = _v$42);
+        _v$43 !== _p$.o && className(_el$68, _p$.o = _v$43);
+        _v$44 !== _p$.i && className(_el$75, _p$.i = _v$44);
+        _v$45 !== _p$.n && className(_el$76, _p$.n = _v$45);
+        _v$46 !== _p$.s && className(_el$77, _p$.s = _v$46);
+        _v$47 !== _p$.h && (_el$77.disabled = _p$.h = _v$47);
+        _v$48 !== _p$.r && className(_el$78, _p$.r = _v$48);
+        _v$49 !== _p$.d && className(_el$79, _p$.d = _v$49);
+        _v$50 !== _p$.l && (_el$79.disabled = _p$.l = _v$50);
+        _v$51 !== _p$.u && className(_el$80, _p$.u = _v$51);
+        _v$52 !== _p$.c && className(_el$81, _p$.c = _v$52);
+        _v$53 !== _p$.w && (_el$81.disabled = _p$.w = _v$53);
+        _v$54 !== _p$.m && className(_el$82, _p$.m = _v$54);
+        _v$55 !== _p$.f && className(_el$83, _p$.f = _v$55);
+        _v$56 !== _p$.y && (_el$83.disabled = _p$.y = _v$56);
+        _v$57 !== _p$.g && className(_el$84, _p$.g = _v$57);
+        _v$58 !== _p$.p && className(_el$85, _p$.p = _v$58);
+        _v$59 !== _p$.b && (_el$85.disabled = _p$.b = _v$59);
+        _v$60 !== _p$.T && className(_el$86, _p$.T = _v$60);
+        _v$61 !== _p$.A && className(_el$96, _p$.A = _v$61);
+        _v$62 !== _p$.O && ((_p$.O = _v$62) != null ? _el$97.style.setProperty("padding", _v$62) : _el$97.style.removeProperty("padding"));
+        _v$63 !== _p$.I && className(_el$98, _p$.I = _v$63);
+        _v$64 !== _p$.S && ((_p$.S = _v$64) != null ? _el$99.style.setProperty("padding", _v$64) : _el$99.style.removeProperty("padding"));
         return _p$;
       }, {
-        _v$40: void 0,
-        _v$41: void 0,
-        _v$42: void 0,
-        _v$43: void 0,
-        _v$44: void 0,
-        _v$45: void 0,
-        _v$46: void 0,
-        _v$47: void 0,
-        _v$48: void 0,
-        _v$49: void 0,
-        _v$50: void 0,
-        _v$51: void 0,
-        _v$52: void 0,
-        _v$53: void 0,
-        _v$54: void 0,
-        _v$55: void 0,
-        _v$56: void 0,
-        _v$57: void 0,
-        _v$58: void 0,
-        _v$59: void 0,
-        _v$60: void 0,
-        _v$61: void 0,
-        _v$62: void 0,
-        _v$63: void 0,
-        _v$64: void 0
+        e: void 0,
+        t: void 0,
+        a: void 0,
+        o: void 0,
+        i: void 0,
+        n: void 0,
+        s: void 0,
+        h: void 0,
+        r: void 0,
+        d: void 0,
+        l: void 0,
+        u: void 0,
+        c: void 0,
+        w: void 0,
+        m: void 0,
+        f: void 0,
+        y: void 0,
+        g: void 0,
+        p: void 0,
+        b: void 0,
+        T: void 0,
+        A: void 0,
+        O: void 0,
+        I: void 0,
+        S: void 0
       });
       return _el$62;
     }
@@ -11134,7 +11227,7 @@ var MutationDetails = () => {
       return activeMutation();
     },
     get children() {
-      const _el$101 = _tmpl$322(), _el$102 = _el$101.firstChild, _el$103 = _el$102.nextSibling, _el$104 = _el$103.firstChild, _el$105 = _el$104.firstChild, _el$106 = _el$105.firstChild, _el$107 = _el$105.nextSibling, _el$108 = _el$104.nextSibling, _el$109 = _el$108.firstChild, _el$110 = _el$109.nextSibling, _el$111 = _el$103.nextSibling, _el$112 = _el$111.nextSibling, _el$113 = _el$112.nextSibling, _el$114 = _el$113.nextSibling, _el$115 = _el$114.nextSibling, _el$116 = _el$115.nextSibling, _el$117 = _el$116.nextSibling, _el$118 = _el$117.nextSibling;
+      var _el$101 = _tmpl$322(), _el$102 = _el$101.firstChild, _el$103 = _el$102.nextSibling, _el$104 = _el$103.firstChild, _el$105 = _el$104.firstChild, _el$106 = _el$105.firstChild, _el$107 = _el$105.nextSibling, _el$108 = _el$104.nextSibling, _el$109 = _el$108.firstChild, _el$110 = _el$109.nextSibling, _el$111 = _el$103.nextSibling, _el$112 = _el$111.nextSibling, _el$113 = _el$112.nextSibling, _el$114 = _el$113.nextSibling, _el$115 = _el$114.nextSibling, _el$116 = _el$115.nextSibling, _el$117 = _el$116.nextSibling, _el$118 = _el$117.nextSibling;
       insert(_el$106, createComponent(Show, {
         get when() {
           return activeMutation().options.mutationKey;
@@ -11188,33 +11281,33 @@ var MutationDetails = () => {
         }
       }));
       createRenderEffect((_p$) => {
-        const _v$65 = clsx(styles().detailsContainer, "tsqd-query-details-container"), _v$66 = clsx(styles().detailsHeader, "tsqd-query-details-header"), _v$67 = clsx(styles().detailsBody, "tsqd-query-details-summary-container"), _v$68 = clsx(styles().queryDetailsStatus, getQueryStatusColors()), _v$69 = clsx(styles().detailsHeader, "tsqd-query-details-header"), _v$70 = tokens.size[2], _v$71 = clsx(styles().detailsHeader, "tsqd-query-details-header"), _v$72 = tokens.size[2], _v$73 = clsx(styles().detailsHeader, "tsqd-query-details-header"), _v$74 = tokens.size[2], _v$75 = clsx(styles().detailsHeader, "tsqd-query-details-header"), _v$76 = tokens.size[2];
-        _v$65 !== _p$._v$65 && className(_el$101, _p$._v$65 = _v$65);
-        _v$66 !== _p$._v$66 && className(_el$102, _p$._v$66 = _v$66);
-        _v$67 !== _p$._v$67 && className(_el$103, _p$._v$67 = _v$67);
-        _v$68 !== _p$._v$68 && className(_el$107, _p$._v$68 = _v$68);
-        _v$69 !== _p$._v$69 && className(_el$111, _p$._v$69 = _v$69);
-        _v$70 !== _p$._v$70 && ((_p$._v$70 = _v$70) != null ? _el$112.style.setProperty("padding", _v$70) : _el$112.style.removeProperty("padding"));
-        _v$71 !== _p$._v$71 && className(_el$113, _p$._v$71 = _v$71);
-        _v$72 !== _p$._v$72 && ((_p$._v$72 = _v$72) != null ? _el$114.style.setProperty("padding", _v$72) : _el$114.style.removeProperty("padding"));
-        _v$73 !== _p$._v$73 && className(_el$115, _p$._v$73 = _v$73);
-        _v$74 !== _p$._v$74 && ((_p$._v$74 = _v$74) != null ? _el$116.style.setProperty("padding", _v$74) : _el$116.style.removeProperty("padding"));
-        _v$75 !== _p$._v$75 && className(_el$117, _p$._v$75 = _v$75);
-        _v$76 !== _p$._v$76 && ((_p$._v$76 = _v$76) != null ? _el$118.style.setProperty("padding", _v$76) : _el$118.style.removeProperty("padding"));
+        var _v$65 = clsx(styles().detailsContainer, "tsqd-query-details-container"), _v$66 = clsx(styles().detailsHeader, "tsqd-query-details-header"), _v$67 = clsx(styles().detailsBody, "tsqd-query-details-summary-container"), _v$68 = clsx(styles().queryDetailsStatus, getQueryStatusColors()), _v$69 = clsx(styles().detailsHeader, "tsqd-query-details-header"), _v$70 = tokens.size[2], _v$71 = clsx(styles().detailsHeader, "tsqd-query-details-header"), _v$72 = tokens.size[2], _v$73 = clsx(styles().detailsHeader, "tsqd-query-details-header"), _v$74 = tokens.size[2], _v$75 = clsx(styles().detailsHeader, "tsqd-query-details-header"), _v$76 = tokens.size[2];
+        _v$65 !== _p$.e && className(_el$101, _p$.e = _v$65);
+        _v$66 !== _p$.t && className(_el$102, _p$.t = _v$66);
+        _v$67 !== _p$.a && className(_el$103, _p$.a = _v$67);
+        _v$68 !== _p$.o && className(_el$107, _p$.o = _v$68);
+        _v$69 !== _p$.i && className(_el$111, _p$.i = _v$69);
+        _v$70 !== _p$.n && ((_p$.n = _v$70) != null ? _el$112.style.setProperty("padding", _v$70) : _el$112.style.removeProperty("padding"));
+        _v$71 !== _p$.s && className(_el$113, _p$.s = _v$71);
+        _v$72 !== _p$.h && ((_p$.h = _v$72) != null ? _el$114.style.setProperty("padding", _v$72) : _el$114.style.removeProperty("padding"));
+        _v$73 !== _p$.r && className(_el$115, _p$.r = _v$73);
+        _v$74 !== _p$.d && ((_p$.d = _v$74) != null ? _el$116.style.setProperty("padding", _v$74) : _el$116.style.removeProperty("padding"));
+        _v$75 !== _p$.l && className(_el$117, _p$.l = _v$75);
+        _v$76 !== _p$.u && ((_p$.u = _v$76) != null ? _el$118.style.setProperty("padding", _v$76) : _el$118.style.removeProperty("padding"));
         return _p$;
       }, {
-        _v$65: void 0,
-        _v$66: void 0,
-        _v$67: void 0,
-        _v$68: void 0,
-        _v$69: void 0,
-        _v$70: void 0,
-        _v$71: void 0,
-        _v$72: void 0,
-        _v$73: void 0,
-        _v$74: void 0,
-        _v$75: void 0,
-        _v$76: void 0
+        e: void 0,
+        t: void 0,
+        a: void 0,
+        o: void 0,
+        i: void 0,
+        n: void 0,
+        s: void 0,
+        h: void 0,
+        r: void 0,
+        d: void 0,
+        l: void 0,
+        u: void 0
       });
       return _el$101;
     }
@@ -12236,7 +12329,7 @@ export {
 };
 /*! Bundled license information:
 
-@tanstack/query-devtools/build/Devtools/Q436JGP5.js:
+@tanstack/query-devtools/build/Devtools/E6UWR6XD.js:
   (*! Bundled license information:
   
   @tanstack/match-sorter-utils/build/lib/index.mjs:
@@ -12366,4 +12459,4 @@ export {
      *)
   *)
 */
-//# sourceMappingURL=Q436JGP5-26BDFNMY.js.map
+//# sourceMappingURL=E6UWR6XD-W3RJSMTO.js.map

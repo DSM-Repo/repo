@@ -17,7 +17,7 @@ export const Layout = () => {
         className="min-w-[250px]"
       >
         <SideBarButton title="홈" icon="My" url="/" />
-        <SideBarButton title="도서관" icon="Library" url="/library" />
+        {/* <SideBarButton title="도서관" icon="Library" url="/library" /> */}
         <SideBarDrop
           title="포트폴리오 수정"
           icon="Edit"

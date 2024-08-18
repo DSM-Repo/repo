@@ -8,7 +8,10 @@ export interface ICompletion {
 }
 
 type sharedType = {
-  title: string;
+  id: string;
+  year: number;
+  grade: number;
+  generation: number;
 };
 
 export interface IIntroduce {

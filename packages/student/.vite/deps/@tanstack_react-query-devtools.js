@@ -1,5 +1,3 @@
-import __buffer_polyfill from 'vite-plugin-node-polyfills/shims/buffer'
-globalThis.Buffer = globalThis.Buffer || __buffer_polyfill
 import __global_polyfill from 'vite-plugin-node-polyfills/shims/global'
 globalThis.global = globalThis.global || __global_polyfill
 
@@ -11,38 +9,34 @@ import {
   mergeProps,
   render,
   setupStyleSheet
-} from "./chunk-AMECJF67.js";
+} from "./chunk-REQOPLM3.js";
 import {
   onlineManager,
   useQueryClient
-} from "./chunk-BNGGKOW5.js";
+} from "./chunk-NYJP25S2.js";
 import {
   require_jsx_runtime
-} from "./chunk-7PI6QFIN.js";
+} from "./chunk-YM7SOALI.js";
 import {
   require_react
-} from "./chunk-QZW2PNRO.js";
+} from "./chunk-IF3FXHGJ.js";
 import {
   __privateAdd,
   __privateGet,
   __privateSet,
   __toESM,
-  require_dist,
-  require_dist2
-} from "./chunk-IRKP4GRN.js";
+  require_dist
+} from "./chunk-WFPLDLJJ.js";
 
-// ../../.yarn/__virtual__/@tanstack-react-query-devtools-virtual-1174dfeaef/0/cache/@tanstack-react-query-devtools-npm-5.51.15-08d1994d17-cafe075d66.zip/node_modules/@tanstack/react-query-devtools/build/modern/index.js
-var import_dist5 = __toESM(require_dist());
-var import_dist6 = __toESM(require_dist2());
+// ../../.yarn/__virtual__/@tanstack-react-query-devtools-virtual-297bb3632e/0/cache/@tanstack-react-query-devtools-npm-5.51.23-a17c95761e-f11d53c47f.zip/node_modules/@tanstack/react-query-devtools/build/modern/index.js
+var import_dist3 = __toESM(require_dist());
 
-// ../../.yarn/__virtual__/@tanstack-react-query-devtools-virtual-1174dfeaef/0/cache/@tanstack-react-query-devtools-npm-5.51.15-08d1994d17-cafe075d66.zip/node_modules/@tanstack/react-query-devtools/build/modern/devtools.js
-var import_dist3 = __toESM(require_dist(), 1);
-var import_dist4 = __toESM(require_dist2(), 1);
+// ../../.yarn/__virtual__/@tanstack-react-query-devtools-virtual-297bb3632e/0/cache/@tanstack-react-query-devtools-npm-5.51.23-a17c95761e-f11d53c47f.zip/node_modules/@tanstack/react-query-devtools/build/modern/devtools.js
+var import_dist2 = __toESM(require_dist(), 1);
 var React = __toESM(require_react(), 1);
 
-// ../../.yarn/cache/@tanstack-query-devtools-npm-5.51.15-3f226c52fa-9f7d8cbaf8.zip/node_modules/@tanstack/query-devtools/build/dev.js
+// ../../.yarn/cache/@tanstack-query-devtools-npm-5.51.16-c98e81abc7-40f1fbad77.zip/node_modules/@tanstack/query-devtools/build/dev.js
 var import_dist = __toESM(require_dist());
-var import_dist2 = __toESM(require_dist2());
 var _client, _onlineManager, _queryFlavor, _version, _isMounted, _styleNonce, _shadowDOMTarget, _buttonPosition, _position, _initialIsOpen, _errorTypes, _Component, _dispose, _a;
 var TanstackQueryDevtools = (_a = class {
   constructor(config) {
@@ -112,7 +106,7 @@ var TanstackQueryDevtools = (_a = class {
       if (__privateGet(this, _Component)) {
         Devtools = __privateGet(this, _Component);
       } else {
-        Devtools = lazy(() => import("./Q436JGP5-26BDFNMY.js"));
+        Devtools = lazy(() => import("./E6UWR6XD-W3RJSMTO.js"));
         __privateSet(this, _Component, Devtools);
       }
       setupStyleSheet(__privateGet(this, _styleNonce), __privateGet(this, _shadowDOMTarget));
@@ -160,7 +154,7 @@ var TanstackQueryDevtools = (_a = class {
   }
 }, _client = new WeakMap(), _onlineManager = new WeakMap(), _queryFlavor = new WeakMap(), _version = new WeakMap(), _isMounted = new WeakMap(), _styleNonce = new WeakMap(), _shadowDOMTarget = new WeakMap(), _buttonPosition = new WeakMap(), _position = new WeakMap(), _initialIsOpen = new WeakMap(), _errorTypes = new WeakMap(), _Component = new WeakMap(), _dispose = new WeakMap(), _a);
 
-// ../../.yarn/__virtual__/@tanstack-react-query-devtools-virtual-1174dfeaef/0/cache/@tanstack-react-query-devtools-npm-5.51.15-08d1994d17-cafe075d66.zip/node_modules/@tanstack/react-query-devtools/build/modern/devtools.js
+// ../../.yarn/__virtual__/@tanstack-react-query-devtools-virtual-297bb3632e/0/cache/@tanstack-react-query-devtools-npm-5.51.23-a17c95761e-f11d53c47f.zip/node_modules/@tanstack/react-query-devtools/build/modern/devtools.js
 var import_jsx_runtime = __toESM(require_jsx_runtime(), 1);
 function ReactQueryDevtools(props) {
   const queryClient = useQueryClient(props.client);
@@ -217,7 +211,7 @@ function ReactQueryDevtools(props) {
   return (0, import_jsx_runtime.jsx)("div", { className: "tsqd-parent-container", ref });
 }
 
-// ../../.yarn/__virtual__/@tanstack-react-query-devtools-virtual-1174dfeaef/0/cache/@tanstack-react-query-devtools-npm-5.51.15-08d1994d17-cafe075d66.zip/node_modules/@tanstack/react-query-devtools/build/modern/index.js
+// ../../.yarn/__virtual__/@tanstack-react-query-devtools-virtual-297bb3632e/0/cache/@tanstack-react-query-devtools-npm-5.51.23-a17c95761e-f11d53c47f.zip/node_modules/@tanstack/react-query-devtools/build/modern/index.js
 var ReactQueryDevtools2 = false ? function() {
   return null;
 } : ReactQueryDevtools;

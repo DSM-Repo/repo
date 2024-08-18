@@ -1,127 +1,121 @@
 {
-  "hash": "028bebe1",
-  "configHash": "b2940a42",
-  "lockfileHash": "502a4130",
-  "browserHash": "cefad715",
+  "hash": "4083847f",
+  "configHash": "46586ce0",
+  "lockfileHash": "e508fa1a",
+  "browserHash": "a252e3ff",
   "optimized": {
     "react": {
       "src": "../../../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/index.js",
       "file": "react.js",
-      "fileHash": "6797f8d4",
+      "fileHash": "4ecbc54e",
       "needsInterop": true
     },
     "react/jsx-dev-runtime": {
       "src": "../../../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/jsx-dev-runtime.js",
       "file": "react_jsx-dev-runtime.js",
-      "fileHash": "678faa45",
+      "fileHash": "7325e838",
       "needsInterop": true
     },
     "react/jsx-runtime": {
       "src": "../../../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/jsx-runtime.js",
       "file": "react_jsx-runtime.js",
-      "fileHash": "18f65b0f",
+      "fileHash": "52d4d095",
       "needsInterop": true
     },
     "@iconify/react": {
-      "src": "../../../../.yarn/__virtual__/@iconify-react-virtual-1977427229/0/cache/@iconify-react-npm-5.0.1-9638fe18b7-d3fce5b2d8.zip/node_modules/@iconify/react/dist/iconify.js",
+      "src": "../../../../.yarn/__virtual__/@iconify-react-virtual-1264452482/0/cache/@iconify-react-npm-5.0.2-c732ef4098-97f4222a13.zip/node_modules/@iconify/react/dist/iconify.js",
       "file": "@iconify_react.js",
-      "fileHash": "247f7996",
+      "fileHash": "a16a49f9",
       "needsInterop": false
     },
     "@tanstack/react-query": {
-      "src": "../../../../.yarn/__virtual__/@tanstack-react-query-virtual-718898855d/0/cache/@tanstack-react-query-npm-5.51.11-04a9122bed-318aea36ff.zip/node_modules/@tanstack/react-query/build/modern/index.js",
+      "src": "../../../../.yarn/__virtual__/@tanstack-react-query-virtual-a9868b6fb2/0/cache/@tanstack-react-query-npm-5.51.23-45e5787442-913566a677.zip/node_modules/@tanstack/react-query/build/modern/index.js",
       "file": "@tanstack_react-query.js",
-      "fileHash": "9c8d60ef",
+      "fileHash": "9fdf8397",
       "needsInterop": false
     },
     "@tanstack/react-query-devtools": {
-      "src": "../../../../.yarn/__virtual__/@tanstack-react-query-devtools-virtual-1174dfeaef/0/cache/@tanstack-react-query-devtools-npm-5.51.15-08d1994d17-cafe075d66.zip/node_modules/@tanstack/react-query-devtools/build/modern/index.js",
+      "src": "../../../../.yarn/__virtual__/@tanstack-react-query-devtools-virtual-297bb3632e/0/cache/@tanstack-react-query-devtools-npm-5.51.23-a17c95761e-f11d53c47f.zip/node_modules/@tanstack/react-query-devtools/build/modern/index.js",
       "file": "@tanstack_react-query-devtools.js",
-      "fileHash": "46bc6061",
+      "fileHash": "001c569c",
       "needsInterop": false
     },
     "axios": {
-      "src": "../../../../.yarn/cache/axios-npm-1.7.2-c89264f6f7-cbd47ce380.zip/node_modules/axios/index.js",
+      "src": "../../../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/index.js",
       "file": "axios.js",
-      "fileHash": "a65ecc1b",
+      "fileHash": "1d2390aa",
       "needsInterop": false
     },
     "dayjs": {
       "src": "../../../../.yarn/cache/dayjs-npm-1.11.12-ce23245b6e-9673d37f3f.zip/node_modules/dayjs/dayjs.min.js",
       "file": "dayjs.js",
-      "fileHash": "ec706dd7",
+      "fileHash": "a8418228",
       "needsInterop": true
     },
     "react-cookie": {
       "src": "../../../../.yarn/__virtual__/react-cookie-virtual-74a8ac8f82/0/cache/react-cookie-npm-7.2.0-ca92e0b084-434e8d8a48.zip/node_modules/react-cookie/esm/index.mjs",
       "file": "react-cookie.js",
-      "fileHash": "ee0016de",
+      "fileHash": "29f4fc18",
       "needsInterop": false
     },
     "react-dom/client": {
-      "src": "../../../../.yarn/__virtual__/react-dom-virtual-cf1d6710c9/0/cache/react-dom-npm-18.3.1-a805663f38-a752496c19.zip/node_modules/react-dom/client.js",
+      "src": "../../../../.yarn/__virtual__/react-dom-virtual-d6ee84aa67/0/cache/react-dom-npm-18.3.1-a805663f38-a752496c19.zip/node_modules/react-dom/client.js",
       "file": "react-dom_client.js",
-      "fileHash": "811cf849",
+      "fileHash": "2c828d13",
       "needsInterop": true
     },
     "react-qr-code": {
       "src": "../../../../.yarn/__virtual__/react-qr-code-virtual-4f3b30f86f/0/cache/react-qr-code-npm-2.0.15-669b395b3b-6a9d739186.zip/node_modules/react-qr-code/lib/index.js",
       "file": "react-qr-code.js",
-      "fileHash": "2137219a",
+      "fileHash": "0b906568",
       "needsInterop": true
     },
     "react-router-dom": {
-      "src": "../../../../.yarn/__virtual__/react-router-dom-virtual-66a9c73c32/0/cache/react-router-dom-npm-6.24.1-4b9b65fc27-458c6c5393.zip/node_modules/react-router-dom/dist/index.js",
+      "src": "../../../../.yarn/__virtual__/react-router-dom-virtual-f915074df7/0/cache/react-router-dom-npm-6.26.1-7932358248-9d9d8ed54d.zip/node_modules/react-router-dom/dist/index.js",
       "file": "react-router-dom.js",
-      "fileHash": "cfb1d58c",
+      "fileHash": "a83f6221",
       "needsInterop": false
     },
     "react-toastify": {
       "src": "../../../../.yarn/__virtual__/react-toastify-virtual-3804388dd8/0/cache/react-toastify-npm-10.0.5-86b63c99fc-66c68ec3d6.zip/node_modules/react-toastify/dist/react-toastify.esm.mjs",
       "file": "react-toastify.js",
-      "fileHash": "87accc9e",
+      "fileHash": "75d0fbf4",
       "needsInterop": false
     },
     "zustand": {
-      "src": "../../../../.yarn/__virtual__/zustand-virtual-9f11d179fe/0/cache/zustand-npm-4.5.4-99cce0f45c-479af491ff.zip/node_modules/zustand/esm/index.mjs",
+      "src": "../../../../.yarn/__virtual__/zustand-virtual-ea53375789/0/cache/zustand-npm-4.5.5-678823f519-d04469d76b.zip/node_modules/zustand/esm/index.mjs",
       "file": "zustand.js",
-      "fileHash": "6de53d50",
-      "needsInterop": false
-    },
-    "vite-plugin-node-polyfills/shims/buffer": {
-      "src": "../../../../.yarn/__virtual__/vite-plugin-node-polyfills-virtual-ce92590d8b/0/cache/vite-plugin-node-polyfills-npm-0.22.0-b49f4f8ad0-f8ddc452eb.zip/node_modules/vite-plugin-node-polyfills/shims/buffer/dist/index.js",
-      "file": "vite-plugin-node-polyfills_shims_buffer.js",
-      "fileHash": "82ffc122",
+      "fileHash": "0b9a07a1",
       "needsInterop": false
     },
     "vite-plugin-node-polyfills/shims/global": {
       "src": "../../../../.yarn/__virtual__/vite-plugin-node-polyfills-virtual-ce92590d8b/0/cache/vite-plugin-node-polyfills-npm-0.22.0-b49f4f8ad0-f8ddc452eb.zip/node_modules/vite-plugin-node-polyfills/shims/global/dist/index.js",
       "file": "vite-plugin-node-polyfills_shims_global.js",
-      "fileHash": "c0b99d14",
+      "fileHash": "607ed5c8",
       "needsInterop": false
     }
   },
   "chunks": {
-    "Q436JGP5-26BDFNMY": {
-      "file": "Q436JGP5-26BDFNMY.js"
+    "chunk-UEHZWCOM": {
+      "file": "chunk-UEHZWCOM.js"
     },
-    "chunk-CHAGT3K3": {
-      "file": "chunk-CHAGT3K3.js"
+    "E6UWR6XD-W3RJSMTO": {
+      "file": "E6UWR6XD-W3RJSMTO.js"
     },
-    "chunk-AMECJF67": {
-      "file": "chunk-AMECJF67.js"
+    "chunk-REQOPLM3": {
+      "file": "chunk-REQOPLM3.js"
     },
-    "chunk-BNGGKOW5": {
-      "file": "chunk-BNGGKOW5.js"
+    "chunk-NYJP25S2": {
+      "file": "chunk-NYJP25S2.js"
     },
-    "chunk-7PI6QFIN": {
-      "file": "chunk-7PI6QFIN.js"
+    "chunk-YM7SOALI": {
+      "file": "chunk-YM7SOALI.js"
     },
-    "chunk-QZW2PNRO": {
-      "file": "chunk-QZW2PNRO.js"
+    "chunk-IF3FXHGJ": {
+      "file": "chunk-IF3FXHGJ.js"
     },
-    "chunk-IRKP4GRN": {
-      "file": "chunk-IRKP4GRN.js"
+    "chunk-WFPLDLJJ": {
+      "file": "chunk-WFPLDLJJ.js"
     }
   }
 }

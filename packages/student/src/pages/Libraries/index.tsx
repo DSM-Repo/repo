@@ -1,19 +1,14 @@
 import { Box } from "ui";
-import { libraries } from "./constants";
 import { useNavigate } from "react-router-dom";
-
-type TLibrary = {
-  year: number;
-  grade: number;
-  uuid: string;
-};
+import { getLibrary } from "@/apis/library";
 
 export const Library = () => {
   const navigate = useNavigate();
+  const { data } = getLibrary();
 
   return (
     <div className="flex justify-center py-10 w-full h-full">
-      <div className="flex flex-col w-fit gap-4">
+      <div className="flex flex-col w-[800px] gap-4">
         <div className="flex flex-col gap-3">
           <span className="text-title2 leading-none">도서관</span>
           <span className="text-[#999999] text-body3 leading-none">
@@ -21,15 +16,15 @@ export const Library = () => {
           </span>
         </div>
 
-        {libraries.map((item: TLibrary) => (
+        {data?.data.map((item) => (
           <Box
-            width="900px"
+            width="800px"
             padding="25px"
-            onClick={() => navigate(`/books/${item.uuid}`)}
+            onClick={() => navigate(`/book/${item.id}`)}
             className="cursor-pointer"
           >
             <span className="text-body4">
-              {item.year} {item.grade}학년 n학기
+              {item.year}년 {item.grade}학년 {item.generation}학기
             </span>
           </Box>
         ))}

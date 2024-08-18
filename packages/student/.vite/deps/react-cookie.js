@@ -1,24 +1,19 @@
-import __buffer_polyfill from 'vite-plugin-node-polyfills/shims/buffer'
-globalThis.Buffer = globalThis.Buffer || __buffer_polyfill
 import __global_polyfill from 'vite-plugin-node-polyfills/shims/global'
 globalThis.global = globalThis.global || __global_polyfill
 
 import {
   require_react
-} from "./chunk-QZW2PNRO.js";
+} from "./chunk-IF3FXHGJ.js";
 import {
   __toESM,
-  require_dist,
-  require_dist2
-} from "./chunk-IRKP4GRN.js";
+  require_dist
+} from "./chunk-WFPLDLJJ.js";
 
 // ../../.yarn/__virtual__/react-cookie-virtual-74a8ac8f82/0/cache/react-cookie-npm-7.2.0-ca92e0b084-434e8d8a48.zip/node_modules/react-cookie/esm/index.mjs
-var import_dist3 = __toESM(require_dist(), 1);
-var import_dist4 = __toESM(require_dist2(), 1);
+var import_dist2 = __toESM(require_dist(), 1);
 
 // ../../.yarn/cache/universal-cookie-npm-7.2.0-eb2c0ed6f9-70dec5aaae.zip/node_modules/universal-cookie/esm/index.mjs
 var import_dist = __toESM(require_dist(), 1);
-var import_dist2 = __toESM(require_dist2(), 1);
 var parse_1 = parse;
 var serialize_1 = serialize;
 var __toString = Object.prototype.toString;
