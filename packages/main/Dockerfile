@@ -5,7 +5,7 @@ RUN apk add --no-cache libc6-compat git curl unzip
 RUN curl -L -o ../repo.zip https://github.com/DSM-Repo/repo/archive/main.zip && \
     unzip repo.zip -d /
 
-RUN cd /repo-main
+WORKDIR /repo-main
 
 RUN yarn install --immutable
 
@@ -21,7 +21,7 @@ ENV VITE_APP_URL_STUDENT=${VITE_APP_URL_STUDENT}
 ARG VITE_APP_URL_TEACHER
 ENV VITE_APP_URL_TEACHER=${VITE_APP_URL_TEACHER}
 
-RUN cd /repo-main/packages/main
+WORKDIR /repo-main/packages/main
 RUN yarn build
 
 FROM nginx:alpine AS runner
