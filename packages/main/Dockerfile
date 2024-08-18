@@ -5,7 +5,7 @@ RUN apk add --no-cache libc6-compat git curl unzip
 
 RUN curl -L -o ../repo.zip https://github.com/DSM-Repo/repo/archive/main.zip && \
     unzip ../repo.zip -d ../ && \
-    mv ../repo-main ../
+    mv ../repo-main /app
 
 RUN cd /app/repo/packages/main
 
