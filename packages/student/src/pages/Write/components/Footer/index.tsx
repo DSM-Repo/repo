@@ -1,11 +1,19 @@
 import { useResumeData } from "@/hooks/useResumeData";
 import { useNavigate } from "react-router-dom";
 import { Content } from "./Content";
-import { completion, major, resumeData, submit, update, urlType } from "@/apis";
+import {
+  completion,
+  currentInfo,
+  major,
+  resumeData,
+  submit,
+  update,
+  urlType
+} from "@/apis";
 import { useEffect, useState } from "react";
 import { Box } from "ui";
 import { toast } from "react-toastify";
-import { getFeedback } from "@/apis/feedback";
+import { accFeedback, getFeedback } from "@/apis/feedback";
 
 interface IProp {
   section: number;
@@ -27,13 +35,15 @@ export const Footer = ({ section }: IProp) => {
   const { data: majors } = major();
   const { data: complete, refetch } = completion();
   const { mutate: submitMutate } = submit();
+  const { refetch: refetchInfo } = currentInfo();
   const _major = majors?.data.find(
     (i) => i.name === data.writer?.majorName
   )?.id;
   const [open, setOpen] = useState(false);
-  const { data: feedback } = getFeedback();
+  const { data: feedback, refetch: refetchFeedback } = getFeedback();
+  const { mutate: acceptFeedback } = accFeedback();
   const feedbacks = feedback?.data.filter(
-    (i) => i.type === sections[section - 1][1]
+    (i) => i.type === sections[section - 1][1] && i.status !== "CONFIRMED"
   );
 
   useEffect(() => {
@@ -48,6 +58,7 @@ export const Footer = ({ section }: IProp) => {
   const handleMutate = () => {
     const onSuccess = () => {
       toast.success("성공적으로 저장되었습니다");
+      refetchInfo();
       refetch();
     };
 
@@ -109,19 +120,33 @@ export const Footer = ({ section }: IProp) => {
               className="col-flex gap-2 absolute bottom-11 self-start z-20 shadow-2xl"
             >
               <span className="text-body3">피드백</span>
-              {feedbacks?.length !== 0 ? (
-                <>
-                  {feedbacks?.map((i) => (
-                    <Box width="100%" color="light">
-                      <span>{i.comment}</span>
-                    </Box>
-                  ))}
-                </>
-              ) : (
-                <span className="text-body7 text-">
-                  아직은 피드백이 없습니다..
-                </span>
-              )}
+              <div className="h-full overflow-auto col-flex gap-2">
+                {feedbacks?.length !== 0 ? (
+                  <>
+                    {feedbacks?.map((i) => (
+                      <Box width="100%" color="light" className="gap-2">
+                        <span className="text-body6">{i.comment}</span>
+                        <Box
+                          width="100%"
+                          className="items-center cursor-pointer"
+                          onClick={() =>
+                            acceptFeedback(
+                              { id: i.id },
+                              { onSuccess: refetchFeedback }
+                            )
+                          }
+                        >
+                          <span className="text-body8">피드백 반영</span>
+                        </Box>
+                      </Box>
+                    ))}
+                  </>
+                ) : (
+                  <span className="text-body7 text-">
+                    아직은 피드백이 없습니다..
+                  </span>
+                )}
+              </div>
             </Box>
           )}
           <Content
