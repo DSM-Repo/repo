@@ -23,6 +23,7 @@ ENV VITE_APP_URL_TEACHER=${VITE_APP_URL_TEACHER}
 RUN YARN_ENABLE_IMMUTABLE_INSTALLS=false yarn install
 
 WORKDIR /repo-main/packages/main
+RUN YARN_ENABLE_IMMUTABLE_INSTALLS=false yarn install
 RUN yarn build
 
 FROM nginx:alpine AS runner
