@@ -7,7 +7,7 @@ type rotationType = {
   value: boolean;
 };
 
-export interface IProp extends HTMLAttributes<HTMLLabelElement> {
+export interface IProp extends HTMLAttributes<HTMLDivElement> {
   size: sizeType;
   error?: boolean;
   disabled?: boolean;

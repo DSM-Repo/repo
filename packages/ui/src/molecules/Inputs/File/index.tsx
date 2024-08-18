@@ -32,7 +32,7 @@ export const File = ({
       onIconClick={onDelete}
     >
       <span
-        className={`${!!!value ? "text-[#999999]" : ""} text-body7 inline truncate`}
+        className={`${!!!value ? "text-[#999999]" : ""} text-body7 block w-full truncate`}
       >
         {value ? value : placeholder}
       </span>
