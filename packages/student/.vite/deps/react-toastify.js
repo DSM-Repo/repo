@@ -1,21 +1,15 @@
-import __global_polyfill from 'vite-plugin-node-polyfills/shims/global'
-globalThis.global = globalThis.global || __global_polyfill
-
 "use client";
 import {
   require_react
-} from "./chunk-IF3FXHGJ.js";
+} from "./chunk-JQJMTY5N.js";
 import {
-  __toESM,
-  require_dist
-} from "./chunk-WFPLDLJJ.js";
+  __toESM
+} from "./chunk-4MBMRILA.js";
 
 // ../../.yarn/__virtual__/react-toastify-virtual-3804388dd8/0/cache/react-toastify-npm-10.0.5-86b63c99fc-66c68ec3d6.zip/node_modules/react-toastify/dist/react-toastify.esm.mjs
-var import_dist2 = __toESM(require_dist(), 1);
 var import_react = __toESM(require_react(), 1);
 
 // ../../.yarn/cache/clsx-npm-2.1.1-96125b98be-c4c8eb865f.zip/node_modules/clsx/dist/clsx.mjs
-var import_dist = __toESM(require_dist(), 1);
 function r(e2) {
   var t2, f2, n2 = "";
   if ("string" == typeof e2 || "number" == typeof e2) n2 += e2;

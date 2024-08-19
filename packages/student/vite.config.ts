@@ -5,7 +5,6 @@ import svgr from "vite-plugin-svgr";
 import { nodePolyfills } from "vite-plugin-node-polyfills";
 import path from "path";
 
-// https://vitejs.dev/config/
 export default ({ mode }: { mode: string }) => {
   getEnv(mode);
   return defineConfig({

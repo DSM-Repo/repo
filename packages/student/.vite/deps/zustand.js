@@ -1,20 +1,15 @@
-import __global_polyfill from 'vite-plugin-node-polyfills/shims/global'
-globalThis.global = globalThis.global || __global_polyfill
-
 import {
   require_react
-} from "./chunk-IF3FXHGJ.js";
+} from "./chunk-JQJMTY5N.js";
 import {
   __commonJS,
-  __toESM,
-  require_dist
-} from "./chunk-WFPLDLJJ.js";
+  __toESM
+} from "./chunk-4MBMRILA.js";
 
 // ../../.yarn/__virtual__/use-sync-external-store-virtual-37e026c849/0/cache/use-sync-external-store-npm-1.2.2-7923c915e1-23b1597c10.zip/node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.development.js
 var require_use_sync_external_store_shim_development = __commonJS({
   "../../.yarn/__virtual__/use-sync-external-store-virtual-37e026c849/0/cache/use-sync-external-store-npm-1.2.2-7923c915e1-23b1597c10.zip/node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.development.js"(exports) {
     "use strict";
-    var import_dist3 = __toESM(require_dist());
     if (true) {
       (function() {
         "use strict";
@@ -137,7 +132,6 @@ var require_use_sync_external_store_shim_development = __commonJS({
 var require_shim = __commonJS({
   "../../.yarn/__virtual__/use-sync-external-store-virtual-37e026c849/0/cache/use-sync-external-store-npm-1.2.2-7923c915e1-23b1597c10.zip/node_modules/use-sync-external-store/shim/index.js"(exports, module) {
     "use strict";
-    var import_dist3 = __toESM(require_dist());
     if (false) {
       module.exports = null;
     } else {
@@ -150,7 +144,6 @@ var require_shim = __commonJS({
 var require_with_selector_development = __commonJS({
   "../../.yarn/__virtual__/use-sync-external-store-virtual-37e026c849/0/cache/use-sync-external-store-npm-1.2.2-7923c915e1-23b1597c10.zip/node_modules/use-sync-external-store/cjs/use-sync-external-store-shim/with-selector.development.js"(exports) {
     "use strict";
-    var import_dist3 = __toESM(require_dist());
     if (true) {
       (function() {
         "use strict";
@@ -241,7 +234,6 @@ var require_with_selector_development = __commonJS({
 var require_with_selector = __commonJS({
   "../../.yarn/__virtual__/use-sync-external-store-virtual-37e026c849/0/cache/use-sync-external-store-npm-1.2.2-7923c915e1-23b1597c10.zip/node_modules/use-sync-external-store/shim/with-selector.js"(exports, module) {
     "use strict";
-    var import_dist3 = __toESM(require_dist());
     if (false) {
       module.exports = null;
     } else {
@@ -250,11 +242,7 @@ var require_with_selector = __commonJS({
   }
 });
 
-// ../../.yarn/__virtual__/zustand-virtual-ea53375789/0/cache/zustand-npm-4.5.5-678823f519-d04469d76b.zip/node_modules/zustand/esm/index.mjs
-var import_dist2 = __toESM(require_dist(), 1);
-
 // ../../.yarn/__virtual__/zustand-virtual-ea53375789/0/cache/zustand-npm-4.5.5-678823f519-d04469d76b.zip/node_modules/zustand/esm/vanilla.mjs
-var import_dist = __toESM(require_dist(), 1);
 var createStoreImpl = (createState) => {
   let state;
   const listeners = /* @__PURE__ */ new Set();
