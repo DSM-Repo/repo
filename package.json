@@ -25,7 +25,8 @@
   },
   "dependencies": {
     "dotenv": "^16.4.5",
-    "typescript": "5.4.5"
+    "typescript": "5.4.5",
+    "vite-plugin-node-polyfills": "^0.22.0"
   },
   "dependenciesMeta": {
     "prettier@3.3.3": {
