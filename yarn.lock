@@ -1483,12 +1483,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@configs/api@workspace:configs/api-config"
   dependencies:
-    "@tanstack/react-query": "npm:5.51.23"
     axios: "npm:^1.7.2"
     react: "npm:^18.3.1"
     react-cookie: "npm:^7.2.0"
     react-dom: "npm:^18.3.1"
     react-toastify: "npm:^10.0.5"
+  peerDependencies:
+    "@tanstack/react-query": 5.51.23
   languageName: unknown
   linkType: soft
 
@@ -2965,7 +2966,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/react-query@npm:5.51.23, @tanstack/react-query@npm:^5.51.23":
+"@tanstack/react-query@npm:5.51.23":
   version: 5.51.23
   resolution: "@tanstack/react-query@npm:5.51.23"
   dependencies:
@@ -8931,7 +8932,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "repo2024@workspace:."
   dependencies:
-    "@tanstack/react-query": "npm:^5.51.23"
     "@types/node": "npm:^20.14.6"
     "@types/react": "npm:^18.3.3"
     "@types/react-router-dom": "npm:^5.3.3"
