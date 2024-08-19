@@ -2691,6 +2691,7 @@ const RAW_RUNTIME_STATE =
           ["axios", "npm:1.7.4"],\
           ["react", "npm:18.3.1"],\
           ["react-cookie", "virtual:5e3219a4e6fc1cde2cc1ef6e3217ec1d00cf42ac7422e263a94ba12343fb0ac27ccd43b9f3a7d26c1e4d49ac8682540ba8cd3c41d11ddb512c71f9ab69205a10#npm:7.2.0"],\
+          ["react-dom", "virtual:5e3219a4e6fc1cde2cc1ef6e3217ec1d00cf42ac7422e263a94ba12343fb0ac27ccd43b9f3a7d26c1e4d49ac8682540ba8cd3c41d11ddb512c71f9ab69205a10#npm:18.3.1"],\
           ["react-toastify", "virtual:5e3219a4e6fc1cde2cc1ef6e3217ec1d00cf42ac7422e263a94ba12343fb0ac27ccd43b9f3a7d26c1e4d49ac8682540ba8cd3c41d11ddb512c71f9ab69205a10#npm:10.0.5"]\
         ],\
         "linkType": "SOFT"\
@@ -11918,6 +11919,21 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "SOFT"\
       }],\
+      ["virtual:5e3219a4e6fc1cde2cc1ef6e3217ec1d00cf42ac7422e263a94ba12343fb0ac27ccd43b9f3a7d26c1e4d49ac8682540ba8cd3c41d11ddb512c71f9ab69205a10#npm:18.3.1", {\
+        "packageLocation": "./.yarn/__virtual__/react-dom-virtual-1e4cc36e18/0/cache/react-dom-npm-18.3.1-a805663f38-a752496c19.zip/node_modules/react-dom/",\
+        "packageDependencies": [\
+          ["react-dom", "virtual:5e3219a4e6fc1cde2cc1ef6e3217ec1d00cf42ac7422e263a94ba12343fb0ac27ccd43b9f3a7d26c1e4d49ac8682540ba8cd3c41d11ddb512c71f9ab69205a10#npm:18.3.1"],\
+          ["@types/react", null],\
+          ["loose-envify", "npm:1.4.0"],\
+          ["react", "npm:18.3.1"],\
+          ["scheduler", "npm:0.23.2"]\
+        ],\
+        "packagePeers": [\
+          "@types/react",\
+          "react"\
+        ],\
+        "linkType": "HARD"\
+      }],\
       ["virtual:9dce388d82c018b4a7af5edc7243e51f7023d1ab93a923b3959d0066ac6881c93b965a0932486426cbefa96c9c8e47849d5ff541d2404b8aca246480fa32f0d2#npm:18.3.1", {\
         "packageLocation": "./.yarn/__virtual__/react-dom-virtual-d6ee84aa67/0/cache/react-dom-npm-18.3.1-a805663f38-a752496c19.zip/node_modules/react-dom/",\
         "packageDependencies": [\
@@ -12115,7 +12131,7 @@ const RAW_RUNTIME_STATE =
           ["@types/react-dom", null],\
           ["clsx", "npm:2.1.1"],\
           ["react", "npm:18.3.1"],\
-          ["react-dom", null]\
+          ["react-dom", "virtual:5e3219a4e6fc1cde2cc1ef6e3217ec1d00cf42ac7422e263a94ba12343fb0ac27ccd43b9f3a7d26c1e4d49ac8682540ba8cd3c41d11ddb512c71f9ab69205a10#npm:18.3.1"]\
         ],\
         "packagePeers": [\
           "@types/react-dom",\

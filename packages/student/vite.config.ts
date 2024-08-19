@@ -32,8 +32,7 @@ export default ({ mode }: { mode: string }) => {
         external: [
           "vite-plugin-node-polyfills/shims/buffer",
           "vite-plugin-node-polyfills/shims/global",
-          "vite-plugin-node-polyfills/shims/process",
-          "@tanstack/react-query"
+          "vite-plugin-node-polyfills/shims/process"
         ]
       }
     }
