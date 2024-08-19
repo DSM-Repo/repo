@@ -32,9 +32,9 @@ instance.interceptors.response.use(
       window.location.replace(`${process.env.VITE_APP_URL_STUDENT}/login`);
     } else {
       toast.error(
-        `오류가 발생했습니다\n(${response.status}: ${response.data.description || response.data})`
+        `오류가 발생했습니다\n(${response.status}: ${response.data.description || response.data})`,
+        { className: "whitespace-pre-line" }
       );
-      console.log(err);
       return err;
     }
   }
