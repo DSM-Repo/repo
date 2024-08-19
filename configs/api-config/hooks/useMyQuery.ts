@@ -1,3 +1,4 @@
+// @ts-expect-error
 import { UseQueryResult, useQuery } from "@tanstack/react-query";
 import { instance, path, pathType } from "..";
 
