@@ -3452,6 +3452,7 @@ const RAW_RUNTIME_STATE =
           ["crypto-js", "npm:4.2.0"],\
           ["fontkit", "npm:2.0.4"],\
           ["jay-peg", "npm:1.0.2"],\
+          ["pako", "npm:2.1.0"],\
           ["vite-compatible-readable-stream", "npm:3.6.1"]\
         ],\
         "linkType": "HARD"\
@@ -11005,6 +11006,13 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/pako-npm-1.0.11-b8f1b69d3e-86dd99d8b3.zip/node_modules/pako/",\
         "packageDependencies": [\
           ["pako", "npm:1.0.11"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
+      ["npm:2.1.0", {\
+        "packageLocation": "./.yarn/cache/pako-npm-2.1.0-78df11948c-8e86465814.zip/node_modules/pako/",\
+        "packageDependencies": [\
+          ["pako", "npm:2.1.0"]\
         ],\
         "linkType": "HARD"\
       }]\
