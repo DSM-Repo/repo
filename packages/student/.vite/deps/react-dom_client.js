@@ -1,20 +1,14 @@
-import __global_polyfill from 'vite-plugin-node-polyfills/shims/global'
-globalThis.global = globalThis.global || __global_polyfill
-
 import {
   require_react_dom
-} from "./chunk-UEHZWCOM.js";
-import "./chunk-IF3FXHGJ.js";
+} from "./chunk-PVX7ZVB7.js";
+import "./chunk-JQJMTY5N.js";
 import {
-  __commonJS,
-  __toESM,
-  require_dist
-} from "./chunk-WFPLDLJJ.js";
+  __commonJS
+} from "./chunk-4MBMRILA.js";
 
 // ../../.yarn/__virtual__/react-dom-virtual-d6ee84aa67/0/cache/react-dom-npm-18.3.1-a805663f38-a752496c19.zip/node_modules/react-dom/client.js
 var require_client = __commonJS({
   "../../.yarn/__virtual__/react-dom-virtual-d6ee84aa67/0/cache/react-dom-npm-18.3.1-a805663f38-a752496c19.zip/node_modules/react-dom/client.js"(exports) {
-    var import_dist = __toESM(require_dist());
     var m = require_react_dom();
     if (false) {
       exports.createRoot = m.createRoot;

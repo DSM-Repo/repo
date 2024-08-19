@@ -1,20 +1,14 @@
-import __global_polyfill from 'vite-plugin-node-polyfills/shims/global'
-globalThis.global = globalThis.global || __global_polyfill
-
 import {
   require_react
-} from "./chunk-IF3FXHGJ.js";
+} from "./chunk-JQJMTY5N.js";
 import {
-  __commonJS,
-  __toESM,
-  require_dist
-} from "./chunk-WFPLDLJJ.js";
+  __commonJS
+} from "./chunk-4MBMRILA.js";
 
 // ../../.yarn/cache/scheduler-npm-0.23.2-6d1dd9c2b7-26383305e2.zip/node_modules/scheduler/cjs/scheduler.development.js
 var require_scheduler_development = __commonJS({
   "../../.yarn/cache/scheduler-npm-0.23.2-6d1dd9c2b7-26383305e2.zip/node_modules/scheduler/cjs/scheduler.development.js"(exports) {
     "use strict";
-    var import_dist = __toESM(require_dist());
     if (true) {
       (function() {
         "use strict";
@@ -465,7 +459,6 @@ var require_scheduler_development = __commonJS({
 var require_scheduler = __commonJS({
   "../../.yarn/cache/scheduler-npm-0.23.2-6d1dd9c2b7-26383305e2.zip/node_modules/scheduler/index.js"(exports, module) {
     "use strict";
-    var import_dist = __toESM(require_dist());
     if (false) {
       module.exports = null;
     } else {
@@ -478,7 +471,6 @@ var require_scheduler = __commonJS({
 var require_react_dom_development = __commonJS({
   "../../.yarn/__virtual__/react-dom-virtual-d6ee84aa67/0/cache/react-dom-npm-18.3.1-a805663f38-a752496c19.zip/node_modules/react-dom/cjs/react-dom.development.js"(exports) {
     "use strict";
-    var import_dist = __toESM(require_dist());
     if (true) {
       (function() {
         "use strict";
@@ -21585,7 +21577,6 @@ var require_react_dom_development = __commonJS({
 var require_react_dom = __commonJS({
   "../../.yarn/__virtual__/react-dom-virtual-d6ee84aa67/0/cache/react-dom-npm-18.3.1-a805663f38-a752496c19.zip/node_modules/react-dom/index.js"(exports, module) {
     "use strict";
-    var import_dist = __toESM(require_dist());
     if (false) {
       checkDCE();
       module.exports = null;
@@ -21635,4 +21626,4 @@ react-dom/cjs/react-dom.development.js:
    * @license Modernizr 3.0.0pre (Custom Build) | MIT
    *)
 */
-//# sourceMappingURL=chunk-UEHZWCOM.js.map
+//# sourceMappingURL=chunk-PVX7ZVB7.js.map

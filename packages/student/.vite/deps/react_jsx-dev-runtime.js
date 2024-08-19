@@ -1,20 +1,14 @@
-import __global_polyfill from 'vite-plugin-node-polyfills/shims/global'
-globalThis.global = globalThis.global || __global_polyfill
-
 import {
   require_react
-} from "./chunk-IF3FXHGJ.js";
+} from "./chunk-JQJMTY5N.js";
 import {
-  __commonJS,
-  __toESM,
-  require_dist
-} from "./chunk-WFPLDLJJ.js";
+  __commonJS
+} from "./chunk-4MBMRILA.js";
 
 // ../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/cjs/react-jsx-dev-runtime.development.js
 var require_react_jsx_dev_runtime_development = __commonJS({
   "../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/cjs/react-jsx-dev-runtime.development.js"(exports) {
     "use strict";
-    var import_dist = __toESM(require_dist());
     if (true) {
       (function() {
         "use strict";
@@ -895,7 +889,6 @@ var require_react_jsx_dev_runtime_development = __commonJS({
 // ../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/jsx-dev-runtime.js
 var require_jsx_dev_runtime = __commonJS({
   "../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/jsx-dev-runtime.js"(exports, module) {
-    var import_dist = __toESM(require_dist());
     if (false) {
       module.exports = null;
     } else {

@@ -1,16 +1,10 @@
-import __global_polyfill from 'vite-plugin-node-polyfills/shims/global'
-globalThis.global = globalThis.global || __global_polyfill
-
 import {
-  __commonJS,
-  __toESM,
-  require_dist
-} from "./chunk-WFPLDLJJ.js";
+  __commonJS
+} from "./chunk-4MBMRILA.js";
 
 // ../../.yarn/cache/dayjs-npm-1.11.12-ce23245b6e-9673d37f3f.zip/node_modules/dayjs/dayjs.min.js
 var require_dayjs_min = __commonJS({
   "../../.yarn/cache/dayjs-npm-1.11.12-ce23245b6e-9673d37f3f.zip/node_modules/dayjs/dayjs.min.js"(exports, module) {
-    var import_dist = __toESM(require_dist());
     !function(t, e) {
       "object" == typeof exports && "undefined" != typeof module ? module.exports = e() : "function" == typeof define && define.amd ? define(e) : (t = "undefined" != typeof globalThis ? globalThis : t || self).dayjs = e();
     }(exports, function() {

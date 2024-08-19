@@ -1,28 +1,21 @@
-import __global_polyfill from 'vite-plugin-node-polyfills/shims/global'
-globalThis.global = globalThis.global || __global_polyfill
-
 import {
   require_react_dom
-} from "./chunk-UEHZWCOM.js";
+} from "./chunk-PVX7ZVB7.js";
 import {
   require_react
-} from "./chunk-IF3FXHGJ.js";
+} from "./chunk-JQJMTY5N.js";
 import {
-  __toESM,
-  require_dist
-} from "./chunk-WFPLDLJJ.js";
+  __toESM
+} from "./chunk-4MBMRILA.js";
 
 // ../../.yarn/__virtual__/react-router-dom-virtual-f915074df7/0/cache/react-router-dom-npm-6.26.1-7932358248-9d9d8ed54d.zip/node_modules/react-router-dom/dist/index.js
-var import_dist3 = __toESM(require_dist());
 var React2 = __toESM(require_react());
 var ReactDOM = __toESM(require_react_dom());
 
 // ../../.yarn/__virtual__/react-router-virtual-996270457a/0/cache/react-router-npm-6.26.1-cb8ea73315-463078e740.zip/node_modules/react-router/dist/index.js
-var import_dist2 = __toESM(require_dist());
 var React = __toESM(require_react());
 
 // ../../.yarn/cache/@remix-run-router-npm-1.19.1-61ed432c7e-9101fc9664.zip/node_modules/@remix-run/router/dist/router.js
-var import_dist = __toESM(require_dist());
 function _extends() {
   _extends = Object.assign ? Object.assign.bind() : function(target) {
     for (var i = 1; i < arguments.length; i++) {
