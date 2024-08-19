@@ -3,10 +3,11 @@
   "packageManager": "yarn@4.3.0",
   "main": "./index.ts",
   "dependencies": {
-    "@tanstack/react-query": "^5.51.21",
+    "@tanstack/react-query": "5.51.23",
     "axios": "^1.7.2",
     "react": "^18.3.1",
     "react-cookie": "^7.2.0",
+    "react-dom": "^18.3.1",
     "react-toastify": "^10.0.5"
   }
 }
