@@ -16,7 +16,8 @@ export default ({ mode }: { mode: string }) => {
         include: ["buffer", "util", "stream", "crypto", "events"],
         globals: {
           process: false,
-          Buffer: false
+          Buffer: false,
+          global: false
         }
       })
     ],
