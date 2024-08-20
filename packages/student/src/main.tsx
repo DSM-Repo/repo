@@ -16,6 +16,22 @@ const queryClient = new QueryClient({
   }
 });
 
+const checkBuild = () => {
+  if (process.env.NODE_ENV === "development") {
+    document.title = "🔧 Repo";
+    const link = document.querySelector("link[rel~='icon']");
+    if (!!link) {
+      document.head.removeChild(link);
+    }
+    const newLink = document.createElement("link");
+    newLink.rel = "icon";
+    newLink.href = "/RepoDev.svg";
+    document.head.appendChild(newLink);
+  }
+};
+
+checkBuild();
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <QueryClientProvider client={queryClient}>
     <Router />

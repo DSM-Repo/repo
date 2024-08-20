@@ -2,8 +2,8 @@ import { IResume } from "@configs/default";
 import QRCode from "react-qr-code";
 import { Box } from "ui";
 import { Ternary } from "./Ternary";
-import { useEffect, useRef, useState } from "react";
-import { checkOverflow } from "@/util";
+import { Fragment, useEffect, useRef, useState } from "react";
+import { checkOverflow } from "../util";
 import { setType } from ".";
 
 interface IProp {
@@ -20,7 +20,10 @@ export const Inform = ({ data, setMax }: IProp) => {
     if (pdf?.current) {
       const over = checkOverflow(pdf?.current);
       setPages(over);
-      setMax((prev) => ({ ...prev, projects: over.length + 1 }));
+      setMax((prev) => ({ ...prev, inform: over.length + 1 }));
+    }
+    if (!!!data.project_list.length) {
+      setMax((prev) => ({ ...prev, projects: 0 }));
     }
   }, [data]);
 
@@ -80,8 +83,8 @@ export const Inform = ({ data, setMax }: IProp) => {
             <div className="col-flex gap-[10px] ">
               <span className="text-body5 text-black mt-6">기술 스택</span>
               <div className="border-l-[3px] border-black flex gap-1 px-[5px] flex-wrap w-full">
-                {data.writer.skill_set.map((i) => (
-                  <span className="text-body7 px-2 py-[2px] text-black">
+                {data.writer.skill_set.map((i, j) => (
+                  <span className="text-body7 px-2 py-[2px] text-black" key={j}>
                     {i}
                   </span>
                 ))}
@@ -95,17 +98,26 @@ export const Inform = ({ data, setMax }: IProp) => {
                 자격증 & 수상
               </span>
               {data.achievement_list.map((i) => (
-                <div className="pl-5 pr-[5px] py-3 border-l-[3px] mt-[10px] border-black flex justify-between items-center">
-                  <span className="text-body5 text-black">{i.name}</span>
-                  <div className="flex gap-[10px] items-center">
-                    <span className="text-body8 font-light text-[#818181]">
-                      {i.institution}
-                    </span>
-                    <div className="h-[16px] bg-[#818181] w-[1px] rounded-full" />
-                    <span className="text-body8 font-light text-[#818181]">
-                      {i.date}
-                    </span>
-                  </div>
+                <div
+                  className="pl-5 pr-[5px] py-3 border-l-[3px] mt-[10px] border-black flex justify-between items-center"
+                  key={i.element_id}
+                >
+                  <span
+                    className={`text-body5 ${!!i.name ? "text-black" : "text-gray-200"}`}
+                  >
+                    {i.name || "내용을 입력하세요"}
+                  </span>
+                  <Ternary data={i.institution || i.date}>
+                    <div className="flex gap-[10px] items-center">
+                      <span className="text-body8 font-light text-[#818181]">
+                        {i.institution}
+                      </span>
+                      <div className="h-[16px] bg-[#818181] w-[1px] rounded-full" />
+                      <span className="text-body8 font-light text-[#818181]">
+                        {i.date}
+                      </span>
+                    </div>
+                  </Ternary>
                 </div>
               ))}
             </div>
@@ -115,7 +127,10 @@ export const Inform = ({ data, setMax }: IProp) => {
             <div className="col-flex checkAble">
               <span className="text-body5 text-black mt-6 block">활동</span>
               {data.activity_list.map((i) => (
-                <div className="pl-5 pr-[5px] py-1 border-l-[3px] min-h-[57.5px] mt-[10px] border-black col-flex">
+                <div
+                  className="pl-5 pr-[5px] py-1 border-l-[3px] min-h-[57.5px] mt-[10px] border-black col-flex"
+                  key={i.element_id}
+                >
                   <div className="flex w-full justify-between items-center">
                     <span className="text-body5 text-black">{i.name}</span>
                     <span className="text-body8 font-light text-[#818181]">
@@ -133,32 +148,36 @@ export const Inform = ({ data, setMax }: IProp) => {
           </Ternary>
         </Box>
       </div>
-
-      {pages?.map((item) => (
-        <div className="overflow-auto flex-shrink-0 w-fit h-full">
-          <Box
-            width="595px"
-            height="841px"
-            padding="30px"
-            round={{ all: 0 }}
-            className="bg-white gap-[0_!important] flex-shrink-0"
-          >
-            <>
-              {item?.map((i) => {
-                return (
-                  <div
-                    ref={(items) =>
-                      items?.childNodes.forEach(
-                        (i) => ((i as HTMLElement).style.visibility = "visible")
-                      )
-                    }
-                    dangerouslySetInnerHTML={{ __html: i.outerHTML }}
-                  />
-                );
-              })}
-            </>
-          </Box>
-        </div>
+      {pages?.map((item, index) => (
+        <Fragment key={index}>
+          <div className="split" />
+          <div className="overflow-auto flex-shrink-0 w-fit h-full">
+            <Box
+              width="595px"
+              height="841px"
+              padding="30px"
+              round={{ all: 0 }}
+              className="bg-white gap-[0_!important] overflow-x-hidden flex-shrink-0"
+            >
+              <>
+                {item?.map((i, j) => {
+                  return (
+                    <div
+                      key={j}
+                      ref={(items) =>
+                        items?.childNodes.forEach(
+                          (i) =>
+                            ((i as HTMLElement).style.visibility = "visible")
+                        )
+                      }
+                      dangerouslySetInnerHTML={{ __html: i.outerHTML }}
+                    />
+                  );
+                })}
+              </>
+            </Box>
+          </div>
+        </Fragment>
       ))}
     </>
   );

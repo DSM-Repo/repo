@@ -43,7 +43,7 @@ export const Header = ({ current, onPageMove, length }: IProp) => {
               icon="ep:arrow-right-bold"
               width={14}
               height={14}
-              color={current < 1 + length ? "#ffffff" : "#777777"}
+              color={current < length ? "#ffffff" : "#777777"}
             />
           </div>
         </div>

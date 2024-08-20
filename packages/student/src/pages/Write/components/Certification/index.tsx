@@ -30,7 +30,11 @@ export const Certification = () => {
       >
         <Icon icon="mingcute:add-fill" width={25} className="self-center" />
       </Button>
-      <>{achievement_list?.map((i) => <Item data={i} setData={set} />)}</>
+      <>
+        {achievement_list?.map((i) => (
+          <Item data={i} setData={set} key={i.element_id} />
+        ))}
+      </>
     </Layout>
   );
 };

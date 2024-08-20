@@ -1,9 +1,7 @@
 import { useResumeData } from "@/hooks";
-import { useEffect, useState } from "react";
-import { Box } from "ui";
+import { useEffect, useRef, useState } from "react";
+import { Box, Inform, Projects } from "ui";
 import { Header } from "./Header";
-import { Inform } from "./Inform";
-import { Projects } from "./Project";
 
 export type setType = React.Dispatch<
   React.SetStateAction<{
@@ -19,8 +17,9 @@ export const Preview = () => {
   });
   const [cur, setCur] = useState(1);
 
-  const length = Object.values(max).reduce((acc, prev) => acc + prev);
+  const keep = useRef<{ [key: string]: number }>({});
 
+  const length = Object.values(max).reduce((acc, prev) => acc + prev);
   const { data } = useResumeData();
 
   useEffect(() => {
@@ -53,8 +52,8 @@ export const Preview = () => {
           }}
         >
           <Inform data={data} setMax={setMax} />
-          {data.project_list.map((i) => (
-            <Projects data={i} setMax={setMax} />
+          {data?.project_list?.map((i) => (
+            <Projects data={i} setMax={setMax} keep={keep} key={i.name} />
           ))}
         </div>
       </div>
