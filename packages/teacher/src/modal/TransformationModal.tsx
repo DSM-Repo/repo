@@ -12,7 +12,7 @@ interface TransformationModalProps {
 
 export const TransformationModal = ({ onClose, onGradeSelect }: TransformationModalProps) => {
   const [grade, setGrade] = useState<string>("");
-  const [progress, setProgress] = useState<number>(0); // Progress state
+  const [progress, setProgress] = useState<number>(0);
   const navigate = useNavigate();
 
   const handleYearSelect = (selected: string) => {

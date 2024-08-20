@@ -6,6 +6,7 @@ import { ResumeDetail } from '@/page/ResumeDetail';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Layout } from './Layout.tsx';
 import { Layout2 } from './Layout2.tsx';
+import { LibraryDetail } from '@/page/LibraryDetail.tsx';
 // import { FeedBackList } from '@/page/FeedBackList';
 
 export const Router = () => {
@@ -25,6 +26,7 @@ export const Router = () => {
           <Route path="library" element={<Library />} />
           <Route path="majoradd" element={<MajorAdd />} />
           {/* <Route path="feedbacklist" element={<FeedBackList />} /> */}
+          <Route path='librarydetail' element={<LibraryDetail />} />
         </Route>
         
         {/* Routes using Layout2 with dynamic documentId */}

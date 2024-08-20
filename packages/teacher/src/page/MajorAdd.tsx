@@ -50,10 +50,10 @@ export const MajorAdd = () => {
         setError(null);
         setSuccess(false);
 
-        const accessToken = localStorage.getItem('accessToken');
-        if (!accessToken) {
+        const access_token = localStorage.getItem('access_token');
+        if (!access_token) {
             console.error('No access token found');
-            navigate('/login');
+            navigate('');
             return;
         }
 
@@ -61,7 +61,7 @@ export const MajorAdd = () => {
             const response = await fetch('https://prod-server.xquare.app/whopper/major', {
                 method: 'POST',
                 headers: {
-                    'Authorization': `Bearer ${accessToken}`,
+                    'Authorization': `Bearer ${access_token}`,
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ majors: [major] })
@@ -83,7 +83,7 @@ export const MajorAdd = () => {
         setError(null);
         setSuccess(false);
 
-        const accessToken = localStorage.getItem('accessToken');
+        const access_token = localStorage.getItem('accessToken');
         if (!accessToken) {
             console.error('No access token found');
             navigate('/login');
@@ -131,7 +131,6 @@ export const MajorAdd = () => {
                     onChange={(e) => setMajor(e.target.value)}
                     onKeyDown={handleKeyDown}
                     size="full"
-                    className="mb-4 w-full"
                 />
                 {success && <p className="text-green-500 mt-2">전공이 성공적으로 처리되었습니다!</p>}
                 {error && <p className="text-red-500 mt-2">{error}</p>}

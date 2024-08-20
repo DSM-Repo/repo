@@ -4,7 +4,7 @@ import { ITeacher } from "ui/src/organisms/SideBar/types";
 import { Footer } from '../component/Footer';
 
 export const userDefault: ITeacher = {
-  name: "이태윤",
+  name: "김윤이",
   type: "teacher",
 };
 

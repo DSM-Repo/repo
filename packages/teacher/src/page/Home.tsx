@@ -6,14 +6,14 @@ import StudentBox from '../component/StudentBox';
 const baseURL = 'https://prod-server.xquare.app/whopper/document/student';
 
 interface Student {
-  documentId: string;
-  studentInfo: {
-    schoolNumber: string;
+  document_id: string;
+  student_info: {
+    school_number: string;
     name: string;
-    profileImage: string;
+    profile_image: string;
   };
   status: string;
-  numberOfFeedback: number;
+  number_of_feedback: number;
 }
 
 interface Major {
@@ -42,10 +42,10 @@ export const Home = () => {
   }, [name, grade, classNumber, majorId, status]);
 
   const fetchMajors = async () => {
-    const accessToken = localStorage.getItem('accessToken');
-    if (!accessToken) {
+    const access_token = localStorage.getItem('access_token');
+    if (!access_token) {
       console.error('No access token found');
-      navigate('/login');
+      navigate('');
       return;
     }
 
@@ -53,7 +53,7 @@ export const Home = () => {
       const response = await fetch('https://prod-server.xquare.app/whopper/major', {
         method: 'GET',
         headers: {
-          Authorization: `Bearer ${accessToken}`,
+          Authorization: `Bearer ${access_token}`,
         },
       });
 
@@ -72,8 +72,8 @@ export const Home = () => {
   };
 
   const fetchStudents = async () => {
-    const accessToken = localStorage.getItem('accessToken');
-    if (!accessToken) {
+    const access_token = localStorage.getItem('access_token');
+    if (!access_token) {
       console.error('No access token found');
       navigate('');
       return;
@@ -83,7 +83,7 @@ export const Home = () => {
       const response = await fetch(baseURL, {
         method: 'GET',
         headers: {
-          Authorization: `Bearer ${accessToken}`,
+          Authorization: `Bearer ${access_token}`,
         },
       });
 
@@ -110,17 +110,17 @@ export const Home = () => {
 
   const filterStudents = () => {
     const filtered = allStudents.filter((student) => {
-      const matchName = name ? student.studentInfo.name?.includes(name) : true;
-      const matchGrade = grade !== null && student.studentInfo.schoolNumber
-        ? student.studentInfo.schoolNumber.startsWith(grade.toString())
+      const matchName = name ? student.student_info.name?.includes(name) : true;
+      const matchGrade = grade !== null && student.student_info.school_number
+        ? student.student_info.school_number.startsWith(grade.toString())
         : true;
-      const matchClass = classNumber !== null && student.studentInfo.schoolNumber
-        ? student.studentInfo.schoolNumber.slice(1, 2) === classNumber.toString()
+      const matchClass = classNumber !== null && student.student_info.school_number
+        ? student.student_info.school_number.slice(1, 2) === classNumber.toString()
         : true;
-      const matchMajor = majorId && student.studentInfo.schoolNumber
-        ? student.studentInfo.schoolNumber.slice(2, 4) === majorId
+      const matchMajor = majorId && student.student_info.school_number
+        ? student.student_info.school_number.slice(2, 4) === majorId
         : true;
-      const matchStatus = status ? (status === '모두' ? true : (status === '제출' ? student.numberOfFeedback > 0 : student.numberOfFeedback === 0)) : true;
+      const matchStatus = status ? (status === '모두' ? true : (status === '제출' ? student.number_of_feedback > 0 : student.number_of_feedback === 0)) : true;
       return matchName && matchGrade && matchClass && matchMajor && matchStatus;
     });
 
@@ -141,7 +141,7 @@ export const Home = () => {
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
-          <div className={'flex items-center relative'}>
+          <div className={'flex items-center'}>
             <Dropdown
               placeholder="학년"
               selected={grade !== null ? grade.toString() : ''}
@@ -151,7 +151,7 @@ export const Home = () => {
               }}
             />
           </div>
-          <div className={'flex items-center relative'}>
+          <div className={'flex items-center'}>
             <Dropdown
               placeholder="반"
               selected={classNumber !== null ? classNumber.toString() : ''}
@@ -161,7 +161,7 @@ export const Home = () => {
               }}
             />
           </div>
-          <div className={'flex items-center relative'}>
+          <div className={'flex items-center'}>
             <Dropdown
               placeholder="전공"
               selected={majorOptions.find(option => option.id === majorId)?.name || ''}
@@ -172,10 +172,9 @@ export const Home = () => {
                   setMajorId(selectedOption.id);
                 }
               }}
-              className='h-[50px]'
             />
           </div>
-          <div className={'flex items-center relative'}>
+          <div className={'flex items-center'}>
             <Dropdown
               placeholder="작성 상태"
               selected={status}
@@ -192,12 +191,12 @@ export const Home = () => {
           )}
           {students.map((student) => (
             <StudentBox
-              key={student.documentId}
-              documentId={student.documentId}
-              profileImage={student.studentInfo.profileImage}
-              schoolNumber={student.studentInfo.schoolNumber}
-              name={student.studentInfo.name}
-              feedbackNumber={student.numberOfFeedback}
+              key={student.document_id}
+              documentId={student.document_id}
+              profileImage={student.student_info.profile_image}
+              schoolNumber={student.student_info.school_number}
+              name={student.student_info.name}
+              feedbackNumber={student.number_of_feedback}
             />
           ))}
         </div>

@@ -6,3 +6,4 @@ export { default as Plus } from "./Plus.svg?react";
 export { default as RightArrow } from "./RightArrow.svg?react";
 export { default as Share } from "./Share.svg?react";
 export { default as X } from "./X.svg?react";
+export { default as FastMove } from "./FastMove.svg?react"

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Dropdown } from "ui";
 
 interface LibraryItem {
-    id: string; // Adjusted to match the response data
+    id: string;
     access_right: 'PUBLIC' | 'PRIVATE';
     year: number;
     grade: number;
@@ -24,7 +24,7 @@ export const Library = () => {
         const accessToken = localStorage.getItem('accessToken');
         if (!accessToken) {
             console.error('No access token found');
-            navigate('/login'); // Redirect to login if token is not found
+            navigate('');
             return;
         }
 
@@ -35,10 +35,11 @@ export const Library = () => {
                     'Authorization': `Bearer ${accessToken}`,
                 },
             });
-
+            
             if (response.ok) {
                 const data = await response.json();
                 setLibraryItems(data.data || []);
+                localStorage.setItem('libraryId', data.id);
             } else {
                 throw new Error('Failed to fetch library items');
             }
