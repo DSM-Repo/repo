@@ -38,4 +38,4 @@ export {
   loadIcons,
   replaceIDs
 };
-//# sourceMappingURL=@iconify_react.js.map
+//# sourceMappingURL=@iconify_react_dist_iconify__js.js.map
