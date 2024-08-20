@@ -1750,9 +1750,9 @@ var require_QRCode = __commonJS({
   }
 });
 
-// ../../.yarn/__virtual__/react-qr-code-virtual-4f3b30f86f/0/cache/react-qr-code-npm-2.0.15-669b395b3b-6a9d739186.zip/node_modules/react-qr-code/lib/QRCodeSvg/index.js
+// ../../.yarn/__virtual__/react-qr-code-virtual-252e00f18c/0/cache/react-qr-code-npm-2.0.15-669b395b3b-6a9d739186.zip/node_modules/react-qr-code/lib/QRCodeSvg/index.js
 var require_QRCodeSvg = __commonJS({
-  "../../.yarn/__virtual__/react-qr-code-virtual-4f3b30f86f/0/cache/react-qr-code-npm-2.0.15-669b395b3b-6a9d739186.zip/node_modules/react-qr-code/lib/QRCodeSvg/index.js"(exports) {
+  "../../.yarn/__virtual__/react-qr-code-virtual-252e00f18c/0/cache/react-qr-code-npm-2.0.15-669b395b3b-6a9d739186.zip/node_modules/react-qr-code/lib/QRCodeSvg/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", {
       value: true
@@ -1814,9 +1814,9 @@ var require_QRCodeSvg = __commonJS({
   }
 });
 
-// ../../.yarn/__virtual__/react-qr-code-virtual-4f3b30f86f/0/cache/react-qr-code-npm-2.0.15-669b395b3b-6a9d739186.zip/node_modules/react-qr-code/lib/index.js
+// ../../.yarn/__virtual__/react-qr-code-virtual-252e00f18c/0/cache/react-qr-code-npm-2.0.15-669b395b3b-6a9d739186.zip/node_modules/react-qr-code/lib/index.js
 var require_lib = __commonJS({
-  "../../.yarn/__virtual__/react-qr-code-virtual-4f3b30f86f/0/cache/react-qr-code-npm-2.0.15-669b395b3b-6a9d739186.zip/node_modules/react-qr-code/lib/index.js"(exports) {
+  "../../.yarn/__virtual__/react-qr-code-virtual-252e00f18c/0/cache/react-qr-code-npm-2.0.15-669b395b3b-6a9d739186.zip/node_modules/react-qr-code/lib/index.js"(exports) {
     Object.defineProperty(exports, "__esModule", {
       value: true
     });
