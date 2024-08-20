@@ -32,8 +32,8 @@ export const Item = ({ data, setData }: IProp) => {
     setData((prev) => ({
       data: {
         ...prev.data,
-        achievementList: prev.data.achievementList.map((i) =>
-          i.elementId === data.elementId ? { ...data, [id]: value } : i
+        achievement_list: prev.data.achievement_list.map((i) =>
+          i.element_id === data.element_id ? { ...data, [id]: value } : i
         )
       }
     }));
@@ -42,8 +42,8 @@ export const Item = ({ data, setData }: IProp) => {
     setData((prev) => ({
       data: {
         ...prev.data,
-        achievementList: prev.data.achievementList.filter(
-          (item) => item.elementId !== data.elementId
+        achievement_list: prev.data.achievement_list.filter(
+          (item) => item.element_id !== data.element_id
         )
       }
     }));

@@ -7,5 +7,5 @@ type libraryType = {
 
 export interface ILibrary {
   data: libraryType[];
-  numberOfData: number;
+  number_of_data: number;
 }

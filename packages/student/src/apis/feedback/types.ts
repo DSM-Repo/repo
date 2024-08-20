@@ -6,7 +6,7 @@ type feedbackType = {
 };
 
 export interface IFeedback {
-  numberOfData: number;
+  number_of_data: number;
   data: feedbackType[];
 }
 

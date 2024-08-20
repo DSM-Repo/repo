@@ -8,7 +8,7 @@ const wait = () => {
   let cnt = 0;
   return new Promise((res, rej) => {
     setInterval(() => {
-      const curExpStamp = cookie.get("accessExpires");
+      const curExpStamp = cookie.get("access_expires");
       const curCurStamp = Math.round(Date.now() / 1000);
       cnt++;
       if (curExpStamp > curCurStamp) res("Token Changed!");
@@ -19,21 +19,23 @@ const wait = () => {
 
 export const refresh = () =>
   new Promise((resolve, reject) => {
-    const expireStamp = cookie.get("accessExpires");
+    const expireStamp = cookie.get("access_expires");
     const currentStamp = Math.round(Date.now() / 1000);
 
     if (expireStamp <= currentStamp && !lock) {
       lock = true;
-      const refreshToken = cookie.get("refreshToken");
+      const refreshToken = cookie.get("refresh_token");
       axios
         .put(`${process.env.VITE_APP_BASE_URL}/auth/token`, undefined, {
           headers: { "X-refresh-token": refreshToken }
         })
         .then((res) => {
-          cookie.set("accessToken", res.data.accessToken, { path: "/" });
-          cookie.set("refreshToken", res.data.refreshToken, { path: "/" });
-          cookie.set("accessExpires", res.data.accessExpiredAt, { path: "/" });
-          cookie.set("refreshExpires", res.data.refreshExpiredAt, {
+          cookie.set("access_token", res.data.access_token, { path: "/" });
+          cookie.set("refresh_token", res.data.refresh_token, { path: "/" });
+          cookie.set("access_expires", res.data.access_expired_at, {
+            path: "/"
+          });
+          cookie.set("refresh_expires", res.data.refresh_expired_at, {
             path: "/"
           });
           lock = false;

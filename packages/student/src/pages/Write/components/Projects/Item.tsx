@@ -38,8 +38,8 @@ export const Item = ({ data, setData }: IProp) => {
     setData((prev) => ({
       data: {
         ...prev.data,
-        projectList: prev.data.projectList.map((i) =>
-          i.elementId === data.elementId ? { ...data, [id]: value } : i
+        project_list: prev.data.project_list.map((i) =>
+          i.element_id === data.element_id ? { ...data, [id]: value } : i
         )
       }
     }));
@@ -48,8 +48,8 @@ export const Item = ({ data, setData }: IProp) => {
     setData((prev) => ({
       data: {
         ...prev.data,
-        projectList: prev.data.projectList.filter(
-          (item) => item.elementId !== data.elementId
+        project_list: prev.data.project_list.filter(
+          (item) => item.element_id !== data.element_id
         )
       }
     }));
@@ -64,7 +64,7 @@ export const Item = ({ data, setData }: IProp) => {
       const form = new FormData();
       form.append("file", file);
       mutate(form, {
-        onSuccess: (res) => set("imageInfo", res)
+        onSuccess: (res) => set("image_info", res)
       });
     }
   };
@@ -77,8 +77,8 @@ export const Item = ({ data, setData }: IProp) => {
     setData((prev) => ({
       data: {
         ...prev.data,
-        projectList: prev.data.projectList.map((i) =>
-          i.elementId === data.elementId
+        project_list: prev.data.project_list.map((i) =>
+          i.element_id === data.element_id
             ? {
                 ...data,
                 description: { ...data.description, [target.id]: target.value }
@@ -108,9 +108,9 @@ export const Item = ({ data, setData }: IProp) => {
           size="full"
           label="프로젝트 로고"
           placeholder="로고 파일을 선택하세요"
-          onDelete={() => set("imageInfo", undefined)}
+          onDelete={() => set("image_info", undefined)}
           onChange={handleLogo}
-          value={data.imageInfo?.originalName}
+          value={data.image_info?.original_name}
           ext="image/*"
         />
       </div>
@@ -125,20 +125,20 @@ export const Item = ({ data, setData }: IProp) => {
       />
       <Label label="진행일" full className="w-full gap-3 items-center flex">
         <Calander
-          id="startDate"
-          onDelete={() => set("startDate", undefined)}
+          id="start_date"
+          onDelete={() => set("start_date", undefined)}
           size="full"
           placeholder="시작일을 선택하세요"
-          value={data.startDate}
+          value={data.start_date}
           onChange={handleDate}
         />
         <span>~</span>
         <Calander
-          onDelete={() => set("endDate", undefined)}
-          id="endDate"
+          onDelete={() => set("end_date", undefined)}
+          id="end_date"
           size="full"
           placeholder="종료일을 선택하세요"
-          value={data.endDate}
+          value={data.end_date}
           onChange={handleDate}
         />
       </Label>
@@ -153,13 +153,13 @@ export const Item = ({ data, setData }: IProp) => {
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               setSkill("");
-              set("skillSet", [...data.skillSet, skill]);
+              set("skill_set", [...data.skill_set, skill]);
             }
           }}
           onChange={(e) => setSkill(e.target.value)}
         />
         <div className="flex flex-wrap gap-2 w-full">
-          {data.skillSet?.map((n) => (
+          {data.skill_set?.map((n) => (
             <Box
               padding="8px 13px"
               color="light"
@@ -172,8 +172,8 @@ export const Item = ({ data, setData }: IProp) => {
                 className="cursor-pointer"
                 onClick={() =>
                   set(
-                    "skillSet",
-                    data.skillSet.filter((j) => j !== n)
+                    "skill_set",
+                    data.skill_set.filter((j) => j !== n)
                   )
                 }
               />

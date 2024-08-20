@@ -4,8 +4,8 @@ export interface ILogin {
 }
 
 export interface IData {
-  accessToken: string;
-  refreshToken: string;
-  accessExpiredAt: number;
-  refreshExpiredAt: number;
+  access_token: string;
+  refresh_token: string;
+  access_expired_at: number;
+  refresh_expired_at: number;
 }
