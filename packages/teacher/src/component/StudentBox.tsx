@@ -20,19 +20,19 @@ const StudentBox = ({
   const navigate = useNavigate();
 
   const handleClick = () => {
+    localStorage.setItem('documentId', documentId);
     navigate(`/document/student/${documentId}`);
   };
 
   return (
     <Box
-      color="dark"
-      size={{ width: '100%', height: 'auto', padding: '20px' }}
-      round={{ tl: '10px', tr: '10px', br: '10px', bl: '10px' }}
+      width="100%"
+      padding='20px'
     >
       <div className="flex items-center space-x-4 cursor-pointer" onClick={handleClick}>
         <img
           src={profileImage}
-          alt={`${name}'s profile`} // better alt text
+          alt={`${name}'s profile`}
           className="w-16 h-16 rounded-full"
         />
         <div className="flex items-center">

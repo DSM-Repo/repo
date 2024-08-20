@@ -1,5 +1,4 @@
 import { Logo } from '@/icons';
-import { instance } from '@configs/axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Input } from 'ui';
@@ -25,36 +24,35 @@ export const TeacherLogin = () => {
     }
 
     try {
-      const response = await instance.post('https://prod-server.xquare.app/whopper/auth/teacher', {
-        account_id: accountId,
-        password: password,
+      const response = await fetch('https://prod-server.xquare.app/whopper/auth/teacher', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          account_id: accountId,
+          password: password,
+        }),
       });
 
-      if (response.status === 200) {
-        const data = response.data;
-        console.log('로그인 성공:', data);
-        localStorage.setItem('accessToken', data.accessToken);
-        localStorage.setItem('refreshToken', data.refreshToken);
+      if (response.ok) {
+        const data = await response.json();
+        alert('로그인 성공');
+        localStorage.setItem('access_token', data.access_token);
+        localStorage.setItem('refresh_token', data.refresh_token);
         navigate('/home');
       } else {
-        setError('로그인에 실패했습니다.');
-      }
-
-    } catch (error: any) {
-      console.error('Error:', error);
-      if (error.response) {
-        if (error.response.status === 401) {
+        if (response.status === 401) {
           setError('아이디 또는 비밀번호가 일치하지 않습니다.');
-        } else if (error.response.status === 400) {
+        } else if (response.status === 400) {
           setError('잘못된 요청입니다. 입력값을 확인하세요.');
-        } else if (error.response.status === 500) {
-          setError('서버 오류가 발생했습니다. 나중에 다시 시도해 주세요.');
         } else {
-          setError('로그인 중 오류가 발생했습니다.');
+          setError('로그인에 실패했습니다.');
         }
-      } else {
-        setError('로그인 중 오류가 발생했습니다.');
       }
+    } catch (error) {
+      console.error('Error:', error);
+      setError('로그인 중 오류가 발생했습니다.');
     }
   };
 
@@ -80,10 +78,9 @@ export const TeacherLogin = () => {
           label="비밀번호"
           value={password}
           onChange={handlePasswordChange}
+          password
         />
-        {error && (
-          <p className="text-red-500 mt-2">{error}</p>
-        )}
+        {error && <p className="text-red-500 mt-2">{error}</p>}
         <Button size="large" onClick={handleLogin}>
           로그인
         </Button>
