@@ -9717,6 +9717,7 @@ __metadata:
     prop-types: "npm:^15.8.1"
     react: "npm:^18.3.1"
     react-dom: "npm:^18.3.1"
+    react-qr-code: "npm:^2.0.15"
     react-router-dom: "npm:^6.24.1"
     storybook: "npm:^8.1.11"
     storybook-addon-remix-react-router: "npm:^3.0.0"

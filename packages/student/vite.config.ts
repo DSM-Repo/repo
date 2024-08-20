@@ -1,12 +1,12 @@
 import react from "@vitejs/plugin-react";
-import { getEnv } from "../../config.ts";
+import { getEnv } from "../../config";
 import { defineConfig } from "vite";
 import svgr from "vite-plugin-svgr";
 import { nodePolyfills } from "vite-plugin-node-polyfills";
 import path from "path";
 
-export default ({ mode }: { mode: string }) => {
-  getEnv(mode);
+export default () => {
+  getEnv();
   return defineConfig({
     plugins: [
       react(),

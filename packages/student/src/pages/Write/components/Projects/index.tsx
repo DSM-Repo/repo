@@ -40,7 +40,7 @@ export const Projects = () => {
       </Button>
       <div className="overflow-auto col-flex gap-4">
         {project_list.map((i) => (
-          <Item data={i} setData={set} />
+          <Item data={i} setData={set} key={i.element_id} />
         ))}
       </div>
     </Layout>

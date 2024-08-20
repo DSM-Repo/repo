@@ -68,6 +68,7 @@ export const Section = () => {
               color="light"
               className="cursor-pointer"
               onClick={() => navigate(`/book/${i.id}`)}
+              key={i.id}
             >
               <span className="text-body6">
                 {i.year}년 {i.grade}학년 {i.generation}기

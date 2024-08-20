@@ -121,10 +121,11 @@ export const Inform = () => {
           id="skills"
         />
         <div className="flex flex-wrap gap-2 w-[28rem]">
-          {writer?.skill_set?.map((i) => (
+          {writer?.skill_set?.map((i, j) => (
             <Box
               padding="8px 13px"
               className="flex flex-row items-center gap-2"
+              key={j}
             >
               <span className="text-body7">{i}</span>
               <Icon

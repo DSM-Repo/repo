@@ -1,29 +1,65 @@
 import { Box } from "ui";
-import { typeAgainChange } from "../Projects/Item";
 import { projectType } from "@configs/default";
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { setType } from ".";
-import { checkOverflow } from "@/util";
+import { checkOverflow } from "../util";
 import { Ternary } from "./Ternary";
 import QRCode from "react-qr-code";
 
 interface IProp {
   data: projectType;
   setMax: setType;
+  keep: any;
 }
 
-export const Projects = ({ data, setMax }: IProp) => {
-  const [pages, setPages] = useState<HTMLElement[][]>([]);
+export const typeAgainChange = {
+  PERSONAL: "개인",
+  TEAM: "팀"
+};
 
+export const Projects = ({ data, setMax, keep }: IProp) => {
   const pdf = useRef<HTMLElement>(null);
+  const [pages, setPages] = useState<HTMLElement[][]>([]);
+  const isFirst = useRef(true);
+  const fastPages = useRef(0);
 
   useEffect(() => {
-    if (pdf?.current) {
+    if (!!pdf?.current) {
       const over = checkOverflow(pdf?.current);
+      keep.current[data.name] = over.length + 1;
+      if (isFirst.current) {
+        setMax((prev) => ({
+          ...prev,
+          projects: prev.projects + (!!over.length ? over.length : 1)
+        }));
+        isFirst.current = false;
+      }
+      if (fastPages.current < over.length) {
+        setMax((prev) => ({
+          ...prev,
+          projects: prev.projects + (over.length - fastPages.current + 1)
+        }));
+      } else if (fastPages.current > over.length) {
+        setMax((prev) => ({
+          ...prev,
+          projects: prev.projects - (fastPages.current - over.length + 1)
+        }));
+        isFirst.current = false;
+      }
+      fastPages.current = over.length;
       setPages(over);
-      setMax((prev) => ({ ...prev, inform: over.length + 1 }));
     }
   }, [data]);
+
+  useEffect(() => {
+    // 지워지기 전에 실행햐야 함. 로직은 따로 없음
+    return () => {
+      setMax((prev) => ({
+        ...prev,
+        projects: prev.projects - keep.current[data.name]
+      }));
+    };
+  }, []);
 
   return (
     <>
@@ -64,7 +100,7 @@ export const Projects = ({ data, setMax }: IProp) => {
               <QRCode value={data?.url} className="w-[60px] h-[60px]" />
             </Ternary>
           </div>
-          <Ternary data={data?.skill_set}>
+          <Ternary data={data?.skill_set.length !== 0}>
             <div className="col-flex mt-6">
               <span className="text-body5 text-black">사용 기술</span>
               <div className="border-l-[3px] border-black flex gap-1 px-[5px] flex-wrap w-full mt-[10px]">
@@ -102,31 +138,35 @@ export const Projects = ({ data, setMax }: IProp) => {
           </Ternary>
         </Box>
       </div>
-      {pages.map((item) => (
-        <div className="overflow-auto flex-shrink-0 w-fit h-full">
-          <Box
-            width="595px"
-            height="841px"
-            padding="30px"
-            round={{ all: 0 }}
-            className="bg-white gap-[0_!important] flex-shrink-0"
-          >
-            <>
-              {item?.map((i) => {
-                return (
-                  <div
-                    ref={(items) =>
-                      items?.childNodes.forEach(
-                        (i) => ((i as HTMLElement).style.visibility = "visible")
-                      )
-                    }
-                    dangerouslySetInnerHTML={{ __html: i.outerHTML }}
-                  />
-                );
-              })}
-            </>
-          </Box>
-        </div>
+      {pages?.map((item, index) => (
+        <Fragment key={index}>
+          <div className="split" />
+          <div className="overflow-auto flex-shrink-0 w-fit h-full">
+            <Box
+              width="595px"
+              height="841px"
+              padding="30px"
+              round={{ all: 0 }}
+              className="bg-white gap-[0_!important] flex-shrink-0"
+            >
+              <>
+                {item?.map((i) => {
+                  return (
+                    <div
+                      ref={(items) =>
+                        items?.childNodes.forEach(
+                          (i) =>
+                            ((i as HTMLElement).style.visibility = "visible")
+                        )
+                      }
+                      dangerouslySetInnerHTML={{ __html: i.outerHTML }}
+                    />
+                  );
+                })}
+              </>
+            </Box>
+          </div>
+        </Fragment>
       ))}
     </>
   );

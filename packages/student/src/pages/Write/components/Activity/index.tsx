@@ -31,7 +31,11 @@ export const Activity = () => {
       >
         <Icon icon="mingcute:add-fill" width={25} className="self-center" />
       </Button>
-      <>{activity_list?.map((i) => <Item data={i} setData={set} />)}</>
+      <>
+        {activity_list?.map((i) => (
+          <Item data={i} setData={set} key={i.element_id} />
+        ))}
+      </>
     </Layout>
   );
 };
