@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Box } from "ui";
 import { Header } from "./Header";
 import { Inform } from "./Inform";
-import { Project } from "./Project";
+import { Projects } from "./Project";
 
 export type setType = React.Dispatch<
   React.SetStateAction<{
@@ -54,7 +54,7 @@ export const Preview = () => {
         >
           <Inform data={data} setMax={setMax} />
           {data.project_list.map((i) => (
-            <Project data={i} setMax={setMax} />
+            <Projects data={i} setMax={setMax} />
           ))}
         </div>
       </div>

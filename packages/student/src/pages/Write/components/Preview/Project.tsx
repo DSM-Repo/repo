@@ -12,7 +12,7 @@ interface IProp {
   setMax: setType;
 }
 
-export const Project = ({ data, setMax }: IProp) => {
+export const Projects = ({ data, setMax }: IProp) => {
   const [pages, setPages] = useState<HTMLElement[][]>([]);
 
   const pdf = useRef<HTMLElement>(null);
