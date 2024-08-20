@@ -12,9 +12,9 @@ export type setType = (
 type sectionType =
   | "writer"
   | "introduce"
-  | "achievementList"
-  | "activityList"
-  | "projectList";
+  | "achievement_list"
+  | "activity_list"
+  | "project_list";
 
 interface IResumeData {
   data: IResume;

@@ -6,13 +6,13 @@ import { projectType } from "@configs/default";
 import { useResumeData } from "@/hooks/useResumeData";
 
 const defaultData: projectType = {
-  elementId: "",
+  element_id: "",
   name: "",
   type: "PERSONAL",
-  imageInfo: undefined,
-  startDate: undefined,
-  endDate: undefined,
-  skillSet: [],
+  image_info: undefined,
+  start_date: undefined,
+  end_date: undefined,
+  skill_set: [],
   description: {
     motive: "",
     role: "",
@@ -23,15 +23,15 @@ const defaultData: projectType = {
 
 export const Projects = () => {
   const { data: resume, setPartial, set } = useResumeData();
-  const { projectList } = resume;
+  const { project_list } = resume;
 
   return (
     <Layout title="프로젝트" subTitle="참가한 프로젝트에 대해 작성하세요">
       <Button
         onClick={() =>
-          setPartial("projectList", {
+          setPartial("project_list", {
             ...defaultData,
-            elementId: crypto.randomUUID()
+            element_id: crypto.randomUUID()
           })
         }
         size="large"
@@ -39,7 +39,7 @@ export const Projects = () => {
         <Icon icon="mingcute:add-fill" width={25} className="self-center" />
       </Button>
       <div className="overflow-auto col-flex gap-4">
-        {projectList.map((i) => (
+        {project_list.map((i) => (
           <Item data={i} setData={set} />
         ))}
       </div>

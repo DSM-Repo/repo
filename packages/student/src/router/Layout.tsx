@@ -13,7 +13,7 @@ export const Layout = () => {
       <SideBar
         type="student"
         user={data || studentData}
-        progress={progress?.percentComplete || 0}
+        progress={progress?.percent_complete || 0}
         className="min-w-[250px]"
       >
         <SideBarButton title="홈" icon="My" url="/" />

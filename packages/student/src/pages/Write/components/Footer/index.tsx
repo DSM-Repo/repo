@@ -37,7 +37,7 @@ export const Footer = ({ section }: IProp) => {
   const { mutate: submitMutate } = submit();
   const { refetch: refetchInfo } = currentInfo();
   const _major = majors?.data.find(
-    (i) => i.name === data.writer?.majorName
+    (i) => i.name === data.writer?.major_name
   )?.id;
   const [open, setOpen] = useState(false);
   const { data: feedback, refetch: refetchFeedback } = getFeedback();
@@ -66,19 +66,20 @@ export const Footer = ({ section }: IProp) => {
       if (section === 1) {
         mutate(
           {
-            majorId: _major,
+            major_id: _major,
             email: data?.writer.email,
             url: data?.writer.url,
-            skillSet: data?.writer.skillSet
+            skill_set: data?.writer.skill_set
           },
           { onSuccess }
         );
       } else if (section === 2) mutate(data.introduce, { onSuccess });
       else if (section === 3)
-        mutate({ list: data.achievementList }, { onSuccess });
+        mutate({ list: data.achievement_list }, { onSuccess });
       else if (section === 4)
-        mutate({ list: data.activityList }, { onSuccess });
-      else if (section === 5) mutate({ list: data.projectList }, { onSuccess });
+        mutate({ list: data.activity_list }, { onSuccess });
+      else if (section === 5)
+        mutate({ list: data.project_list }, { onSuccess });
     }
   };
 
@@ -102,7 +103,7 @@ export const Footer = ({ section }: IProp) => {
           disabled={
             !(
               (data.status === "ONGOING" || data.status === "SUBMITTED") &&
-              complete?.percentComplete === 100
+              complete?.percent_complete === 100
             )
           }
         >

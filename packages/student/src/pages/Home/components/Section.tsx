@@ -20,24 +20,24 @@ export const Section = () => {
         <span className="text-[#BBBBBB] text-body6 leading-none">
           레주메가{" "}
           <span className="text-[#42E224]">
-            {complete?.percentComplete.toString() || "0"}%
+            {complete?.percent_complete.toString() || "0"}%
           </span>{" "}
           완성되었어요
         </span>
         <PercentageBar
-          progress={complete?.percentComplete || 0}
+          progress={complete?.percent_complete || 0}
           type="Simple"
         />
         <ul className="flex gap-2 justify-between">
           <li className={liStyle}>
-            내 정보 <span className={accent(complete?.writerInfo)}>✓</span>
+            내 정보 <span className={accent(complete?.writer_info)}>✓</span>
           </li>
           <li className={liStyle}>
             자기소개 <span className={accent(complete?.introduce)}>✓</span>
           </li>
           <li className={liStyle}>
             자격증 & 수상{" "}
-            <span className={accent(complete?.certificateAndAward)}>✓</span>
+            <span className={accent(complete?.certificate_and_award)}>✓</span>
           </li>
           <li className={liStyle}>
             활동 <span className={accent(complete?.activity)}>✓</span>
@@ -62,7 +62,7 @@ export const Section = () => {
       <Box width="100%" height="100%" padding="20px" className="gap-3">
         <span className="text-body4 leading-none">최근 공개된 레주메북</span>
         <div className="overflow-auto col-flex gap-2">
-          {intro?.recentlyShared.map((i) => (
+          {intro?.recently_shared.map((i) => (
             <Box
               width="100%"
               color="light"

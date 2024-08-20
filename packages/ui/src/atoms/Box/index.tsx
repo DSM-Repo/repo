@@ -1,5 +1,5 @@
 import { colorBox, colorType } from "../../common";
-import { HTMLAttributes } from "react";
+import { HTMLAttributes, LegacyRef, MutableRefObject, forwardRef } from "react";
 
 type roundType = {
   tr?: string | number;
@@ -18,31 +18,37 @@ interface IProp extends HTMLAttributes<HTMLDivElement> {
   round?: roundType;
 }
 
-export const Box = ({
-  children,
-  color = "dark",
-  width = "fit-content",
-  height = "fit-content",
-  padding = "10px",
-  round = { all: "5px" },
-  ...props
-}: IProp) => {
-  const borderRadius =
-    round.all || `${round.tl} ${round.tr} ${round.br} ${round.bl}`;
+export const Box = forwardRef(
+  (
+    {
+      children,
+      color = "dark",
+      width = "fit-content",
+      height = "fit-content",
+      padding = "10px",
+      round = { all: "5px" },
+      ...props
+    }: IProp,
+    ref?: any
+  ) => {
+    const borderRadius =
+      round.all || `${round.tl} ${round.tr} ${round.br} ${round.bl}`;
 
-  return (
-    <div
-      {...props}
-      className={`col-flex gap-10 ${colorBox[color]} ${props.className}`}
-      style={{
-        width,
-        height,
-        padding,
-        borderRadius,
-        ...props.style
-      }}
-    >
-      {children}
-    </div>
-  );
-};
+    return (
+      <div
+        {...props}
+        className={`col-flex gap-10 ${colorBox[color]} ${props.className}`}
+        style={{
+          width,
+          height,
+          padding,
+          borderRadius,
+          ...props.style
+        }}
+        ref={ref}
+      >
+        {children}
+      </div>
+    );
+  }
+);
