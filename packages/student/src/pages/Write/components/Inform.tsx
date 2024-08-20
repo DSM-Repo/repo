@@ -44,8 +44,8 @@ export const Inform = () => {
   const handleClassChange = (data: string, name: string) =>
     setPartial(
       "writer",
-      { ...resume.writer.classInfo, [name]: data },
-      "classInfo"
+      { ...resume.writer.class_info, [name]: data },
+      "class_info"
     );
 
   return (
@@ -62,7 +62,7 @@ export const Inform = () => {
       <Label label="학번" className="flex gap-8">
         <Dropdown
           placeholder="학년"
-          selected={(writer?.classInfo?.grade || "") + "학년"}
+          selected={(writer?.class_info?.grade || "") + "학년"}
           selections={studId.grade}
           onSelect={handleClassChange}
           size="extraSmall"
@@ -71,7 +71,7 @@ export const Inform = () => {
         />
         <Dropdown
           placeholder="반"
-          selected={(writer?.classInfo?.classNumber || "") + "반"}
+          selected={(writer?.class_info?.class_number || "") + "반"}
           selections={studId.class}
           onSelect={handleClassChange}
           size="extraSmall"
@@ -80,7 +80,7 @@ export const Inform = () => {
         />
         <Dropdown
           placeholder="번호"
-          selected={(writer?.classInfo?.number || "") + "번"}
+          selected={(writer?.class_info?.number || "") + "번"}
           selections={studId.num}
           onSelect={handleClassChange}
           size="extraSmall"
@@ -91,11 +91,11 @@ export const Inform = () => {
       <Dropdown
         label="전공"
         placeholder="전공을 선택하세요"
-        selected={writer?.majorName}
+        selected={writer?.major_name}
         selections={majors ? majors?.data.map((i: dataType) => i.name) : []}
         onSelect={handleDropChange}
         size="large"
-        id="majorName"
+        id="major_name"
       />
       <div className="col-flex gap-3 w-fit">
         <Input
@@ -111,8 +111,8 @@ export const Inform = () => {
             ) {
               setPartial(
                 "writer",
-                [...resume.writer.skillSet, skill],
-                "skillSet"
+                [...resume.writer.skill_set, skill],
+                "skill_set"
               );
               setSkill("");
             }
@@ -121,7 +121,7 @@ export const Inform = () => {
           id="skills"
         />
         <div className="flex flex-wrap gap-2 w-[28rem]">
-          {writer?.skillSet?.map((i) => (
+          {writer?.skill_set?.map((i) => (
             <Box
               padding="8px 13px"
               className="flex flex-row items-center gap-2"
@@ -134,8 +134,8 @@ export const Inform = () => {
                 onClick={() =>
                   setPartial(
                     "writer",
-                    resume.writer?.skillSet?.filter((j) => j !== i),
-                    "skillSet"
+                    resume.writer?.skill_set?.filter((j) => j !== i),
+                    "skill_set"
                   )
                 }
               />

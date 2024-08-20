@@ -3,14 +3,14 @@ export * from "./types";
 
 export const studentData: IStudent = {
   name: "홍길동",
-  classInfo: {
+  class_info: {
     grade: 2,
-    classNumber: 2,
+    class_number: 2,
     number: 2,
-    schoolNumber: "2202"
+    school_number: "2202"
   },
-  profileImage: "",
-  majorName: "Frontend Developer"
+  profile_image: "",
+  major_name: "Frontend Developer"
 };
 
 export const resumeData: IResume = {
@@ -18,23 +18,23 @@ export const resumeData: IResume = {
   writer: {
     name: "홍길동",
     email: "",
-    majorName: "Frontend Developer",
-    classInfo: {
+    major_name: "Frontend Developer",
+    class_info: {
       grade: 2,
-      classNumber: 2,
+      class_number: 2,
       number: 2,
-      schoolNumber: "2202"
+      school_number: "2202"
     },
     department: "소프트웨어개발과",
     url: "",
-    skillSet: []
+    skill_set: []
   },
   introduce: {
-    elementId: "",
+    element_id: "",
     heading: "",
     introduce: ""
   },
-  achievementList: [],
-  activityList: [],
-  projectList: []
+  achievement_list: [],
+  activity_list: [],
+  project_list: []
 };

@@ -6,7 +6,7 @@ import { Item } from "./Item";
 import { Button } from "ui";
 
 const defaultData: achievementType = {
-  elementId: "",
+  element_id: "",
   name: "",
   institution: "",
   date: "",
@@ -15,22 +15,22 @@ const defaultData: achievementType = {
 
 export const Certification = () => {
   const { data: resume, setPartial, set } = useResumeData();
-  const { achievementList } = resume;
+  const { achievement_list } = resume;
 
   return (
     <Layout title="자격증 & 수상" subTitle="자격증이나 수상 이력을 작성하세요">
       <Button
         onClick={() =>
-          setPartial("achievementList", {
+          setPartial("achievement_list", {
             ...defaultData,
-            elementId: crypto.randomUUID()
+            element_id: crypto.randomUUID()
           })
         }
         size="large"
       >
         <Icon icon="mingcute:add-fill" width={25} className="self-center" />
       </Button>
-      <>{achievementList?.map((i) => <Item data={i} setData={set} />)}</>
+      <>{achievement_list?.map((i) => <Item data={i} setData={set} />)}</>
     </Layout>
   );
 };

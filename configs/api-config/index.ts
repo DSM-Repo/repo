@@ -15,8 +15,8 @@ export const instance = axios.create({
 instance.interceptors.request.use(
   (res) => {
     const config = refresh().then(() => {
-      const accessToken = cookie.get("accessToken");
-      if (accessToken) res.headers.Authorization = `Bearer ${accessToken}`;
+      const access_token = cookie.get("access_token");
+      if (access_token) res.headers.Authorization = `Bearer ${access_token}`;
       return res;
     });
     return config;

@@ -6,32 +6,32 @@ import { useResumeData } from "@/hooks/useResumeData";
 import { activityType } from "@configs/default";
 
 const defaultData: activityType = {
-  elementId: "",
+  element_id: "",
   name: "",
-  startDate: "",
-  endDate: undefined,
+  start_date: "",
+  end_date: undefined,
   description: "",
-  isPeriod: false
+  is_period: false
 };
 
 export const Activity = () => {
   const { data: resume, setPartial, set } = useResumeData();
-  const { activityList } = resume;
+  const { activity_list } = resume;
 
   return (
     <Layout title="활동" subTitle="참가한 활동을 작성하세요">
       <Button
         onClick={() =>
-          setPartial("activityList", {
+          setPartial("activity_list", {
             ...defaultData,
-            elementId: crypto.randomUUID()
+            element_id: crypto.randomUUID()
           })
         }
         size="large"
       >
         <Icon icon="mingcute:add-fill" width={25} className="self-center" />
       </Button>
-      <>{activityList?.map((i) => <Item data={i} setData={set} />)}</>
+      <>{activity_list?.map((i) => <Item data={i} setData={set} />)}</>
     </Layout>
   );
 };

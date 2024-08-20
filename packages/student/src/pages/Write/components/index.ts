@@ -5,3 +5,4 @@ export * from "./Activity";
 export * from "./Inform";
 export * from "./Layout";
 export * from "./Footer";
+export * from "./Preview";

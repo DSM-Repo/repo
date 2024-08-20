@@ -1,13 +1,13 @@
 export type IStudent = {
   name: string;
-  classInfo: {
+  class_info: {
     grade: Number;
-    classNumber: Number;
+    class_number: Number;
     number: Number;
-    schoolNumber: string;
+    school_number: string;
   };
-  profileImage: string;
-  majorName: string;
+  profile_image: string;
+  major_name: string;
 };
 
 export type majorType = {
@@ -17,11 +17,11 @@ export type majorType = {
 
 export interface IMajor {
   data: majorType[];
-  dataOfNumber: Number;
+  data_of_number: Number;
 }
 
 export type achievementType = {
-  elementId: string;
+  element_id: string;
   name: string;
   institution: string;
   date: string;
@@ -29,17 +29,17 @@ export type achievementType = {
 };
 
 export type activityType = {
-  elementId: string;
+  element_id: string;
   name: string;
-  startDate?: string;
-  endDate?: string;
+  start_date?: string;
+  end_date?: string;
   description: string;
-  isPeriod: boolean;
+  is_period: boolean;
 };
 
 type imageType = {
-  imagePath: string;
-  originalName: string;
+  image_path: string;
+  original_name: string;
 };
 
 type descriptionType = {
@@ -49,13 +49,13 @@ type descriptionType = {
 };
 
 export type projectType = {
-  elementId: string;
+  element_id: string;
   name: string;
-  imageInfo?: imageType;
+  image_info?: imageType;
   type: "PERSONAL" | "TEAM";
-  startDate?: string;
-  endDate?: string;
-  skillSet: string[];
+  start_date?: string;
+  end_date?: string;
+  skill_set: string[];
   description: descriptionType;
   url: string;
 };
@@ -63,20 +63,20 @@ export type projectType = {
 export type writerType = {
   name: string;
   email: string;
-  majorName: string;
-  classInfo: {
+  major_name: string;
+  class_info: {
     grade?: number;
-    classNumber?: number;
+    class_number?: number;
     number?: number;
-    schoolNumber?: string;
+    school_number?: string;
   };
   department?: string;
   url: string;
-  skillSet: string[];
+  skill_set: string[];
 };
 
 export type introduceType = {
-  elementId: string;
+  element_id: string;
   heading: string;
   introduce: string;
 };
@@ -86,7 +86,7 @@ export interface IResume {
   status: string;
   writer: writerType;
   introduce: introduceType;
-  achievementList: achievementType[];
-  activityList: activityType[];
-  projectList: projectType[];
+  achievement_list: achievementType[];
+  activity_list: activityType[];
+  project_list: projectType[];
 }

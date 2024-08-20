@@ -1,10 +1,10 @@
 export interface ICompletion {
-  writerInfo: boolean;
+  writer_info: boolean;
   introduce: boolean;
-  certificateAndAward: boolean;
+  certificate_and_award: boolean;
   activity: boolean;
   project: boolean;
-  percentComplete: Number;
+  percent_complete: Number;
 }
 
 type sharedType = {
@@ -16,23 +16,23 @@ type sharedType = {
 
 export interface IIntroduce {
   introduce: {
-    elementId: string;
+    element_id: string;
     heading: string;
     introduce: string;
     name: "자기 소개";
   };
-  recentlyShared: sharedType[];
+  recently_shared: sharedType[];
 }
 
 export interface IIntroduceSpec {
-  elementId: string;
+  element_id: string;
   heading: string;
   introduce: string;
 }
 
 export interface IUpdateWriter {
-  majorId: string;
+  major_id: string;
   email: string;
   url: string;
-  skillSet: string[];
+  skill_set: string[];
 }
