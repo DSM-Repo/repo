@@ -53,7 +53,7 @@ export const Preview = () => {
         >
           <Inform data={data} setMax={setMax} />
           {data?.project_list?.map((i) => (
-            <Projects data={i} setMax={setMax} keep={keep} key={i.name} />
+            <Projects data={i} setMax={setMax} keep={keep} key={i.element_id} />
           ))}
         </div>
       </div>

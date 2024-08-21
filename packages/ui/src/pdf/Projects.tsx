@@ -26,7 +26,7 @@ export const Projects = ({ data, setMax, keep }: IProp) => {
   useEffect(() => {
     if (!!pdf?.current) {
       const over = checkOverflow(pdf?.current);
-      keep.current[data.name] = over.length + 1;
+      keep.current[data.element_id] = over.length + 1;
       if (isFirst.current) {
         setMax((prev) => ({
           ...prev,
@@ -56,7 +56,7 @@ export const Projects = ({ data, setMax, keep }: IProp) => {
     return () => {
       setMax((prev) => ({
         ...prev,
-        projects: prev.projects - keep.current[data.name]
+        projects: prev.projects - keep.current[data.element_id]
       }));
     };
   }, []);
