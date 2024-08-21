@@ -11,10 +11,22 @@ export const useAuth = () => {
   const { get, set, del } = useCookie();
 
   const setToken = (data: IData) => {
-    set("access_token", data.access_token, { path: "/" });
-    set("refresh_token", data.refresh_token, { path: "/" });
-    set("access_expires", data.access_expired_at.toString(), { path: "/" });
-    set("refresh_expires", data.refresh_expired_at.toString(), { path: "/" });
+    set("access_token", data.access_token, {
+      path: "/",
+      domain: process.env.NODE_ENV === "development" ? "" : ".dsm-repo.com"
+    });
+    set("refresh_token", data.refresh_token, {
+      path: "/",
+      domain: process.env.NODE_ENV === "development" ? "" : ".dsm-repo.com"
+    });
+    set("access_expires", data.access_expired_at.toString(), {
+      path: "/",
+      domain: process.env.NODE_ENV === "development" ? "" : ".dsm-repo.com"
+    });
+    set("refresh_expires", data.refresh_expired_at.toString(), {
+      path: "/",
+      domain: process.env.NODE_ENV === "development" ? "" : ".dsm-repo.com"
+    });
   };
 
   const getToken = (name: "access" | "refresh") => {

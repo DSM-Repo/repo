@@ -30,13 +30,25 @@ export const refresh = () =>
           headers: { "X-refresh-token": refreshToken }
         })
         .then((res) => {
-          cookie.set("access_token", res.data.access_token, { path: "/" });
-          cookie.set("refresh_token", res.data.refresh_token, { path: "/" });
+          cookie.set("access_token", res.data.access_token, {
+            path: "/",
+            domain:
+              process.env.NODE_ENV === "development" ? "" : ".dsm-repo.com"
+          });
+          cookie.set("refresh_token", res.data.refresh_token, {
+            path: "/",
+            domain:
+              process.env.NODE_ENV === "development" ? "" : ".dsm-repo.com"
+          });
           cookie.set("access_expires", res.data.access_expired_at, {
-            path: "/"
+            path: "/",
+            domain:
+              process.env.NODE_ENV === "development" ? "" : ".dsm-repo.com"
           });
           cookie.set("refresh_expires", res.data.refresh_expired_at, {
-            path: "/"
+            path: "/",
+            domain:
+              process.env.NODE_ENV === "development" ? "" : ".dsm-repo.com"
           });
           lock = false;
           resolve("Successed!");
