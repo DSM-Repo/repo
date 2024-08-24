@@ -9,16 +9,20 @@ RUN curl -L -o ../repo.zip https://github.com/DSM-Repo/repo/archive/main.zip && 
 WORKDIR /repo-main
 
 ARG VITE_APP_BASE_URL
-ENV VITE_APP_BASE_URL=https://prod-server.xquare.app/whopper
+ENV VITE_APP_BASE_URL=${VITE_APP_BASE_URL}
 
 ARG VITE_APP_URL_MAIN
-ENV VITE_APP_URL_MAIN=https://dsm-repo.com
+ENV VITE_APP_URL_MAIN=${VITE_APP_URL_MAIN}
 
 ARG VITE_APP_URL_STUDENT
-ENV VITE_APP_URL_STUDENT=https://user.dsm-repo.com
+ENV VITE_APP_URL_STUDENT=${VITE_APP_URL_STUDENT}
 
 ARG VITE_APP_URL_TEACHER
-ENV VITE_APP_URL_TEACHER=https://teacher.dsm-repo.com
+ENV VITE_APP_URL_TEACHER=${VITE_APP_URL_TEACHER}
+
+ARG VITE_APP_RENDER_BASE_URL
+ENV VITE_APP_URL_TEACHER=${VITE_APP_RENDER_BASE_URL}
+
 
 RUN yarn install --immutable
 
