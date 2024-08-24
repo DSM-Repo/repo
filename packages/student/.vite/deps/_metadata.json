@@ -1,97 +1,97 @@
 {
-  "hash": "2a3eb39e",
-  "configHash": "2f24a2cc",
-  "lockfileHash": "f777693a",
-  "browserHash": "bd943121",
+  "hash": "e11c5ba9",
+  "configHash": "53bd88c1",
+  "lockfileHash": "d93881aa",
+  "browserHash": "310f0aed",
   "optimized": {
     "react": {
       "src": "../../../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/index.js",
       "file": "react.js",
-      "fileHash": "925e8943",
+      "fileHash": "eb63709e",
       "needsInterop": true
     },
     "react/jsx-dev-runtime": {
       "src": "../../../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/jsx-dev-runtime.js",
       "file": "react_jsx-dev-runtime.js",
-      "fileHash": "6282f80c",
+      "fileHash": "577865de",
       "needsInterop": true
     },
     "react/jsx-runtime": {
       "src": "../../../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/jsx-runtime.js",
       "file": "react_jsx-runtime.js",
-      "fileHash": "26918dd4",
+      "fileHash": "558e1256",
       "needsInterop": true
     },
     "@iconify/react": {
       "src": "../../../../.yarn/__virtual__/@iconify-react-virtual-1264452482/0/cache/@iconify-react-npm-5.0.2-c732ef4098-97f4222a13.zip/node_modules/@iconify/react/dist/iconify.js",
       "file": "@iconify_react.js",
-      "fileHash": "e07a15c3",
+      "fileHash": "45ee2845",
       "needsInterop": false
     },
     "@iconify/react/dist/iconify.js": {
       "src": "../../../../.yarn/__virtual__/@iconify-react-virtual-1264452482/0/cache/@iconify-react-npm-5.0.2-c732ef4098-97f4222a13.zip/node_modules/@iconify/react/dist/iconify.js",
       "file": "@iconify_react_dist_iconify__js.js",
-      "fileHash": "966d892a",
+      "fileHash": "61e5d4ec",
       "needsInterop": false
     },
     "@tanstack/react-query": {
-      "src": "../../../../.yarn/__virtual__/@tanstack-react-query-virtual-a9868b6fb2/0/cache/@tanstack-react-query-npm-5.51.23-45e5787442-913566a677.zip/node_modules/@tanstack/react-query/build/modern/index.js",
+      "src": "../../../../.yarn/__virtual__/@tanstack-react-query-virtual-2967c557ae/0/cache/@tanstack-react-query-npm-5.52.0-2024f6d138-90e46fe0de.zip/node_modules/@tanstack/react-query/build/modern/index.js",
       "file": "@tanstack_react-query.js",
-      "fileHash": "6fd5181a",
+      "fileHash": "e87207f7",
       "needsInterop": false
     },
     "@tanstack/react-query-devtools": {
       "src": "../../../../.yarn/__virtual__/@tanstack-react-query-devtools-virtual-297bb3632e/0/cache/@tanstack-react-query-devtools-npm-5.51.23-a17c95761e-f11d53c47f.zip/node_modules/@tanstack/react-query-devtools/build/modern/index.js",
       "file": "@tanstack_react-query-devtools.js",
-      "fileHash": "86872a82",
+      "fileHash": "2a09d52a",
       "needsInterop": false
     },
     "axios": {
       "src": "../../../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/index.js",
       "file": "axios.js",
-      "fileHash": "77e5420b",
+      "fileHash": "27bb78c9",
       "needsInterop": false
     },
     "dayjs": {
       "src": "../../../../.yarn/cache/dayjs-npm-1.11.12-ce23245b6e-9673d37f3f.zip/node_modules/dayjs/dayjs.min.js",
       "file": "dayjs.js",
-      "fileHash": "f3e167b9",
+      "fileHash": "c0518edf",
       "needsInterop": true
     },
     "react-cookie": {
-      "src": "../../../../.yarn/__virtual__/react-cookie-virtual-74a8ac8f82/0/cache/react-cookie-npm-7.2.0-ca92e0b084-434e8d8a48.zip/node_modules/react-cookie/esm/index.mjs",
+      "src": "../../../../.yarn/__virtual__/react-cookie-virtual-3efc9f970e/0/cache/react-cookie-npm-7.2.0-ca92e0b084-434e8d8a48.zip/node_modules/react-cookie/esm/index.mjs",
       "file": "react-cookie.js",
-      "fileHash": "2ec71ac0",
+      "fileHash": "f92190fc",
       "needsInterop": false
     },
     "react-dom/client": {
       "src": "../../../../.yarn/__virtual__/react-dom-virtual-d6ee84aa67/0/cache/react-dom-npm-18.3.1-a805663f38-a752496c19.zip/node_modules/react-dom/client.js",
       "file": "react-dom_client.js",
-      "fileHash": "c2e8610b",
+      "fileHash": "d98b6461",
       "needsInterop": true
     },
     "react-qr-code": {
       "src": "../../../../.yarn/__virtual__/react-qr-code-virtual-252e00f18c/0/cache/react-qr-code-npm-2.0.15-669b395b3b-6a9d739186.zip/node_modules/react-qr-code/lib/index.js",
       "file": "react-qr-code.js",
-      "fileHash": "d5e5d094",
+      "fileHash": "41a04e3c",
       "needsInterop": true
     },
     "react-router-dom": {
       "src": "../../../../.yarn/__virtual__/react-router-dom-virtual-f915074df7/0/cache/react-router-dom-npm-6.26.1-7932358248-9d9d8ed54d.zip/node_modules/react-router-dom/dist/index.js",
       "file": "react-router-dom.js",
-      "fileHash": "97cfb295",
+      "fileHash": "035fffca",
       "needsInterop": false
     },
     "react-toastify": {
       "src": "../../../../.yarn/__virtual__/react-toastify-virtual-3804388dd8/0/cache/react-toastify-npm-10.0.5-86b63c99fc-66c68ec3d6.zip/node_modules/react-toastify/dist/react-toastify.esm.mjs",
       "file": "react-toastify.js",
-      "fileHash": "0348e870",
+      "fileHash": "2c97ef41",
       "needsInterop": false
     },
     "zustand": {
       "src": "../../../../.yarn/__virtual__/zustand-virtual-ea53375789/0/cache/zustand-npm-4.5.5-678823f519-d04469d76b.zip/node_modules/zustand/esm/index.mjs",
       "file": "zustand.js",
-      "fileHash": "c1751734",
+      "fileHash": "d6995419",
       "needsInterop": false
     }
   },
@@ -108,8 +108,8 @@
     "chunk-REWGFQLQ": {
       "file": "chunk-REWGFQLQ.js"
     },
-    "chunk-YAJCRP4H": {
-      "file": "chunk-YAJCRP4H.js"
+    "chunk-UYDVHWUP": {
+      "file": "chunk-UYDVHWUP.js"
     },
     "chunk-T626GWXX": {
       "file": "chunk-T626GWXX.js"

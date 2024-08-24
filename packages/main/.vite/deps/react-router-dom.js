@@ -1,21 +1,21 @@
 import {
   require_react_dom
-} from "./chunk-WI5T6YJ2.js";
+} from "./chunk-7VHDB54L.js";
 import {
   require_react
-} from "./chunk-BPZ2RDSF.js";
+} from "./chunk-ZK6F47AF.js";
 import {
   __toESM
-} from "./chunk-5WRI5ZAA.js";
+} from "./chunk-WOOG5QLI.js";
 
-// ../../.yarn/__virtual__/react-router-dom-virtual-bc827d75e1/0/cache/react-router-dom-npm-6.23.1-a0a4fb9537-01b954d7d0.zip/node_modules/react-router-dom/dist/index.js
+// ../../.yarn/__virtual__/react-router-dom-virtual-f915074df7/0/cache/react-router-dom-npm-6.26.1-7932358248-9d9d8ed54d.zip/node_modules/react-router-dom/dist/index.js
 var React2 = __toESM(require_react());
 var ReactDOM = __toESM(require_react_dom());
 
-// ../../.yarn/__virtual__/react-router-virtual-385a9cacb7/0/cache/react-router-npm-6.23.1-793f9d0865-0919498057.zip/node_modules/react-router/dist/index.js
+// ../../.yarn/__virtual__/react-router-virtual-996270457a/0/cache/react-router-npm-6.26.1-cb8ea73315-463078e740.zip/node_modules/react-router/dist/index.js
 var React = __toESM(require_react());
 
-// ../../.yarn/cache/@remix-run-router-npm-1.16.1-cfa8039af0-5f1b0aef49.zip/node_modules/@remix-run/router/dist/router.js
+// ../../.yarn/cache/@remix-run-router-npm-1.19.1-61ed432c7e-9101fc9664.zip/node_modules/@remix-run/router/dist/router.js
 function _extends() {
   _extends = Object.assign ? Object.assign.bind() : function(target) {
     for (var i = 1; i < arguments.length; i++) {
@@ -335,7 +335,7 @@ function getUrlBasedHistory(getLocation, createHref, validateLocation, options) 
       });
     }
   }
-  function replace(to, state) {
+  function replace2(to, state) {
     action = Action.Replace;
     let location = createLocation(history.location, to, state);
     if (validateLocation) validateLocation(location, to);
@@ -389,7 +389,7 @@ function getUrlBasedHistory(getLocation, createHref, validateLocation, options) 
       };
     },
     push,
-    replace,
+    replace: replace2,
     go(n) {
       return globalHistory.go(n);
     }
@@ -415,7 +415,7 @@ function convertRoutesToDataRoutes(routes, mapRouteProperties2, parentPath, mani
     manifest = {};
   }
   return routes.map((route, index) => {
-    let treePath = [...parentPath, index];
+    let treePath = [...parentPath, String(index)];
     let id = typeof route.id === "string" ? route.id : treePath.join("-");
     invariant(route.index !== true || !route.children, "Cannot specify children on an index route");
     invariant(!manifest[id], 'Found a route id collision on id "' + id + `".  Route id's must be globally unique within Data Router usages`);
@@ -442,6 +442,9 @@ function matchRoutes(routes, locationArg, basename) {
   if (basename === void 0) {
     basename = "/";
   }
+  return matchRoutesImpl(routes, locationArg, basename, false);
+}
+function matchRoutesImpl(routes, locationArg, basename, allowPartial) {
   let location = typeof locationArg === "string" ? parsePath(locationArg) : locationArg;
   let pathname = stripBasename(location.pathname || "/", basename);
   if (pathname == null) {
@@ -452,7 +455,7 @@ function matchRoutes(routes, locationArg, basename) {
   let matches = null;
   for (let i = 0; matches == null && i < branches.length; ++i) {
     let decoded = decodePath(pathname);
-    matches = matchRouteBranch(branches[i], decoded);
+    matches = matchRouteBranch(branches[i], decoded, allowPartial);
   }
   return matches;
 }
@@ -575,7 +578,10 @@ function compareIndexes(a, b) {
     0
   );
 }
-function matchRouteBranch(branch, pathname) {
+function matchRouteBranch(branch, pathname, allowPartial) {
+  if (allowPartial === void 0) {
+    allowPartial = false;
+  }
   let {
     routesMeta
   } = branch;
@@ -591,9 +597,18 @@ function matchRouteBranch(branch, pathname) {
       caseSensitive: meta.caseSensitive,
       end
     }, remainingPathname);
-    if (!match) return null;
-    Object.assign(matchedParams, match.params);
     let route = meta.route;
+    if (!match && end && allowPartial && !routesMeta[routesMeta.length - 1].route.index) {
+      match = matchPath({
+        path: meta.relativePath,
+        caseSensitive: meta.caseSensitive,
+        end: false
+      }, remainingPathname);
+    }
+    if (!match) {
+      return null;
+    }
+    Object.assign(matchedParams, match.params);
     matches.push({
       // TODO: Can this as be avoided?
       params: matchedParams,
@@ -649,7 +664,7 @@ function matchPath(pattern, pathname) {
   let matchedPathname = match[0];
   let pathnameBase = matchedPathname.replace(/(.)\/+$/, "$1");
   let captureGroups = match.slice(1);
-  let params = compiledParams.reduce((memo, _ref, index) => {
+  let params = compiledParams.reduce((memo2, _ref, index) => {
     let {
       paramName,
       isOptional
@@ -660,11 +675,11 @@ function matchPath(pattern, pathname) {
     }
     const value = captureGroups[index];
     if (isOptional && !value) {
-      memo[paramName] = void 0;
+      memo2[paramName] = void 0;
     } else {
-      memo[paramName] = (value || "").replace(/%2F/g, "/");
+      memo2[paramName] = (value || "").replace(/%2F/g, "/");
     }
-    return memo;
+    return memo2;
   }, {});
   return {
     params,
@@ -759,7 +774,7 @@ function getPathContributingMatches(matches) {
 function getResolveToMatches(matches, v7_relativeSplatPath) {
   let pathMatches = getPathContributingMatches(matches);
   if (v7_relativeSplatPath) {
-    return pathMatches.map((match, idx) => idx === matches.length - 1 ? match.pathname : match.pathnameBase);
+    return pathMatches.map((match, idx) => idx === pathMatches.length - 1 ? match.pathname : match.pathnameBase);
   }
   return pathMatches.map((match) => match.pathnameBase);
 }
@@ -980,6 +995,11 @@ var redirectDocument = (url, init) => {
   response.headers.set("X-Remix-Reload-Document", "true");
   return response;
 };
+var replace = (url, init) => {
+  let response = redirect(url, init);
+  response.headers.set("X-Remix-Replace", "true");
+  return response;
+};
 var ErrorResponseImpl = class {
   constructor(status, statusText, data, internal) {
     if (internal === void 0) {
@@ -1057,23 +1077,26 @@ function createRouter(init) {
   let inFlightDataRoutes;
   let basename = init.basename || "/";
   let dataStrategyImpl = init.unstable_dataStrategy || defaultDataStrategy;
+  let patchRoutesOnNavigationImpl = init.unstable_patchRoutesOnNavigation;
   let future = _extends({
     v7_fetcherPersist: false,
     v7_normalizeFormMethod: false,
     v7_partialHydration: false,
     v7_prependBasename: false,
     v7_relativeSplatPath: false,
-    unstable_skipActionErrorRevalidation: false
+    v7_skipActionErrorRevalidation: false
   }, init.future);
   let unlistenHistory = null;
   let subscribers = /* @__PURE__ */ new Set();
+  let discoveredRoutesMaxSize = 1e3;
+  let discoveredRoutes = /* @__PURE__ */ new Set();
   let savedScrollPositions2 = null;
   let getScrollRestorationKey = null;
   let getScrollPosition = null;
   let initialScrollRestored = init.hydrationData != null;
   let initialMatches = matchRoutes(dataRoutes, init.history.location, basename);
   let initialErrors = null;
-  if (initialMatches == null) {
+  if (initialMatches == null && !patchRoutesOnNavigationImpl) {
     let error = getInternalRouterError(404, {
       pathname: init.history.location.pathname
     });
@@ -1086,12 +1109,25 @@ function createRouter(init) {
       [route.id]: error
     };
   }
+  if (initialMatches && !init.hydrationData) {
+    let fogOfWar = checkFogOfWar(initialMatches, dataRoutes, init.history.location.pathname);
+    if (fogOfWar.active) {
+      initialMatches = null;
+    }
+  }
   let initialized;
-  let hasLazyRoutes = initialMatches.some((m) => m.route.lazy);
-  let hasLoaders = initialMatches.some((m) => m.route.loader);
-  if (hasLazyRoutes) {
+  if (!initialMatches) {
     initialized = false;
-  } else if (!hasLoaders) {
+    initialMatches = [];
+    if (future.v7_partialHydration) {
+      let fogOfWar = checkFogOfWar(null, dataRoutes, init.history.location.pathname);
+      if (fogOfWar.active && fogOfWar.matches) {
+        initialMatches = fogOfWar.matches;
+      }
+    }
+  } else if (initialMatches.some((m) => m.route.lazy)) {
+    initialized = false;
+  } else if (!initialMatches.some((m) => m.route.loader)) {
     initialized = true;
   } else if (future.v7_partialHydration) {
     let loaderData = init.hydrationData ? init.hydrationData.loaderData : null;
@@ -1140,7 +1176,7 @@ function createRouter(init) {
   let isUninterruptedRevalidation = false;
   let isRevalidationRequired = false;
   let cancelledDeferredRoutes = [];
-  let cancelledFetcherLoads = [];
+  let cancelledFetcherLoads = /* @__PURE__ */ new Set();
   let fetchControllers = /* @__PURE__ */ new Map();
   let incrementingLoadId = 0;
   let pendingNavigationLoadId = -1;
@@ -1151,6 +1187,7 @@ function createRouter(init) {
   let deletedFetchers = /* @__PURE__ */ new Set();
   let activeDeferreds = /* @__PURE__ */ new Map();
   let blockerFunctions = /* @__PURE__ */ new Map();
+  let pendingPatchRoutes = /* @__PURE__ */ new Map();
   let ignoreNextHistoryUpdate = false;
   function initialize() {
     unlistenHistory = init.history.listen((_ref) => {
@@ -1337,7 +1374,6 @@ function createRouter(init) {
     isUninterruptedRevalidation = false;
     isRevalidationRequired = false;
     cancelledDeferredRoutes = [];
-    cancelledFetcherLoads = [];
   }
   async function navigate(to, opts) {
     if (typeof to === "number") {
@@ -1432,15 +1468,16 @@ function createRouter(init) {
     let loadingNavigation = opts && opts.overrideNavigation;
     let matches = matchRoutes(routesToUse, location, basename);
     let flushSync = (opts && opts.flushSync) === true;
+    let fogOfWar = checkFogOfWar(matches, routesToUse, location.pathname);
+    if (fogOfWar.active && fogOfWar.matches) {
+      matches = fogOfWar.matches;
+    }
     if (!matches) {
-      let error = getInternalRouterError(404, {
-        pathname: location.pathname
-      });
       let {
-        matches: notFoundMatches,
+        error,
+        notFoundMatches,
         route
-      } = getShortCircuitMatches(routesToUse);
-      cancelActiveDeferreds();
+      } = handleNavigational404(location.pathname);
       completeNavigation(location, {
         matches: notFoundMatches,
         loaderData: {},
@@ -1469,35 +1506,52 @@ function createRouter(init) {
         error: opts.pendingError
       }];
     } else if (opts && opts.submission && isMutationMethod(opts.submission.formMethod)) {
-      let actionResult = await handleAction(request, location, opts.submission, matches, {
+      let actionResult = await handleAction(request, location, opts.submission, matches, fogOfWar.active, {
         replace: opts.replace,
         flushSync
       });
       if (actionResult.shortCircuited) {
         return;
       }
+      if (actionResult.pendingActionResult) {
+        let [routeId, result] = actionResult.pendingActionResult;
+        if (isErrorResult(result) && isRouteErrorResponse(result.error) && result.error.status === 404) {
+          pendingNavigationController = null;
+          completeNavigation(location, {
+            matches: actionResult.matches,
+            loaderData: {},
+            errors: {
+              [routeId]: result.error
+            }
+          });
+          return;
+        }
+      }
+      matches = actionResult.matches || matches;
       pendingActionResult = actionResult.pendingActionResult;
       loadingNavigation = getLoadingNavigation(location, opts.submission);
       flushSync = false;
+      fogOfWar.active = false;
       request = createClientSideRequest(init.history, request.url, request.signal);
     }
     let {
       shortCircuited,
+      matches: updatedMatches,
       loaderData,
       errors
-    } = await handleLoaders(request, location, matches, loadingNavigation, opts && opts.submission, opts && opts.fetcherSubmission, opts && opts.replace, opts && opts.initialHydration === true, flushSync, pendingActionResult);
+    } = await handleLoaders(request, location, matches, fogOfWar.active, loadingNavigation, opts && opts.submission, opts && opts.fetcherSubmission, opts && opts.replace, opts && opts.initialHydration === true, flushSync, pendingActionResult);
     if (shortCircuited) {
       return;
     }
     pendingNavigationController = null;
     completeNavigation(location, _extends({
-      matches
+      matches: updatedMatches || matches
     }, getActionDataForCommit(pendingActionResult), {
       loaderData,
       errors
     }));
   }
-  async function handleAction(request, location, submission, matches, opts) {
+  async function handleAction(request, location, submission, matches, isFogOfWar, opts) {
     if (opts === void 0) {
       opts = {};
     }
@@ -1508,6 +1562,41 @@ function createRouter(init) {
     }, {
       flushSync: opts.flushSync === true
     });
+    if (isFogOfWar) {
+      let discoverResult = await discoverRoutes(matches, location.pathname, request.signal);
+      if (discoverResult.type === "aborted") {
+        return {
+          shortCircuited: true
+        };
+      } else if (discoverResult.type === "error") {
+        let {
+          boundaryId,
+          error
+        } = handleDiscoverRouteError(location.pathname, discoverResult);
+        return {
+          matches: discoverResult.partialMatches,
+          pendingActionResult: [boundaryId, {
+            type: ResultType.error,
+            error
+          }]
+        };
+      } else if (!discoverResult.matches) {
+        let {
+          notFoundMatches,
+          error,
+          route
+        } = handleNavigational404(location.pathname);
+        return {
+          matches: notFoundMatches,
+          pendingActionResult: [route.id, {
+            type: ResultType.error,
+            error
+          }]
+        };
+      } else {
+        matches = discoverResult.matches;
+      }
+    }
     let result;
     let actionMatch = getTargetMatch(matches, location);
     if (!actionMatch.route.action && !actionMatch.route.lazy) {
@@ -1529,16 +1618,16 @@ function createRouter(init) {
       }
     }
     if (isRedirectResult(result)) {
-      let replace;
+      let replace2;
       if (opts && opts.replace != null) {
-        replace = opts.replace;
+        replace2 = opts.replace;
       } else {
         let location2 = normalizeRedirectLocation(result.response.headers.get("Location"), new URL(request.url), basename);
-        replace = location2 === state.location.pathname + state.location.search;
+        replace2 = location2 === state.location.pathname + state.location.search;
       }
       await startRedirectNavigation(request, result, {
         submission,
-        replace
+        replace: replace2
       });
       return {
         shortCircuited: true
@@ -1555,18 +1644,66 @@ function createRouter(init) {
         pendingAction = Action.Push;
       }
       return {
+        matches,
         pendingActionResult: [boundaryMatch.route.id, result]
       };
     }
     return {
+      matches,
       pendingActionResult: [actionMatch.route.id, result]
     };
   }
-  async function handleLoaders(request, location, matches, overrideNavigation, submission, fetcherSubmission, replace, initialHydration, flushSync, pendingActionResult) {
+  async function handleLoaders(request, location, matches, isFogOfWar, overrideNavigation, submission, fetcherSubmission, replace2, initialHydration, flushSync, pendingActionResult) {
     let loadingNavigation = overrideNavigation || getLoadingNavigation(location, submission);
     let activeSubmission = submission || fetcherSubmission || getSubmissionFromNavigation(loadingNavigation);
+    let shouldUpdateNavigationState = !isUninterruptedRevalidation && (!future.v7_partialHydration || !initialHydration);
+    if (isFogOfWar) {
+      if (shouldUpdateNavigationState) {
+        let actionData = getUpdatedActionData(pendingActionResult);
+        updateState(_extends({
+          navigation: loadingNavigation
+        }, actionData !== void 0 ? {
+          actionData
+        } : {}), {
+          flushSync
+        });
+      }
+      let discoverResult = await discoverRoutes(matches, location.pathname, request.signal);
+      if (discoverResult.type === "aborted") {
+        return {
+          shortCircuited: true
+        };
+      } else if (discoverResult.type === "error") {
+        let {
+          boundaryId,
+          error
+        } = handleDiscoverRouteError(location.pathname, discoverResult);
+        return {
+          matches: discoverResult.partialMatches,
+          loaderData: {},
+          errors: {
+            [boundaryId]: error
+          }
+        };
+      } else if (!discoverResult.matches) {
+        let {
+          error,
+          notFoundMatches,
+          route
+        } = handleNavigational404(location.pathname);
+        return {
+          matches: notFoundMatches,
+          loaderData: {},
+          errors: {
+            [route.id]: error
+          }
+        };
+      } else {
+        matches = discoverResult.matches;
+      }
+    }
     let routesToUse = inFlightDataRoutes || dataRoutes;
-    let [matchesToLoad, revalidatingFetchers] = getMatchesToLoad(init.history, state, matches, activeSubmission, location, future.v7_partialHydration && initialHydration === true, future.unstable_skipActionErrorRevalidation, isRevalidationRequired, cancelledDeferredRoutes, cancelledFetcherLoads, deletedFetchers, fetchLoadMatches, fetchRedirectIds, routesToUse, basename, pendingActionResult);
+    let [matchesToLoad, revalidatingFetchers] = getMatchesToLoad(init.history, state, matches, activeSubmission, location, future.v7_partialHydration && initialHydration === true, future.v7_skipActionErrorRevalidation, isRevalidationRequired, cancelledDeferredRoutes, cancelledFetcherLoads, deletedFetchers, fetchLoadMatches, fetchRedirectIds, routesToUse, basename, pendingActionResult);
     cancelActiveDeferreds((routeId) => !(matches && matches.some((m) => m.route.id === routeId)) || matchesToLoad && matchesToLoad.some((m) => m.route.id === routeId));
     pendingNavigationLoadId = ++incrementingLoadId;
     if (matchesToLoad.length === 0 && revalidatingFetchers.length === 0) {
@@ -1587,31 +1724,19 @@ function createRouter(init) {
         shortCircuited: true
       };
     }
-    if (!isUninterruptedRevalidation && (!future.v7_partialHydration || !initialHydration)) {
-      revalidatingFetchers.forEach((rf) => {
-        let fetcher = state.fetchers.get(rf.key);
-        let revalidatingFetcher = getLoadingFetcher(void 0, fetcher ? fetcher.data : void 0);
-        state.fetchers.set(rf.key, revalidatingFetcher);
-      });
-      let actionData;
-      if (pendingActionResult && !isErrorResult(pendingActionResult[1])) {
-        actionData = {
-          [pendingActionResult[0]]: pendingActionResult[1].data
-        };
-      } else if (state.actionData) {
-        if (Object.keys(state.actionData).length === 0) {
-          actionData = null;
-        } else {
-          actionData = state.actionData;
+    if (shouldUpdateNavigationState) {
+      let updates = {};
+      if (!isFogOfWar) {
+        updates.navigation = loadingNavigation;
+        let actionData = getUpdatedActionData(pendingActionResult);
+        if (actionData !== void 0) {
+          updates.actionData = actionData;
         }
       }
-      updateState(_extends({
-        navigation: loadingNavigation
-      }, actionData !== void 0 ? {
-        actionData
-      } : {}, revalidatingFetchers.length > 0 ? {
-        fetchers: new Map(state.fetchers)
-      } : {}), {
+      if (revalidatingFetchers.length > 0) {
+        updates.fetchers = getUpdatedRevalidatingFetchers(revalidatingFetchers);
+      }
+      updateState(updates, {
         flushSync
       });
     }
@@ -1647,7 +1772,7 @@ function createRouter(init) {
         fetchRedirectIds.add(fetcherKey);
       }
       await startRedirectNavigation(request, redirect3.result, {
-        replace
+        replace: replace2
       });
       return {
         shortCircuited: true
@@ -1679,11 +1804,33 @@ function createRouter(init) {
     let didAbortFetchLoads = abortStaleFetchLoads(pendingNavigationLoadId);
     let shouldUpdateFetchers = updatedFetchers || didAbortFetchLoads || revalidatingFetchers.length > 0;
     return _extends({
+      matches,
       loaderData,
       errors
     }, shouldUpdateFetchers ? {
       fetchers: new Map(state.fetchers)
     } : {});
+  }
+  function getUpdatedActionData(pendingActionResult) {
+    if (pendingActionResult && !isErrorResult(pendingActionResult[1])) {
+      return {
+        [pendingActionResult[0]]: pendingActionResult[1].data
+      };
+    } else if (state.actionData) {
+      if (Object.keys(state.actionData).length === 0) {
+        return null;
+      } else {
+        return state.actionData;
+      }
+    }
+  }
+  function getUpdatedRevalidatingFetchers(revalidatingFetchers) {
+    revalidatingFetchers.forEach((rf) => {
+      let fetcher = state.fetchers.get(rf.key);
+      let revalidatingFetcher = getLoadingFetcher(void 0, fetcher ? fetcher.data : void 0);
+      state.fetchers.set(rf.key, revalidatingFetcher);
+    });
+    return new Map(state.fetchers);
   }
   function fetch(key, routeId, href, opts) {
     if (isServer) {
@@ -1694,6 +1841,10 @@ function createRouter(init) {
     let routesToUse = inFlightDataRoutes || dataRoutes;
     let normalizedPath = normalizeTo(state.location, state.matches, basename, future.v7_prependBasename, href, future.v7_relativeSplatPath, routeId, opts == null ? void 0 : opts.relative);
     let matches = matchRoutes(routesToUse, normalizedPath, basename);
+    let fogOfWar = checkFogOfWar(matches, routesToUse, normalizedPath);
+    if (fogOfWar.active && fogOfWar.matches) {
+      matches = fogOfWar.matches;
+    }
     if (!matches) {
       setFetcherError(key, routeId, getInternalRouterError(404, {
         pathname: normalizedPath
@@ -1716,27 +1867,33 @@ function createRouter(init) {
     let match = getTargetMatch(matches, path);
     pendingPreventScrollReset = (opts && opts.preventScrollReset) === true;
     if (submission && isMutationMethod(submission.formMethod)) {
-      handleFetcherAction(key, routeId, path, match, matches, flushSync, submission);
+      handleFetcherAction(key, routeId, path, match, matches, fogOfWar.active, flushSync, submission);
       return;
     }
     fetchLoadMatches.set(key, {
       routeId,
       path
     });
-    handleFetcherLoader(key, routeId, path, match, matches, flushSync, submission);
+    handleFetcherLoader(key, routeId, path, match, matches, fogOfWar.active, flushSync, submission);
   }
-  async function handleFetcherAction(key, routeId, path, match, requestMatches, flushSync, submission) {
+  async function handleFetcherAction(key, routeId, path, match, requestMatches, isFogOfWar, flushSync, submission) {
     interruptActiveLoads();
     fetchLoadMatches.delete(key);
-    if (!match.route.action && !match.route.lazy) {
-      let error = getInternalRouterError(405, {
-        method: submission.formMethod,
-        pathname: path,
-        routeId
-      });
-      setFetcherError(key, routeId, error, {
-        flushSync
-      });
+    function detectAndHandle405Error(m) {
+      if (!m.route.action && !m.route.lazy) {
+        let error = getInternalRouterError(405, {
+          method: submission.formMethod,
+          pathname: path,
+          routeId
+        });
+        setFetcherError(key, routeId, error, {
+          flushSync
+        });
+        return true;
+      }
+      return false;
+    }
+    if (!isFogOfWar && detectAndHandle405Error(match)) {
       return;
     }
     let existingFetcher = state.fetchers.get(key);
@@ -1745,6 +1902,33 @@ function createRouter(init) {
     });
     let abortController = new AbortController();
     let fetchRequest = createClientSideRequest(init.history, path, abortController.signal, submission);
+    if (isFogOfWar) {
+      let discoverResult = await discoverRoutes(requestMatches, path, fetchRequest.signal);
+      if (discoverResult.type === "aborted") {
+        return;
+      } else if (discoverResult.type === "error") {
+        let {
+          error
+        } = handleDiscoverRouteError(path, discoverResult);
+        setFetcherError(key, routeId, error, {
+          flushSync
+        });
+        return;
+      } else if (!discoverResult.matches) {
+        setFetcherError(key, routeId, getInternalRouterError(404, {
+          pathname: path
+        }), {
+          flushSync
+        });
+        return;
+      } else {
+        requestMatches = discoverResult.matches;
+        match = getTargetMatch(requestMatches, path);
+        if (detectAndHandle405Error(match)) {
+          return;
+        }
+      }
+    }
     fetchControllers.set(key, abortController);
     let originatingLoadId = incrementingLoadId;
     let actionResults = await callDataStrategy("action", fetchRequest, [match], requestMatches);
@@ -1793,7 +1977,7 @@ function createRouter(init) {
     fetchReloadIds.set(key, loadId);
     let loadFetcher = getLoadingFetcher(submission, actionResult.data);
     state.fetchers.set(key, loadFetcher);
-    let [matchesToLoad, revalidatingFetchers] = getMatchesToLoad(init.history, state, matches, submission, nextLocation, false, future.unstable_skipActionErrorRevalidation, isRevalidationRequired, cancelledDeferredRoutes, cancelledFetcherLoads, deletedFetchers, fetchLoadMatches, fetchRedirectIds, routesToUse, basename, [match.route.id, actionResult]);
+    let [matchesToLoad, revalidatingFetchers] = getMatchesToLoad(init.history, state, matches, submission, nextLocation, false, future.v7_skipActionErrorRevalidation, isRevalidationRequired, cancelledDeferredRoutes, cancelledFetcherLoads, deletedFetchers, fetchLoadMatches, fetchRedirectIds, routesToUse, basename, [match.route.id, actionResult]);
     revalidatingFetchers.filter((rf) => rf.key !== key).forEach((rf) => {
       let staleKey = rf.key;
       let existingFetcher2 = state.fetchers.get(staleKey);
@@ -1857,13 +2041,37 @@ function createRouter(init) {
       isRevalidationRequired = false;
     }
   }
-  async function handleFetcherLoader(key, routeId, path, match, matches, flushSync, submission) {
+  async function handleFetcherLoader(key, routeId, path, match, matches, isFogOfWar, flushSync, submission) {
     let existingFetcher = state.fetchers.get(key);
     updateFetcherState(key, getLoadingFetcher(submission, existingFetcher ? existingFetcher.data : void 0), {
       flushSync
     });
     let abortController = new AbortController();
     let fetchRequest = createClientSideRequest(init.history, path, abortController.signal);
+    if (isFogOfWar) {
+      let discoverResult = await discoverRoutes(matches, path, fetchRequest.signal);
+      if (discoverResult.type === "aborted") {
+        return;
+      } else if (discoverResult.type === "error") {
+        let {
+          error
+        } = handleDiscoverRouteError(path, discoverResult);
+        setFetcherError(key, routeId, error, {
+          flushSync
+        });
+        return;
+      } else if (!discoverResult.matches) {
+        setFetcherError(key, routeId, getInternalRouterError(404, {
+          pathname: path
+        }), {
+          flushSync
+        });
+        return;
+      } else {
+        matches = discoverResult.matches;
+        match = getTargetMatch(matches, path);
+      }
+    }
     fetchControllers.set(key, abortController);
     let originatingLoadId = incrementingLoadId;
     let results = await callDataStrategy("loader", fetchRequest, [match], matches);
@@ -1902,7 +2110,7 @@ function createRouter(init) {
     let {
       submission,
       fetcherSubmission,
-      replace
+      replace: replace2
     } = _temp2 === void 0 ? {} : _temp2;
     if (redirect3.response.headers.has("X-Remix-Revalidate")) {
       isRevalidationRequired = true;
@@ -1924,7 +2132,7 @@ function createRouter(init) {
         stripBasename(url.pathname, basename) == null;
       }
       if (isDocumentReload) {
-        if (replace) {
+        if (replace2) {
           routerWindow.location.replace(location);
         } else {
           routerWindow.location.assign(location);
@@ -1933,7 +2141,7 @@ function createRouter(init) {
       }
     }
     pendingNavigationController = null;
-    let redirectHistoryAction = replace === true ? Action.Replace : Action.Push;
+    let redirectHistoryAction = replace2 === true || redirect3.response.headers.has("X-Remix-Replace") ? Action.Replace : Action.Push;
     let {
       formMethod,
       formAction,
@@ -2007,7 +2215,7 @@ function createRouter(init) {
     cancelledDeferredRoutes.push(...cancelActiveDeferreds());
     fetchLoadMatches.forEach((_, key) => {
       if (fetchControllers.has(key)) {
-        cancelledFetcherLoads.push(key);
+        cancelledFetcherLoads.add(key);
         abortFetcher(key);
       }
     });
@@ -2056,6 +2264,7 @@ function createRouter(init) {
     fetchReloadIds.delete(key);
     fetchRedirectIds.delete(key);
     deletedFetchers.delete(key);
+    cancelledFetcherLoads.delete(key);
     state.fetchers.delete(key);
   }
   function deleteFetcherAndUpdateState(key) {
@@ -2164,6 +2373,32 @@ function createRouter(init) {
       return blockerKey;
     }
   }
+  function handleNavigational404(pathname) {
+    let error = getInternalRouterError(404, {
+      pathname
+    });
+    let routesToUse = inFlightDataRoutes || dataRoutes;
+    let {
+      matches,
+      route
+    } = getShortCircuitMatches(routesToUse);
+    cancelActiveDeferreds();
+    return {
+      notFoundMatches: matches,
+      route,
+      error
+    };
+  }
+  function handleDiscoverRouteError(pathname, discoverResult) {
+    return {
+      boundaryId: findNearestBoundary(discoverResult.partialMatches).route.id,
+      error: getInternalRouterError(400, {
+        type: "route-discovery",
+        pathname,
+        message: discoverResult.error != null && "message" in discoverResult.error ? discoverResult.error : String(discoverResult.error)
+      })
+    };
+  }
   function cancelActiveDeferreds(predicate) {
     let cancelledRouteIds = [];
     activeDeferreds.forEach((dfd, routeId) => {
@@ -2217,9 +2452,96 @@ function createRouter(init) {
     }
     return null;
   }
+  function checkFogOfWar(matches, routesToUse, pathname) {
+    if (patchRoutesOnNavigationImpl) {
+      if (discoveredRoutes.has(pathname)) {
+        return {
+          active: false,
+          matches
+        };
+      }
+      if (!matches) {
+        let fogMatches = matchRoutesImpl(routesToUse, pathname, basename, true);
+        return {
+          active: true,
+          matches: fogMatches || []
+        };
+      } else {
+        if (Object.keys(matches[0].params).length > 0) {
+          let partialMatches = matchRoutesImpl(routesToUse, pathname, basename, true);
+          return {
+            active: true,
+            matches: partialMatches
+          };
+        }
+      }
+    }
+    return {
+      active: false,
+      matches: null
+    };
+  }
+  async function discoverRoutes(matches, pathname, signal) {
+    let partialMatches = matches;
+    while (true) {
+      let isNonHMR = inFlightDataRoutes == null;
+      let routesToUse = inFlightDataRoutes || dataRoutes;
+      try {
+        await loadLazyRouteChildren(patchRoutesOnNavigationImpl, pathname, partialMatches, routesToUse, manifest, mapRouteProperties2, pendingPatchRoutes, signal);
+      } catch (e) {
+        return {
+          type: "error",
+          error: e,
+          partialMatches
+        };
+      } finally {
+        if (isNonHMR) {
+          dataRoutes = [...dataRoutes];
+        }
+      }
+      if (signal.aborted) {
+        return {
+          type: "aborted"
+        };
+      }
+      let newMatches = matchRoutes(routesToUse, pathname, basename);
+      if (newMatches) {
+        addToFifoQueue(pathname, discoveredRoutes);
+        return {
+          type: "success",
+          matches: newMatches
+        };
+      }
+      let newPartialMatches = matchRoutesImpl(routesToUse, pathname, basename, true);
+      if (!newPartialMatches || partialMatches.length === newPartialMatches.length && partialMatches.every((m, i) => m.route.id === newPartialMatches[i].route.id)) {
+        addToFifoQueue(pathname, discoveredRoutes);
+        return {
+          type: "success",
+          matches: null
+        };
+      }
+      partialMatches = newPartialMatches;
+    }
+  }
+  function addToFifoQueue(path, queue) {
+    if (queue.size >= discoveredRoutesMaxSize) {
+      let first = queue.values().next().value;
+      queue.delete(first);
+    }
+    queue.add(path);
+  }
   function _internalSetRoutes(newRoutes) {
     manifest = {};
     inFlightDataRoutes = convertRoutesToDataRoutes(newRoutes, mapRouteProperties2, void 0, manifest);
+  }
+  function patchRoutes(routeId, children) {
+    let isNonHMR = inFlightDataRoutes == null;
+    let routesToUse = inFlightDataRoutes || dataRoutes;
+    patchRoutesImpl(routeId, children, routesToUse, manifest, mapRouteProperties2);
+    if (isNonHMR) {
+      dataRoutes = [...dataRoutes];
+      updateState({});
+    }
   }
   router = {
     get basename() {
@@ -2252,6 +2574,7 @@ function createRouter(init) {
     dispose,
     getBlocker,
     deleteBlocker,
+    patchRoutes,
     _internalFetchControllers: fetchControllers,
     _internalActiveDeferreds: activeDeferreds,
     // TODO: Remove setRoutes, it's temporary to avoid dealing with
@@ -2455,7 +2778,7 @@ function getMatchesToLoad(history, state, matches, submission, location, isIniti
       nextParams: nextRouteMatch.params
     }, submission, {
       actionResult,
-      unstable_actionStatus: actionStatus,
+      actionStatus,
       defaultShouldRevalidate: shouldSkipRevalidation ? false : (
         // Forced revalidation due to submission, useRevalidator, or X-Remix-Revalidate
         isRevalidationRequired || currentUrl.pathname + currentUrl.search === nextUrl.pathname + nextUrl.search || // Search params affect all loaders
@@ -2485,7 +2808,8 @@ function getMatchesToLoad(history, state, matches, submission, location, isIniti
     let shouldRevalidate = false;
     if (fetchRedirectIds.has(key)) {
       shouldRevalidate = false;
-    } else if (cancelledFetcherLoads.includes(key)) {
+    } else if (cancelledFetcherLoads.has(key)) {
+      cancelledFetcherLoads.delete(key);
       shouldRevalidate = true;
     } else if (fetcher && fetcher.state !== "idle" && fetcher.data === void 0) {
       shouldRevalidate = isRevalidationRequired;
@@ -2497,7 +2821,7 @@ function getMatchesToLoad(history, state, matches, submission, location, isIniti
         nextParams: matches[matches.length - 1].params
       }, submission, {
         actionResult,
-        unstable_actionStatus: actionStatus,
+        actionStatus,
         defaultShouldRevalidate: shouldSkipRevalidation ? false : isRevalidationRequired
       }));
     }
@@ -2540,6 +2864,45 @@ function shouldRevalidateLoader(loaderMatch, arg) {
     }
   }
   return arg.defaultShouldRevalidate;
+}
+async function loadLazyRouteChildren(patchRoutesOnNavigationImpl, path, matches, routes, manifest, mapRouteProperties2, pendingRouteChildren, signal) {
+  let key = [path, ...matches.map((m) => m.route.id)].join("-");
+  try {
+    let pending = pendingRouteChildren.get(key);
+    if (!pending) {
+      pending = patchRoutesOnNavigationImpl({
+        path,
+        matches,
+        patch: (routeId, children) => {
+          if (!signal.aborted) {
+            patchRoutesImpl(routeId, children, routes, manifest, mapRouteProperties2);
+          }
+        }
+      });
+      pendingRouteChildren.set(key, pending);
+    }
+    if (pending && isPromise(pending)) {
+      await pending;
+    }
+  } finally {
+    pendingRouteChildren.delete(key);
+  }
+}
+function patchRoutesImpl(routeId, children, routesToUse, manifest, mapRouteProperties2) {
+  if (routeId) {
+    var _route$children;
+    let route = manifest[routeId];
+    invariant(route, "No route found to patch children into: routeId = " + routeId);
+    let dataChildren = convertRoutesToDataRoutes(children, mapRouteProperties2, [routeId, "patch", String(((_route$children = route.children) == null ? void 0 : _route$children.length) || "0")], manifest);
+    if (route.children) {
+      route.children.push(...dataChildren);
+    } else {
+      route.children = dataChildren;
+    }
+  } else {
+    let dataChildren = convertRoutesToDataRoutes(children, mapRouteProperties2, ["patch", String(routesToUse.length || "0")], manifest);
+    routesToUse.push(...dataChildren);
+  }
 }
 async function loadLazyRouteModule(route, mapRouteProperties2, manifest) {
   if (!route.lazy) {
@@ -2697,8 +3060,7 @@ async function callLoaderOrAction(type, request, match, manifest, mapRouteProper
 async function convertHandlerResultToDataResult(handlerResult) {
   let {
     result,
-    type,
-    status
+    type
   } = handlerResult;
   if (isResponse(result)) {
     let data;
@@ -2735,25 +3097,45 @@ async function convertHandlerResultToDataResult(handlerResult) {
     };
   }
   if (type === ResultType.error) {
+    if (isDataWithResponseInit(result)) {
+      var _result$init2;
+      if (result.data instanceof Error) {
+        var _result$init;
+        return {
+          type: ResultType.error,
+          error: result.data,
+          statusCode: (_result$init = result.init) == null ? void 0 : _result$init.status
+        };
+      }
+      result = new ErrorResponseImpl(((_result$init2 = result.init) == null ? void 0 : _result$init2.status) || 500, void 0, result.data);
+    }
     return {
       type: ResultType.error,
       error: result,
-      statusCode: isRouteErrorResponse(result) ? result.status : status
+      statusCode: isRouteErrorResponse(result) ? result.status : void 0
     };
   }
   if (isDeferredData(result)) {
-    var _result$init, _result$init2;
+    var _result$init3, _result$init4;
     return {
       type: ResultType.deferred,
       deferredData: result,
-      statusCode: (_result$init = result.init) == null ? void 0 : _result$init.status,
-      headers: ((_result$init2 = result.init) == null ? void 0 : _result$init2.headers) && new Headers(result.init.headers)
+      statusCode: (_result$init3 = result.init) == null ? void 0 : _result$init3.status,
+      headers: ((_result$init4 = result.init) == null ? void 0 : _result$init4.headers) && new Headers(result.init.headers)
+    };
+  }
+  if (isDataWithResponseInit(result)) {
+    var _result$init5, _result$init6;
+    return {
+      type: ResultType.data,
+      data: result.data,
+      statusCode: (_result$init5 = result.init) == null ? void 0 : _result$init5.status,
+      headers: (_result$init6 = result.init) != null && _result$init6.headers ? new Headers(result.init.headers) : void 0
     };
   }
   return {
     type: ResultType.data,
-    data: result,
-    statusCode: status
+    data: result
   };
 }
 function normalizeRelativeRoutingRedirectResponse(response, request, routeId, matches, basename, v7_relativeSplatPath) {
@@ -2982,13 +3364,16 @@ function getInternalRouterError(status, _temp5) {
     pathname,
     routeId,
     method,
-    type
+    type,
+    message
   } = _temp5 === void 0 ? {} : _temp5;
   let statusText = "Unknown Server Error";
   let errorMessage = "Unknown @remix-run/router error";
   if (status === 400) {
     statusText = "Bad Request";
-    if (method && pathname && routeId) {
+    if (type === "route-discovery") {
+      errorMessage = 'Unable to match URL "' + pathname + '" - the `unstable_patchRoutesOnNavigation()` ' + ("function threw the following error:\n" + message);
+    } else if (method && pathname && routeId) {
       errorMessage = "You made a " + method + ' request to "' + pathname + '" but ' + ('did not provide a `loader` for route "' + routeId + '", ') + "so there is no way to handle the request.";
     } else if (type === "defer-action") {
       errorMessage = "defer() is not supported in actions";
@@ -3041,6 +3426,9 @@ function isHashChangeOnly(a, b) {
   }
   return false;
 }
+function isPromise(val) {
+  return typeof val === "object" && val != null && "then" in val;
+}
 function isRedirectHandlerResult(result) {
   return isResponse(result.result) && redirectStatusCodes.has(result.result.status);
 }
@@ -3052,6 +3440,9 @@ function isErrorResult(result) {
 }
 function isRedirectResult(result) {
   return (result && result.type) === ResultType.redirect;
+}
+function isDataWithResponseInit(value) {
+  return typeof value === "object" && value != null && "type" in value && "data" in value && "init" in value && value.type === "DataWithResponseInit";
 }
 function isDeferredData(value) {
   let deferred = value;
@@ -3285,7 +3676,7 @@ function persistAppliedTransitions(_window, transitions) {
   }
 }
 
-// ../../.yarn/__virtual__/react-router-virtual-385a9cacb7/0/cache/react-router-npm-6.23.1-793f9d0865-0919498057.zip/node_modules/react-router/dist/index.js
+// ../../.yarn/__virtual__/react-router-virtual-996270457a/0/cache/react-router-npm-6.26.1-cb8ea73315-463078e740.zip/node_modules/react-router/dist/index.js
 function _extends2() {
   _extends2 = Object.assign ? Object.assign.bind() : function(target) {
     for (var i = 1; i < arguments.length; i++) {
@@ -3388,7 +3779,7 @@ function useMatch(pattern) {
   let {
     pathname
   } = useLocation();
-  return React.useMemo(() => matchPath(pattern, pathname), [pathname, pattern]);
+  return React.useMemo(() => matchPath(pattern, decodePath(pathname)), [pathname, pattern]);
 }
 var navigateEffectWarning = "You should call navigate() in a React.useEffect(), not when your component is first rendered.";
 function useIsomorphicLayoutEffect(cb) {
@@ -3647,7 +4038,7 @@ function RenderedRoute(_ref) {
   }, children);
 }
 function _renderMatches(matches, parentMatches, dataRouterState, future) {
-  var _dataRouterState2;
+  var _dataRouterState;
   if (parentMatches === void 0) {
     parentMatches = [];
   }
@@ -3658,15 +4049,20 @@ function _renderMatches(matches, parentMatches, dataRouterState, future) {
     future = null;
   }
   if (matches == null) {
-    var _dataRouterState;
-    if ((_dataRouterState = dataRouterState) != null && _dataRouterState.errors) {
+    var _future;
+    if (!dataRouterState) {
+      return null;
+    }
+    if (dataRouterState.errors) {
+      matches = dataRouterState.matches;
+    } else if ((_future = future) != null && _future.v7_partialHydration && parentMatches.length === 0 && !dataRouterState.initialized && dataRouterState.matches.length > 0) {
       matches = dataRouterState.matches;
     } else {
       return null;
     }
   }
   let renderedMatches = matches;
-  let errors = (_dataRouterState2 = dataRouterState) == null ? void 0 : _dataRouterState2.errors;
+  let errors = (_dataRouterState = dataRouterState) == null ? void 0 : _dataRouterState.errors;
   if (errors != null) {
     let errorIndex = renderedMatches.findIndex((m) => m.route.id && (errors == null ? void 0 : errors[m.route.id]) !== void 0);
     !(errorIndex >= 0) ? true ? invariant(false, "Could not find a matching route for errors on route IDs: " + Object.keys(errors).join(",")) : invariant(false) : void 0;
@@ -3972,7 +4368,7 @@ function MemoryRouter(_ref3) {
 function Navigate(_ref4) {
   let {
     to,
-    replace,
+    replace: replace2,
     state,
     relative
   } = _ref4;
@@ -3997,10 +4393,10 @@ function Navigate(_ref4) {
   let path = resolveTo(to, getResolveToMatches(matches, future.v7_relativeSplatPath), locationPathname, relative === "path");
   let jsonPath = JSON.stringify(path);
   React.useEffect(() => navigate(JSON.parse(jsonPath), {
-    replace,
+    replace: replace2,
     state,
     relative
-  }), [navigate, jsonPath, relative, replace, state]);
+  }), [navigate, jsonPath, relative, replace2, state]);
   return null;
 }
 function Outlet(props) {
@@ -4274,11 +4670,12 @@ function createMemoryRouter(routes, opts) {
     hydrationData: opts == null ? void 0 : opts.hydrationData,
     routes,
     mapRouteProperties,
-    unstable_dataStrategy: opts == null ? void 0 : opts.unstable_dataStrategy
+    unstable_dataStrategy: opts == null ? void 0 : opts.unstable_dataStrategy,
+    unstable_patchRoutesOnNavigation: opts == null ? void 0 : opts.unstable_patchRoutesOnNavigation
   }).initialize();
 }
 
-// ../../.yarn/__virtual__/react-router-dom-virtual-bc827d75e1/0/cache/react-router-dom-npm-6.23.1-a0a4fb9537-01b954d7d0.zip/node_modules/react-router-dom/dist/index.js
+// ../../.yarn/__virtual__/react-router-dom-virtual-f915074df7/0/cache/react-router-dom-npm-6.26.1-7932358248-9d9d8ed54d.zip/node_modules/react-router-dom/dist/index.js
 function _extends3() {
   _extends3 = Object.assign ? Object.assign.bind() : function(target) {
     for (var i = 1; i < arguments.length; i++) {
@@ -4331,9 +4728,9 @@ function createSearchParams(init) {
   if (init === void 0) {
     init = "";
   }
-  return new URLSearchParams(typeof init === "string" || Array.isArray(init) || init instanceof URLSearchParams ? init : Object.keys(init).reduce((memo, key) => {
+  return new URLSearchParams(typeof init === "string" || Array.isArray(init) || init instanceof URLSearchParams ? init : Object.keys(init).reduce((memo2, key) => {
     let value = init[key];
-    return memo.concat(Array.isArray(value) ? value.map((v) => [key, v]) : [[key, value]]);
+    return memo2.concat(Array.isArray(value) ? value.map((v) => [key, v]) : [[key, value]]);
   }, []));
 }
 function getSearchParamsForLocation(locationSearch, defaultSearchParams) {
@@ -4450,6 +4847,7 @@ function createBrowserRouter(routes, opts) {
     routes,
     mapRouteProperties,
     unstable_dataStrategy: opts == null ? void 0 : opts.unstable_dataStrategy,
+    unstable_patchRoutesOnNavigation: opts == null ? void 0 : opts.unstable_patchRoutesOnNavigation,
     window: opts == null ? void 0 : opts.window
   }).initialize();
 }
@@ -4466,6 +4864,7 @@ function createHashRouter(routes, opts) {
     routes,
     mapRouteProperties,
     unstable_dataStrategy: opts == null ? void 0 : opts.unstable_dataStrategy,
+    unstable_patchRoutesOnNavigation: opts == null ? void 0 : opts.unstable_patchRoutesOnNavigation,
     window: opts == null ? void 0 : opts.window
   }).initialize();
 }
@@ -4719,6 +5118,9 @@ function RouterProvider(_ref) {
     static: false,
     basename
   }), [router, navigator, basename]);
+  let routerFuture = React2.useMemo(() => ({
+    v7_relativeSplatPath: router.future.v7_relativeSplatPath
+  }), [router.future.v7_relativeSplatPath]);
   return React2.createElement(React2.Fragment, null, React2.createElement(DataRouterContext.Provider, {
     value: dataRouterContext
   }, React2.createElement(DataRouterStateContext.Provider, {
@@ -4732,15 +5134,14 @@ function RouterProvider(_ref) {
     location: state.location,
     navigationType: state.historyAction,
     navigator,
-    future: {
-      v7_relativeSplatPath: router.future.v7_relativeSplatPath
-    }
-  }, state.initialized || router.future.v7_partialHydration ? React2.createElement(DataRoutes, {
+    future: routerFuture
+  }, state.initialized || router.future.v7_partialHydration ? React2.createElement(MemoizedDataRoutes, {
     routes: router.routes,
     future: router.future,
     state
   }) : fallbackElement))))), null);
 }
+var MemoizedDataRoutes = React2.memo(DataRoutes);
 function DataRoutes(_ref3) {
   let {
     routes,
@@ -4856,7 +5257,7 @@ var Link = React2.forwardRef(function LinkWithRef(_ref7, ref) {
     onClick,
     relative,
     reloadDocument,
-    replace,
+    replace: replace2,
     state,
     target,
     to,
@@ -4889,7 +5290,7 @@ var Link = React2.forwardRef(function LinkWithRef(_ref7, ref) {
     relative
   });
   let internalOnClick = useLinkClickHandler(to, {
-    replace,
+    replace: replace2,
     state,
     target,
     preventScrollReset,
@@ -4982,7 +5383,7 @@ var Form = React2.forwardRef((_ref9, forwardedRef) => {
     fetcherKey,
     navigate,
     reloadDocument,
-    replace,
+    replace: replace2,
     state,
     method = defaultMethod,
     action,
@@ -5006,7 +5407,7 @@ var Form = React2.forwardRef((_ref9, forwardedRef) => {
       fetcherKey,
       method: submitMethod,
       navigate,
-      replace,
+      replace: replace2,
       state,
       relative,
       preventScrollReset,
@@ -5081,9 +5482,9 @@ function useLinkClickHandler(to, _temp) {
   return React2.useCallback((event) => {
     if (shouldProcessLinkClick(event, target)) {
       event.preventDefault();
-      let replace = replaceProp !== void 0 ? replaceProp : createPath(location) === createPath(path);
+      let replace2 = replaceProp !== void 0 ? replaceProp : createPath(location) === createPath(path);
       navigate(to, {
-        replace,
+        replace: replace2,
         state,
         preventScrollReset,
         relative,
@@ -5093,7 +5494,7 @@ function useLinkClickHandler(to, _temp) {
   }, [location, navigate, path, replaceProp, state, target, to, preventScrollReset, relative, unstable_viewTransition]);
 }
 function useSearchParams(defaultInit) {
-  true ? warning(typeof URLSearchParams !== "undefined", "You cannot use the `useSearchParams` hook in a browser that does not support the URLSearchParams API. If you need to support Internet Explorer 11, we recommend you load a polyfill such as https://github.com/ungap/url-search-params\n\nIf you're unsure how to load polyfills, we recommend you check out https://polyfill.io/v3/ which provides some recommendations about how to load polyfills only for users that need them, instead of for every user.") : void 0;
+  true ? warning(typeof URLSearchParams !== "undefined", "You cannot use the `useSearchParams` hook in a browser that does not support the URLSearchParams API. If you need to support Internet Explorer 11, we recommend you load a polyfill such as https://github.com/ungap/url-search-params.") : void 0;
   let defaultSearchParamsRef = React2.useRef(createSearchParams(defaultInit));
   let hasSetSearchParamsRef = React2.useRef(false);
   let location = useLocation();
@@ -5460,6 +5861,7 @@ export {
   redirect,
   redirectDocument,
   renderMatches,
+  replace,
   resolvePath,
   HistoryRouter as unstable_HistoryRouter,
   usePrompt as unstable_usePrompt,
@@ -5497,7 +5899,7 @@ export {
 
 @remix-run/router/dist/router.js:
   (**
-   * @remix-run/router v1.16.1
+   * @remix-run/router v1.19.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -5509,7 +5911,7 @@ export {
 
 react-router/dist/index.js:
   (**
-   * React Router v6.23.1
+   * React Router v6.26.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -5521,7 +5923,7 @@ react-router/dist/index.js:
 
 react-router-dom/dist/index.js:
   (**
-   * React Router DOM v6.23.1
+   * React Router DOM v6.26.1
    *
    * Copyright (c) Remix Software Inc.
    *

@@ -10,7 +10,7 @@ import {
 import {
   onlineManager,
   useQueryClient
-} from "./chunk-YAJCRP4H.js";
+} from "./chunk-UYDVHWUP.js";
 import {
   require_jsx_runtime
 } from "./chunk-T626GWXX.js";
