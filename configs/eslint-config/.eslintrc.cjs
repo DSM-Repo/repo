@@ -15,6 +15,7 @@ module.exports = {
       { allowConstantExport: true }
     ],
     "react/jsx-pascal-case": "warn",
-    "react/jsx-key": "warn"
+    "react/jsx-key": "warn",
+    "react/react-in-jsx-scope": "off"
   }
 };
