@@ -1,25 +1,24 @@
 import { useNavigate } from "react-router-dom";
 import { Button, Header, Input } from "ui";
+import { useAuth } from "@configs/util";
 import { toast } from "react-toastify";
-import { useAuth } from "@/hooks";
 import { useState } from "react";
 import { login } from "@/apis";
 
 export const Login = () => {
   const { setToken } = useAuth();
   const navigate = useNavigate();
+  const { mutate } = login();
 
   const [data, setData] = useState({
     account_id: "",
     password: ""
   });
 
-  const { mutate } = login();
-
   const handleLogin = () => {
     mutate(data, {
       onSuccess: (res) => {
-        setToken(res);
+        setToken({ ...res, role: "student" });
         toast.success("성공적으로 로그인되었습니다");
         navigate("/");
       }

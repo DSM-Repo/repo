@@ -1,4 +1,4 @@
-export const checkOverflow = (item: HTMLElement) => {
+export const checkOverflow = (item: HTMLElement, fitA5?: boolean) => {
   // 정리가 시급함
   let queue = [item];
   let over: HTMLElement[][] = [];
@@ -8,7 +8,10 @@ export const checkOverflow = (item: HTMLElement) => {
     if (data) {
       const loc = data.offsetTop + data.offsetHeight - 51;
       data.style.visibility = "visible";
-      if (loc > 1000 && !data.classList.contains("checkAble")) {
+      if (
+        (fitA5 ? loc > 720 : loc > 1000) &&
+        !data.classList.contains("checkAble")
+      ) {
         if (!!!over.length) {
           over.push([]);
         }
@@ -20,7 +23,7 @@ export const checkOverflow = (item: HTMLElement) => {
         }, 0);
         if (
           height + data.offsetHeight + (data.tagName === "SPAN" ? 24 : 10) >
-          1000
+          (fitA5 ? 720 : 1000)
         ) {
           over.push([]);
         }

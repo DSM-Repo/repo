@@ -13,7 +13,7 @@ import {
 import { useEffect, useState } from "react";
 import { Box } from "ui";
 import { toast } from "react-toastify";
-import { accFeedback, getFeedback } from "@/apis/feedback";
+import { feedback as getFeedback, checkFeedback } from "@/apis";
 
 interface IProp {
   section: number;
@@ -41,7 +41,7 @@ export const Footer = ({ section }: IProp) => {
   )?.id;
   const [open, setOpen] = useState(false);
   const { data: feedback, refetch: refetchFeedback } = getFeedback();
-  const { mutate: acceptFeedback } = accFeedback();
+  const { mutate: acceptFeedback } = checkFeedback();
   const feedbacks = feedback?.data.filter(
     (i) => i.type === sections[section - 1][1] && i.status !== "CONFIRMED"
   );
@@ -97,67 +97,82 @@ export const Footer = ({ section }: IProp) => {
       className="px-[1.5rem_!important] justify-between border-t-[1px] border-t-[#333333]"
     >
       <div className="flex gap-5 h-full items-center w-fit">
-        <Content
-          onClick={handleSubmit}
-          icon="material-symbols:upload"
-          disabled={
-            !(
-              (data.status === "ONGOING" || data.status === "SUBMITTED") &&
-              complete?.percent_complete === 100
-            )
-          }
-        >
-          {data.status === "ONGOING" ? "제출" : "제출 취소"}
-        </Content>
-        <Content onClick={handleMutate} icon="material-symbols:save">
-          저장
-        </Content>
-        <div className="relative col-flex">
-          {open && (
-            <Box
-              width="24rem"
-              height="20rem"
-              padding="20px"
-              className="col-flex gap-2 absolute bottom-11 self-start z-20 shadow-2xl"
+        {data.status !== "RELEASED" && (
+          <>
+            <Content
+              onClick={handleSubmit}
+              icon="material-symbols:upload"
+              disabled={
+                !(
+                  (data.status === "ONGOING" || data.status === "SUBMITTED") &&
+                  complete?.percent_complete === 100
+                )
+              }
             >
-              <span className="text-body3">피드백</span>
-              <div className="h-full overflow-auto col-flex gap-2">
-                {feedbacks?.length !== 0 ? (
-                  <>
-                    {feedbacks?.map((i) => (
-                      <Box width="100%" color="light" className="gap-2">
-                        <span className="text-body6">{i.comment}</span>
-                        <Box
-                          width="100%"
-                          className="items-center cursor-pointer"
-                          onClick={() =>
-                            acceptFeedback(
-                              { id: i.id },
-                              { onSuccess: refetchFeedback }
-                            )
-                          }
-                        >
-                          <span className="text-body8">피드백 반영</span>
-                        </Box>
-                      </Box>
-                    ))}
-                  </>
-                ) : (
-                  <span className="text-body7 text-">
-                    아직은 피드백이 없습니다..
-                  </span>
-                )}
-              </div>
-            </Box>
-          )}
-          <Content
-            onClick={() => setOpen((prev) => !prev)}
-            icon="ic:baseline-feedback"
-            className=""
-          >
-            피드백
-          </Content>
-        </div>
+              {data.status === "ONGOING" ? "제출" : "제출 취소"}
+            </Content>
+            <Content onClick={handleMutate} icon="material-symbols:save">
+              저장
+            </Content>
+            <div className="relative col-flex">
+              {open && (
+                <Box
+                  width="24rem"
+                  height="20rem"
+                  padding="20px"
+                  className="col-flex gap-2 absolute bottom-11 self-start z-20 shadow-2xl"
+                >
+                  <span className="text-body3">피드백</span>
+                  <div className="h-full overflow-auto col-flex gap-2">
+                    {feedbacks?.length !== 0 ? (
+                      <>
+                        {feedbacks?.map((i) => (
+                          <Box width="100%" color="light" className="gap-2">
+                            <div className="w-full justify-between items-center flex">
+                              <span className="text-body8">
+                                {i.teacher_name} 선생님
+                              </span>
+                              {i.rejected && (
+                                <span className="text-body8 text-red-500">
+                                  거부됨
+                                </span>
+                              )}
+                            </div>
+
+                            <span className="text-body7">{i.comment}</span>
+                            <Box
+                              width="100%"
+                              className="items-center cursor-pointer"
+                              onClick={() =>
+                                acceptFeedback(
+                                  { id: i.id },
+                                  { onSuccess: refetchFeedback }
+                                )
+                              }
+                            >
+                              <span className="text-body8">피드백 반영</span>
+                            </Box>
+                          </Box>
+                        ))}
+                      </>
+                    ) : (
+                      <span className="text-body7 text-">
+                        아직은 피드백이 없습니다..
+                      </span>
+                    )}
+                  </div>
+                </Box>
+              )}
+              <Content
+                onClick={() => setOpen((prev) => !prev)}
+                icon="ic:baseline-feedback"
+                className=""
+              >
+                피드백
+              </Content>
+            </div>
+          </>
+        )}
       </div>
       <div className="flex gap-5 h-full items-center w-fit">
         <Content

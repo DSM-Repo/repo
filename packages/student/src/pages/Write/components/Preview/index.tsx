@@ -48,7 +48,7 @@ export const Preview = () => {
         <div
           className="flex"
           style={{
-            transform: `translateX(${599 * (cur - 1) * -1}px)`
+            transform: `translateX(${594 * (cur - 1) * -1}px)`
           }}
         >
           <Inform data={data} setMax={setMax} />

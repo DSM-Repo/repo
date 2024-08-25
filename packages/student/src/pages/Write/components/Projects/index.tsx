@@ -2,7 +2,7 @@ import { Layout } from "../Layout";
 import { Button } from "ui";
 import { Icon } from "@iconify/react";
 import { Item } from "./Item";
-import { projectType } from "@configs/default";
+import { projectType } from "@configs/util";
 import { useResumeData } from "@/hooks/useResumeData";
 
 const defaultData: projectType = {
@@ -13,11 +13,23 @@ const defaultData: projectType = {
   start_date: undefined,
   end_date: undefined,
   skill_set: [],
-  description: {
-    motive: "",
-    role: "",
-    retrospective: ""
-  },
+  sections: [
+    {
+      element_id: "r",
+      title: "맡은 역할",
+      description: ""
+    },
+    {
+      element_id: "f",
+      title: "기능",
+      description: ""
+    },
+    {
+      element_id: "re",
+      title: "회고",
+      description: ""
+    }
+  ],
   url: ""
 };
 

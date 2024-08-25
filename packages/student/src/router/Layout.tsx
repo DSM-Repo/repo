@@ -1,8 +1,7 @@
-import { SideBar, SideBarButton, SideBarDrop } from "ui";
+import { SideBar, SideBarButton, SideBarDrop, Header } from "ui";
 import { completion, currentInfo } from "@/apis";
-import { studentData } from "@configs/default";
+import { studentData } from "@configs/util";
 import { Outlet } from "react-router-dom";
-import { Header } from "ui";
 
 export const Layout = () => {
   const { data } = currentInfo();
@@ -17,7 +16,7 @@ export const Layout = () => {
         className="min-w-[250px]"
       >
         <SideBarButton title="홈" icon="My" url="/" />
-        {/* <SideBarButton title="도서관" icon="Library" url="/library" /> */}
+        <SideBarButton title="도서관" icon="Library" url="/library" />
         <SideBarDrop
           title="포트폴리오 수정"
           icon="Edit"

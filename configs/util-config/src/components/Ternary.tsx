@@ -10,6 +10,6 @@ export const Ternary = ({ data, onNull, children }: IProp) => {
   if (!!data) {
     return children;
   } else {
-    return <>{<span className="text-body4">{onNull}</span> || ""}</>;
+    return onNull ? <span className="text-body4">{onNull}</span> : <></>;
   }
 };

@@ -5,7 +5,8 @@ import { HTMLAttributes } from "react";
 interface IProp extends HTMLAttributes<HTMLDivElement> {
   icon: iconType;
   title: string;
-  url: string;
+  url?: string;
+  action?: () => void;
   selected?: boolean;
 }
 
@@ -13,6 +14,7 @@ export const SideBarButton = ({
   icon,
   title,
   url,
+  action,
   selected,
   ...props
 }: IProp) => {
@@ -24,7 +26,7 @@ export const SideBarButton = ({
   return (
     <Background
       selected={storySelected}
-      onClick={() => navigate(url)}
+      onClick={() => (url ? navigate(url) : action())}
       {...props}
     >
       <Content icon={icon} selected={storySelected}>

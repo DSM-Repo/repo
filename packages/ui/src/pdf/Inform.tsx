@@ -1,24 +1,23 @@
-import { IResume } from "@configs/default";
 import QRCode from "react-qr-code";
 import { Box } from "ui";
-import { Ternary } from "./Ternary";
+import { Ternary, checkOverflow, IResume } from "@configs/util";
 import { Fragment, useEffect, useRef, useState } from "react";
-import { checkOverflow } from "../util";
 import { setType } from ".";
 
 interface IProp {
   data: IResume;
   setMax: setType;
+  fitA4?: boolean;
+  fitA5?: boolean;
 }
 
-export const Inform = ({ data, setMax }: IProp) => {
+export const Inform = ({ data, setMax, fitA4, fitA5 }: IProp) => {
   const [pages, setPages] = useState<HTMLElement[][]>([]);
-
   const pdf = useRef<HTMLElement>(null);
 
   useEffect(() => {
     if (pdf?.current) {
-      const over = checkOverflow(pdf?.current);
+      const over = checkOverflow(pdf?.current, fitA5);
       setPages(over);
       setMax((prev) => ({ ...prev, inform: over.length + 1 }));
     }
@@ -29,10 +28,12 @@ export const Inform = ({ data, setMax }: IProp) => {
 
   return (
     <>
-      <div className="overflow-auto flex-shrink-0 w-fit h-full">
+      <div
+        className={`${fitA5 ? "w-fit h-fit" : fitA4 ? "w-[842px] h-[1191px] flex flex-center bg-gray-200" : "w-[594px] h-full"} overflow-auto flex-shrink-0`}
+      >
         <Box
-          width="595px"
-          height="841px"
+          width={fitA5 ? "595px" : "794px"}
+          height={fitA5 ? "841px" : "1123px"}
           padding="30px"
           round={{ all: 0 }}
           className="bg-white checkAble gap-[0_!important] flex-shrink-0 overflow-hidden"
@@ -150,26 +151,35 @@ export const Inform = ({ data, setMax }: IProp) => {
       </div>
       {pages?.map((item, index) => (
         <Fragment key={index}>
-          <div className="split" />
-          <div className="overflow-auto flex-shrink-0 w-fit h-full">
+          <div
+            className={`${fitA5 ? "w-fit h-fit" : fitA4 ? "w-[842px] h-[1191px] flex flex-center bg-gray-200" : "w-[594px] h-full"} overflow-auto flex-shrink-0`}
+          >
             <Box
-              width="595px"
-              height="841px"
+              width={fitA5 ? "595px" : "794px"}
+              height={fitA5 ? "841px" : "1123px"}
               padding="30px"
               round={{ all: 0 }}
-              className="bg-white gap-[0_!important] overflow-x-hidden flex-shrink-0"
+              className="bg-white gap-[0_!important] flex-shrink-0"
+              ref={(item: HTMLElement) => {
+                if (item?.childNodes) {
+                  item?.childNodes?.forEach((i, j) => {
+                    if (!!!j) {
+                      (i.childNodes[0] as HTMLElement).style.margin = "0";
+                    }
+                  });
+                }
+              }}
             >
               <>
                 {item?.map((i, j) => {
                   return (
                     <div
                       key={j}
-                      ref={(items) =>
-                        items?.childNodes.forEach(
-                          (i) =>
-                            ((i as HTMLElement).style.visibility = "visible")
-                        )
-                      }
+                      ref={(items) => {
+                        items?.childNodes.forEach((item) => {
+                          (item as HTMLElement).style.visibility = "visible";
+                        });
+                      }}
                       dangerouslySetInnerHTML={{ __html: i.outerHTML }}
                     />
                   );

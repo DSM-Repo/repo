@@ -47,7 +47,7 @@ export const SideBarDrop = ({
               onClick={() => navigate(item.url)}
               key={index}
               className={`${text(
-                item.url,
+                item.url
               )} text-[#999999] font-light list-disc ml-4`}
             >
               {item.title}

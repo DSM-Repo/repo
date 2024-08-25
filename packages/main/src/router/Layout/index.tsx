@@ -1,6 +1,7 @@
 import { Header, Modal } from "./components";
 import { Outlet } from "react-router-dom";
 import { useState } from "react";
+export * from "./ViewLayout";
 
 export const Layout = () => {
   const [opened, setOpened] = useState(false);
