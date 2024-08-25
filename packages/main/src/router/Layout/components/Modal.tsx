@@ -40,9 +40,7 @@ export const Modal = ({ opened, setOpened }: IProp) => {
         <div
           className="relative w-96 h-12 rounded-md bg-[#2E2E2E] flex gap-6 items-center cursor-pointer"
           onClick={() =>
-            window.localStorage.replace(
-              `${process.env.VITE_APP_URL_STUDENT}/login`
-            )
+            window.location.replace(`${process.env.VITE_APP_URL_TEACHER}/login`)
           }
         >
           <div className="rounded-l-md bg-black w-[70px] h-full flex flex-center">

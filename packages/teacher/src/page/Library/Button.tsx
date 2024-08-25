@@ -9,7 +9,7 @@ interface IProp {
 
 const navigate = (id: string) =>
   window.location.replace(
-    `${process.env._VITE_APP_URL_MAIN}/library/${id}?prev=${window.location.href}`
+    `http://localhost:3000/viewer/library/${id}?prev=${window.location.href}`
   );
 
 export const Button = ({ id, year, grade, generation }: IProp) => {

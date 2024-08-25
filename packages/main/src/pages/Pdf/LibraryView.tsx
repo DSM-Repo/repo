@@ -32,7 +32,11 @@ export const LibraryView = () => {
           ) : (
             <Page pageIndex={page - 1} className="w-fit h-fit" width={450} />
           )}
-          <Page pageIndex={page} className="w-fit h-fit" width={450} />
+          {page === max ? (
+            <div className="w-[450px] h-full" />
+          ) : (
+            <Page pageIndex={page} className="w-fit h-fit" width={450} />
+          )}
         </Document>
         <Box
           width="100%"
