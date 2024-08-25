@@ -1,7 +1,6 @@
 import { Outlet, useLocation, useSearchParams } from "react-router-dom";
 import { Header, SideBar, SideBarButton, SideBarDrop } from "ui";
 import { useAuth } from "@configs/util";
-import { useState } from "react";
 import { useOpen } from "@/hooks/useOpen";
 import { SideBarDropF } from "./components/SideBarDropF";
 
