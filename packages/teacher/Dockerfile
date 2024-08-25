@@ -25,6 +25,7 @@ ENV VITE_APP_URL_TEACHER=${VITE_APP_RENDER_BASE_URL}
 
 RUN yarn install --immutable
 
+
 WORKDIR /repo-main/packages/teacher
 RUN yarn build
 
