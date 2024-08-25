@@ -23,6 +23,7 @@ export const Router = () => {
           <Route path="library/:id" element={<_.LibraryView />} />
         </Route>
         <Route path="error/:code" element={<_.Error />} />
+        <Route path="/*" element={<Navigate to="/error/404" />} />
       </Routes>
     </BrowserRouter>
   );
