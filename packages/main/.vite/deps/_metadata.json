@@ -1,61 +1,130 @@
 {
-  "hash": "003f52e7",
-  "configHash": "b954cb33",
-  "lockfileHash": "502a4130",
-  "browserHash": "76e4696b",
+  "hash": "9a87bb09",
+  "configHash": "7e646c1b",
+  "lockfileHash": "d6e3000c",
+  "browserHash": "5c09ee6d",
   "optimized": {
     "react": {
       "src": "../../../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/index.js",
       "file": "react.js",
-      "fileHash": "657bea7f",
+      "fileHash": "504872b7",
       "needsInterop": true
     },
     "react/jsx-dev-runtime": {
       "src": "../../../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/jsx-dev-runtime.js",
       "file": "react_jsx-dev-runtime.js",
-      "fileHash": "11a14690",
+      "fileHash": "f1f8b357",
       "needsInterop": true
     },
     "react/jsx-runtime": {
       "src": "../../../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/jsx-runtime.js",
       "file": "react_jsx-runtime.js",
-      "fileHash": "534008ea",
+      "fileHash": "172eecc3",
       "needsInterop": true
     },
     "@iconify/react": {
-      "src": "../../../../.yarn/__virtual__/@iconify-react-virtual-1977427229/0/cache/@iconify-react-npm-5.0.1-9638fe18b7-d3fce5b2d8.zip/node_modules/@iconify/react/dist/iconify.js",
+      "src": "../../../../.yarn/__virtual__/@iconify-react-virtual-1264452482/0/cache/@iconify-react-npm-5.0.2-c732ef4098-97f4222a13.zip/node_modules/@iconify/react/dist/iconify.js",
       "file": "@iconify_react.js",
-      "fileHash": "e2966c17",
+      "fileHash": "bb0a34f6",
+      "needsInterop": false
+    },
+    "@tanstack/react-query": {
+      "src": "../../../../.yarn/__virtual__/@tanstack-react-query-virtual-2967c557ae/0/cache/@tanstack-react-query-npm-5.52.0-2024f6d138-90e46fe0de.zip/node_modules/@tanstack/react-query/build/modern/index.js",
+      "file": "@tanstack_react-query.js",
+      "fileHash": "b14e4595",
+      "needsInterop": false
+    },
+    "axios": {
+      "src": "../../../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/index.js",
+      "file": "axios.js",
+      "fileHash": "41fd2024",
       "needsInterop": false
     },
     "dayjs": {
       "src": "../../../../.yarn/cache/dayjs-npm-1.11.12-ce23245b6e-9673d37f3f.zip/node_modules/dayjs/dayjs.min.js",
       "file": "dayjs.js",
-      "fileHash": "f1a6aa9e",
+      "fileHash": "d9d43ab5",
       "needsInterop": true
     },
+    "react-cookie": {
+      "src": "../../../../.yarn/__virtual__/react-cookie-virtual-3efc9f970e/0/cache/react-cookie-npm-7.2.0-ca92e0b084-434e8d8a48.zip/node_modules/react-cookie/esm/index.mjs",
+      "file": "react-cookie.js",
+      "fileHash": "b7080242",
+      "needsInterop": false
+    },
     "react-dom/client": {
-      "src": "../../../../.yarn/__virtual__/react-dom-virtual-cf1d6710c9/0/cache/react-dom-npm-18.3.1-a805663f38-a752496c19.zip/node_modules/react-dom/client.js",
+      "src": "../../../../.yarn/__virtual__/react-dom-virtual-d6ee84aa67/0/cache/react-dom-npm-18.3.1-a805663f38-a752496c19.zip/node_modules/react-dom/client.js",
       "file": "react-dom_client.js",
-      "fileHash": "8c434efc",
+      "fileHash": "133e5a32",
+      "needsInterop": true
+    },
+    "react-pdf": {
+      "src": "../../../../.yarn/__virtual__/react-pdf-virtual-6e8858c8e1/0/cache/react-pdf-npm-9.1.0-72756161be-24b30cc092.zip/node_modules/react-pdf/dist/esm/index.js",
+      "file": "react-pdf.js",
+      "fileHash": "5f872d12",
+      "needsInterop": false
+    },
+    "react-qr-code": {
+      "src": "../../../../.yarn/__virtual__/react-qr-code-virtual-252e00f18c/0/cache/react-qr-code-npm-2.0.15-669b395b3b-6a9d739186.zip/node_modules/react-qr-code/lib/index.js",
+      "file": "react-qr-code.js",
+      "fileHash": "5c1299fc",
       "needsInterop": true
     },
     "react-router-dom": {
-      "src": "../../../../.yarn/__virtual__/react-router-dom-virtual-bc827d75e1/0/cache/react-router-dom-npm-6.23.1-a0a4fb9537-01b954d7d0.zip/node_modules/react-router-dom/dist/index.js",
+      "src": "../../../../.yarn/__virtual__/react-router-dom-virtual-f915074df7/0/cache/react-router-dom-npm-6.26.1-7932358248-9d9d8ed54d.zip/node_modules/react-router-dom/dist/index.js",
       "file": "react-router-dom.js",
-      "fileHash": "d178a720",
+      "fileHash": "32d356d5",
+      "needsInterop": false
+    },
+    "react-toastify": {
+      "src": "../../../../.yarn/__virtual__/react-toastify-virtual-9b32654ebb/0/cache/react-toastify-npm-10.0.5-86b63c99fc-66c68ec3d6.zip/node_modules/react-toastify/dist/react-toastify.esm.mjs",
+      "file": "react-toastify.js",
+      "fileHash": "588848a0",
+      "needsInterop": false
+    },
+    "zustand": {
+      "src": "../../../../.yarn/__virtual__/zustand-virtual-a9b1578aca/0/cache/zustand-npm-4.5.5-678823f519-d04469d76b.zip/node_modules/zustand/esm/index.mjs",
+      "file": "zustand.js",
+      "fileHash": "16189968",
+      "needsInterop": false
+    },
+    "@iconify/react/dist/iconify.js": {
+      "src": "../../../../.yarn/__virtual__/@iconify-react-virtual-1264452482/0/cache/@iconify-react-npm-5.0.2-c732ef4098-97f4222a13.zip/node_modules/@iconify/react/dist/iconify.js",
+      "file": "@iconify_react_dist_iconify__js.js",
+      "fileHash": "9257ad5f",
       "needsInterop": false
     }
   },
   "chunks": {
-    "chunk-WI5T6YJ2": {
-      "file": "chunk-WI5T6YJ2.js"
+    "http-5XFXQTX7": {
+      "file": "http-5XFXQTX7.js"
     },
-    "chunk-BPZ2RDSF": {
-      "file": "chunk-BPZ2RDSF.js"
+    "https-PPQPUGMJ": {
+      "file": "https-PPQPUGMJ.js"
     },
-    "chunk-5WRI5ZAA": {
-      "file": "chunk-5WRI5ZAA.js"
+    "url-XR77UNPD": {
+      "file": "url-XR77UNPD.js"
+    },
+    "chunk-7VHDB54L": {
+      "file": "chunk-7VHDB54L.js"
+    },
+    "fs-DZDM6YZO": {
+      "file": "fs-DZDM6YZO.js"
+    },
+    "chunk-ULNAKPQZ": {
+      "file": "chunk-ULNAKPQZ.js"
+    },
+    "chunk-J2LXW5SU": {
+      "file": "chunk-J2LXW5SU.js"
+    },
+    "chunk-T626GWXX": {
+      "file": "chunk-T626GWXX.js"
+    },
+    "chunk-ZK6F47AF": {
+      "file": "chunk-ZK6F47AF.js"
+    },
+    "chunk-WOOG5QLI": {
+      "file": "chunk-WOOG5QLI.js"
     }
   }
 }

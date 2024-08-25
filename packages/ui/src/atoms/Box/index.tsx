@@ -32,7 +32,7 @@ export const Box = forwardRef(
     ref?: any
   ) => {
     const borderRadius =
-      round.all || `${round.tl} ${round.tr} ${round.br} ${round.bl}`;
+      round.all || `${round.tl}px ${round.tr}px ${round.br}px ${round.bl}px`;
 
     return (
       <div

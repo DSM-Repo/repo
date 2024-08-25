@@ -10,10 +10,9 @@ import {
   Label,
   Textarea
 } from "ui";
-import { projectType } from "@configs/default";
-import { setType } from "@/hooks/useResumeData";
-import { uploadImage } from "@/apis/file";
-import { IImage } from "@/apis/file/types";
+import { projectType, sectionType } from "@configs/util";
+import { setType } from "@/hooks";
+import { IImage, uploadImage, delFile } from "@/apis";
 
 interface IProp {
   data: projectType;
@@ -30,9 +29,16 @@ export const typeAgainChange = {
   TEAM: "팀"
 };
 
+const defaultSect: sectionType = {
+  element_id: "",
+  title: "",
+  description: ""
+};
+
 export const Item = ({ data, setData }: IProp) => {
   const [skill, setSkill] = useState<string>("");
   const { mutate } = uploadImage("profile");
+  const { mutate: delImage } = delFile();
 
   const set = (id: string, value?: string | string[] | IImage) =>
     setData((prev) => ({
@@ -55,6 +61,63 @@ export const Item = ({ data, setData }: IProp) => {
     }));
   };
 
+  const setSection = (eleId: string, id: string, value?: string) =>
+    setData((prev) => ({
+      data: {
+        ...prev.data,
+        project_list: prev.data.project_list.map((i) =>
+          i.element_id === data.element_id
+            ? {
+                ...data,
+                sections: data.sections.map((j) =>
+                  j.element_id === eleId ? { ...j, [id]: value } : j
+                )
+              }
+            : i
+        )
+      }
+    }));
+
+  const addSection = () =>
+    setData((prev) => ({
+      data: {
+        ...prev.data,
+        project_list: prev.data.project_list.map((i) =>
+          i.element_id === data.element_id
+            ? {
+                ...data,
+                sections: [
+                  ...data.sections,
+                  { ...defaultSect, element_id: crypto.randomUUID() }
+                ]
+              }
+            : i
+        )
+      }
+    }));
+
+  const delSection = (delId: string) =>
+    setData((prev) => ({
+      data: {
+        ...prev.data,
+        project_list: prev.data.project_list.map((i) =>
+          i.element_id === data.element_id
+            ? {
+                ...data,
+                sections: data.sections.filter((j) => j.element_id !== delId)
+              }
+            : i
+        )
+      }
+    }));
+
+  const deleteImage = () => {
+    delImage(
+      { url: data?.image_info?.image_path as string },
+      { onSuccess: () => set("image_info", undefined) }
+    );
+  };
+
   const handleChange = ({ target }: ChangeEvent<HTMLInputElement>) =>
     set(target.id, target.value);
 
@@ -72,21 +135,6 @@ export const Item = ({ data, setData }: IProp) => {
   const handleType = (data: string, name: string) => {
     set(name, typeChange[data as "개인" | "팀"]);
   };
-
-  const handleChangeArea = ({ target }: ChangeEvent<HTMLTextAreaElement>) =>
-    setData((prev) => ({
-      data: {
-        ...prev.data,
-        project_list: prev.data.project_list.map((i) =>
-          i.element_id === data.element_id
-            ? {
-                ...data,
-                description: { ...data.description, [target.id]: target.value }
-              }
-            : i
-        )
-      }
-    }));
 
   const handleDate = (id: string, value?: string) => set(id, value);
 
@@ -108,7 +156,7 @@ export const Item = ({ data, setData }: IProp) => {
           size="full"
           label="프로젝트 로고"
           placeholder="로고 파일을 선택하세요"
-          onDelete={() => set("image_info", undefined)}
+          onDelete={deleteImage}
           onChange={handleLogo}
           value={data.image_info?.original_name}
           ext="image/*"
@@ -142,7 +190,6 @@ export const Item = ({ data, setData }: IProp) => {
           onChange={handleDate}
         />
       </Label>
-
       <div className="col-flex gap-3 w-full">
         <Input
           id="skills"
@@ -181,33 +228,6 @@ export const Item = ({ data, setData }: IProp) => {
           ))}
         </div>
       </div>
-      <Textarea
-        id="motive"
-        size="full"
-        label="동기"
-        placeholder="개발 동기를 입력하세요"
-        value={data?.description.motive}
-        rows={4}
-        onChange={handleChangeArea}
-      />
-      <Textarea
-        id="role"
-        size="full"
-        label="직책"
-        placeholder="맡은 역할을 입력하세요"
-        value={data?.description.role}
-        rows={4}
-        onChange={handleChangeArea}
-      />
-      <Textarea
-        id="retrospective"
-        size="full"
-        label="회고"
-        placeholder="프로젝트 회고를 입력하세요"
-        value={data?.description.retrospective}
-        rows={4}
-        onChange={handleChangeArea}
-      />
       <Input
         id="url"
         size="full"
@@ -216,6 +236,59 @@ export const Item = ({ data, setData }: IProp) => {
         value={data.url}
         onChange={handleChange}
       />
+      <div className="col-flex w-full gap-6 ">
+        <Label label="섹션" full>
+          <Button color="light" size="full" onClick={() => addSection()}>
+            <Icon icon="ph:plus-bold" width={20} />
+          </Button>
+        </Label>
+        {data.sections.map((i) => (
+          <Label label={i.title || "이름 없는 섹션"} full>
+            <Box color="light" width="100%" className="gap-3">
+              <div className="w-full flex gap-3 h-full">
+                <Input
+                  placeholder="섹션 이름을 입력하세요"
+                  value={i.title}
+                  onChange={(e) =>
+                    setSection(i.element_id, "title", e.target.value)
+                  }
+                  disabled={
+                    i.element_id === "r" ||
+                    i.element_id === "f" ||
+                    i.element_id === "re"
+                  }
+                  size="full"
+                />
+                <Button
+                  onClick={() => delSection(i.element_id)}
+                  className="h-12"
+                  size="full"
+                  disabled={
+                    i.element_id === "r" ||
+                    i.element_id === "f" ||
+                    i.element_id === "re"
+                  }
+                >
+                  <Icon
+                    icon="ph:trash-bold"
+                    width={20}
+                    className="self-center"
+                  />
+                </Button>
+              </div>
+              <Textarea
+                value={i.description}
+                rows={5}
+                onChange={(e) =>
+                  setSection(i.element_id, "description", e.target.value)
+                }
+                placeholder="내용을 입력하세요"
+                size="full"
+              />
+            </Box>
+          </Label>
+        ))}
+      </div>
     </Box>
   );
 };

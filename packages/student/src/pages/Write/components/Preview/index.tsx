@@ -48,12 +48,12 @@ export const Preview = () => {
         <div
           className="flex"
           style={{
-            transform: `translateX(${599 * (cur - 1) * -1}px)`
+            transform: `translateX(${594 * (cur - 1) * -1}px)`
           }}
         >
           <Inform data={data} setMax={setMax} />
           {data?.project_list?.map((i) => (
-            <Projects data={i} setMax={setMax} keep={keep} key={i.name} />
+            <Projects data={i} setMax={setMax} keep={keep} key={i.element_id} />
           ))}
         </div>
       </div>

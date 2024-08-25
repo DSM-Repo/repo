@@ -1,3 +1,4 @@
+import { useLocation } from "react-router-dom";
 import { Header as DefaultHeader } from "ui";
 
 export interface IProp {
@@ -5,7 +6,8 @@ export interface IProp {
 }
 
 export const Header = ({ setOpened }: IProp) => {
-  return (
+  const { pathname } = useLocation();
+  return pathname === "/" ? (
     <div className="flex items-center fixed z-30 w-full">
       <DefaultHeader />
       <span
@@ -15,5 +17,7 @@ export const Header = ({ setOpened }: IProp) => {
         Login →
       </span>
     </div>
+  ) : (
+    <DefaultHeader className="w-full" />
   );
 };

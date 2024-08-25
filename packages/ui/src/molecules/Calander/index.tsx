@@ -54,7 +54,7 @@ export const Calander = ({
   };
 
   return (
-    <div className="relative w-full">
+    <div className={`relative ${props.size === "full" ? "w-full" : "w-fit"}`}>
       <Layout
         label={label}
         size={props.size}
@@ -109,7 +109,7 @@ export const Calander = ({
                 onClick={() => {
                   onChange(
                     props.id,
-                    `${sel.year}-${sel.month.toString().padStart(2, "0")}-${(j + 1).toString().padStart(2, "0")}`
+                    `${sel.year}. ${sel.month.toString().padStart(2, "0")}. ${(j + 1).toString().padStart(2, "0")}`
                   );
                   setCal();
                 }}

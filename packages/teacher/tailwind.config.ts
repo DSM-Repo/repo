@@ -5,24 +5,24 @@ const extendedConfig: Partial<Config> = {
   theme: {
     extend: {
       colors: {
-        libraryBackground: '#222222',
-        buttonText: '#FFFFFF',
-        plusIcon: '#FFFFFF',
-        headerText: '#FFFFFF',
-        subHeaderText: '#BBBBBB',
+        libraryBackground: "#222222",
+        buttonText: "#FFFFFF",
+        plusIcon: "#FFFFFF",
+        headerText: "#FFFFFF",
+        subHeaderText: "#BBBBBB"
       },
       width: {
-        '1000': '1000px',
+        "1000": "1000px"
       },
       height: {
-        '101': '101px',
-        '33': '33px',
-      },
-    },
-  },
+        "101": "101px",
+        "33": "33px"
+      }
+    }
+  }
 };
 
 export default {
-  ...baseConfig,
   ...extendedConfig,
+  ...baseConfig
 } satisfies Config;

@@ -1,5 +1,0 @@
-{
-  "name": "@configs/default",
-  "packageManager": "yarn@4.3.0",
-  "main": "./index.ts"
-}

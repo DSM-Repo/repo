@@ -1,15 +1,15 @@
 import { Box } from "ui";
-import { projectType } from "@configs/default";
+import { Ternary, checkOverflow, projectType } from "@configs/util";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { setType } from ".";
-import { checkOverflow } from "../util";
-import { Ternary } from "./Ternary";
 import QRCode from "react-qr-code";
 
 interface IProp {
   data: projectType;
   setMax: setType;
-  keep: any;
+  keep?: any;
+  fitA4?: boolean;
+  fitA5?: boolean;
 }
 
 export const typeAgainChange = {
@@ -17,7 +17,7 @@ export const typeAgainChange = {
   TEAM: "팀"
 };
 
-export const Projects = ({ data, setMax, keep }: IProp) => {
+export const Projects = ({ data, setMax, keep, fitA4, fitA5 }: IProp) => {
   const pdf = useRef<HTMLElement>(null);
   const [pages, setPages] = useState<HTMLElement[][]>([]);
   const isFirst = useRef(true);
@@ -25,8 +25,10 @@ export const Projects = ({ data, setMax, keep }: IProp) => {
 
   useEffect(() => {
     if (!!pdf?.current) {
-      const over = checkOverflow(pdf?.current);
-      keep.current[data.name] = over.length + 1;
+      const over = checkOverflow(pdf?.current, fitA5);
+      if (keep) {
+        keep.current[data.element_id] = over.length + 1;
+      }
       if (isFirst.current) {
         setMax((prev) => ({
           ...prev,
@@ -54,26 +56,32 @@ export const Projects = ({ data, setMax, keep }: IProp) => {
   useEffect(() => {
     // 지워지기 전에 실행햐야 함. 로직은 따로 없음
     return () => {
-      setMax((prev) => ({
-        ...prev,
-        projects: prev.projects - keep.current[data.name]
-      }));
+      if (keep) {
+        setMax((prev) => ({
+          ...prev,
+          projects: prev.projects - keep.current[data.element_id]
+        }));
+      }
     };
   }, []);
 
   return (
     <>
-      <div className="overflow-auto flex-shrink-0 w-fit h-full">
+      <div
+        className={`${fitA5 ? "w-fit h-fit" : fitA4 ? "w-[842px] h-[1191px] flex flex-center bg-gray-200" : "w-[594px] h-full"} overflow-auto flex-shrink-0`}
+      >
         <Box
-          width="595px"
-          height="841px"
+          width={fitA5 ? "595px" : "794px"}
+          height={fitA5 ? "841px" : "1123px"}
           padding="30px"
           round={{ all: 0 }}
           className="bg-white checkAble gap-[0_!important] flex-shrink-0 overflow-hidden"
           ref={pdf}
         >
           <div className="flex w-full justify-between items-center">
-            <div className="flex gap-[15px] h-[64px] items-center">
+            <div
+              className={`flex gap-[15px] ${!!data?.image_info?.image_path || !!data.url ? "h-[64px]" : "h-fit"} items-center`}
+            >
               <Ternary data={data?.image_info}>
                 <img
                   src={data?.image_info?.image_path}
@@ -104,60 +112,60 @@ export const Projects = ({ data, setMax, keep }: IProp) => {
             <div className="col-flex mt-6">
               <span className="text-body5 text-black">사용 기술</span>
               <div className="border-l-[3px] border-black flex gap-1 px-[5px] flex-wrap w-full mt-[10px]">
-                {data?.skill_set.map((i) => (
-                  <span className="text-body7 px-2 py-[2px] text-black">
+                {data?.skill_set.map((i, j) => (
+                  <span className="text-body7 px-2 py-[2px] text-black" key={j}>
                     {i}
                   </span>
                 ))}
               </div>
             </div>
           </Ternary>
-          <Ternary data={data?.description?.motive}>
-            <div className="col-flex mt-6">
-              <span className="text-body5 text-black">진행 동기</span>
-              <span className="border-l-[3px] border-black flex gap-1 px-[15px] text-body7 whitespace-pre-line w-full text-black mt-[10px]">
-                {data?.description.motive}
-              </span>
-            </div>
-          </Ternary>
-          <Ternary data={data?.description.role}>
-            <div className="col-flex mt-6">
-              <span className="text-body5 text-black">맡은 역할</span>
-              <span className="border-l-[3px] border-black flex gap-1 px-[15px] text-body7 whitespace-pre-line w-full text-black mt-[10px]">
-                {data.description.role}
-              </span>
-            </div>
-          </Ternary>
-          <Ternary data={data?.description.retrospective}>
-            <div className="col-flex mt-6">
-              <span className="text-body5 text-black">프로젝트 회고</span>
-              <span className="border-l-[3px] border-black flex gap-1 px-[15px] text-body7 whitespace-pre-line w-full text-black mt-[10px]">
-                {data?.description.retrospective}
-              </span>
-            </div>
-          </Ternary>
+          <>
+            {data?.sections.map((i) => (
+              <Ternary data={i.description}>
+                <div className="col-flex mt-6">
+                  <span className="text-body5 text-black">
+                    {i.title || "이름 없는 섹션"}
+                  </span>
+                  <span className="border-l-[3px] border-black flex gap-1 px-[15px] text-body7 whitespace-pre-line w-full text-black mt-[10px]">
+                    {i.description}
+                  </span>
+                </div>
+              </Ternary>
+            ))}
+          </>
         </Box>
       </div>
       {pages?.map((item, index) => (
         <Fragment key={index}>
-          <div className="split" />
-          <div className="overflow-auto flex-shrink-0 w-fit h-full">
+          <div
+            className={`${fitA5 ? "w-fit h-fit" : fitA4 ? "w-[842px] h-[1191px] flex flex-center bg-gray-200" : "w-[594px] h-full"} overflow-auto flex-shrink-0`}
+          >
             <Box
-              width="595px"
-              height="841px"
+              width={fitA5 ? "595px" : "794px"}
+              height={fitA5 ? "841px" : "1123px"}
               padding="30px"
               round={{ all: 0 }}
               className="bg-white gap-[0_!important] flex-shrink-0"
+              ref={(item: HTMLElement) => {
+                if (item?.childNodes) {
+                  item?.childNodes?.forEach((i, j) => {
+                    if (!!!j) {
+                      (i.childNodes[0] as HTMLElement).style.margin = "0";
+                    }
+                  });
+                }
+              }}
             >
               <>
-                {item?.map((i) => {
+                {item?.map((i, j) => {
                   return (
                     <div
+                      key={j}
                       ref={(items) =>
-                        items?.childNodes.forEach(
-                          (i) =>
-                            ((i as HTMLElement).style.visibility = "visible")
-                        )
+                        items?.childNodes.forEach((item) => {
+                          (item as HTMLElement).style.visibility = "visible";
+                        })
                       }
                       dangerouslySetInnerHTML={{ __html: i.outerHTML }}
                     />

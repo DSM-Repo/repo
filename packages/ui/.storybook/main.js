@@ -14,7 +14,7 @@ function getAbsolutePath(value) {
 const config = {
   stories: [
     "../intro/Configure.mdx",
-    "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+    "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"
   ],
   addons: [
     getAbsolutePath("@storybook/addon-onboarding"),
@@ -29,18 +29,18 @@ const config = {
         cssLoaderOptions: {
           // When you have splitted your css over multiple files
           // and use @import('./other-styles.css')
-          importLoaders: 1,
+          importLoaders: 1
         },
         postcssLoaderOptions: {
           // When using postCSS 8
-          implementation: require("postcss"),
-        },
-      },
-    },
+          implementation: require("postcss")
+        }
+      }
+    }
   ],
   framework: {
     name: getAbsolutePath("@storybook/react-vite"),
-    options: {},
+    options: {}
   },
   webpackFinal: async (config) => {
     config.module.rules.push({
@@ -50,19 +50,22 @@ const config = {
           loader: "postcss-loader",
           options: {
             postcssOptions: {
-              plugins: [require("tailwindcss"), require("autoprefixer")],
-            },
-          },
-        },
+              plugins: [require("tailwindcss"), require("autoprefixer")]
+            }
+          }
+        }
       ],
-      include: path.resolve(__dirname, "../"),
+      include: path.resolve(__dirname, "../")
     });
     return config;
   },
   viteFinal: async (config) => {
     return mergeConfig(config, {
       plugins: [svgr()],
+      define: {
+        "process.env": process.env
+      }
     });
-  },
+  }
 };
 export default config;

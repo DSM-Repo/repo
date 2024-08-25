@@ -1,9 +1,8 @@
 import { useResumeData } from "@/hooks/useResumeData";
 import { Box, Dropdown, Input, Label } from "ui";
-import { dataType } from "@/apis/common/types";
+import { dataType, major } from "@/apis";
 import { ChangeEvent, useState } from "react";
 import { Icon } from "@iconify/react";
-import { major } from "@/apis/common";
 import { Layout } from "./Layout";
 
 const studId = {
@@ -144,7 +143,6 @@ export const Inform = () => {
           ))}
         </div>
       </div>
-
       <Input
         label="이메일"
         placeholder="이메일을 입력하세요"

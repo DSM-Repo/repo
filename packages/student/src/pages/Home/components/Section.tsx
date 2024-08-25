@@ -1,4 +1,3 @@
-// import { introduce } from "../constants";
 import { completion, introduce } from "@/apis";
 import { Box, PercentageBar } from "ui";
 import { useNavigate } from "react-router-dom";
@@ -54,9 +53,11 @@ export const Section = () => {
         className="row-[1/span_2] col-start-2 gap-3"
       >
         <span className="text-body4 leading-none">자기소개</span>
-        <span className="text-body6">{intro?.introduce.heading}</span>
+        <span className="text-body6">
+          {intro?.introduce.heading || "자기소개 제목 없음"}
+        </span>
         <span className="text-body7 text-[#CACACA]">
-          {intro?.introduce.introduce}
+          {intro?.introduce.introduce || "자기소개 내용 없음"}
         </span>
       </Box>
       <Box width="100%" height="100%" padding="20px" className="gap-3">

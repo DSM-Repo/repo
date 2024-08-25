@@ -1,41 +1,20 @@
-import { TeacherLogin } from '@/modal/TeacherLogin.tsx';
-import { Home } from '@/page/Home';
-import { Library } from '@/page/Library';
-import { MajorAdd } from '@/page/MajorAdd';
-import { ResumeDetail } from '@/page/ResumeDetail';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Layout } from './Layout.tsx';
-import { Layout2 } from './Layout2.tsx';
-import { LibraryDetail } from '@/page/LibraryDetail.tsx';
-// import { FeedBackList } from '@/page/FeedBackList';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { RedirectDiff } from "@configs/util";
+import { Layout } from "./Layout";
+import * as _ from "@/page";
 
 export const Router = () => {
-  const RedirectDiff = () => {
-    return null; // or any redirection logic if needed
-  };
-
   return (
     <BrowserRouter>
       <Routes>
-        {/* Login Route */}
-        <Route path='' element={<TeacherLogin />} />
-        
-        {/* Routes using Layout */}
         <Route path="/" element={<Layout />}>
-          <Route path="home" element={<Home />} />
-          <Route path="library" element={<Library />} />
-          <Route path="majoradd" element={<MajorAdd />} />
-          {/* <Route path="feedbacklist" element={<FeedBackList />} /> */}
-          <Route path='librarydetail' element={<LibraryDetail />} />
+          <Route path="" element={<_.Home />} />
+          <Route path="library" element={<_.Library />} />
+          <Route path="major" element={<_.Major />} />
+          <Route path="history" element={<_.History />} />
         </Route>
-        
-        {/* Routes using Layout2 with dynamic documentId */}
-        <Route path="/document/student/:documentId" element={<Layout2 />}>
-          <Route path="" element={<ResumeDetail />} />
-        </Route>
-        
-        {/* Catch-All Route */}
-        <Route path="/*" element={<RedirectDiff />} />
+        <Route path="/login" element={<_.Login />} />
+        <Route path="*" element={<RedirectDiff />} />
       </Routes>
     </BrowserRouter>
   );

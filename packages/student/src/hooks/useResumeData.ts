@@ -1,4 +1,4 @@
-import { IResume, resumeData } from "@configs/default";
+import { IResume, resumeData } from "@configs/util";
 import { create } from "zustand";
 
 export type setType = (

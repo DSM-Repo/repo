@@ -1,25 +1,28 @@
-import { Outlet } from "react-router-dom";
 import { Header, SideBar, SideBarButton } from "ui";
-import { ITeacher } from "ui/src/organisms/SideBar/types";
+import { Outlet } from "react-router-dom";
+import { teacher } from "@/apis";
 
-export const userDefault: ITeacher = {
+export const userDefault: any = {
   name: "김윤이",
-  type: "teacher",
+  type: "teacher"
 };
 
 export const Layout = () => {
-  const user = userDefault;
+  const { data } = teacher();
+
   return (
-    <div className="w-full h-[100vh] flex">
-      <Header className="fixed" />
-      <SideBar user={user} className="min-w-[250px] fixed">
-        <SideBarButton title="레주메 관리" icon="Resume" url="/home" />
+    <div className="w-full h-screen flex">
+      <SideBar user={data} className="min-w-[250px]" type="teacher">
+        <SideBarButton title="레주메 관리" icon="Resume" url="/" />
         <SideBarButton title="도서관" icon="TLibrary" url="/library" />
-        <SideBarButton title="전공 추가" icon="Major" url="/majoradd" />
-        {/* <SideBarButton title="피드백 관리" icon="Feedback" url="/feedbacklist" /> */}
+        <SideBarButton title="전공 추가" icon="Major" url="/major" />
+        <SideBarButton title="연혁 관리" icon="Major" url="/history" />
       </SideBar>
-      <div className="flex flex-col w-full h-full ml-[250px] mt-[76px]">
+      <div className="w-full h-full col-flex">
+        <Header />
+        <div className="w-full h-full overflow-auto">
           <Outlet />
+        </div>
       </div>
     </div>
   );
