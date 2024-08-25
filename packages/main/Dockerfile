@@ -25,6 +25,7 @@ ENV VITE_APP_URL_RENDER_BASE_URL=${VITE_APP_RENDER_BASE_URL}
 
 RUN yarn install --immutable
 
+
 WORKDIR /repo-main/packages/main
 RUN yarn build
 
