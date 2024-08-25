@@ -26,6 +26,7 @@ export const LibraryView = () => {
           file={file.resume_url}
           className="flex gap-2 w-fit h-full"
           onLoadSuccess={({ numPages }) => setMax(numPages)}
+          onLoadStart={({ page }) => (page.style.background = "white")}
         >
           {page - 1 === 0 ? (
             <div className="w-[450px] h-full" />
