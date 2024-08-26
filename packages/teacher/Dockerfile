@@ -21,7 +21,7 @@ ARG VITE_APP_URL_TEACHER
 ENV VITE_APP_URL_TEACHER=${VITE_APP_URL_TEACHER}
 
 ARG VITE_APP_RENDER_BASE_URL
-ENV VITE_APP_URL_TEACHER=${VITE_APP_RENDER_BASE_URL}
+ENV VITE_APP_RENDER_BASE_URL=${VITE_APP_RENDER_BASE_URL}
 
 RUN yarn install --immutable
 
@@ -32,7 +32,7 @@ FROM nginx:alpine AS runner
 # Nginx 설정
 RUN echo "\
 server {\
-    listen 3000;\
+    listen 3002;\
     location / {\
         root   /usr/share/nginx/html;\
         index  index.html index.htm;\
@@ -40,5 +40,5 @@ server {\
     }\
 }" > /etc/nginx/conf.d/default.conf
 COPY --from=builder /repo-main/packages/teacher/dist /usr/share/nginx/html
-EXPOSE 3000
+EXPOSE 3002
 CMD ["nginx", "-g", "daemon off;"]
