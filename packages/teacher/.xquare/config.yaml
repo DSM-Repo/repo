@@ -1,6 +1,6 @@
 config:
   name: repo-admin
   service_type: fe
-  port: 3000
+  port: 3002
   domain:
     prod: teacher.dsm-repo.com

@@ -16,7 +16,7 @@ export const Feedback = () => {
 
   return (
     <div
-      className={`absolute right-0 top-0 h-full flex items-center transition-all duration-300 ${open ? "" : "translate-x-[500px]"}`}
+      className={`fixed right-0 top-0 h-full flex items-center transition-all duration-300 ${open ? "" : "translate-x-[500px]"}`}
     >
       <Box
         padding="10px"
@@ -38,22 +38,26 @@ export const Feedback = () => {
       >
         <span className="text-body4">피드백 목록</span>
         <div className="col-flex overflow-auto gap-3">
-          {data?.data.map((i) => (
-            <Box color="light" width="100%" className="gap-2">
-              <div className="w-full justify-between items-center flex">
-                <div className="flex items-center gap-2">
-                  <span className="text-body6">{section[i.type]}</span>
-                  <span className="text-body8">{i.teacher_name} 선생님</span>
+          {data?.data.length !== 0 ? (
+            data?.data.map((i) => (
+              <Box color="light" width="100%" className="gap-2">
+                <div className="w-full justify-between items-center flex">
+                  <div className="flex items-center gap-2">
+                    <span className="text-body6">{section[i.type]}</span>
+                    <span className="text-body8">{i.teacher_name} 선생님</span>
+                  </div>
+                  {i.rejected && (
+                    <span className="text-body8 text-red-500">거부됨</span>
+                  )}
                 </div>
-                {i.rejected && (
-                  <span className="text-body8 text-red-500">거부됨</span>
-                )}
-              </div>
-              <span className="text-body7 whitespace-pre-line">
-                {i.comment}
-              </span>
-            </Box>
-          ))}
+                <span className="text-body7 whitespace-pre-line">
+                  {i.comment}
+                </span>
+              </Box>
+            ))
+          ) : (
+            <span>아직은 피드백이 없습니다..</span>
+          )}
         </div>
       </Box>
     </div>

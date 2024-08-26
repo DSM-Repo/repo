@@ -2,7 +2,7 @@ import { Box } from "ui";
 
 const navigate = (id: string) =>
   window.location.replace(
-    `${process.env._VITE_APP_URL_MAIN}/library/${id}?prev=${window.location.href}`
+    `https://www.dsm-repo.com/library/${id}?isPublic=true&prev=${window.location.href}`
   );
 
 interface IProp {
