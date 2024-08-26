@@ -33,7 +33,7 @@ FROM nginx:alpine AS runner
 # Nginx 설정
 RUN echo "\
 server {\
-    listen 3000;\
+    listen 3002;\
     location / {\
         root   /usr/share/nginx/html;\
         index  index.html index.htm;\
@@ -41,5 +41,5 @@ server {\
     }\
 }" > /etc/nginx/conf.d/default.conf
 COPY --from=builder /repo-main/packages/main/dist /usr/share/nginx/html
-EXPOSE 3000
+EXPOSE 3002
 CMD ["nginx", "-g", "daemon off;"]
