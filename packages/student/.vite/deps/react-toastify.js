@@ -6,7 +6,7 @@ import {
   __toESM
 } from "./chunk-WOOG5QLI.js";
 
-// ../../.yarn/__virtual__/react-toastify-virtual-3804388dd8/0/cache/react-toastify-npm-10.0.5-86b63c99fc-66c68ec3d6.zip/node_modules/react-toastify/dist/react-toastify.esm.mjs
+// ../../.yarn/__virtual__/react-toastify-virtual-9b32654ebb/0/cache/react-toastify-npm-10.0.5-86b63c99fc-66c68ec3d6.zip/node_modules/react-toastify/dist/react-toastify.esm.mjs
 var import_react = __toESM(require_react(), 1);
 
 // ../../.yarn/cache/clsx-npm-2.1.1-96125b98be-c4c8eb865f.zip/node_modules/clsx/dist/clsx.mjs
@@ -25,7 +25,7 @@ function clsx() {
 }
 var clsx_default = clsx;
 
-// ../../.yarn/__virtual__/react-toastify-virtual-3804388dd8/0/cache/react-toastify-npm-10.0.5-86b63c99fc-66c68ec3d6.zip/node_modules/react-toastify/dist/react-toastify.esm.mjs
+// ../../.yarn/__virtual__/react-toastify-virtual-9b32654ebb/0/cache/react-toastify-npm-10.0.5-86b63c99fc-66c68ec3d6.zip/node_modules/react-toastify/dist/react-toastify.esm.mjs
 var c = (e2) => "number" == typeof e2 && !isNaN(e2);
 var d = (e2) => "string" == typeof e2;
 var u = (e2) => "function" == typeof e2;
