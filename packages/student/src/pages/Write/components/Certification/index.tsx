@@ -1,5 +1,5 @@
 import { useResumeData } from "@/hooks/useResumeData";
-import { achievementType } from "@configs/default";
+import { achievementType } from "@configs/util";
 import { Icon } from "@iconify/react";
 import { Layout } from "../Layout";
 import { Item } from "./Item";

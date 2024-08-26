@@ -2,7 +2,7 @@ import { Box, Button, Calander, CheckBox, Input, Label, Textarea } from "ui";
 import { Icon } from "@iconify/react";
 import { ChangeEvent } from "react";
 import { setType } from "@/hooks/useResumeData";
-import { activityType } from "@configs/default";
+import { activityType } from "@configs/util";
 
 interface IProp {
   data: activityType;
@@ -16,6 +16,18 @@ export const Item = ({ data, setData }: IProp) => {
         ...prev.data,
         activity_list: prev.data.activity_list.map((i) =>
           i.element_id === data.element_id ? { ...data, [id]: value } : i
+        )
+      }
+    }));
+
+  const setDate = (id: string, value?: string | boolean) =>
+    setData((prev) => ({
+      data: {
+        ...prev.data,
+        activity_list: prev.data.activity_list.map((i) =>
+          i.element_id === data.element_id
+            ? { ...data, date: { ...data.date, [id]: value } }
+            : i
         )
       }
     }));
@@ -37,8 +49,6 @@ export const Item = ({ data, setData }: IProp) => {
   const handleChangeArea = ({ target }: ChangeEvent<HTMLTextAreaElement>) =>
     set(target.id, target.value);
 
-  const handleDate = (id: string, value?: string) => set(id, value);
-
   return (
     <Box width="28rem" padding="20px" className="gap-6">
       <Button onClick={del} size="full" color="light">
@@ -56,22 +66,22 @@ export const Item = ({ data, setData }: IProp) => {
         <div className="w-full h-fit gap-3 items-center flex">
           <Calander
             id="start_date"
-            onDelete={() => set("start_date", undefined)}
+            onDelete={() => setDate("start_date", undefined)}
             size="full"
             placeholder={`${data.is_period ? "시작" : "진행"}일을 선택하세요`}
-            value={data.start_date}
-            onChange={handleDate}
+            value={data?.date?.start_date}
+            onChange={setDate}
           />
           {data.is_period && (
             <>
               <span>~</span>
               <Calander
-                onDelete={() => set("end_date", undefined)}
+                onDelete={() => setDate("end_date", undefined)}
                 id="end_date"
                 size="full"
                 placeholder="종료일을 선택하세요"
-                value={data.end_date}
-                onChange={handleDate}
+                value={data?.date?.end_date}
+                onChange={setDate}
               />
             </>
           )}

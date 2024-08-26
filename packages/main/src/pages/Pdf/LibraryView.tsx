@@ -1,23 +1,21 @@
 import { getLibrary } from "@/apis/library";
 import { Document, Page, pdfjs } from "react-pdf";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { Box } from "ui";
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@4.4.168/build/pdf.worker.min.mjs`;
 import "react-pdf/dist/esm/Page/TextLayer.css";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import { useState } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import { usePage } from "@/hooks/usePage";
 
 export const LibraryView = () => {
   const { id } = useParams();
-  const { data: file } = getLibrary(id as string);
+  const [searchParams] = useSearchParams();
+  const isPublic = searchParams.get("isPublic");
+  const { data: file } = getLibrary(id as string, !!isPublic);
   const [max, setMax] = useState(2);
-  const [page, setPage] = useState(1);
-
-  const handleClick = (value: number) => {
-    if (value < 1 || value > max) return;
-    setPage(value);
-  };
+  const { page, setPage } = usePage();
 
   if (file) {
     return (
@@ -48,7 +46,7 @@ export const LibraryView = () => {
             icon="ep:arrow-left-bold"
             color="white"
             className="cursor-pointer"
-            onClick={() => handleClick(page - 2)}
+            onClick={() => setPage(page - 2, max)}
           />
           <span className="text-body8">
             {page === 1
@@ -61,7 +59,7 @@ export const LibraryView = () => {
             icon="ep:arrow-right-bold"
             className="cursor-pointer"
             color="white"
-            onClick={() => handleClick(page + 2)}
+            onClick={() => setPage(page + 2, max)}
           />
         </Box>
       </div>

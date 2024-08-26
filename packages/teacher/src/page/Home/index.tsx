@@ -11,16 +11,16 @@ const type = {
 };
 
 type filterType = {
-  grade: "1" | "2" | "3" | "전체";
-  class: "1" | "2" | "3" | "4" | "전체";
-  type: "공개" | "제출" | "미제출" | "전체";
+  grade: "1" | "2" | "3" | "학년";
+  class: "1" | "2" | "3" | "4" | "반";
+  type: "공개" | "제출" | "미제출" | "문서 상태";
 };
 
 export const Home = () => {
   const [filter, setFilter] = useState<filterType>({
-    grade: "전체",
-    class: "전체",
-    type: "전체"
+    grade: "학년",
+    class: "반",
+    type: "문서 상태"
   });
 
   const { data: resumes } = students();
@@ -28,17 +28,17 @@ export const Home = () => {
   const filterF = () => {
     let item = resumes?.data;
     if (item) {
-      if (filter.grade && filter.grade !== "전체") {
+      if (filter.grade && filter.grade !== "학년") {
         item = item.filter(
           (i) => i.student_info.school_number.split("")[0] === filter.grade
         );
       }
-      if (filter.class && filter.class !== "전체") {
+      if (filter.class && filter.class !== "반") {
         item = item.filter(
           (i) => i.student_info.school_number.split("")[1] === filter.class
         );
       }
-      if (filter.type && filter.type !== "전체") {
+      if (filter.type && filter.type !== "문서 상태") {
         //@ts-expect-error
         item = item.filter((i) => i.status === type[filter.type]);
       }
@@ -70,7 +70,7 @@ export const Home = () => {
           size="extraSmall"
           placeholder="문서 상태"
           selected={filter.type}
-          selections={["공개 가능", "제출", "미제출", "전체"]}
+          selections={["공개 가능", "제출", "미제출", "문사 상태"]}
           onSelect={handleFilter}
           id="type"
         />
@@ -79,7 +79,7 @@ export const Home = () => {
           placeholder="학년"
           id="grade"
           selected={filter.grade}
-          selections={["1", "2", "3", "전체"]}
+          selections={["1", "2", "3", "학년"]}
           onSelect={handleFilter}
         />
         <Dropdown
@@ -87,12 +87,12 @@ export const Home = () => {
           placeholder="반"
           id="class"
           selected={filter.class}
-          selections={["1", "2", "3", "4", "전체"]}
+          selections={["1", "2", "3", "4", "반"]}
           onSelect={handleFilter}
         />
       </div>
       <Ternary data={item} onNull="데이터가 없습니다">
-        <Map data={item} Tomap={Button} max={5} />
+        <Map data={item} Tomap={Button} max={4} />
       </Ternary>
     </Layout>
   );

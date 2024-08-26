@@ -38,11 +38,18 @@ export interface IStudent {
 // 도서관 Library -------------
 type libraryType = {
   id: string;
-  access_right: "PUBLIC" | "PRIVATE" | "RELEASED";
+  access_right: accessType;
   year: number;
   grade: number;
   generation: number;
 };
+
+export interface IAccess {
+  library_id: string;
+  access_right: accessType;
+}
+
+export type accessType = "PUBLIC" | "PRIVATE";
 
 export interface ILibrary {
   data: libraryType[];

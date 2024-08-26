@@ -113,8 +113,8 @@ export const Item = ({ data, setData }: IProp) => {
 
   const deleteImage = () => {
     delImage(
-      { url: data?.image_info?.image_path as string },
-      { onSuccess: () => set("image_info", undefined) }
+      { url: data?.logo?.image_path as string },
+      { onSuccess: () => set("logo", undefined) }
     );
   };
 
@@ -127,7 +127,7 @@ export const Item = ({ data, setData }: IProp) => {
       const form = new FormData();
       form.append("file", file);
       mutate(form, {
-        onSuccess: (res) => set("image_info", res)
+        onSuccess: (res) => set("logo", res)
       });
     }
   };
@@ -136,7 +136,41 @@ export const Item = ({ data, setData }: IProp) => {
     set(name, typeChange[data as "개인" | "팀"]);
   };
 
-  const handleDate = (id: string, value?: string) => set(id, value);
+  const handleDate = (id: string, value?: string) =>
+    setData((prev) => ({
+      data: {
+        ...prev.data,
+        project_list: prev.data.project_list.map((i) =>
+          i.element_id === data.element_id
+            ? {
+                ...data,
+                date: {
+                  ...data.date,
+                  [id]: value
+                }
+              }
+            : i
+        )
+      }
+    }));
+
+  const delDate = (id: string) =>
+    setData((prev) => ({
+      data: {
+        ...prev.data,
+        project_list: prev.data.project_list.map((i) =>
+          i.element_id === data.element_id
+            ? {
+                ...data,
+                date: {
+                  ...data.date,
+                  [id]: undefined
+                }
+              }
+            : i
+        )
+      }
+    }));
 
   return (
     <Box width="28rem" padding="20px" className="gap-6">
@@ -158,7 +192,7 @@ export const Item = ({ data, setData }: IProp) => {
           placeholder="로고 파일을 선택하세요"
           onDelete={deleteImage}
           onChange={handleLogo}
-          value={data.image_info?.original_name}
+          value={data.logo?.original_name}
           ext="image/*"
         />
       </div>
@@ -174,19 +208,19 @@ export const Item = ({ data, setData }: IProp) => {
       <Label label="진행일" full className="w-full gap-3 items-center flex">
         <Calander
           id="start_date"
-          onDelete={() => set("start_date", undefined)}
+          onDelete={() => delDate("start_date")}
           size="full"
           placeholder="시작일을 선택하세요"
-          value={data.start_date}
+          value={data?.date?.start_date}
           onChange={handleDate}
         />
         <span>~</span>
         <Calander
-          onDelete={() => set("end_date", undefined)}
+          onDelete={() => delDate("end_date")}
           id="end_date"
           size="full"
           placeholder="종료일을 선택하세요"
-          value={data.end_date}
+          value={data?.date?.end_date}
           onChange={handleDate}
         />
       </Label>

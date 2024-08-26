@@ -23,9 +23,11 @@ const sections = [
   ["writer-info", "WRITER_INFO"],
   ["introduce", "INTRODUCE"],
   ["achievement", "ACHIEVEMENT"],
-  ["activity", "AWARD"],
+  ["activity", "ACTIVITY"],
   ["project", "PROJECT"]
 ];
+
+let prevKey = "";
 
 export const Footer = ({ section }: IProp) => {
   const navigate = useNavigate();
@@ -49,6 +51,26 @@ export const Footer = ({ section }: IProp) => {
   useEffect(() => {
     if (resume) set(() => ({ data: resume }));
   }, [resume]);
+
+  const handleKeys = (e: KeyboardEvent) => {
+    if (prevKey === "Meta" && e.key === "s") {
+      e.preventDefault();
+      handleMutate();
+    }
+    if (e.key === "ArrowLeft" && section - 1 > 0) {
+      navigate(`/write/${section - 1}`);
+    } else if (e.key === "ArrowRight" && section + 1 < 6) {
+      navigate(`/write/${section + 1}`);
+    }
+    prevKey = e.key;
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeys);
+    return () => {
+      document.removeEventListener("keydown", handleKeys);
+    };
+  }, [section]);
 
   const handleNavigate = (pos: "left" | "right") => {
     const newSection = pos === "left" ? section - 1 : section + 1;
@@ -111,7 +133,13 @@ export const Footer = ({ section }: IProp) => {
             >
               {data.status === "ONGOING" ? "제출" : "제출 취소"}
             </Content>
-            <Content onClick={handleMutate} icon="material-symbols:save">
+            <Content
+              onClick={handleMutate}
+              icon="material-symbols:save"
+              disabled={
+                data.status === "SUBMITTED" || data.status === "RELEASED"
+              }
+            >
               저장
             </Content>
             <div className="relative col-flex">
@@ -139,7 +167,9 @@ export const Footer = ({ section }: IProp) => {
                               )}
                             </div>
 
-                            <span className="text-body7">{i.comment}</span>
+                            <span className="text-body7 break-words">
+                              {i.comment}
+                            </span>
                             <Box
                               width="100%"
                               className="items-center cursor-pointer"

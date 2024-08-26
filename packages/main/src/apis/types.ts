@@ -46,3 +46,10 @@ export interface ILibrary {
   resume_url: string;
   index: indexType[];
 }
+
+export interface IAccess {
+  library_id: string;
+  access_right: accessType;
+}
+
+export type accessType = "PUBLIC" | "PRIVATE";

@@ -10,7 +10,7 @@ interface IProp {
 
 const navigate = (id: string) =>
   window.location.replace(
-    `https://www.dsm-repo.com/viewer/teacher/${id}?prev=${window.location.href}`
+    `${process.env.VITE_APP_URL_MAIN}/viewer/teacher/${id}?prev=${window.location.href}`
   );
 
 export const Button = ({

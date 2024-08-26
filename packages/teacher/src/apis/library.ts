@@ -1,9 +1,12 @@
-import { renderInstance, useMyQuery } from "@configs/util";
+import { renderInstance, useMyMutation, useMyQuery } from "@configs/util";
 import { useMutation } from "@tanstack/react-query";
-import { ILibrary, IRenderAll } from "./types";
+import { IAccess, ILibrary, IRenderAll } from "./types";
 import { toast } from "react-toastify";
 
 export const library = () => useMyQuery<ILibrary>("library", "");
+
+export const libraryAccess = () =>
+  useMyMutation<IAccess, undefined>("patch", "library", "/access-right");
 
 export const convertResume = (item: any) =>
   useMutation({

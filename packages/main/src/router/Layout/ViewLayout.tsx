@@ -1,53 +1,148 @@
-import { Outlet, useLocation, useSearchParams } from "react-router-dom";
-import { Header, SideBar, SideBarButton, SideBarDrop } from "ui";
+import {
+  Outlet,
+  useLocation,
+  useParams,
+  useSearchParams
+} from "react-router-dom";
+import { Header, SideBar, SideBarButton } from "ui";
 import { useAuth } from "@configs/util";
 import { useOpen } from "@/hooks/useOpen";
 import { SideBarDropF } from "./components/SideBarDropF";
+import { getLibrary, libraryAccess } from "@/apis/library";
+import { toast } from "react-toastify";
+import { ILibrary, accessType } from "@/apis/types";
+import { UseQueryResult } from "@tanstack/react-query";
+import { usePage } from "@/hooks/usePage";
+import { saveAs } from "file-saver";
 
 const type = {
   teacher: "학생 상세",
   library: "도서관"
 };
 
+const defaultData = {
+  data: undefined,
+  refetch: () => {}
+};
+
+let data: UseQueryResult<ILibrary> | undefined = undefined;
 export const ViewLayout = () => {
-  const [params] = useSearchParams();
+  const [params, setParams] = useSearchParams();
+  const { id } = useParams();
   const { opened, setOpened } = useOpen();
   const loc = useLocation().pathname.split("/")[2] as "teacher" | "library";
   const { getRole } = useAuth();
+  const { mutate: access } = libraryAccess();
+  if (loc === "library") {
+    data = getLibrary(id as string, !!params.get("isPublic"));
+  }
+  const { page, setPage } = usePage();
 
+  const { data: library, refetch: refetchLibrary } = data || defaultData;
+
+  const handleMode = () => {
+    setParams(params);
+    refetchLibrary();
+    access({
+      library_id: id as string,
+      access_right: (params.get("isPublic")
+        ? "PUBLIC"
+        : "PRIVATE") as accessType
+    });
+    toast.success("성공적으로 변경되었습니다");
+  };
+
+  const selected = library?.index.find((i) => {
+    return i.page_number === page + 1 || i.page_number === page;
+  });
   return (
     <div className="w-full h-screen bg-gray-900">
       <div className="size-full flex">
-        <SideBar type="free">
+        <SideBar type="free" className="overflow-auto">
           <span className="text-title3">{type[loc]}</span>
           <div className="col-flex gap-4">
-            {loc !== "teacher" && (
+            {loc !== "teacher" && library && (
               <div className="col-flex">
                 <span>빠른 이동</span>
-                <SideBarDrop
-                  selected={opened === "1반"}
-                  deepSelected="2111 육기준"
+                <SideBarDropF
+                  deepSelected={`${selected?.student_number} ${selected?.name}`}
                   title="1반"
                   icon="Edit"
-                  selections={["1", "2", "3", "4", "5", "6", "7"]}
+                  actions={library.index
+                    .filter(
+                      (i) => Math.floor((i.student_number % 1000) / 100) === 1
+                    )
+                    .map((i) => ({
+                      name: `${i.student_number} ${i.name}`,
+                      action: () => {
+                        setPage(
+                          !!!(i.page_number % 2)
+                            ? i.page_number - 1
+                            : i.page_number,
+                          1000
+                        );
+                      }
+                    }))}
                 />
-                <SideBarDrop
-                  selected={opened === "2반"}
+                <SideBarDropF
+                  deepSelected={`${selected?.student_number} ${selected?.name}`}
                   title="2반"
                   icon="Edit"
-                  selections={["1", "2", "3", "4", "5", "6", "7"]}
+                  actions={library.index
+                    .filter(
+                      (i) => Math.floor((i.student_number % 1000) / 100) === 2
+                    )
+                    .map((i) => ({
+                      name: `${i.student_number} ${i.name}`,
+                      action: () => {
+                        setPage(
+                          !!!(i.page_number % 2)
+                            ? i.page_number - 1
+                            : i.page_number,
+                          1000
+                        );
+                      }
+                    }))}
                 />
-                <SideBarDrop
-                  selected={opened === "3반"}
+                <SideBarDropF
+                  deepSelected={`${selected?.student_number} ${selected?.name}`}
                   title="3반"
                   icon="Edit"
-                  selections={["1", "2", "3", "4", "5", "6", "7"]}
+                  actions={library.index
+                    .filter(
+                      (i) => Math.floor((i.student_number % 1000) / 100) === 3
+                    )
+                    .map((i) => ({
+                      name: `${i.student_number} ${i.name}`,
+                      action: () => {
+                        setPage(
+                          !!!(i.page_number % 2)
+                            ? i.page_number - 1
+                            : i.page_number,
+                          1000
+                        );
+                      }
+                    }))}
                 />
-                <SideBarDrop
-                  selected={opened === "4반"}
+                <SideBarDropF
+                  deepSelected={`${selected?.student_number} ${selected?.name}`}
                   title="4반"
                   icon="Edit"
-                  selections={["1", "2", "3", "4", "5", "6", "7"]}
+                  actions={library.index
+                    .filter(
+                      (i) => Math.floor((i.student_number % 1000) / 100) === 4
+                    )
+                    .map((i) => ({
+                      name: `${i.student_number} ${i.name}`,
+                      action: () => {
+                        setPage(
+                          !!!(i.page_number % 2)
+                            ? i.page_number - 1
+                            : i.page_number,
+                          1000
+                        );
+                      }
+                    }))}
                 />
               </div>
             )}
@@ -74,10 +169,22 @@ export const ViewLayout = () => {
                 <>
                   <SideBarDropF
                     actions={[
-                      { name: "공개", action: () => {} },
-                      { name: "비공개", action: () => {} }
+                      {
+                        name: "공개",
+                        action: () => {
+                          params.set("isPublic", "true");
+                          handleMode();
+                        }
+                      },
+                      {
+                        name: "비공개",
+                        action: () => {
+                          params.delete("isPublic");
+                          handleMode();
+                        }
+                      }
                     ]}
-                    deepSelected="공개"
+                    deepSelected={!!params.get("isPublic") ? "공개" : "비공개"}
                     title="공개 여부"
                     icon="Edit"
                     forceOpen
@@ -85,16 +192,28 @@ export const ViewLayout = () => {
                   <SideBarButton
                     selected={false}
                     title="다운로드"
+                    onClick={() => {
+                      if (library) {
+                        saveAs(
+                          library.resume_url,
+                          `${library.year}년 ${library.grade}학년 (${library.generation}기) Resume Book.pdf`
+                        );
+                      }
+                    }}
                     icon="Edit"
                   />
                 </>
               )}
-              <SideBarButton
-                selected={false}
-                title="나가기"
-                icon="Edit"
-                onClick={() => window.location.replace(`${params.get("prev")}`)}
-              />
+              {!!params.get("prev") && (
+                <SideBarButton
+                  selected={false}
+                  title="나가기"
+                  icon="Edit"
+                  onClick={() =>
+                    window.location.replace(`${params.get("prev")}`)
+                  }
+                />
+              )}
             </div>
           </div>
         </SideBar>
