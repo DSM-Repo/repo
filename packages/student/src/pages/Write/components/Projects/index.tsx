@@ -9,9 +9,11 @@ const defaultData: projectType = {
   element_id: "",
   name: "",
   type: "PERSONAL",
-  image_info: undefined,
-  start_date: undefined,
-  end_date: undefined,
+  logo: undefined,
+  date: {
+    start_date: undefined,
+    end_date: undefined
+  },
   skill_set: [],
   sections: [
     {

@@ -1,8 +1,12 @@
 import { completion, introduce } from "@/apis";
 import { Box, PercentageBar } from "ui";
-import { useNavigate } from "react-router-dom";
 
 const liStyle = "text-body8";
+
+const navigate = (id: string) =>
+  window.location.replace(
+    `${process.env.VITE_APP_URL_MAIN}/viewer/library/${id}?prev=${window.location.href}`
+  );
 
 const accent = (status?: boolean) =>
   status ? "font-bold text-[#42E224]" : "font-bold text-[#686868]";
@@ -10,7 +14,6 @@ const accent = (status?: boolean) =>
 export const Section = () => {
   const { data: complete } = completion();
   const { data: intro } = introduce();
-  const navigate = useNavigate();
 
   return (
     <div className="grid grid-cols-[390px_auto] w-full gap-4 grid-rows-[fit-content(3ch)_210px]">
@@ -68,7 +71,7 @@ export const Section = () => {
               width="100%"
               color="light"
               className="cursor-pointer"
-              onClick={() => navigate(`/book/${i.id}`)}
+              onClick={() => navigate(i.id)}
               key={i.id}
             >
               <span className="text-body6">

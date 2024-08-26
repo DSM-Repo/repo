@@ -29,7 +29,7 @@ export const Inform = ({ data, setMax, fitA4, fitA5 }: IProp) => {
   return (
     <>
       <div
-        className={`${fitA5 ? "w-fit h-fit" : fitA4 ? "w-[842px] h-[1191px] flex flex-center bg-gray-200" : "w-[594px] h-full"} overflow-auto flex-shrink-0`}
+        className={`${fitA5 ? "w-fit h-fit" : fitA4 ? "w-[842px] h-[1191px] flex flex-center bg-gray-200" : "w-[inherit] h-full"} overflow-auto flex-shrink-0`}
       >
         <Box
           width={fitA5 ? "595px" : "794px"}
@@ -63,18 +63,20 @@ export const Inform = ({ data, setMax, fitA4, fitA5 }: IProp) => {
               </div>
             </div>
             {!!data.writer.url && (
-              <QRCode value={data.writer.url} className="w-[60px] h-[60px]" />
+              <a href={data.writer.url}>
+                <QRCode value={data.writer.url} className="w-[60px] h-[60px]" />
+              </a>
             )}
           </div>
           {/* 자기 소개 */}
           <Ternary
             data={!!data.introduce.heading || !!data.introduce.introduce}
           >
-            <div className="col-flex gap-5 mt-6">
+            <div className="col-flex gap-5 mt-6 w-full">
               <span className="text-body3 text-black">
                 {data.introduce.heading}
               </span>
-              <span className="text-body8 text-[#818181] font-light">
+              <span className="text-body8 text-[#818181] inline w-full font-light break-words">
                 {data.introduce.introduce}
               </span>
             </div>
@@ -134,11 +136,13 @@ export const Inform = ({ data, setMax, fitA4, fitA5 }: IProp) => {
                 >
                   <div className="flex w-full justify-between items-center">
                     <span className="text-body5 text-black">{i.name}</span>
-                    <span className="text-body8 font-light text-[#818181]">
-                      {!i.is_period
-                        ? i.start_date
-                        : `${i.start_date} ~ ${i.end_date || "진행중"}`}
-                    </span>
+                    {i.date?.start_date && (
+                      <span className="text-body8 font-light text-[#818181]">
+                        {!i.is_period
+                          ? i.date?.start_date
+                          : `${i.date?.start_date} ~ ${i.date?.end_date || "진행중"}`}
+                      </span>
+                    )}
                   </div>
                   <span className="text-gray-300 whitespace-pre-line">
                     {i.description}
@@ -152,7 +156,7 @@ export const Inform = ({ data, setMax, fitA4, fitA5 }: IProp) => {
       {pages?.map((item, index) => (
         <Fragment key={index}>
           <div
-            className={`${fitA5 ? "w-fit h-fit" : fitA4 ? "w-[842px] h-[1191px] flex flex-center bg-gray-200" : "w-[594px] h-full"} overflow-auto flex-shrink-0`}
+            className={`${fitA5 ? "w-fit h-fit" : fitA4 ? "w-[842px] h-[1191px] flex flex-center bg-gray-200" : "w-[inherit] h-full"} overflow-auto flex-shrink-0`}
           >
             <Box
               width={fitA5 ? "595px" : "794px"}

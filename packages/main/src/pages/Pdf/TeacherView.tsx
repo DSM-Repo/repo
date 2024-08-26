@@ -71,7 +71,7 @@ export const TeacherView = () => {
 
   if (file) {
     return (
-      <div className="w-full h-full col-flex justify-center items-center overflow-hidden relative">
+      <div className="w-full h-full col-flex justify-between items-center overflow-hidden relative">
         <div className="flex w-[595px] max-h-[841px] h-full overflow-y-auto overflow-x-hidden">
           <div
             className="w-full h-full flex"
@@ -86,6 +86,7 @@ export const TeacherView = () => {
         {opened === "피드백 목록" && (
           <Box
             className="absolute bottom-[36.7px] right-0 gap-3 shadow-2xl"
+            width="340px"
             height="calc(100% - 36.7px)"
             padding="20px"
             round={{ all: 0 }}
@@ -103,7 +104,7 @@ export const TeacherView = () => {
             <div className="col-flex gap-3 h-full w-full overflow-y-auto">
               {feedbacks?.data.map((i) => (
                 <div className="col-flex gap-1 w-full h-fit items-end ">
-                  <Box color="light" width="300px">
+                  <Box color="light" width="30px">
                     <span className="text-body6 break-words whitespace-pre-line">
                       {i.comment}
                     </span>

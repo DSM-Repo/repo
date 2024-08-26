@@ -33,8 +33,7 @@ export type achievementType = {
 export type activityType = {
   element_id: string;
   name: string;
-  start_date?: string;
-  end_date?: string;
+  date: dateType;
   description: string;
   is_period: boolean;
 };
@@ -50,13 +49,17 @@ export type sectionType = {
   description: string;
 };
 
+type dateType = {
+  start_date?: string;
+  end_date?: string;
+};
+
 export type projectType = {
   element_id: string;
   name: string;
-  image_info?: imageType;
+  logo?: imageType;
   type: "PERSONAL" | "TEAM";
-  start_date?: string;
-  end_date?: string;
+  date?: dateType;
   skill_set: string[];
   sections: sectionType[];
   url: string;

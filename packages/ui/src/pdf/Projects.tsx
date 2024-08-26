@@ -10,6 +10,7 @@ interface IProp {
   keep?: any;
   fitA4?: boolean;
   fitA5?: boolean;
+  setCur?: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export const typeAgainChange = {
@@ -17,7 +18,14 @@ export const typeAgainChange = {
   TEAM: "팀"
 };
 
-export const Projects = ({ data, setMax, keep, fitA4, fitA5 }: IProp) => {
+export const Projects = ({
+  data,
+  setMax,
+  keep,
+  fitA4,
+  fitA5,
+  setCur
+}: IProp) => {
   const pdf = useRef<HTMLElement>(null);
   const [pages, setPages] = useState<HTMLElement[][]>([]);
   const isFirst = useRef(true);
@@ -46,7 +54,6 @@ export const Projects = ({ data, setMax, keep, fitA4, fitA5 }: IProp) => {
           ...prev,
           projects: prev.projects - (fastPages.current - over.length + 1)
         }));
-        isFirst.current = false;
       }
       fastPages.current = over.length;
       setPages(over);
@@ -57,10 +64,13 @@ export const Projects = ({ data, setMax, keep, fitA4, fitA5 }: IProp) => {
     // 지워지기 전에 실행햐야 함. 로직은 따로 없음
     return () => {
       if (keep) {
-        setMax((prev) => ({
-          ...prev,
-          projects: prev.projects - keep.current[data.element_id]
-        }));
+        setMax((prev) => {
+          setCur((curPrev) => curPrev - keep.current[data.element_id]);
+          return {
+            ...prev,
+            projects: prev.projects - keep.current[data.element_id]
+          };
+        });
       }
     };
   }, []);
@@ -68,7 +78,7 @@ export const Projects = ({ data, setMax, keep, fitA4, fitA5 }: IProp) => {
   return (
     <>
       <div
-        className={`${fitA5 ? "w-fit h-fit" : fitA4 ? "w-[842px] h-[1191px] flex flex-center bg-gray-200" : "w-[594px] h-full"} overflow-auto flex-shrink-0`}
+        className={`${fitA5 ? "w-fit h-fit" : fitA4 ? "w-[842px] h-[1191px] flex flex-center bg-gray-200" : "w-[inherit] h-full"} overflow-auto flex-shrink-0`}
       >
         <Box
           width={fitA5 ? "595px" : "794px"}
@@ -80,11 +90,11 @@ export const Projects = ({ data, setMax, keep, fitA4, fitA5 }: IProp) => {
         >
           <div className="flex w-full justify-between items-center">
             <div
-              className={`flex gap-[15px] ${!!data?.image_info?.image_path || !!data.url ? "h-[64px]" : "h-fit"} items-center`}
+              className={`flex gap-[15px] ${!!data?.logo || !!data.url ? "h-[64px]" : "h-fit"} items-center`}
             >
-              <Ternary data={data?.image_info}>
+              <Ternary data={data?.logo}>
                 <img
-                  src={data?.image_info?.image_path}
+                  src={data?.logo?.image_path}
                   className="w-[64px] h-[64px]"
                 />
               </Ternary>
@@ -97,9 +107,10 @@ export const Projects = ({ data, setMax, keep, fitA4, fitA5 }: IProp) => {
                     {typeAgainChange[data?.type]} 프로젝트
                   </span>
                 </div>
-                <Ternary data={data?.start_date || data?.end_date}>
+                <Ternary data={data?.date?.start_date || data?.date?.end_date}>
                   <span className="text-gray-400 text-body7">
-                    {data.start_date} ~ {data.end_date || "진행중"}
+                    {data?.date?.start_date} ~{" "}
+                    {data?.date?.end_date || "진행중"}
                   </span>
                 </Ternary>
               </div>
@@ -139,7 +150,7 @@ export const Projects = ({ data, setMax, keep, fitA4, fitA5 }: IProp) => {
       {pages?.map((item, index) => (
         <Fragment key={index}>
           <div
-            className={`${fitA5 ? "w-fit h-fit" : fitA4 ? "w-[842px] h-[1191px] flex flex-center bg-gray-200" : "w-[594px] h-full"} overflow-auto flex-shrink-0`}
+            className={`${fitA5 ? "w-fit h-fit" : fitA4 ? "w-[842px] h-[1191px] flex flex-center bg-gray-200" : "w-[inherit] h-full"} overflow-auto flex-shrink-0`}
           >
             <Box
               width={fitA5 ? "595px" : "794px"}

@@ -37,12 +37,12 @@ export const Feedback = () => {
         padding="20px"
       >
         <span className="text-body4">피드백 목록</span>
-        <div className="col-flex overflow-auto gap-3">
+        <div className="col-flex w-full overflow-auto gap-3">
           {data?.data.length !== 0 ? (
             data?.data.map((i) => (
               <Box color="light" width="100%" className="gap-2">
                 <div className="w-full justify-between items-center flex">
-                  <div className="flex items-center gap-2">
+                  <div className="flex w-full items-center gap-2">
                     <span className="text-body6">{section[i.type]}</span>
                     <span className="text-body8">{i.teacher_name} 선생님</span>
                   </div>
@@ -50,7 +50,7 @@ export const Feedback = () => {
                     <span className="text-body8 text-red-500">거부됨</span>
                   )}
                 </div>
-                <span className="text-body7 whitespace-pre-line">
+                <span className="text-body7 whitespace-pre-line break-words">
                   {i.comment}
                 </span>
               </Box>

@@ -1,4 +1,5 @@
 import { SideBarProfile, SideBarProgress } from "../../molecules";
+import { IStudent } from "@configs/util";
 import { Box } from "../../atoms";
 import { IProp } from "./types";
 
@@ -27,12 +28,18 @@ export const SideBar = ({
     >
       {type !== "free" ? (
         <>
-          <SideBarProfile isStudent={isStudent} data={user} />
+          <SideBarProfile
+            isStudent={isStudent}
+            data={user as IStudent | { name: string }}
+          />
           <div className="col-flex gap-3">
             <span>메인</span>
             <div className="col-flex gap-1">{children}</div>
           </div>
-          <SideBarProgress progress={progress} isStudent={isStudent} />
+          <SideBarProgress
+            progress={progress as Number}
+            isStudent={isStudent}
+          />
         </>
       ) : (
         children

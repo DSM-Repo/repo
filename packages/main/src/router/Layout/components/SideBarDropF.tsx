@@ -36,7 +36,10 @@ export const SideBarDropF = ({
       onClick={() => !selected && setOpened(title)}
       {...props}
     >
-      <div className="flex w-full justify-between items-center">
+      <div
+        className="flex w-full justify-between items-center"
+        onClick={() => (!selected ? setOpened(title) : setOpened(""))}
+      >
         <Content selected={selected} icon={icon}>
           {title}
         </Content>
@@ -51,12 +54,7 @@ export const SideBarDropF = ({
         <ul className="flex flex-col gap-2 overflow-hidden">
           {actions.map((item: actionType, index: number) => (
             <li
-              onClick={() => {
-                if (!forceOpen) {
-                  setOpened(item.name);
-                }
-                item.action();
-              }}
+              onClick={item.action}
               key={index}
               className={`${text(
                 item.name

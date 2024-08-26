@@ -1,5 +1,5 @@
 import { Box, Button, Calander, Dropdown, Input } from "ui";
-import { achievementType } from "@configs/default";
+import { achievementType } from "@configs/util";
 import { setType } from "@/hooks/useResumeData";
 import { ChangeEvent, useState } from "react";
 import { Icon } from "@iconify/react";
