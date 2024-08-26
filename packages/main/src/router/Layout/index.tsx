@@ -1,4 +1,4 @@
-import { Header, Modal } from "./components";
+import { Modal } from "./components";
 import { useState } from "react";
 export * from "./ViewLayout";
 
