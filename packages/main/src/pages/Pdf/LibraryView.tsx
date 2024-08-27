@@ -10,22 +10,6 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { usePage } from "@/hooks/usePage";
 import { useOpen } from "@/hooks/useOpen";
 
-const sizes: { [key: string]: number } = {
-  "25": 4.417,
-  "33.5": 3.281,
-  "50": 2.144,
-  "66.5": 1.575723,
-  "75": 1.386,
-  "80": 1.292,
-  "90": 1.134,
-  "100": 1.006,
-  "110": 0.903,
-  "125": 0.779,
-  "150": 0.627,
-  "175": 0.52,
-  "200": 0.438
-};
-
 export const LibraryView = () => {
   const { id } = useParams();
   const [searchParams] = useSearchParams();
@@ -33,15 +17,21 @@ export const LibraryView = () => {
   const { data: file } = getLibrary(id as string, !!isPublic);
   const [max, setMax] = useState(2);
   const { page, setPage } = usePage();
-  const [size, setSize] = useState("100");
   const { opened, setOpened } = useOpen();
 
+  const [scale, setScale] = useState(1);
+
   useEffect(() => {
-    setSize((Math.round(window.devicePixelRatio * 100) / 2).toString());
-    window.addEventListener("resize", () => {
-      const item = Math.round(window.devicePixelRatio * 100) / 2;
-      setSize(item.toString());
-    });
+    const updateScale = () => {
+      const windowHeight = window.innerHeight;
+      const newScale = windowHeight / 721; // 예시로 A4 크기(842px)에 맞추는 방법
+      setScale(newScale);
+    };
+
+    updateScale();
+    window.addEventListener("resize", updateScale);
+
+    return () => window.removeEventListener("resize", updateScale);
   }, []);
 
   const handleKeys = (e: KeyboardEvent) => {
@@ -98,14 +88,14 @@ export const LibraryView = () => {
           <Page
             pageIndex={page - 1}
             width={450}
-            scale={sizes[size]}
-            className={page - 1 === 0 ? "invisible" : ""}
+            scale={scale}
+            className={`${page - 1 === 0 ? "invisible" : ""} h-fit`}
           />
           <Page
             pageIndex={page === max ? page - 1 : page}
             width={450}
-            scale={sizes[size]}
-            className={page === max ? "invisible" : ""}
+            scale={scale}
+            className={`${page === max ? "invisible" : ""} h-fit`}
           />
         </Document>
         <Box
