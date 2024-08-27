@@ -9,13 +9,24 @@ import {
   Image9,
   Logo
 } from "@/assets";
+import { useAuth } from "@configs/util";
 import { Modal } from "@/router/Layout";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export const Landing = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { getRole } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const role = getRole();
+    if (role === "student") {
+      window.location.replace(`${process.env.VITE_APP_URL_STUDENT}`);
+    } else if (role === "teacher") {
+      window.location.replace(`${process.env.VITE_APP_URL_TEACHER}`);
+    }
+  });
 
   return (
     <>
@@ -33,23 +44,10 @@ export const Landing = () => {
       {/* Modal */}
       <Modal opened={isModalOpen} setOpened={setIsModalOpen} />
 
-      {/* Content */}
-      <div className="bg-custom-image grid place-items-center font-normal text-[16px] text-white">
-        <Image8 />
-        <p className="font-extrabold text-[36px]">깔끔한 나만의 레주메</p>
-        <p className="text-[#888888]">로그인 하여 바로 사용해 보세요</p>
-        <div
-          className="w-36 h-11 border border-[#6D6D6D] flex justify-center items-center rounded-[22px] mt-6 mb-16 cursor-pointer"
-          onClick={() => navigate("/login")}
-        >
-          Repo 사용하기
-        </div>
-      </div>
-
       {/* Container */}
-      <div className="py-[172px] px-[40px] flex flex-col justify-center items-center gap-[80px]">
+      <div className="py-[172px] px-[40px] flex flex-col justify-center w-full items-center gap-[80px]">
         {/* Section 1 */}
-        <div className="w-screen h-2/5 flex flex-col justify-center items-center gap-4 font-black text-[48px] text-white">
+        <div className="w-full h-2/5 flex flex-col justify-center items-center gap-4 font-black text-[48px] text-white">
           <Image9 />
           <div className="flex flex-col items-center">
             <p>이력서, 온라인으로</p>
@@ -65,7 +63,7 @@ export const Landing = () => {
         </div>
 
         {/* Section 2 */}
-        <div className="w-screen h-2/5 py-5 flex flex-col justify-center items-center gap-4 font-black text-[48px] text-white">
+        <div className="w-full h-2/5 py-5 flex flex-col justify-center items-center gap-4 font-black text-[48px] text-white">
           <Image8 className="mb-[20px]" />
           <p className="font-extrabold text-[36px] mb-[64px]">
             손쉽게 작성하는 이력서
@@ -118,6 +116,23 @@ export const Landing = () => {
             </p>
           </div>
         </div>
+      </div>
+
+      {/* Content */}
+      <div className="bg-custom-image flex justify-between items-center w-full bg-gray-900 font-normal text-[16px] text-white">
+        <img src="/Proj-Left.png" className="h-full" />
+        <div className="flex flex-col py-20 items-center">
+          <Image8 />
+          <p className="font-extrabold text-[36px]">깔끔한 나만의 레주메</p>
+          <p className="text-[#888888]">로그인 하여 바로 사용해 보세요</p>
+          <div
+            className="w-36 h-11 border border-[#6D6D6D] flex justify-center items-center rounded-[22px] mt-6 cursor-pointer"
+            onClick={() => navigate("/login")}
+          >
+            Repo 사용하기
+          </div>
+        </div>
+        <img src="/Proj_Right.png" className="h-full" />
       </div>
 
       {/* Footer */}
