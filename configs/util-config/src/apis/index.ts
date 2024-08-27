@@ -27,7 +27,7 @@ const resFunc = (res: InternalAxiosRequestConfig<any>) => {
 
 const errFunc = (err: any) => {
   const { response } = err;
-  if (response.status === 401 || response.status === 403) {
+  if (response.status === 401) {
     const location = window.location.href;
     window.location.replace(
       `${location

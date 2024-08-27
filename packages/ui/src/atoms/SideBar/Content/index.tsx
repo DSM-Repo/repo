@@ -1,7 +1,21 @@
 import { HTMLAttributes } from "react";
 import * as Icons from "./icons";
 
-export type iconType = "My" | "Library" | "Edit" | "TLibrary" | "Resume" | "Major" | "Feedback";
+export type iconType =
+  | "My"
+  | "Library"
+  | "Edit"
+  | "TLibrary"
+  | "Resume"
+  | "Major"
+  | "Feedback"
+  | "One"
+  | "Two"
+  | "Three"
+  | "Four"
+  | "Back"
+  | "Download"
+  | "Share";
 
 interface IProp extends HTMLAttributes<HTMLDivElement> {
   icon: iconType;
