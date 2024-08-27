@@ -70,7 +70,7 @@ export const Footer = ({ section }: IProp) => {
     return () => {
       document.removeEventListener("keydown", handleKeys);
     };
-  }, [section]);
+  }, [handleKeys]);
 
   const handleNavigate = (pos: "left" | "right") => {
     const newSection = pos === "left" ? section - 1 : section + 1;

@@ -21,7 +21,7 @@ export const Button = ({ id, year, grade, generation }: IProp) => {
       className="cursor-pointer"
     >
       <span className="text-body4">
-        {year}년 {grade}학년 {generation}학기
+        {year}년 {grade}학년 {generation}기
       </span>
     </Box>
   );

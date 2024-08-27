@@ -1,10 +1,10 @@
-import { IProp as IExtend } from "./Header";
 import { Icon } from "@iconify/react";
 import { Logo } from "@/assets";
 import { Box } from "ui";
 
-interface IProp extends IExtend {
+interface IProp {
   opened: boolean;
+  setOpened: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const Modal = ({ opened, setOpened }: IProp) => {

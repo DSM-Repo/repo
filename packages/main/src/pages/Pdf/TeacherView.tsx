@@ -64,6 +64,21 @@ export const TeacherView = () => {
     setPage(value);
   };
 
+  const handleKeys = (e: KeyboardEvent) => {
+    if (e.key === "ArrowRight") {
+      handleClick(page + 1);
+    } else if (e.key === "ArrowLeft") {
+      handleClick(page - 1);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeys);
+    return () => {
+      document.removeEventListener("keydown", handleKeys);
+    };
+  }, [handleKeys]);
+
   const handleAct = (message: string) => {
     refetchFeedbacks();
     toast.success(message);

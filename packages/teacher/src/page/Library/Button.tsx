@@ -44,7 +44,7 @@ export const Button = ({
         className="text-body4 block w-full"
         onClick={() => navigate(id, access_right)}
       >
-        {year}년 {grade}학년 {generation}학기
+        {year}년 {grade}학년 {generation}기
       </span>
       <Dropdown
         selections={["공개", "비공개"]}

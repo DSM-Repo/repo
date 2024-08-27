@@ -7,7 +7,7 @@ import {
 import { Header, SideBar, SideBarButton } from "ui";
 import { useAuth } from "@configs/util";
 import { useOpen } from "@/hooks/useOpen";
-import { SideBarDropF } from "./components/SideBarDropF";
+import { SideBarDropF } from "./SideBarDropF";
 import { getLibrary, libraryAccess } from "@/apis/library";
 import { toast } from "react-toastify";
 import { ILibrary, accessType } from "@/apis/types";
@@ -67,7 +67,7 @@ export const ViewLayout = () => {
                 <SideBarDropF
                   deepSelected={`${selected?.student_number} ${selected?.name}`}
                   title="1반"
-                  icon="Edit"
+                  icon="One"
                   actions={library.index
                     .filter(
                       (i) => Math.floor((i.student_number % 1000) / 100) === 1
@@ -87,7 +87,7 @@ export const ViewLayout = () => {
                 <SideBarDropF
                   deepSelected={`${selected?.student_number} ${selected?.name}`}
                   title="2반"
-                  icon="Edit"
+                  icon="Two"
                   actions={library.index
                     .filter(
                       (i) => Math.floor((i.student_number % 1000) / 100) === 2
@@ -107,7 +107,7 @@ export const ViewLayout = () => {
                 <SideBarDropF
                   deepSelected={`${selected?.student_number} ${selected?.name}`}
                   title="3반"
-                  icon="Edit"
+                  icon="Three"
                   actions={library.index
                     .filter(
                       (i) => Math.floor((i.student_number % 1000) / 100) === 3
@@ -127,7 +127,7 @@ export const ViewLayout = () => {
                 <SideBarDropF
                   deepSelected={`${selected?.student_number} ${selected?.name}`}
                   title="4반"
-                  icon="Edit"
+                  icon="Four"
                   actions={library.index
                     .filter(
                       (i) => Math.floor((i.student_number % 1000) / 100) === 4
@@ -186,7 +186,7 @@ export const ViewLayout = () => {
                     ]}
                     deepSelected={!!params.get("isPublic") ? "공개" : "비공개"}
                     title="공개 여부"
-                    icon="Edit"
+                    icon="Share"
                     forceOpen
                   />
                   <SideBarButton
@@ -200,7 +200,7 @@ export const ViewLayout = () => {
                         );
                       }
                     }}
-                    icon="Edit"
+                    icon="Download"
                   />
                 </>
               )}
@@ -208,7 +208,7 @@ export const ViewLayout = () => {
                 <SideBarButton
                   selected={false}
                   title="나가기"
-                  icon="Edit"
+                  icon="Back"
                   onClick={() =>
                     window.location.replace(`${params.get("prev")}`)
                   }
