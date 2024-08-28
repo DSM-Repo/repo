@@ -9,15 +9,13 @@ import {
   Image9,
   Logo
 } from "@/assets";
-import { useAuth } from "@configs/util";
 import { Modal } from "@/router/Layout";
+import { useAuth } from "@configs/util";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 export const Landing = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { getRole } = useAuth();
-  const navigate = useNavigate();
 
   useEffect(() => {
     const role = getRole();
@@ -55,7 +53,7 @@ export const Landing = () => {
           </div>
           <div
             className="w-36 h-11 border border-[#6D6D6D] flex justify-center items-center font-normal text-[16px] rounded-[22px] mt-6 mb-16 cursor-pointer"
-            onClick={() => navigate("/login")} // Navigate to login on click
+            onClick={() => setIsModalOpen(true)}
           >
             Repo 사용하기
           </div>
@@ -127,7 +125,7 @@ export const Landing = () => {
           <p className="text-[#888888]">로그인 하여 바로 사용해 보세요</p>
           <div
             className="w-36 h-11 border border-[#6D6D6D] flex justify-center items-center rounded-[22px] mt-6 cursor-pointer"
-            onClick={() => navigate("/login")}
+            onClick={() => setIsModalOpen(true)}
           >
             Repo 사용하기
           </div>
