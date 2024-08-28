@@ -19,7 +19,7 @@ export const Landing = () => {
   return (
     <>
       {/* Header */}
-      <div className="w-full h-fit px-10 flex items-center justify-center bg-gradient-to-b blur-sm from-black/40 to-black/0 fixed">
+      <div className="w-full h-fit px-10 flex items-center justify-center bg-gradient-to-b from-black/40 to-black/0 fixed">
         <Logo className="w-[71px] h-[24px] mr-[1234px]" />
         <div
           className="px-5 py-2.5 my-[17px] border border-[#6D6D6D] rounded-3xl text-white cursor-pointer bg-[#222222] hover:bg-[#6D6D6D]"
