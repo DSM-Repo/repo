@@ -1,14 +1,4 @@
-import {
-  Image2,
-  Image3,
-  Image4,
-  Image5,
-  Image6,
-  Image7,
-  Image8,
-  Image9,
-  Logo
-} from "@/assets";
+import { Image2, Image3, Image4, Image5, Image6, Image7, Image8, Image9, Logo } from "@/assets";
 import { Modal } from "@/router/Layout";
 import { useAuth } from "@configs/util";
 import { useEffect, useState } from "react";
@@ -32,7 +22,7 @@ export const Landing = () => {
       <div className="w-full h-fit px-10 flex items-center justify-center bg-gradient-to-b from-black/40 to-black/0 fixed">
         <Logo className="w-[71px] h-[24px] mr-[1234px]" />
         <div
-          className="px-5 py-2.5 my-[17px] border border-[#6D6D6D] rounded-3xl text-white cursor-pointer"
+          className="px-5 py-2.5 my-[17px] border border-[#6D6D6D] rounded-3xl text-white cursor-pointer hover:bg-[#6D6D6D]"
           onClick={() => setIsModalOpen(true)}
         >
           Login
@@ -52,7 +42,7 @@ export const Landing = () => {
             <p>쉽고 간편하게.</p>
           </div>
           <div
-            className="w-36 h-11 border border-[#6D6D6D] flex justify-center items-center font-normal text-[16px] rounded-[22px] mt-6 mb-16 cursor-pointer"
+            className="w-36 h-11 border border-[#6D6D6D] flex justify-center items-center font-normal text-[16px] rounded-[22px] mt-6 mb-16 cursor-pointer hover:bg-[#6D6D6D]"
             onClick={() => setIsModalOpen(true)}
           >
             Repo 사용하기
@@ -124,7 +114,7 @@ export const Landing = () => {
           <p className="font-extrabold text-[36px]">깔끔한 나만의 레주메</p>
           <p className="text-[#888888]">로그인 하여 바로 사용해 보세요</p>
           <div
-            className="w-36 h-11 border border-[#6D6D6D] flex justify-center items-center rounded-[22px] mt-6 cursor-pointer"
+            className="w-36 h-11 border border-[#6D6D6D] flex justify-center items-center rounded-[22px] mt-6 cursor-pointer hover:bg-[#6D6D6D]"
             onClick={() => setIsModalOpen(true)}
           >
             Repo 사용하기
