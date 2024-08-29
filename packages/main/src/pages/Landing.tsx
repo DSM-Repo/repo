@@ -18,9 +18,11 @@ export const Landing = () => {
 
   return (
     <div className="bg-[#222222]">
+
+      <div className="w-full h-[421px] absolute top-0 bg-gradient-to-b from-black/100 to-black/0"/>
       {/* Header */}
-      <div className="w-full h-[421px] py-6 px-10 flex justify-center bg-gradient-to-b from-black/50 to-black/0 fixed">
-        <Logo className="w-20 h-6 mr-[80vw]" />
+      <div className="w-full h-[421px] py-6 px-10 flex justify-center fixed">
+        <Logo className="w-20 h-6 mr-[70vw]" />
         <div
           className="h-min px-5 py-2.5 border border-[#6D6D6D] rounded-3xl text-white cursor-pointer bg-[#222222] hover:bg-[#6D6D6D]"
           onClick={() => setIsModalOpen(true)}
@@ -35,7 +37,7 @@ export const Landing = () => {
       {/* Container */}
       <div className="py-[172px] px-[40px] flex flex-col justify-center w-full items-center gap-[80px]">
         {/* Section 1 */}
-        <div className="w-full h-2/5 flex flex-col justify-center items-center gap-4 font-black text-[48px] text-white">
+        <div className="w-full h-2/5 relative flex flex-col justify-center items-center gap-4 font-black text-[48px] text-white">
           <Image9 />
           <div className="flex flex-col items-center">
             <p>이력서, 온라인으로</p>
