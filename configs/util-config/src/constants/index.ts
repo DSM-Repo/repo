@@ -15,6 +15,7 @@ export const studentData: IStudent = {
 
 export const resumeData: IResume = {
   status: "ONGOING",
+  id: undefined,
   writer: {
     name: "홍길동",
     email: "",
