@@ -5,9 +5,9 @@ import {
   __commonJS
 } from "./chunk-4MBMRILA.js";
 
-// ../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/cjs/react-jsx-dev-runtime.development.js
-var require_react_jsx_dev_runtime_development = __commonJS({
-  "../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/cjs/react-jsx-dev-runtime.development.js"(exports) {
+// ../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/cjs/react-jsx-runtime.development.js
+var require_react_jsx_runtime_development = __commonJS({
+  "../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/cjs/react-jsx-runtime.development.js"(exports) {
     "use strict";
     if (true) {
       (function() {
@@ -878,31 +878,46 @@ var require_react_jsx_dev_runtime_development = __commonJS({
             return element;
           }
         }
-        var jsxDEV$1 = jsxWithValidation;
+        function jsxWithValidationStatic(type, props, key) {
+          {
+            return jsxWithValidation(type, props, key, true);
+          }
+        }
+        function jsxWithValidationDynamic(type, props, key) {
+          {
+            return jsxWithValidation(type, props, key, false);
+          }
+        }
+        var jsx = jsxWithValidationDynamic;
+        var jsxs = jsxWithValidationStatic;
         exports.Fragment = REACT_FRAGMENT_TYPE;
-        exports.jsxDEV = jsxDEV$1;
+        exports.jsx = jsx;
+        exports.jsxs = jsxs;
       })();
     }
   }
 });
 
-// ../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/jsx-dev-runtime.js
-var require_jsx_dev_runtime = __commonJS({
-  "../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/jsx-dev-runtime.js"(exports, module) {
+// ../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/jsx-runtime.js
+var require_jsx_runtime = __commonJS({
+  "../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/jsx-runtime.js"(exports, module) {
     if (false) {
       module.exports = null;
     } else {
-      module.exports = require_react_jsx_dev_runtime_development();
+      module.exports = require_react_jsx_runtime_development();
     }
   }
 });
-export default require_jsx_dev_runtime();
+
+export {
+  require_jsx_runtime
+};
 /*! Bundled license information:
 
-react/cjs/react-jsx-dev-runtime.development.js:
+react/cjs/react-jsx-runtime.development.js:
   (**
    * @license React
-   * react-jsx-dev-runtime.development.js
+   * react-jsx-runtime.development.js
    *
    * Copyright (c) Facebook, Inc. and its affiliates.
    *
@@ -910,4 +925,4 @@ react/cjs/react-jsx-dev-runtime.development.js:
    * LICENSE file in the root directory of this source tree.
    *)
 */
-//# sourceMappingURL=react_jsx-dev-runtime.js.map
+//# sourceMappingURL=chunk-RTZDC3W3.js.map
