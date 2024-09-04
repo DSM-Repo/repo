@@ -18,7 +18,7 @@ export interface ICompletion {
   certificate_and_award: boolean;
   activity: boolean;
   project: boolean;
-  percent_complete: Number;
+  percent_complete: number;
 }
 
 type sharedType = {
@@ -93,6 +93,29 @@ export interface ILibrary {
   data: libraryType[];
   number_of_data: number;
 }
+
+export type indexType = {
+  name: string;
+  major: string;
+  student_number: number;
+  page_number: number;
+};
+
+export interface IBook {
+  id: string;
+  year: number;
+  grade: number;
+  generation: number;
+  resume_url: string;
+  index: indexType[];
+}
+
+export interface IAccess {
+  library_id: string;
+  access_right: accessType;
+}
+
+export type accessType = "PUBLIC" | "PRIVATE";
 
 // 파일 File -------------------
 export interface IImage {

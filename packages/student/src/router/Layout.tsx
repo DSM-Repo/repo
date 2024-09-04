@@ -1,6 +1,5 @@
-import { SideBar, SideBarButton, SideBarDrop, Header } from "ui";
+import { Sidebar } from "ui";
 import { completion, currentInfo } from "@/apis";
-import { studentData } from "@configs/util";
 import { Outlet } from "react-router-dom";
 
 export const Layout = () => {
@@ -8,33 +7,60 @@ export const Layout = () => {
   const { data: progress } = completion();
 
   return (
-    <div className="w-full h-screen flex">
-      <SideBar
-        type="student"
-        user={data || studentData}
-        progress={progress?.percent_complete || 0}
-        className="min-w-[250px]"
-      >
-        <SideBarButton title="홈" icon="My" url="/" />
-        <SideBarButton title="도서관" icon="Library" url="/library" />
-        <SideBarDrop
-          title="포트폴리오 수정"
-          icon="Edit"
-          urls={[
-            { title: "내 정보", url: "/write/1" },
-            { title: "자기소개", url: "/write/2" },
-            { title: "자격증 & 수상", url: "/write/3" },
-            { title: "활동", url: "/write/4" },
-            { title: "프로젝트", url: "/write/5" }
-          ]}
-        />
-      </SideBar>
-      <div className="flex flex-col w-full h-full">
-        <Header />
-        <div className="w-full h-full overflow-auto">
-          <Outlet />
-        </div>
-      </div>
+    <div className="w-full h-screen bg-black flex">
+      <Sidebar
+        profile={{
+          major: data?.major_name || "",
+          name: data?.name || "",
+          percent: progress?.percent_complete || 0
+        }}
+        items={[
+          {
+            name: "메인",
+            sections: [
+              { icon: "House", name: "홈", urls: ["/"] },
+              { icon: "Book", name: "도서관", urls: ["/library", "/book"] },
+              { icon: "Document", name: "내 레주메", urls: ["/detail"] }
+            ]
+          },
+          {
+            name: "포트폴리오",
+            sections: [
+              {
+                icon: "User",
+                name: "내 정보",
+                urls: ["/write/1"],
+                checked: progress?.writer_info
+              },
+              {
+                icon: "Document",
+                name: "자기소개",
+                urls: ["/write/2"],
+                checked: progress?.introduce
+              },
+              {
+                icon: "ChartCircle",
+                name: "프로젝트",
+                urls: ["/write/3"],
+                checked: progress?.project
+              },
+              {
+                icon: "Chart",
+                name: "자격증 & 수상",
+                urls: ["/write/4"],
+                checked: progress?.certificate_and_award
+              },
+              {
+                icon: "Users",
+                name: "활동",
+                urls: ["/write/5"],
+                checked: progress?.activity
+              }
+            ]
+          }
+        ]}
+      />
+      <Outlet />
     </div>
   );
 };
