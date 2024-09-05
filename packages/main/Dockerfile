@@ -1,45 +1,22 @@
+# Stage 1: Builder
 FROM node:18-alpine AS builder
-RUN apk add --no-cache libc6-compat git curl unzip
 
-# Corepack 활성화 및 Yarn 설치
-RUN corepack enable && corepack prepare yarn@4.3.0 --activate
+# 필수 패키지 설치 및 Corepack 활성화
+RUN apk add --no-cache libc6-compat git && corepack enable && corepack prepare yarn@4.3.0 --activate
 
-RUN curl -L -o ../repo.zip https://github.com/DSM-Repo/repo/archive/main.zip && \
-    unzip ../repo.zip -d /
-WORKDIR /repo-main
+# Git 리포지토리 클론
+WORKDIR /app
+RUN git clone --depth 1 --branch main https://github.com/DSM-Repo/repo.git .
 
-ARG VITE_APP_BASE_URL
-ENV VITE_APP_BASE_URL=${VITE_APP_BASE_URL}
+# 환경 변수 설정
+ARG VITE_APP_BASE_URL VITE_APP_URL_MAIN VITE_APP_URL_STUDENT VITE_APP_URL_TEACHER VITE_APP_RENDER_BASE_URL
+ENV VITE_APP_BASE_URL VITE_APP_URL_MAIN VITE_APP_URL_STUDENT VITE_APP_URL_TEACHER VITE_APP_RENDER_BASE_URL
 
-ARG VITE_APP_URL_MAIN
-ENV VITE_APP_URL_MAIN=${VITE_APP_URL_MAIN}
+# 의존성 설치 및 빌드
+RUN yarn install --immutable && yarn workspace main build
 
-ARG VITE_APP_URL_STUDENT
-ENV VITE_APP_URL_STUDENT=${VITE_APP_URL_STUDENT}
-
-ARG VITE_APP_URL_TEACHER
-ENV VITE_APP_URL_TEACHER=${VITE_APP_URL_TEACHER}
-
-ARG VITE_APP_RENDER_BASE_URL
-ENV VITE_APP_RENDER_BASE_URL=${VITE_APP_RENDER_BASE_URL}
-
-RUN yarn install --immutable
-
-
-WORKDIR /repo-main/packages/main
-RUN yarn build
-
-FROM nginx:alpine AS runner
-# Nginx 설정
-RUN echo "\
-server {\
-    listen 3000;\
-    location / {\
-        root   /usr/share/nginx/html;\
-        index  index.html index.htm;\
-        try_files \$uri \$uri/ /index.html =404;\
-    }\
-}" > /etc/nginx/conf.d/default.conf
-COPY --from=builder /repo-main/packages/main/dist /usr/share/nginx/html
+# Stage 2: Runner
+FROM nginx:alpine
+COPY --from=builder /app/packages/main/dist /usr/share/nginx/html
 EXPOSE 3000
 CMD ["nginx", "-g", "daemon off;"]
