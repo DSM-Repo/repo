@@ -17,6 +17,6 @@ RUN yarn install --immutable && yarn workspace main build
 
 # Stage 2: Runner
 FROM nginx:alpine
-COPY --from=builder /app/packages/main/dist /usr/share/nginx/html
+COPY --from=builder ./packages/main/dist /usr/share/nginx/html
 EXPOSE 3000
 CMD ["nginx", "-g", "daemon off;"]
