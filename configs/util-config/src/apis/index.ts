@@ -1,7 +1,7 @@
+import axios, { InternalAxiosRequestConfig } from "axios";
 import { Cookies } from "react-cookie";
 import { toast } from "react-toastify";
 import { refresh } from "./refresh";
-import axios, { InternalAxiosRequestConfig } from "axios";
 export * from "./paths";
 
 const cookie = new Cookies();

@@ -88,7 +88,7 @@ export type introduceType = {
 
 export interface IResume {
   id?: string;
-  status: string;
+  status: "ONGOING" | "SUBMITTED" | "RELEASED";
   writer: writerType;
   introduce: introduceType;
   achievement_list: achievementType[];

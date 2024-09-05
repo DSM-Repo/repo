@@ -1,9 +1,7 @@
-import { ReactElement } from "react";
-
 interface IProp {
   data: any;
   onNull?: string;
-  children: ReactElement;
+  children: React.ReactElement | React.ReactElement[];
 }
 
 export const Ternary = ({ data, onNull, children }: IProp) => {

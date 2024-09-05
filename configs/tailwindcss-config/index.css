@@ -15,6 +15,10 @@
     @apply -my-1;
   }
 
+  .content-none::after {
+    content: "";
+  }
+
   .disable {
     @apply cursor-not-allowed bg-[#373737];
   }
@@ -32,11 +36,68 @@
   src: url("./PretendardVariable.woff2") format("woff2-variations");
 }
 
+@keyframes compUp {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes compDown {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-620px);
+  }
+}
+
+@keyframes scrollRev {
+  0% {
+    transform: translateX(-620px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.scrolling-slider {
+  animation: scroll 10s linear infinite;
+}
+
+.scrolling-slider-rev {
+  animation: scrollRev 10s linear infinite;
+}
+
+.move-up {
+  animation: compUp 0.5s ease forwards;
+}
+
+.move-down {
+  animation: compDown 0.5s ease forwards;
+}
+
 * {
   font-family: "PretendardVariable" !important;
   user-select: none;
   border-color: white;
   overscroll-behavior: none;
+  outline: none;
 }
 
 span,
@@ -45,6 +106,7 @@ input,
 textarea,
 li {
   color: white;
+  outline: none;
 }
 
 input,
@@ -52,22 +114,29 @@ textarea {
   background-color: transparent;
 }
 
+select,
+input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
 textarea {
   resize: none;
 }
 
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 1px;
   height: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-  border-radius: 10px;
+  border-radius: 100px;
   background-color: gray;
 }
 
 body {
-  background: #2e2e2e;
+  background: #222222;
 }
 
 .css-k7lbue {
