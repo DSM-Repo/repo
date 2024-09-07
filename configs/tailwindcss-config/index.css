@@ -92,6 +92,23 @@
   animation: compDown 0.5s ease forwards;
 }
 
+img {
+  @apply inline-block;
+}
+
+.preload {
+  animation-duration: 0s !important;
+  -webkit-animation-duration: 0s !important;
+  transition:
+    background-color 0s,
+    opacity 0s,
+    color 0s,
+    width 0s,
+    height 0s,
+    padding 0s,
+    margin 0s !important;
+}
+
 * {
   font-family: "PretendardVariable" !important;
   user-select: none;
