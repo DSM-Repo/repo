@@ -13,7 +13,7 @@ export const Status = () => {
   return (
     <Box height="fit-content" padding="32px" className="">
       <Title title="상태" />
-      <span className="text-[40px] font-bold text-gray-200">
+      <span className="text-[40px] font-bold text-gray-200 leading-none">
         {types[data?.status || "ONGOING"]}
       </span>
     </Box>

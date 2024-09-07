@@ -67,9 +67,9 @@ export const Item = ({ data, setData }: IProp) => {
         value={data.name}
         onChange={handleChange}
       />
-      <Label label="진행일" size="large">
+      <Label label="진행일" size="full">
         <div className="w-full col-flex gap-3">
-          <div className="w-full h-fit gap-3 items-center flex">
+          <div className="w-full h-fit justify-between items-center flex">
             <Date
               id="start_date"
               onDelete={() => setDate(undefined, "start_date")}

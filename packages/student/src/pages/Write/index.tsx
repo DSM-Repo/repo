@@ -2,9 +2,7 @@ import { useParams } from "react-router-dom";
 import { Layout, Custom, Title, Button } from "ui";
 import { Activity, Certification, Inform } from "./Sections";
 import { Preview } from "./Preview";
-import { confirm, feedback, resumeData } from "@/apis";
-import { useEffect } from "react";
-import { useResumeData } from "@/hooks";
+import { confirm, feedback } from "@/apis";
 import { Ternary } from "@configs/util";
 import { Introduce } from "./Sections/Introduce";
 import { Projects } from "./Sections/Projects";
@@ -41,7 +39,7 @@ export const Write = () => {
         },
         {
           icon: "Save",
-          title: "해당 항목 저장하기",
+          title: "저장하기",
           action: () => {}
         },
         {
@@ -101,16 +99,16 @@ export const Write = () => {
         {
           type: "custom",
           name: "미리보기",
-          width: "600px",
+          width: "680px",
           component: (
-            <Custom width="600px" name="미리보기">
+            <Custom width="680px" name="미리보기">
               <Preview />
             </Custom>
           )
         }
       ]}
     >
-      <div className="w-fit px-[60px] flex justify-center py-[24px]">
+      <div className="w-full max-w-[620px] flex justify-center py-[24px]">
         <div className="w-fit col-flex gap-6">{sections[idNum - 1]}</div>
       </div>
     </Layout>

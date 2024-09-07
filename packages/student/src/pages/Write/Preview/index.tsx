@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { useResumeData } from "@/hooks";
-import { Box, Inform, Projects } from "ui";
+import { Box, Inform, Projects, Resume } from "ui";
 import { Header } from "./Header";
 
 export type setType = React.Dispatch<
@@ -17,8 +17,6 @@ export const Preview = () => {
   });
   const [cur, setCur] = useState(1);
 
-  const keep = useRef<{ [key: string]: number }>({});
-
   const length = Object.values(max).reduce((acc, prev) => acc + prev);
   const { data } = useResumeData();
 
@@ -32,7 +30,7 @@ export const Preview = () => {
 
   return (
     <Box
-      width="600px"
+      width="680px"
       height="100%"
       round="0"
       padding="10px"
@@ -46,16 +44,7 @@ export const Preview = () => {
             transform: `translateX(${100 * (cur - 1) * -1}%)`
           }}
         >
-          <Inform data={data} setMax={setMax} />
-          {data?.project_list?.map((i) => (
-            <Projects
-              data={i}
-              setMax={setMax}
-              keep={keep}
-              key={i.element_id}
-              setCur={setCur}
-            />
-          ))}
+          <Resume data={data} setMax={setMax} />
         </div>
       </div>
     </Box>

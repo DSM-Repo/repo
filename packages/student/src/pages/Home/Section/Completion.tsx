@@ -27,6 +27,7 @@ export const Completion = () => {
   return (
     <Box
       width={sideOpened ? "100%" : "fit-content"}
+      height="100%"
       className="gap-5"
       padding="32px 20px 32px 20px"
     >

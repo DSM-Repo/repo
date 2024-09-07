@@ -17,7 +17,7 @@ export const Certification = () => {
 
   return (
     <div className="col-flex gap-6 w-fit">
-      <div className="flex items-center justify-between w-[532px]">
+      <div className="flex items-center justify-between w-[502px]">
         <Title
           title="자격증 & 수상"
           subTitle="자신의 자격증과 수상 내역을 소개해 보세요."

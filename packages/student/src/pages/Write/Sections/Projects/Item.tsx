@@ -212,7 +212,7 @@ export const Item = ({ data, setData }: IProp) => {
         /> */}
       </div>
       <Label label="진행 기간" size="full">
-        <div className="w-full flex justify-between items-center">
+        <div className="w-full h-fit flex justify-between items-center">
           <Date
             id="start_date"
             onDelete={() => delDate("start_date")}
@@ -242,7 +242,7 @@ export const Item = ({ data, setData }: IProp) => {
         label="기술 스택"
         placeholder="기술 스택을 입력하세요"
         onEnter={(i) => set("skill_set", [...data.skill_set, i])}
-        listSize="450px"
+        listSize="large"
         values={data.skill_set.map((i) => ({ id: i, name: i }))}
         size="large"
       />
