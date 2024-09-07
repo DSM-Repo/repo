@@ -6,23 +6,17 @@ import {
   useMyQuery,
   useMyMutation
 } from "@configs/util";
-import {
-  ICompletion,
-  IDelImage,
-  IIntroduce,
-  IIntroduceSpec,
-  IUpdateWriter
-} from "./types";
+import { ICompletion, IDelImage, IIntroduce } from "./types";
 
 export const completion = () =>
-  useMyQuery<ICompletion>("document", "/completion");
+  useMyQuery<ICompletion>("resume", "/completion");
 
-export const resumeData = () => useMyQuery<IResume>("document", "/detail");
+export const resumeData = () => useMyQuery<IResume>("resume", "/detail");
 
-export const introduce = () => useMyQuery<IIntroduce>("document", "");
+export const introduce = () => useMyQuery<IIntroduce>("resume", "");
 
 export const submit = () =>
-  useMyMutation<undefined, undefined>("post", "document", "/submit");
+  useMyMutation<undefined, undefined>("post", "resume", "/submit");
 
 export type urlType =
   | "writer-info"
@@ -31,15 +25,7 @@ export type urlType =
   | "activity"
   | "project";
 
-export const update = (url: urlType) =>
-  useMyMutation<
-    | IUpdateWriter
-    | IIntroduceSpec
-    | {
-        list: projectType[] | achievementType[] | activityType[];
-      },
-    null
-  >("patch", "document", `/${url}`);
+export const update = () => useMyMutation<IResume, null>("patch", "resume", "");
 
 export const delFile = () =>
   useMyMutation<IDelImage, undefined>("put", "file", "/del");
