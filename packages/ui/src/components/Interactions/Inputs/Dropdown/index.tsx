@@ -4,7 +4,7 @@ import { Ternary } from "@configs/util";
 import { useState } from "react";
 
 interface IProp extends IDefaultProp {
-  selections: string[];
+  selections?: string[];
   selected?: string;
   onChange: (item: string, id?: string) => void;
   placeholder: string;
@@ -40,24 +40,26 @@ export const Dropdown = ({
         disabled={disabled}
       >
         <span
-          className={`${!selected ? "text-gray-400" : ""} block w-full text-[16px] font-light cursor-pointer`}
+          className={`${!selected ? "text-gray-400" : ""} ${disabled ? "text-gray-300 cursor-not-allowed" : ""} block w-full text-[14px] font-light leading-none cursor-pointer`}
           onClick={() => (disabled ? () => {} : setOpen((prev) => !prev))}
         >
           {selected ? selected : placeholder}
         </span>
       </Layout>
       <Ternary data={open}>
-        <div className="absolute top-[90px] max-h-[160px] overflow-auto z-20 w-full h-fit border-[1px] rounded-xl bg-gray-700 border-gray-600 p-2">
-          {selections.map((i, j) => (
+        <div
+          className={`${!!label ? "top-[96px]" : "top-[60px]"} shadow-[0_4px_12px_0_rgba(0,0,0,0.32)] absolute max-h-[170px] overflow-auto z-20 w-full h-fit border-[1px] rounded-xl bg-gray-700 border-gray-600 p-2`}
+        >
+          {selections?.map((i, j) => (
             <div
               key={j}
-              className={`${selected === i ? "border-[1px] bg-gray-600 border-gray-500" : ""} rounded-xl cursor-pointer w-full flex p-3 items-center`}
+              className={`${selected === i ? "border-[1px] bg-gray-600 border-gray-500" : "hover:bg-gray-600"} transition-all duration-150 h-[40px] rounded-xl cursor-pointer w-full flex p-3 items-center`}
               onClick={() => {
                 setOpen(false);
                 onChange(i, id);
               }}
             >
-              <span className="text-[16px] font-light">{i}</span>
+              <span className="text-[14px] font-light leading-none">{i}</span>
             </div>
           ))}
         </div>

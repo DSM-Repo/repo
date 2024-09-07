@@ -13,6 +13,7 @@ interface IProp extends IDefaultProp {
 }
 
 const date = dayjs();
+const dateTypes = ["S", "M", "T", "W", "T", "F", "S"];
 
 export const Date = ({
   size,
@@ -66,14 +67,16 @@ export const Date = ({
         icon={value && { name: "Trash", action: () => onDelete(id) }}
       >
         <span
-          className={`${!!!value ? "text-gray-300" : "text-white"} block w-full text-[16px] font-light cursor-pointer`}
+          className={`${!!!value ? "text-gray-300" : "text-white"} block w-full text-[14px] font-light cursor-pointer`}
           onClick={() => (disabled ? () => {} : setOpen((prev) => !prev))}
         >
           {value ? value : placeholder}
         </span>
       </Layout>
       <Ternary data={open}>
-        <div className="absolute col-flex items-center top-[60px] z-20 w-[258px] h-fit border-[1px] rounded-xl bg-gray-700 border-gray-600 p-2">
+        <div
+          className={`${!!label ? "top-[96px]" : "top-[60px]"} shadow-[0_4px_12px_0_rgba(0,0,0,0.32)] absolute col-flex items-center z-20 w-[258px] h-fit border-[1px] rounded-xl bg-gray-700 gap-2 border-gray-600 p-2`}
+        >
           <div className="flex gap-2 items-center">
             <Icon
               name="Arrow"
@@ -94,6 +97,11 @@ export const Date = ({
             />
           </div>
           <div className="flex flex-row flex-wrap gap-[5px] w-full">
+            {dateTypes.map((i) => (
+              <span className="w-[30px] h-[30px] text-center content-center text-body7 text-gray-300 inline cursor-pointer">
+                {i}
+              </span>
+            ))}
             {startDate.map(() => (
               <span className="w-[30px] h-[30px] inline" />
             ))}

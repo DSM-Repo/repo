@@ -1,5 +1,5 @@
 interface IProp {
-  percent: number;
+  percent?: number;
 }
 
 export const Percentage = ({ percent }: IProp) => {
@@ -9,7 +9,7 @@ export const Percentage = ({ percent }: IProp) => {
       <span className="text-[14px] font-light leading-none text-gray-100">
         레주메가{" "}
         <span className="text-[14px] font-semibold leading-none text-green-400">
-          {percent}%
+          {percent || 0}%
         </span>{" "}
         완성되었어요
       </span>

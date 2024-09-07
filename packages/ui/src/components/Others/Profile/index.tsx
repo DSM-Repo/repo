@@ -4,9 +4,10 @@ import { HTMLAttributes } from "react";
 interface IProp extends HTMLAttributes<HTMLImageElement> {
   img?: string;
   size: number;
+  round?: string;
 }
 
-export const Profile = ({ img, size, ...props }: IProp) => {
+export const Profile = ({ img, size, round = "9999px", ...props }: IProp) => {
   return !!img ? (
     <>
       <img
@@ -14,6 +15,7 @@ export const Profile = ({ img, size, ...props }: IProp) => {
         src={img}
         width={size}
         height={size}
+        style={{ borderRadius: round }}
         alt="프로필 이미지"
         className={`flex-shrink-0 rounded-full aspect-square object-cover bg-white ${props.className}`}
       />
@@ -22,7 +24,8 @@ export const Profile = ({ img, size, ...props }: IProp) => {
     <Default
       width={size}
       height={size}
-      className="flex-shrink-0 w-fit h-fit rounded-full"
+      className="flex-shrink-0 w-fit h-fit"
+      style={{ borderRadius: round }}
     />
   );
 };

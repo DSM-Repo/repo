@@ -1,4 +1,4 @@
-export const sizeTable = {
+export const sizeTable: Record<sizeType, string> = {
   fit: "w-fit",
   small: "w-[140px]",
   medium: "w-[200px]",
