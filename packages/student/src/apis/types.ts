@@ -38,19 +38,6 @@ export interface IIntroduce {
   recently_shared: sharedType[];
 }
 
-export interface IIntroduceSpec {
-  element_id: string;
-  heading: string;
-  introduce: string;
-}
-
-export interface IUpdateWriter {
-  major_id: string;
-  email: string;
-  url: string;
-  skill_set: string[];
-}
-
 // 피드백 Feedback --------------
 type feedbackType = {
   id: string;
@@ -71,13 +58,12 @@ export interface ICheckFeedback {
 }
 
 // 전공 Major ------------------
-export type dataType = {
+type majorType = {
   id: string;
-  name: string;
 };
 
 export interface IMajors {
-  data: dataType[];
+  data: majorType[];
   data_of_number: Number;
 }
 
