@@ -27,7 +27,7 @@ export const SideBar = ({ name, width = "300px", items }: ISidebarProp) => {
         width,
         transform: `translateX(${sideOpened !== name ? "0" : `-${width}`})`
       }}
-      className={`transition-all duration-200 flex h-screen flex-col absolute bg-gray-800 border-l-[1px] border-gray-700 overflow-y-auto`}
+      className={`transition-all w-full duration-200 flex h-screen flex-col absolute bg-gray-800 border-l-[1px] border-gray-700 overflow-y-auto`}
     >
       <div className="px-4 h-14 border-b-[1px] border-gray-700 flex items-center flex-shrink-0">
         <span className="text-[16px] font-semibold leading-none">{name}</span>

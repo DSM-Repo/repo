@@ -7,7 +7,7 @@ export interface IStudent {
     school_number: string;
   };
   profile_image: string;
-  major_name: string;
+  major: string;
 }
 
 export interface ITeacher {}
@@ -68,7 +68,7 @@ export type projectType = {
 export type writerType = {
   name: string;
   email: string;
-  major_name: string;
+  major: string;
   class_info: {
     grade?: number;
     class_number?: number;

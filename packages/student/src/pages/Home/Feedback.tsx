@@ -27,6 +27,7 @@ export const Feedback = ({ content, teacher, type, confirm }: IProp) => {
           <button
             className="px-4 py-2 border-[1px] border-gray-600 bg-gray-700 rounded-[12px] text-[15px] text-normal text-gray-50"
             onClick={() => navigate(`/write/${types[type][1]}`)}
+            title="클릭시 해당 항목으로 이동합니다"
           >
             {types[type][0]}
           </button>

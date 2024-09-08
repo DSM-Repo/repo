@@ -1,6 +1,6 @@
 import { useResumeData } from "@/hooks/useResumeData";
 import { Dropdown, Text, Label, List, Title } from "ui";
-import { dataType, major } from "@/apis";
+import { major } from "@/apis";
 import { ChangeEvent } from "react";
 import { Layout } from "./Layout";
 
@@ -96,12 +96,12 @@ export const Inform = () => {
         <Dropdown
           label="전공"
           placeholder="전공을 선택하세요"
-          selected={writer?.major_name}
-          selections={majors ? majors?.data.map((i: dataType) => i.name) : []}
+          selected={writer?.major}
+          selections={majors?.data?.map((i) => i.id)}
           onChange={handleDropChange}
           size="large"
           required
-          id="major_name"
+          id="major"
         />
         <List
           label="기술 스택"
@@ -122,7 +122,6 @@ export const Inform = () => {
             )
           }
           required
-          listSize="450px"
           size="large"
           id="skills"
         />

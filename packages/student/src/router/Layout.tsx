@@ -1,26 +1,38 @@
 import { Sidebar } from "ui";
-import { completion, currentInfo } from "@/apis";
+import { completion, currentInfo, resumeData } from "@/apis";
 import { Outlet } from "react-router-dom";
+import { useResumeData } from "@/hooks";
+import { useEffect } from "react";
 
 export const Layout = () => {
   const { data } = currentInfo();
   const { data: progress } = completion();
 
+  const { data: resume } = resumeData();
+  const { data: _resume, set } = useResumeData();
+
+  useEffect(() => {
+    if (resume) {
+      set((prev) => ({ ...prev, data: resume }));
+    }
+  }, [resume]);
+
   return (
     <div className="w-full h-screen bg-black flex">
       <Sidebar
         profile={{
-          major: data?.major_name || "",
+          major: data?.major || "",
           name: data?.name || "",
-          percent: progress?.percent_complete || 0
+          percent: progress?.percent_complete || 0,
+          status: _resume?.status
         }}
         items={[
           {
             name: "메인",
             sections: [
               { icon: "House", name: "홈", urls: ["/"] },
-              { icon: "Book", name: "도서관", urls: ["/library", "/book"] },
-              { icon: "Document", name: "내 레주메", urls: ["/detail"] }
+              { icon: "Book", name: "도서관", urls: ["/library", "/book"] }
+              // { icon: "Document", name: "내 레주메", urls: ["/detail"] }
             ]
           },
           {

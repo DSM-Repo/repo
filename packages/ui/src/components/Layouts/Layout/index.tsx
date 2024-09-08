@@ -15,7 +15,7 @@ export type sidebarType = {
 interface IProp {
   buttons?: buttonType[];
   sidebars?: sidebarType[];
-  children: any;
+  children: React.ReactElement | React.ReactElement[];
 }
 
 export const Layout = ({ buttons, sidebars, children }: IProp) => {
@@ -28,7 +28,7 @@ export const Layout = ({ buttons, sidebars, children }: IProp) => {
       <div className="flex w-full h-full flex-shrink-0 relative">
         <div
           style={{
-            width: !!sideOpened ? `calc(100% - ${standardWidth})` : "calc(100%)"
+            width: !!sideOpened ? `calc(100% - ${standardWidth})` : "100%"
           }}
           className="col-flex items-center h-full transition-all duration-150"
         >

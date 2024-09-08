@@ -1,6 +1,7 @@
 import { IDefaultProp, Layout } from "../Layout";
 import { Icon } from "../../../";
 import { useState } from "react";
+import { sizeTable, sizeType } from "../../../../size";
 
 type itemType = {
   id: string;
@@ -11,7 +12,7 @@ interface IProp extends IDefaultProp {
   values: itemType[];
   onEnter: (item: string, id?: string) => void;
   onDelete: (itemId: string, id: string) => void;
-  listSize: string;
+  listSize?: sizeType;
   placeholder: string;
   id?: string;
 }
@@ -30,10 +31,12 @@ export const List = ({
   const [item, setItem] = useState("");
 
   return (
-    <div className="col-flex gap-3 h-fit" style={{ width: listSize }}>
+    <div
+      className={`${sizeTable[listSize ? listSize : size]} col-flex gap-3 h-fit`}
+    >
       <Layout size={size} required={required} label={label}>
         <input
-          className="w-full text-[16px] font-light"
+          className="w-full text-[14px] font-light leading-none"
           placeholder={placeholder}
           value={item}
           onChange={(e) => setItem(e.target.value)}

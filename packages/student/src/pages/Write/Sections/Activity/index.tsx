@@ -20,7 +20,7 @@ export const Activity = () => {
 
   return (
     <div className="col-flex gap-6 w-fit">
-      <div className="flex items-center justify-between w-[532px]">
+      <div className="flex items-center justify-between w-[502px]">
         <Title title="활동" subTitle="진행한 활동을 소개해 보세요." />
         <Icon
           name="Add"

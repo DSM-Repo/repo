@@ -22,6 +22,7 @@ export const Button = ({ action, icon, rotate = "up", title }: IProp) => {
   const [show, setShow] = useState(false);
   const canShowTitle = useRef(false);
   const animTimeout = useRef(null);
+  const [first, setFirst] = useState(true);
 
   const handleClick = () => {
     if (typeof action === "object") {
@@ -30,7 +31,6 @@ export const Button = ({ action, icon, rotate = "up", title }: IProp) => {
         component: action
       };
       clearTimeout(animTimeout?.current);
-      console.log(animTimeout);
       if (opened?.name === title && opened) {
         setOpened({ ...opened, name: undefined });
         animTimeout.current = setTimeout(() => {
@@ -47,6 +47,12 @@ export const Button = ({ action, icon, rotate = "up", title }: IProp) => {
     canShowTitle.current = false;
     setShow(false);
   };
+
+  useEffect(() => {
+    setTimeout(() => {
+      setFirst(false);
+    }, 200);
+  }, []);
 
   const checkSelect =
     typeof action === "object"
@@ -94,7 +100,7 @@ export const Button = ({ action, icon, rotate = "up", title }: IProp) => {
         </div>
       </div>
       <div
-        className={`${opened?.name === title ? "move-up" : "move-down"} self-center absolute top-[40px] flex flex-col items-center z-20`}
+        className={`${first ? "preload" : ""} ${opened?.name === title ? "move-up" : "move-down"} self-center absolute top-[40px] flex flex-col items-center z-20`}
       >
         <div className="[border-bottom:_calc(7px_*_1.732)_solid_#333333] [border-left:_7px_solid_transparent] [border-right:_7px_solid_transparent]" />
         <div className="bg-gray-800 rounded-[8px] h-fit self-center p-5 border-[1px] border-gray-700">

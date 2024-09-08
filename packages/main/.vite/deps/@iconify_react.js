@@ -1,10 +1,10 @@
 "use client";
 import {
   require_react
-} from "./chunk-JQJMTY5N.js";
+} from "./chunk-ZK6F47AF.js";
 import {
   __toESM
-} from "./chunk-4MBMRILA.js";
+} from "./chunk-WOOG5QLI.js";
 
 // ../../.yarn/__virtual__/@iconify-react-virtual-c9b7d4ef94/0/cache/@iconify-react-npm-5.0.2-c732ef4098-97f4222a13.zip/node_modules/@iconify/react/dist/iconify.js
 var import_react = __toESM(require_react());

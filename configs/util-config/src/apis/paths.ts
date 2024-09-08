@@ -2,7 +2,7 @@ export type pathType =
   | "history"
   | "teacher"
   | "auth"
-  | "document"
+  | "resume"
   | "user"
   | "feedback"
   | "major"
@@ -13,7 +13,7 @@ export const path: { [key in pathType]: string } = {
   history: "/history",
   teacher: "/teacher",
   auth: "/auth",
-  document: "/resume",
+  resume: "/resume",
   user: "/user",
   feedback: "/feedback",
   major: "/major",

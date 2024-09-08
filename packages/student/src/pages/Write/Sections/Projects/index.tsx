@@ -39,7 +39,7 @@ export const Projects = () => {
 
   return (
     <div className="col-flex gap-6 w-fit">
-      <div className="flex items-center justify-between w-[532px]">
+      <div className="flex items-center justify-between w-[502px]">
         <Title
           title="프로젝트"
           subTitle="지금까지 진행한 프로젝트를 소개해 보세요."
@@ -56,12 +56,9 @@ export const Projects = () => {
           className="cursor-pointer"
         />
       </div>
-
-      <div className="overflow-auto w-fit col-flex gap-6">
-        {project_list.map((i) => (
-          <Item data={i} setData={set} key={i.element_id} />
-        ))}
-      </div>
+      {project_list.map((i) => (
+        <Item data={i} setData={set} key={i.element_id} />
+      ))}
     </div>
   );
 };

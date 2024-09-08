@@ -38,12 +38,12 @@ export const Button = ({
   return (
     <button
       style={{ padding }}
-      className={`flex items-center gap-[10px] max-h-[50px] border-[1px] rounded-xl text-[16px] font-semibold leading-none ${colorTable[color]} ${direct} ${sizeTable[size]}`}
+      className={`flex items-center gap-[10px] max-h-[50px] border-[1px] rounded-xl text-[14px] font-semibold leading-none ${colorTable[color]} ${direct} ${sizeTable[size]}`}
       onClick={onClick}
       disabled={disabled}
     >
       <Ternary data={icon}>
-        <Icon name={icon} color={disabled ? "#777777" : "white"} />
+        <Icon name={icon} size={20} color={disabled ? "#777777" : "white"} />
       </Ternary>
       {children}
     </button>

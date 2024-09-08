@@ -30,7 +30,7 @@ export const TextArea = ({
       <Layout size={size} required={required} label={label} disabled={disabled}>
         <textarea
           disabled={disabled}
-          className={`w-full text-[16px] font-light`}
+          className="leading-none w-full text-[14px] font-light"
           placeholder={placeholder}
           value={value}
           rows={rows}
@@ -40,7 +40,7 @@ export const TextArea = ({
         />
       </Layout>
       <Ternary data={max}>
-        <span className="self-end text-[16px] font-light">
+        <span className="self-end text-[14px] font-light">
           {value ? value.length : 0} / {max}
         </span>
       </Ternary>

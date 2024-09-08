@@ -18,7 +18,7 @@ interface IProp {
 export const Box = ({ children, icon, size, disabled }: IProp) => {
   return (
     <div
-      className={`flex justify-between items-center gap-2 ${sizeTable[size]} min-h-[50px] h-fit px-5 py-3 border-[1px] rounded-xl ${disabled ? "bg-gray-600" : "bg-gray-700"} border-gray-600`}
+      className={`flex justify-between items-center gap-2 ${sizeTable[size]} ${disabled && "cursor-not-allowed"} min-h-[50px] h-fit px-5 py-3 border-[1px] rounded-xl ${disabled ? "bg-gray-600" : "bg-gray-700"} border-gray-600`}
     >
       {children}
       <Ternary data={icon}>
@@ -26,7 +26,8 @@ export const Box = ({ children, icon, size, disabled }: IProp) => {
           name={icon?.name}
           onClick={!disabled ? icon?.action : () => {}}
           rotate={icon?.rotate}
-          className="cursor-pointer"
+          color={disabled ? "#777777" : "white"}
+          className={disabled ? "cursor-not-allowed" : "cursor-pointer"}
         />
       </Ternary>
     </div>

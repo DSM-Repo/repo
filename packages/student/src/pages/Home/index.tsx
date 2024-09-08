@@ -1,12 +1,17 @@
-import { confirm, feedback, resumeData } from "@/apis";
+import { confirm, currentInfo, feedback } from "@/apis";
 import { toast } from "react-toastify";
-import { Layout, sidebarType, useSideBarOpen, buttonType } from "ui";
+import {
+  Layout,
+  sidebarType,
+  useSideBarOpen,
+  buttonType,
+  Profile,
+  Title
+} from "ui";
 import { Feedback } from "./Feedback";
 import { Completion } from "./Section/Completion";
 import { Status } from "./Section/Status";
 import { Introduce } from "./Section/Introduce";
-import { useEffect } from "react";
-import { useResumeData } from "@/hooks";
 
 const buttons: buttonType[] = [
   {
@@ -26,27 +31,17 @@ const types = {
 
 export const Home = () => {
   const { data, refetch } = feedback();
+  const { data: studentData } = currentInfo();
   const { mutate } = confirm();
-  const { data: resume } = resumeData();
   const { sideOpened } = useSideBarOpen();
-  const { set } = useResumeData();
-
-  useEffect(() => {
-    if (data) {
-      set((prev) => ({ ...prev, data: resume }));
-    }
-  }, [data]);
 
   const handleUpload = (id: string) => {
-    mutate(
-      { id },
-      {
-        onSuccess: () => {
-          refetch();
-          toast.success("성공적으로 반영되었습니다!");
-        }
+    mutate(`?id=${id}`, {
+      onSuccess: () => {
+        refetch();
+        toast.success("성공적으로 반영되었습니다!");
       }
-    );
+    });
   };
 
   const sidebars: sidebarType[] = [
@@ -74,11 +69,20 @@ export const Home = () => {
 
   return (
     <Layout buttons={buttons} sidebars={sidebars}>
-      <div
-        className={`flex ${sideOpened ? "flex-col after:pb-[6px]" : "flex-row"} max-lg:flex-col w-full h-full gap-6 p-8`}
-      >
-        <Completion />
-        <div className="w-full h-full col-flex gap-6">
+      <div className="w-full h-full col-flex justify-between">
+        <div className="px-8 gap-6 h-fit flex items-center">
+          <Profile size={120} round="40px" />
+          <Title
+            title={studentData?.name || "홍길동"}
+            titleSize="36px"
+            subTitle={studentData?.major || "전공 미정"}
+            subTitleSize="20px"
+          />
+        </div>
+        <div
+          className={`${sideOpened ? "col-flex" : "grid grid-cols-[fit-content_10%] grid-rows-[137px_1fr]"} h-full gap-6 p-8`}
+        >
+          <Completion />
           <Status />
           <Introduce />
         </div>

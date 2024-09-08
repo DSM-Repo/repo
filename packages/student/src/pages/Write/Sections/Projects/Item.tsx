@@ -1,5 +1,15 @@
 import { ChangeEvent, useState } from "react";
-import { Button, Date, Dropdown, Text, Label, TextArea, List, Icon } from "ui";
+import {
+  Button,
+  Date,
+  Dropdown,
+  Text,
+  Label,
+  TextArea,
+  List,
+  Icon,
+  File
+} from "ui";
 import { projectType, sectionType } from "@configs/util";
 import { setType } from "@/hooks";
 import { IImage, uploadImage, delFile } from "@/apis";
@@ -102,10 +112,9 @@ export const Item = ({ data, setData }: IProp) => {
     }));
 
   const deleteImage = () => {
-    delImage(
-      { url: data?.logo?.image_path as string },
-      { onSuccess: () => set("logo", undefined) }
-    );
+    delImage(`?url=${data?.logo?.image_path as string}`, {
+      onSuccess: () => set("logo", undefined)
+    });
   };
 
   const handleChange = ({ target }: ChangeEvent<HTMLInputElement>) =>
@@ -193,26 +202,18 @@ export const Item = ({ data, setData }: IProp) => {
           onChange={handleType}
           placeholder="프로젝트 형태를 선택해주세요"
         />
-        <Text
-          id="name"
-          label="로고"
+        <File
           size="small"
-          placeholder="이름"
-          value={data.name}
-          onChange={handleChange}
-        />
-        {/* <File
-          size="full"
-          label="프로젝트 로고"
-          placeholder="로고 파일을 선택하세요"
-          onDelete={deleteImage}
+          label="로고"
+          placeholder="로고"
           onChange={handleLogo}
-          value={data.logo?.original_name}
-          ext="image/*"
-        /> */}
+          onDelete={deleteImage}
+          accept="image/*"
+          value={data.logo}
+        />
       </div>
       <Label label="진행 기간" size="full">
-        <div className="w-full flex justify-between items-center">
+        <div className="w-full h-fit flex justify-between items-center">
           <Date
             id="start_date"
             onDelete={() => delDate("start_date")}
@@ -242,7 +243,7 @@ export const Item = ({ data, setData }: IProp) => {
         label="기술 스택"
         placeholder="기술 스택을 입력하세요"
         onEnter={(i) => set("skill_set", [...data.skill_set, i])}
-        listSize="450px"
+        listSize="large"
         values={data.skill_set.map((i) => ({ id: i, name: i }))}
         size="large"
       />

@@ -94,7 +94,7 @@ export const Item = ({ data, setData }: IProp) => {
         id="date"
         placeholder={`${typeChange[type]}일을 입력하세요`}
         value={data.date}
-        onChange={set}
+        onChange={(item, id) => set(id as string, item)}
       />
       <Text
         id="institution"
