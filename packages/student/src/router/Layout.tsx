@@ -9,7 +9,7 @@ export const Layout = () => {
   const { data: progress } = completion();
 
   const { data: resume } = resumeData();
-  const { set } = useResumeData();
+  const { data: _resume, set } = useResumeData();
 
   useEffect(() => {
     if (resume) {
@@ -23,7 +23,8 @@ export const Layout = () => {
         profile={{
           major: data?.major || "",
           name: data?.name || "",
-          percent: progress?.percent_complete || 0
+          percent: progress?.percent_complete || 0,
+          status: _resume?.status
         }}
         items={[
           {

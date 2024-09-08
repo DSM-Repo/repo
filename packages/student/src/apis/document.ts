@@ -1,11 +1,4 @@
-import {
-  IResume,
-  achievementType,
-  activityType,
-  projectType,
-  useMyQuery,
-  useMyMutation
-} from "@configs/util";
+import { IResume, useMyQuery, useMyMutation } from "@configs/util";
 import { ICompletion, IDelImage, IIntroduce } from "./types";
 
 export const completion = () =>
@@ -28,4 +21,4 @@ export type urlType =
 export const update = () => useMyMutation<IResume, null>("patch", "resume", "");
 
 export const delFile = () =>
-  useMyMutation<IDelImage, undefined>("put", "file", "/del");
+  useMyMutation<string, undefined>("delete", "file", "");

@@ -36,15 +36,12 @@ export const Home = () => {
   const { sideOpened } = useSideBarOpen();
 
   const handleUpload = (id: string) => {
-    mutate(
-      { id },
-      {
-        onSuccess: () => {
-          refetch();
-          toast.success("성공적으로 반영되었습니다!");
-        }
+    mutate(`?id=${id}`, {
+      onSuccess: () => {
+        refetch();
+        toast.success("성공적으로 반영되었습니다!");
       }
-    );
+    });
   };
 
   const sidebars: sidebarType[] = [
@@ -72,8 +69,8 @@ export const Home = () => {
 
   return (
     <Layout buttons={buttons} sidebars={sidebars}>
-      <div className="w-full h-full col-flex">
-        <div className="p-8 gap-6 flex items-center">
+      <div className="w-full h-full col-flex justify-between">
+        <div className="px-8 gap-6 h-fit flex items-center">
           <Profile size={120} round="40px" />
           <Title
             title={studentData?.name || "홍길동"}
@@ -83,13 +80,11 @@ export const Home = () => {
           />
         </div>
         <div
-          className={`flex ${sideOpened ? "flex-col after:pb-[6px]" : "flex-row"} max-lg:flex-col w-full h-full gap-6 p-8`}
+          className={`${sideOpened ? "col-flex" : "grid grid-cols-[fit-content_10%] grid-rows-[137px_1fr]"} h-full gap-6 p-8`}
         >
           <Completion />
-          <div className="w-full h-full col-flex gap-6">
-            <Status />
-            <Introduce />
-          </div>
+          <Status />
+          <Introduce />
         </div>
       </div>
     </Layout>

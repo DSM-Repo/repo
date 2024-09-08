@@ -10,9 +10,16 @@ export const useMyMutation = <T, K>(
   url: string
 ): UseMutationResult<K, Error, T> => {
   return useMutation<K, Error, T>({
-    mutationFn: async (data): Promise<K> => {
-      const res = await instance[type](path[pathname] + url, data as any);
-      return res.data;
+    mutationFn: async (item: T | string): Promise<K> => {
+      if (typeof item === "string") {
+        let _url = path[pathname] + url + item;
+        const res = await instance[type](_url);
+        return res.data;
+      } else {
+        let _url = path[pathname] + url;
+        const res = await instance[type](_url, item);
+        return res.data;
+      }
     }
   });
 };

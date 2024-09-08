@@ -144,7 +144,7 @@ textarea {
 
 ::-webkit-scrollbar {
   width: 1px;
-  height: 4px;
+  height: 1px;
 }
 
 ::-webkit-scrollbar-thumb {
