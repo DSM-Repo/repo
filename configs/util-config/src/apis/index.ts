@@ -28,14 +28,7 @@ const resFunc = (res: InternalAxiosRequestConfig<any>) => {
 const errFunc = (err: any) => {
   const { response } = err;
   if (response.status === 401) {
-    const location = window.location.href;
-    window.location.replace(
-      `${location
-        .split("/")
-        .slice(0, 3)
-        .filter((i) => !!i)
-        .join("//")}/login`
-    );
+    window.location.replace(`https://www.dsm-repo.com`);
   } else {
     toast.error(
       `오류가 발생했습니다\n(${response.status}: ${response.data.description || response.data})`,
