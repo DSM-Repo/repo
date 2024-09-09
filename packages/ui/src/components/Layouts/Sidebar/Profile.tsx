@@ -2,7 +2,12 @@ import { Ternary, useAuth } from "@configs/util";
 import { Profile as Image, Icon } from "../../";
 import { useState } from "react";
 
-export const Profile = ({ img, name, major }) => {
+interface IProp {
+  img?: string;
+  name: string;
+  major: string;
+}
+export const Profile = ({ img, name, major }: IProp) => {
   const [opened, setOpened] = useState(false);
   const { delToken } = useAuth();
 
