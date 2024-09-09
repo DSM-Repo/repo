@@ -74,7 +74,7 @@ export const Inform = ({ data, setMax, showPadding }: IProp) => {
           type="list"
           data={data?.achievement_list?.map((i) => ({
             title: i.name,
-            subTitle: `${i.institution} | ${i.date}`
+            subTitle: `${i.institution || "기관 미정"} | ${i.date || "날짜 미정"}`
           }))}
           isCheckAble
         />
