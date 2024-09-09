@@ -19,7 +19,7 @@ export const Inform = ({ data, setMax, showPadding }: IProp) => {
     if (pdf?.current) {
       const over = checkOverflow(pdf?.current);
       setPages(over);
-      setMax((prev) => ({ ...prev, inform: 1 + over.length })); // 기본 페이지 1개 + 오버된 페이지 n개xs
+      setMax((prev) => ({ ...prev, inform: 1 + over.length })); // 기본 페이지 1개 + 오버된 페이지 n개
     }
   }, [data]);
 
@@ -59,7 +59,7 @@ export const Inform = ({ data, setMax, showPadding }: IProp) => {
             <span className="text-body3 text-black">
               {data.introduce.heading}
             </span>
-            <span className="text-body8 text-[#818181] inline w-full font-light break-words">
+            <span className="text-body8 text-[#818181] inline w-full font-light break-words whitespace-pre-wrap">
               {data.introduce.introduce}
             </span>
           </div>
@@ -74,7 +74,7 @@ export const Inform = ({ data, setMax, showPadding }: IProp) => {
           type="list"
           data={data?.achievement_list?.map((i) => ({
             title: i.name,
-            subTitle: `${i.institution} | ${i.date}`
+            subTitle: `${i.institution || "기관 미정"} | ${i.date || "날짜 미정"}`
           }))}
           isCheckAble
         />

@@ -38,7 +38,7 @@ export const Text = ({
       disabled={disabled}
     >
       <input
-        className="w-full text-[14px] font-light leading-none disabled:text-gray-300 disabled:cursor-not-allowed"
+        className="w-full text-[14px] px-5 py-[15px] h-full font-light leading-none disabled:text-gray-300 disabled:cursor-not-allowed"
         placeholder={placeholder}
         value={value}
         disabled={disabled}

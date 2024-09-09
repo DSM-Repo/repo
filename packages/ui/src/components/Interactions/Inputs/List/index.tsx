@@ -36,7 +36,7 @@ export const List = ({
     >
       <Layout size={size} required={required} label={label}>
         <input
-          className="w-full text-[14px] font-light leading-none"
+          className="w-full text-[14px] font-light leading-none px-5 py-[15px] h-full"
           placeholder={placeholder}
           value={item}
           onChange={(e) => setItem(e.target.value)}

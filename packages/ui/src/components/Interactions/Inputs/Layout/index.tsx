@@ -8,6 +8,7 @@ export interface IDefaultProp {
   disabled?: boolean;
   icon?: iconType;
   label?: string;
+  height?: number;
 }
 
 interface IProp extends IDefaultProp {
@@ -20,11 +21,12 @@ export const Layout = ({
   icon,
   label,
   children,
-  disabled
+  disabled,
+  height
 }: IProp) => {
   return (
     <Label size={size} label={label} required={required}>
-      <Box size={size} icon={icon} disabled={disabled}>
+      <Box size={size} icon={icon} disabled={disabled} height={height}>
         {children}
       </Box>
     </Label>

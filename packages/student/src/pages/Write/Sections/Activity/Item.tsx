@@ -51,12 +51,7 @@ export const Item = ({ data, setData }: IProp) => {
 
   return (
     <Layout>
-      <div className="flex justify-between w-full items-center">
-        <span
-          className={`text-[25px] font-semibold ${data.name ? "text-white" : "text-gray-500"}`}
-        >
-          {data.name || "이름을 입력해주세요"}
-        </span>
+      <div className="flex justify-end w-full items-center">
         <Icon name="Trash" className="cursor-pointer" onClick={del} />
       </div>
       <Text

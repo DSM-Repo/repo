@@ -20,7 +20,7 @@ export const Introduce = () => {
         <span className="text-[20px] font-normal inline-block w-full">
           {data?.introduce.heading}
         </span>
-        <span className="text-[16px] font-light break-words w-full">
+        <span className="text-[16px] font-light break-words w-full whitespace-pre-wrap">
           {data?.introduce.introduce}
         </span>
       </div>

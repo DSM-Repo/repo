@@ -7,6 +7,7 @@ import {
   confirm,
   currentInfo,
   feedback,
+  introduce,
   resumeData,
   submit,
   update
@@ -16,6 +17,7 @@ import { Introduce } from "./Sections/Introduce";
 import { Projects } from "./Sections/Projects";
 import { useResumeData } from "@/hooks";
 import { toast } from "react-toastify";
+import { useEffect, useRef, useState } from "react";
 
 const sections = [
   <Inform />,
@@ -38,12 +40,31 @@ export const Write = () => {
   const { data: feedbacks, refetch } = feedback();
   const { data: resume } = useResumeData();
   const { refetch: refetchResume } = resumeData();
+  const { refetch: refetchIntroduce } = introduce();
   const { data: complete, refetch: refetchCompl } = completion();
   const { mutate } = confirm();
   const { refetch: refetchStudent } = currentInfo();
   const { mutate: submitResume } = submit();
   const { mutate: saveResume } = update();
+  const [width, setWidth] = useState(document.body.clientWidth - 870);
   const idNum = Number(id);
+  const pdf = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      if (pdf?.current) {
+        const rem = document.body.clientWidth - 870;
+        setWidth(rem < 814 ? rem : 814);
+      }
+    });
+    return () =>
+      window.removeEventListener("resize", () => {
+        if (pdf?.current) {
+          const rem = document.body.clientWidth - 870;
+          setWidth(rem < 814 ? rem : 814);
+        }
+      });
+  }, []);
 
   const filteredFeedbacks = feedbacks?.data.filter(
     (i) => i.type === Object.keys(sectionsName)[idNum - 1]
@@ -76,6 +97,7 @@ export const Write = () => {
                 toast.success("성공적으로 저장되었습니다");
                 refetchCompl();
                 refetchStudent();
+                refetchIntroduce();
               }
             }),
           disabled: resume.status !== "ONGOING",
@@ -121,6 +143,7 @@ export const Write = () => {
                         icon="Check"
                         size="full"
                         direction="center"
+                        disabled={i.status !== "PENDING"}
                         onClick={() =>
                           mutate(`?id=${i.id}`, {
                             onSuccess: () => {
@@ -149,10 +172,10 @@ export const Write = () => {
         {
           type: "custom",
           name: "미리보기",
-          width: "680px",
+          width: `${width}px`,
           component: (
-            <Custom width="680px" name="미리보기">
-              <Preview />
+            <Custom width={`${width}px`} name="미리보기">
+              <Preview width={width} ref={pdf} />
             </Custom>
           )
         }

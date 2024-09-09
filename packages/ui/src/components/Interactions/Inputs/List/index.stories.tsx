@@ -13,7 +13,7 @@ export const Default: Story = {
       { id: "dasdkfjsadlkf", name: "Frontend Developer" },
       { id: "dasdkfjsadlkf", name: "Backend Developer" }
     ],
-    listSize: "500px",
+    listSize: "large",
     size: "large",
     placeholder: "Example",
     onEnter: () => {},

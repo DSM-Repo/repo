@@ -173,12 +173,7 @@ export const Item = ({ data, setData }: IProp) => {
 
   return (
     <Layout>
-      <div className="flex justify-between w-full items-center">
-        <span
-          className={`text-[25px] font-semibold ${data.name ? "text-white" : "text-gray-500"}`}
-        >
-          {data.name || "이름을 입력해주세요"}
-        </span>
+      <div className="flex justify-end w-full">
         <div className="flex items-center gap-[10px]">
           <Icon name="Trash" className="cursor-pointer" onClick={del} />
           <Icon name="AddRow" className="cursor-pointer" onClick={addSection} />
@@ -227,7 +222,7 @@ export const Item = ({ data, setData }: IProp) => {
             onDelete={() => delDate("end_date")}
             id="end_date"
             size="medium"
-            placeholder="종료일을 선택하세요"
+            placeholder="종료일 선택 (진행중)"
             value={data?.date?.end_date}
             onChange={handleDate}
           />
@@ -255,50 +250,52 @@ export const Item = ({ data, setData }: IProp) => {
         value={data.url}
         onChange={handleChange}
       />
-      <div className="col-flex w-full gap-6">
-        {data.sections.map((i) => (
-          <Label size="full" label={i.title || "이름을 입력해주세요"}>
-            <div className="w-full col-flex gap-3">
-              <div className="w-full flex gap-3 h-full">
-                <Text
-                  placeholder="섹션 이름을 입력하세요"
-                  value={i.title}
+      <Label label="섹션" size="full">
+        <div className="w-full col-flex gap-8">
+          {data.sections.map((i) => (
+            <Label size="full" label="">
+              <div className="w-full col-flex gap-3">
+                <div className="w-full flex gap-3 h-full">
+                  <Text
+                    placeholder="섹션 이름을 입력하세요"
+                    value={i.title}
+                    onChange={(e) =>
+                      setSection(i.element_id, "title", e.target.value)
+                    }
+                    disabled={
+                      i.element_id === "r" ||
+                      i.element_id === "f" ||
+                      i.element_id === "re"
+                    }
+                    size="full"
+                  />
+                  <Button
+                    onClick={() => delSection(i.element_id)}
+                    size="full"
+                    disabled={
+                      i.element_id === "r" ||
+                      i.element_id === "f" ||
+                      i.element_id === "re"
+                    }
+                    icon="Trash"
+                  >
+                    섹션 삭제
+                  </Button>
+                </div>
+                <TextArea
+                  value={i.description}
+                  rows={7}
                   onChange={(e) =>
-                    setSection(i.element_id, "title", e.target.value)
+                    setSection(i.element_id, "description", e.target.value)
                   }
-                  disabled={
-                    i.element_id === "r" ||
-                    i.element_id === "f" ||
-                    i.element_id === "re"
-                  }
+                  placeholder="내용을 입력하세요"
                   size="full"
                 />
-                <Button
-                  onClick={() => delSection(i.element_id)}
-                  size="full"
-                  disabled={
-                    i.element_id === "r" ||
-                    i.element_id === "f" ||
-                    i.element_id === "re"
-                  }
-                  icon="Trash"
-                >
-                  섹션 삭제
-                </Button>
               </div>
-              <TextArea
-                value={i.description}
-                rows={7}
-                onChange={(e) =>
-                  setSection(i.element_id, "description", e.target.value)
-                }
-                placeholder="내용을 입력하세요"
-                size="full"
-              />
-            </div>
-          </Label>
-        ))}
-      </div>
+            </Label>
+          ))}
+        </div>
+      </Label>
     </Layout>
   );
 };

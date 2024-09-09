@@ -40,7 +40,7 @@ export const Dropdown = ({
         disabled={disabled}
       >
         <span
-          className={`${!selected ? "text-gray-400" : ""} ${disabled ? "text-gray-300 cursor-not-allowed" : ""} block w-full text-[14px] font-light leading-none cursor-pointer`}
+          className={`${!selected ? "text-gray-400" : ""} ${disabled ? "text-gray-300 cursor-not-allowed" : ""} px-5 py-[15px] align-middle h-full block w-full text-[14px] font-light leading-[1.31] cursor-pointer`}
           onClick={() => (disabled ? () => {} : setOpen((prev) => !prev))}
         >
           {selected ? selected : placeholder}

@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { forwardRef, useRef, useState } from "react";
 import { useResumeData } from "@/hooks";
 import { Box, Inform, Projects, Resume } from "ui";
 import { Header } from "./Header";
@@ -10,7 +10,7 @@ export type setType = React.Dispatch<
   }>
 >;
 
-export const Preview = () => {
+export const Preview = forwardRef(({ width }: { width: number }, ref: any) => {
   const [max, setMax] = useState({
     projects: 0,
     inform: 1
@@ -30,11 +30,12 @@ export const Preview = () => {
 
   return (
     <Box
-      width="680px"
+      width={`${width}px`}
       height="100%"
       round="0"
       padding="10px"
       className="shrink-0 gap-[10px] border-0 overflow-hidden border-l-gray-700 relative"
+      ref={ref}
     >
       <Header current={cur} length={length} onPageMove={handleCur} />
       <div className="w-full h-full overflow-hidden flex rounded-[8px] bg-white">
@@ -49,4 +50,4 @@ export const Preview = () => {
       </div>
     </Box>
   );
-};
+});
