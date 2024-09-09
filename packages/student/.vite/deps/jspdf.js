@@ -1,14 +1,7 @@
+import {
+  _typeof
+} from "./chunk-BHJUDCRF.js";
 import "./chunk-WOOG5QLI.js";
-
-// ../../.yarn/cache/@babel-runtime-npm-7.25.6-6725f0979a-d6143adf5a.zip/node_modules/@babel/runtime/helpers/esm/typeof.js
-function _typeof(o2) {
-  "@babel/helpers - typeof";
-  return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(o3) {
-    return typeof o3;
-  } : function(o3) {
-    return o3 && "function" == typeof Symbol && o3.constructor === Symbol && o3 !== Symbol.prototype ? "symbol" : typeof o3;
-  }, _typeof(o2);
-}
 
 // ../../.yarn/cache/fflate-npm-0.4.8-4dd4e91e29-29d1eddaaa.zip/node_modules/fflate/esm/browser.js
 var ch2 = {};
@@ -7731,7 +7724,7 @@ function(t2) {
  */
 function(t2) {
   function e() {
-    return (n.canvg ? Promise.resolve(n.canvg) : import("./index.es-XH5FEI3V.js")).catch(function(t3) {
+    return (n.canvg ? Promise.resolve(n.canvg) : import("./index.es-77X47LQU.js")).catch(function(t3) {
       return Promise.reject(new Error("Could not load canvg: " + t3));
     }).then(function(t3) {
       return t3.default ? t3.default : t3;
