@@ -1,9 +1,3 @@
-export = Document;
-
-type statusType = "ONGOING" | "SUBMITTED" | "RELEASED";
-type achieveType = "AWARD" | "CERTIFICATE";
-type projectType = "PERSONAL" | "TEAM";
-
 type imageType = {
   image_path: string;
   original_name: string;
@@ -21,8 +15,18 @@ type classType = {
   school_number?: string;
 };
 
-declare namespace Document {
-  export interface resume {
+export declare namespace Document {
+  type sectionType =
+    | "WRITER_INFO"
+    | "INTRODUCE"
+    | "PROJECT"
+    | "CERTIFICATE"
+    | "ACHIEVEMENT";
+  type statusType = "ONGOING" | "SUBMITTED" | "RELEASED";
+  type achieveType = "AWARD" | "CERTIFICATE";
+  type projectType = "PERSONAL" | "TEAM";
+
+  interface resume {
     id: string;
     status: statusType;
     writer: writer;
@@ -32,14 +36,14 @@ declare namespace Document {
     project_list: project_list[];
   }
 
-  export type student = {
+  type student = {
     name: string;
     class_info: classType;
     profile_image: string;
     major_name: string;
   };
 
-  export type writer = {
+  type writer = {
     name: string;
     class_info: classType;
     email: string;
@@ -49,12 +53,12 @@ declare namespace Document {
     skill_set: string[];
   };
 
-  export type introduce = {
+  type introduce = {
     heading: string;
     introduce: string;
   };
 
-  export type achievement_list = {
+  type achievement_list = {
     element_id: string;
     name: string;
     institution: string;
@@ -62,7 +66,7 @@ declare namespace Document {
     type: achieveType;
   };
 
-  export type activity_list = {
+  type activity_list = {
     element_id: string;
     name: string;
     date: dateType;
@@ -70,23 +74,23 @@ declare namespace Document {
     is_period: boolean;
   };
 
-  export type project_list = {
+  type project_list = {
     element_id: string;
     name: string;
     logo?: imageType;
     type: projectType;
     date?: dateType;
     skill_set: string[];
-    sections: sectionType[];
+    sections: sectionData[];
     url: string;
   };
 
-  export type major = {
+  type majorData = {
     id: string;
     name: string;
   };
 
-  export type sectionType = {
+  type sectionData = {
     element_id: string;
     title: string;
     description: string;
