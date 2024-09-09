@@ -9,12 +9,12 @@ export const Landing = () => {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const items = document.querySelectorAll("button");
+    const items = document.querySelectorAll("button.modal");
     items.forEach((i) =>
       i.addEventListener("click", () => setOpen((prev) => !prev))
     );
     return () => {
-      const items = document.querySelectorAll("button");
+      const items = document.querySelectorAll("button.modal");
       items.forEach((i) =>
         i.removeEventListener("click", () => setOpen((prev) => !prev))
       );

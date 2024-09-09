@@ -64,7 +64,7 @@ export const Modal = ({ open }: IProp) => {
     >
       <Box width="fit-content" height="fit-content" padding="40px">
         <button className="self-end">
-          <Icon name="Close" className="self-end" />
+          <Icon name="Close" className="self-end modal" />
         </button>
         <span className="font-black text-[40px] self-center">로그인</span>
         <div className="w-full col-flex gap-[25px]">
