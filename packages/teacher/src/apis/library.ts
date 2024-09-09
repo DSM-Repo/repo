@@ -1,16 +1,9 @@
-import { renderInstance, useMyMutation, useMyQuery } from "@configs/util";
-import { useMutation } from "@tanstack/react-query";
-import { IAccess, ILibrary, IRenderAll } from "./types";
-import { toast } from "react-toastify";
+import { useMyQuery, useMyMutation } from "@configs/util";
+import { IBook, ILibrary } from "./types";
 
-export const library = () => useMyQuery<ILibrary>("library", "");
+export const getLibrary = () => useMyQuery<ILibrary>("library", ``);
 
-export const libraryAccess = () =>
-  useMyMutation<IAccess, undefined>("patch", "library", "/access-right");
+export const getBook = (id: string) => useMyQuery<IBook>("library", `/${id}`);
 
-export const convertResume = (item: any) =>
-  useMutation({
-    mutationFn: (data: IRenderAll) =>
-      renderInstance.post("/all", { grade: data.grade }),
-    onMutate: () => (item = toast.loading("변환중입니다.."))
-  });
+export const libraryAccess = (id: string) =>
+  useMyMutation<string, undefined>("patch", "library", `/${id}`);

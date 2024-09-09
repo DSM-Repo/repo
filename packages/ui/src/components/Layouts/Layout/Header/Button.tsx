@@ -9,6 +9,8 @@ interface IProp {
   icon: iconType;
   rotate?: "up" | "down" | "right" | "left";
   title: string;
+  disabled?: boolean;
+  disabledReason?: string;
 }
 
 const styles = {
@@ -16,7 +18,14 @@ const styles = {
   icon: "transition-all duration-200"
 };
 
-export const Button = ({ action, icon, rotate = "up", title }: IProp) => {
+export const Button = ({
+  action,
+  icon,
+  rotate = "up",
+  title,
+  disabled,
+  disabledReason
+}: IProp) => {
   const { opened, setOpened } = useOpen();
   const { sideOpened, setSideOpened } = useSideBarOpen();
   const [show, setShow] = useState(false);
@@ -25,27 +34,29 @@ export const Button = ({ action, icon, rotate = "up", title }: IProp) => {
   const [first, setFirst] = useState(true);
 
   const handleClick = () => {
-    if (typeof action === "object") {
-      const object = {
-        name: title,
-        component: action
-      };
-      clearTimeout(animTimeout?.current);
-      if (opened?.name === title && opened) {
-        setOpened({ ...opened, name: undefined });
-        animTimeout.current = setTimeout(() => {
-          setOpened(undefined);
-        }, 200);
-      } else {
-        setOpened(object);
+    if (!disabled) {
+      if (typeof action === "object") {
+        const object = {
+          name: title,
+          component: action
+        };
+        clearTimeout(animTimeout?.current);
+        if (opened?.name === title && opened) {
+          setOpened({ ...opened, name: undefined });
+          animTimeout.current = setTimeout(() => {
+            setOpened(undefined);
+          }, 200);
+        } else {
+          setOpened(object);
+        }
+      } else if (typeof action === "string") {
+        setSideOpened(sideOpened === action ? "" : action);
+      } else if (typeof action === "function") {
+        action();
       }
-    } else if (typeof action === "string") {
-      setSideOpened(sideOpened === action ? "" : action);
-    } else if (typeof action === "function") {
-      action();
+      canShowTitle.current = false;
+      setShow(false);
     }
-    canShowTitle.current = false;
-    setShow(false);
   };
 
   useEffect(() => {
@@ -76,7 +87,7 @@ export const Button = ({ action, icon, rotate = "up", title }: IProp) => {
   return (
     <div className={styles.wrapper}>
       <button
-        className={`flex flex-col p-[8px] rounded-[100px] transition-all duration-200 ${checkSelect ? "bg-[#0B4001]" : ""}`}
+        className={`flex flex-col p-[8px] rounded-[100px] transition-all ${disabled ? "cursor-not-allowed" : ""} duration-200 ${checkSelect ? "bg-[#0B4001]" : ""}`}
         onClick={handleClick}
         onMouseEnter={() => handleHover("enter")}
         onMouseLeave={() => handleHover("leave")}
@@ -84,7 +95,7 @@ export const Button = ({ action, icon, rotate = "up", title }: IProp) => {
         <Icon
           name={icon}
           rotate={rotate}
-          color={checkSelect ? "#37E517" : "white"}
+          color={disabled ? "#777777" : checkSelect ? "#37E517" : "white"}
           className={styles.icon}
         />
       </button>
@@ -96,6 +107,7 @@ export const Button = ({ action, icon, rotate = "up", title }: IProp) => {
         <div className="bg-white rounded-[8px] h-fit self-center px-[16px] py-[8px] whitespace-nowrap">
           <span className="text-[16px] font-light text-black leading-none">
             {title}
+            {disabled && disabledReason ? ` (${disabledReason})` : ""}
           </span>
         </div>
       </div>

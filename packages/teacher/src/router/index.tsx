@@ -9,11 +9,12 @@ export const Router = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="" element={<_.Home />} />
+          <Route path="resume/:id" element={<_.Resume />} />
           <Route path="library" element={<_.Library />} />
+          <Route path="book/:id" element={<_.Book />} />
           <Route path="major" element={<_.Major />} />
-          <Route path="history" element={<_.History />} />
+          <Route path="history" element={<></>} />
         </Route>
-        <Route path="/login" element={<_.Login />} />
         <Route path="*" element={<RedirectDiff />} />
       </Routes>
     </BrowserRouter>

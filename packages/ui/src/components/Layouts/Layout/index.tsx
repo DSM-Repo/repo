@@ -24,7 +24,8 @@ export const Layout = ({ buttons, sidebars, children }: IProp) => {
   const standardWidth = openedDetail?.width ? openedDetail.width : "300px";
 
   return (
-    <div className="flex w-full overflow-hidden h-screen">
+    <div className="flex w-full overflow-hidden h-screen relative">
+      <div className="absolute w-full h-[200px] bg-gradient-to-b from-[#222222FF] to-[#22222200]" />
       <div className="flex w-full h-full flex-shrink-0 relative">
         <div
           style={{
@@ -33,7 +34,7 @@ export const Layout = ({ buttons, sidebars, children }: IProp) => {
           className="col-flex items-center h-full transition-all duration-150"
         >
           <Header buttons={!!buttons ? buttons : []} />
-          <div className="w-full h-full overflow-auto">{children}</div>
+          <div className="w-full h-full overflow-auto z-20">{children}</div>
         </div>
       </div>
       <div className="w-fit h-full relative">

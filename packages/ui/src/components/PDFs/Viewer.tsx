@@ -17,7 +17,7 @@ type indexType = {
 };
 
 interface IProp {
-  url?: string;
+  url?: string | File;
   indexList?: indexType[];
   buttons?: buttonType[];
   sidebars?: sidebarType[];
