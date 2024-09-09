@@ -35,7 +35,7 @@ export const Header = ({ buttons }: IProp) => {
           <Logo />
         </div>
         <div className="flex items-center gap-2 px-[12px]">
-          {buttons?.map((i) => <Button {...i} />)}
+          {buttons?.map((i) => (i ? <Button {...i} /> : <></>))}
         </div>
       </div>
     </div>

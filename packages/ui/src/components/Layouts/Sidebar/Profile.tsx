@@ -8,7 +8,7 @@ export const Profile = ({ img, name, major }) => {
 
   const handleLogout = () => {
     delToken();
-    window.location.replace("https://dsm-repo.com");
+    window.location.replace("https://www.dsm-repo.com");
   };
 
   const handleInfo = () => {

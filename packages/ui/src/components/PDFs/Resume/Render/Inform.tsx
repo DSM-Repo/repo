@@ -25,7 +25,7 @@ export const Inform = ({ data, setMax, showPadding }: IProp) => {
 
   return (
     <>
-      <PageLayout ref={pdf}>
+      <PageLayout ref={pdf} showPadding={showPadding}>
         <div className="flex w-full h-[60px] justify-between items-center">
           {/* 프로필 */}
           <div className="col-flex gap-1">
