@@ -6,11 +6,11 @@ import {
   mergeProps,
   render,
   setupStyleSheet
-} from "./chunk-REWGFQLQ.js";
+} from "./chunk-3KT6LMAR.js";
 import {
   onlineManager,
   useQueryClient
-} from "./chunk-UYDVHWUP.js";
+} from "./chunk-CQ6FSRIZ.js";
 import {
   require_jsx_runtime
 } from "./chunk-T626GWXX.js";
@@ -24,10 +24,10 @@ import {
   __toESM
 } from "./chunk-WOOG5QLI.js";
 
-// ../../.yarn/__virtual__/@tanstack-react-query-devtools-virtual-297bb3632e/0/cache/@tanstack-react-query-devtools-npm-5.51.23-a17c95761e-f11d53c47f.zip/node_modules/@tanstack/react-query-devtools/build/modern/devtools.js
+// ../../.yarn/__virtual__/@tanstack-react-query-devtools-virtual-dfdcd0533f/0/cache/@tanstack-react-query-devtools-npm-5.55.4-7035d6345f-948d6ccd42.zip/node_modules/@tanstack/react-query-devtools/build/modern/ReactQueryDevtools.js
 var React = __toESM(require_react(), 1);
 
-// ../../.yarn/cache/@tanstack-query-devtools-npm-5.51.16-c98e81abc7-40f1fbad77.zip/node_modules/@tanstack/query-devtools/build/dev.js
+// ../../.yarn/cache/@tanstack-query-devtools-npm-5.55.1-a8003a2b08-ff37d9b372.zip/node_modules/@tanstack/query-devtools/build/dev.js
 var _client, _onlineManager, _queryFlavor, _version, _isMounted, _styleNonce, _shadowDOMTarget, _buttonPosition, _position, _initialIsOpen, _errorTypes, _Component, _dispose, _a;
 var TanstackQueryDevtools = (_a = class {
   constructor(config) {
@@ -97,7 +97,7 @@ var TanstackQueryDevtools = (_a = class {
       if (__privateGet(this, _Component)) {
         Devtools = __privateGet(this, _Component);
       } else {
-        Devtools = lazy(() => import("./E6UWR6XD-Z2FL7FAV.js"));
+        Devtools = lazy(() => import("./ITUUECIS-MKAH3T5J.js"));
         __privateSet(this, _Component, Devtools);
       }
       setupStyleSheet(__privateGet(this, _styleNonce), __privateGet(this, _shadowDOMTarget));
@@ -136,16 +136,142 @@ var TanstackQueryDevtools = (_a = class {
     __privateSet(this, _dispose, dispose);
   }
   unmount() {
-    var _a2;
+    var _a3;
     if (!__privateGet(this, _isMounted)) {
       throw new Error("Devtools is not mounted");
     }
-    (_a2 = __privateGet(this, _dispose)) == null ? void 0 : _a2.call(this);
+    (_a3 = __privateGet(this, _dispose)) == null ? void 0 : _a3.call(this);
     __privateSet(this, _isMounted, false);
   }
 }, _client = new WeakMap(), _onlineManager = new WeakMap(), _queryFlavor = new WeakMap(), _version = new WeakMap(), _isMounted = new WeakMap(), _styleNonce = new WeakMap(), _shadowDOMTarget = new WeakMap(), _buttonPosition = new WeakMap(), _position = new WeakMap(), _initialIsOpen = new WeakMap(), _errorTypes = new WeakMap(), _Component = new WeakMap(), _dispose = new WeakMap(), _a);
+var _client2, _onlineManager2, _queryFlavor2, _version2, _isMounted2, _styleNonce2, _shadowDOMTarget2, _buttonPosition2, _position2, _initialIsOpen2, _errorTypes2, _onClose, _Component2, _dispose2, _a2;
+var TanstackQueryDevtoolsPanel = (_a2 = class {
+  constructor(config) {
+    __privateAdd(this, _client2);
+    __privateAdd(this, _onlineManager2);
+    __privateAdd(this, _queryFlavor2);
+    __privateAdd(this, _version2);
+    __privateAdd(this, _isMounted2, false);
+    __privateAdd(this, _styleNonce2);
+    __privateAdd(this, _shadowDOMTarget2);
+    __privateAdd(this, _buttonPosition2);
+    __privateAdd(this, _position2);
+    __privateAdd(this, _initialIsOpen2);
+    __privateAdd(this, _errorTypes2);
+    __privateAdd(this, _onClose);
+    __privateAdd(this, _Component2);
+    __privateAdd(this, _dispose2);
+    const {
+      client,
+      queryFlavor,
+      version,
+      onlineManager: onlineManager2,
+      buttonPosition,
+      position,
+      initialIsOpen,
+      errorTypes,
+      styleNonce,
+      shadowDOMTarget,
+      onClose
+    } = config;
+    __privateSet(this, _client2, createSignal(client));
+    __privateSet(this, _queryFlavor2, queryFlavor);
+    __privateSet(this, _version2, version);
+    __privateSet(this, _onlineManager2, onlineManager2);
+    __privateSet(this, _styleNonce2, styleNonce);
+    __privateSet(this, _shadowDOMTarget2, shadowDOMTarget);
+    __privateSet(this, _buttonPosition2, createSignal(buttonPosition));
+    __privateSet(this, _position2, createSignal(position));
+    __privateSet(this, _initialIsOpen2, createSignal(initialIsOpen));
+    __privateSet(this, _errorTypes2, createSignal(errorTypes));
+    __privateSet(this, _onClose, createSignal(onClose));
+  }
+  setButtonPosition(position) {
+    __privateGet(this, _buttonPosition2)[1](position);
+  }
+  setPosition(position) {
+    __privateGet(this, _position2)[1](position);
+  }
+  setInitialIsOpen(isOpen) {
+    __privateGet(this, _initialIsOpen2)[1](isOpen);
+  }
+  setErrorTypes(errorTypes) {
+    __privateGet(this, _errorTypes2)[1](errorTypes);
+  }
+  setClient(client) {
+    __privateGet(this, _client2)[1](client);
+  }
+  setOnClose(onClose) {
+    __privateGet(this, _onClose)[1](() => onClose);
+  }
+  mount(el) {
+    if (__privateGet(this, _isMounted2)) {
+      throw new Error("Devtools is already mounted");
+    }
+    const dispose = render(() => {
+      const _self$ = this;
+      const [btnPosition] = __privateGet(this, _buttonPosition2);
+      const [pos] = __privateGet(this, _position2);
+      const [isOpen] = __privateGet(this, _initialIsOpen2);
+      const [errors] = __privateGet(this, _errorTypes2);
+      const [queryClient] = __privateGet(this, _client2);
+      const [onClose] = __privateGet(this, _onClose);
+      let Devtools;
+      if (__privateGet(this, _Component2)) {
+        Devtools = __privateGet(this, _Component2);
+      } else {
+        Devtools = lazy(() => import("./CNBMJT5I-II5NSIP7.js"));
+        __privateSet(this, _Component2, Devtools);
+      }
+      setupStyleSheet(__privateGet(this, _styleNonce2), __privateGet(this, _shadowDOMTarget2));
+      return createComponent(Devtools, mergeProps({
+        get queryFlavor() {
+          return __privateGet(_self$, _queryFlavor2);
+        },
+        get version() {
+          return __privateGet(_self$, _version2);
+        },
+        get onlineManager() {
+          return __privateGet(_self$, _onlineManager2);
+        },
+        get shadowDOMTarget() {
+          return __privateGet(_self$, _shadowDOMTarget2);
+        }
+      }, {
+        get client() {
+          return queryClient();
+        },
+        get buttonPosition() {
+          return btnPosition();
+        },
+        get position() {
+          return pos();
+        },
+        get initialIsOpen() {
+          return isOpen();
+        },
+        get errorTypes() {
+          return errors();
+        },
+        get onClose() {
+          return onClose();
+        }
+      }));
+    }, el);
+    __privateSet(this, _isMounted2, true);
+    __privateSet(this, _dispose2, dispose);
+  }
+  unmount() {
+    var _a3;
+    if (!__privateGet(this, _isMounted2)) {
+      throw new Error("Devtools is not mounted");
+    }
+    (_a3 = __privateGet(this, _dispose2)) == null ? void 0 : _a3.call(this);
+    __privateSet(this, _isMounted2, false);
+  }
+}, _client2 = new WeakMap(), _onlineManager2 = new WeakMap(), _queryFlavor2 = new WeakMap(), _version2 = new WeakMap(), _isMounted2 = new WeakMap(), _styleNonce2 = new WeakMap(), _shadowDOMTarget2 = new WeakMap(), _buttonPosition2 = new WeakMap(), _position2 = new WeakMap(), _initialIsOpen2 = new WeakMap(), _errorTypes2 = new WeakMap(), _onClose = new WeakMap(), _Component2 = new WeakMap(), _dispose2 = new WeakMap(), _a2);
 
-// ../../.yarn/__virtual__/@tanstack-react-query-devtools-virtual-297bb3632e/0/cache/@tanstack-react-query-devtools-npm-5.51.23-a17c95761e-f11d53c47f.zip/node_modules/@tanstack/react-query-devtools/build/modern/devtools.js
+// ../../.yarn/__virtual__/@tanstack-react-query-devtools-virtual-dfdcd0533f/0/cache/@tanstack-react-query-devtools-npm-5.55.4-7035d6345f-948d6ccd42.zip/node_modules/@tanstack/react-query-devtools/build/modern/ReactQueryDevtools.js
 var import_jsx_runtime = __toESM(require_jsx_runtime(), 1);
 function ReactQueryDevtools(props) {
   const queryClient = useQueryClient(props.client);
@@ -202,11 +328,65 @@ function ReactQueryDevtools(props) {
   return (0, import_jsx_runtime.jsx)("div", { className: "tsqd-parent-container", ref });
 }
 
-// ../../.yarn/__virtual__/@tanstack-react-query-devtools-virtual-297bb3632e/0/cache/@tanstack-react-query-devtools-npm-5.51.23-a17c95761e-f11d53c47f.zip/node_modules/@tanstack/react-query-devtools/build/modern/index.js
+// ../../.yarn/__virtual__/@tanstack-react-query-devtools-virtual-dfdcd0533f/0/cache/@tanstack-react-query-devtools-npm-5.55.4-7035d6345f-948d6ccd42.zip/node_modules/@tanstack/react-query-devtools/build/modern/ReactQueryDevtoolsPanel.js
+var React2 = __toESM(require_react(), 1);
+var import_jsx_runtime2 = __toESM(require_jsx_runtime(), 1);
+function ReactQueryDevtoolsPanel(props) {
+  const queryClient = useQueryClient(props.client);
+  const ref = React2.useRef(null);
+  const { errorTypes, styleNonce, shadowDOMTarget } = props;
+  const [devtools] = React2.useState(
+    new TanstackQueryDevtoolsPanel({
+      client: queryClient,
+      queryFlavor: "React Query",
+      version: "5",
+      onlineManager,
+      buttonPosition: "bottom-left",
+      position: "bottom",
+      initialIsOpen: true,
+      errorTypes,
+      styleNonce,
+      shadowDOMTarget,
+      onClose: props.onClose
+    })
+  );
+  React2.useEffect(() => {
+    devtools.setClient(queryClient);
+  }, [queryClient, devtools]);
+  React2.useEffect(() => {
+    devtools.setOnClose(props.onClose ?? (() => {
+    }));
+  }, [props.onClose, devtools]);
+  React2.useEffect(() => {
+    devtools.setErrorTypes(errorTypes || []);
+  }, [errorTypes, devtools]);
+  React2.useEffect(() => {
+    if (ref.current) {
+      devtools.mount(ref.current);
+    }
+    return () => {
+      devtools.unmount();
+    };
+  }, [devtools]);
+  return (0, import_jsx_runtime2.jsx)(
+    "div",
+    {
+      style: { height: "500px", ...props.style },
+      className: "tsqd-parent-container",
+      ref
+    }
+  );
+}
+
+// ../../.yarn/__virtual__/@tanstack-react-query-devtools-virtual-dfdcd0533f/0/cache/@tanstack-react-query-devtools-npm-5.55.4-7035d6345f-948d6ccd42.zip/node_modules/@tanstack/react-query-devtools/build/modern/index.js
 var ReactQueryDevtools2 = false ? function() {
   return null;
 } : ReactQueryDevtools;
+var ReactQueryDevtoolsPanel2 = false ? function() {
+  return null;
+} : ReactQueryDevtoolsPanel;
 export {
-  ReactQueryDevtools2 as ReactQueryDevtools
+  ReactQueryDevtools2 as ReactQueryDevtools,
+  ReactQueryDevtoolsPanel2 as ReactQueryDevtoolsPanel
 };
 //# sourceMappingURL=@tanstack_react-query-devtools.js.map

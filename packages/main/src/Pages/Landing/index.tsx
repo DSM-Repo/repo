@@ -4,6 +4,7 @@ import { SlideSection } from "./SlideSection";
 import { Modal } from "./Modal";
 import { LogoFull } from "@/assets";
 import { Button } from "./Button";
+import { useAuth } from "@configs/util";
 
 export const Landing = () => {
   const [open, setOpen] = useState(false);
@@ -20,6 +21,16 @@ export const Landing = () => {
       );
     };
   }, [setOpen]);
+
+  const { getRole } = useAuth();
+  useEffect(() => {
+    const role = getRole();
+    if (role === "student") {
+      window.location.replace(process.env.VITE_APP_URL_STUDENT as string);
+    } else if (role === "teacher") {
+      window.location.replace(process.env.VITE_APP_URL_TEACHER as string);
+    }
+  }, []);
 
   return (
     <div className="relative col-flex items-center">

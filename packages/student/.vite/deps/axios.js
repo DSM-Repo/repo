@@ -2,14 +2,14 @@ import {
   __export
 } from "./chunk-WOOG5QLI.js";
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/helpers/bind.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/helpers/bind.js
 function bind(fn, thisArg) {
   return function wrap() {
     return fn.apply(thisArg, arguments);
   };
 }
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/utils.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/utils.js
 var { toString } = Object.prototype;
 var { getPrototypeOf } = Object;
 var kindOf = /* @__PURE__ */ ((cache) => (thing) => {
@@ -388,7 +388,7 @@ var utils_default = {
   asap
 };
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/core/AxiosError.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/core/AxiosError.js
 function AxiosError(message, code, config, request, response) {
   Error.call(this);
   if (Error.captureStackTrace) {
@@ -401,7 +401,10 @@ function AxiosError(message, code, config, request, response) {
   code && (this.code = code);
   config && (this.config = config);
   request && (this.request = request);
-  response && (this.response = response);
+  if (response) {
+    this.response = response;
+    this.status = response.status ? response.status : null;
+  }
 }
 utils_default.inherits(AxiosError, Error, {
   toJSON: function toJSON() {
@@ -420,7 +423,7 @@ utils_default.inherits(AxiosError, Error, {
       // Axios
       config: utils_default.toJSONObject(this.config),
       code: this.code,
-      status: this.response && this.response.status ? this.response.status : null
+      status: this.status
     };
   }
 });
@@ -460,10 +463,10 @@ AxiosError.from = (error, code, config, request, response, customProps) => {
 };
 var AxiosError_default = AxiosError;
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/helpers/null.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/helpers/null.js
 var null_default = null;
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/helpers/toFormData.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/helpers/toFormData.js
 function isVisitable(thing) {
   return utils_default.isPlainObject(thing) || utils_default.isArray(thing);
 }
@@ -575,7 +578,7 @@ function toFormData(obj, formData, options) {
 }
 var toFormData_default = toFormData;
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/helpers/AxiosURLSearchParams.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/helpers/AxiosURLSearchParams.js
 function encode(str) {
   const charMap = {
     "!": "%21",
@@ -608,7 +611,7 @@ prototype2.toString = function toString2(encoder) {
 };
 var AxiosURLSearchParams_default = AxiosURLSearchParams;
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/helpers/buildURL.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/helpers/buildURL.js
 function encode2(val) {
   return encodeURIComponent(val).replace(/%3A/gi, ":").replace(/%24/g, "$").replace(/%2C/gi, ",").replace(/%20/g, "+").replace(/%5B/gi, "[").replace(/%5D/gi, "]");
 }
@@ -634,7 +637,7 @@ function buildURL(url, params, options) {
   return url;
 }
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/core/InterceptorManager.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/core/InterceptorManager.js
 var InterceptorManager = class {
   constructor() {
     this.handlers = [];
@@ -698,23 +701,23 @@ var InterceptorManager = class {
 };
 var InterceptorManager_default = InterceptorManager;
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/defaults/transitional.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/defaults/transitional.js
 var transitional_default = {
   silentJSONParsing: true,
   forcedJSONParsing: true,
   clarifyTimeoutError: false
 };
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/platform/browser/classes/URLSearchParams.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/platform/browser/classes/URLSearchParams.js
 var URLSearchParams_default = typeof URLSearchParams !== "undefined" ? URLSearchParams : AxiosURLSearchParams_default;
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/platform/browser/classes/FormData.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/platform/browser/classes/FormData.js
 var FormData_default = typeof FormData !== "undefined" ? FormData : null;
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/platform/browser/classes/Blob.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/platform/browser/classes/Blob.js
 var Blob_default = typeof Blob !== "undefined" ? Blob : null;
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/platform/browser/index.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/platform/browser/index.js
 var browser_default = {
   isBrowser: true,
   classes: {
@@ -725,31 +728,31 @@ var browser_default = {
   protocols: ["http", "https", "file", "blob", "url", "data"]
 };
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/platform/common/utils.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/platform/common/utils.js
 var utils_exports = {};
 __export(utils_exports, {
   hasBrowserEnv: () => hasBrowserEnv,
   hasStandardBrowserEnv: () => hasStandardBrowserEnv,
   hasStandardBrowserWebWorkerEnv: () => hasStandardBrowserWebWorkerEnv,
+  navigator: () => _navigator,
   origin: () => origin
 });
 var hasBrowserEnv = typeof window !== "undefined" && typeof document !== "undefined";
-var hasStandardBrowserEnv = ((product) => {
-  return hasBrowserEnv && ["ReactNative", "NativeScript", "NS"].indexOf(product) < 0;
-})(typeof navigator !== "undefined" && navigator.product);
+var _navigator = typeof navigator === "object" && navigator || void 0;
+var hasStandardBrowserEnv = hasBrowserEnv && (!_navigator || ["ReactNative", "NativeScript", "NS"].indexOf(_navigator.product) < 0);
 var hasStandardBrowserWebWorkerEnv = (() => {
   return typeof WorkerGlobalScope !== "undefined" && // eslint-disable-next-line no-undef
   self instanceof WorkerGlobalScope && typeof self.importScripts === "function";
 })();
 var origin = hasBrowserEnv && window.location.href || "http://localhost";
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/platform/index.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/platform/index.js
 var platform_default = {
   ...utils_exports,
   ...browser_default
 };
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/helpers/toURLEncodedForm.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/helpers/toURLEncodedForm.js
 function toURLEncodedForm(data, options) {
   return toFormData_default(data, new platform_default.classes.URLSearchParams(), Object.assign({
     visitor: function(value, key, path, helpers) {
@@ -762,7 +765,7 @@ function toURLEncodedForm(data, options) {
   }, options));
 }
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/helpers/formDataToJSON.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/helpers/formDataToJSON.js
 function parsePropPath(name) {
   return utils_default.matchAll(/\w+|\[(\w*)]/g, name).map((match) => {
     return match[0] === "[]" ? "" : match[1] || match[0];
@@ -815,7 +818,7 @@ function formDataToJSON(formData) {
 }
 var formDataToJSON_default = formDataToJSON;
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/defaults/index.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/defaults/index.js
 function stringifySafely(rawValue, parser, encoder) {
   if (utils_default.isString(rawValue)) {
     try {
@@ -924,7 +927,7 @@ utils_default.forEach(["delete", "get", "head", "post", "put", "patch"], (method
 });
 var defaults_default = defaults;
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/helpers/parseHeaders.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/helpers/parseHeaders.js
 var ignoreDuplicateOf = utils_default.toObjectSet([
   "age",
   "authorization",
@@ -969,7 +972,7 @@ var parseHeaders_default = (rawHeaders) => {
   return parsed;
 };
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/core/AxiosHeaders.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/core/AxiosHeaders.js
 var $internals = Symbol("internals");
 function normalizeHeader(header) {
   return header && String(header).trim().toLowerCase();
@@ -1190,7 +1193,7 @@ utils_default.reduceDescriptors(AxiosHeaders.prototype, ({ value }, key) => {
 utils_default.freezeMethods(AxiosHeaders);
 var AxiosHeaders_default = AxiosHeaders;
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/core/transformData.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/core/transformData.js
 function transformData(fns, response) {
   const config = this || defaults_default;
   const context = response || config;
@@ -1203,12 +1206,12 @@ function transformData(fns, response) {
   return data;
 }
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/cancel/isCancel.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/cancel/isCancel.js
 function isCancel(value) {
   return !!(value && value.__CANCEL__);
 }
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/cancel/CanceledError.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/cancel/CanceledError.js
 function CanceledError(message, config, request) {
   AxiosError_default.call(this, message == null ? "canceled" : message, AxiosError_default.ERR_CANCELED, config, request);
   this.name = "CanceledError";
@@ -1218,7 +1221,7 @@ utils_default.inherits(CanceledError, AxiosError_default, {
 });
 var CanceledError_default = CanceledError;
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/core/settle.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/core/settle.js
 function settle(resolve, reject, response) {
   const validateStatus2 = response.config.validateStatus;
   if (!response.status || !validateStatus2 || validateStatus2(response.status)) {
@@ -1234,13 +1237,13 @@ function settle(resolve, reject, response) {
   }
 }
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/helpers/parseProtocol.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/helpers/parseProtocol.js
 function parseProtocol(url) {
   const match = /^([-+\w]{1,25})(:?\/\/|:)/.exec(url);
   return match && match[1] || "";
 }
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/helpers/speedometer.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/helpers/speedometer.js
 function speedometer(samplesCount, min) {
   samplesCount = samplesCount || 10;
   const bytes = new Array(samplesCount);
@@ -1276,7 +1279,7 @@ function speedometer(samplesCount, min) {
 }
 var speedometer_default = speedometer;
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/helpers/throttle.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/helpers/throttle.js
 function throttle(fn, freq) {
   let timestamp = 0;
   let threshold = 1e3 / freq;
@@ -1311,7 +1314,7 @@ function throttle(fn, freq) {
 }
 var throttle_default = throttle;
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/helpers/progressEventReducer.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/helpers/progressEventReducer.js
 var progressEventReducer = (listener, isDownloadStream, freq = 3) => {
   let bytesNotified = 0;
   const _speedometer = speedometer_default(50, 250);
@@ -1346,12 +1349,12 @@ var progressEventDecorator = (total, throttled) => {
 };
 var asyncDecorator = (fn) => (...args) => utils_default.asap(() => fn(...args));
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/helpers/isURLSameOrigin.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/helpers/isURLSameOrigin.js
 var isURLSameOrigin_default = platform_default.hasStandardBrowserEnv ? (
   // Standard browser envs have full support of the APIs needed to test
   // whether the request URL is of the same origin as current location.
   function standardBrowserEnv() {
-    const msie = /(msie|trident)/i.test(navigator.userAgent);
+    const msie = platform_default.navigator && /(msie|trident)/i.test(platform_default.navigator.userAgent);
     const urlParsingNode = document.createElement("a");
     let originURL;
     function resolveURL(url) {
@@ -1387,7 +1390,7 @@ var isURLSameOrigin_default = platform_default.hasStandardBrowserEnv ? (
   }()
 );
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/helpers/cookies.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/helpers/cookies.js
 var cookies_default = platform_default.hasStandardBrowserEnv ? (
   // Standard browser envs support document.cookie
   {
@@ -1420,17 +1423,17 @@ var cookies_default = platform_default.hasStandardBrowserEnv ? (
   }
 );
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/helpers/isAbsoluteURL.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/helpers/isAbsoluteURL.js
 function isAbsoluteURL(url) {
   return /^([a-z][a-z\d+\-.]*:)?\/\//i.test(url);
 }
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/helpers/combineURLs.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/helpers/combineURLs.js
 function combineURLs(baseURL, relativeURL) {
   return relativeURL ? baseURL.replace(/\/?\/$/, "") + "/" + relativeURL.replace(/^\/+/, "") : baseURL;
 }
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/core/buildFullPath.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/core/buildFullPath.js
 function buildFullPath(baseURL, requestedURL) {
   if (baseURL && !isAbsoluteURL(requestedURL)) {
     return combineURLs(baseURL, requestedURL);
@@ -1438,7 +1441,7 @@ function buildFullPath(baseURL, requestedURL) {
   return requestedURL;
 }
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/core/mergeConfig.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/core/mergeConfig.js
 var headersToObject = (thing) => thing instanceof AxiosHeaders_default ? { ...thing } : thing;
 function mergeConfig(config1, config2) {
   config2 = config2 || {};
@@ -1518,7 +1521,7 @@ function mergeConfig(config1, config2) {
   return config;
 }
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/helpers/resolveConfig.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/helpers/resolveConfig.js
 var resolveConfig_default = (config) => {
   const newConfig = mergeConfig({}, config);
   let { data, withXSRFToken, xsrfHeaderName, xsrfCookieName, headers, auth } = newConfig;
@@ -1551,7 +1554,7 @@ var resolveConfig_default = (config) => {
   return newConfig;
 };
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/adapters/xhr.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/adapters/xhr.js
 var isXHRAdapterSupported = typeof XMLHttpRequest !== "undefined";
 var xhr_default = isXHRAdapterSupported && function(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -1678,42 +1681,43 @@ var xhr_default = isXHRAdapterSupported && function(config) {
   });
 };
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/helpers/composeSignals.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/helpers/composeSignals.js
 var composeSignals = (signals, timeout) => {
-  let controller = new AbortController();
-  let aborted;
-  const onabort = function(cancel) {
-    if (!aborted) {
-      aborted = true;
-      unsubscribe();
-      const err = cancel instanceof Error ? cancel : this.reason;
-      controller.abort(err instanceof AxiosError_default ? err : new CanceledError_default(err instanceof Error ? err.message : err));
-    }
-  };
-  let timer = timeout && setTimeout(() => {
-    onabort(new AxiosError_default(`timeout ${timeout} of ms exceeded`, AxiosError_default.ETIMEDOUT));
-  }, timeout);
-  const unsubscribe = () => {
-    if (signals) {
-      timer && clearTimeout(timer);
+  const { length } = signals = signals ? signals.filter(Boolean) : [];
+  if (timeout || length) {
+    let controller = new AbortController();
+    let aborted;
+    const onabort = function(reason) {
+      if (!aborted) {
+        aborted = true;
+        unsubscribe();
+        const err = reason instanceof Error ? reason : this.reason;
+        controller.abort(err instanceof AxiosError_default ? err : new CanceledError_default(err instanceof Error ? err.message : err));
+      }
+    };
+    let timer = timeout && setTimeout(() => {
       timer = null;
-      signals.forEach((signal2) => {
-        signal2 && (signal2.removeEventListener ? signal2.removeEventListener("abort", onabort) : signal2.unsubscribe(onabort));
-      });
-      signals = null;
-    }
-  };
-  signals.forEach((signal2) => signal2 && signal2.addEventListener && signal2.addEventListener("abort", onabort));
-  const { signal } = controller;
-  signal.unsubscribe = unsubscribe;
-  return [signal, () => {
-    timer && clearTimeout(timer);
-    timer = null;
-  }];
+      onabort(new AxiosError_default(`timeout ${timeout} of ms exceeded`, AxiosError_default.ETIMEDOUT));
+    }, timeout);
+    const unsubscribe = () => {
+      if (signals) {
+        timer && clearTimeout(timer);
+        timer = null;
+        signals.forEach((signal2) => {
+          signal2.unsubscribe ? signal2.unsubscribe(onabort) : signal2.removeEventListener("abort", onabort);
+        });
+        signals = null;
+      }
+    };
+    signals.forEach((signal2) => signal2.addEventListener("abort", onabort));
+    const { signal } = controller;
+    signal.unsubscribe = () => utils_default.asap(unsubscribe);
+    return signal;
+  }
 };
 var composeSignals_default = composeSignals;
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/helpers/trackStream.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/helpers/trackStream.js
 var streamChunk = function* (chunk, chunkSize) {
   let len = chunk.byteLength;
   if (!chunkSize || len < chunkSize) {
@@ -1728,13 +1732,31 @@ var streamChunk = function* (chunk, chunkSize) {
     pos = end;
   }
 };
-var readBytes = async function* (iterable, chunkSize, encode3) {
-  for await (const chunk of iterable) {
-    yield* streamChunk(ArrayBuffer.isView(chunk) ? chunk : await encode3(String(chunk)), chunkSize);
+var readBytes = async function* (iterable, chunkSize) {
+  for await (const chunk of readStream(iterable)) {
+    yield* streamChunk(chunk, chunkSize);
   }
 };
-var trackStream = (stream, chunkSize, onProgress, onFinish, encode3) => {
-  const iterator = readBytes(stream, chunkSize, encode3);
+var readStream = async function* (stream) {
+  if (stream[Symbol.asyncIterator]) {
+    yield* stream;
+    return;
+  }
+  const reader = stream.getReader();
+  try {
+    for (; ; ) {
+      const { done, value } = await reader.read();
+      if (done) {
+        break;
+      }
+      yield value;
+    }
+  } finally {
+    await reader.cancel();
+  }
+};
+var trackStream = (stream, chunkSize, onProgress, onFinish) => {
+  const iterator = readBytes(stream, chunkSize);
   let bytes = 0;
   let done;
   let _onFinish = (e) => {
@@ -1772,7 +1794,7 @@ var trackStream = (stream, chunkSize, onProgress, onFinish, encode3) => {
   });
 };
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/adapters/fetch.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/adapters/fetch.js
 var isFetchSupported = typeof fetch === "function" && typeof Request === "function" && typeof Response === "function";
 var isReadableStreamSupported = isFetchSupported && typeof ReadableStream === "function";
 var encodeText = isFetchSupported && (typeof TextEncoder === "function" ? /* @__PURE__ */ ((encoder) => (str) => encoder.encode(str))(new TextEncoder()) : async (str) => new Uint8Array(await new Response(str).arrayBuffer()));
@@ -1815,7 +1837,11 @@ var getBodyLength = async (body) => {
     return body.size;
   }
   if (utils_default.isSpecCompliantForm(body)) {
-    return (await new Request(body).arrayBuffer()).byteLength;
+    const _request = new Request(platform_default.origin, {
+      method: "POST",
+      body
+    });
+    return (await _request.arrayBuffer()).byteLength;
   }
   if (utils_default.isArrayBufferView(body) || utils_default.isArrayBuffer(body)) {
     return body.byteLength;
@@ -1847,14 +1873,11 @@ var fetch_default = isFetchSupported && (async (config) => {
     fetchOptions
   } = resolveConfig_default(config);
   responseType = responseType ? (responseType + "").toLowerCase() : "text";
-  let [composedSignal, stopTimeout] = signal || cancelToken || timeout ? composeSignals_default([signal, cancelToken], timeout) : [];
-  let finished, request;
-  const onFinish = () => {
-    !finished && setTimeout(() => {
-      composedSignal && composedSignal.unsubscribe();
-    });
-    finished = true;
-  };
+  let composedSignal = composeSignals_default([signal, cancelToken && cancelToken.toAbortSignal()], timeout);
+  let request;
+  const unsubscribe = composedSignal && composedSignal.unsubscribe && (() => {
+    composedSignal.unsubscribe();
+  });
   let requestContentLength;
   try {
     if (onUploadProgress && supportsRequestStream && method !== "get" && method !== "head" && (requestContentLength = await resolveBodyLength(headers, data)) !== 0) {
@@ -1872,12 +1895,13 @@ var fetch_default = isFetchSupported && (async (config) => {
           requestContentLength,
           progressEventReducer(asyncDecorator(onUploadProgress))
         );
-        data = trackStream(_request.body, DEFAULT_CHUNK_SIZE, onProgress, flush, encodeText);
+        data = trackStream(_request.body, DEFAULT_CHUNK_SIZE, onProgress, flush);
       }
     }
     if (!utils_default.isString(withCredentials)) {
       withCredentials = withCredentials ? "include" : "omit";
     }
+    const isCredentialsSupported = "credentials" in Request.prototype;
     request = new Request(url, {
       ...fetchOptions,
       signal: composedSignal,
@@ -1885,11 +1909,11 @@ var fetch_default = isFetchSupported && (async (config) => {
       headers: headers.normalize().toJSON(),
       body: data,
       duplex: "half",
-      credentials: withCredentials
+      credentials: isCredentialsSupported ? withCredentials : void 0
     });
     let response = await fetch(request);
     const isStreamResponse = supportsResponseStream && (responseType === "stream" || responseType === "response");
-    if (supportsResponseStream && (onDownloadProgress || isStreamResponse)) {
+    if (supportsResponseStream && (onDownloadProgress || isStreamResponse && unsubscribe)) {
       const options = {};
       ["status", "statusText", "headers"].forEach((prop) => {
         options[prop] = response[prop];
@@ -1902,15 +1926,14 @@ var fetch_default = isFetchSupported && (async (config) => {
       response = new Response(
         trackStream(response.body, DEFAULT_CHUNK_SIZE, onProgress, () => {
           flush && flush();
-          isStreamResponse && onFinish();
-        }, encodeText),
+          unsubscribe && unsubscribe();
+        }),
         options
       );
     }
     responseType = responseType || "text";
     let responseData = await resolvers[utils_default.findKey(resolvers, responseType) || "text"](response, config);
-    !isStreamResponse && onFinish();
-    stopTimeout && stopTimeout();
+    !isStreamResponse && unsubscribe && unsubscribe();
     return await new Promise((resolve, reject) => {
       settle(resolve, reject, {
         data: responseData,
@@ -1922,7 +1945,7 @@ var fetch_default = isFetchSupported && (async (config) => {
       });
     });
   } catch (err) {
-    onFinish();
+    unsubscribe && unsubscribe();
     if (err && err.name === "TypeError" && /fetch/i.test(err.message)) {
       throw Object.assign(
         new AxiosError_default("Network Error", AxiosError_default.ERR_NETWORK, config, request),
@@ -1935,7 +1958,7 @@ var fetch_default = isFetchSupported && (async (config) => {
   }
 });
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/adapters/adapters.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/adapters/adapters.js
 var knownAdapters = {
   http: null_default,
   xhr: xhr_default,
@@ -1989,7 +2012,7 @@ var adapters_default = {
   adapters: knownAdapters
 };
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/core/dispatchRequest.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/core/dispatchRequest.js
 function throwIfCancellationRequested(config) {
   if (config.cancelToken) {
     config.cancelToken.throwIfRequested();
@@ -2034,10 +2057,10 @@ function dispatchRequest(config) {
   });
 }
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/env/data.js
-var VERSION = "1.7.4";
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/env/data.js
+var VERSION = "1.7.7";
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/helpers/validator.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/helpers/validator.js
 var validators = {};
 ["object", "boolean", "number", "function", "string", "symbol"].forEach((type, i) => {
   validators[type] = function validator(thing) {
@@ -2095,7 +2118,7 @@ var validator_default = {
   validators
 };
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/core/Axios.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/core/Axios.js
 var validators2 = validator_default.validators;
 var Axios = class {
   constructor(instanceConfig) {
@@ -2258,7 +2281,7 @@ utils_default.forEach(["post", "put", "patch"], function forEachMethodWithData(m
 });
 var Axios_default = Axios;
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/cancel/CancelToken.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/cancel/CancelToken.js
 var CancelToken = class _CancelToken {
   constructor(executor) {
     if (typeof executor !== "function") {
@@ -2330,6 +2353,15 @@ var CancelToken = class _CancelToken {
       this._listeners.splice(index, 1);
     }
   }
+  toAbortSignal() {
+    const controller = new AbortController();
+    const abort = (err) => {
+      controller.abort(err);
+    };
+    this.subscribe(abort);
+    controller.signal.unsubscribe = () => this.unsubscribe(abort);
+    return controller.signal;
+  }
   /**
    * Returns an object that contains a new `CancelToken` and a function that, when called,
    * cancels the `CancelToken`.
@@ -2347,19 +2379,19 @@ var CancelToken = class _CancelToken {
 };
 var CancelToken_default = CancelToken;
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/helpers/spread.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/helpers/spread.js
 function spread(callback) {
   return function wrap(arr) {
     return callback.apply(null, arr);
   };
 }
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/helpers/isAxiosError.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/helpers/isAxiosError.js
 function isAxiosError(payload) {
   return utils_default.isObject(payload) && payload.isAxiosError === true;
 }
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/helpers/HttpStatusCode.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/helpers/HttpStatusCode.js
 var HttpStatusCode = {
   Continue: 100,
   SwitchingProtocols: 101,
@@ -2430,7 +2462,7 @@ Object.entries(HttpStatusCode).forEach(([key, value]) => {
 });
 var HttpStatusCode_default = HttpStatusCode;
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/lib/axios.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/lib/axios.js
 function createInstance(defaultConfig) {
   const context = new Axios_default(defaultConfig);
   const instance = bind(Axios_default.prototype.request, context);
@@ -2463,7 +2495,7 @@ axios.HttpStatusCode = HttpStatusCode_default;
 axios.default = axios;
 var axios_default = axios;
 
-// ../../.yarn/cache/axios-npm-1.7.4-cc1c89ddba-5ea1a93140.zip/node_modules/axios/index.js
+// ../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/index.js
 var {
   Axios: Axios2,
   AxiosError: AxiosError2,
