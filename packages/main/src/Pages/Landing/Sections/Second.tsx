@@ -2,7 +2,7 @@ import { Title } from "./Title";
 
 export const Second = () => {
   return (
-    <section className="col-flex gap-8 w-full py-20">
+    <section className="col-flex items-center gap-8 w-full py-20">
       <Title direction="center">손쉽게 작성하는 이력서</Title>
       <div className="flex justify-center gap-6 w-full h-fit">
         <div className="col-flex w-fit mr-[24px]">
