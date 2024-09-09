@@ -34,7 +34,7 @@ const errFunc = (err: any) => {
     `오류가 발생했습니다\n(${response.status}: ${response.data.description || response.data})`,
     { className: "whitespace-pre-line" }
   );
-  return err;
+  throw new Error(err);
   // }
 };
 
