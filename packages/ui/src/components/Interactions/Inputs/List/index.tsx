@@ -9,7 +9,7 @@ type itemType = {
 };
 
 interface IProp extends IDefaultProp {
-  values: itemType[];
+  values?: itemType[];
   onEnter: (item: string, id?: string) => void;
   onDelete: (itemId: string, id: string) => void;
   listSize?: sizeType;

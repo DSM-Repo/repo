@@ -14,7 +14,8 @@ export const Section = ({ name, urls, icon, checked }: ISectionProp) => {
   const navigate = useNavigate();
 
   const isSelected = urls.includes("/")
-    ? locs === "/"
+    ? urls?.map((i) => (i !== "/" ? locs.includes(i) : false)).find((i) => i) ||
+      locs === "/"
     : urls?.map((i) => locs.includes(i)).find((i) => i) || false;
 
   return (

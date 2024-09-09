@@ -1,14 +1,36 @@
-// 인증 Auth -------------------
-export interface ILogin {
-  account_id: string;
-  password: string;
+export interface ITeacher {
+  name: string;
 }
 
-export interface IData {
-  access_token: string;
-  refresh_token: string;
-  access_expired_at: number;
-  refresh_expired_at: number;
+// 도서관 Library ---------------
+type libraryType = {
+  year: number;
+  grade: number;
+  generation: number;
+  access_right: "PRIVATE" | "PUBLIC";
+  id: string;
+};
+
+export interface ILibrary {
+  data: libraryType[];
+  number_of_data: number;
+}
+
+export type indexType = {
+  name: string;
+  major: string;
+  student_number: number;
+  page_number: number;
+};
+
+export interface IBook {
+  id: string;
+  year: number;
+  access_right: "PUBLIC" | "PRIVATE";
+  grade: number;
+  generation: number;
+  resume_url: string;
+  index: indexType[];
 }
 
 // 문서 Document -------------
@@ -35,31 +57,6 @@ export interface IStudent {
   number_of_data: number;
 }
 
-// 도서관 Library -------------
-type libraryType = {
-  id: string;
-  access_right: accessType;
-  year: number;
-  grade: number;
-  generation: number;
-};
-
-export interface IAccess {
-  library_id: string;
-  access_right: accessType;
-}
-
-export type accessType = "PUBLIC" | "PRIVATE";
-
-export interface ILibrary {
-  data: libraryType[];
-  number_of_data: number;
-}
-
-export interface IRenderAll {
-  grade: number;
-}
-
 // 전공 Major -----------------
 export interface IAddMajor {
   majors: string[];
@@ -67,37 +64,9 @@ export interface IAddMajor {
 
 export type dataType = {
   id: string;
-  name: string;
 };
 
 export interface IMajors {
   data: dataType[];
-  data_of_number: Number;
-}
-
-export interface IDelMajor {
-  id: string;
-}
-
-// 선생님 Teacher -------------
-export interface ITeacher {
-  name: string;
-}
-
-// 연혁 History ---------------
-type historyType = {
-  id: string;
-  date: string;
-  content: string;
-};
-
-export type historiesType = historyType[];
-
-export interface IAddHistory {
-  date: string;
-  content: string;
-}
-
-export interface IDelHistory {
-  id: string;
+  number_of_data: Number;
 }

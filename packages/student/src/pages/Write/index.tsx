@@ -5,6 +5,7 @@ import { Preview } from "./Preview";
 import {
   completion,
   confirm,
+  currentInfo,
   feedback,
   resumeData,
   submit,
@@ -41,6 +42,7 @@ export const Write = () => {
   const { mutate } = confirm();
   const { mutate: submitResume } = submit();
   const { mutate: saveResume } = update();
+  const { refetch: refetchInfo } = currentInfo();
   const idNum = Number(id);
 
   const filteredFeedbacks = feedbacks?.data.filter(
@@ -73,6 +75,7 @@ export const Write = () => {
               onSuccess: () => {
                 toast.success("성공적으로 저장되었습니다");
                 refetchCompl();
+                refetchInfo();
               }
             }),
           disabled: resume.status !== "ONGOING",

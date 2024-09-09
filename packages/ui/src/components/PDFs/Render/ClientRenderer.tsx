@@ -3,6 +3,7 @@ import { Inform } from "../Resume/Render/Inform";
 import { Projects } from "../Resume/Render/Projects";
 import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas";
+import { Resume } from "../Resume";
 
 interface IProp {
   data: any;
@@ -73,10 +74,7 @@ export const ClientRenderer = ({ data, setter }: IProp) => {
         });
       }}
     >
-      <Inform data={data} setMax={() => {}} showPadding />
-      {data?.project_list?.map((i) => (
-        <Projects data={i} setMax={() => {}} key={i.element_id} showPadding />
-      ))}
+      <Resume data={data} setMax={() => {}} showPadding />
     </div>
   );
 };

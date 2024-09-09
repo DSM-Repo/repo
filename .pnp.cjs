@@ -12525,6 +12525,7 @@ const RAW_RUNTIME_STATE =
           ["@configs/util", "virtual:9dce388d82c018b4a7af5edc7243e51f7023d1ab93a923b3959d0066ac6881c93b965a0932486426cbefa96c9c8e47849d5ff541d2404b8aca246480fa32f0d2#workspace:configs/util-config"],\
           ["@iconify/react", "virtual:9dce388d82c018b4a7af5edc7243e51f7023d1ab93a923b3959d0066ac6881c93b965a0932486426cbefa96c9c8e47849d5ff541d2404b8aca246480fa32f0d2#npm:5.0.2"],\
           ["@tanstack/react-query", "virtual:9dce388d82c018b4a7af5edc7243e51f7023d1ab93a923b3959d0066ac6881c93b965a0932486426cbefa96c9c8e47849d5ff541d2404b8aca246480fa32f0d2#npm:5.52.0"],\
+          ["@types/file-saver", "npm:2.0.7"],\
           ["@types/react", "npm:18.3.3"],\
           ["@types/react-dom", "npm:18.3.0"],\
           ["@typescript-eslint/eslint-plugin", "virtual:c55271692ea67efd86b2df7d4ca7cdd20f5f0115e2c4411d163771a77f3db06f3da65a7d74f9340ec7cb21efa63a22efa5ea3844792d19fb49399f1610502666#npm:7.18.0"],\
@@ -12534,6 +12535,7 @@ const RAW_RUNTIME_STATE =
           ["eslint", "npm:8.57.0"],\
           ["eslint-plugin-react-hooks", "virtual:c55271692ea67efd86b2df7d4ca7cdd20f5f0115e2c4411d163771a77f3db06f3da65a7d74f9340ec7cb21efa63a22efa5ea3844792d19fb49399f1610502666#npm:4.6.2"],\
           ["eslint-plugin-react-refresh", "virtual:c55271692ea67efd86b2df7d4ca7cdd20f5f0115e2c4411d163771a77f3db06f3da65a7d74f9340ec7cb21efa63a22efa5ea3844792d19fb49399f1610502666#npm:0.4.9"],\
+          ["file-saver", "npm:2.0.5"],\
           ["postcss", "npm:8.4.41"],\
           ["react", "npm:18.3.1"],\
           ["react-cookie", "virtual:a1948ccb408a228ac0d1c66013365ff10fdaed23639c28ac967ced196b504dc34e7895f2618aa0ea9582aa17daf011ea5386b5026f079564ba964f85946d3e90#npm:7.2.0"],\

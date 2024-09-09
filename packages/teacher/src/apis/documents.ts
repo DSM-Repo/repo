@@ -1,4 +1,7 @@
-import { useMyQuery } from "@configs/util";
+import { useMyQuery, IResume } from "@configs/util";
 import { IStudent } from "./types";
 
-export const students = () => useMyQuery<IStudent>("document", "/student");
+export const students = () => useMyQuery<IStudent>("resume", "/student");
+
+export const studentDetail = (id: string) =>
+  useMyQuery<IResume>("resume", `/student/${id}`);

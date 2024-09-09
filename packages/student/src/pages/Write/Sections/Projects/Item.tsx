@@ -19,7 +19,6 @@ interface IProp {
   data: projectType;
   setData: setType;
 }
-
 const typeChange = {
   개인: "PERSONAL",
   팀: "TEAM"

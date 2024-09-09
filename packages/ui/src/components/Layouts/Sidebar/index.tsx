@@ -10,6 +10,7 @@ interface IProp {
     profile?: string;
     major: string;
     percent?: number;
+    status?: "ONGOING" | "SUBMITTED" | "RELEASED";
   };
   items: {
     name: string;
@@ -19,7 +20,6 @@ interface IProp {
 
 export const Sidebar = ({ profile, items }: IProp) => {
   const { getRole } = useAuth();
-
   return (
     <div className="flex-shrink-0 col-flex justify-between px-2 py-3 w-[260px] h-screen bg-gray-800 border-r-[1px] border-r-gray-700">
       <div className="col-flex gap-3">
@@ -48,8 +48,8 @@ export const Sidebar = ({ profile, items }: IProp) => {
           ))}
         </div>
       </div>
-      <Ternary data={getRole() === "student"}>
-        <Percentage percent={profile?.percent} />
+      <Ternary data={getRole() === "student" && profile?.percent}>
+        <Percentage percent={profile?.percent} status={profile?.status} />
       </Ternary>
     </div>
   );
