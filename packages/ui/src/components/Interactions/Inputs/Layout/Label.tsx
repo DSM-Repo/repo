@@ -11,7 +11,7 @@ interface IProp {
 export const Label = ({ label, children, size, required }: IProp) => {
   const isFull = size === "full";
 
-  return (
+  return label ? (
     <div className={`${isFull ? "w-full" : "w-fit"} col-flex gap-3 relative`}>
       <Ternary data={label}>
         <span className="text-[16px] font-light">
@@ -23,5 +23,7 @@ export const Label = ({ label, children, size, required }: IProp) => {
       </Ternary>
       {children}
     </div>
+  ) : (
+    <>{children}</>
   );
 };

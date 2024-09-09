@@ -35,7 +35,7 @@ export const File = ({
     >
       <label className="whitespace-nowrap overflow-x-auto w-full leading-none overflow-y-hidden">
         <span
-          className={`${value ? "text-white" : "text-gray-300"} leading-none w-full inline-block text-[14px] cursor-pointer`}
+          className={`${value ? "text-white" : "text-gray-300"} leading-[1.31] w-full truncate overflow-y-hidden block text-[14px] px-5 py-[15px] h-full cursor-pointer`}
         >
           {value ? value.original_name : placeholder}
         </span>

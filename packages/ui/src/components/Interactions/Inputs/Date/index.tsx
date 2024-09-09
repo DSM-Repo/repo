@@ -67,7 +67,7 @@ export const Date = ({
         icon={value && { name: "Trash", action: () => onDelete(id) }}
       >
         <span
-          className={`${!!!value ? "text-gray-300" : "text-white"} block w-full text-[14px] font-light leading-none cursor-pointer`}
+          className={`${!!!value ? "text-gray-300" : "text-white"} block w-full text-[14px] font-light px-5 py-[15px] h-full leading-[1.31] cursor-pointer`}
           onClick={() => (disabled ? () => {} : setOpen((prev) => !prev))}
         >
           {value ? value : placeholder}

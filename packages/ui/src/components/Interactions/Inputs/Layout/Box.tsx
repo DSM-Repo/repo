@@ -12,15 +12,22 @@ interface IProp {
   children: React.ReactElement | React.ReactElement[];
   icon?: iconType;
   disabled?: boolean;
+  height?: number;
   size: sizeType;
 }
 
-export const Box = ({ children, icon, size, disabled }: IProp) => {
+export const Box = ({ children, icon, size, disabled, height }: IProp) => {
   return (
     <div
-      className={`flex justify-between items-center gap-2 ${sizeTable[size]} ${disabled && "cursor-not-allowed"} min-h-[50px] h-fit px-5 py-[15px] border-[1px] rounded-xl ${disabled ? "bg-gray-600" : "bg-gray-700"} border-gray-600`}
+      style={{ height: height || "fit-content" }}
+      className={`flex justify-end items-center gap-2 ${sizeTable[size]} ${disabled && "cursor-not-allowed"} relative min-h-[50px] h-fit px-5 py-[15px] border-[1px] rounded-xl ${disabled ? "bg-gray-600" : "bg-gray-700"} border-gray-600`}
     >
-      {children}
+      <label
+        className={`absolute left-0 top-0 h-full ${icon ? "w-[calc(100%_-_45px)]" : "w-full"}`}
+      >
+        {children}
+      </label>
+
       <Ternary data={icon}>
         <Icon
           name={icon?.name}

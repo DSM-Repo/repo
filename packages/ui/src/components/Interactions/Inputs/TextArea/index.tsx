@@ -27,10 +27,17 @@ export const TextArea = ({
 
   return (
     <div className={`col-flex gap-2 ${isFull ? "w-full" : "w-fit"} h-fit`}>
-      <Layout size={size} required={required} label={label} disabled={disabled}>
+      <Layout
+        size={size}
+        required={required}
+        label={label}
+        disabled={disabled}
+        height={23 * rows}
+      >
         <textarea
+          style={{ height: 23 * rows }}
           disabled={disabled}
-          className="leading-snug w-full h-fit text-[14px] font-light"
+          className="leading-snug w-full h-fit text-[14px] font-light absolute px-5 py-[10px]"
           placeholder={placeholder}
           value={value}
           rows={rows}
