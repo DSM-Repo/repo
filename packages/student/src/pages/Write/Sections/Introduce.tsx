@@ -25,7 +25,7 @@ export const Introduce = () => {
         />
         <TextArea
           label="자기소개"
-          placeholder="한 줄 소개를 입력하세요"
+          placeholder="자기소개를 입력하세요"
           value={introduce.introduce}
           onChange={handleChange}
           size="large"
