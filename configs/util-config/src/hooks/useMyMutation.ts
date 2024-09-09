@@ -11,14 +11,19 @@ export const useMyMutation = <T, K>(
 ): UseMutationResult<K, Error, T> => {
   return useMutation<K, Error, T>({
     mutationFn: async (item: T | string): Promise<K> => {
-      if (typeof item === "string") {
-        let _url = path[pathname] + url + item;
-        const res = await instance[type](_url);
-        return res.data;
-      } else {
-        let _url = path[pathname] + url;
-        const res = await instance[type](_url, item);
-        return res.data;
+      try {
+        let _url: string = path[pathname] + url;
+
+        if (typeof item === "string") {
+          _url += item;
+          const res = await instance[type](_url);
+          return res.data;
+        } else {
+          const res = await instance[type](_url, item);
+          return res.data;
+        }
+      } catch (error) {
+        throw new Error((error as Error).message); // 에러 발생 시 throw
       }
     }
   });
