@@ -22,15 +22,15 @@ export const Landing = () => {
     };
   }, [setOpen]);
 
-  const { getRole } = useAuth();
-  useEffect(() => {
-    const role = getRole();
-    if (role === "student") {
-      window.location.replace(process.env.VITE_APP_URL_STUDENT as string);
-    } else if (role === "teacher") {
-      window.location.replace(process.env.VITE_APP_URL_TEACHER as string);
-    }
-  }, []);
+  // const { getRole } = useAuth();
+  // useEffect(() => {
+  //   const role = getRole();
+  //   if (role === "student") {
+  //     window.location.replace(process.env.VITE_APP_URL_STUDENT as string);
+  //   } else if (role === "teacher") {
+  //     window.location.replace(process.env.VITE_APP_URL_TEACHER as string);
+  //   }
+  // }, []);
 
   return (
     <div className="relative col-flex items-center">
