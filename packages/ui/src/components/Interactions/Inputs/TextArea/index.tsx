@@ -30,7 +30,7 @@ export const TextArea = ({
       <Layout size={size} required={required} label={label} disabled={disabled}>
         <textarea
           disabled={disabled}
-          className="leading-snug w-full text-[14px] font-light"
+          className="leading-snug w-full h-fit text-[14px] font-light"
           placeholder={placeholder}
           value={value}
           rows={rows}

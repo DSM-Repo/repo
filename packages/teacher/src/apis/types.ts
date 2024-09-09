@@ -70,3 +70,21 @@ export interface IMajors {
   data: dataType[];
   number_of_data: Number;
 }
+
+// 피드백 Feedback ------------
+export interface IAddFeedback {
+  comment: string;
+  type: string;
+  resume_id: string;
+}
+
+export interface IFeedback {
+  data: {
+    id: string;
+    type: string;
+    comment: string;
+    status: string;
+    rejected: boolean;
+  }[];
+  number_of_data: 0;
+}

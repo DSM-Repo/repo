@@ -20,7 +20,9 @@ interface IProp {
 
 export const Layout = ({ buttons, sidebars, children }: IProp) => {
   const { sideOpened } = useSideBarOpen();
-  const openedDetail = sidebars?.find((i) => i.name === sideOpened);
+  const openedDetail = sidebars?.find((i) =>
+    i ? i.name === sideOpened : false
+  );
   const standardWidth = openedDetail?.width ? openedDetail.width : "300px";
 
   return (
@@ -39,10 +41,14 @@ export const Layout = ({ buttons, sidebars, children }: IProp) => {
       </div>
       <div className="w-fit h-full relative">
         {sidebars?.map((i) =>
-          i.type === "standard" ? (
-            <SideBar name={i.name} width={i.width} items={i.items} />
+          i ? (
+            i.type === "standard" ? (
+              <SideBar name={i.name} width={i.width} items={i.items} />
+            ) : (
+              i.component
+            )
           ) : (
-            i.component
+            <></>
           )
         )}
       </div>
