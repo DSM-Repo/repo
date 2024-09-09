@@ -19,7 +19,8 @@ export const renderInstance = axios.create({
 const resFunc = (res: InternalAxiosRequestConfig<any>) => {
   const config = refresh().then(() => {
     const access_token = cookie.get("access_token");
-    if (access_token) res.headers.Authorization = `Bearer ${access_token}`;
+    if (access_token && !res.url.includes("/auth"))
+      res.headers.Authorization = `Bearer ${access_token}`;
     return res;
   });
   return config;
