@@ -13,7 +13,7 @@ const cookie = new Cookies();
 
 const option = {
   path: "/",
-  domain: isDevelopment ? "" : "https://dsm-repo.com"
+  domain: isDevelopment ? "" : ".dsm-repo.com"
 };
 
 export const useAuth = () => {
