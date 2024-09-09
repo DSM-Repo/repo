@@ -23,7 +23,7 @@ const RAW_RUNTIME_STATE =
       "reference": "workspace:configs/tailwindcss-config"\
     },\
     {\
-      "name": "types-config-440ab1",\
+      "name": "@configs/type",\
       "reference": "workspace:configs/types-config"\
     },\
     {\
@@ -52,12 +52,12 @@ const RAW_RUNTIME_STATE =
   "fallbackExclusionList": [\
     ["@configs/eslint", ["workspace:configs/eslint-config"]],\
     ["@configs/tailwindcss", ["workspace:configs/tailwindcss-config"]],\
+    ["@configs/type", ["workspace:configs/types-config"]],\
     ["@configs/util", ["virtual:9dce388d82c018b4a7af5edc7243e51f7023d1ab93a923b3959d0066ac6881c93b965a0932486426cbefa96c9c8e47849d5ff541d2404b8aca246480fa32f0d2#workspace:configs/util-config", "workspace:configs/util-config"]],\
     ["main", ["workspace:packages/main"]],\
     ["repo2024", ["workspace:."]],\
     ["student", ["workspace:packages/student"]],\
     ["teacher", ["workspace:packages/teacher"]],\
-    ["types-config-440ab1", ["workspace:configs/types-config"]],\
     ["ui", ["workspace:packages/ui"]]\
   ],\
   "fallbackPool": [\
@@ -2708,6 +2708,16 @@ const RAW_RUNTIME_STATE =
           ["autoprefixer", "virtual:a590d0162dc49f20ec171ca7176afade16a11d396abe66c70bb6bf4eff64d25844d41b6775d91b945a24bf41375ba552a574afa32f9bc2d6a50fd3f5aab8886b#npm:10.4.20"],\
           ["postcss", "npm:8.4.41"],\
           ["tailwindcss", "npm:3.4.10"]\
+        ],\
+        "linkType": "SOFT"\
+      }]\
+    ]],\
+    ["@configs/type", [\
+      ["workspace:configs/types-config", {\
+        "packageLocation": "./configs/types-config/",\
+        "packageDependencies": [\
+          ["@configs/type", "workspace:configs/types-config"],\
+          ["typescript", "patch:typescript@npm%3A5.4.5#optional!builtin<compat/typescript>::version=5.4.5&hash=5adc0c"]\
         ],\
         "linkType": "SOFT"\
       }]\
@@ -9553,6 +9563,7 @@ const RAW_RUNTIME_STATE =
           ["react", "npm:18.3.1"],\
           ["react-dom", "virtual:9dce388d82c018b4a7af5edc7243e51f7023d1ab93a923b3959d0066ac6881c93b965a0932486426cbefa96c9c8e47849d5ff541d2404b8aca246480fa32f0d2#npm:18.3.1"],\
           ["react-router-dom", "virtual:9dce388d82c018b4a7af5edc7243e51f7023d1ab93a923b3959d0066ac6881c93b965a0932486426cbefa96c9c8e47849d5ff541d2404b8aca246480fa32f0d2#npm:6.26.1"],\
+          ["react-toastify", "virtual:630bd6b1835fb13223e0a656ceb0e6da2fd1911c16f7db5cc941dbdab0c36f5a822e0704c10dcae82063ce6b8972a8f1177d70950ac9bd3853a81e1ba4c4b3c4#npm:10.0.5"],\
           ["tailwindcss", "npm:3.4.10"],\
           ["typescript", "patch:typescript@npm%3A5.4.5#optional!builtin<compat/typescript>::version=5.4.5&hash=5adc0c"],\
           ["ui", "workspace:packages/ui"],\
@@ -11477,10 +11488,10 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "HARD"\
       }],\
-      ["virtual:c55271692ea67efd86b2df7d4ca7cdd20f5f0115e2c4411d163771a77f3db06f3da65a7d74f9340ec7cb21efa63a22efa5ea3844792d19fb49399f1610502666#npm:10.0.5", {\
-        "packageLocation": "./.yarn/__virtual__/react-toastify-virtual-3804388dd8/0/cache/react-toastify-npm-10.0.5-86b63c99fc-66c68ec3d6.zip/node_modules/react-toastify/",\
+      ["virtual:630bd6b1835fb13223e0a656ceb0e6da2fd1911c16f7db5cc941dbdab0c36f5a822e0704c10dcae82063ce6b8972a8f1177d70950ac9bd3853a81e1ba4c4b3c4#npm:10.0.5", {\
+        "packageLocation": "./.yarn/__virtual__/react-toastify-virtual-9b32654ebb/0/cache/react-toastify-npm-10.0.5-86b63c99fc-66c68ec3d6.zip/node_modules/react-toastify/",\
         "packageDependencies": [\
-          ["react-toastify", "virtual:c55271692ea67efd86b2df7d4ca7cdd20f5f0115e2c4411d163771a77f3db06f3da65a7d74f9340ec7cb21efa63a22efa5ea3844792d19fb49399f1610502666#npm:10.0.5"],\
+          ["react-toastify", "virtual:630bd6b1835fb13223e0a656ceb0e6da2fd1911c16f7db5cc941dbdab0c36f5a822e0704c10dcae82063ce6b8972a8f1177d70950ac9bd3853a81e1ba4c4b3c4#npm:10.0.5"],\
           ["@types/react", "npm:18.3.3"],\
           ["@types/react-dom", "npm:18.3.0"],\
           ["clsx", "npm:2.1.1"],\
@@ -12373,7 +12384,7 @@ const RAW_RUNTIME_STATE =
           ["react-pdf", "virtual:9dce388d82c018b4a7af5edc7243e51f7023d1ab93a923b3959d0066ac6881c93b965a0932486426cbefa96c9c8e47849d5ff541d2404b8aca246480fa32f0d2#npm:9.1.0"],\
           ["react-qr-code", "virtual:9dce388d82c018b4a7af5edc7243e51f7023d1ab93a923b3959d0066ac6881c93b965a0932486426cbefa96c9c8e47849d5ff541d2404b8aca246480fa32f0d2#npm:2.0.15"],\
           ["react-router-dom", "virtual:9dce388d82c018b4a7af5edc7243e51f7023d1ab93a923b3959d0066ac6881c93b965a0932486426cbefa96c9c8e47849d5ff541d2404b8aca246480fa32f0d2#npm:6.26.1"],\
-          ["react-toastify", "virtual:c55271692ea67efd86b2df7d4ca7cdd20f5f0115e2c4411d163771a77f3db06f3da65a7d74f9340ec7cb21efa63a22efa5ea3844792d19fb49399f1610502666#npm:10.0.5"],\
+          ["react-toastify", "virtual:630bd6b1835fb13223e0a656ceb0e6da2fd1911c16f7db5cc941dbdab0c36f5a822e0704c10dcae82063ce6b8972a8f1177d70950ac9bd3853a81e1ba4c4b3c4#npm:10.0.5"],\
           ["tailwindcss", "npm:3.4.10"],\
           ["typescript", "patch:typescript@npm%3A5.4.5#optional!builtin<compat/typescript>::version=5.4.5&hash=5adc0c"],\
           ["ui", "workspace:packages/ui"],\
@@ -12542,7 +12553,7 @@ const RAW_RUNTIME_STATE =
           ["react-dom", "virtual:9dce388d82c018b4a7af5edc7243e51f7023d1ab93a923b3959d0066ac6881c93b965a0932486426cbefa96c9c8e47849d5ff541d2404b8aca246480fa32f0d2#npm:18.3.1"],\
           ["react-pdf", "virtual:9dce388d82c018b4a7af5edc7243e51f7023d1ab93a923b3959d0066ac6881c93b965a0932486426cbefa96c9c8e47849d5ff541d2404b8aca246480fa32f0d2#npm:9.1.0"],\
           ["react-router-dom", "virtual:9dce388d82c018b4a7af5edc7243e51f7023d1ab93a923b3959d0066ac6881c93b965a0932486426cbefa96c9c8e47849d5ff541d2404b8aca246480fa32f0d2#npm:6.26.1"],\
-          ["react-toastify", "virtual:c55271692ea67efd86b2df7d4ca7cdd20f5f0115e2c4411d163771a77f3db06f3da65a7d74f9340ec7cb21efa63a22efa5ea3844792d19fb49399f1610502666#npm:10.0.5"],\
+          ["react-toastify", "virtual:630bd6b1835fb13223e0a656ceb0e6da2fd1911c16f7db5cc941dbdab0c36f5a822e0704c10dcae82063ce6b8972a8f1177d70950ac9bd3853a81e1ba4c4b3c4#npm:10.0.5"],\
           ["tailwindcss", "npm:3.4.10"],\
           ["typescript", "patch:typescript@npm%3A5.4.5#optional!builtin<compat/typescript>::version=5.4.5&hash=5adc0c"],\
           ["ui", "workspace:packages/ui"],\
@@ -12829,15 +12840,6 @@ const RAW_RUNTIME_STATE =
           ["mime-types", "npm:2.1.35"]\
         ],\
         "linkType": "HARD"\
-      }]\
-    ]],\
-    ["types-config-440ab1", [\
-      ["workspace:configs/types-config", {\
-        "packageLocation": "./configs/types-config/",\
-        "packageDependencies": [\
-          ["types-config-440ab1", "workspace:configs/types-config"]\
-        ],\
-        "linkType": "SOFT"\
       }]\
     ]],\
     ["typescript", [\

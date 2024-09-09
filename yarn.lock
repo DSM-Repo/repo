@@ -1508,6 +1508,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@configs/type@workspace:configs/types-config":
+  version: 0.0.0-use.local
+  resolution: "@configs/type@workspace:configs/types-config"
+  dependencies:
+    typescript: "npm:5.4.5"
+  languageName: unknown
+  linkType: soft
+
 "@configs/util@workspace:^, @configs/util@workspace:configs/util-config":
   version: 0.0.0-use.local
   resolution: "@configs/util@workspace:configs/util-config"
@@ -6704,6 +6712,7 @@ __metadata:
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
     react-router-dom: "npm:^6.23.1"
+    react-toastify: "npm:^10.0.5"
     tailwindcss: "npm:^3.4.4"
     typescript: "npm:5.4.5"
     ui: "workspace:^"
@@ -9381,12 +9390,6 @@ __metadata:
   checksum: 10c0/a23daeb538591b7efbd61ecf06b6feb2501b683ffdc9a19c74ef5baba362b4347e42f1b4ed81f5882a8c96a3bfff7f93ce3ffaf0cbbc879b532b04c97a55db9d
   languageName: node
   linkType: hard
-
-"types-config-440ab1@workspace:configs/types-config":
-  version: 0.0.0-use.local
-  resolution: "types-config-440ab1@workspace:configs/types-config"
-  languageName: unknown
-  linkType: soft
 
 "typescript@npm:5.4.5":
   version: 5.4.5
