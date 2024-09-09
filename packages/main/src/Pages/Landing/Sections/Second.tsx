@@ -6,9 +6,7 @@ export const Second = () => {
       <Title direction="center">손쉽게 작성하는 이력서</Title>
       <div className="flex gap-6 w-full h-fit">
         <div className="col-flex w-full">
-          <div className="flex flex-center w-full h-[230px] bg-gray-700 rounded-xl">
             <img src="/landing_award.png" className="w-[528px] h-[228px]" />
-          </div>
           <span className="text-[24px] font-bold text-gray-50 mt-4">
             이력서 정보별 작성
           </span>
@@ -19,9 +17,7 @@ export const Second = () => {
           </span>
         </div>
         <div className="col-flex w-full">
-          <div className="flex flex-center w-full h-[230px] rounded-[12px] bg-gray-700">
             <img src="/landing_nav.png" className="w-[528px] h-[228px]" />
-          </div>
           <span className="text-[24px] font-bold text-gray-50 mt-4">
             다양한 입력
           </span>
