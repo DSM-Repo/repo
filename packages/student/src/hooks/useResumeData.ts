@@ -32,7 +32,7 @@ export const useResumeData = create<IResumeData>((set) => ({
         [section]:
           section === "writer" || section === "introduce"
             ? { ...prev.data[section], [id as string]: data }
-            : [...prev.data[section], data]
+            : [data, ...prev.data[section]]
       }
     }))
 }));
