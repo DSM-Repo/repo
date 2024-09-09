@@ -7,10 +7,10 @@ export const Second = () => {
       <div className="flex justify-center gap-6 w-full h-fit">
         <div className="col-flex w-fit mr-[24px]">
           <img src="/landing_award.png" className="w-[528px] h-[228px]" />
-          <span className="text-[24px] font-bold text-gray-50 mt-4">
+          <span className="text-[24px] font-bold text-gray-50 mt-4 w-[528px]">
             이력서 정보별 작성
           </span>
-          <span className="text-[16px] font-light leading-tights text-gray-50 mt-3">
+          <span className="text-[16px] font-light leading-tights text-gray-50 mt-3 w-[528px]">
             정보별로 모아놓은 탭을 통해, 작성하고자 하는 곳을
             <br />
             빠르게 오가며 채워나갈 수 있어요.
@@ -18,10 +18,10 @@ export const Second = () => {
         </div>
         <div className="col-flex w-fit">
           <img src="/landing_nav.png" className="w-[528px] h-[228px]" />
-          <span className="text-[24px] font-bold text-gray-50 mt-4">
+          <span className="text-[24px] font-bold text-gray-50 mt-4 w-[528px]">
             다양한 입력
           </span>
-          <span className="text-[16px] font-light leading-tights text-gray-50 mt-3">
+          <span className="text-[16px] font-light leading-tights text-gray-50 mt-3 w-[528px]">
             이력서 정보들의 형식에 맞게, 다양한 종류의 입력을 제공해 드리고
             있어요.
           </span>
