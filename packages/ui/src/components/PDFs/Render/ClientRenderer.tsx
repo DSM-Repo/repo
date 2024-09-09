@@ -7,7 +7,7 @@ import { Resume } from "../Resume";
 
 interface IProp {
   data: any;
-  setter: (item: any) => void;
+  setter?: (item: any) => void;
 }
 
 export const ClientRenderer = ({ data, setter }: IProp) => {
@@ -53,14 +53,16 @@ export const ClientRenderer = ({ data, setter }: IProp) => {
         }
         const blob = doc.output("blob");
         const file = new File([blob], "Rendered_Resume.pdf");
-        setter(file);
+        if (setter) {
+          setter(file);
+        }
       });
-    }, 100);
+    }, 150);
   }, []);
 
   return (
     <div
-      className="resume w-fit absolute top-[100vh]"
+      className="resume w-fit absolute overflow-hidden top-[100vh]"
       ref={(item) => {
         item?.childNodes.forEach((i) => {
           setTimeout(() => {
@@ -74,6 +76,7 @@ export const ClientRenderer = ({ data, setter }: IProp) => {
         });
       }}
     >
+      <div className="w-[842px] h-[1191px] bg-white" />
       <Resume data={data} setMax={() => {}} showPadding />
     </div>
   );

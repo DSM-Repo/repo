@@ -6,8 +6,6 @@ export const Major = () => {
   const { mutate: del } = delMajor();
   const { mutate: add } = addMajor();
 
-  console.log(data);
-
   return (
     <Layout>
       <div className="col-flex gap-2 px-[60px] py-6">

@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSideBarOpen } from "../../../../hooks";
 export * from "./Items";
 export * from "./Custom";
@@ -20,6 +20,11 @@ export const SideBar = ({ name, width = "300px", items }: ISidebarProp) => {
   const [opened, setOpened] = useState("");
   const { sideOpened } = useSideBarOpen();
   const ref = useRef<HTMLDivElement[]>([]);
+  const [state, setState] = useState(false);
+
+  useEffect(() => {
+    setState((prev) => !prev);
+  }, [items]);
 
   return (
     <div

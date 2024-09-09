@@ -35,7 +35,7 @@ export const Viewer = ({ url, indexList, buttons, sidebars }: IProp) => {
   const [max, setMax] = useState(1);
 
   const handleMovePage = (next: number) => {
-    if (next < 0 || next > max) {
+    if (next < 0 || next > max + 1) {
       return;
     }
     setPage(next);
@@ -65,11 +65,13 @@ export const Viewer = ({ url, indexList, buttons, sidebars }: IProp) => {
       title: "다운로드",
       action: () => url && saveAs(url, `Resume.pdf`)
     },
-    index && {
-      icon: "Users",
-      title: "빠른 이동",
-      action: "빠른 이동"
-    },
+    indexList
+      ? {
+          icon: "Users",
+          title: "빠른 이동",
+          action: "빠른 이동"
+        }
+      : undefined,
     ...(buttons || [])
   ];
 
@@ -97,29 +99,31 @@ export const Viewer = ({ url, indexList, buttons, sidebars }: IProp) => {
   };
 
   const _sidebars: sidebarType[] = [
-    index && {
-      name: "빠른 이동",
-      width: "200px",
-      type: "standard",
-      items: [
-        {
-          name: "1반",
-          content: ClassSection(1)
-        },
-        {
-          name: "2반",
-          content: ClassSection(2)
-        },
-        {
-          name: "3반",
-          content: ClassSection(3)
-        },
-        {
-          name: "4반",
-          content: ClassSection(4)
+    indexList
+      ? {
+          name: "빠른 이동",
+          width: "200px",
+          type: "standard",
+          items: [
+            {
+              name: "1반",
+              content: ClassSection(1)
+            },
+            {
+              name: "2반",
+              content: ClassSection(2)
+            },
+            {
+              name: "3반",
+              content: ClassSection(3)
+            },
+            {
+              name: "4반",
+              content: ClassSection(4)
+            }
+          ]
         }
-      ]
-    },
+      : undefined,
     ...(sidebars || [])
   ];
 
@@ -187,7 +191,7 @@ export const Viewer = ({ url, indexList, buttons, sidebars }: IProp) => {
         </Ternary>
         <Document
           onLoadSuccess={({ numPages }) => {
-            setMax(numPages);
+            setMax(numPages - 1);
             setLoading(false);
           }}
           file={url}
@@ -205,9 +209,9 @@ export const Viewer = ({ url, indexList, buttons, sidebars }: IProp) => {
             />
 
             <Page
-              pageIndex={page === max ? page - 1 : page}
+              pageIndex={page > max ? page - 1 : page}
               scale={scale}
-              className={`${page === max ? "invisible" : ""} h-fit`}
+              className={`${page > max ? "invisible" : ""} h-fit`}
             />
           </div>
         </Document>
