@@ -36,11 +36,11 @@ export const useAuth = () => {
   };
 
   const delToken = () => {
-    cookie.remove("access_token");
-    cookie.remove("access_expires");
-    cookie.remove("refresh_token");
-    cookie.remove("refresh_expires");
-    cookie.remove("role");
+    cookie.remove("access_token", option);
+    cookie.remove("access_expires", option);
+    cookie.remove("refresh_token", option);
+    cookie.remove("refresh_expires", option);
+    cookie.remove("role", option);
   };
 
   return { setToken, getToken, delToken, getRole };
