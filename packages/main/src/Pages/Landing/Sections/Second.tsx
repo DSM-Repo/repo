@@ -4,7 +4,7 @@ export const Second = () => {
   return (
     <section className="col-flex gap-8 w-full py-20">
       <Title direction="center">손쉽게 작성하는 이력서</Title>
-      <div className="flex justify-center gap-6 w-fit h-fit">
+      <div className="flex justify-center gap-6 w-full h-fit">
         <div className="col-flex w-fit mr-[24px]">
           <img src="/landing_award.png" className="w-[528px] h-[228px]" />
           <span className="text-[24px] font-bold text-gray-50 mt-4">
