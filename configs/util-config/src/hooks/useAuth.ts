@@ -13,7 +13,7 @@ const cookie = new Cookies();
 
 const option = {
   path: "/",
-  domain: isDevelopment ? "" : "dsm-repo.com"
+  domain: isDevelopment ? "" : "https://dsm-repo.com"
 };
 
 export const useAuth = () => {
@@ -36,26 +36,11 @@ export const useAuth = () => {
   };
 
   const delToken = () => {
-    cookie.remove("access_token", {
-      ...option,
-      domain: isDevelopment ? "" : ".dsm-repo.com"
-    });
-    cookie.remove("access_expires", {
-      ...option,
-      domain: isDevelopment ? "" : ".dsm-repo.com"
-    });
-    cookie.remove("refresh_token", {
-      ...option,
-      domain: isDevelopment ? "" : ".dsm-repo.com"
-    });
-    cookie.remove("refresh_expires", {
-      ...option,
-      domain: isDevelopment ? "" : ".dsm-repo.com"
-    });
-    cookie.remove("role", {
-      ...option,
-      domain: isDevelopment ? "" : ".dsm-repo.com"
-    });
+    cookie.remove("access_token", option);
+    cookie.remove("access_expires", option);
+    cookie.remove("refresh_token", option);
+    cookie.remove("refresh_expires", option);
+    cookie.remove("role", option);
   };
 
   return { setToken, getToken, delToken, getRole };

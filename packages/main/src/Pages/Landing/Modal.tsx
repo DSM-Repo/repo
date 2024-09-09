@@ -63,8 +63,8 @@ export const Modal = ({ open }: IProp) => {
       className={`${!open ? "hidden" : ""} fixed flex flex-center w-full h-screen backdrop-blur-sm z-20 bg-[#00000055]`}
     >
       <Box width="fit-content" height="fit-content" padding="40px">
-        <button className="self-end">
-          <Icon name="Close" className="self-end modal" />
+        <button className="self-end modal">
+          <Icon name="Close" className="self-end" />
         </button>
         <span className="font-black text-[40px] self-center">로그인</span>
         <div className="w-full col-flex gap-[25px]">
