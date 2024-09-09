@@ -20,8 +20,8 @@ export const Third = () => {
         </div>
       </div>
       <img
-        src="/Preview.png"
-        className="border-[8px] rounded-[8px] border-green-900"
+        src="/landing_live"
+        className="w-[443px] h-[656px]"
       />
     </div>
   );
