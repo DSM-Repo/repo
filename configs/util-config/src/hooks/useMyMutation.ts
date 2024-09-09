@@ -23,7 +23,7 @@ export const useMyMutation = <T, K>(
           return res.data;
         }
       } catch (error) {
-        throw new Error((error as Error).message); // 에러 발생 시 throw
+        throw new Error(error); // 에러 발생 시 throw
       }
     }
   });
