@@ -20,7 +20,7 @@ export const Third = () => {
         </div>
       </div>
       <img
-        src="/landing_live"
+        src="/landing_live.png"
         className="w-[443px] h-[656px]"
       />
     </div>
