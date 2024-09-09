@@ -33,23 +33,19 @@ export const File = ({
       disabled={disabled}
       icon={value && { name: "Trash", action: () => onDelete(id) }}
     >
-      <label
-        className="whitespace-nowrap overflow-x-auto w-full leading-none overflow-y-hidden"
-        htmlFor="fileInput"
-      >
+      <label className="whitespace-nowrap overflow-x-auto w-full leading-none overflow-y-hidden">
         <span
           className={`${value ? "text-white" : "text-gray-300"} leading-none w-full inline-block text-[14px] cursor-pointer`}
         >
           {value ? value.original_name : placeholder}
         </span>
+        <input
+          type="file"
+          className="hidden absolute"
+          accept={accept}
+          onChange={onChange}
+        />
       </label>
-      <input
-        id="fileInput"
-        type="file"
-        className="hidden absolute"
-        accept={accept}
-        onChange={onChange}
-      />
     </Layout>
   );
 };

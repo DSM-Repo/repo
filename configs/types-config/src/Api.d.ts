@@ -6,11 +6,13 @@ type CommonLayout<T> = {
 };
 
 declare namespace Auth {
+  // /auth/student, /auth/teacher
   interface LoginInput {
     account_id: string;
     password: string;
   }
 
+  // /auth/student, /auth/teacher
   interface LoginOutput {
     access_token: string;
     refresh_token: string;
@@ -37,7 +39,8 @@ export declare namespace Resume {
     feedback_list: Feedback.feedbackData[];
   };
 
-  export interface Resume {
+  // /resume
+  interface Resume {
     introduce: {
       heading: string;
       introduce: string;
@@ -45,9 +48,16 @@ export declare namespace Resume {
     recently_shared: recentlySharedData[];
   }
 
+  // /resume/student
   type ResumeStudent = CommonLayout<resumeStudentData>;
-  interface ResumeStudentDetail extends Document.resume {}
+
+  // /resume/detail, /resume/student/{studentId}
   interface ResumeDetail extends Document.resume {}
+
+  // resume (PATCH)
+  interface ResumeUpdate extends Document.resume {}
+
+  // /resume/completion
   interface ResumeCompletion {
     writer_info: boolean;
     introduce: boolean;
@@ -63,8 +73,10 @@ export declare namespace Major {
     id: string;
   };
 
+  // /major
   type Major = CommonLayout<majorData[]>;
 
+  // /major (POST)
   interface MajorAdd {
     majors: string[];
   }
@@ -88,11 +100,16 @@ export declare namespace Library {
     page_number: number;
   };
 
+  // /library
   type Library = CommonLayout<libraryListData[]>;
+
+  // /library (POST)
   interface LibraryAdd {
     pdf: string;
     index: {};
   }
+
+  // /library/{libraryId}
   interface LibraryDetail {
     id: string;
     access_right: accessType;
@@ -114,4 +131,18 @@ export declare namespace Feedback {
     status: statusType;
     rejected: true;
   };
+}
+
+export declare namespace Info {
+  interface Student {
+    name: string;
+    class_info: {
+      grade: number;
+      class_number: number;
+      number: number;
+      school_number: string;
+    };
+    profile_image: "string";
+    major: "string";
+  }
 }
