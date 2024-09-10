@@ -1,4 +1,5 @@
 import { useMyQuery } from "@configs/util";
-import { IMajors } from "./types";
+import { Api, Placeholder } from "@configs/type";
 
-export const major = () => useMyQuery<IMajors>("major", "");
+export const majorList = () =>
+  useMyQuery<Api.Major.Major>("major", "", Placeholder.CommonLayoutPlace);

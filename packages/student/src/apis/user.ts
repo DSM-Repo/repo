@@ -1,3 +1,9 @@
-import { IStudent, useMyQuery } from "@configs/util";
+import { useMyQuery } from "@configs/util";
+import { Api, Placeholder } from "@configs/type";
 
-export const currentInfo = () => useMyQuery<IStudent>("user", "/current/info");
+export const studentInfo = () =>
+  useMyQuery<Api.Info.Student>(
+    "user",
+    "/current/info",
+    Placeholder.StudentPlace
+  );

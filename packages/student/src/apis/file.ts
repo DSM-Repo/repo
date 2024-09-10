@@ -1,9 +1,8 @@
 import { useMyMutation } from "@configs/util";
-import { IImage } from "./types";
+import { Api } from "@configs/type";
 
-export const uploadImage = (type: "profile" | "document") =>
-  useMyMutation<FormData, IImage>(
-    "post",
-    "file",
-    `/image?type=${type.toUpperCase()}`
-  );
+export const fileUpload = () =>
+  useMyMutation<FormData, Api.File.Image>("post", "file", `/image`);
+
+export const fileRemove = () =>
+  useMyMutation<string, null>("delete", "file", "");
