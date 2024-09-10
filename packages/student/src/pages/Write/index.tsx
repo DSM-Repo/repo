@@ -46,6 +46,7 @@ export const Write = () => {
   const { refetch: studentRefetch } = studentInfo();
   const { mutate: submitMutate } = resumeSubmit();
   const { mutate: saveMutate } = resumeSave();
+  const [open, setOpen] = useState(!!!localStorage.getItem("ShortcutAlert"));
 
   const [width, setWidth] = useState(
     document.body.clientWidth - 870 < 814
@@ -216,10 +217,13 @@ export const Write = () => {
       ]}
     >
       <div className="w-full max-w-[620px] flex justify-center py-[24px]">
-        {!localStorage.getItem("ShortcutAlert") && (
+        {open && (
           <div
             className="col-flex flex-center z-30 backdrop-blur-[2px] gap-5 bg-[#00000099] w-full h-full absolute top-0 left-0 cursor-pointer"
-            onClick={() => localStorage.setItem("ShortcutAlert", "true")}
+            onClick={() => {
+              localStorage.setItem("ShortcutAlert", "true");
+              setOpen(false);
+            }}
           >
             <div className="col-flex items-center gap-3">
               <span className="text-[28px] font-bold">
