@@ -77,7 +77,7 @@ export const Button = ({
         if (canShowTitle.current) {
           setShow(true);
         }
-      }, 500);
+      }, 250);
     } else {
       canShowTitle.current = false;
       setShow(false);
