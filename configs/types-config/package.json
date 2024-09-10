@@ -1,7 +1,7 @@
 {
   "name": "@configs/type",
   "packageManager": "yarn@4.3.0",
-  "main": "./src",
+  "main": "./src/index.ts",
   "dependencies": {
     "typescript": "5.4.5"
   }
