@@ -1,8 +1,8 @@
 import { Icon, Date, Dropdown, Text } from "ui";
-import { achievementType } from "@configs/util";
 import { setType } from "@/hooks/useResumeData";
 import { ChangeEvent, useState } from "react";
 import { Layout } from "../Layout";
+import { Document } from "@configs/type";
 
 const typeChange = {
   수상: "수여",
@@ -20,11 +20,13 @@ const koreanChangeAPI = {
 };
 
 interface IProp {
-  data: achievementType;
+  data: Document.Achievement_list;
   setData: setType;
+  index: number;
+  moveItem: (index: number, direction: "up" | "down") => void;
 }
 
-export const Item = ({ data, setData }: IProp) => {
+export const Item = ({ data, setData, index, moveItem }: IProp) => {
   const [type, setType] = useState<"수상" | "자격증">(
     koreanChangeAPI[data.type] as "수상" | "자격증"
   );
@@ -59,28 +61,39 @@ export const Item = ({ data, setData }: IProp) => {
 
   return (
     <Layout>
-      <div className="flex justify-end w-full items-center">
-        <Icon name="Trash" className="cursor-pointer" onClick={del} />
-      </div>
-      <div className="w-full flex justify-between items-center">
-        <Text
-          id="name"
-          size="medium"
-          label="이름"
+      <div className="flex justify-between w-full">
+        <input
+          className="font-semibold text-[25px] w-[80%]"
           placeholder="이름을 입력하세요"
           value={data.name}
+          id="name"
           onChange={handleChange}
         />
-        <Dropdown
-          id="type"
-          size="medium"
-          label="형태"
-          placeholder="형태를 선택하세요"
-          selections={["수상", "자격증"]}
-          selected={type}
-          onChange={(data: string) => handleType(data as "수상" | "자격증")}
-        />
+        <div className="flex items-center gap-[10px]">
+          <Icon
+            name="Arrow"
+            rotate="up"
+            className="cursor-pointer"
+            onClick={() => moveItem(index, "down")}
+          />
+          <Icon
+            name="Arrow"
+            rotate="down"
+            className="cursor-pointer"
+            onClick={() => moveItem(index, "up")}
+          />
+          <Icon name="Trash" className="cursor-pointer" onClick={del} />
+        </div>
       </div>
+      <Dropdown
+        id="type"
+        size="large"
+        label="형태"
+        placeholder="형태를 선택하세요"
+        selections={["수상", "자격증"]}
+        selected={type}
+        onChange={(data: string) => handleType(data as "수상" | "자격증")}
+      />
 
       <Date
         label={`${typeChange[type]}일`}

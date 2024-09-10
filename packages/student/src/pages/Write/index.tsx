@@ -1,5 +1,5 @@
+import { Ternary, useEventListeners, useShortcut } from "@configs/util";
 import { Activity, Certification, Inform } from "./Sections";
-import { Ternary, useEventListeners } from "@configs/util";
 import { Layout, Custom, Title, Button } from "ui";
 import { Introduce } from "./Sections/Introduce";
 import { Projects } from "./Sections/Projects";
@@ -46,6 +46,7 @@ export const Write = () => {
   const { refetch: studentRefetch } = studentInfo();
   const { mutate: submitMutate } = resumeSubmit();
   const { mutate: saveMutate } = resumeSave();
+  const [open, setOpen] = useState(!!!localStorage.getItem("ShortcutAlert"));
 
   const [width, setWidth] = useState(
     document.body.clientWidth - 870 < 814
@@ -68,6 +69,40 @@ export const Write = () => {
           setWidth(rem < 814 ? rem : 814);
         }
       }
+    }
+  ]);
+
+  useShortcut([
+    {
+      key: "s",
+      ctrl: true,
+      action: () => {
+        if (resumeLocalData.status === "ONGOING") {
+          saveMutate(resumeLocalData, {
+            onSuccess: () => {
+              toast.success("성공적으로 저장되었습니다");
+              completionRefetch();
+              studentRefetch();
+              sharedRefetch();
+            }
+          });
+        } else {
+          toast.error("제출 상태에선 저장할 수 없습니다");
+        }
+      }
+    },
+    {
+      key: "u",
+      ctrl: true,
+      action: () =>
+        submitMutate(undefined, {
+          onSuccess: () => {
+            toast.success(
+              `성공적으로 ${resumeLocalData.status === "ONGOING" ? "제출" : "제출 취소"}되었습니다`
+            );
+            resumeRefetch();
+          }
+        })
     }
   ]);
 
@@ -182,6 +217,30 @@ export const Write = () => {
       ]}
     >
       <div className="w-full max-w-[620px] flex justify-center py-[24px]">
+        {open && (
+          <div
+            className="col-flex flex-center z-30 backdrop-blur-[2px] gap-5 bg-[#00000099] w-full h-full absolute top-0 left-0 cursor-pointer"
+            onClick={() => {
+              localStorage.setItem("ShortcutAlert", "true");
+              setOpen(false);
+            }}
+          >
+            <div className="col-flex items-center gap-3">
+              <span className="text-[28px] font-bold">
+                Repo 에디터에 단축키가 추가되었습니다
+              </span>
+              <span className="text-[20px]">CTRL(COMMAND) + S : 저장</span>
+              <span className="text-[20px]">
+                CTRL(COMMAND) + U : 제출 (제출 취소)
+              </span>
+            </div>
+
+            <span className="text-gray-100 text-[15px]">
+              이 창은 클릭하여 닫을 수 있습니다.
+            </span>
+          </div>
+        )}
+
         <div className="w-fit col-flex gap-6">{sections[idNum - 1]}</div>
       </div>
     </Layout>

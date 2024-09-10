@@ -1,9 +1,9 @@
+import { Document } from "@configs/type";
+import { useResumeData } from "@/hooks";
 import { Title, Icon } from "ui";
-import { projectType } from "@configs/util";
-import { useResumeData } from "@/hooks/useResumeData";
 import { Item } from "./Item";
 
-const defaultData: projectType = {
+const defaultData: Document.Project_list = {
   element_id: "",
   name: "",
   type: "PERSONAL",
@@ -37,6 +37,17 @@ export const Projects = () => {
   const { data: resume, setPartial, set } = useResumeData();
   const { project_list } = resume;
 
+  const moveItem = (index: number, direction: "up" | "down") => {
+    let array = [...project_list];
+
+    if (direction === "up" && index < array.length - 1) {
+      [array[index], array[index + 1]] = [array[index + 1], array[index]];
+    } else if (direction === "down" && index > 0) {
+      [array[index - 1], array[index]] = [array[index], array[index - 1]];
+    }
+    set((prev) => ({ data: { ...prev.data, project_list: array } }));
+  };
+
   return (
     <div className="col-flex gap-6 w-fit">
       <div className="flex items-center justify-between w-[502px]">
@@ -56,8 +67,14 @@ export const Projects = () => {
           className="cursor-pointer"
         />
       </div>
-      {project_list.map((i) => (
-        <Item data={i} setData={set} key={i.element_id} />
+      {project_list.map((i, j) => (
+        <Item
+          data={i}
+          setData={set}
+          key={i.element_id}
+          index={j}
+          moveItem={moveItem}
+        />
       ))}
     </div>
   );
