@@ -1,6 +1,6 @@
-import { forwardRef, useRef, useState } from "react";
+import { forwardRef, useState } from "react";
 import { useResumeData } from "@/hooks";
-import { Box, Inform, Projects, Resume } from "ui";
+import { Box, Resume } from "ui";
 import { Header } from "./Header";
 
 export type setType = React.Dispatch<

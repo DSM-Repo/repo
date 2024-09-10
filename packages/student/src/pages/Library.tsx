@@ -1,9 +1,9 @@
-import { getLibrary } from "@/apis";
 import { useNavigate } from "react-router-dom";
 import { Button, Layout, Title } from "ui";
+import { libraryList } from "@/apis";
 
 export const Library = () => {
-  const { data } = getLibrary();
+  const { data: listData } = libraryList();
   const navigate = useNavigate();
 
   return (
@@ -14,7 +14,7 @@ export const Library = () => {
           subTitle="지금까지 공개된 레주메북들을 읽어보세요"
         />
         <div className="flex w-full flex-wrap gap-5">
-          {data?.data
+          {listData?.data
             .sort((i, j) =>
               i.year !== j.year ? j.year - i.year : j.grade - i.grade
             )

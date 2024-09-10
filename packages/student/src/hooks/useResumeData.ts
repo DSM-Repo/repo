@@ -1,4 +1,4 @@
-import { IResume, resumeData } from "@configs/util";
+import { Document, Placeholder } from "@configs/type";
 import { create } from "zustand";
 
 export type setType = (
@@ -9,23 +9,20 @@ export type setType = (
   replace?: boolean | undefined
 ) => void;
 
-type sectionType =
-  | "writer"
-  | "introduce"
-  | "achievement_list"
-  | "activity_list"
-  | "project_list";
-
 interface IResumeData {
-  data: IResume;
+  data: Document.Resume;
   set: setType;
-  setPartial: (section: sectionType, data: any, id?: string) => void;
+  setPartial: (
+    section: Document.sectionKeyType,
+    data: any,
+    id?: string
+  ) => void;
 }
 
 export const useResumeData = create<IResumeData>((set) => ({
-  data: resumeData,
+  data: Placeholder.ResumeDetailPlace,
   set,
-  setPartial: (section: sectionType, data: any, id?: string) =>
+  setPartial: (section: Document.sectionKeyType, data: any, id?: string) =>
     set((prev) => ({
       data: {
         ...prev.data,

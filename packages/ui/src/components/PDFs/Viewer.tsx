@@ -1,10 +1,10 @@
 import { Layout, sidebarType, buttonType, Items } from "ui";
+import { Ternary, useShortcut } from "@configs/util";
 import { Page, pdfjs, Document } from "react-pdf";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/esm/Page/TextLayer.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Ternary } from "@configs/util";
 import { saveAs } from "file-saver";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@4.4.168/build/pdf.worker.min.mjs`;
@@ -151,35 +151,28 @@ export const Viewer = ({ url, indexList, buttons, sidebars }: IProp) => {
     return () => window.removeEventListener("resize", updateScale);
   }, []);
 
-  const handleKeys = (e: KeyboardEvent) => {
-    if (e.shiftKey) {
-      if (e.key === "ArrowRight") {
-        const persons = indexList.filter((i) => i.page_number > page + 1);
-        if (persons) {
-          const item = persons[0].page_number;
-          handleMovePage(!!!(item % 2) ? item - 1 : item);
-        }
-      } else if (e.key === "ArrowLeft") {
-        const persons = indexList.filter((i) => i.page_number < page - 1);
-        if (persons) {
-          const item = persons[persons.length - 1].page_number;
-          handleMovePage(!!!(item % 2) ? item - 1 : item);
-        }
-      }
-      return;
-    } else if (e.key === "ArrowLeft") {
-      handleMovePage(page - 2);
-    } else if (e.key === "ArrowRight" && page + 1 < max) {
-      handleMovePage(page + 2);
+  const handleMoveStudent = (direction: "Left" | "Right") => {
+    const persons = indexList.filter((i) =>
+      direction === "Left" ? i.page_number < page - 1 : i.page_number > page + 1
+    );
+    const item =
+      persons[direction === "Left" ? persons.length - 1 : 0].page_number;
+    if (persons.length !== 0 && item) {
+      handleMovePage(!!!(item % 2) ? item - 1 : item);
     }
   };
 
-  useEffect(() => {
-    document.addEventListener("keydown", handleKeys);
-    return () => {
-      document.removeEventListener("keydown", handleKeys);
-    };
-  }, [handleKeys]);
+  useShortcut([
+    { key: "ArrowRight", action: () => handleMovePage(page + 2) },
+    { key: "ArrowLeft", action: () => handleMovePage(page - 2) },
+    {
+      key: "ArrowRight",
+      shift: true,
+      action: () => handleMoveStudent("Right")
+    },
+    { key: "ArrowLeft", shift: true, action: () => handleMoveStudent("Left") },
+    { key: "d", ctrl: true, action: () => url && saveAs(url, `Resume.pdf`) }
+  ]);
 
   return (
     <Layout buttons={_buttons} sidebars={_sidebars}>

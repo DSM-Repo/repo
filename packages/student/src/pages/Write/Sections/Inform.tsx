@@ -1,7 +1,7 @@
-import { useResumeData } from "@/hooks/useResumeData";
 import { Dropdown, Text, Label, List, Title } from "ui";
-import { major } from "@/apis";
+import { useResumeData } from "@/hooks/useResumeData";
 import { ChangeEvent } from "react";
+import { majorList } from "@/apis";
 import { Layout } from "./Layout";
 
 const studId = {
@@ -29,7 +29,7 @@ const studId = {
 
 export const Inform = () => {
   const { data: resume, setPartial } = useResumeData();
-  const { data: majors } = major();
+  const { data: majors } = majorList();
   const { writer } = resume;
 
   const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) =>

@@ -1,8 +1,9 @@
-import { Box, Title, useSideBarOpen } from "ui";
+import { Box, Title } from "ui";
 import { Ternary } from "@configs/util";
-import { completion } from "@/apis";
 import { Doughnut } from "react-chartjs-2";
 import { Chart, ArcElement } from "chart.js";
+import { resumeCompletion } from "@/apis";
+import { useResumeData } from "@/hooks";
 Chart.register(ArcElement);
 
 interface IProp {
@@ -24,7 +25,9 @@ const Item = ({ title, complete }: IProp) => {
 };
 
 export const Completion = () => {
-  const { data: complete } = completion();
+  const { data: complete } = resumeCompletion();
+  const { data: resumeLocalData } = useResumeData();
+  const { status } = resumeLocalData;
 
   let data = [
     {
@@ -55,13 +58,8 @@ export const Completion = () => {
   };
 
   return (
-    <Box
-      className="gap-5 row-start-1 row-end-3 col-start-1 col-end-1"
-      padding="32px 20px 32px 20px"
-    >
-      <div className="px-3">
-        <Title title="레주메 완성도" subTitle="레주메를 완성해 보세요" />
-      </div>
+    <Box className="gap-5" padding="32px 25px 32px 32px">
+      <Title title="레주메 완성도" subTitle="레주메를 완성해 보세요" />
       <div className="flex w-full gap-4 items-center">
         <div className="w-[250px] col-flex gap-6 flex-shrink-0 h-fit">
           <div className="col-flex w-full items-center justify-between">
@@ -75,20 +73,30 @@ export const Completion = () => {
             <Item title="활동" complete={complete?.activity} />
           </div>
         </div>
-        <div className="w-full h-fit flex items-center justify-center px-10">
+        <div className="w-full h-fit flex items-center justify-center px-2">
           <div className="w-[240px] h-[240px] relative">
             <div className="w-full h-full absolute flex flex-center">
-              <span className="text-green-400 text-[48px] font-bold">
-                {complete?.percent_complete || 0}
-                <span className="text-inherit text-[32px] font-medium">%</span>
-              </span>
+              <Ternary data={status === "ONGOING"}>
+                <span className="text-green-400 text-[48px] font-bold">
+                  {complete?.percent_complete}
+                  <span className="text-inherit text-[32px]font-medium">%</span>
+                </span>
+              </Ternary>
+              <Ternary data={status === "SUBMITTED" || status === "RELEASED"}>
+                <span className="text-green-400 text-[48px] font-bold">
+                  {status === "SUBMITTED" ? "제출됨" : "공개됨"}
+                </span>
+              </Ternary>
             </div>
             <Doughnut
               data={finalData}
               options={{
                 cutout: 90,
                 maintainAspectRatio: false,
-                aspectRatio: 1
+                aspectRatio: 1,
+                animation: {
+                  duration: 1000
+                }
               }}
             />
           </div>
