@@ -1499,7 +1499,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@configs/type@workspace:configs/types-config":
+"@configs/type@workspace:^, @configs/type@workspace:configs/types-config":
   version: 0.0.0-use.local
   resolution: "@configs/type@workspace:configs/types-config"
   dependencies:
@@ -8974,6 +8974,7 @@ __metadata:
   dependencies:
     "@configs/eslint": "workspace:^"
     "@configs/tailwindcss": "workspace:^"
+    "@configs/type": "workspace:^"
     "@configs/util": "workspace:^"
     "@tanstack/react-query": "npm:5.52.0"
     "@tanstack/react-query-devtools": "npm:^5.51.15"
