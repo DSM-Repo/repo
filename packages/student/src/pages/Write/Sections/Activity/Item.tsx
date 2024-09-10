@@ -2,14 +2,16 @@ import { Date, CheckBox, Text, Label, TextArea, Icon } from "ui";
 import { Layout } from "../Layout";
 import { ChangeEvent } from "react";
 import { setType } from "@/hooks/useResumeData";
-import { activityType } from "@configs/util";
+import { Document } from "@configs/type";
 
 interface IProp {
-  data: activityType;
+  data: Document.Activity_list;
   setData: setType;
+  index: number;
+  moveItem: (index: number, direction: "up" | "down") => void;
 }
 
-export const Item = ({ data, setData }: IProp) => {
+export const Item = ({ data, setData, index, moveItem }: IProp) => {
   const set = (id: string, value?: string | boolean) =>
     setData((prev) => ({
       data: {
@@ -51,8 +53,22 @@ export const Item = ({ data, setData }: IProp) => {
 
   return (
     <Layout>
-      <div className="flex justify-end w-full items-center">
-        <Icon name="Trash" className="cursor-pointer" onClick={del} />
+      <div className="flex justify-end w-full">
+        <div className="flex items-center gap-[10px]">
+          <Icon
+            name="Arrow"
+            rotate="up"
+            className="cursor-pointer"
+            onClick={() => moveItem(index, "down")}
+          />
+          <Icon
+            name="Arrow"
+            rotate="down"
+            className="cursor-pointer"
+            onClick={() => moveItem(index, "up")}
+          />
+          <Icon name="Trash" className="cursor-pointer" onClick={del} />
+        </div>
       </div>
       <Text
         id="name"

@@ -1,9 +1,9 @@
 import { useResumeData } from "@/hooks/useResumeData";
-import { achievementType } from "@configs/util";
 import { Item } from "./Item";
 import { Icon, Title } from "ui";
+import { Document } from "@configs/type";
 
-const defaultData: achievementType = {
+const defaultData: Document.Achievement_list = {
   element_id: "",
   name: "",
   institution: "",
@@ -14,6 +14,17 @@ const defaultData: achievementType = {
 export const Certification = () => {
   const { data: resume, setPartial, set } = useResumeData();
   const { achievement_list } = resume;
+
+  const moveItem = (index: number, direction: "up" | "down") => {
+    let array = [...achievement_list];
+
+    if (direction === "up" && index < array.length - 1) {
+      [array[index], array[index + 1]] = [array[index + 1], array[index]];
+    } else if (direction === "down" && index > 0) {
+      [array[index - 1], array[index]] = [array[index], array[index - 1]];
+    }
+    set((prev) => ({ data: { ...prev.data, achievement_list: array } }));
+  };
 
   return (
     <div className="col-flex gap-6 w-fit">
@@ -34,8 +45,14 @@ export const Certification = () => {
           className="cursor-pointer"
         />
       </div>
-      {achievement_list?.map((i) => (
-        <Item data={i} setData={set} key={i.element_id} />
+      {achievement_list?.map((i, j) => (
+        <Item
+          data={i}
+          setData={set}
+          key={i.element_id}
+          index={j}
+          moveItem={moveItem}
+        />
       ))}
     </div>
   );

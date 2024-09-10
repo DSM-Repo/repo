@@ -1,8 +1,8 @@
 import { Icon, Date, Dropdown, Text } from "ui";
-import { achievementType } from "@configs/util";
 import { setType } from "@/hooks/useResumeData";
 import { ChangeEvent, useState } from "react";
 import { Layout } from "../Layout";
+import { Document } from "@configs/type";
 
 const typeChange = {
   수상: "수여",
@@ -20,11 +20,13 @@ const koreanChangeAPI = {
 };
 
 interface IProp {
-  data: achievementType;
+  data: Document.Achievement_list;
   setData: setType;
+  index: number;
+  moveItem: (index: number, direction: "up" | "down") => void;
 }
 
-export const Item = ({ data, setData }: IProp) => {
+export const Item = ({ data, setData, index, moveItem }: IProp) => {
   const [type, setType] = useState<"수상" | "자격증">(
     koreanChangeAPI[data.type] as "수상" | "자격증"
   );
@@ -59,8 +61,22 @@ export const Item = ({ data, setData }: IProp) => {
 
   return (
     <Layout>
-      <div className="flex justify-end w-full items-center">
-        <Icon name="Trash" className="cursor-pointer" onClick={del} />
+      <div className="flex justify-end w-full">
+        <div className="flex items-center gap-[10px]">
+          <Icon
+            name="Arrow"
+            rotate="up"
+            className="cursor-pointer"
+            onClick={() => moveItem(index, "down")}
+          />
+          <Icon
+            name="Arrow"
+            rotate="down"
+            className="cursor-pointer"
+            onClick={() => moveItem(index, "up")}
+          />
+          <Icon name="Trash" className="cursor-pointer" onClick={del} />
+        </div>
       </div>
       <div className="w-full flex justify-between items-center">
         <Text

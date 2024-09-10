@@ -1,4 +1,3 @@
-import { ChangeEvent, useState } from "react";
 import {
   Button,
   Date,
@@ -14,10 +13,13 @@ import { setType } from "@/hooks";
 import { Api, Document } from "@configs/type";
 import { Layout } from "../Layout";
 import { fileRemove, fileUpload } from "@/apis";
+import { sectionData } from "@configs/type/src/Document";
 
 interface IProp {
   data: Document.Project_list;
   setData: setType;
+  index: number;
+  moveItem: (index: number, direction: "up" | "down") => void;
 }
 
 const typeChange = {
@@ -36,11 +38,14 @@ const defaultSect: Document.sectionData = {
   description: ""
 };
 
-export const Item = ({ data, setData }: IProp) => {
+export const Item = ({ data, setData, index, moveItem }: IProp) => {
   const { mutate: fileUploadMutate } = fileUpload();
   const { mutate: fileReomoveMutate } = fileRemove();
 
-  const set = (id: string, value?: string | string[] | Api.File.Image) =>
+  const set = (
+    id: string,
+    value?: string | string[] | Api.File.Image | sectionData[]
+  ) =>
     setData((prev) => ({
       data: {
         ...prev.data,
@@ -87,8 +92,8 @@ export const Item = ({ data, setData }: IProp) => {
             ? {
                 ...data,
                 sections: [
-                  ...data.sections,
-                  { ...defaultSect, element_id: crypto.randomUUID() }
+                  { ...defaultSect, element_id: crypto.randomUUID() },
+                  ...data.sections
                 ]
               }
             : i
@@ -117,10 +122,10 @@ export const Item = ({ data, setData }: IProp) => {
     });
   };
 
-  const handleChange = ({ target }: ChangeEvent<HTMLInputElement>) =>
+  const handleChange = ({ target }: React.ChangeEvent<HTMLInputElement>) =>
     set(target.id, target.value);
 
-  const handleLogo = ({ target }: ChangeEvent<HTMLInputElement>) => {
+  const handleLogo = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
     const file = (target.files as FileList)[0];
     if (file) {
       const form = new FormData();
@@ -171,12 +176,34 @@ export const Item = ({ data, setData }: IProp) => {
       }
     }));
 
+  const moveSection = (index: number, direction: "up" | "down") => {
+    let array = [...data.sections];
+
+    if (direction === "up" && index < array.length - 1) {
+      [array[index], array[index + 1]] = [array[index + 1], array[index]];
+    } else if (direction === "down" && index > 0) {
+      [array[index - 1], array[index]] = [array[index], array[index - 1]];
+    }
+    set("sections", array);
+  };
+
   return (
     <Layout>
       <div className="flex justify-end w-full">
         <div className="flex items-center gap-[10px]">
+          <Icon
+            name="Arrow"
+            rotate="up"
+            className="cursor-pointer"
+            onClick={() => moveItem(index, "down")}
+          />
+          <Icon
+            name="Arrow"
+            rotate="down"
+            className="cursor-pointer"
+            onClick={() => moveItem(index, "up")}
+          />
           <Icon name="Trash" className="cursor-pointer" onClick={del} />
-          <Icon name="AddRow" className="cursor-pointer" onClick={addSection} />
         </div>
       </div>
       <div className="w-full flex items-center justify-between">
@@ -252,9 +279,33 @@ export const Item = ({ data, setData }: IProp) => {
       />
       <Label label="섹션" size="full">
         <div className="w-full col-flex gap-8">
-          {data.sections.map((i) => (
+          <Button
+            size="full"
+            onClick={addSection}
+            icon="Add"
+            direction="center"
+          >
+            섹션 추가
+          </Button>
+          {data.sections.map((i, j) => (
             <Label size="full" label="">
               <div className="w-full col-flex gap-3">
+                <div className="self-end flex gap-2 items-center">
+                  <Icon
+                    name="Arrow"
+                    rotate="up"
+                    size={20}
+                    className="cursor-pointer"
+                    onClick={() => moveSection(j, "down")}
+                  />
+                  <Icon
+                    name="Arrow"
+                    rotate="down"
+                    size={20}
+                    onClick={() => moveSection(j, "up")}
+                    className="cursor-pointer"
+                  />
+                </div>
                 <div className="w-full flex gap-3 h-full">
                   <Text
                     placeholder="섹션 이름을 입력하세요"
