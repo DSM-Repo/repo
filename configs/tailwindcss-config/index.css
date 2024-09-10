@@ -117,6 +117,19 @@ img {
   outline: none;
 }
 
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #333333 inset;
+  box-shadow: 0 0 0px 1000px #333333 inset;
+  font-family: "PretendardVariable" !important;
+  -webkit-text-fill-color: #fff; /* 텍스트 색상 지정 */
+  border-radius: 10px;
+}
+
+canvas:not(.react-pdf__Page__canvas) {
+  width: 100% !important;
+  height: 100% !important;
+}
+
 span,
 label,
 input,

@@ -1,9 +1,12 @@
-import { useMyQuery, useMyMutation } from "@configs/util";
-import { IAccess, IBook, ILibrary } from "./types";
+import { useMyQuery } from "@configs/util";
+import { Api, Placeholder } from "@configs/type";
 
-export const getLibrary = () => useMyQuery<ILibrary>("library", ``);
+export const libraryList = () =>
+  useMyQuery<Api.Library.Library>("library", "", Placeholder.CommonLayoutPlace);
 
-export const getBook = (id: string) => useMyQuery<IBook>("library", `/${id}`);
-
-export const libraryAccess = () =>
-  useMyMutation<IAccess, undefined>("patch", "library", "/access-right");
+export const libraryDetail = (id: string) =>
+  useMyQuery<Api.Library.LibraryDetail>(
+    "library",
+    `/${id}`,
+    Placeholder.LibraryDetailPlace
+  );

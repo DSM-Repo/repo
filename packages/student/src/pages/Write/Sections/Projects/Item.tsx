@@ -10,13 +10,13 @@ import {
   Icon,
   File
 } from "ui";
-import { projectType, sectionType } from "@configs/util";
 import { setType } from "@/hooks";
-import { IImage, uploadImage, delFile } from "@/apis";
+import { Api, Document } from "@configs/type";
 import { Layout } from "../Layout";
+import { fileRemove, fileUpload } from "@/apis";
 
 interface IProp {
-  data: projectType;
+  data: Document.Project_list;
   setData: setType;
 }
 
@@ -30,17 +30,17 @@ export const typeAgainChange = {
   TEAM: "팀"
 };
 
-const defaultSect: sectionType = {
+const defaultSect: Document.sectionData = {
   element_id: "",
   title: "",
   description: ""
 };
 
 export const Item = ({ data, setData }: IProp) => {
-  const { mutate } = uploadImage("profile");
-  const { mutate: delImage } = delFile();
+  const { mutate: fileUploadMutate } = fileUpload();
+  const { mutate: fileReomoveMutate } = fileRemove();
 
-  const set = (id: string, value?: string | string[] | IImage) =>
+  const set = (id: string, value?: string | string[] | Api.File.Image) =>
     setData((prev) => ({
       data: {
         ...prev.data,
@@ -112,7 +112,7 @@ export const Item = ({ data, setData }: IProp) => {
     }));
 
   const deleteImage = () => {
-    delImage(`?url=${data?.logo?.image_path as string}`, {
+    fileReomoveMutate(`?url=${data?.logo?.image_path as string}`, {
       onSuccess: () => set("logo", undefined)
     });
   };
@@ -125,7 +125,7 @@ export const Item = ({ data, setData }: IProp) => {
     if (file) {
       const form = new FormData();
       form.append("file", file);
-      mutate(form, {
+      fileUploadMutate(form, {
         onSuccess: (res) => set("logo", res)
       });
     }

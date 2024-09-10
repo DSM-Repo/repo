@@ -1,7 +1,12 @@
 import { useMyMutation, useMyQuery } from "@configs/util";
-import { IFeedback } from "./types";
+import { Api, Placeholder } from "@configs/type";
 
-export const feedback = () => useMyQuery<IFeedback>("feedback", "");
+export const feedbackList = () =>
+  useMyQuery<Api.Feedback.Feedback>(
+    "feedback",
+    "",
+    Placeholder.CommonLayoutPlace
+  );
 
-export const confirm = () =>
-  useMyMutation<string, undefined>("post", "feedback", "/confirm");
+export const feedbackConfirm = () =>
+  useMyMutation<string, null>("post", "feedback", "/confirm");

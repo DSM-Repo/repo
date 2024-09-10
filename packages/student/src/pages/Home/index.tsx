@@ -1,4 +1,4 @@
-import { confirm, currentInfo, feedback } from "@/apis";
+import { feedbackConfirm, feedbackList, studentInfo } from "@/apis";
 import { toast } from "react-toastify";
 import {
   Layout,
@@ -8,10 +8,9 @@ import {
   Profile,
   Title
 } from "ui";
+import { Completion, Introduce } from "./Section";
+import { Document } from "@configs/type";
 import { Feedback } from "./Feedback";
-import { Completion } from "./Section/Completion";
-import { Status } from "./Section/Status";
-import { Introduce } from "./Section/Introduce";
 
 const buttons: buttonType[] = [
   {
@@ -21,7 +20,7 @@ const buttons: buttonType[] = [
   }
 ];
 
-const types = {
+const types: Record<Document.sectionType, string> = {
   WRITER_INFO: "내 정보",
   INTRODUCE: "자기소개",
   ACTIVITY: "활동",
@@ -30,15 +29,15 @@ const types = {
 };
 
 export const Home = () => {
-  const { data, refetch } = feedback();
-  const { data: studentData } = currentInfo();
-  const { mutate } = confirm();
+  const { data: feedbackData, refetch: feedbackRefetch } = feedbackList();
+  const { data: studentData } = studentInfo();
+  const { mutate: confirmMutate } = feedbackConfirm();
   const { sideOpened } = useSideBarOpen();
 
   const handleUpload = (id: string) => {
-    mutate(`?id=${id}`, {
+    confirmMutate(`?id=${id}`, {
       onSuccess: () => {
-        refetch();
+        feedbackRefetch();
         toast.success("성공적으로 반영되었습니다!");
       }
     });
@@ -49,8 +48,8 @@ export const Home = () => {
       width: "500px",
       type: "standard",
       name: "피드백 목록",
-      items: data
-        ? data?.data?.map((i) => ({
+      items: feedbackData
+        ? feedbackData?.data?.map((i) => ({
             name: types[i.type],
             key: i.id,
             content: (
@@ -69,21 +68,20 @@ export const Home = () => {
 
   return (
     <Layout buttons={buttons} sidebars={sidebars}>
-      <div className="w-full h-full col-flex justify-between">
+      <div className="w-full h-full col-flex justify-between gap-8">
         <div className="px-8 gap-6 h-fit flex items-center">
           <Profile size={120} round="40px" />
           <Title
-            title={studentData?.name || "홍길동"}
+            title={studentData?.name}
             titleSize="36px"
-            subTitle={studentData?.major || "전공 미정"}
+            subTitle={studentData?.major}
             subTitleSize="20px"
           />
         </div>
         <div
-          className={`${sideOpened ? "col-flex" : "grid grid-cols-[fit-content_10%] grid-rows-[137px_1fr]"} h-full gap-6 p-8`}
+          className={`${sideOpened ? "col-flex" : "flex"} max-xl:col-flex gap-8 w-full h-full px-8 pb-8`}
         >
           <Completion />
-          <Status />
           <Introduce />
         </div>
       </div>

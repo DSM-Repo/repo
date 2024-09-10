@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@configs/type": "workspace:^",
     "@configs/util": "workspace:^",
     "@tanstack/react-query": "5.52.0",
     "@tanstack/react-query-devtools": "^5.51.15",

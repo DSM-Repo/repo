@@ -1,16 +1,15 @@
-import { introduce } from "@/apis";
+import { recentlyShared } from "@/apis";
 import { Box, Title, useSideBarOpen } from "ui";
 
 export const Introduce = () => {
-  const { data } = introduce();
+  const { data } = recentlyShared();
   const { sideOpened } = useSideBarOpen();
 
   return (
     <Box
-      width="inherit"
       height={sideOpened ? "500px" : "100%"}
       padding="32px"
-      className={`gap-6 col-start-2 col-end-2 row-start-2 row-end-2 ${!sideOpened ? "overflow-auto" : ""}`}
+      className={`gap-6 ${!sideOpened ? "overflow-auto" : ""}`}
     >
       <Title
         title="자기소개"
