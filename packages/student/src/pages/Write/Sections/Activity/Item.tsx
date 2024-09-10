@@ -53,7 +53,14 @@ export const Item = ({ data, setData, index, moveItem }: IProp) => {
 
   return (
     <Layout>
-      <div className="flex justify-end w-full">
+      <div className="flex justify-between w-full">
+        <input
+          className="font-semibold text-[25px] w-[80%]"
+          placeholder="이름을 입력하세요"
+          value={data.name}
+          id="name"
+          onChange={handleChange}
+        />
         <div className="flex items-center gap-[10px]">
           <Icon
             name="Arrow"
@@ -70,14 +77,6 @@ export const Item = ({ data, setData, index, moveItem }: IProp) => {
           <Icon name="Trash" className="cursor-pointer" onClick={del} />
         </div>
       </div>
-      <Text
-        id="name"
-        size="large"
-        label="활동 이름"
-        placeholder="이름을 입력하세요"
-        value={data.name}
-        onChange={handleChange}
-      />
       <Label label="진행일" size="full">
         <div className="w-full col-flex gap-3">
           <div className="w-full h-fit justify-between items-center flex">
@@ -113,7 +112,7 @@ export const Item = ({ data, setData, index, moveItem }: IProp) => {
 
       <TextArea
         id="description"
-        size="full"
+        size="large"
         label="내용"
         placeholder="내용을 입력하세요"
         value={data.description}

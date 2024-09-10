@@ -189,7 +189,14 @@ export const Item = ({ data, setData, index, moveItem }: IProp) => {
 
   return (
     <Layout>
-      <div className="flex justify-end w-full">
+      <div className="flex justify-between w-full">
+        <input
+          className="font-semibold text-[25px] w-[80%] item"
+          placeholder="이름을 입력하세요"
+          value={data.name}
+          id="name"
+          onChange={handleChange}
+        />
         <div className="flex items-center gap-[10px]">
           <Icon
             name="Arrow"
@@ -205,34 +212,6 @@ export const Item = ({ data, setData, index, moveItem }: IProp) => {
           />
           <Icon name="Trash" className="cursor-pointer" onClick={del} />
         </div>
-      </div>
-      <div className="w-full flex items-center justify-between">
-        <Text
-          id="name"
-          label="이름"
-          size="small"
-          placeholder="이름"
-          value={data.name}
-          onChange={handleChange}
-        />
-        <Dropdown
-          selections={["개인", "팀"]}
-          label="형태"
-          selected={typeAgainChange[data.type]}
-          size="small"
-          id="type"
-          onChange={handleType}
-          placeholder="프로젝트 형태를 선택해주세요"
-        />
-        <File
-          size="small"
-          label="로고"
-          placeholder="로고"
-          onChange={handleLogo}
-          onDelete={deleteImage}
-          accept="image/*"
-          value={data.logo}
-        />
       </div>
       <Label label="진행 기간" size="full">
         <div className="w-full h-fit flex justify-between items-center">
@@ -255,6 +234,24 @@ export const Item = ({ data, setData, index, moveItem }: IProp) => {
           />
         </div>
       </Label>
+      <Dropdown
+        selections={["개인", "팀"]}
+        label="형태"
+        selected={typeAgainChange[data.type]}
+        size="large"
+        id="type"
+        onChange={handleType}
+        placeholder="프로젝트 형태를 선택해주세요"
+      />
+      <File
+        size="large"
+        label="로고"
+        placeholder="로고"
+        onChange={handleLogo}
+        onDelete={deleteImage}
+        accept="image/*"
+        value={data.logo}
+      />
       <List
         onDelete={(i) =>
           set(

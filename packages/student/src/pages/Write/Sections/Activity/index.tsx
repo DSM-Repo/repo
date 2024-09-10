@@ -1,7 +1,8 @@
 import { Item } from "./Item";
 import { Title, Icon } from "ui";
-import { useResumeData } from "@/hooks/useResumeData";
+import { useResumeData } from "@/hooks";
 import { Document } from "@configs/type";
+import { useShortcut } from "@configs/util";
 
 const defaultData: Document.Activity_list = {
   element_id: "",

@@ -120,9 +120,14 @@ img {
 input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0px 1000px #333333 inset;
   box-shadow: 0 0 0px 1000px #333333 inset;
-  font-family: "PretendardVariable" !important;
   -webkit-text-fill-color: #fff; /* 텍스트 색상 지정 */
   border-radius: 10px;
+}
+
+input.item:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #222222 inset;
+  box-shadow: 0 0 0px 1000px #222222 inset;
+  -webkit-text-fill-color: #fff; /* 텍스트 색상 지정 */
 }
 
 canvas:not(.react-pdf__Page__canvas) {

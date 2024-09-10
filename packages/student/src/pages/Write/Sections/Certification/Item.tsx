@@ -61,7 +61,14 @@ export const Item = ({ data, setData, index, moveItem }: IProp) => {
 
   return (
     <Layout>
-      <div className="flex justify-end w-full">
+      <div className="flex justify-between w-full">
+        <input
+          className="font-semibold text-[25px] w-[80%]"
+          placeholder="이름을 입력하세요"
+          value={data.name}
+          id="name"
+          onChange={handleChange}
+        />
         <div className="flex items-center gap-[10px]">
           <Icon
             name="Arrow"
@@ -78,25 +85,15 @@ export const Item = ({ data, setData, index, moveItem }: IProp) => {
           <Icon name="Trash" className="cursor-pointer" onClick={del} />
         </div>
       </div>
-      <div className="w-full flex justify-between items-center">
-        <Text
-          id="name"
-          size="medium"
-          label="이름"
-          placeholder="이름을 입력하세요"
-          value={data.name}
-          onChange={handleChange}
-        />
-        <Dropdown
-          id="type"
-          size="medium"
-          label="형태"
-          placeholder="형태를 선택하세요"
-          selections={["수상", "자격증"]}
-          selected={type}
-          onChange={(data: string) => handleType(data as "수상" | "자격증")}
-        />
-      </div>
+      <Dropdown
+        id="type"
+        size="large"
+        label="형태"
+        placeholder="형태를 선택하세요"
+        selections={["수상", "자격증"]}
+        selected={type}
+        onChange={(data: string) => handleType(data as "수상" | "자격증")}
+      />
 
       <Date
         label={`${typeChange[type]}일`}
