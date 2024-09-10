@@ -216,6 +216,27 @@ export const Write = () => {
       ]}
     >
       <div className="w-full max-w-[620px] flex justify-center py-[24px]">
+        {!localStorage.getItem("ShortcutAlert") && (
+          <div
+            className="col-flex flex-center z-30 backdrop-blur-[2px] gap-5 bg-[#00000099] w-full h-full absolute top-0 left-0 cursor-pointer"
+            onClick={() => localStorage.setItem("ShortcutAlert", "true")}
+          >
+            <div className="col-flex items-center gap-3">
+              <span className="text-[28px] font-bold">
+                Repo 에디터에 단축키가 추가되었습니다
+              </span>
+              <span className="text-[20px]">CTRL(COMMAND) + S : 저장</span>
+              <span className="text-[20px]">
+                CTRL(COMMAND) + U : 제출 (제출 취소)
+              </span>
+            </div>
+
+            <span className="text-gray-100 text-[15px]">
+              이 창은 클릭하여 닫을 수 있습니다.
+            </span>
+          </div>
+        )}
+
         <div className="w-fit col-flex gap-6">{sections[idNum - 1]}</div>
       </div>
     </Layout>

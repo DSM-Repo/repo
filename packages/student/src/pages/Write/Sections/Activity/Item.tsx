@@ -1,4 +1,4 @@
-import { Date, CheckBox, Text, Label, TextArea, Icon } from "ui";
+import { Date, CheckBox, Label, TextArea, Icon } from "ui";
 import { Layout } from "../Layout";
 import { ChangeEvent } from "react";
 import { setType } from "@/hooks/useResumeData";
