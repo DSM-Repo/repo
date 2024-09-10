@@ -1,23 +1,23 @@
-import { useParams } from "react-router-dom";
-import { Layout, Custom, Title, Button } from "ui";
 import { Activity, Certification, Inform } from "./Sections";
-import { Preview } from "./Preview";
-import {
-  completion,
-  confirm,
-  currentInfo,
-  feedback,
-  introduce,
-  resumeData,
-  submit,
-  update
-} from "@/apis";
-import { Ternary } from "@configs/util";
+import { Ternary, useEventListeners } from "@configs/util";
+import { Layout, Custom, Title, Button } from "ui";
 import { Introduce } from "./Sections/Introduce";
 import { Projects } from "./Sections/Projects";
+import { useParams } from "react-router-dom";
+import { useRef, useState } from "react";
 import { useResumeData } from "@/hooks";
 import { toast } from "react-toastify";
-import { useEffect, useRef, useState } from "react";
+import { Preview } from "./Preview";
+import {
+  feedbackConfirm,
+  feedbackList,
+  recentlyShared,
+  resumeCompletion,
+  resumeDetail,
+  resumeSave,
+  resumeSubmit,
+  studentInfo
+} from "@/apis";
 
 const sections = [
   <Inform />,
@@ -37,70 +37,70 @@ const sectionsName = {
 
 export const Write = () => {
   const { id } = useParams();
-  const { data: feedbacks, refetch } = feedback();
-  const { data: resume } = useResumeData();
-  const { refetch: refetchResume } = resumeData();
-  const { refetch: refetchIntroduce } = introduce();
-  const { data: complete, refetch: refetchCompl } = completion();
-  const { mutate } = confirm();
-  const { refetch: refetchStudent } = currentInfo();
-  const { mutate: submitResume } = submit();
-  const { mutate: saveResume } = update();
-  const [width, setWidth] = useState(document.body.clientWidth - 870);
+  const { data: listData, refetch: listRefetch } = feedbackList();
+  const { refetch: completionRefetch } = resumeCompletion();
+  const { refetch: sharedRefetch } = recentlyShared();
+  const { mutate: confirmMutate } = feedbackConfirm();
+  const { data: resumeLocalData } = useResumeData();
+  const { refetch: resumeRefetch } = resumeDetail();
+  const { refetch: studentRefetch } = studentInfo();
+  const { mutate: submitMutate } = resumeSubmit();
+  const { mutate: saveMutate } = resumeSave();
+
+  const [width, setWidth] = useState(
+    document.body.clientWidth - 870 < 814
+      ? document.body.clientWidth - 870
+      : 814
+  );
   const idNum = Number(id);
   const pdf = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    window.addEventListener("resize", () => {
-      if (pdf?.current) {
-        const rem = document.body.clientWidth - 870;
-        setWidth(rem < 814 ? rem : 814);
-      }
-    });
-    return () =>
-      window.removeEventListener("resize", () => {
+  const filteredFeedbacks = listData?.data.filter(
+    (i) => i.type === Object.keys(sectionsName)[idNum - 1]
+  );
+
+  useEventListeners([
+    {
+      eventType: "resize",
+      callback: () => {
         if (pdf?.current) {
           const rem = document.body.clientWidth - 870;
           setWidth(rem < 814 ? rem : 814);
         }
-      });
-  }, []);
-
-  const filteredFeedbacks = feedbacks?.data.filter(
-    (i) => i.type === Object.keys(sectionsName)[idNum - 1]
-  );
+      }
+    }
+  ]);
 
   return (
     <Layout
       buttons={[
         {
           icon: "Send",
-          title: resume.status === "ONGOING" ? "제출하기" : "제출 취소하기",
+          title:
+            resumeLocalData.status === "ONGOING" ? "제출하기" : "제출 취소하기",
           action: () =>
-            submitResume(undefined, {
+            submitMutate(undefined, {
               onSuccess: () => {
                 toast.success(
-                  `성공적으로 ${resume.status === "ONGOING" ? "제출" : "제출 취소"}되었습니다`
+                  `성공적으로 ${resumeLocalData.status === "ONGOING" ? "제출" : "제출 취소"}되었습니다`
                 );
-                refetchResume();
+                resumeRefetch();
               }
-            }),
-          disabled: complete?.percent_complete !== 100,
-          disabledReason: "레주메 완성 시 제출 가능합니다"
+            })
         },
         {
           icon: "Save",
           title: "저장하기",
           action: () =>
-            saveResume(resume, {
+            saveMutate(resumeLocalData, {
               onSuccess: () => {
                 toast.success("성공적으로 저장되었습니다");
-                refetchCompl();
-                refetchStudent();
-                refetchIntroduce();
+                completionRefetch();
+                studentRefetch();
+                sharedRefetch();
               }
             }),
-          disabled: resume.status !== "ONGOING",
+          disabled: resumeLocalData.status !== "ONGOING",
           disabledReason: "제출 / 공개 상태에선 저장할 수 없습니다."
         },
         {
@@ -145,10 +145,10 @@ export const Write = () => {
                         direction="center"
                         disabled={i.status !== "PENDING"}
                         onClick={() =>
-                          mutate(`?id=${i.id}`, {
+                          confirmMutate(`?id=${i.id}`, {
                             onSuccess: () => {
                               toast.success("성공적으로 반영되었습니다");
-                              refetch();
+                              listRefetch();
                             }
                           })
                         }

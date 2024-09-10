@@ -37,7 +37,7 @@ export const List = ({
       <Layout size={size} required={required} label={label}>
         <input
           className="w-full text-[14px] font-light leading-none px-5 py-[15px] h-full"
-          placeholder={placeholder}
+          placeholder={placeholder + " (Enter 키로 추가)"}
           value={item}
           onChange={(e) => setItem(e.target.value)}
           onKeyDown={(e) => {

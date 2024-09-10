@@ -1,3 +1,4 @@
+import { feedbackConfirm, feedbackList, studentInfo } from "@/apis";
 import { toast } from "react-toastify";
 import {
   Layout,
@@ -7,11 +8,9 @@ import {
   Profile,
   Title
 } from "ui";
-import { Feedback } from "./Feedback";
+import { Completion, Introduce } from "./Section";
 import { Document } from "@configs/type";
-import { Completion } from "./Section/Completion";
-import { Introduce } from "./Section/Introduce";
-import { feedbackConfirm, feedbackList, studentInfo } from "@/apis";
+import { Feedback } from "./Feedback";
 
 const buttons: buttonType[] = [
   {
