@@ -11,7 +11,6 @@ export const Router = () => {
           <Route path="" element={<_.Home />} />
           <Route path="write/:id" element={<_.Write />} />
           <Route path="library" element={<_.Library />} />
-          <Route path="detail" element={<_.Detail />} />
           <Route path="book/:id" element={<_.Book />} />
         </Route>
         <Route path="/*" element={<RedirectDiff />} />
