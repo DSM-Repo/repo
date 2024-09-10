@@ -1,5 +1,5 @@
+import { Ternary, useEventListeners, useShortcut } from "@configs/util";
 import { Activity, Certification, Inform } from "./Sections";
-import { Ternary, useEventListeners } from "@configs/util";
 import { Layout, Custom, Title, Button } from "ui";
 import { Introduce } from "./Sections/Introduce";
 import { Projects } from "./Sections/Projects";
@@ -68,6 +68,40 @@ export const Write = () => {
           setWidth(rem < 814 ? rem : 814);
         }
       }
+    }
+  ]);
+
+  useShortcut([
+    {
+      key: "s",
+      ctrl: true,
+      action: () => {
+        if (resumeLocalData.status === "ONGOING") {
+          saveMutate(resumeLocalData, {
+            onSuccess: () => {
+              toast.success("성공적으로 저장되었습니다");
+              completionRefetch();
+              studentRefetch();
+              sharedRefetch();
+            }
+          });
+        } else {
+          toast.error("제출 상태에선 저장할 수 없습니다");
+        }
+      }
+    },
+    {
+      key: "u",
+      ctrl: true,
+      action: () =>
+        submitMutate(undefined, {
+          onSuccess: () => {
+            toast.success(
+              `성공적으로 ${resumeLocalData.status === "ONGOING" ? "제출" : "제출 취소"}되었습니다`
+            );
+            resumeRefetch();
+          }
+        })
     }
   ]);
 
