@@ -9410,6 +9410,7 @@ __metadata:
   dependencies:
     "@chromatic-com/storybook": "npm:^1.5.0"
     "@configs/tailwindcss": "workspace:^"
+    "@configs/type": "workspace:^"
     "@configs/util": "workspace:^"
     "@iconify/react": "npm:^5.0.1"
     "@radix-ui/react-use-layout-effect": "npm:^1.1.0"

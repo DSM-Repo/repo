@@ -1,9 +1,9 @@
+import { Document } from "@configs/type";
 import { Inform, Projects, setType } from "./Render";
-import { IResume } from "@configs/util";
 import { useRef } from "react";
 
 interface IProp {
-  data: IResume;
+  data: Document.Resume;
   setMax?: setType;
   showPadding?: boolean;
 }

@@ -1,12 +1,13 @@
-import { Ternary, checkOverflow, IResume } from "@configs/util";
+import { Ternary, checkOverflow } from "@configs/util";
 import { useEffect, useRef, useState } from "react";
 import { ItemLayout, PageLayout } from "../Layout";
 import { Overflow } from "./Overflow";
 import QRCode from "react-qr-code";
+import { Document } from "@configs/type";
 import { setType } from ".";
 
 interface IProp {
-  data: IResume;
+  data: Document.Resume;
   setMax: setType;
   showPadding?: boolean;
 }

@@ -21,6 +21,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@configs/type": "workspace:^",
     "@configs/util": "workspace:^",
     "@iconify/react": "^5.0.1",
     "@radix-ui/react-use-layout-effect": "^1.1.0",
