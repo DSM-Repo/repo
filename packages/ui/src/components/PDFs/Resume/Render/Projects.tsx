@@ -1,12 +1,13 @@
-import { Ternary, checkOverflow, projectType } from "@configs/util";
+import { Ternary, checkOverflow } from "@configs/util";
 import { useEffect, useRef, useState } from "react";
 import { PageLayout, ItemLayout } from "../Layout";
 import { Overflow } from "./Overflow";
 import QRCode from "react-qr-code";
 import { setType } from ".";
+import { Document } from "@configs/type";
 
 interface IProp {
-  data: projectType;
+  data: Document.Project_list;
   setMax?: setType;
   keep?: any;
   showPadding?: boolean;
@@ -60,7 +61,7 @@ export const Projects = ({ data, setMax, keep, showPadding }: IProp) => {
 
   return (
     <>
-      <PageLayout ref={pdf}>
+      <PageLayout ref={pdf} showPadding={showPadding}>
         <div className="flex w-full justify-between items-center">
           <div
             className={`flex gap-[15px] ${!!data?.logo || !!data.url ? "h-[64px]" : "h-fit"} items-center`}

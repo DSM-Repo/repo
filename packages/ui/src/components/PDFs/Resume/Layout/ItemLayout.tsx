@@ -29,11 +29,14 @@ export const ItemLayout = ({ title, type, isCheckAble, data }: IProp) => {
         )}
         {type === "list" && (
           <div className={`col-flex ${isCheckAble ? "checkAble" : ""}`}>
-            {(data as dataType[]).map((i) => (
-              <div className="col-flex w-full pl-5 pr-[5px]  py-1 border-l-[3px] mt-[10px] h-fit border-black flex justify-between">
+            {(data as dataType[]).map((i, j) => (
+              <div
+                className="col-flex w-full pl-5 pr-[5px] py-1 border-l-[3px] mt-[10px] h-fit border-black flex justify-between"
+                key={j}
+              >
                 <div className="flex items-center justify-between w-full">
                   <span
-                    className={`text-body5 ${!!i.title ? "text-black" : "text-gray-50"}`}
+                    className={`text-body5 block ${!!i.title ? "text-black" : "text-gray-50"} ${i.subTitle && "w-[500px]"}`}
                   >
                     {i.title || "이름을 입력하세요"}
                   </span>
