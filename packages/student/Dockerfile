@@ -29,6 +29,7 @@ WORKDIR /repo-main/packages/student
 RUN yarn build
 
 FROM nginx:alpine AS runner
+
 # Nginx 설정
 RUN echo "\
 server {\
