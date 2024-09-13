@@ -11,6 +11,7 @@ interface IProp {
   setMax?: setType;
   keep?: any;
   showPadding?: boolean;
+  scale?: number;
 }
 
 export const typeAgainChange = {
@@ -18,7 +19,7 @@ export const typeAgainChange = {
   TEAM: "팀"
 };
 
-export const Projects = ({ data, setMax, keep, showPadding }: IProp) => {
+export const Projects = ({ data, setMax, keep, showPadding, scale }: IProp) => {
   const pdf = useRef<HTMLElement>(null);
   const [pages, setPages] = useState<HTMLElement[][]>([]);
   const isFirst = useRef(true);
@@ -61,7 +62,7 @@ export const Projects = ({ data, setMax, keep, showPadding }: IProp) => {
 
   return (
     <>
-      <PageLayout ref={pdf} showPadding={showPadding}>
+      <PageLayout ref={pdf} showPadding={showPadding} scale={scale}>
         <div className="flex w-full justify-between items-center">
           <div
             className={`flex gap-[15px] ${!!data?.logo || !!data.url ? "h-[64px]" : "h-fit"} items-center`}
@@ -106,7 +107,7 @@ export const Projects = ({ data, setMax, keep, showPadding }: IProp) => {
         </>
       </PageLayout>
 
-      <Overflow items={pages} showPadding={showPadding} />
+      <Overflow items={pages} showPadding={showPadding} scale={scale} />
     </>
   );
 };
