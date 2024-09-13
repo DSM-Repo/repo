@@ -1,3 +1,8 @@
+import { findKeyWithValue } from "@configs/util";
+import { fileRemove, fileUpload } from "@/apis";
+import { Api, Document } from "@configs/type";
+import { useResumeData } from "@/hooks";
+import { Box } from "../Box";
 import {
   Button,
   Date,
@@ -9,27 +14,15 @@ import {
   Icon,
   File
 } from "ui";
-import { setType } from "@/hooks";
-import { Api, Document } from "@configs/type";
-import { Layout } from "../Layout";
-import { fileRemove, fileUpload } from "@/apis";
-import { sectionData } from "@configs/type/src/Document";
 
 interface IProp {
   data: Document.Project_list;
-  setData: setType;
   index: number;
-  moveItem: (index: number, direction: "up" | "down") => void;
 }
 
 const typeChange = {
   개인: "PERSONAL",
   팀: "TEAM"
-};
-
-export const typeAgainChange = {
-  PERSONAL: "개인",
-  TEAM: "팀"
 };
 
 const defaultSect: Document.sectionData = {
@@ -38,83 +31,40 @@ const defaultSect: Document.sectionData = {
   description: ""
 };
 
-export const Item = ({ data, setData, index, moveItem }: IProp) => {
+export const Item = ({ data, index }: IProp) => {
+  const { setDeepPartial, removeItem, moveItem } = useResumeData();
   const { mutate: fileUploadMutate } = fileUpload();
   const { mutate: fileReomoveMutate } = fileRemove();
 
   const set = (
     id: string,
-    value?: string | string[] | Api.File.Image | sectionData[]
-  ) =>
-    setData((prev) => ({
-      data: {
-        ...prev.data,
-        project_list: prev.data.project_list.map((i) =>
-          i.element_id === data.element_id ? { ...data, [id]: value } : i
-        )
-      }
-    }));
-
-  const del = () => {
-    setData((prev) => ({
-      data: {
-        ...prev.data,
-        project_list: prev.data.project_list.filter(
-          (item) => item.element_id !== data.element_id
-        )
-      }
-    }));
-  };
+    value?:
+      | string
+      | string[]
+      | Api.File.Image
+      | Document.sectionData[]
+      | Document.dateType
+  ) => setDeepPartial("project_list", data.element_id, value, id);
 
   const setSection = (eleId: string, id: string, value?: string) =>
-    setData((prev) => ({
-      data: {
-        ...prev.data,
-        project_list: prev.data.project_list.map((i) =>
-          i.element_id === data.element_id
-            ? {
-                ...data,
-                sections: data.sections.map((j) =>
-                  j.element_id === eleId ? { ...j, [id]: value } : j
-                )
-              }
-            : i
-        )
-      }
-    }));
+    set(
+      "sections",
+      data.sections.map((i) =>
+        i.element_id === eleId ? { ...i, [id]: value } : i
+      )
+    );
 
   const addSection = () =>
-    setData((prev) => ({
-      data: {
-        ...prev.data,
-        project_list: prev.data.project_list.map((i) =>
-          i.element_id === data.element_id
-            ? {
-                ...data,
-                sections: [
-                  { ...defaultSect, element_id: crypto.randomUUID() },
-                  ...data.sections
-                ]
-              }
-            : i
-        )
-      }
-    }));
+    set("sections", [
+      ...data.sections,
+      { ...defaultSect, element_id: crypto.randomUUID() }
+    ]);
 
   const delSection = (delId: string) =>
-    setData((prev) => ({
-      data: {
-        ...prev.data,
-        project_list: prev.data.project_list.map((i) =>
-          i.element_id === data.element_id
-            ? {
-                ...data,
-                sections: data.sections.filter((j) => j.element_id !== delId)
-              }
-            : i
-        )
-      }
-    }));
+    set(
+      "sections",
+      data.sections.filter((i) => i.element_id !== delId)
+    );
 
   const deleteImage = () => {
     fileReomoveMutate(`?url=${data?.logo?.image_path as string}`, {
@@ -141,40 +91,10 @@ export const Item = ({ data, setData, index, moveItem }: IProp) => {
   };
 
   const handleDate = (value: string, id?: string) =>
-    setData((prev) => ({
-      data: {
-        ...prev.data,
-        project_list: prev.data.project_list.map((i) =>
-          i.element_id === data.element_id
-            ? {
-                ...data,
-                date: {
-                  ...data.date,
-                  [id as string]: value
-                }
-              }
-            : i
-        )
-      }
-    }));
+    set("date", { ...data.date, [id as keyof Document.dateType]: value });
 
   const delDate = (id: string) =>
-    setData((prev) => ({
-      data: {
-        ...prev.data,
-        project_list: prev.data.project_list.map((i) =>
-          i.element_id === data.element_id
-            ? {
-                ...data,
-                date: {
-                  ...data.date,
-                  [id]: undefined
-                }
-              }
-            : i
-        )
-      }
-    }));
+    set("date", { ...data.date, [id as keyof Document.dateType]: undefined });
 
   const moveSection = (index: number, direction: "up" | "down") => {
     let array = [...data.sections];
@@ -188,7 +108,7 @@ export const Item = ({ data, setData, index, moveItem }: IProp) => {
   };
 
   return (
-    <Layout>
+    <Box>
       <div className="flex justify-between w-full">
         <input
           className="font-semibold text-[25px] w-[80%] item"
@@ -202,15 +122,19 @@ export const Item = ({ data, setData, index, moveItem }: IProp) => {
             name="Arrow"
             rotate="up"
             className="cursor-pointer"
-            onClick={() => moveItem(index, "down")}
+            onClick={() => moveItem("project_list", index, "down")}
           />
           <Icon
             name="Arrow"
             rotate="down"
             className="cursor-pointer"
-            onClick={() => moveItem(index, "up")}
+            onClick={() => moveItem("project_list", index, "up")}
           />
-          <Icon name="Trash" className="cursor-pointer" onClick={del} />
+          <Icon
+            name="Trash"
+            className="cursor-pointer"
+            onClick={() => removeItem("project_list", data.element_id)}
+          />
         </div>
       </div>
       <Label label="진행 기간" size="full">
@@ -237,7 +161,7 @@ export const Item = ({ data, setData, index, moveItem }: IProp) => {
       <Dropdown
         selections={["개인", "팀"]}
         label="형태"
-        selected={typeAgainChange[data.type]}
+        selected={findKeyWithValue(typeChange, data.type)}
         size="large"
         id="type"
         onChange={handleType}
@@ -284,66 +208,64 @@ export const Item = ({ data, setData, index, moveItem }: IProp) => {
           >
             섹션 추가
           </Button>
-          {data.sections.map((i, j) => (
-            <Label size="full" label="">
-              <div className="w-full col-flex gap-3">
-                <div className="self-end flex gap-2 items-center">
-                  <Icon
-                    name="Arrow"
-                    rotate="up"
-                    size={20}
-                    className="cursor-pointer"
-                    onClick={() => moveSection(j, "down")}
-                  />
-                  <Icon
-                    name="Arrow"
-                    rotate="down"
-                    size={20}
-                    onClick={() => moveSection(j, "up")}
-                    className="cursor-pointer"
-                  />
-                </div>
-                <div className="w-full flex gap-3 h-full">
-                  <Text
-                    placeholder="섹션 이름을 입력하세요"
-                    value={i.title}
+          {data.sections.map((i, j) => {
+            const disabled =
+              i.element_id === "r" ||
+              i.element_id === "f" ||
+              i.element_id === "re";
+
+            return (
+              <div>
+                <div className="col-flex w-full gap-2">
+                  <div className="flex items-center justify-between">
+                    <input
+                      className="text-body5 disabled:text-gray-300 disabled:cursor-not-allowed"
+                      placeholder="섹션 이름을 입력하세요"
+                      disabled={disabled}
+                      onChange={(e) =>
+                        setSection(i.element_id, "title", e.target.value)
+                      }
+                      value={i.title}
+                    />
+                    <div className="flex gap-2 items-center">
+                      <Icon
+                        name="Arrow"
+                        rotate="up"
+                        size={20}
+                        className="cursor-pointer"
+                        onClick={() => moveSection(j, "down")}
+                      />
+                      <Icon
+                        name="Arrow"
+                        rotate="down"
+                        size={20}
+                        onClick={() => moveSection(j, "up")}
+                        className="cursor-pointer"
+                      />
+                      <Icon
+                        name="Trash"
+                        size={20}
+                        disabled={disabled}
+                        onClick={() => delSection(i.element_id)}
+                        className="cursor-pointer"
+                      />
+                    </div>
+                  </div>
+                  <TextArea
+                    value={i.description}
+                    rows={7}
                     onChange={(e) =>
-                      setSection(i.element_id, "title", e.target.value)
+                      setSection(i.element_id, "description", e.target.value)
                     }
-                    disabled={
-                      i.element_id === "r" ||
-                      i.element_id === "f" ||
-                      i.element_id === "re"
-                    }
-                    size="full"
+                    placeholder="내용을 입력하세요"
+                    size="large"
                   />
-                  <Button
-                    onClick={() => delSection(i.element_id)}
-                    size="full"
-                    disabled={
-                      i.element_id === "r" ||
-                      i.element_id === "f" ||
-                      i.element_id === "re"
-                    }
-                    icon="Trash"
-                  >
-                    섹션 삭제
-                  </Button>
                 </div>
-                <TextArea
-                  value={i.description}
-                  rows={7}
-                  onChange={(e) =>
-                    setSection(i.element_id, "description", e.target.value)
-                  }
-                  placeholder="내용을 입력하세요"
-                  size="full"
-                />
               </div>
-            </Label>
-          ))}
+            );
+          })}
         </div>
       </Label>
-    </Layout>
+    </Box>
   );
 };

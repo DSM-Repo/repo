@@ -1,8 +1,8 @@
-import { Dropdown, Text, Label, List, Title } from "ui";
-import { useResumeData } from "@/hooks/useResumeData";
-import { ChangeEvent } from "react";
+import { Dropdown, Text, Label, List } from "ui";
+import { useResumeData } from "@/hooks";
 import { majorList } from "@/apis";
 import { Layout } from "./Layout";
+import { Box } from "./Box";
 
 const studId = {
   grade: ["1", "2", "3"],
@@ -32,11 +32,11 @@ export const Inform = () => {
   const { data: majors } = majorList();
   const { writer } = resume;
 
-  const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) =>
+  const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) =>
     setPartial("writer", e.target.value, e.target.id);
 
   const handleDropChange = (data: string, name?: string) =>
-    setPartial("writer", data, name);
+    setPartial("writer", data, name as string);
 
   const handleClassChange = (data: string, name?: string) =>
     setPartial(
@@ -46,9 +46,8 @@ export const Inform = () => {
     );
 
   return (
-    <div className="col-flex gap-6 w-fit">
-      <Title title="내 정보" subTitle="기본적인 정보에 대해 작성해 보세요." />
-      <Layout>
+    <Layout title="내 정보" subTitle="기본적인 정보에 대해 작성해 보세요.">
+      <Box>
         <Text
           label="이름"
           placeholder="이름을 입력하세요"
@@ -59,7 +58,7 @@ export const Inform = () => {
           required
           disabled
         />
-        <Label label="학번" size="full">
+        <Label label="학번" size="full" required>
           <div className="w-full flex items-center justify-between">
             <Dropdown
               placeholder="학년"
@@ -123,6 +122,7 @@ export const Inform = () => {
           }
           required
           size="large"
+          listSize="large"
           id="skills"
         />
         <Text
@@ -142,7 +142,7 @@ export const Inform = () => {
           size="large"
           id="url"
         />
-      </Layout>
-    </div>
+      </Box>
+    </Layout>
   );
 };

@@ -69,6 +69,10 @@ export const Write = () => {
           setWidth(rem < 814 ? rem : 814);
         }
       }
+    },
+    {
+      eventType: "beforeunload",
+      callback: (e) => e.preventDefault()
     }
   ]);
 
@@ -76,19 +80,19 @@ export const Write = () => {
     {
       key: "s",
       ctrl: true,
+      disabled: {
+        state: resumeLocalData.status !== "ONGOING",
+        reason: "제출 상태에선 저장할 수 없습니다"
+      },
       action: () => {
-        if (resumeLocalData.status === "ONGOING") {
-          saveMutate(resumeLocalData, {
-            onSuccess: () => {
-              toast.success("성공적으로 저장되었습니다");
-              completionRefetch();
-              studentRefetch();
-              sharedRefetch();
-            }
-          });
-        } else {
-          toast.error("제출 상태에선 저장할 수 없습니다");
-        }
+        saveMutate(resumeLocalData, {
+          onSuccess: () => {
+            toast.success("성공적으로 저장되었습니다");
+            completionRefetch();
+            studentRefetch();
+            sharedRefetch();
+          }
+        });
       }
     },
     {
