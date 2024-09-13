@@ -15,14 +15,9 @@ export const CheckBox = ({ checked, onClick, label }: IProp) => {
         name="Check"
         className="cursor-pointer"
       />
-      <input
-        type="checkbox"
-        onClick={onClick}
-        className="hidden"
-        // className={`${checked ? "bg-white" : ""} border-[1px] w-6 h-6 border-gray-600 font-light text-[16px] transition-all cursor-pointer rounded-[4px]`}
-      />
+      <input type="checkbox" onClick={onClick} className="hidden" />
       <Ternary data={label}>
-        <span>{label}</span>
+        <span className="text-body5">{label}</span>
       </Ternary>
     </label>
   );

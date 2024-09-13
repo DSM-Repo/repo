@@ -29,7 +29,7 @@ export const Profile = ({ img, name, major }: IProp) => {
         <Image img={img} size={40} />
         <div className="col-flex gap-1 w-full h-fit">
           <span className="font-normal text-[16px] leading-none">{name}</span>
-          <span className="text-gray-200 font-light text-[13px] leading-none">
+          <span className="text-gray-200 font-light text-[14px] leading-none">
             {major}
           </span>
         </div>

@@ -17,6 +17,8 @@ interface IProp extends HTMLAttributes<SVGSVGElement> {
   rotate?: "up" | "down" | "left" | "right";
   color?: string;
   size?: number;
+  disabled?: boolean;
+  onClick?: React.MouseEventHandler<SVGSVGElement>;
 }
 
 const rotateTable = {
@@ -31,15 +33,18 @@ export const Icon = ({
   rotate = "up",
   color = "white",
   size = 24,
+  disabled,
+  onClick,
   ...props
 }: IProp) => {
   const SelectedIcon = _[name];
   return (
     <SelectedIcon
       {...props}
+      onClick={(e) => !!!disabled && onClick(e)}
       style={{ transform: `rotate(${rotateTable[rotate]})` }}
-      className={`flex-shrink-0 transition-all duration-150 ${props.className}`}
-      fill={color}
+      className={`flex-shrink-0 transition-all duration-150 ${props.className} ${!!disabled ? "cursor-[not-allowed_!important]" : ""}`}
+      fill={!!!disabled ? color : "#777777"}
       width={size}
       height={size}
     />
