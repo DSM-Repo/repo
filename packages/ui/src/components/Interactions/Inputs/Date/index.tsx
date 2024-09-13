@@ -1,30 +1,28 @@
-import { IDefaultProp, Layout } from "../Layout";
+import { Box, IDefaultProp, Label } from "../Layout";
 import { Ternary } from "@configs/util";
 import { Icon } from "../../../";
 import { useState } from "react";
 import dayjs from "dayjs";
 
-interface IProp extends IDefaultProp {
-  value?: string;
-  onChange: (item: string, id?: string) => void;
-  onDelete: (id?: string) => void;
-  placeholder: string;
-  id?: string;
-}
-
 const date = dayjs();
 const dateTypes = ["S", "M", "T", "W", "T", "F", "S"];
 
+interface IProp extends IDefaultProp {
+  onChange: (item: string, id?: string) => void;
+  onDelete: (id?: string) => void;
+  value?: string;
+}
+
 export const Date = ({
-  size,
-  value,
-  onChange,
-  disabled,
   placeholder,
   required,
+  disabled,
   label,
+  size,
+  id,
+  onChange,
   onDelete,
-  id
+  value
 }: IProp) => {
   const [open, setOpen] = useState(false);
   const [sel, setSel] = useState({
@@ -58,24 +56,22 @@ export const Date = ({
   };
 
   return (
-    <div className={`relative w-fit`}>
-      <Layout
+    <Label size={size} required={required} label={label}>
+      <Box
         size={size}
-        required={required}
-        label={label}
         disabled={disabled}
         icon={value && { name: "Trash", action: () => onDelete(id) }}
+        action={() => setOpen((prev) => !prev)}
       >
         <span
-          className={`${!!!value ? "text-gray-300" : "text-white"} block w-full text-[14px] font-light px-5 py-[15px] h-full leading-[1.31] cursor-pointer`}
-          onClick={() => (disabled ? () => {} : setOpen((prev) => !prev))}
+          className={`block w-full h-full text-body5 ${!value ? "text-gray-300" : "cursor-pointer"} ${disabled ? "cursor-[not-allowed_!important]" : ""}`}
         >
           {value ? value : placeholder}
         </span>
-      </Layout>
+      </Box>
       <Ternary data={open}>
         <div
-          className={`${!!label ? "top-[96px]" : "top-[60px]"} shadow-[0_4px_12px_0_rgba(0,0,0,0.32)] absolute col-flex items-center z-20 w-[258px] h-fit border-[1px] rounded-xl bg-gray-700 gap-2 border-gray-600 p-2`}
+          className={`${!!label ? "top-[89px]" : "top-[60px]"} left-0 shadow-[0_4px_12px_0_rgba(0,0,0,0.32)] absolute col-flex items-center z-20 w-[258px] h-fit border-[1px] rounded-xl bg-gray-700 gap-2 border-gray-600 p-2`}
         >
           <div className="flex gap-2 items-center">
             <Icon
@@ -85,7 +81,7 @@ export const Date = ({
               id="left"
               onClick={handleClick}
             />
-            <span className="text-body5">
+            <span className="text-body3">
               {sel.year}. {sel.month}
             </span>
             <Icon
@@ -98,7 +94,7 @@ export const Date = ({
           </div>
           <div className="flex flex-row flex-wrap gap-[5px] w-full">
             {dateTypes.map((i) => (
-              <span className="w-[30px] h-[30px] text-center content-center text-body7 text-gray-300 inline cursor-pointer">
+              <span className="w-[30px] h-[30px] text-center content-center text-body5 text-gray-300 inline cursor-pointer">
                 {i}
               </span>
             ))}
@@ -108,7 +104,7 @@ export const Date = ({
 
             {days.map((_, j) => (
               <span
-                className="w-[30px] h-[30px] text-center content-center text-body6 inline cursor-pointer"
+                className="w-[30px] h-[30px] text-center content-center text-body5 inline cursor-pointer"
                 onClick={() => {
                   onChange(
                     `${sel.year}. ${sel.month.toString().padStart(2, "0")}. ${(j + 1).toString().padStart(2, "0")}`,
@@ -123,6 +119,6 @@ export const Date = ({
           </div>
         </div>
       </Ternary>
-    </div>
+    </Label>
   );
 };

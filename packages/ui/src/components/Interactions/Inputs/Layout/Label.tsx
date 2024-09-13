@@ -1,9 +1,10 @@
-import { Ternary } from "@configs/util";
+import { childernType } from "@configs/type";
 import { sizeType } from "../../../../size";
+import { Ternary } from "@configs/util";
 
 interface IProp {
   label?: string;
-  children: React.ReactElement;
+  children: childernType;
   size: sizeType;
   required?: boolean;
 }
@@ -14,16 +15,16 @@ export const Label = ({ label, children, size, required }: IProp) => {
   return label ? (
     <div className={`${isFull ? "w-full" : "w-fit"} col-flex gap-3 relative`}>
       <Ternary data={label}>
-        <span className="text-[16px] font-light">
+        <span className="text-body5">
           {label}{" "}
           <Ternary data={required}>
-            <span className="text-[16px] font-light text-green-400">*</span>
+            <span className="text-body5 text-green-400">*</span>
           </Ternary>
         </span>
       </Ternary>
       {children}
     </div>
   ) : (
-    <>{children}</>
+    <div className="w-fit h-fit relative">{children}</div>
   );
 };
