@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@configs/tailwindcss": "workspace:^",
+    "@configs/type": "workspace:^",
     "@configs/util": "workspace:^",
     "@tanstack/react-query": "^5.52.0",
     "react": "^18.2.0",

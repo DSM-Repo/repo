@@ -8694,6 +8694,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["html-to-image", [\
+      ["npm:1.11.11", {\
+        "packageLocation": "./.yarn/cache/html-to-image-npm-1.11.11-faab8eba97-0b6349221a.zip/node_modules/html-to-image/",\
+        "packageDependencies": [\
+          ["html-to-image", "npm:1.11.11"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["html2canvas", [\
       ["npm:1.4.1", {\
         "packageLocation": "./.yarn/cache/html2canvas-npm-1.4.1-fa13983145-6de86f7576.zip/node_modules/html2canvas/",\
@@ -9568,6 +9577,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["main", "workspace:packages/main"],\
           ["@configs/tailwindcss", "workspace:configs/tailwindcss-config"],\
+          ["@configs/type", "workspace:configs/types-config"],\
           ["@configs/util", "virtual:9dce388d82c018b4a7af5edc7243e51f7023d1ab93a923b3959d0066ac6881c93b965a0932486426cbefa96c9c8e47849d5ff541d2404b8aca246480fa32f0d2#workspace:configs/util-config"],\
           ["@tanstack/react-query", "virtual:9dce388d82c018b4a7af5edc7243e51f7023d1ab93a923b3959d0066ac6881c93b965a0932486426cbefa96c9c8e47849d5ff541d2404b8aca246480fa32f0d2#npm:5.55.4"],\
           ["@types/react", "npm:18.3.5"],\
@@ -12855,7 +12865,7 @@ const RAW_RUNTIME_STATE =
           ["autoprefixer", "virtual:a590d0162dc49f20ec171ca7176afade16a11d396abe66c70bb6bf4eff64d25844d41b6775d91b945a24bf41375ba552a574afa32f9bc2d6a50fd3f5aab8886b#npm:10.4.20"],\
           ["dayjs", "npm:1.11.13"],\
           ["file-saver", "npm:2.0.5"],\
-          ["html2canvas", "npm:1.4.1"],\
+          ["html-to-image", "npm:1.11.11"],\
           ["jspdf", "npm:2.5.1"],\
           ["postcss", "npm:8.4.45"],\
           ["prop-types", "npm:15.8.1"],\
