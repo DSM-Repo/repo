@@ -28,7 +28,8 @@ export const Layout = () => {
             name: "메인",
             sections: [
               { icon: "House", name: "홈", urls: ["/"] },
-              { icon: "Book", name: "도서관", urls: ["/library", "/book"] }
+              { icon: "Book", name: "도서관", urls: ["/library", "/book"] },
+              { icon: "File", name: "내 레주메", urls: ["/preview"] }
             ]
           },
           {
