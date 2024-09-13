@@ -67,7 +67,50 @@ export const ResumeDetailPlace: Document.Resume = {
     heading: "",
     introduce: ""
   },
-  project_list: [],
-  achievement_list: [],
-  activity_list: []
+  project_list: [
+    {
+      element_id: "",
+      name: "",
+      type: "PERSONAL",
+      logo: undefined,
+      date: {
+        start_date: undefined,
+        end_date: undefined
+      },
+      skill_set: [],
+      sections: [
+        {
+          element_id: "r",
+          title: "맡은 역할",
+          description: ""
+        },
+        {
+          element_id: "f",
+          title: "기능",
+          description: ""
+        },
+        {
+          element_id: "re",
+          title: "회고",
+          description: ""
+        }
+      ],
+      url: ""
+    }
+  ],
+  achievement_list: [
+    { element_id: "", name: "", institution: "", date: "", type: "AWARD" }
+  ],
+  activity_list: [
+    {
+      element_id: "",
+      name: "",
+      date: {
+        start_date: "",
+        end_date: undefined
+      },
+      description: "",
+      is_period: false
+    }
+  ]
 };
