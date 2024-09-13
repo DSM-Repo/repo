@@ -1,10 +1,14 @@
+import { toast } from "react-toastify";
 import { useEffect } from "react";
-import { useEventListeners } from "./useEventListener";
 
 type propType = {
   key: string;
   shift?: boolean;
   ctrl?: boolean;
+  disabled?: {
+    state: boolean;
+    reason: string;
+  };
   action: (e: KeyboardEvent) => void;
 }[];
 
@@ -14,14 +18,22 @@ export const useShortcut = (items: propType) => {
       items.forEach((i) => {
         const isCtrl = i.ctrl ? e.ctrlKey || e.metaKey : true;
         const isShift = i.shift ? e.shiftKey : true;
-        if (isCtrl || isShift) {
+        if (i.ctrl || i.shift) {
           if (e.key === i.key && isCtrl && isShift) {
             e.preventDefault();
+            if (!!i.disabled?.state) {
+              toast.error(i.disabled.reason);
+              return;
+            }
             i.action(e);
           }
         } else {
           if (e.key === i.key) {
             e.preventDefault();
+            if (!!i.disabled?.state) {
+              toast.error(i.disabled.reason);
+              return;
+            }
             i.action(e);
           }
         }
