@@ -1,38 +1,40 @@
+import { Ternary, useShortcut, useEventListeners } from "@configs/util";
 import { Layout, sidebarType, buttonType, Items } from "ui";
-import { Ternary, useShortcut } from "@configs/util";
 import { Page, pdfjs, Document } from "react-pdf";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/esm/Page/TextLayer.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { saveAs } from "file-saver";
+import { Api } from "@configs/type";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@4.4.168/build/pdf.worker.min.mjs`;
 
-type indexType = {
-  name: string;
-  major: string;
-  student_number: number;
-  page_number: number;
-};
-
 interface IProp {
   url?: string | File;
-  indexList?: indexType[];
+  indexList?: Api.Library.indexData[];
   buttons?: buttonType[];
   sidebars?: sidebarType[];
+  showCoverPage?: boolean;
 }
 
-export const Viewer = ({ url, indexList, buttons, sidebars }: IProp) => {
-  const [scale, setScale] = useState(1);
-  const [index, setIndex] = useState<indexType[][]>([]);
-  const [page, setPage] = useState(1);
-  const navigate = useNavigate();
+export const Viewer = ({
+  url,
+  indexList,
+  buttons = [],
+  sidebars = [],
+  showCoverPage
+}: IProp) => {
+  const [index, setIndex] = useState<Api.Library.indexData[][]>([]);
   const [loading, setLoading] = useState(true);
+  const [scale, setScale] = useState(1);
+  const [page, setPage] = useState(1);
+  const [max, setMax] = useState(1);
+  const navigate = useNavigate();
+
   const finded = indexList?.find(
     (i) => i.page_number === page + 1 || i.page_number === page
   );
-  const [max, setMax] = useState(1);
 
   const handleMovePage = (next: number) => {
     if (next < 0 || next > max + 1) {
@@ -72,7 +74,7 @@ export const Viewer = ({ url, indexList, buttons, sidebars }: IProp) => {
           action: "빠른 이동"
         }
       : undefined,
-    ...(buttons || [])
+    ...buttons
   ];
 
   const ClassSection = (type: 1 | 2 | 3 | 4) => {
@@ -124,12 +126,12 @@ export const Viewer = ({ url, indexList, buttons, sidebars }: IProp) => {
           ]
         }
       : undefined,
-    ...(sidebars || [])
+    ...sidebars
   ];
 
   useEffect(() => {
     if (indexList) {
-      let item: indexType[][] = [[], [], [], []];
+      let item: Api.Library.indexData[][] = [[], [], [], []];
       indexList.forEach((i) => {
         const cls = Math.floor((i.student_number % 1000) / 100);
         item[cls - 1]?.push(i);
@@ -137,19 +139,6 @@ export const Viewer = ({ url, indexList, buttons, sidebars }: IProp) => {
       setIndex(item);
     }
   }, [indexList]);
-
-  useEffect(() => {
-    const updateScale = () => {
-      const windowHeight = window.innerHeight;
-      const newScale = windowHeight / 1050; // 예시로 A4 크기(842px)에 맞추는 방법
-      setScale(newScale);
-    };
-
-    updateScale();
-    window.addEventListener("resize", updateScale);
-
-    return () => window.removeEventListener("resize", updateScale);
-  }, []);
 
   const handleMoveStudent = (direction: "Left" | "Right") => {
     const persons = indexList.filter((i) =>
@@ -161,6 +150,18 @@ export const Viewer = ({ url, indexList, buttons, sidebars }: IProp) => {
       handleMovePage(!!!(item % 2) ? item - 1 : item);
     }
   };
+
+  useEventListeners([
+    {
+      eventType: "resize",
+      callback: () => {
+        const windowHeight = window.innerHeight;
+        const newScale = windowHeight / 1050; // 예시로 A4 크기(842px)에 맞추는 방법
+        setScale(newScale);
+      },
+      useCallbackOnLoad: true
+    }
+  ]);
 
   useShortcut([
     { key: "ArrowRight", action: () => handleMovePage(page + 2) },
@@ -179,7 +180,9 @@ export const Viewer = ({ url, indexList, buttons, sidebars }: IProp) => {
       <div className="w-full h-full flex flex-center">
         <Ternary data={!!!url || loading}>
           <div className="z-30 left-0 top-0 w-full h-full bg-[#000000DD] flex flex-center absolute text-white">
-            PDF를 불러오고 있습니다..
+            {!!!url
+              ? "PDF를 다운로드하고 있습니다.."
+              : "PDF를 렌더링하고 있습니다..."}
           </div>
         </Ternary>
         <Document
@@ -194,17 +197,22 @@ export const Viewer = ({ url, indexList, buttons, sidebars }: IProp) => {
           <span>
             {page - 1} - {page} / {max}
           </span>
-          <div className="flex gap-2">
+          <div className="flex gap-2 viewer">
+            <Page pageIndex={page + 1} className="hidden absolute" />
             <Page
               pageIndex={page - 1}
               scale={scale}
-              className={`${page - 1 === 0 ? "invisible" : ""} h-fit`}
+              className={`${showCoverPage ? "" : page - 1 === 0 ? "invisible" : ""} h-fit`}
             />
 
             <Page
               pageIndex={page > max ? page - 1 : page}
               scale={scale}
-              className={`${page > max ? "invisible" : ""} h-fit`}
+              className={`${showCoverPage ? "" : page > max ? "invisible" : ""} h-fit`}
+            />
+            <Page
+              pageIndex={page > max ? page : page + 2}
+              className="hidden absolute"
             />
           </div>
         </Document>
