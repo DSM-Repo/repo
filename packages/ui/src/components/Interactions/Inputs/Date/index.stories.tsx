@@ -11,6 +11,7 @@ export const Default: Story = {
   args: {
     size: "large",
     placeholder: "Example",
-    onChange: () => {}
+    onChange: () => {},
+    onDelete: () => {}
   }
 };

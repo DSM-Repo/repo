@@ -1,43 +1,32 @@
-import { IDefaultProp, Layout } from "../Layout";
+import { Box, IDefaultProp, Label } from "../Layout";
 import { Ternary } from "@configs/util";
 import { ChangeEvent } from "react";
 
 interface IProp extends IDefaultProp {
-  value?: string;
   onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
-  placeholder: string;
-  id?: string;
-  max?: number;
+  value?: string;
   rows?: number;
+  max?: number;
 }
 
 export const TextArea = ({
-  size,
-  value,
-  onChange,
   placeholder,
-  disabled,
   required,
+  disabled,
   label,
-  max,
+  size,
+  id,
+  onChange,
+  value,
   rows = 5,
-  id
+  max
 }: IProp) => {
-  const isFull = size === "full";
-
   return (
-    <div className={`col-flex gap-2 ${isFull ? "w-full" : "w-fit"} h-fit`}>
-      <Layout
-        size={size}
-        required={required}
-        label={label}
-        disabled={disabled}
-        height={23 * rows}
-      >
+    <Label size={size} label={label} required={required}>
+      <Box size={size} disabled={disabled}>
         <textarea
-          style={{ height: 23 * rows }}
           disabled={disabled}
-          className="leading-snug w-full h-fit text-[14px] font-light absolute px-5 py-[10px]"
+          className="w-full text-body5 disabled:text-gray-300 disabled:cursor-not-allowed"
           placeholder={placeholder}
           value={value}
           rows={rows}
@@ -45,12 +34,15 @@ export const TextArea = ({
           id={id}
           maxLength={max}
         />
-      </Layout>
+      </Box>
+
       <Ternary data={max}>
-        <span className="self-end text-[14px] font-light">
+        <span
+          className={`self-end text-body5 transition-all duration-150 ${value.length === max ? "text-red-500" : value.length > max / 1.1 ? "text-yellow-400" : ""}`}
+        >
           {value ? value.length : 0} / {max}
         </span>
       </Ternary>
-    </div>
+    </Label>
   );
 };

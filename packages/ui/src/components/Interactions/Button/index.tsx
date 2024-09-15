@@ -5,7 +5,7 @@ import { Ternary } from "@configs/util";
 interface IProp {
   size: sizeType;
   padding?: string;
-  color?: "Green" | "Gray";
+  color?: "green" | "gray";
   icon?: iconType;
   onClick: () => void;
   children: string;
@@ -14,8 +14,9 @@ interface IProp {
 }
 
 const colorTable = {
-  Green: "bg-green-800 border-green-700 text-green-400",
-  Gray: "bg-gray-700 border-gray-600 text-white disabled:bg-gray-600 disabled:text-gray-300 disabled:cursor-not-allowed"
+  green:
+    "bg-green-800 border-green-700 text-green-400 disabled:bg-green-700 disabled:text-green-900",
+  gray: "bg-gray-700 border-gray-600 text-white disabled:bg-gray-600 disabled:text-gray-300"
 };
 
 export const Button = ({
@@ -24,7 +25,7 @@ export const Button = ({
   onClick,
   children,
   padding = "16px",
-  color = "Gray",
+  color = "gray",
   disabled,
   direction = "left"
 }: IProp) => {
@@ -38,12 +39,24 @@ export const Button = ({
   return (
     <button
       style={{ padding }}
-      className={`flex items-center gap-[10px] max-h-[50px] border-[1px] rounded-xl text-[14px] font-semibold leading-none ${colorTable[color]} ${direct} ${sizeTable[size]}`}
+      className={`flex items-center gap-[10px] h-[50px] border-[1px] rounded-xl text-body4 disabled:cursor-not-allowed ${colorTable[color]} ${direct} ${sizeTable[size]}`}
       onClick={onClick}
       disabled={disabled}
     >
       <Ternary data={icon}>
-        <Icon name={icon} size={20} color={disabled ? "#777777" : "white"} />
+        <Icon
+          name={icon}
+          size={20}
+          color={
+            color === "gray"
+              ? disabled
+                ? "#777777"
+                : "white"
+              : disabled
+                ? "#083300"
+                : "#37E517"
+          }
+        />
       </Ternary>
       {children}
     </button>

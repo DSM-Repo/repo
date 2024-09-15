@@ -3,6 +3,7 @@ import { PageLayout } from "../Layout";
 interface IProp {
   items: HTMLElement[][];
   showPadding?: boolean;
+  scale?: number;
 }
 
 const OverFlowContent = ({ item }: { item: HTMLElement }) => (
@@ -16,7 +17,7 @@ const OverFlowContent = ({ item }: { item: HTMLElement }) => (
   />
 );
 
-export const Overflow = ({ items, showPadding }: IProp) => {
+export const Overflow = ({ items, showPadding, scale }: IProp) => {
   return items?.map((item, index) => (
     <PageLayout
       key={index}
@@ -30,6 +31,7 @@ export const Overflow = ({ items, showPadding }: IProp) => {
           });
         }
       }}
+      scale={scale}
     >
       {item?.map((i, j) => <OverFlowContent item={i} key={j} />)}
     </PageLayout>

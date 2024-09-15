@@ -7,7 +7,7 @@ import {
 import { useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { findKeyWithValue } from "@configs/util";
-import { Button, ClientRenderer, Dropdown, TextArea, Viewer } from "ui";
+import { Button, Resume as _Resume, Dropdown, TextArea, Viewer } from "ui";
 import { AddFeedback, getFeedback } from "@/apis";
 import { toast } from "react-toastify";
 
@@ -44,8 +44,8 @@ export const Resume = () => {
   };
 
   return (
-    <div className="w-full h-screen relative overflow-hidden">
-      <Viewer
+    <div className="w-full h-screen col-flex relative">
+      {/* <Viewer
         url={file}
         buttons={[
           { icon: "Edit", title: "피드백 관리", action: "피드백 관리" }
@@ -170,8 +170,9 @@ export const Resume = () => {
             ]
           }
         ]}
-      />
-      {data && <ClientRenderer data={data} setter={setFile} />}
+      /> */}
+      {/* {data && <ClientRenderer data={data} setter={setFile} />} */}
+      {data && <_Resume data={data} setMax={() => {}} showPadding />}
     </div>
   );
 };

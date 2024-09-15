@@ -1,5 +1,6 @@
 import { Icon, iconType as iconNameType } from "../../../Others/Icon";
 import { sizeTable, sizeType } from "../../../../size";
+import { childernType } from "@configs/type";
 import { Ternary } from "@configs/util";
 
 export type iconType = {
@@ -9,35 +10,39 @@ export type iconType = {
 };
 
 interface IProp {
-  children: React.ReactElement | React.ReactElement[];
+  children: childernType;
   icon?: iconType;
   disabled?: boolean;
-  height?: number;
   size: sizeType;
+  action?: () => void;
 }
 
-export const Box = ({ children, icon, size, disabled, height }: IProp) => {
+export const Box = ({ children, icon, size, disabled, action }: IProp) => {
   return (
-    <div
-      style={{ height: height || "fit-content" }}
-      className={`flex justify-end items-center gap-2 ${sizeTable[size]} ${disabled && "cursor-not-allowed"} relative min-h-[50px] h-fit px-5 py-[15px] border-[1px] rounded-xl ${disabled ? "bg-gray-600" : "bg-gray-700"} border-gray-600`}
+    <label
+      onClick={(e) => {
+        const { tagName } = e.target as HTMLElement;
+        if (
+          ((tagName === "path" || tagName === "svg") && !!icon?.action) ||
+          !!!action ||
+          !!disabled
+        )
+          return;
+        action();
+      }}
+      className={`relative flex justify-between items-center gap-2 min-h-[50px] h-fit px-5 py-[15px] border-[1px] rounded-xl border-gray-600 ${disabled ? "cursor-not-allowed" : !!action ? "cursor-pointer" : "cursor-text"} ${sizeTable[size]} ${disabled ? "bg-gray-600" : "bg-gray-700"}`}
     >
-      <label
-        className={`absolute left-0 top-0 h-full ${icon ? "w-[calc(100%_-_45px)]" : "w-full"}`}
-      >
-        {children}
-      </label>
-
+      {children}
       <Ternary data={icon}>
         <Icon
           name={icon?.name}
-          onClick={!disabled ? icon?.action : () => {}}
+          onClick={!!icon?.action && !!!disabled ? icon?.action : undefined}
           rotate={icon?.rotate}
           size={18}
           color={disabled ? "#777777" : "white"}
           className={disabled ? "cursor-not-allowed" : "cursor-pointer"}
         />
       </Ternary>
-    </div>
+    </label>
   );
 };

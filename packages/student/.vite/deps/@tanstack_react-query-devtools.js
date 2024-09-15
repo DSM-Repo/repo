@@ -1,5 +1,9 @@
 "use client";
 import {
+  onlineManager,
+  useQueryClient
+} from "./chunk-CQ6FSRIZ.js";
+import {
   createComponent,
   createSignal,
   lazy,
@@ -7,10 +11,6 @@ import {
   render,
   setupStyleSheet
 } from "./chunk-3KT6LMAR.js";
-import {
-  onlineManager,
-  useQueryClient
-} from "./chunk-CQ6FSRIZ.js";
 import {
   require_jsx_runtime
 } from "./chunk-T626GWXX.js";

@@ -10,7 +10,7 @@ export default {
     extend: {
       colors: {
         gray: {
-          White: "#FFFFFF",
+          white: "#FFFFFF",
           25: "#EEEEEE",
           50: "#BBBBBB",
           100: "#999999",
@@ -22,7 +22,7 @@ export default {
           700: "#333333",
           800: "#222222",
           900: "#111111",
-          Black: "#000000"
+          black: "#000000"
         },
         green: {
           50: "#DEF2DA",
@@ -39,18 +39,22 @@ export default {
       }
     },
     fontSize: {
-      title1: ["30px", { fontWeight: 600, lineHeight: "35.8px" }],
-      title2: ["27px", { fontWeight: 500, lineHeight: "32.2px" }],
-      title3: ["24px", { fontWeight: 600, lineHeight: "28.6px" }],
-      title4: ["24px", { fontWeight: 100, lineHeight: "28.6px" }],
-      body1: ["22px", { fontWeight: 500, lineHeight: "26.3px" }],
-      body2: ["22px", { fontWeight: 400, lineHeight: "26.3px" }],
-      body3: ["20px", { fontWeight: 500, lineHeight: "23.9px" }],
-      body4: ["20px", { fontWeight: 400, lineHeight: "23.9px" }],
-      body5: ["17px", { fontWeight: 500, lineHeight: "20,3px" }],
-      body6: ["17px", { fontWeight: 400, lineHeight: "20.3px" }],
-      body7: ["14px", { fontWeight: 400, lineHeight: "160%" }],
-      body8: ["14px", { fontWeight: 600, lineHeight: "16.7px" }]
+      title1: ["48px", { fontWeight: 700, lineHeight: "57px" }],
+      title2: ["36px", { fontWeight: 600, lineHeight: "43px" }],
+      title3: ["24px", { fontWeight: 700, lineHeight: "29px" }],
+      body1: ["22px", { fontWeight: 600, lineHeight: "26px" }],
+      body2: ["20px", { fontWeight: 500, lineHeight: "24px" }],
+      body3: ["18px", { fontWeight: 400, lineHeight: "21px" }],
+      body4: ["16px", { fontWeight: 500, lineHeight: "19px" }],
+      body5: ["14px", { fontWeight: 400, lineHeight: "17px" }],
+      resumeTitle: ["30px", { fontWeight: 600, lineHeight: "26px" }],
+      resumeSubTitle: ["28px", { fontWeight: 100, lineHeight: "21px" }],
+      resumeInformation: ["16px", { fontWeight: 400, lineHeight: "19px" }],
+      resumeIntroduceHeading: ["18px", { fontWeight: 400, lineHeight: "21px" }],
+      resumeIntroduce: ["16px", { fontWeight: 300, lineHeight: "19px" }],
+      resumeSectionTitle: ["14px", { fontWeight: 500, lineHeight: "21px" }],
+      resumeItemTitle: ["16px", { fontWeight: 500, lineHeight: "19px" }],
+      resumeItemContent: ["14px", { fontWeight: 400, lineHeight: "17px" }]
     }
   },
   plugins: []

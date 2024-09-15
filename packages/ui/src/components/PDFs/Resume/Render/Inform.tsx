@@ -1,17 +1,19 @@
-import { Ternary, checkOverflow, IResume } from "@configs/util";
+import { Ternary, checkOverflow } from "@configs/util";
 import { useEffect, useRef, useState } from "react";
 import { ItemLayout, PageLayout } from "../Layout";
 import { Overflow } from "./Overflow";
 import QRCode from "react-qr-code";
+import { Document } from "@configs/type";
 import { setType } from ".";
 
 interface IProp {
-  data: IResume;
+  data: Document.Resume;
   setMax: setType;
   showPadding?: boolean;
+  scale?: number;
 }
 
-export const Inform = ({ data, setMax, showPadding }: IProp) => {
+export const Inform = ({ data, setMax, showPadding, scale }: IProp) => {
   const [pages, setPages] = useState<HTMLElement[][]>([]);
   const pdf = useRef<HTMLElement>(null);
 
@@ -25,24 +27,26 @@ export const Inform = ({ data, setMax, showPadding }: IProp) => {
 
   return (
     <>
-      <PageLayout ref={pdf} showPadding={showPadding}>
+      <PageLayout ref={pdf} showPadding={showPadding} scale={scale}>
         <div className="flex w-full h-[60px] justify-between items-center">
           {/* 프로필 */}
-          <div className="col-flex gap-1">
+          <div className="col-flex gap-2">
             <div className="flex gap-3 items-center">
-              <span className="text-title1 text-black">{data.writer.name}</span>
-              <span className="text-title4 text-gray-700">
+              <span className="text-resumeTitle text-black">
+                {data.writer.name}
+              </span>
+              <span className="text-resumeSubTitle text-gray-700">
                 {data.writer.major}
               </span>
             </div>
             <div className="flex gap-3 items-center">
-              <span className="text-body8 text-black font-light">
+              <span className="text-resumeInformation text-black">
                 {data.writer.department}{" "}
                 <span className="text-[#A5A4A4]">
                   {data.writer.class_info.school_number}
                 </span>
               </span>
-              <span className="text-body8 text-black font-light">
+              <span className="text-resumeInformation text-black">
                 {data.writer.email}
               </span>
             </div>
@@ -55,11 +59,11 @@ export const Inform = ({ data, setMax, showPadding }: IProp) => {
         </div>
         {/* 자기 소개 */}
         <Ternary data={!!data.introduce.heading || !!data.introduce.introduce}>
-          <div className="col-flex gap-5 mt-6 w-full">
-            <span className="text-body3 text-black">
+          <div className="col-flex gap-3 mt-6 w-full">
+            <span className="text-resumeIntroduceHeading text-black">
               {data.introduce.heading}
             </span>
-            <span className="text-body8 text-[#818181] inline w-full font-light break-words whitespace-pre-wrap">
+            <span className="text-resumeIntroduce text-[#818181] inline w-full font-light break-words whitespace-pre-wrap">
               {data.introduce.introduce}
             </span>
           </div>
@@ -92,7 +96,7 @@ export const Inform = ({ data, setMax, showPadding }: IProp) => {
         />
       </PageLayout>
 
-      <Overflow items={pages} showPadding={showPadding} />
+      <Overflow items={pages} showPadding={showPadding} scale={scale} />
     </>
   );
 };

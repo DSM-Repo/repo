@@ -1,58 +1,34 @@
 import { Date, CheckBox, Label, TextArea, Icon } from "ui";
-import { Layout } from "../Layout";
-import { ChangeEvent } from "react";
-import { setType } from "@/hooks/useResumeData";
 import { Document } from "@configs/type";
+import { useResumeData } from "@/hooks";
+import { Box } from "../Box";
 
 interface IProp {
   data: Document.Activity_list;
-  setData: setType;
   index: number;
-  moveItem: (index: number, direction: "up" | "down") => void;
 }
 
-export const Item = ({ data, setData, index, moveItem }: IProp) => {
-  const set = (id: string, value?: string | boolean) =>
-    setData((prev) => ({
-      data: {
-        ...prev.data,
-        activity_list: prev.data.activity_list.map((i) =>
-          i.element_id === data.element_id ? { ...data, [id]: value } : i
-        )
-      }
-    }));
+export const Item = ({ data, index }: IProp) => {
+  const { removeItem, moveItem, setDeepPartial } = useResumeData();
 
-  const setDate = (value?: string, id?: string) =>
-    setData((prev) => ({
-      data: {
-        ...prev.data,
-        activity_list: prev.data.activity_list.map((i) =>
-          i.element_id === data.element_id
-            ? { ...data, date: { ...data.date, [id as string]: value } }
-            : i
-        )
-      }
-    }));
+  const handleDate = (value?: string, id?: string) =>
+    setDeepPartial(
+      "activity_list",
+      data.element_id,
+      { ...data.date, [id as string]: value },
+      "date"
+    );
 
-  const del = () => {
-    setData((prev) => ({
-      data: {
-        ...prev.data,
-        activity_list: prev.data.activity_list.filter(
-          (item) => item.element_id !== data.element_id
-        )
-      }
-    }));
-  };
+  const handleChange = ({ target }: React.ChangeEvent<HTMLInputElement>) =>
+    setDeepPartial("activity_list", data.element_id, target.value, target.id);
 
-  const handleChange = ({ target }: ChangeEvent<HTMLInputElement>) =>
-    set(target.id, target.value);
-
-  const handleChangeArea = ({ target }: ChangeEvent<HTMLTextAreaElement>) =>
-    set(target.id, target.value);
+  const handleChangeArea = ({
+    target
+  }: React.ChangeEvent<HTMLTextAreaElement>) =>
+    setDeepPartial("activity_list", data.element_id, target.value, target.id);
 
   return (
-    <Layout>
+    <Box>
       <div className="flex justify-between w-full">
         <input
           className="font-semibold text-[25px] w-[80%]"
@@ -66,15 +42,19 @@ export const Item = ({ data, setData, index, moveItem }: IProp) => {
             name="Arrow"
             rotate="up"
             className="cursor-pointer"
-            onClick={() => moveItem(index, "down")}
+            onClick={() => moveItem("activity_list", index, "down")}
           />
           <Icon
             name="Arrow"
             rotate="down"
             className="cursor-pointer"
-            onClick={() => moveItem(index, "up")}
+            onClick={() => moveItem("activity_list", index, "up")}
           />
-          <Icon name="Trash" className="cursor-pointer" onClick={del} />
+          <Icon
+            name="Trash"
+            className="cursor-pointer"
+            onClick={() => removeItem("activity_list", data.element_id)}
+          />
         </div>
       </div>
       <Label label="진행일" size="full">
@@ -82,29 +62,36 @@ export const Item = ({ data, setData, index, moveItem }: IProp) => {
           <div className="w-full h-fit justify-between items-center flex">
             <Date
               id="start_date"
-              onDelete={() => setDate(undefined, "start_date")}
+              onDelete={() => handleDate(undefined, "start_date")}
               size={data?.is_period ? "medium" : "large"}
               placeholder={`${data.is_period ? "시작" : "진행"}일을 선택하세요`}
               value={data?.date?.start_date}
-              onChange={setDate}
+              onChange={handleDate}
             />
             {data.is_period && (
               <>
                 <span>~</span>
                 <Date
-                  onDelete={() => setDate(undefined, "end_date")}
+                  onDelete={() => handleDate(undefined, "end_date")}
                   id="end_date"
                   size="medium"
-                  placeholder="종료일을 선택하세요"
+                  placeholder="종료일 선택 (진행중)"
                   value={data?.date?.end_date}
-                  onChange={setDate}
+                  onChange={handleDate}
                 />
               </>
             )}
           </div>
           <CheckBox
             label="기간"
-            onClick={() => set("is_period", !data.is_period)}
+            onClick={() =>
+              setDeepPartial(
+                "activity_list",
+                data.element_id,
+                !data.is_period,
+                "is_period"
+              )
+            }
             checked={data.is_period}
           />
         </div>
@@ -119,6 +106,6 @@ export const Item = ({ data, setData, index, moveItem }: IProp) => {
         rows={10}
         onChange={handleChangeArea}
       />
-    </Layout>
+    </Box>
   );
 };

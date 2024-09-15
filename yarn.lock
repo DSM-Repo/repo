@@ -5933,6 +5933,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"html-to-image@npm:^1.11.11":
+  version: 1.11.11
+  resolution: "html-to-image@npm:1.11.11"
+  checksum: 10c0/0b6349221ad253dfca01d165c589d44341e942faf0273aab28c8b7d86ff2922d3e8e6390f57bf5ddaf6bac9a3b590a8cdaa77d52a363354796dd0e0e05eb35d2
+  languageName: node
+  linkType: hard
+
 "html2canvas@npm:^1.0.0-rc.5, html2canvas@npm:^1.4.1":
   version: 1.4.1
   resolution: "html2canvas@npm:1.4.1"
@@ -6694,6 +6701,7 @@ __metadata:
   resolution: "main@workspace:packages/main"
   dependencies:
     "@configs/tailwindcss": "workspace:^"
+    "@configs/type": "workspace:^"
     "@configs/util": "workspace:^"
     "@tanstack/react-query": "npm:^5.52.0"
     "@types/react": "npm:^18.2.66"
@@ -9410,6 +9418,7 @@ __metadata:
   dependencies:
     "@chromatic-com/storybook": "npm:^1.5.0"
     "@configs/tailwindcss": "workspace:^"
+    "@configs/type": "workspace:^"
     "@configs/util": "workspace:^"
     "@iconify/react": "npm:^5.0.1"
     "@radix-ui/react-use-layout-effect": "npm:^1.1.0"
@@ -9437,7 +9446,7 @@ __metadata:
     autoprefixer: "npm:^10.4.19"
     dayjs: "npm:^1.11.12"
     file-saver: "npm:^2.0.5"
-    html2canvas: "npm:^1.4.1"
+    html-to-image: "npm:^1.11.11"
     jspdf: "npm:^2.5.1"
     postcss: "npm:^8.4.39"
     prop-types: "npm:^15.8.1"

@@ -6,6 +6,7 @@ export const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<_.Landing />} />
+        <Route path="/viewer/:id" element={<_.PublicViewer />} />
         <Route path="/404" element={<_.NotFound />} />
         <Route path="*" element={<Navigate to="/404" />} />
       </Routes>

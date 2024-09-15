@@ -1,7 +1,7 @@
-import { IDefaultProp, Layout } from "../Layout";
+import { sizeTable, sizeType } from "../../../../size";
+import { Box, IDefaultProp, Label } from "../Layout";
 import { Icon } from "../../../";
 import { useState } from "react";
-import { sizeTable, sizeType } from "../../../../size";
 
 type itemType = {
   id: string;
@@ -9,34 +9,31 @@ type itemType = {
 };
 
 interface IProp extends IDefaultProp {
-  values?: itemType[];
-  onEnter: (item: string, id?: string) => void;
-  onDelete: (itemId: string, id: string) => void;
   listSize?: sizeType;
-  placeholder: string;
-  id?: string;
+  onDelete: (itemId: string, id: string) => void;
+  onEnter: (item: string, id?: string) => void;
+  values?: itemType[];
 }
 
 export const List = ({
-  size,
-  values,
-  onEnter,
-  onDelete,
-  listSize,
   placeholder,
   required,
+  disabled,
   label,
-  id
+  size,
+  id,
+  listSize,
+  onDelete,
+  onEnter,
+  values
 }: IProp) => {
   const [item, setItem] = useState("");
 
   return (
-    <div
-      className={`${sizeTable[listSize ? listSize : size]} col-flex gap-3 h-fit`}
-    >
-      <Layout size={size} required={required} label={label}>
+    <Label size={size} label={label} required={required}>
+      <Box size={size} disabled={disabled}>
         <input
-          className="w-full text-[14px] font-light leading-none px-5 py-[15px] h-full"
+          className="w-full text-body5 disabled:text-gray-300 disabled:cursor-not-allowed"
           placeholder={placeholder + " (Enter 키로 추가)"}
           value={item}
           onChange={(e) => setItem(e.target.value)}
@@ -47,8 +44,8 @@ export const List = ({
             }
           }}
         />
-      </Layout>
-      <div className="flex flex-wrap gap-3 w-full">
+      </Box>
+      <div className={`flex flex-wrap gap-3 ${sizeTable[listSize]}`}>
         {values.map((i) => (
           <div className="flex items-center gap-2 w-fit h-fit px-3 py-2 border-[1px] rounded-xl bg-gray-700 border-gray-600">
             <span className="text-[14px] font-light">{i.name}</span>
@@ -61,6 +58,6 @@ export const List = ({
           </div>
         ))}
       </div>
-    </div>
+    </Label>
   );
 };
