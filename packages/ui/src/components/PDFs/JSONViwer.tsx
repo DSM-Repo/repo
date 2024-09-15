@@ -10,14 +10,15 @@ interface IProp {
 }
 export const JSONViewer = ({ data, buttons = [], sidebars = [] }: IProp) => {
   const [scale, setScale] = useState(0);
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const [max, setMax] = useState({
     projects: 0,
     inform: 0
   });
+  const maxFull = max.projects + max.inform;
 
   const handleMovePage = (to: number) => {
-    if (to < 0 || to > Math.ceil((max.inform + max.projects) / 2 - 1)) return;
+    if (to < 1 || to > maxFull) return;
     setPage(to);
   };
 
@@ -40,19 +41,22 @@ export const JSONViewer = ({ data, buttons = [], sidebars = [] }: IProp) => {
           icon: "Arrow",
           title: "이전으로",
           rotate: "left",
-          action: () => handleMovePage(page - 1)
+          action: () => handleMovePage(page - 2)
         },
         {
           icon: "Arrow",
           title: "다음으로",
           rotate: "right",
-          action: () => handleMovePage(page + 1)
+          action: () => handleMovePage(page + 2)
         },
         ...buttons
       ]}
       sidebars={sidebars}
     >
-      <div className="w-full h-full flex items-center justify-center gap-3 overflow-hidden">
+      <div className="w-full h-full col-flex items-center justify-center gap-3 overflow-hidden relative">
+        <span className="absolute self-center -top-1">
+          {page} - {page + 1} / {maxFull}
+        </span>
         <div
           style={{
             transform: `scale(${scale})`
@@ -60,7 +64,7 @@ export const JSONViewer = ({ data, buttons = [], sidebars = [] }: IProp) => {
         >
           <div className="w-[1696px] overflow-hidden">
             <div
-              style={{ transform: `translateX(-${1708 * page}px)` }}
+              style={{ transform: `translateX(-${1708 * ((page - 1) / 2)}px)` }}
               className="flex gap-3 items-center"
             >
               <Resume data={data} setMax={setMax} showPadding />
