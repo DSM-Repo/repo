@@ -41,7 +41,7 @@ export const Icon = ({
   return (
     <SelectedIcon
       {...props}
-      onClick={(e) => !!!disabled && onClick(e)}
+      onClick={(e) => !!!disabled && onClick && onClick(e)}
       style={{ transform: `rotate(${rotateTable[rotate]})` }}
       className={`flex-shrink-0 transition-all duration-150 ${props.className} ${!!disabled ? "cursor-[not-allowed_!important]" : ""}`}
       fill={!!!disabled ? color : "#777777"}
