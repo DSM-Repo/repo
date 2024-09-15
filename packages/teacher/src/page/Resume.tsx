@@ -103,58 +103,51 @@ export const Resume = () => {
               content: (
                 <div className="col-flex gap-2">
                   {feedbacks?.data.length !== 0 ? (
-                    feedbacks?.data.map(
-                      (i) =>
-                        !i.rejected && (
-                          <div className="col-flex gap-1">
-                            <TextArea
-                              onChange={() => {}}
-                              placeholder=""
-                              size="full"
-                              value={i.comment}
-                              disabled
-                            />
-                            <div className="w-full flex items-center justify-between">
-                              <span className="text-[16px] text-light text-green-400">
-                                {i.status === "CONFIRMED"
-                                  ? "반영된 피드백"
-                                  : ""}
+                    feedbacks?.data.map((i) => (
+                      <div className="col-flex gap-1">
+                        <TextArea
+                          onChange={() => {}}
+                          placeholder=""
+                          size="full"
+                          value={i.comment}
+                          disabled
+                        />
+                        <div className="w-full flex items-center justify-between">
+                          <span className="text-[16px] text-light text-green-400">
+                            {i.status === "CONFIRMED" ? "반영된 피드백" : ""}
+                          </span>
+                          <div className="flex gap-2 items-center">
+                            {i.status === "CONFIRMED" ? (
+                              <>
+                                <span
+                                  className="text-[15px] cursor-pointer"
+                                  onClick={() =>
+                                    confirm(`?id=${i.id}`, { onSuccess })
+                                  }
+                                >
+                                  수락
+                                </span>
+                                <span
+                                  className="text-[15px] cursor-pointer"
+                                  onClick={() =>
+                                    reject(`?id=${i.id}`, { onSuccess })
+                                  }
+                                >
+                                  거절
+                                </span>
+                              </>
+                            ) : (
+                              <span
+                                className="text-[15px] cursor-pointer"
+                                onClick={() => del(`/${i.id}`, { onSuccess })}
+                              >
+                                삭제
                               </span>
-                              <div className="flex gap-2 items-center">
-                                {i.status === "CONFIRMED" ? (
-                                  <>
-                                    <span
-                                      className="text-[15px] cursor-pointer"
-                                      onClick={() =>
-                                        confirm(`?id=${i.id}`, { onSuccess })
-                                      }
-                                    >
-                                      수락
-                                    </span>
-                                    <span
-                                      className="text-[15px] cursor-pointer"
-                                      onClick={() =>
-                                        reject(`?id=${i.id}`, { onSuccess })
-                                      }
-                                    >
-                                      거절
-                                    </span>
-                                  </>
-                                ) : (
-                                  <span
-                                    className="text-[15px] cursor-pointer"
-                                    onClick={() =>
-                                      del(`/${i.id}`, { onSuccess })
-                                    }
-                                  >
-                                    삭제
-                                  </span>
-                                )}
-                              </div>
-                            </div>
+                            )}
                           </div>
-                        )
-                    )
+                        </div>
+                      </div>
+                    ))
                   ) : (
                     <span className="text-[14px]">아직 피드백이 없습니다</span>
                   )}
