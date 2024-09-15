@@ -12503,6 +12503,7 @@ const RAW_RUNTIME_STATE =
           ["teacher", "workspace:packages/teacher"],\
           ["@configs/eslint", "workspace:configs/eslint-config"],\
           ["@configs/tailwindcss", "workspace:configs/tailwindcss-config"],\
+          ["@configs/type", "workspace:configs/types-config"],\
           ["@configs/util", "virtual:9dce388d82c018b4a7af5edc7243e51f7023d1ab93a923b3959d0066ac6881c93b965a0932486426cbefa96c9c8e47849d5ff541d2404b8aca246480fa32f0d2#workspace:configs/util-config"],\
           ["@iconify/react", "virtual:41ba414687e63b0ec9e18089b13f4703242871f01d9f121df92da169ab57ddcc9414104055bf2bae216396dc4b45038cf6bca022ccb6e06aa972f15ad15fdfc7#npm:5.0.2"],\
           ["@tanstack/react-query", "virtual:9dce388d82c018b4a7af5edc7243e51f7023d1ab93a923b3959d0066ac6881c93b965a0932486426cbefa96c9c8e47849d5ff541d2404b8aca246480fa32f0d2#npm:5.55.4"],\
