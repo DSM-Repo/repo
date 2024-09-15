@@ -59,11 +59,11 @@ export const Inform = ({ data, setMax, showPadding, scale }: IProp) => {
         </div>
         {/* 자기 소개 */}
         <Ternary data={!!data.introduce.heading || !!data.introduce.introduce}>
-          <div className="col-flex gap-5 mt-6 w-full">
-            <span className="text-body3 text-black">
+          <div className="col-flex gap-3 mt-6 w-full">
+            <span className="text-resumeIntroduceHeading text-black">
               {data.introduce.heading}
             </span>
-            <span className="text-body8 text-[#818181] inline w-full font-light break-words whitespace-pre-wrap">
+            <span className="text-resumeIntroduce text-[#818181] inline w-full font-light break-words whitespace-pre-wrap">
               {data.introduce.introduce}
             </span>
           </div>
