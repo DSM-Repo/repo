@@ -64,7 +64,7 @@ export const Date = ({
         action={() => setOpen((prev) => !prev)}
       >
         <span
-          className={`block w-full h-full text-body5 ${!value ? "text-gray-300" : "cursor-pointer"} ${disabled ? "cursor-[not-allowed_!important]" : ""}`}
+          className={`block w-full h-fit text-body5 leading-none ${!value ? "text-gray-300" : "cursor-pointer"} ${disabled ? "cursor-[not-allowed_!important]" : ""}`}
         >
           {value ? value : placeholder}
         </span>

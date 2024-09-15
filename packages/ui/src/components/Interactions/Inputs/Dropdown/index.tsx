@@ -35,7 +35,7 @@ export const Dropdown = ({
         action={() => setOpen((prev) => !prev)}
       >
         <span
-          className={`block w-full h-full text-body5 ${!selected ? "text-gray-400" : ""} ${disabled ? "text-gray-300 cursor-not-allowed" : "cursor-pointer"}`}
+          className={`block w-full h-fit text-body5 leading-none ${!selected ? "text-gray-400" : ""} ${disabled ? "text-gray-300 cursor-not-allowed" : "cursor-pointer"}`}
         >
           {selected ? selected : placeholder}
         </span>
