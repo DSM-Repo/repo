@@ -75,16 +75,16 @@ export const Projects = ({ data, setMax, keep, showPadding, scale }: IProp) => {
               />
             </Ternary>
             <div className="col-flex">
-              <div className="flex gap-[8px] items-end">
-                <span className="text-black text-title3">
+              <div className="flex gap-[8px] items-center">
+                <span className="text-black text-resumeTitle">
                   {data?.name || "무명"}
                 </span>
-                <span className="text-gray-600 text-body5">
+                <span className="text-gray-600 text-resumeSubTitle">
                   {typeAgainChange[data?.type]} 프로젝트
                 </span>
               </div>
               <Ternary data={data?.date?.start_date || data?.date?.end_date}>
-                <span className="text-gray-400 text-body7">
+                <span className="text-gray-400 text-resumeInformation">
                   {data?.date?.start_date} ~ {data?.date?.end_date || "진행중"}
                 </span>
               </Ternary>
