@@ -51,7 +51,7 @@ export default {
       resumeSubTitle: ["28px", { fontWeight: 100, lineHeight: "21px" }],
       resumeInformation: ["16px", { fontWeight: 400, lineHeight: "19px" }],
       resumeIntroduceHeading: ["18px", { fontWeight: 400, lineHeight: "21px" }],
-      resumeIntroduce: ["16px", { fontWeight: 300, lineHeight: "19px" }],
+      resumeIntroduce: ["14px", { fontWeight: 300, lineHeight: "17px" }],
       resumeSectionTitle: ["14px", { fontWeight: 500, lineHeight: "21px" }],
       resumeItemTitle: ["16px", { fontWeight: 500, lineHeight: "19px" }],
       resumeItemContent: ["14px", { fontWeight: 400, lineHeight: "17px" }]

@@ -1,7 +1,16 @@
-import { useMyQuery, IResume } from "@configs/util";
-import { IStudent } from "./types";
+import { Placeholder, Document, Api } from "@configs/type";
+import { useMyQuery } from "@configs/util";
 
-export const students = () => useMyQuery<IStudent>("resume", "/student");
+export const students = () =>
+  useMyQuery<Api.Resume.ResumeStudent>(
+    "resume",
+    "/student",
+    Placeholder.CommonLayoutPlace
+  );
 
 export const studentDetail = (id: string) =>
-  useMyQuery<IResume>("resume", `/student/${id}`);
+  useMyQuery<Document.Resume>(
+    "resume",
+    `/student/${id}`,
+    Placeholder.ResumeDetailPlace
+  );

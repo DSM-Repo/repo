@@ -8,7 +8,7 @@ export const Major = () => {
 
   return (
     <Layout>
-      <div className="col-flex gap-2 px-[60px] py-6">
+      <div className="col-flex w-full px-[60px] py-6 gap-5">
         <Title
           title="전공 관리"
           subTitle="레주메 작성에 사용되는 전공을 관리해 보세요"

@@ -28,7 +28,16 @@ export const Text = ({
 
   return (
     <Label size={size} label={label} required={required}>
-      <Box size={size} disabled={disabled}>
+      <Box
+        size={size}
+        disabled={disabled}
+        icon={
+          password && {
+            name: show ? "Show" : "Hide",
+            action: () => setShow((prev) => !prev)
+          }
+        }
+      >
         <input
           className="w-full text-body5 disabled:text-gray-300 disabled:cursor-not-allowed"
           placeholder={placeholder}

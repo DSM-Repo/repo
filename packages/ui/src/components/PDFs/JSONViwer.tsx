@@ -1,10 +1,11 @@
 import { Document } from "@configs/type";
 import { useEventListeners } from "@configs/util";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Layout, Resume, buttonType, sidebarType } from "ui";
 
 interface IProp {
-  data: Document.Resume;
+  data?: Document.Resume;
   buttons?: buttonType[];
   sidebars?: sidebarType[];
 }
@@ -15,6 +16,7 @@ export const JSONViewer = ({ data, buttons = [], sidebars = [] }: IProp) => {
     projects: 0,
     inform: 0
   });
+  const navigate = useNavigate();
   const maxFull = max.projects + max.inform;
 
   const handleMovePage = (to: number) => {
@@ -37,6 +39,12 @@ export const JSONViewer = ({ data, buttons = [], sidebars = [] }: IProp) => {
   return (
     <Layout
       buttons={[
+        {
+          icon: "Share",
+          title: "돌아가기",
+          rotate: "left",
+          action: () => navigate(-1)
+        },
         {
           icon: "Arrow",
           title: "이전으로",

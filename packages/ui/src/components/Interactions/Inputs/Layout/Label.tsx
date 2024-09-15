@@ -25,6 +25,10 @@ export const Label = ({ label, children, size, required }: IProp) => {
       {children}
     </div>
   ) : (
-    <div className="w-fit h-fit relative">{children}</div>
+    <div
+      className={`${isFull ? "w-full" : "w-fit"} col-flex gap-3 h-fit relative`}
+    >
+      {children}
+    </div>
   );
 };
