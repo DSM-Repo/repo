@@ -31,8 +31,8 @@ const sectionsName = {
   WRITER_INFO: "내 정보",
   INTRODUCE: "자기소개",
   PROJECT: "프로젝트",
-  ACTIVITY: "활동",
-  ACHIEVEMENT: "자격증 & 수상"
+  ACHIEVEMENT: "자격증 & 수상",
+  ACTIVITY: "활동"
 };
 
 export const Write = () => {
