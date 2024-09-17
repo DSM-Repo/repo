@@ -27,7 +27,9 @@ export const Box = ({ children, icon, size, disabled, action }: IProp) => {
           !!!action ||
           !!disabled
         )
-          return;
+          e.preventDefault();
+        return;
+
         action();
       }}
       className={`relative flex justify-between items-center gap-2 min-h-[50px] h-fit px-5 py-[15px] border-[1px] rounded-xl border-gray-600 ${disabled ? "cursor-not-allowed" : !!action ? "cursor-pointer" : "cursor-text"} ${sizeTable[size]} ${disabled ? "bg-gray-600" : "bg-gray-700"}`}
