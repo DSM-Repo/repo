@@ -27,7 +27,11 @@ export const Overflow = ({ items, showPadding, scale }: IProp) => {
           item?.childNodes?.forEach((i, j) => {
             if (!!!j) {
               const item = i.childNodes[0] as HTMLElement;
-              item.style.marginTop = "0";
+              if (!!item.childNodes.length) {
+                (item.childNodes[0] as HTMLElement).style.marginTop = "0";
+              } else {
+                item.style.marginTop = "0";
+              }
             }
           });
         }

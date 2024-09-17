@@ -64,13 +64,11 @@ export const Projects = ({ data, setMax, keep, showPadding, scale }: IProp) => {
     <>
       <PageLayout ref={pdf} showPadding={showPadding} scale={scale}>
         <div className="flex w-full justify-between items-center">
-          <div
-            className={`flex gap-[15px] ${!!data?.logo || !!data.url ? "h-[64px]" : "h-fit"} items-center`}
-          >
+          <div className={`flex gap-[20px] h-[60px] items-center`}>
             <Ternary data={data?.logo}>
               <img
                 src={data?.logo?.image_path + `?timestamp=${Date.now()}`}
-                className="w-[64px] h-[64px]"
+                className="w-[54px] h-[54px]"
                 crossOrigin="anonymous"
               />
             </Ternary>
@@ -91,18 +89,15 @@ export const Projects = ({ data, setMax, keep, showPadding, scale }: IProp) => {
             </div>
           </div>
           <Ternary data={data?.url}>
-            <QRCode value={data?.url} className="w-[60px] h-[60px]" />
+            <a href={data?.url}>
+              <QRCode value={data?.url} className="w-[60px] h-[60px]" />
+            </a>
           </Ternary>
         </div>
         <ItemLayout title="사용 기술" type="rowList" data={data?.skill_set} />
         <>
           {data?.sections.map((i) => (
-            <ItemLayout
-              title={i.title}
-              type="static"
-              data={i.description}
-              isCheckAble
-            />
+            <ItemLayout title={i.title} type="static" data={i.description} />
           ))}
         </>
       </PageLayout>
