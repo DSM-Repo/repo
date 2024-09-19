@@ -15,15 +15,13 @@ interface IProp {
   indexList?: Api.Library.indexData[];
   buttons?: buttonType[];
   sidebars?: sidebarType[];
-  showCoverPage?: boolean;
 }
 
 export const Viewer = ({
   url,
   indexList,
   buttons = [],
-  sidebars = [],
-  showCoverPage
+  sidebars = []
 }: IProp) => {
   const [index, setIndex] = useState<Api.Library.indexData[][]>([]);
   const [loading, setLoading] = useState(true);
@@ -202,13 +200,13 @@ export const Viewer = ({
             <Page
               pageIndex={page - 1}
               scale={scale}
-              className={`${showCoverPage ? "" : page - 1 === 0 ? "invisible" : ""} h-fit`}
+              className={`${page - 1 === 0 ? "invisible" : ""} h-fit`}
             />
 
             <Page
               pageIndex={page > max ? page - 1 : page}
               scale={scale}
-              className={`${showCoverPage ? "" : page > max ? "invisible" : ""} h-fit`}
+              className={`${page > max ? "invisible" : ""} h-fit`}
             />
             <Page
               pageIndex={page > max ? page : page + 2}

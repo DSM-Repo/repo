@@ -29,7 +29,7 @@ export const File = ({
         action={() => {}}
       >
         <span
-          className={`w-full h-fit truncate block text-body5 leading-none ${!value ? "text-gray-300 cursor-not-allowed" : "cursor-pointer"}`}
+          className={`w-full h-fit truncate block text-body5 leading-snug ${!value ? "text-gray-300" : "cursor-pointer"} ${disabled && "cursor-[not-allowed_!important]"}`}
         >
           {value ? value.original_name : placeholder}
         </span>

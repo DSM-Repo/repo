@@ -4,11 +4,10 @@ interface IProp {
   showPadding?: boolean;
   children: React.ReactElement | React.ReactElement[];
   scale?: number;
-  index?: number;
 }
 
 export const PageLayout = forwardRef(
-  ({ showPadding, children, scale, index }: IProp, ref: any) => {
+  ({ showPadding, children, scale }: IProp, ref: any) => {
     return (
       <div
         style={{

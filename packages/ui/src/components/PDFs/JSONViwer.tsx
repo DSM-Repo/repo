@@ -1,5 +1,5 @@
 import { Document } from "@configs/type";
-import { useEventListeners } from "@configs/util";
+import { useEventListeners, useShortcut } from "@configs/util";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Layout, Resume, buttonType, sidebarType } from "ui";
@@ -17,7 +17,9 @@ export const JSONViewer = ({ data, buttons = [], sidebars = [] }: IProp) => {
     inform: 0
   });
   const navigate = useNavigate();
+  const [showType, setShowType] = useState(window.innerWidth > 1280);
   const maxFull = max.projects + max.inform;
+  const windowXl = window.innerWidth > 1280;
 
   const handleMovePage = (to: number) => {
     if (to < 1 || to > maxFull) return;
@@ -29,10 +31,28 @@ export const JSONViewer = ({ data, buttons = [], sidebars = [] }: IProp) => {
       eventType: "resize",
       callback: () => {
         const windowHeight = window.innerHeight;
-        const newScale = windowHeight / 1400; // 예시로 A4 크기(842px)에 맞추는 방법
+        const windowWidth = window.innerWidth;
+        if (windowWidth > 1280 && !showType) {
+          setShowType(true);
+          if (!!!(page % 2)) setPage(page - 1);
+        } else if (windowWidth < 1280 && showType) {
+          setShowType(false);
+        }
+        const newScale = windowHeight / 1450; // 예시로 A4 크기(842px)에 맞추는 방법
         setScale(newScale);
       },
       useCallbackOnLoad: true
+    }
+  ]);
+
+  useShortcut([
+    {
+      key: "ArrowLeft",
+      action: () => handleMovePage(page - (windowXl ? 2 : 1))
+    },
+    {
+      key: "ArrowRight",
+      action: () => handleMovePage(page + (windowXl ? 2 : 1))
     }
   ]);
 
@@ -49,13 +69,13 @@ export const JSONViewer = ({ data, buttons = [], sidebars = [] }: IProp) => {
           icon: "Arrow",
           title: "이전으로",
           rotate: "left",
-          action: () => handleMovePage(page - 2)
+          action: () => handleMovePage(page - (windowXl ? 2 : 1))
         },
         {
           icon: "Arrow",
           title: "다음으로",
           rotate: "right",
-          action: () => handleMovePage(page + 2)
+          action: () => handleMovePage(page + (windowXl ? 2 : 1))
         },
         ...buttons
       ]}
@@ -63,16 +83,20 @@ export const JSONViewer = ({ data, buttons = [], sidebars = [] }: IProp) => {
     >
       <div className="w-full h-full col-flex items-center justify-center gap-3 overflow-hidden relative">
         <span className="absolute self-center -top-1">
-          {page} - {page + 1} / {maxFull}
+          {showType
+            ? `${page} - ${page + 1} / ${maxFull}`
+            : `${page} / ${maxFull}`}
         </span>
         <div
           style={{
             transform: `scale(${scale})`
           }}
         >
-          <div className="w-[1696px] overflow-hidden">
+          <div className="w-[1696px] max-xl:w-[842px] overflow-hidden">
             <div
-              style={{ transform: `translateX(-${1708 * ((page - 1) / 2)}px)` }}
+              style={{
+                transform: `translateX(-${windowXl ? 1708 * ((page - 1) / 2) : 854 * (page - 1)}px)`
+              }}
               className="flex gap-3 items-center"
             >
               <Resume data={data} setMax={setMax} showPadding />
