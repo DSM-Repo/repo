@@ -14,5 +14,8 @@ var require_fs = __commonJS({
     }));
   }
 });
-export default require_fs();
-//# sourceMappingURL=fs-DZDM6YZO.js.map
+
+export {
+  require_fs
+};
+//# sourceMappingURL=chunk-EW5Z7QBA.js.map

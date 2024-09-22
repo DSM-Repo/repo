@@ -435,7 +435,6 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/__virtual__/@configs-util-virtual-ad9439a512/1/configs/util-config/",\
         "packageDependencies": [\
           ["@configs/util", "virtual:9dce388d82c018b4a7af5edc7243e51f7023d1ab93a923b3959d0066ac6881c93b965a0932486426cbefa96c9c8e47849d5ff541d2404b8aca246480fa32f0d2#workspace:configs/util-config"],\
-          ["@iconify/react", "virtual:41ba414687e63b0ec9e18089b13f4703242871f01d9f121df92da169ab57ddcc9414104055bf2bae216396dc4b45038cf6bca022ccb6e06aa972f15ad15fdfc7#npm:5.0.2"],\
           ["@tanstack/react-query", "virtual:9dce388d82c018b4a7af5edc7243e51f7023d1ab93a923b3959d0066ac6881c93b965a0932486426cbefa96c9c8e47849d5ff541d2404b8aca246480fa32f0d2#npm:5.56.2"],\
           ["@types/node", "npm:22.5.5"],\
           ["@types/react", "npm:18.3.8"],\
@@ -446,7 +445,7 @@ const RAW_RUNTIME_STATE =
           ["react-cookie", "virtual:41ba414687e63b0ec9e18089b13f4703242871f01d9f121df92da169ab57ddcc9414104055bf2bae216396dc4b45038cf6bca022ccb6e06aa972f15ad15fdfc7#npm:7.2.0"],\
           ["react-dom", "virtual:41ba414687e63b0ec9e18089b13f4703242871f01d9f121df92da169ab57ddcc9414104055bf2bae216396dc4b45038cf6bca022ccb6e06aa972f15ad15fdfc7#npm:18.3.1"],\
           ["react-toastify", "virtual:41ba414687e63b0ec9e18089b13f4703242871f01d9f121df92da169ab57ddcc9414104055bf2bae216396dc4b45038cf6bca022ccb6e06aa972f15ad15fdfc7#npm:10.0.5"],\
-          ["typescript", "patch:typescript@npm%3A5.4.5#optional!builtin<compat/typescript>::version=5.4.5&hash=5adc0c"]\
+          ["typescript", "patch:typescript@npm%3A5.6.2#optional!builtin<compat/typescript>::version=5.6.2&hash=379a07"]\
         ],\
         "packagePeers": [\
           "@tanstack/react-query",\
@@ -458,7 +457,6 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./configs/util-config/",\
         "packageDependencies": [\
           ["@configs/util", "workspace:configs/util-config"],\
-          ["@iconify/react", "virtual:41ba414687e63b0ec9e18089b13f4703242871f01d9f121df92da169ab57ddcc9414104055bf2bae216396dc4b45038cf6bca022ccb6e06aa972f15ad15fdfc7#npm:5.0.2"],\
           ["@types/node", "npm:22.5.5"],\
           ["@types/react", "npm:18.3.8"],\
           ["@types/react-dom", "npm:18.3.0"],\
@@ -467,7 +465,7 @@ const RAW_RUNTIME_STATE =
           ["react-cookie", "virtual:41ba414687e63b0ec9e18089b13f4703242871f01d9f121df92da169ab57ddcc9414104055bf2bae216396dc4b45038cf6bca022ccb6e06aa972f15ad15fdfc7#npm:7.2.0"],\
           ["react-dom", "virtual:41ba414687e63b0ec9e18089b13f4703242871f01d9f121df92da169ab57ddcc9414104055bf2bae216396dc4b45038cf6bca022ccb6e06aa972f15ad15fdfc7#npm:18.3.1"],\
           ["react-toastify", "virtual:41ba414687e63b0ec9e18089b13f4703242871f01d9f121df92da169ab57ddcc9414104055bf2bae216396dc4b45038cf6bca022ccb6e06aa972f15ad15fdfc7#npm:10.0.5"],\
-          ["typescript", "patch:typescript@npm%3A5.4.5#optional!builtin<compat/typescript>::version=5.4.5&hash=5adc0c"]\
+          ["typescript", "patch:typescript@npm%3A5.6.2#optional!builtin<compat/typescript>::version=5.6.2&hash=379a07"]\
         ],\
         "linkType": "SOFT"\
       }]\
@@ -845,38 +843,6 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/unplugged/@esbuild-win32-x64-npm-0.23.1-41fdbc02b5/node_modules/@esbuild/win32-x64/",\
         "packageDependencies": [\
           ["@esbuild/win32-x64", "npm:0.23.1"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["@iconify/react", [\
-      ["npm:5.0.2", {\
-        "packageLocation": "./.yarn/cache/@iconify-react-npm-5.0.2-c732ef4098-97f4222a13.zip/node_modules/@iconify/react/",\
-        "packageDependencies": [\
-          ["@iconify/react", "npm:5.0.2"]\
-        ],\
-        "linkType": "SOFT"\
-      }],\
-      ["virtual:41ba414687e63b0ec9e18089b13f4703242871f01d9f121df92da169ab57ddcc9414104055bf2bae216396dc4b45038cf6bca022ccb6e06aa972f15ad15fdfc7#npm:5.0.2", {\
-        "packageLocation": "./.yarn/__virtual__/@iconify-react-virtual-c9b7d4ef94/0/cache/@iconify-react-npm-5.0.2-c732ef4098-97f4222a13.zip/node_modules/@iconify/react/",\
-        "packageDependencies": [\
-          ["@iconify/react", "virtual:41ba414687e63b0ec9e18089b13f4703242871f01d9f121df92da169ab57ddcc9414104055bf2bae216396dc4b45038cf6bca022ccb6e06aa972f15ad15fdfc7#npm:5.0.2"],\
-          ["@iconify/types", "npm:2.0.0"],\
-          ["@types/react", "npm:18.3.8"],\
-          ["react", "npm:18.3.1"]\
-        ],\
-        "packagePeers": [\
-          "@types/react",\
-          "react"\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["@iconify/types", [\
-      ["npm:2.0.0", {\
-        "packageLocation": "./.yarn/cache/@iconify-types-npm-2.0.0-faa2398199-65a3be4350.zip/node_modules/@iconify/types/",\
-        "packageDependencies": [\
-          ["@iconify/types", "npm:2.0.0"]\
         ],\
         "linkType": "HARD"\
       }]\

@@ -5698,7 +5698,7 @@ if (isNodeJS) {
   const loadPackages = async () => {
     const fs = await import(
       /*webpackIgnore: true*/
-      "./fs-DZDM6YZO.js"
+      "./fs-DC62CCR3.js"
     ), http = await import(
       /*webpackIgnore: true*/
       "./http-5XFXQTX7.js"
