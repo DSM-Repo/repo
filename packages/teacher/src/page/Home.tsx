@@ -1,106 +1,118 @@
 import { students } from "@/apis";
+import { Api } from "@configs/type";
+import { fuzzySearch } from "@configs/util";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Box, Dropdown, Layout, Title } from "ui";
-
-type filterType = {
-  grade: "1학년" | "2학년" | "3학년" | "학년";
-  class: "1반" | "2반" | "3반" | "4반" | "반";
-};
+import { Box, Icon, Layout, Text, Title } from "ui";
 
 export const Home = () => {
-  const [filter, setFilter] = useState<filterType>({
-    grade: "학년",
-    class: "반"
-  });
-
+  const navigate = useNavigate();
   const { data: resumes } = students();
+  const [opened, setOpened] = useState<string | null>(null);
+  const [filter, setFilter] = useState<string>("");
 
-  const filterF = () => {
-    let item = resumes?.data;
-    if (item) {
-      if (filter.grade && filter.grade !== "학년") {
-        item = item.filter(
-          (i) =>
-            i.student_info.school_number.split("")[0] ===
-            filter.grade.split("")[0]
-        );
-      }
-      if (filter.class && filter.class !== "반") {
-        item = item.filter(
-          (i) =>
-            i.student_info.school_number.split("")[1] ===
-            filter.class.split("")[0]
-        );
-      }
-      return item.sort(
-        (i: any, j: any) =>
-          i.student_info.school_number - j.student_info.school_number
+  const filterList = () => {
+    let item: Record<string, Api.Resume.resumeStudentData[]> = {};
+    resumes?.data.forEach((i) => {
+      const number = i.student_info.school_number
+        .split("")
+        .splice(0, 2)
+        .join("");
+      if (!!!item[number]) item[number] = [];
+      item[number] = [...item[number], i];
+    });
+    return item;
+  };
+
+  const filterItem = () => {
+    if (!isNaN(Number(filter))) {
+      return resumes?.data.filter((i) =>
+        i.student_info.school_number.includes(filter)
       );
+    } else {
+      return resumes?.data
+        .filter((i) => fuzzySearch(filter, i.student_info.name)?.success)
+        .sort(
+          (i, j) =>
+            fuzzySearch(filter, j.student_info.name)?.index -
+            fuzzySearch(filter, i.student_info.name)?.index
+        );
     }
   };
 
-  const item = filterF();
-  const handleFilter = (item: string, id?: string) =>
-    setFilter((prev) => ({ ...prev, [id as string]: item }));
-  const navigate = useNavigate();
-
   return (
-    <Layout
-      buttons={[
-        {
-          icon: "Filter",
-          title: "필터",
-          action: (
-            <div className="col-flex gap-6 w-[220px]">
-              <Title
-                title="필터"
-                titleSize="20px"
-                subTitle="자신이 원하는 데이터만 필터링해보세요"
-                subTitleSize="14px"
-              />
-              <div className="col-flex gap-2">
-                <Dropdown
-                  onChange={handleFilter}
-                  placeholder="학년"
-                  selected={filter.grade}
-                  id="grade"
-                  size="full"
-                  selections={["1학년", "2학년", "3학년", "학년"]}
-                />
-                <Dropdown
-                  onChange={handleFilter}
-                  selected={filter.class}
-                  selections={["1반", "2반", "3반", "4반", "반"]}
-                  placeholder="반"
-                  id="class"
-                  size="full"
-                />
-              </div>
-            </div>
-          )
-        }
-      ]}
-    >
+    <Layout>
       <div className="col-flex w-full px-[60px] py-6 gap-5">
         <Title title="레주메 관리" subTitle="학생들의 레주메를 관리해보세요" />
-        {item?.map((i) => (
-          <Box
-            width="440px"
-            height="fit-content"
-            className="flex-row cursor-pointer"
-            padding="24px"
-            onClick={() => navigate(`/resume/${i.resume_id}`)}
-          >
-            <span className="leading-none">
-              {i.student_info.school_number} {i.student_info.name}
-            </span>
-            <span className="leading-none text-gray-200">
-              피드백 {i.feedback_list.length}개, 반영된 피드백{" "}
-              {i.feedback_list.filter((i) => i.status === "CONFIRMED").length}개
-            </span>
-          </Box>
-        ))}
+        <Text
+          placeholder="검색할 이름이나 학번을 입력하세요"
+          onChange={({ target }) => setFilter(target.value)}
+          value={filter}
+          size="large"
+        />
+        {!!filter
+          ? filterItem()?.map((i) => (
+              <Box
+                width="440px"
+                height="fit-content"
+                className="flex-row cursor-pointer"
+                padding="24px"
+                onClick={() => navigate(`/resume/${i.resume_id}`)}
+              >
+                <span className="leading-none">
+                  {i.student_info.school_number} {i.student_info.name}
+                </span>
+                <span className="leading-none text-gray-200">
+                  피드백 {i.feedback_list.length}개, 반영된 피드백{" "}
+                  {
+                    i.feedback_list.filter((i) => i.status === "CONFIRMED")
+                      .length
+                  }
+                  개
+                </span>
+              </Box>
+            ))
+          : resumes &&
+            Object.entries(filterList()).map((i) => (
+              <div className="col-flex gap-5 w-[440px]">
+                <div className="flex gap-2 w-full h-fit items-center">
+                  <Icon
+                    name="Arrow"
+                    onClick={() => setOpened(opened === i[0] ? null : i[0])}
+                    className="cursor-pointer"
+                    rotate={opened === i[0] ? "up" : "down"}
+                  />
+                  <span className="flex-shrink-0 text-body5">
+                    {i[0].split("").join("-")} ({i[1].length}명)
+                  </span>
+                  <hr className="bg-white w-full" />
+                </div>
+
+                {opened === i[0] &&
+                  i[1].map((i) => (
+                    <Box
+                      width="440px"
+                      height="fit-content"
+                      className="flex-row cursor-pointer"
+                      padding="24px"
+                      onClick={() => navigate(`/resume/${i.resume_id}`)}
+                    >
+                      <span className="leading-none">
+                        {i.student_info.school_number} {i.student_info.name}
+                      </span>
+                      <span className="leading-none text-gray-200">
+                        피드백 {i.feedback_list.length}개, 반영된 피드백{" "}
+                        {
+                          i.feedback_list.filter(
+                            (i) => i.status === "CONFIRMED"
+                          ).length
+                        }
+                        개
+                      </span>
+                    </Box>
+                  ))}
+              </div>
+            ))}
       </div>
     </Layout>
   );

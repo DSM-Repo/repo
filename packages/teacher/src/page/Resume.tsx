@@ -1,7 +1,7 @@
-import { Button, JSONViewer, Dropdown, TextArea } from "ui";
-import { AddFeedback, getFeedback } from "@/apis";
+import { Button, JSONViewer, Dropdown, TextArea, Items } from "ui";
+import { AddFeedback, getFeedback, studentRelease, students } from "@/apis";
 import { findKeyWithValue } from "@configs/util";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import {
@@ -10,6 +10,12 @@ import {
   RejectFeedback,
   studentDetail
 } from "@/apis";
+import { Api } from "@configs/type";
+
+const statusTable: Record<string, string> = {
+  SUBMITTED: "(제출됨)",
+  RELEASED: "(공개됨)"
+}
 
 const typeTable: Record<string, string> = {
   "내 정보": "WRITER_INFO",
@@ -21,7 +27,7 @@ const typeTable: Record<string, string> = {
 
 export const Resume = () => {
   const { id } = useParams();
-  const { data } = studentDetail(id as string);
+  const { data, refetch } = studentDetail(id as string);
   const { data: feedbacks, refetch: refetchFeedbacks } = getFeedback(
     id as string
   );
@@ -34,6 +40,10 @@ export const Resume = () => {
   const { mutate: del } = DeleteFeedback();
   const { mutate: confirm } = ConfirmFeedback();
   const { mutate: reject } = RejectFeedback();
+  const { mutate: release } = studentRelease();
+
+  const navigate = useNavigate();
+  const { data: resumes, refetch: refetchResumes } = students();
 
   const [feed, setFeed] = useState(defaultFeed);
 
@@ -42,14 +52,51 @@ export const Resume = () => {
     refetchFeedbacks();
   };
 
+  const filter = () => {
+    const classNumber = data?.writer.class_info.grade + "";
+    let list: Api.Resume.resumeStudentData[][] = [];
+    resumes?.data
+      .filter(
+        ({ student_info }) => student_info.school_number[0] === classNumber
+      )
+      .forEach((i) => {
+        const classNumber = Number(i.student_info.school_number[1]) - 1;
+        if (!!!list[classNumber]) list[classNumber] = [];
+        list[classNumber] = [...list[classNumber], i];
+      });
+    return list;
+  };
+
   return (
     <JSONViewer
       data={data}
-      buttons={[{ icon: "Edit", title: "피드백 관리", action: "피드백 관리" }]}
+      buttons={[
+        { icon: "Edit", title: "피드백 관리", action: "피드백 관리" },
+        {
+          icon: "Share",
+          title: data?.status === "RELEASED" ? "문서 비공개" : "문서 공개",
+          disabled: data?.status === "ONGOING",
+          disabledReason: "미제출된 문서는 공개할 수 없습니다",
+          action: () =>
+            release(`/${data?.id}`, {
+              onSuccess: () => {
+                toast.success("성공적으로 상태를 변경하였습니다");
+                refetch();
+                refetchResumes();
+              }
+            })
+        },
+        {
+          icon: "Users",
+          title: "빠른 이동",
+          action: "빠른 이동"
+        }
+      ]}
       sidebars={[
         {
           name: "피드백 관리",
           type: "standard",
+          width: "250px",
           items: [
             {
               name: "피드백 작성",
@@ -155,6 +202,28 @@ export const Resume = () => {
               )
             }
           ]
+        },
+        {
+          name: "빠른 이동",
+          type: "standard",
+          items: filter()?.map((i, j) => ({
+            name: `${j + 1}반`,
+            content: (
+              <Items
+                selections={i.map(
+                  ({ student_info, ...other }) =>
+                    `${student_info.school_number} ${student_info.name} ${statusTable[other.status] ? statusTable[other.status] : ""}`
+                )}
+                onClick={(value) => {
+                  navigate(
+                    `/resume/${filter()[j].find((n) => n.student_info.school_number === value.slice(0, 4))?.resume_id}`
+                  );
+                }}
+                selected={`${data?.writer.class_info.school_number} ${data?.writer.name} ${data && statusTable[data.status] ? statusTable[data.status] : ""}`}
+              />
+            )
+          })),
+          width: "250px"
         }
       ]}
     />
