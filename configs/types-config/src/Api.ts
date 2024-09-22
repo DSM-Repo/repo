@@ -179,6 +179,8 @@ export declare namespace Resume {
   // /resume/student
   type ResumeStudent = CommonLayout<resumeStudentData>;
 
+  type ResumeReleased = CommonLayout<Document.Resume>;
+
   // /resume/detail, /resume/student/{studentId}
   interface ResumeDetail extends Document.Resume {}
 
