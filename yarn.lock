@@ -291,7 +291,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@configs/type@workspace:configs/types-config"
   dependencies:
-    typescript: "npm:^5.6.2"
+    typescript: "npm:5.6.2"
   languageName: unknown
   linkType: soft
 
@@ -307,7 +307,7 @@ __metadata:
     react-cookie: "npm:^7.2.0"
     react-dom: "npm:^18.3.1"
     react-toastify: "npm:^10.0.5"
-    typescript: "npm:^5.6.2"
+    typescript: "npm:5.6.2"
   peerDependencies:
     "@tanstack/react-query": ^5.52.0
   languageName: unknown
@@ -4613,7 +4613,7 @@ __metadata:
     react-router-dom: "npm:^6.23.1"
     react-toastify: "npm:^10.0.5"
     tailwindcss: "npm:^3.4.4"
-    typescript: "npm:^5.6.2"
+    typescript: "npm:5.6.2"
     ui: "workspace:^"
     vite: "npm:^5.2.0"
     vite-plugin-svgr: "npm:^4.2.0"
@@ -5929,7 +5929,7 @@ __metadata:
     "@types/react": "npm:^18.2.66"
     dotenv: "npm:^16.4.5"
     prettier: "npm:^3.3.3"
-    typescript: "npm:^5.6.2"
+    typescript: "npm:5.6.2"
   languageName: unknown
   linkType: soft
 
@@ -6477,7 +6477,7 @@ __metadata:
     react-router-dom: "npm:^6.23.1"
     react-toastify: "npm:^10.0.5"
     tailwindcss: "npm:^3.4.4"
-    typescript: "npm:^5.6.2"
+    typescript: "npm:5.6.2"
     ui: "workspace:^"
     vite: "npm:^5.2.0"
     vite-plugin-svgr: "npm:^4.2.0"
@@ -6619,7 +6619,7 @@ __metadata:
     react-router-dom: "npm:^6.23.1"
     react-toastify: "npm:^10.0.5"
     tailwindcss: "npm:^3.4.4"
-    typescript: "npm:^5.6.2"
+    typescript: "npm:5.6.2"
     ui: "workspace:^"
     vite: "npm:^5.2.0"
     vite-plugin-svgr: "npm:^4.2.0"
@@ -6769,7 +6769,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^5.6.2":
+"typescript@npm:5.6.2":
   version: 5.6.2
   resolution: "typescript@npm:5.6.2"
   bin:
@@ -6779,7 +6779,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A^5.6.2#optional!builtin<compat/typescript>":
+"typescript@patch:typescript@npm%3A5.6.2#optional!builtin<compat/typescript>":
   version: 5.6.2
   resolution: "typescript@patch:typescript@npm%3A5.6.2#optional!builtin<compat/typescript>::version=5.6.2&hash=379a07"
   bin:
@@ -6835,7 +6835,7 @@ __metadata:
     storybook: "npm:^8.1.11"
     storybook-addon-remix-react-router: "npm:^3.0.0"
     tailwindcss: "npm:^3.4.4"
-    typescript: "npm:^5.6.2"
+    typescript: "npm:5.6.2"
     vite: "npm:^5.3.1"
     vite-plugin-svgr: "npm:^4.2.0"
     zustand: "npm:^4.5.5"
