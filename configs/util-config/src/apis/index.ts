@@ -28,15 +28,15 @@ const resFunc = (res: InternalAxiosRequestConfig<any>) => {
 
 const errFunc = (err: any) => {
   const { response } = err;
-  // if (response.status === 401) {
-  //   window.location.replace(`https://www.dsm-repo.com`);
-  // } else {
-  toast.error(
-    `오류가 발생했습니다\n(${response.status}: ${response.data.description || response.data})`,
-    { className: "whitespace-pre-line" }
-  );
-  throw new Error(err);
-  // }
+  if (response.status === 401) {
+    window.location.replace(process.env.VITE_APP_URL_MAIN);
+    toast.error("토큰 재발급에 실패했습니다");
+  } else {
+    toast.error(
+      `오류가 발생했습니다 (${response.status}: ${response.data.description || response.data})`
+    );
+    throw new Error(err);
+  }
 };
 
 instance.interceptors.request.use(resFunc, (err) => Promise.reject(err));
