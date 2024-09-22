@@ -1,6 +1,6 @@
 import { students } from "@/apis";
 import { Api } from "@configs/type";
-import { fuzzySearch } from "@configs/util";
+import { fuzzySearch, Ternary } from "@configs/util";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, Icon, Layout, Text, Title } from "ui";
@@ -55,7 +55,7 @@ export const Home = () => {
               <Box
                 width="440px"
                 height="fit-content"
-                className="flex-row cursor-pointer"
+                className="flex-row cursor-pointer items-center"
                 padding="24px"
                 onClick={() => navigate(`/resume/${i.resume_id}`)}
               >
@@ -70,6 +70,15 @@ export const Home = () => {
                   }
                   개
                 </span>
+                <Ternary
+                  data={i.status === "RELEASED" || i.status === "SUBMITTED"}
+                >
+                  <span
+                    className={`text-body4 ${i.status === "SUBMITTED" ? "text-green-400" : "text-red-500"}`}
+                  >
+                    {i.status === "SUBMITTED" ? "제출됨" : "공개됨"}
+                  </span>
+                </Ternary>
               </Box>
             ))
           : resumes &&
@@ -93,7 +102,7 @@ export const Home = () => {
                     <Box
                       width="440px"
                       height="fit-content"
-                      className="flex-row cursor-pointer"
+                      className="flex-row cursor-pointer items-center"
                       padding="24px"
                       onClick={() => navigate(`/resume/${i.resume_id}`)}
                     >
@@ -109,6 +118,17 @@ export const Home = () => {
                         }
                         개
                       </span>
+                      <Ternary
+                        data={
+                          i.status === "RELEASED" || i.status === "SUBMITTED"
+                        }
+                      >
+                        <span
+                          className={`text-body4 ${i.status === "SUBMITTED" ? "text-green-400" : "text-red-500"}`}
+                        >
+                          {i.status === "SUBMITTED" ? "제출됨" : "공개됨"}
+                        </span>
+                      </Ternary>
                     </Box>
                   ))}
               </div>

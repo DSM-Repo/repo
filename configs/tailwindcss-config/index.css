@@ -31,7 +31,7 @@ body {
 }
 
 /* React-PDF 이미지 깨짐 수리 */
-img { 
+img {
   @apply inline-block;
 }
 
@@ -108,7 +108,7 @@ input.item:-webkit-autofill {
 }
 
 /* 페이지 마운트시 헤더 애니메이션 제거 */
-.preload { 
+.preload {
   animation-duration: 0s !important;
   -webkit-animation-duration: 0s !important;
   transition:
@@ -167,6 +167,8 @@ input.item:-webkit-autofill {
 
 .Toastify__toast {
   font-size: 16px !important;
+  width: fit-content !important;
+  align-self: end;
   min-height: 0 !important;
   border-radius: 12px;
   background-color: #333333;
@@ -175,6 +177,7 @@ input.item:-webkit-autofill {
 }
 
 .Toastify__toast-body {
+  width: fit-content;
   height: fit-content;
   padding: 0 5px;
   margin-top: 5px;
@@ -183,12 +186,12 @@ input.item:-webkit-autofill {
   leading: none;
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 8px;
 }
 
 .Toastify__toast-icon {
-  width: 17px;
-  height: 17px;
+  width: 20px;
+  height: 20px;
   margin-inline-end: 0;
 }
 

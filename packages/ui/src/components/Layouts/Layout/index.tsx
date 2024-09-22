@@ -36,7 +36,7 @@ export const Layout = ({ buttons, sidebars, children }: IProp) => {
           className="col-flex items-center h-full transition-all duration-150"
         >
           <Header buttons={!!buttons ? buttons : []} />
-          <div className="w-full h-full overflow-auto z-20">{children}</div>
+          <div className="w-full h-full overflow-auto">{children}</div>
         </div>
       </div>
       <div className="w-fit h-full relative">

@@ -18,7 +18,21 @@ export const Book = () => {
     <Viewer
       url={data?.resume_url}
       indexList={data?.index}
-      buttons={[{ icon: "Settings", title: "설정", action: "설정" }]}
+      buttons={[
+        { icon: "Settings", title: "설정", action: "설정" },
+        {
+          icon: "Share",
+          title: "URL 복사",
+          action: () => {
+            navigator.clipboard
+              .writeText(`${process.env.VITE_APP_URL_MAIN}/viewer/${data?.id}`)
+              .then(() => toast.success("성공적으로 복사되었습니다"))
+              .catch(() => toast.error("복사중 오류가 발생했습니다"));
+          },
+          disabled: data?.access_right === "PRIVATE",
+          disabledReason: "비공개 상태에선 URL을 복사할 수 없습니다."
+        }
+      ]}
       sidebars={[
         {
           name: "설정",

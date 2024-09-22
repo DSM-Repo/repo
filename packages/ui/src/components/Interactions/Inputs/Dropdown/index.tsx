@@ -42,7 +42,7 @@ export const Dropdown = ({
       </Box>
       <Ternary data={open}>
         <div
-          className={`${!!label ? "top-[89px]" : "top-[60px]"} shadow-[0_4px_12px_0_rgba(0,0,0,0.32)] absolute max-h-[178px] overflow-auto z-20 w-full h-fit border-[1px] rounded-xl bg-gray-700 border-gray-600 p-2`}
+          className={`${!!label ? "top-[89px]" : "top-[60px]"} shadow-[0_4px_12px_0_rgba(0,0,0,0.32)] absolute max-h-[178px] overflow-auto z-10 w-full h-fit border-[1px] rounded-xl bg-gray-700 border-gray-600 p-2`}
         >
           {selections?.map((i, j) => (
             <div
