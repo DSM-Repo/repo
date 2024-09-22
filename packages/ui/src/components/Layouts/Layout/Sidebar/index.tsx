@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { useSideBarOpen } from "../../../../hooks";
+import { Ternary } from "@configs/util";
 export * from "./Items";
 export * from "./Custom";
 
 export interface itemType {
   name: string;
-  content: React.ReactElement | React.ReactElement[];
+  content?: React.ReactElement | React.ReactElement[];
   key?: string;
   keepOpen?: boolean;
 }
@@ -42,8 +43,9 @@ export const SideBar = ({ name, width = "300px", items }: ISidebarProp) => {
           <div
             key={i.key || j + 1}
             style={{
-              height:
-                opened === i.name || i.keepOpen
+              height: i.keepOpen
+                ? "fit-content"
+                : opened === i.name
                   ? ref.current[i.key || j + 1]?.offsetHeight + 56 + "px"
                   : "56px"
             }}
@@ -57,12 +59,14 @@ export const SideBar = ({ name, width = "300px", items }: ISidebarProp) => {
                 {i.name}
               </span>
             </div>
-            <div
-              className="col-flex gap-4 px-4 h-fit pb-[18px]"
-              ref={(item) => (ref.current[i.key || j + 1] = item)}
-            >
-              {i.content}
-            </div>
+            <Ternary data={i.content}>
+              <div
+                className="col-flex gap-4 px-4 h-fit pb-[18px]"
+                ref={(item) => (ref.current[i.key || j + 1] = item)}
+              >
+                {i.content}
+              </div>
+            </Ternary>
           </div>
         );
       })}

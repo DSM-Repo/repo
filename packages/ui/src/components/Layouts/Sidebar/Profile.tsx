@@ -13,7 +13,7 @@ export const Profile = ({ img, name, major }: IProp) => {
 
   const handleLogout = () => {
     delToken();
-    window.location.replace("https://www.dsm-repo.com");
+    window.location.replace(process.env.VITE_APP_URL_MAIN);
   };
 
   const handleInfo = () => {

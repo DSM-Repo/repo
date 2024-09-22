@@ -8,7 +8,7 @@ interface IProp {
   color?: "green" | "gray";
   icon?: iconType;
   onClick: () => void;
-  children: string;
+  children?: string;
   direction?: "left" | "right" | "center";
   disabled?: boolean;
 }
