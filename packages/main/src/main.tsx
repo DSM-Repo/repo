@@ -22,9 +22,10 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <QueryClientProvider client={queryClient}>
     <Router />
     <ToastContainer
-      autoClose={1000}
+      autoClose={1500}
       closeButton={false}
       hideProgressBar={true}
+      className="col-flex gap-2"
     />
   </QueryClientProvider>
 );
