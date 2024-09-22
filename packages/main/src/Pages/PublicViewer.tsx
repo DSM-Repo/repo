@@ -11,5 +11,9 @@ export const PublicViewer = () => {
     Placeholder.LibraryDetailPlace
   );
 
-  return <Viewer url={detailData?.resume_url} indexList={detailData?.index} />;
+  return (
+    <div className="w-full h-screen bg-black">
+      <Viewer url={detailData?.resume_url} indexList={detailData?.index} />
+    </div>
+  );
 };
