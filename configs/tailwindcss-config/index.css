@@ -1,33 +1,41 @@
-@tailwind base;
 @tailwind components;
 @tailwind utilities;
+@tailwind base;
 
-@layer components {
-  .col-flex {
-    @apply flex flex-col;
-  }
-
-  .flex-center {
-    @apply justify-center items-center;
-  }
-
-  .line-fit-br {
-    @apply -my-1;
-  }
-
-  .content-none::after {
-    content: "";
-  }
-
-  .disable {
-    @apply cursor-not-allowed bg-[#373737];
-  }
-
-  .pointable {
-    @apply cursor-pointer transition-all duration-100 hover:opacity-60;
-  }
+/* Default Style ----------------------------------- */
+* {
+  font-family: "PretendardVariable" !important;
+  user-select: none;
+  border-color: white;
+  overscroll-behavior: none;
+  outline: none;
 }
 
+span,
+label,
+input,
+select,
+textarea,
+li {
+  color: white;
+  outline: none;
+  background-color: transparent;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  resize: none;
+}
+
+body {
+  background: #222222;
+}
+
+/* React-PDF 이미지 깨짐 수리 */
+img { 
+  @apply inline-block;
+}
+
+/* Util Style ----------------------------------- */
 @font-face {
   font-family: "PretendardVariable";
   font-weight: 45 920;
@@ -36,6 +44,29 @@
   src: url("./PretendardVariable.woff2") format("woff2-variations");
 }
 
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #333333 inset;
+  box-shadow: 0 0 0px 1000px #333333 inset;
+  -webkit-text-fill-color: #fff;
+}
+
+input.item:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #222222 inset;
+  box-shadow: 0 0 0px 1000px #222222 inset;
+  -webkit-text-fill-color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 1px;
+  height: 1px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 100px;
+  background-color: gray;
+}
+
+/* Animation ----------------------------------- */
 @keyframes compUp {
   0% {
     opacity: 0;
@@ -76,6 +107,20 @@
   }
 }
 
+/* 페이지 마운트시 헤더 애니메이션 제거 */
+.preload { 
+  animation-duration: 0s !important;
+  -webkit-animation-duration: 0s !important;
+  transition:
+    background-color 0s,
+    opacity 0s,
+    color 0s,
+    width 0s,
+    height 0s,
+    padding 0s,
+    margin 0s !important;
+}
+
 .scrolling-slider {
   animation: scroll 10s linear infinite;
 }
@@ -92,88 +137,62 @@
   animation: compDown 0.5s ease forwards;
 }
 
-img {
-  @apply inline-block;
+/* Tailwindcss ----------------------------------- */
+@layer components {
+  .col-flex {
+    @apply flex flex-col;
+  }
+
+  .flex-center {
+    @apply justify-center items-center;
+  }
+
+  .line-fit-br {
+    @apply -my-1;
+  }
+
+  .disable {
+    @apply cursor-not-allowed bg-[#373737];
+  }
+
+  .pointable {
+    @apply cursor-pointer transition-all duration-100 hover:opacity-60;
+  }
 }
 
-.preload {
-  animation-duration: 0s !important;
-  -webkit-animation-duration: 0s !important;
-  transition:
-    background-color 0s,
-    opacity 0s,
-    color 0s,
-    width 0s,
-    height 0s,
-    padding 0s,
-    margin 0s !important;
+/* React-Toastify ----------------------------------- */
+:root {
+  --toastify-icon-color-success: #37e517;
 }
 
-* {
-  font-family: "PretendardVariable" !important;
-  user-select: none;
-  border-color: white;
-  overscroll-behavior: none;
-  outline: none;
-}
-
-input:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0px 1000px #333333 inset;
-  box-shadow: 0 0 0px 1000px #333333 inset;
-  -webkit-text-fill-color: #fff; /* 텍스트 색상 지정 */
-  border-radius: 10px;
-}
-
-input.item:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0px 1000px #222222 inset;
-  box-shadow: 0 0 0px 1000px #222222 inset;
-  -webkit-text-fill-color: #fff; /* 텍스트 색상 지정 */
-}
-
-canvas:not(.react-pdf__Page__canvas) {
-  width: 100% !important;
-  height: 100% !important;
-}
-
-span,
-label,
-input,
-textarea,
-li {
+.Toastify__toast {
+  font-size: 16px !important;
+  min-height: 0 !important;
+  border-radius: 12px;
+  background-color: #333333;
   color: white;
-  outline: none;
+  box-shadow: 0px 1px 100px 0px rgba(0, 0, 0, 0.76);
 }
 
-input,
-textarea {
-  background-color: transparent;
+.Toastify__toast-body {
+  height: fit-content;
+  padding: 0 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background-color: #333333;
+  leading: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
-select,
-input {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+.Toastify__toast-icon {
+  width: 17px;
+  height: 17px;
+  margin-inline-end: 0;
 }
 
-textarea {
-  resize: none;
-}
-
-::-webkit-scrollbar {
-  width: 1px;
-  height: 1px;
-}
-
-::-webkit-scrollbar-thumb {
-  border-radius: 100px;
-  background-color: gray;
-}
-
-body {
-  background: #222222;
-}
-
+/* Stoybook ----------------------------------- */
 .css-k7lbue {
   padding: 0 !important;
 }
