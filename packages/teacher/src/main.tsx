@@ -21,6 +21,10 @@ const queryClient = new QueryClient({
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <QueryClientProvider client={queryClient}>
     <Router />
-    <ToastContainer />
+    <ToastContainer
+      autoClose={1000}
+      closeButton={false}
+      hideProgressBar={true}
+    />
   </QueryClientProvider>
 );

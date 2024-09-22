@@ -45,14 +45,14 @@ export const Modal = ({ open }: IProp) => {
       student(data, {
         onSuccess: (res) => {
           setToken({ ...res, role: "student" });
-          window.location.replace(`${process.env.VITE_APP_URL_STUDENT}`);
+          window.location.replace(`${import.meta.env.VITE_APP_URL_STUDENT}`);
         }
       });
     } else {
       teacher(data, {
         onSuccess: (res) => {
           setToken({ ...res, role: "teacher" });
-          window.location.replace(`${process.env.VITE_APP_URL_TEACHER}`);
+          window.location.replace(`${import.meta.env.VITE_APP_URL_TEACHER}`);
         }
       });
     }

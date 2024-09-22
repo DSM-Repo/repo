@@ -23,6 +23,10 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <QueryClientProvider client={queryClient}>
     <Router />
     <ReactQueryDevtools />
-    <ToastContainer />
+    <ToastContainer
+      autoClose={1000}
+      closeButton={false}
+      hideProgressBar={true}
+    />
   </QueryClientProvider>
 );
