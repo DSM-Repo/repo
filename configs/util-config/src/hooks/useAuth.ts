@@ -13,7 +13,7 @@ const cookie = new Cookies();
 
 const option = {
   path: "/",
-  domain: isDevelopment ? "" : ".dsm-repo.com"
+  domain: isDevelopment ? "" : "dsm-repo.com"
 };
 
 export const useAuth = () => {
@@ -31,9 +31,7 @@ export const useAuth = () => {
     return { token, timeStamp };
   };
 
-  const getRole = () => {
-    return cookie.get("role");
-  };
+  const getRole = (): "student" | "teacher" => cookie.get("role")
 
   const delToken = () => {
     cookie.remove("access_token", option);
