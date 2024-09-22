@@ -104,7 +104,7 @@ export const Button = ({
         className={`top-[40px] z-50 transition-all duration-150 self-center absolute flex flex-col items-center`}
       >
         <div className="[border-bottom:_calc(7px_*_1.732)_solid_white] [border-left:_7px_solid_transparent] [border-right:_7px_solid_transparent]" />
-        <div className="bg-white rounded-[8px] h-fit self-center px-[16px] py-[8px] whitespace-nowrap z-60">
+        <div className="bg-white rounded-[8px] h-fit self-center px-[16px] py-[8px] whitespace-nowrap z-50">
           <span className="text-[16px] font-light text-black leading-none">
             {title}
             {disabled && disabledReason ? ` (${disabledReason})` : ""}
