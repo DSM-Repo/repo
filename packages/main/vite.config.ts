@@ -2,9 +2,12 @@ import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import svgr from "vite-plugin-svgr";
 import path from "path";
+//@ts-ignore
+import { getEnv } from "../../config.ts";
 
 // https://vitejs.dev/config/
 export default () => {
+  getEnv();
   return defineConfig({
     plugins: [react(), svgr()],
     cacheDir: "./.vite",

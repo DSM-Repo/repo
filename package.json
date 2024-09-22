@@ -15,7 +15,8 @@
     "main": "yarn workspace main",
     "student": "yarn workspace student",
     "teacher": "yarn workspace teacher",
-    "ui": "yarn workspace ui"
+    "ui": "yarn workspace ui",
+    "util": "yarn workspace @configs/util"
   },
   "devDependencies": {
     "@types/node": "^20.14.6",
