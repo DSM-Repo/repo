@@ -1,7 +1,11 @@
 import { Document } from "@configs/type";
 import { useEventListeners, useShortcut } from "@configs/util";
+import { saveAs } from "file-saver";
+import html2canvas from "html2canvas";
+import { jsPDF } from "jspdf";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { Layout, Resume, buttonType, sidebarType } from "ui";
 
 interface IProp {
@@ -28,7 +32,7 @@ export const JSONViewer = ({ data, buttons = [], sidebars = [] }: IProp) => {
 
   useEffect(() => {
     setPage(1);
-  }, [window.location.href])
+  }, [window.location.href]);
 
   useEventListeners([
     {
@@ -84,7 +88,58 @@ export const JSONViewer = ({ data, buttons = [], sidebars = [] }: IProp) => {
         {
           icon: "Download",
           title: "다운로드",
-          action: () => {}
+          action: () => {
+            const data = document.querySelector(".resume");
+            const loading = toast.loading("PDF로 변환하고 있습니다...");
+            html2canvas(data as HTMLElement, {
+              useCORS: true,
+              scale: 1.0,
+              allowTaint: true
+            }).then((canvas: any) => {
+              const imgWidth = 210;
+              const pageHeight = 297.07;
+              const imgHeight = (canvas.height * imgWidth) / canvas.width;
+              let heightLeft = imgHeight;
+              let position = 0;
+              heightLeft -= pageHeight;
+              const doc = new jsPDF("p", "mm");
+              doc.addImage(
+                canvas,
+                "PNG",
+                0,
+                position,
+                imgWidth,
+                imgHeight,
+                "",
+                "FAST"
+              );
+              while (heightLeft >= 0) {
+                position = heightLeft - imgHeight;
+                doc.addPage();
+                doc.addImage(
+                  canvas,
+                  "PNG",
+                  0,
+                  position,
+                  imgWidth,
+                  imgHeight,
+                  "",
+                  "FAST"
+                );
+                heightLeft -= pageHeight;
+              }
+              const blob = doc.output("blob");
+              const file = new File([blob], "Rendered_Resume.pdf");
+              saveAs(file);
+              toast.update(loading, {
+                render: "성공적으로 변환되었습니다",
+                type: "success",
+                autoClose: 1500,
+                closeButton: false,
+                isLoading: false
+              });
+            });
+          }
         },
         ...buttons
       ]}
@@ -112,6 +167,10 @@ export const JSONViewer = ({ data, buttons = [], sidebars = [] }: IProp) => {
             </div>
           </div>
         </div>
+      </div>
+      <div className="resume w-fit absolute overflow-hidden top-[100vh]">
+        <div className="w-[842px] h-[1191px] bg-white" />
+        <Resume data={data} setMax={() => {}} showPadding />
       </div>
     </Layout>
   );
