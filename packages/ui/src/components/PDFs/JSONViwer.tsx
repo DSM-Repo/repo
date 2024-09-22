@@ -1,6 +1,6 @@
 import { Document } from "@configs/type";
 import { useEventListeners, useShortcut } from "@configs/util";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Layout, Resume, buttonType, sidebarType } from "ui";
 
@@ -25,6 +25,10 @@ export const JSONViewer = ({ data, buttons = [], sidebars = [] }: IProp) => {
     if (to < 1 || to > maxFull) return;
     setPage(to);
   };
+
+  useEffect(() => {
+    setPage(1);
+  }, [window.location.href])
 
   useEventListeners([
     {
@@ -76,6 +80,11 @@ export const JSONViewer = ({ data, buttons = [], sidebars = [] }: IProp) => {
           title: "다음으로",
           rotate: "right",
           action: () => handleMovePage(page + (windowXl ? 2 : 1))
+        },
+        {
+          icon: "Download",
+          title: "다운로드",
+          action: () => {}
         },
         ...buttons
       ]}

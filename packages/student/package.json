@@ -1,50 +1,35 @@
 {
   "name": "student",
   "private": true,
-  "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "build": "vite build"
   },
   "dependencies": {
+    "@configs/tailwindcss": "workspace:^",
     "@configs/type": "workspace:^",
     "@configs/util": "workspace:^",
-    "@tanstack/react-query": "5.52.0",
-    "@tanstack/react-query-devtools": "^5.51.15",
+    "@tanstack/react-query": "^5.52.0",
     "chart.js": "^4.4.4",
-    "file-saver": "^2.0.5",
-    "html2canvas": "^1.4.1",
-    "jspdf": "^2.5.1",
-    "react": "^18.2.0",
+    "react": "^18.3.1",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
-    "react-pdf": "^9.1.0",
-    "react-qr-code": "^2.0.15",
-    "react-router-dom": "^6.24.1",
+    "react-router-dom": "^6.23.1",
     "react-toastify": "^10.0.5",
     "tailwindcss": "^3.4.4",
-    "typescript": "5.4.5",
     "ui": "workspace:^",
-    "vite-plugin-svgr": "^4.2.0",
     "zustand": "^4.5.4"
   },
   "devDependencies": {
-    "@configs/eslint": "workspace:^",
-    "@configs/tailwindcss": "workspace:^",
-    "@types/file-saver": "^2",
-    "@types/react": "^18.2.66",
+    "@tanstack/react-query-devtools": "^5.56.2",
+    "@types/react": "^18.3.8",
     "@types/react-dom": "^18.2.22",
-    "@typescript-eslint/eslint-plugin": "^7.2.0",
-    "@typescript-eslint/parser": "^7.2.0",
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.19",
-    "eslint": "^8.57.0",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.6",
     "postcss": "^8.4.39",
-    "vite": "^5.2.0"
+    "typescript": "^5.6.2",
+    "vite": "^5.2.0",
+    "vite-plugin-svgr": "^4.2.0"
   }
 }

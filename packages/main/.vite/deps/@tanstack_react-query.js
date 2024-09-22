@@ -13,7 +13,7 @@ import {
   __toESM
 } from "./chunk-WOOG5QLI.js";
 
-// ../../.yarn/cache/@tanstack-query-core-npm-5.55.4-0b4224b0ee-c463b582b8.zip/node_modules/@tanstack/query-core/build/modern/subscribable.js
+// ../../.yarn/cache/@tanstack-query-core-npm-5.56.2-1bcea5cf6e-54ff55f02b.zip/node_modules/@tanstack/query-core/build/modern/subscribable.js
 var Subscribable = class {
   constructor() {
     this.listeners = /* @__PURE__ */ new Set();
@@ -36,7 +36,7 @@ var Subscribable = class {
   }
 };
 
-// ../../.yarn/cache/@tanstack-query-core-npm-5.55.4-0b4224b0ee-c463b582b8.zip/node_modules/@tanstack/query-core/build/modern/utils.js
+// ../../.yarn/cache/@tanstack-query-core-npm-5.56.2-1bcea5cf6e-54ff55f02b.zip/node_modules/@tanstack/query-core/build/modern/utils.js
 var isServer = typeof window === "undefined" || "Deno" in globalThis;
 function noop() {
   return void 0;
@@ -257,7 +257,7 @@ function ensureQueryFn(options, fetchOptions) {
   return options.queryFn;
 }
 
-// ../../.yarn/cache/@tanstack-query-core-npm-5.55.4-0b4224b0ee-c463b582b8.zip/node_modules/@tanstack/query-core/build/modern/focusManager.js
+// ../../.yarn/cache/@tanstack-query-core-npm-5.56.2-1bcea5cf6e-54ff55f02b.zip/node_modules/@tanstack/query-core/build/modern/focusManager.js
 var _focused, _cleanup, _setup, _a;
 var FocusManager = (_a = class extends Subscribable {
   constructor() {
@@ -323,7 +323,7 @@ var FocusManager = (_a = class extends Subscribable {
 }, _focused = new WeakMap(), _cleanup = new WeakMap(), _setup = new WeakMap(), _a);
 var focusManager = new FocusManager();
 
-// ../../.yarn/cache/@tanstack-query-core-npm-5.55.4-0b4224b0ee-c463b582b8.zip/node_modules/@tanstack/query-core/build/modern/onlineManager.js
+// ../../.yarn/cache/@tanstack-query-core-npm-5.56.2-1bcea5cf6e-54ff55f02b.zip/node_modules/@tanstack/query-core/build/modern/onlineManager.js
 var _online, _cleanup2, _setup2, _a2;
 var OnlineManager = (_a2 = class extends Subscribable {
   constructor() {
@@ -378,7 +378,7 @@ var OnlineManager = (_a2 = class extends Subscribable {
 }, _online = new WeakMap(), _cleanup2 = new WeakMap(), _setup2 = new WeakMap(), _a2);
 var onlineManager = new OnlineManager();
 
-// ../../.yarn/cache/@tanstack-query-core-npm-5.55.4-0b4224b0ee-c463b582b8.zip/node_modules/@tanstack/query-core/build/modern/retryer.js
+// ../../.yarn/cache/@tanstack-query-core-npm-5.56.2-1bcea5cf6e-54ff55f02b.zip/node_modules/@tanstack/query-core/build/modern/retryer.js
 function defaultRetryDelay(failureCount) {
   return Math.min(1e3 * 2 ** failureCount, 3e4);
 }
@@ -514,7 +514,7 @@ function createRetryer(config) {
   };
 }
 
-// ../../.yarn/cache/@tanstack-query-core-npm-5.55.4-0b4224b0ee-c463b582b8.zip/node_modules/@tanstack/query-core/build/modern/notifyManager.js
+// ../../.yarn/cache/@tanstack-query-core-npm-5.56.2-1bcea5cf6e-54ff55f02b.zip/node_modules/@tanstack/query-core/build/modern/notifyManager.js
 function createNotifyManager() {
   let queue = [];
   let transactions = 0;
@@ -593,7 +593,7 @@ function createNotifyManager() {
 }
 var notifyManager = createNotifyManager();
 
-// ../../.yarn/cache/@tanstack-query-core-npm-5.55.4-0b4224b0ee-c463b582b8.zip/node_modules/@tanstack/query-core/build/modern/removable.js
+// ../../.yarn/cache/@tanstack-query-core-npm-5.56.2-1bcea5cf6e-54ff55f02b.zip/node_modules/@tanstack/query-core/build/modern/removable.js
 var _gcTimeout, _a3;
 var Removable = (_a3 = class {
   constructor() {
@@ -624,7 +624,7 @@ var Removable = (_a3 = class {
   }
 }, _gcTimeout = new WeakMap(), _a3);
 
-// ../../.yarn/cache/@tanstack-query-core-npm-5.55.4-0b4224b0ee-c463b582b8.zip/node_modules/@tanstack/query-core/build/modern/query.js
+// ../../.yarn/cache/@tanstack-query-core-npm-5.56.2-1bcea5cf6e-54ff55f02b.zip/node_modules/@tanstack/query-core/build/modern/query.js
 var _initialState, _revertState, _cache, _retryer, _defaultOptions, _abortSignalConsumed, _Query_instances, dispatch_fn, _a4;
 var Query = (_a4 = class extends Removable {
   constructor(config) {
@@ -1006,7 +1006,7 @@ function getDefaultState(options) {
   };
 }
 
-// ../../.yarn/cache/@tanstack-query-core-npm-5.55.4-0b4224b0ee-c463b582b8.zip/node_modules/@tanstack/query-core/build/modern/queryCache.js
+// ../../.yarn/cache/@tanstack-query-core-npm-5.56.2-1bcea5cf6e-54ff55f02b.zip/node_modules/@tanstack/query-core/build/modern/queryCache.js
 var _queries, _a5;
 var QueryCache = (_a5 = class extends Subscribable {
   constructor(config = {}) {
@@ -1097,7 +1097,7 @@ var QueryCache = (_a5 = class extends Subscribable {
   }
 }, _queries = new WeakMap(), _a5);
 
-// ../../.yarn/cache/@tanstack-query-core-npm-5.55.4-0b4224b0ee-c463b582b8.zip/node_modules/@tanstack/query-core/build/modern/mutation.js
+// ../../.yarn/cache/@tanstack-query-core-npm-5.56.2-1bcea5cf6e-54ff55f02b.zip/node_modules/@tanstack/query-core/build/modern/mutation.js
 var _observers, _mutationCache, _retryer2, _Mutation_instances, dispatch_fn2, _a6;
 var Mutation = (_a6 = class extends Removable {
   constructor(config) {
@@ -1335,7 +1335,7 @@ function getDefaultState2() {
   };
 }
 
-// ../../.yarn/cache/@tanstack-query-core-npm-5.55.4-0b4224b0ee-c463b582b8.zip/node_modules/@tanstack/query-core/build/modern/mutationCache.js
+// ../../.yarn/cache/@tanstack-query-core-npm-5.56.2-1bcea5cf6e-54ff55f02b.zip/node_modules/@tanstack/query-core/build/modern/mutationCache.js
 var _mutations, _mutationId, _a7;
 var MutationCache = (_a7 = class extends Subscribable {
   constructor(config = {}) {
@@ -1428,17 +1428,18 @@ function scopeFor(mutation) {
   return ((_a12 = mutation.options.scope) == null ? void 0 : _a12.id) ?? String(mutation.mutationId);
 }
 
-// ../../.yarn/cache/@tanstack-query-core-npm-5.55.4-0b4224b0ee-c463b582b8.zip/node_modules/@tanstack/query-core/build/modern/infiniteQueryBehavior.js
+// ../../.yarn/cache/@tanstack-query-core-npm-5.56.2-1bcea5cf6e-54ff55f02b.zip/node_modules/@tanstack/query-core/build/modern/infiniteQueryBehavior.js
 function infiniteQueryBehavior(pages) {
   return {
     onFetch: (context, query) => {
+      var _a12, _b, _c, _d, _e;
+      const options = context.options;
+      const direction = (_c = (_b = (_a12 = context.fetchOptions) == null ? void 0 : _a12.meta) == null ? void 0 : _b.fetchMore) == null ? void 0 : _c.direction;
+      const oldPages = ((_d = context.state.data) == null ? void 0 : _d.pages) || [];
+      const oldPageParams = ((_e = context.state.data) == null ? void 0 : _e.pageParams) || [];
+      let result = { pages: [], pageParams: [] };
+      let currentPage = 0;
       const fetchFn = async () => {
-        var _a12, _b, _c, _d, _e;
-        const options = context.options;
-        const direction = (_c = (_b = (_a12 = context.fetchOptions) == null ? void 0 : _a12.meta) == null ? void 0 : _b.fetchMore) == null ? void 0 : _c.direction;
-        const oldPages = ((_d = context.state.data) == null ? void 0 : _d.pages) || [];
-        const oldPageParams = ((_e = context.state.data) == null ? void 0 : _e.pageParams) || [];
-        const empty = { pages: [], pageParams: [] };
         let cancelled = false;
         const addSignalProperty = (object) => {
           Object.defineProperty(object, "signal", {
@@ -1480,7 +1481,6 @@ function infiniteQueryBehavior(pages) {
             pageParams: addTo(data.pageParams, param, maxPages)
           };
         };
-        let result;
         if (direction && oldPages.length) {
           const previous = direction === "backward";
           const pageParamFn = previous ? getPreviousPageParam : getNextPageParam;
@@ -1491,26 +1491,23 @@ function infiniteQueryBehavior(pages) {
           const param = pageParamFn(options, oldData);
           result = await fetchPage(oldData, param, previous);
         } else {
-          result = await fetchPage(
-            empty,
-            oldPageParams[0] ?? options.initialPageParam
-          );
           const remainingPages = pages ?? oldPages.length;
-          for (let i = 1; i < remainingPages; i++) {
-            const param = getNextPageParam(options, result);
-            if (param == null) {
+          do {
+            const param = currentPage === 0 ? oldPageParams[0] ?? options.initialPageParam : getNextPageParam(options, result);
+            if (currentPage > 0 && param == null) {
               break;
             }
             result = await fetchPage(result, param);
-          }
+            currentPage++;
+          } while (currentPage < remainingPages);
         }
         return result;
       };
       if (context.options.persister) {
         context.fetchFn = () => {
-          var _a12, _b;
-          return (_b = (_a12 = context.options).persister) == null ? void 0 : _b.call(
-            _a12,
+          var _a13, _b2;
+          return (_b2 = (_a13 = context.options).persister) == null ? void 0 : _b2.call(
+            _a13,
             fetchFn,
             {
               queryKey: context.queryKey,
@@ -1550,7 +1547,7 @@ function hasPreviousPage(options, data) {
   return getPreviousPageParam(options, data) != null;
 }
 
-// ../../.yarn/cache/@tanstack-query-core-npm-5.55.4-0b4224b0ee-c463b582b8.zip/node_modules/@tanstack/query-core/build/modern/queryClient.js
+// ../../.yarn/cache/@tanstack-query-core-npm-5.56.2-1bcea5cf6e-54ff55f02b.zip/node_modules/@tanstack/query-core/build/modern/queryClient.js
 var _queryCache, _mutationCache2, _defaultOptions2, _queryDefaults, _mutationDefaults, _mountCount, _unsubscribeFocus, _unsubscribeOnline, _a8;
 var QueryClient = (_a8 = class {
   constructor(config = {}) {
@@ -1730,6 +1727,10 @@ var QueryClient = (_a8 = class {
   prefetchInfiniteQuery(options) {
     return this.fetchInfiniteQuery(options).then(noop).catch(noop);
   }
+  ensureInfiniteQueryData(options) {
+    options.behavior = infiniteQueryBehavior(options.pages);
+    return this.ensureQueryData(options);
+  }
   resumePausedMutations() {
     if (onlineManager.isOnline()) {
       return __privateGet(this, _mutationCache2).resumePausedMutations();
@@ -1827,7 +1828,7 @@ var QueryClient = (_a8 = class {
   }
 }, _queryCache = new WeakMap(), _mutationCache2 = new WeakMap(), _defaultOptions2 = new WeakMap(), _queryDefaults = new WeakMap(), _mutationDefaults = new WeakMap(), _mountCount = new WeakMap(), _unsubscribeFocus = new WeakMap(), _unsubscribeOnline = new WeakMap(), _a8);
 
-// ../../.yarn/cache/@tanstack-query-core-npm-5.55.4-0b4224b0ee-c463b582b8.zip/node_modules/@tanstack/query-core/build/modern/queryObserver.js
+// ../../.yarn/cache/@tanstack-query-core-npm-5.56.2-1bcea5cf6e-54ff55f02b.zip/node_modules/@tanstack/query-core/build/modern/queryObserver.js
 var _client, _currentQuery, _currentQueryInitialState, _currentResult, _currentResultState, _currentResultOptions, _selectError, _selectFn, _selectResult, _lastQueryWithDefinedData, _staleTimeoutId, _refetchIntervalId, _currentRefetchInterval, _trackedProps, _QueryObserver_instances, executeFetch_fn, updateStaleTimeout_fn, computeRefetchInterval_fn, updateRefetchInterval_fn, updateTimers_fn, clearStaleTimeout_fn, clearRefetchInterval_fn, updateQuery_fn, notify_fn, _a9;
 var QueryObserver = (_a9 = class extends Subscribable {
   constructor(client, options) {
@@ -2244,7 +2245,7 @@ function shouldAssignObserverCurrentProperties(observer, optimisticResult) {
   return false;
 }
 
-// ../../.yarn/cache/@tanstack-query-core-npm-5.55.4-0b4224b0ee-c463b582b8.zip/node_modules/@tanstack/query-core/build/modern/queriesObserver.js
+// ../../.yarn/cache/@tanstack-query-core-npm-5.56.2-1bcea5cf6e-54ff55f02b.zip/node_modules/@tanstack/query-core/build/modern/queriesObserver.js
 function difference(array1, array2) {
   return array1.filter((x) => !array2.includes(x));
 }
@@ -2419,7 +2420,7 @@ var QueriesObserver = (_a10 = class extends Subscribable {
   });
 }, _a10);
 
-// ../../.yarn/cache/@tanstack-query-core-npm-5.55.4-0b4224b0ee-c463b582b8.zip/node_modules/@tanstack/query-core/build/modern/infiniteQueryObserver.js
+// ../../.yarn/cache/@tanstack-query-core-npm-5.56.2-1bcea5cf6e-54ff55f02b.zip/node_modules/@tanstack/query-core/build/modern/infiniteQueryObserver.js
 var InfiniteQueryObserver = class extends QueryObserver {
   constructor(client, options) {
     super(client, options);
@@ -2485,7 +2486,7 @@ var InfiniteQueryObserver = class extends QueryObserver {
   }
 };
 
-// ../../.yarn/cache/@tanstack-query-core-npm-5.55.4-0b4224b0ee-c463b582b8.zip/node_modules/@tanstack/query-core/build/modern/mutationObserver.js
+// ../../.yarn/cache/@tanstack-query-core-npm-5.56.2-1bcea5cf6e-54ff55f02b.zip/node_modules/@tanstack/query-core/build/modern/mutationObserver.js
 var _client3, _currentResult2, _currentMutation, _mutateOptions, _MutationObserver_instances, updateResult_fn, notify_fn3, _a11;
 var MutationObserver = (_a11 = class extends Subscribable {
   constructor(client, options) {
@@ -2587,7 +2588,7 @@ var MutationObserver = (_a11 = class extends Subscribable {
   });
 }, _a11);
 
-// ../../.yarn/cache/@tanstack-query-core-npm-5.55.4-0b4224b0ee-c463b582b8.zip/node_modules/@tanstack/query-core/build/modern/hydration.js
+// ../../.yarn/cache/@tanstack-query-core-npm-5.56.2-1bcea5cf6e-54ff55f02b.zip/node_modules/@tanstack/query-core/build/modern/hydration.js
 function defaultTransformerFn(data) {
   return data;
 }
@@ -2702,10 +2703,10 @@ function hydrate(client, dehydratedState, options) {
   });
 }
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a04d6c4535/0/cache/@tanstack-react-query-npm-5.55.4-f0e718f216-b81f4e2942.zip/node_modules/@tanstack/react-query/build/modern/useQueries.js
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-901a626004/0/cache/@tanstack-react-query-npm-5.56.2-fc27f4cc61-6e883b4ca1.zip/node_modules/@tanstack/react-query/build/modern/useQueries.js
 var React5 = __toESM(require_react(), 1);
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a04d6c4535/0/cache/@tanstack-react-query-npm-5.55.4-f0e718f216-b81f4e2942.zip/node_modules/@tanstack/react-query/build/modern/QueryClientProvider.js
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-901a626004/0/cache/@tanstack-react-query-npm-5.56.2-fc27f4cc61-6e883b4ca1.zip/node_modules/@tanstack/react-query/build/modern/QueryClientProvider.js
 var React = __toESM(require_react(), 1);
 var import_jsx_runtime = __toESM(require_jsx_runtime(), 1);
 var QueryClientContext = React.createContext(
@@ -2734,13 +2735,13 @@ var QueryClientProvider = ({
   return (0, import_jsx_runtime.jsx)(QueryClientContext.Provider, { value: client, children });
 };
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a04d6c4535/0/cache/@tanstack-react-query-npm-5.55.4-f0e718f216-b81f4e2942.zip/node_modules/@tanstack/react-query/build/modern/isRestoring.js
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-901a626004/0/cache/@tanstack-react-query-npm-5.56.2-fc27f4cc61-6e883b4ca1.zip/node_modules/@tanstack/react-query/build/modern/isRestoring.js
 var React2 = __toESM(require_react(), 1);
 var IsRestoringContext = React2.createContext(false);
 var useIsRestoring = () => React2.useContext(IsRestoringContext);
 var IsRestoringProvider = IsRestoringContext.Provider;
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a04d6c4535/0/cache/@tanstack-react-query-npm-5.55.4-f0e718f216-b81f4e2942.zip/node_modules/@tanstack/react-query/build/modern/QueryErrorResetBoundary.js
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-901a626004/0/cache/@tanstack-react-query-npm-5.56.2-fc27f4cc61-6e883b4ca1.zip/node_modules/@tanstack/react-query/build/modern/QueryErrorResetBoundary.js
 var React3 = __toESM(require_react(), 1);
 var import_jsx_runtime2 = __toESM(require_jsx_runtime(), 1);
 function createValue() {
@@ -2766,10 +2767,10 @@ var QueryErrorResetBoundary = ({
   return (0, import_jsx_runtime2.jsx)(QueryErrorResetBoundaryContext.Provider, { value, children: typeof children === "function" ? children(value) : children });
 };
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a04d6c4535/0/cache/@tanstack-react-query-npm-5.55.4-f0e718f216-b81f4e2942.zip/node_modules/@tanstack/react-query/build/modern/errorBoundaryUtils.js
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-901a626004/0/cache/@tanstack-react-query-npm-5.56.2-fc27f4cc61-6e883b4ca1.zip/node_modules/@tanstack/react-query/build/modern/errorBoundaryUtils.js
 var React4 = __toESM(require_react(), 1);
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a04d6c4535/0/cache/@tanstack-react-query-npm-5.55.4-f0e718f216-b81f4e2942.zip/node_modules/@tanstack/react-query/build/modern/utils.js
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-901a626004/0/cache/@tanstack-react-query-npm-5.56.2-fc27f4cc61-6e883b4ca1.zip/node_modules/@tanstack/react-query/build/modern/utils.js
 function shouldThrowError(throwError, params) {
   if (typeof throwError === "function") {
     return throwError(...params);
@@ -2779,7 +2780,7 @@ function shouldThrowError(throwError, params) {
 function noop2() {
 }
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a04d6c4535/0/cache/@tanstack-react-query-npm-5.55.4-f0e718f216-b81f4e2942.zip/node_modules/@tanstack/react-query/build/modern/errorBoundaryUtils.js
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-901a626004/0/cache/@tanstack-react-query-npm-5.56.2-fc27f4cc61-6e883b4ca1.zip/node_modules/@tanstack/react-query/build/modern/errorBoundaryUtils.js
 var ensurePreventErrorBoundaryRetry = (options, errorResetBoundary) => {
   if (options.suspense || options.throwOnError) {
     if (!errorResetBoundary.isReset()) {
@@ -2801,7 +2802,7 @@ var getHasError = ({
   return result.isError && !errorResetBoundary.isReset() && !result.isFetching && query && shouldThrowError(throwOnError, [result.error, query]);
 };
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a04d6c4535/0/cache/@tanstack-react-query-npm-5.55.4-f0e718f216-b81f4e2942.zip/node_modules/@tanstack/react-query/build/modern/suspense.js
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-901a626004/0/cache/@tanstack-react-query-npm-5.56.2-fc27f4cc61-6e883b4ca1.zip/node_modules/@tanstack/react-query/build/modern/suspense.js
 var defaultThrowOnError = (_error, query) => query.state.data === void 0;
 var ensureSuspenseTimers = (defaultedOptions) => {
   if (defaultedOptions.suspense) {
@@ -2819,7 +2820,7 @@ var fetchOptimistic = (defaultedOptions, observer, errorResetBoundary) => observ
   errorResetBoundary.clearReset();
 });
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a04d6c4535/0/cache/@tanstack-react-query-npm-5.55.4-f0e718f216-b81f4e2942.zip/node_modules/@tanstack/react-query/build/modern/useQueries.js
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-901a626004/0/cache/@tanstack-react-query-npm-5.56.2-fc27f4cc61-6e883b4ca1.zip/node_modules/@tanstack/react-query/build/modern/useQueries.js
 function useQueries({
   queries,
   ...options
@@ -2905,7 +2906,7 @@ function useQueries({
   return getCombinedResult(trackResult());
 }
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a04d6c4535/0/cache/@tanstack-react-query-npm-5.55.4-f0e718f216-b81f4e2942.zip/node_modules/@tanstack/react-query/build/modern/useBaseQuery.js
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-901a626004/0/cache/@tanstack-react-query-npm-5.56.2-fc27f4cc61-6e883b4ca1.zip/node_modules/@tanstack/react-query/build/modern/useBaseQuery.js
 var React6 = __toESM(require_react(), 1);
 function useBaseQuery(options, Observer, queryClient) {
   var _a12, _b, _c, _d;
@@ -2970,12 +2971,12 @@ function useBaseQuery(options, Observer, queryClient) {
   return !defaultedOptions.notifyOnChangeProps ? observer.trackResult(result) : result;
 }
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a04d6c4535/0/cache/@tanstack-react-query-npm-5.55.4-f0e718f216-b81f4e2942.zip/node_modules/@tanstack/react-query/build/modern/useQuery.js
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-901a626004/0/cache/@tanstack-react-query-npm-5.56.2-fc27f4cc61-6e883b4ca1.zip/node_modules/@tanstack/react-query/build/modern/useQuery.js
 function useQuery(options, queryClient) {
   return useBaseQuery(options, QueryObserver, queryClient);
 }
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a04d6c4535/0/cache/@tanstack-react-query-npm-5.55.4-f0e718f216-b81f4e2942.zip/node_modules/@tanstack/react-query/build/modern/useSuspenseQuery.js
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-901a626004/0/cache/@tanstack-react-query-npm-5.56.2-fc27f4cc61-6e883b4ca1.zip/node_modules/@tanstack/react-query/build/modern/useSuspenseQuery.js
 function useSuspenseQuery(options, queryClient) {
   if (true) {
     if (options.queryFn === skipToken) {
@@ -2995,7 +2996,7 @@ function useSuspenseQuery(options, queryClient) {
   );
 }
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a04d6c4535/0/cache/@tanstack-react-query-npm-5.55.4-f0e718f216-b81f4e2942.zip/node_modules/@tanstack/react-query/build/modern/useSuspenseInfiniteQuery.js
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-901a626004/0/cache/@tanstack-react-query-npm-5.56.2-fc27f4cc61-6e883b4ca1.zip/node_modules/@tanstack/react-query/build/modern/useSuspenseInfiniteQuery.js
 function useSuspenseInfiniteQuery(options, queryClient) {
   if (true) {
     if (options.queryFn === skipToken) {
@@ -3014,7 +3015,7 @@ function useSuspenseInfiniteQuery(options, queryClient) {
   );
 }
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a04d6c4535/0/cache/@tanstack-react-query-npm-5.55.4-f0e718f216-b81f4e2942.zip/node_modules/@tanstack/react-query/build/modern/useSuspenseQueries.js
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-901a626004/0/cache/@tanstack-react-query-npm-5.56.2-fc27f4cc61-6e883b4ca1.zip/node_modules/@tanstack/react-query/build/modern/useSuspenseQueries.js
 function useSuspenseQueries(options, queryClient) {
   return useQueries(
     {
@@ -3038,7 +3039,7 @@ function useSuspenseQueries(options, queryClient) {
   );
 }
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a04d6c4535/0/cache/@tanstack-react-query-npm-5.55.4-f0e718f216-b81f4e2942.zip/node_modules/@tanstack/react-query/build/modern/usePrefetchQuery.js
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-901a626004/0/cache/@tanstack-react-query-npm-5.56.2-fc27f4cc61-6e883b4ca1.zip/node_modules/@tanstack/react-query/build/modern/usePrefetchQuery.js
 function usePrefetchQuery(options, queryClient) {
   const client = useQueryClient(queryClient);
   if (!client.getQueryState(options.queryKey)) {
@@ -3046,7 +3047,7 @@ function usePrefetchQuery(options, queryClient) {
   }
 }
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a04d6c4535/0/cache/@tanstack-react-query-npm-5.55.4-f0e718f216-b81f4e2942.zip/node_modules/@tanstack/react-query/build/modern/usePrefetchInfiniteQuery.js
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-901a626004/0/cache/@tanstack-react-query-npm-5.56.2-fc27f4cc61-6e883b4ca1.zip/node_modules/@tanstack/react-query/build/modern/usePrefetchInfiniteQuery.js
 function usePrefetchInfiniteQuery(options, queryClient) {
   const client = useQueryClient(queryClient);
   if (!client.getQueryState(options.queryKey)) {
@@ -3054,17 +3055,17 @@ function usePrefetchInfiniteQuery(options, queryClient) {
   }
 }
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a04d6c4535/0/cache/@tanstack-react-query-npm-5.55.4-f0e718f216-b81f4e2942.zip/node_modules/@tanstack/react-query/build/modern/queryOptions.js
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-901a626004/0/cache/@tanstack-react-query-npm-5.56.2-fc27f4cc61-6e883b4ca1.zip/node_modules/@tanstack/react-query/build/modern/queryOptions.js
 function queryOptions(options) {
   return options;
 }
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a04d6c4535/0/cache/@tanstack-react-query-npm-5.55.4-f0e718f216-b81f4e2942.zip/node_modules/@tanstack/react-query/build/modern/infiniteQueryOptions.js
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-901a626004/0/cache/@tanstack-react-query-npm-5.56.2-fc27f4cc61-6e883b4ca1.zip/node_modules/@tanstack/react-query/build/modern/infiniteQueryOptions.js
 function infiniteQueryOptions(options) {
   return options;
 }
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a04d6c4535/0/cache/@tanstack-react-query-npm-5.55.4-f0e718f216-b81f4e2942.zip/node_modules/@tanstack/react-query/build/modern/HydrationBoundary.js
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-901a626004/0/cache/@tanstack-react-query-npm-5.56.2-fc27f4cc61-6e883b4ca1.zip/node_modules/@tanstack/react-query/build/modern/HydrationBoundary.js
 var React7 = __toESM(require_react(), 1);
 var HydrationBoundary = ({
   children,
@@ -3118,7 +3119,7 @@ var HydrationBoundary = ({
   return children;
 };
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a04d6c4535/0/cache/@tanstack-react-query-npm-5.55.4-f0e718f216-b81f4e2942.zip/node_modules/@tanstack/react-query/build/modern/useIsFetching.js
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-901a626004/0/cache/@tanstack-react-query-npm-5.56.2-fc27f4cc61-6e883b4ca1.zip/node_modules/@tanstack/react-query/build/modern/useIsFetching.js
 var React8 = __toESM(require_react(), 1);
 function useIsFetching(filters, queryClient) {
   const client = useQueryClient(queryClient);
@@ -3133,7 +3134,7 @@ function useIsFetching(filters, queryClient) {
   );
 }
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a04d6c4535/0/cache/@tanstack-react-query-npm-5.55.4-f0e718f216-b81f4e2942.zip/node_modules/@tanstack/react-query/build/modern/useMutationState.js
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-901a626004/0/cache/@tanstack-react-query-npm-5.56.2-fc27f4cc61-6e883b4ca1.zip/node_modules/@tanstack/react-query/build/modern/useMutationState.js
 var React9 = __toESM(require_react(), 1);
 function useIsMutating(filters, queryClient) {
   const client = useQueryClient(queryClient);
@@ -3176,7 +3177,7 @@ function useMutationState(options = {}, queryClient) {
   );
 }
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a04d6c4535/0/cache/@tanstack-react-query-npm-5.55.4-f0e718f216-b81f4e2942.zip/node_modules/@tanstack/react-query/build/modern/useMutation.js
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-901a626004/0/cache/@tanstack-react-query-npm-5.56.2-fc27f4cc61-6e883b4ca1.zip/node_modules/@tanstack/react-query/build/modern/useMutation.js
 var React10 = __toESM(require_react(), 1);
 function useMutation(options, queryClient) {
   const client = useQueryClient(queryClient);
@@ -3209,7 +3210,7 @@ function useMutation(options, queryClient) {
   return { ...result, mutate, mutateAsync: result.mutate };
 }
 
-// ../../.yarn/__virtual__/@tanstack-react-query-virtual-a04d6c4535/0/cache/@tanstack-react-query-npm-5.55.4-f0e718f216-b81f4e2942.zip/node_modules/@tanstack/react-query/build/modern/useInfiniteQuery.js
+// ../../.yarn/__virtual__/@tanstack-react-query-virtual-901a626004/0/cache/@tanstack-react-query-npm-5.56.2-fc27f4cc61-6e883b4ca1.zip/node_modules/@tanstack/react-query/build/modern/useInfiniteQuery.js
 function useInfiniteQuery(options, queryClient) {
   return useBaseQuery(
     options,

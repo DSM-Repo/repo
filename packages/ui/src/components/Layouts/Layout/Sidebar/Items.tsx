@@ -9,6 +9,7 @@ export const Items = ({ selections, selected, onClick }: IProp) => {
     <>
       {selections?.map((i) => (
         <span
+          key={i}
           onClick={() => onClick(i)}
           className={`${selected === i ? "font-semibold" : "font-extralight hover:font-normal"} transition-all duration-150 cursor-pointer text-[18px]`}
         >

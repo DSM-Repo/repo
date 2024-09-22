@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "private": true,
   "packageManager": "yarn@4.3.0",
   "workspaces": {
     "packages": [
@@ -15,7 +16,7 @@
     "student": "yarn workspace student",
     "teacher": "yarn workspace teacher",
     "ui": "yarn workspace ui",
-    "default": "yarn dlx @yarnpkg/sdks"
+    "util": "yarn workspace @configs/util"
   },
   "devDependencies": {
     "@types/node": "^20.14.6",

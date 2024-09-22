@@ -1,9 +1,9 @@
 import react from "@vitejs/plugin-react";
-//@ts-ignore
-import { getEnv } from "../../config.ts";
 import { defineConfig } from "vite";
 import svgr from "vite-plugin-svgr";
 import path from "path";
+//@ts-ignore
+import { getEnv } from "../../config.ts";
 
 // https://vitejs.dev/config/
 export default () => {

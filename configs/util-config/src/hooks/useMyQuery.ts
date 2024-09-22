@@ -1,5 +1,5 @@
 // @ts-expect-error
-import { UseQueryResult, useQuery } from "@tanstack/react-query";
+import { UseQueryResult, useQuery, keepPreviousData } from "@tanstack/react-query";
 import { instance, path, pathType } from "../apis";
 
 export const useMyQuery = <T>(
@@ -13,6 +13,6 @@ export const useMyQuery = <T>(
       const res = await instance.get(path[pathname] + url);
       return res.data;
     },
-    placeholderData: placeholder
+    placeholderData: keepPreviousData || placeholder
   });
 };

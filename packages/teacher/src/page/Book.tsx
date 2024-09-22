@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { getBook, getLibrary, libraryAccess } from "@/apis";
+import { getBook, libraryAccess } from "@/apis";
 import { Items, Viewer } from "ui";
 import { findKeyWithValue } from "@configs/util";
 import { toast } from "react-toastify";

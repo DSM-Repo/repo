@@ -38,7 +38,7 @@ export const TextArea = ({
 
       <Ternary data={max}>
         <span
-          className={`self-end text-body5 transition-all duration-150 ${value.length === max ? "text-red-500" : value.length > max / 1.1 ? "text-yellow-400" : ""}`}
+          className={`self-end text-body5 transition-all duration-150 ${value?.length === max ? "text-red-500" : value?.length > max / 1.1 ? "text-yellow-400" : ""}`}
         >
           {value ? value.length : 0} / {max}
         </span>

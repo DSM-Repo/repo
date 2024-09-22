@@ -26,7 +26,7 @@ export const Sidebar = ({ profile, items }: IProp) => {
         <Profile img="" name={profile.name} major={profile.major} />
         <div className="col-flex gap-6">
           {items.map((i) => (
-            <div className="col-flex gap-3">
+            <div className="col-flex gap-1">
               <span className="px-3 text-[14px] font-light text-gray-200">
                 {i.name}
               </span>
