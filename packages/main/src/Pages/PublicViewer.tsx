@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
-import { useMyQuery } from "@configs/util";
 import { Placeholder } from "@configs/type";
+import { useMyQuery } from "@configs/util";
 import { Viewer } from "ui";
 
 export const PublicViewer = () => {

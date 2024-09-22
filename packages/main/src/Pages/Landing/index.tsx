@@ -1,34 +1,32 @@
+import { SlideSection } from "./SlideSection";
 import { useEffect, useState } from "react";
 import { Sections } from "./Sections";
-import { SlideSection } from "./SlideSection";
-import { Modal } from "./Modal";
 import { LogoFull } from "@/assets";
 import { Button } from "./Button";
+import { Modal } from "./Modal";
 
 export const Landing = () => {
-  const [open, setOpen] = useState(false);
+  const [opened, setOpened] = useState(false);
 
   useEffect(() => {
     const items = document.querySelectorAll("button.modal");
-    items.forEach((i) =>
-      i.addEventListener("click", () => setOpen((prev) => !prev))
-    );
+    items.forEach((i) => i.addEventListener("click", () => setOpened(!opened)));
     return () => {
       const items = document.querySelectorAll("button.modal");
       items.forEach((i) =>
-        i.removeEventListener("click", () => setOpen((prev) => !prev))
+        i.removeEventListener("click", () => setOpened(!opened))
       );
     };
-  }, [setOpen]);
+  }, [setOpened]);
 
   return (
     <div className="relative col-flex items-center">
-      <div className="absolute w-full h-[421px] -z-10 bg-gradient-to-b from-[#000000] to-[#00000000] " />
+      <div className="absolute w-full h-[421px] -z-10 bg-gradient-to-b from-[#000000] to-[#00000000]" />
       <header className="fixed flex justify-between items-center w-full h-20 px-[100px] z-10">
         <LogoFull />
         <Button>Login →</Button>
       </header>
-      <Modal open={open} />
+      <Modal open={opened} />
       <Sections />
       <SlideSection />
       <footer className="flex items-center w-full h-[280px] px-[100px]">

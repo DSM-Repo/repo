@@ -435,6 +435,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/__virtual__/@configs-util-virtual-ad9439a512/1/configs/util-config/",\
         "packageDependencies": [\
           ["@configs/util", "virtual:9dce388d82c018b4a7af5edc7243e51f7023d1ab93a923b3959d0066ac6881c93b965a0932486426cbefa96c9c8e47849d5ff541d2404b8aca246480fa32f0d2#workspace:configs/util-config"],\
+          ["@configs/tailwindcss", "workspace:configs/tailwindcss-config"],\
           ["@tanstack/react-query", "virtual:9dce388d82c018b4a7af5edc7243e51f7023d1ab93a923b3959d0066ac6881c93b965a0932486426cbefa96c9c8e47849d5ff541d2404b8aca246480fa32f0d2#npm:5.56.2"],\
           ["@types/node", "npm:22.5.5"],\
           ["@types/react", "npm:18.3.8"],\
@@ -457,6 +458,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./configs/util-config/",\
         "packageDependencies": [\
           ["@configs/util", "workspace:configs/util-config"],\
+          ["@configs/tailwindcss", "workspace:configs/tailwindcss-config"],\
           ["@types/node", "npm:22.5.5"],\
           ["@types/react", "npm:18.3.8"],\
           ["@types/react-dom", "npm:18.3.0"],\

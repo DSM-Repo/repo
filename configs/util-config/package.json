@@ -3,6 +3,7 @@
   "packageManager": "yarn@4.3.0",
   "main": "./src",
   "dependencies": {
+    "@configs/tailwindcss": "workspace:^",
     "axios": "^1.7.2",
     "react": "^18.3.1",
     "react-cookie": "^7.2.0",
