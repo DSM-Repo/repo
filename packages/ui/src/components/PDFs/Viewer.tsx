@@ -1,5 +1,5 @@
 import { Ternary, useShortcut, useEventListeners } from "@configs/util";
-import { Layout, sidebarType, buttonType, Items } from "ui";
+import { Layout, sidebarType, buttonType, Items, Tutorial } from "ui";
 import { Page, pdfjs, Document } from "react-pdf";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/esm/Page/TextLayer.css";
@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { saveAs } from "file-saver";
 import { Api } from "@configs/type";
+import tuto1 from "./assets/tuto1.png";
+import tuto2 from "./assets/tuto2.png";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@4.4.168/build/pdf.worker.min.mjs`;
 
@@ -176,6 +178,29 @@ export const Viewer = ({
   return (
     <Layout buttons={_buttons} sidebars={_sidebars}>
       <div className="w-full h-full flex flex-center">
+        <Tutorial
+          name="Viewer"
+          steps={[
+            {
+              content:
+                "REPO 뷰어를 사용하기에 앞서, 간단한 안내를 진행하겠습니다"
+            },
+            {
+              img: tuto1,
+              content:
+                "먼저, 뷰어의 대부분의 기능은 헤더에서 사용합니다.\n배치는 위 이미지와 같습니다."
+            },
+            {
+              img: tuto2,
+              content:
+                "또한 방향키를 통해서도 페이지를 이동할 수 있습니다.\nShift키와 동시에 사용하면 학생별 이동이 가능합니다."
+            },
+            {
+              content:
+                "이상 REPO 뷰어 사용법 안내였습니다.\n(해당 내용은 2024년 이후의 레주메북 내에서도 확인 가능합니다)"
+            }
+          ]}
+        />
         <Ternary data={!!!url || loading}>
           <div className="z-30 left-0 top-0 w-full h-full bg-[#000000DD] flex flex-center absolute text-white">
             {!!!url
