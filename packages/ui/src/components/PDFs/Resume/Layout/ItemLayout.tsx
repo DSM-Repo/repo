@@ -23,7 +23,7 @@ export const ItemLayout = ({ title, type, isCheckAble, data }: IProp) => {
           {title || "이름 없는 섹션"}
         </span>
         {type === "static" && (
-          <span className="border-l-[3px] border-black flex gap-1 px-[15px] text-resumeItemContent whitespace-pre-line w-full text-black mt-[10px]">
+          <span className="border-l-[3px] border-black flex gap-1 px-[15px] text-resumeItemContent whitespace-pre-wrap break-words w-full text-black mt-[10px]">
             {data as string}
           </span>
         )}
@@ -47,7 +47,7 @@ export const ItemLayout = ({ title, type, isCheckAble, data }: IProp) => {
                   </Ternary>
                 </div>
                 <Ternary data={i.content}>
-                  <span className="text-gray-100 text-resumeItemContent whitespace-pre-line">
+                  <span className="text-gray-100 text-resumeItemContent whitespace-pre-wrap break-words">
                     {i.content}
                   </span>
                 </Ternary>
