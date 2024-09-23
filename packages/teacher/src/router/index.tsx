@@ -6,8 +6,8 @@ import * as _ from "@/page";
 export const Router = () => {
   const { getRole } = useAuth();
 
-  if(getRole() !== "teacher") {
-    return <RedirectDiff />
+  if (getRole() !== "teacher") {
+    return <RedirectDiff />;
   }
 
   return (
@@ -21,8 +21,8 @@ export const Router = () => {
           <Route path="major" element={<_.Major />} />
           <Route path="history" element={<_.History />} />
           {/* <Route path="notice" element={<_.Notice />} /> */}
-          <Route path="render/:grade" element={<_.Render />} />
         </Route>
+        <Route path="render/:grade" element={<_.Render />} />
         <Route path="*" element={<RedirectDiff />} />
       </Routes>
     </BrowserRouter>
