@@ -221,7 +221,7 @@ export const Viewer = ({
             {page - 1} - {page} / {max}
           </span>
           <div className="flex gap-2 viewer">
-            <Page pageIndex={page + 1} className="hidden absolute" />
+            <Page pageIndex={page} className="hidden absolute" />
             <Page
               pageIndex={page - 1}
               scale={scale}
@@ -233,10 +233,7 @@ export const Viewer = ({
               scale={scale}
               className={`${page > max ? "invisible" : ""} h-fit`}
             />
-            <Page
-              pageIndex={page > max ? page : page + 2}
-              className="hidden absolute"
-            />
+            <Page pageIndex={page + 2} className="hidden absolute" />
           </div>
         </Document>
       </div>
