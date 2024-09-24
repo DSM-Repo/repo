@@ -54,6 +54,7 @@
     "autoprefixer": "^10.4.19",
     "postcss": "^8.4.39",
     "prop-types": "^15.8.1",
+    "tsconfig-paths-webpack-plugin": "^4.1.0",
     "vite-plugin-svgr": "^4.2.0"
   }
 }

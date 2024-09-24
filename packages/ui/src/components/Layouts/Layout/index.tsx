@@ -12,9 +12,12 @@ export type sidebarType = {
   items?: itemType[];
 };
 
-interface IProp {
+export interface IHeader {
   buttons?: buttonType[];
   sidebars?: sidebarType[];
+}
+
+interface IProp extends IHeader {
   children: React.ReactElement | React.ReactElement[];
 }
 

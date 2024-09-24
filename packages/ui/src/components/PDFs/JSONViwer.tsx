@@ -1,18 +1,17 @@
-import { Document } from "@configs/type";
 import { useEventListeners, useShortcut } from "@configs/util";
-import { saveAs } from "file-saver";
-import html2canvas from "html2canvas";
-import { jsPDF } from "jspdf";
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { IHeader, Layout, Resume } from "ui";
+import { useEffect, useState } from "react";
+import { Document } from "@configs/type";
 import { toast } from "react-toastify";
-import { Layout, Resume, buttonType, sidebarType } from "ui";
+import html2canvas from "html2canvas";
+import { saveAs } from "file-saver";
+import { jsPDF } from "jspdf";
 
-interface IProp {
+interface IProp extends IHeader {
   data?: Document.Resume;
-  buttons?: buttonType[];
-  sidebars?: sidebarType[];
 }
+
 export const JSONViewer = ({ data, buttons = [], sidebars = [] }: IProp) => {
   const [scale, setScale] = useState(0);
   const [page, setPage] = useState(1);

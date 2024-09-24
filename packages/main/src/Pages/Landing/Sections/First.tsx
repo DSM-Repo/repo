@@ -1,6 +1,10 @@
 import { Button } from "../Button";
 
-export const First = () => {
+interface IProp {
+  setOpened: () => void;
+}
+
+export const First = ({ setOpened }: IProp) => {
   return (
     <section className="col-flex items-center gap-16">
       <div className="col-flex items-center gap-6">
@@ -11,7 +15,7 @@ export const First = () => {
           이력서, 온라인으로
           <br /> 쉽고 간편하게.
         </span>
-        <Button>Repo 사용하기</Button>
+        <Button onClick={setOpened}>Repo 사용하기</Button>
       </div>
       <div className="relative">
         <img src="/landing_library.png" className="w-[1100] h-[520px]" />
