@@ -15,18 +15,6 @@ export const checkOverflow = (item: HTMLElement) => {
 
     item.style.visibility = "visible"; // 요소 visible 활성화 (오버플로우되어 넘어갔다가 다시 돌아왔을 경우에도 안 보이는 문제 해결)
 
-    // if (item.parentElement.parentElement.classList.contains("layout")) {
-    //   parentLocation = item.parentElement.parentElement.offsetTop;
-    // }
-
-    // console.log(
-    //   item.offsetTop,
-    //   item.offsetTop - parentLocation,
-    //   parentLocation,
-    //   item
-    // );
-    // const itemLocation =
-    //   item.offsetTop - parentLocation + item.offsetHeight - 51; // 아이템 위치 (스크롤시에도 동일한 위치 표기)
     const itemLocation = item.offsetTop + item.offsetHeight - 51;
     const isCheckAble = item.classList.contains("checkAble");
     if (itemLocation > MAXHEIGHT && !isCheckAble) {
