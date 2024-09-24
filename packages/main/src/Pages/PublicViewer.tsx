@@ -1,11 +1,11 @@
+import { Api, Placeholder } from "@configs/type";
 import { useParams } from "react-router-dom";
-import { Placeholder } from "@configs/type";
 import { useMyQuery } from "@configs/util";
 import { Viewer } from "ui";
 
 export const PublicViewer = () => {
   const { id } = useParams();
-  const { data: detailData } = useMyQuery(
+  const { data: detailData } = useMyQuery<Api.Library.LibraryDetail>(
     "library",
     `/${id}/public`,
     Placeholder.LibraryDetailPlace

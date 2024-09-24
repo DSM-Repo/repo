@@ -3,10 +3,14 @@ import { Second } from "./Second";
 import { Third } from "./Third";
 import { Fourth } from "./Fourth";
 
-export const Sections = () => {
+interface IProp {
+  setOpened: () => void;
+}
+
+export const Sections = ({ setOpened }: IProp) => {
   return (
     <main className="flex flex-col py-[170px] w-2/3 gap-[80px]">
-      <First />
+      <First setOpened={setOpened} />
       <Second />
       <Third />
       <Fourth />

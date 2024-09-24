@@ -1,5 +1,7 @@
 import { join, dirname } from "path";
 import { mergeConfig } from "vite";
+import { resolve } from "path";
+
 import svgr from "vite-plugin-svgr";
 
 /**
@@ -12,10 +14,7 @@ function getAbsolutePath(value) {
 
 /** @type { import('@storybook/react-vite').StorybookConfig } */
 const config = {
-  stories: [
-    "../intro/Configure.mdx",
-    "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"
-  ],
+  stories: ["../docs/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
   addons: [
     getAbsolutePath("@storybook/addon-onboarding"),
     getAbsolutePath("@storybook/addon-links"),
@@ -64,6 +63,12 @@ const config = {
       plugins: [svgr()],
       define: {
         "process.env": process.env
+      },
+      resolve: {
+        alias: {
+          "@": resolve(__dirname, "../src/components"),
+          "@root": resolve(__dirname, "../src")
+        }
       }
     });
   }

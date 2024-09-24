@@ -98,12 +98,16 @@ export const Write = () => {
       key: "u",
       ctrl: true,
       action: () =>
-        submitMutate(undefined, {
+        saveMutate(resumeLocalData, {
           onSuccess: () => {
-            toast.success(
-              `성공적으로 ${resumeLocalData.status === "ONGOING" ? "제출" : "제출 취소"}되었습니다`
-            );
-            resumeRefetch();
+            submitMutate(undefined, {
+              onSuccess: () => {
+                toast.success(
+                  `성공적으로 ${resumeLocalData.status === "ONGOING" ? "제출" : "제출 취소"}되었습니다`
+                );
+                resumeRefetch();
+              }
+            });
           }
         })
     }
@@ -124,12 +128,16 @@ export const Write = () => {
           title:
             resumeLocalData.status === "ONGOING" ? "제출하기" : "제출 취소하기",
           action: () =>
-            submitMutate(undefined, {
+            saveMutate(resumeLocalData, {
               onSuccess: () => {
-                toast.success(
-                  `성공적으로 ${resumeLocalData.status === "ONGOING" ? "제출" : "제출 취소"}되었습니다`
-                );
-                resumeRefetch();
+                submitMutate(undefined, {
+                  onSuccess: () => {
+                    toast.success(
+                      `성공적으로 ${resumeLocalData.status === "ONGOING" ? "제출" : "제출 취소"}되었습니다`
+                    );
+                    resumeRefetch();
+                  }
+                });
               }
             })
         },

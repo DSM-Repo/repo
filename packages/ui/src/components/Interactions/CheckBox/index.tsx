@@ -1,5 +1,5 @@
 import { Ternary } from "@configs/util";
-import { Icon } from "../../Others";
+import { Icon } from "@/Others";
 
 interface IProp {
   checked?: boolean;
