@@ -1,10 +1,12 @@
-import { getLibrary } from "@/apis";
+import { convertResume, getLibrary } from "@/apis";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Id, toast } from "react-toastify";
 import { Button, Dropdown, Layout, Title } from "ui";
 
 export const Library = () => {
-  const { data } = getLibrary();
+  const { data, refetch } = getLibrary();
+  const { mutate: convert } = convertResume();
   const navigate = useNavigate();
   const [grade, setGrade] = useState<string | undefined>(undefined);
 
@@ -28,10 +30,25 @@ export const Library = () => {
                 placeholder="학년"
                 selected={grade}
                 size="full"
-                selections={["1학년", "2학년", "3학년", "학년"]}
+                selections={["1학년", "2학년", "학년"]}
               />
               <Button
-                onClick={() => {}}
+                disabled={!!!grade}
+                onClick={() => {
+                  const load = toast.loading("PDF로 변환하고 있습니다...");
+                  convert((grade as string).slice(0, 1), {
+                    onSuccess: () => {
+                      refetch();
+                      toast.update(load as unknown as Id, {
+                        type: "success",
+                        render: "성공적으로 변환되었습니다",
+                        autoClose: 1500,
+                        closeButton: false,
+                        isLoading: false
+                      });
+                    }
+                  });
+                }}
                 size="full"
                 direction="center"
                 icon="Add"

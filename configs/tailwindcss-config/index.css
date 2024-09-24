@@ -11,11 +11,16 @@
   outline: none;
 }
 
+@page {
+  size: A4;
+}
+
 span,
 label,
 input,
-select,
 textarea,
+input:focus,
+textarea:focus,
 li {
   color: white;
   outline: none;

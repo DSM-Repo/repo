@@ -6,7 +6,7 @@ interface IProp {
 
 export const Box = ({ children }: IProp) => {
   return (
-    <UiBox width="fit-content" padding="30px" round="24px" className="gap-6">
+    <UiBox width="502px" padding="30px" round="24px" className="gap-6">
       {children}
     </UiBox>
   );

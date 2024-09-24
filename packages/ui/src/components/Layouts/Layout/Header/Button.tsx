@@ -112,7 +112,7 @@ export const Button = ({
         </div>
       </div>
       <div
-        className={`${first ? "preload" : ""} ${opened?.name === title ? "move-up" : "move-down"} self-center absolute top-[40px] flex flex-col items-center z-20`}
+        className={`${first ? "preload" : ""} ${opened?.name === title ? "move-up" : "move-down"} self-center absolute top-[40px] flex flex-col items-center z-20 shadow-2xl shadow-gray-950`}
       >
         <div className="[border-bottom:_calc(7px_*_1.732)_solid_#333333] [border-left:_7px_solid_transparent] [border-right:_7px_solid_transparent]" />
         <div className="bg-gray-800 rounded-[8px] h-fit self-center p-5 border-[1px] border-gray-700">
