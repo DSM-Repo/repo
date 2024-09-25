@@ -15,7 +15,7 @@ import { Api } from "@configs/type";
 const statusTable: Record<string, string> = {
   SUBMITTED: "(제출됨)",
   RELEASED: "(공개됨)"
-}
+};
 
 const typeTable: Record<string, string> = {
   "내 정보": "WRITER_INFO",
@@ -127,7 +127,6 @@ export const Resume = () => {
                   />
                   <Button
                     size="full"
-                    disabled={data?.status !== "SUBMITTED"}
                     onClick={() =>
                       add(feed, {
                         onSuccess: () => {
@@ -140,7 +139,7 @@ export const Resume = () => {
                     }
                     direction="center"
                   >
-                    {`피드백 추가 ${data?.status !== "SUBMITTED" ? "(미제출된 문서)" : ""}`}
+                    피드백 추가
                   </Button>
                 </div>
               )
