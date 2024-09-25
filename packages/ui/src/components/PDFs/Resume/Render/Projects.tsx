@@ -94,7 +94,7 @@ export const Projects = ({ data, setMax, keep, showPadding, scale }: IProp) => {
             </a>
           </Ternary>
         </div>
-        <ItemLayout title="사용 기술" type="rowList" data={data?.skill_set} />
+        <ItemLayout title="Skillsets" type="rowList" data={data?.skill_set} />
         <>
           {data?.sections.map((i) => (
             <ItemLayout title={i.title} type="static" data={i.description} />

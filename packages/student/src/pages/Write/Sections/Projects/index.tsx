@@ -9,7 +9,7 @@ export const Projects = () => {
 
   return (
     <Layout
-      title="프로젝트"
+      title="Projects"
       subTitle="지금까지 진행한 프로젝트를 소개해 보세요."
       add={() =>
         addItem("project_list", Placeholder.ResumeDetailPlace.project_list[0])

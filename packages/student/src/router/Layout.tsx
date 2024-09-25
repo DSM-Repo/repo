@@ -29,7 +29,7 @@ export const Layout = () => {
             sections: [
               { icon: "House", name: "홈", urls: ["/"] },
               { icon: "Book", name: "도서관", urls: ["/library", "/book"] },
-              { icon: "File", name: "내 레주메", urls: ["/preview"] },
+              { icon: "File", name: "내 레주메", urls: ["/preview"] }
               // { icon: "Bell", name: "공지", urls: ["/notice"] }
             ]
           },
@@ -38,31 +38,31 @@ export const Layout = () => {
             sections: [
               {
                 icon: "User",
-                name: "내 정보",
+                name: "My Information",
                 urls: ["/write/1"],
                 checked: completionData?.writer_info
               },
               {
                 icon: "Document",
-                name: "자기소개",
+                name: "Introduce",
                 urls: ["/write/2"],
                 checked: completionData?.introduce
               },
               {
                 icon: "ChartCircle",
-                name: "프로젝트",
+                name: "Projects",
                 urls: ["/write/3"],
                 checked: completionData?.project
               },
               {
                 icon: "Chart",
-                name: "자격증 & 수상",
+                name: "Certification & Award",
                 urls: ["/write/4"],
                 checked: completionData?.certificate_and_award
               },
               {
                 icon: "Users",
-                name: "활동",
+                name: "Activty",
                 urls: ["/write/5"],
                 checked: completionData?.activity
               }
