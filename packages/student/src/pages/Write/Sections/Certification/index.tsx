@@ -9,7 +9,7 @@ export const Certification = () => {
 
   return (
     <Layout
-      title="자격증 및 수상"
+      title="Certification & Award"
       subTitle="자신의 자격증과 수상 내역을 소개해 보세요"
       add={() =>
         addItem(

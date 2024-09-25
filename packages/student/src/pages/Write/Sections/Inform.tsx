@@ -46,7 +46,10 @@ export const Inform = () => {
     );
 
   return (
-    <Layout title="내 정보" subTitle="기본적인 정보에 대해 작성해 보세요.">
+    <Layout
+      title="My information"
+      subTitle="기본적인 정보에 대해 작성해 보세요."
+    >
       <Box>
         <Text
           label="이름"
@@ -103,8 +106,8 @@ export const Inform = () => {
           id="major"
         />
         <List
-          label="기술 스택"
-          placeholder="기술 스택을 입력하세요"
+          label="Skillsets"
+          placeholder="Skillset을 입력하세요"
           values={resume.writer.skill_set.map((i) => ({ id: i, name: i }))}
           onEnter={(item) => {
             setPartial(

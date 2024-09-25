@@ -18,11 +18,11 @@ const statusTable: Record<string, string> = {
 };
 
 const typeTable: Record<string, string> = {
-  "내 정보": "WRITER_INFO",
-  자기소개: "INTRODUCE",
-  프로젝트: "PROJECT",
-  "자격증 & 수상": "ACHIEVEMENT",
-  활동: "ACTIVITY"
+  "My Information": "WRITER_INFO",
+  Introduce: "INTRODUCE",
+  Projects: "PROJECT",
+  "Certification & Award": "ACHIEVEMENT",
+  Activity: "ACTIVITY"
 };
 
 export const Resume = () => {

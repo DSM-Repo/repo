@@ -1,8 +1,13 @@
 import { Cookies } from "react-cookie";
 import axios from "axios";
+import { isDevelopment } from "../utils";
 
 const cookie = new Cookies();
 let lock = false;
+const option = {
+  path: "/",
+  domain: isDevelopment ? "" : "dsm-repo.com"
+};
 
 const wait = () => {
   let cnt = 0;
@@ -30,26 +35,10 @@ export const refresh = () =>
           headers: { "X-refresh-token": refreshToken }
         })
         .then((res) => {
-          cookie.set("access_token", res.data.access_token, {
-            path: "/",
-            domain:
-              process.env.NODE_ENV === "development" ? "" : ".dsm-repo.com"
-          });
-          cookie.set("refresh_token", res.data.refresh_token, {
-            path: "/",
-            domain:
-              process.env.NODE_ENV === "development" ? "" : ".dsm-repo.com"
-          });
-          cookie.set("access_expires", res.data.access_expired_at, {
-            path: "/",
-            domain:
-              process.env.NODE_ENV === "development" ? "" : ".dsm-repo.com"
-          });
-          cookie.set("refresh_expires", res.data.refresh_expired_at, {
-            path: "/",
-            domain:
-              process.env.NODE_ENV === "development" ? "" : ".dsm-repo.com"
-          });
+          cookie.set("access_token", res.data.access_token, option);
+          cookie.set("refresh_token", res.data.refresh_token, option);
+          cookie.set("access_expires", res.data.access_expired_at, option);
+          cookie.set("refresh_expires", res.data.refresh_expired_at, option);
           lock = false;
           resolve("Successed!");
         })
