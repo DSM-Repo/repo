@@ -1,7 +1,7 @@
 import { Box, IDefaultProp, Label } from "../Layout";
 import { Ternary } from "@configs/util";
 import { useState } from "react";
-import { Icon } from "@/Others";
+import { Icon } from "../../../";
 import dayjs from "dayjs";
 
 const date = dayjs();
