@@ -25,7 +25,7 @@ export const Layout = () => {
               { icon: "Book", name: "도서관", urls: ["/library", "/book"] },
               { icon: "Suitcase", name: "전공", urls: ["/major"] },
               { icon: "Chart", name: "연혁", urls: ["/history"] },
-              // { icon: "Bell", name: "공지", urls: ["/notice"] }
+              { icon: "Bell", name: "공지", urls: ["/notice"] }
             ]
           }
         ]}

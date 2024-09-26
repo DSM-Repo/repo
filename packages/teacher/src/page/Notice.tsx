@@ -1,79 +1,34 @@
-import { useRef, useState } from "react";
+import { noticeCreate, noticeDelete, noticeList, teacher } from "@/apis";
+import { ChangeEvent, useRef, useState } from "react";
+import { Ternary, instance } from "@configs/util";
 import { Layout, Title, Box, Icon, Text, TextArea, Button } from "ui";
-
-const data = [
-  {
-    title: "제목",
-    date: "2024. 09. 19",
-    writer: "김윤이 선생님",
-    content: "내용내용내용용",
-    element_id: "asdjflkq-adgfwebf-afdqefvfa-bgfdvcx",
-    read: true
-  },
-  {
-    title: "제목333",
-    date: "2024. 09. 20",
-    writer: "관리자",
-    content: "내용내용내용용65436",
-    element_id: "134bfqf-234dsbv1-32rsvqbr-175kiopl",
-    read: true
-  },
-  {
-    title: "제목4444",
-    date: "2024. 09. 18",
-    writer: "관리자",
-    content: "내용내용내용용324435",
-    element_id: "123rtgee-32r4treg-reg32r-13refw3",
-    read: true
-  },
-  {
-    title: "제목555555",
-    date: "2024. 09. 01",
-    writer: "일이삼 선생님",
-    content: "내용내용내용용123123",
-    element_id: "132r423-342r134-2341433-5hergwfds",
-    read: true
-  },
-  {
-    title: "제목555555",
-    date: "2024. 09. 01",
-    writer: "일이삼 선생님",
-    content: "내용내용내용용123123",
-    element_id: "132r423-342r134-2341433-5hergwfdfdssdfs",
-    read: false
-  },
-  {
-    title: "제목555555",
-    date: "2024. 09. 01",
-    writer: "일이삼 선생님",
-    content: "내용내용내용용123123",
-    element_id: "132r423-342r134-2341433-5hergwfdaaaas",
-    read: true
-  },
-  {
-    title: "제목555555",
-    date: "2024. 09. 01",
-    writer: "일이삼 선생님",
-    content: "내용내용내용용123123",
-    element_id: "132r423-342r134-2341433-5hergwfddddds",
-    read: false
-  },
-  {
-    title: "제목555555",
-    date: "2024. 09. 01",
-    writer: "일이삼 선생님",
-    content:
-      "내용내용내용용123123\ntesttest\nestesljktsdajflasjdfals;fjaslkd;jfaslkd;jasdlk;adjljalsdjfasd;jasl;dfkjaslkdf;ajs;flasjkd;kasfj;\ndfs",
-    element_id: "132r423-342r134-2341433-5hergwfdsadfafds",
-    read: false
-  }
-];
+import { useMutation } from "@tanstack/react-query";
+import { Api } from "@configs/type";
 
 const defaultContent = { title: "", content: "" };
 
 export const Notice = () => {
   const [opened, setOpened] = useState<string | null>(null);
   const [content, setContent] = useState(defaultContent);
+  const { data, refetch } = noticeList();
+  const { data: userData } = teacher();
+  const { mutate: del } = noticeDelete();
+  const { mutate: _edit } = useMutation({
+    mutationFn: ({
+      path,
+      items
+    }: {
+      path: string;
+      items: Api.Notice.AddNotice;
+    }) => instance.patch(`/notice/${path}`, items),
+    onSuccess: () => {
+      refetch();
+      setContent(defaultContent);
+    }
+  });
+  const { mutate: add } = noticeCreate();
+  const [edit, setEdit] = useState<undefined | string>(undefined);
+
   const height = useRef<Record<string, number>>({});
 
   const handleChange = (
@@ -82,8 +37,64 @@ export const Notice = () => {
     setContent({ ...content, [e.target.id]: e.target.value });
   };
 
+  const handleChangeEdit = ({
+    target
+  }: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+    setContent({ ...content, [target.id]: target.value });
+
   return (
     <Layout>
+      <Ternary data={edit}>
+        <div className="absolute w-full h-full bg-[#000000AA] flex flex-center left-0 top-0 z-50">
+          <Box width="fit-content" height="fit-content" className="gap-4">
+            <div className="w-full items-center justify-between flex">
+              <span className="text-body1">수정</span>
+              <Icon
+                name="Close"
+                className="cursor-pointer"
+                onClick={() => {
+                  setEdit(undefined);
+                  setContent(defaultContent);
+                }}
+              />
+            </div>
+            <Text
+              size="large"
+              placeholder="제목"
+              id="title"
+              value={content.title}
+              onChange={handleChangeEdit}
+            />
+            <TextArea
+              size="large"
+              placeholder="내용"
+              id="content"
+              value={content.content}
+              onChange={handleChangeEdit}
+            />
+            <Button
+              size="large"
+              onClick={() =>
+                _edit(
+                  { path: `${edit}`, items: content },
+                  {
+                    onSuccess: () => {
+                      setEdit(undefined);
+                      setContent(defaultContent);
+                      refetch();
+                    }
+                  }
+                )
+              }
+              direction="center"
+              icon="Check"
+            >
+              수정 완료
+            </Button>
+          </Box>
+        </div>
+      </Ternary>
+
       <div className="col-flex w-full px-[60px] py-6 gap-5">
         <Title
           title="공지"
@@ -125,46 +136,95 @@ export const Notice = () => {
             rows={10}
             size="full"
           />
-          <Button onClick={() => {}} size="full" icon="Add" direction="center">
+          <Button
+            onClick={() =>
+              add(content, {
+                onSuccess: () => {
+                  refetch();
+                  setContent(defaultContent);
+                }
+              })
+            }
+            size="full"
+            icon="Add"
+            direction="center"
+          >
             추가
           </Button>
         </Box>
-        {data?.map((i) => (
-          <Box
-            height={
-              opened === i.element_id
-                ? height.current[i.element_id] + "px"
-                : "60px"
-            }
-            round="12px"
-            padding="16px"
-            className="overflow-hidden gap-4 cursor-pointer transition-all duration-300"
-            onClick={() => {
-              setOpened(opened === i.element_id ? null : i.element_id);
-            }}
-            ref={(item: HTMLElement) => {
-              if (item && !!!height.current[i.element_id]) {
-                height.current[i.element_id] =
-                  (item.childNodes[1] as HTMLElement).clientHeight + 76;
-              }
-            }}
-          >
-            <div className="flex justify-between items-center">
-              <div className="flex items-center gap-3">
-                <span className="text-body1">{i.title}</span>
-                <span className="text-body4 text-gray-200">
-                  {i.date} | {i.writer}
-                </span>
+        {data?.data
+          .sort(
+            (i, j) =>
+              new Date(j.created_at).getTime() -
+              new Date(i.created_at).getTime()
+          )
+          .map((i) => (
+            <Box
+              height={opened === i.id ? height.current[i.id] + "px" : "60px"}
+              round="12px"
+              padding="16px"
+              className="overflow-hidden gap-4 cursor-pointer transition-all duration-300"
+              onClick={({ target }) => {
+                const { tagName } = target as HTMLElement;
+                if (
+                  tagName === "path" ||
+                  tagName === "svg" ||
+                  tagName === "INPUT" ||
+                  tagName === "TEXTAREA"
+                )
+                  return;
+                setOpened(opened === i.id ? null : i.id);
+              }}
+              ref={(item: HTMLElement) => {
+                if (item) {
+                  height.current[i.id] =
+                    (item.childNodes[1] as HTMLElement).clientHeight + 76;
+                }
+              }}
+            >
+              <div className="flex justify-between items-center">
+                <div className="flex items-center gap-3">
+                  <span className="text-body1">{i.title}</span>
+                  <span className="text-body4 text-gray-200">
+                    {i.created_at.split("T")[0]} | {i.writer_name}
+                  </span>
+                  <Ternary data={i.writer_name === userData?.name}>
+                    <Icon
+                      name="Edit"
+                      className="pointable"
+                      onClick={() => {
+                        setEdit(i.id);
+                        setContent({ title: i.title, content: i.content });
+                        refetch();
+                      }}
+                    />
+                    <Ternary data={i.id === edit}>
+                      <Icon
+                        name="Check"
+                        className="pointable"
+                        onClick={() => setEdit(undefined)}
+                      />
+                    </Ternary>
+                    <Icon
+                      name="Trash"
+                      className="pointable"
+                      onClick={() =>
+                        del(`/${i.id}`, { onSuccess: () => refetch() })
+                      }
+                    />
+                  </Ternary>
+                </div>
+                <Icon
+                  name="Arrow"
+                  rotate={opened === i.id ? "up" : "down"}
+                  size={28}
+                />
               </div>
-              <Icon
-                name="Arrow"
-                rotate={opened === i.element_id ? "up" : "down"}
-                size={28}
-              />
-            </div>
-            <span className="break-words whitespace-pre-wrap">{i.content}</span>
-          </Box>
-        ))}
+              <span className="break-words whitespace-pre-wrap">
+                {i.content}
+              </span>
+            </Box>
+          ))}
       </div>
     </Layout>
   );

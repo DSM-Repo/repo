@@ -50,6 +50,7 @@ export const Cover = ({ grade }: IProp) => {
         <img
           src="/School.png"
           className="absolute bottom-0 h-[750px] w-full object-cover"
+          loading="lazy"
         />
       </Layout>
       <Layout>
@@ -71,7 +72,11 @@ export const Cover = ({ grade }: IProp) => {
                 소프트웨어 영재 육성
               </span>
             </div>
-            <img src="/Dsm.png" className="pt-10 w-[130px] object-cover" />
+            <img
+              src="/Dsm.png"
+              className="pt-10 w-[130px] object-cover"
+              loading="lazy"
+            />
           </div>
 
           <span className="text-gray-700 block font-light w-[550px] text-[20px]">
@@ -139,7 +144,7 @@ export const Cover = ({ grade }: IProp) => {
           <span className="text-black font-bold text-[32px] self-start">
             Repo 뷰어 사용 방법
           </span>
-          <img src="/usage_header.png" className="" />
+          <img src="/usage_header.png" className="" loading="lazy" />
           <span className="text-black self-center text-[25px] font-light whitespace-pre-line text-center">
             대부분의 기능은 헤더를 통해 사용할 수 있습니다.
           </span>
@@ -147,7 +152,7 @@ export const Cover = ({ grade }: IProp) => {
       </Layout>
       <Layout>
         <div className="col-flex items-center w-full absolute left-0 px-20 top-32 gap-7">
-          <img src="/usage_keyboard.png" className="" />
+          <img src="/usage_keyboard.png" className="" loading="lazy" />
           <span className="text-black self-center text-[25px] font-light whitespace-pre-line text-center">
             키보드의 화살표 키를 통해서도
             <br />
@@ -155,7 +160,7 @@ export const Cover = ({ grade }: IProp) => {
           </span>
         </div>
         <div className="col-flex items-center w-full absolute left-0 px-20 top-[500px] gap-7">
-          <img src="/usage_qr.png" className="" />
+          <img src="/usage_qr.png" className="" loading="lazy" />
           <span className="text-black self-center text-[25px] font-light whitespace-pre-line text-center">
             또한, 각 레주메의 QR코드를 클릭하여
             <br />

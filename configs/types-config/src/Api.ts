@@ -197,3 +197,22 @@ export declare namespace Resume {
     percent_complete: number;
   }
 }
+
+export declare namespace Notice {
+  type noticeData = {
+    id: string;
+    title: string;
+    content: string;
+    writer_name: string;
+    created_at: string;
+    checked: boolean;
+  };
+
+  interface AddNotice {
+    title: string;
+    content: string;
+  }
+
+  // /notice
+  type NoticeList = CommonLayout<noticeData>;
+}

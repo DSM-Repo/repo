@@ -19,6 +19,7 @@
     "react-toastify": "^10.0.5",
     "tailwindcss": "^3.4.4",
     "ui": "workspace:^",
+    "vite-plugin-compression": "^0.5.1",
     "zustand": "^4.5.4"
   },
   "devDependencies": {

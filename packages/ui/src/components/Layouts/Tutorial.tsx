@@ -54,7 +54,7 @@ export const Tutorial = ({ name, steps }: IProp) => {
                   style={{ opacity: step === j ? 1 : 0 }}
                   className="transition-all duration-300 w-[500px] h-[300px] col-flex gap-2 flex-center"
                 >
-                  {i.img && <img src={i.img} />}
+                  {i.img && <img src={i.img} loading="lazy" />}
                   <span className="text-body4 whitespace-pre-wrap break-words text-center">
                     {i.content}
                   </span>

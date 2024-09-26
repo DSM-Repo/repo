@@ -10,9 +10,9 @@ export const SlideSection = ({ setOpened }: IProp) => {
     <div className="relative flex flex-center w-full h-[420px] overflow-hidden bg-[#4444443D]">
       <div className="absolute -left-[750px] -top-10 -rotate-45 overflow-hidden">
         <div className="flex gap-5 scrolling-slider">
-          <img src="/SlideLeft.png" />
-          <img src="/SlideLeft.png" />
-          <img src="/SlideLeft.png" />
+          <img src="/SlideLeft.png" loading="lazy" />
+          <img src="/SlideLeft.png" loading="lazy" />
+          <img src="/SlideLeft.png" loading="lazy" />
         </div>
       </div>
       <div className="col-flex gap-4 items-center">
@@ -24,9 +24,9 @@ export const SlideSection = ({ setOpened }: IProp) => {
       </div>
       <div className="absolute -right-[980px] -top-10 -rotate-45 overflow-hidden">
         <div className="flex gap-5 scrolling-slider-rev">
-          <img src="/SlideRight.png" />
-          <img src="/SlideRight.png" />
-          <img src="/SlideRight.png" />
+          <img src="/SlideRight.png" loading="lazy" />
+          <img src="/SlideRight.png" loading="lazy" />
+          <img src="/SlideRight.png" loading="lazy" />
         </div>
       </div>
     </div>
