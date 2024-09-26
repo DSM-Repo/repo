@@ -18,7 +18,11 @@ export const First = ({ setOpened }: IProp) => {
         <Button onClick={setOpened}>Repo 사용하기</Button>
       </div>
       <div className="relative">
-        <img src="/landing_library.png" className="w-[1100] h-[520px]" />
+        <img
+          src="/landing_library.png"
+          className="w-[1100px] h-[520px]"
+          loading="lazy"
+        />
         <div className="absolute bottom-0 w-full h-[200px] bg-gradient-to-t from-gray-800" />
       </div>
     </section>

@@ -20,7 +20,7 @@ export const Router = () => {
           <Route path="book/:id" element={<_.Book />} />
           <Route path="major" element={<_.Major />} />
           <Route path="history" element={<_.History />} />
-          {/* <Route path="notice" element={<_.Notice />} /> */}
+          <Route path="notice" element={<_.Notice />} />
         </Route>
         <Route path="render/:grade" element={<_.Render />} />
         <Route path="*" element={<RedirectDiff />} />

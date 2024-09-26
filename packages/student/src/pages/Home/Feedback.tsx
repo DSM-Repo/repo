@@ -8,11 +8,11 @@ interface IProp {
 }
 
 const types = {
-  WRITER_INFO: ["내 정보", "1"],
-  INTRODUCE: ["자기소개", "2"],
-  ACTIVITY: ["활동", "5"],
-  ACHIEVEMENT: ["자격증 & 수상", "4"],
-  PROJECT: ["프로젝트", "3"]
+  WRITER_INFO: ["My Information", "1"],
+  INTRODUCE: ["Introduce", "2"],
+  ACTIVITY: ["Activity", "5"],
+  ACHIEVEMENT: ["Certification & Award", "4"],
+  PROJECT: ["Projects", "3"]
 };
 
 export const Feedback = ({ content, teacher, type, confirm }: IProp) => {

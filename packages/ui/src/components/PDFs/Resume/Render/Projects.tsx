@@ -70,6 +70,7 @@ export const Projects = ({ data, setMax, keep, showPadding, scale }: IProp) => {
                 src={data?.logo?.image_path + `?timestamp=${Date.now()}`}
                 className="w-[54px] h-[54px]"
                 crossOrigin="anonymous"
+                loading="lazy"
               />
             </Ternary>
             <div className="col-flex">

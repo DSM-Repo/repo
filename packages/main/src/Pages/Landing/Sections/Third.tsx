@@ -22,6 +22,7 @@ export const Third = () => {
       <img
         src="/landing_live.png"
         className="w-[443px] h-[656px]"
+        loading="lazy"
       />
     </div>
   );

@@ -18,6 +18,7 @@ export const Profile = ({ img, size, round = "9999px", ...props }: IProp) => {
         style={{ borderRadius: round }}
         alt="프로필 이미지"
         className={`flex-shrink-0 rounded-full aspect-square object-cover bg-white ${props.className}`}
+        loading="lazy"
       />
     </>
   ) : (
