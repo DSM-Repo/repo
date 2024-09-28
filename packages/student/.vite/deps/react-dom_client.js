@@ -1,14 +1,14 @@
 import {
   require_react_dom
-} from "./chunk-OE7SLV2L.js";
+} from "./chunk-DASPJU2D.js";
 import "./chunk-ZK6F47AF.js";
 import {
   __commonJS
 } from "./chunk-WOOG5QLI.js";
 
-// ../../.yarn/__virtual__/react-dom-virtual-dd29182353/0/cache/react-dom-npm-18.3.1-a805663f38-a752496c19.zip/node_modules/react-dom/client.js
+// ../../.yarn/__virtual__/react-dom-virtual-d3e0772335/0/cache/react-dom-npm-18.3.1-a805663f38-a752496c19.zip/node_modules/react-dom/client.js
 var require_client = __commonJS({
-  "../../.yarn/__virtual__/react-dom-virtual-dd29182353/0/cache/react-dom-npm-18.3.1-a805663f38-a752496c19.zip/node_modules/react-dom/client.js"(exports) {
+  "../../.yarn/__virtual__/react-dom-virtual-d3e0772335/0/cache/react-dom-npm-18.3.1-a805663f38-a752496c19.zip/node_modules/react-dom/client.js"(exports) {
     var m = require_react_dom();
     if (false) {
       exports.createRoot = m.createRoot;
