@@ -1,4 +1,4 @@
-import { feedbackConfirm, feedbackList, studentInform } from "@configs/api";
+import { feedbackConfirm, feedbackList, studentInform } from "@/api";
 import { Completion, Introduce } from "./Section";
 import { Document } from "@configs/type";
 import { toast } from "react-toastify";

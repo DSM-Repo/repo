@@ -13,7 +13,7 @@ import {
   Icon,
   File
 } from "ui";
-import { fileAdd, fileRemove } from "@configs/api";
+import { fileAdd, fileRemove } from "@/api";
 
 interface IProp {
   data: Document.Project_list;

@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { libraryList } from "@configs/api";
+import { libraryList } from "@/api";
 import { Button, TitleLayout } from "ui";
 
 export const Library = () => {

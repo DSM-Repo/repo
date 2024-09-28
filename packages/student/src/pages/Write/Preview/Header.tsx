@@ -1,5 +1,4 @@
-import { Icon } from "ui";
-import { Box } from "ui";
+import { Icon, Box } from "ui";
 
 interface IProp {
   current: number;
