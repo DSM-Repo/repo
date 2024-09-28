@@ -1,8 +1,8 @@
-import { recentlyShared } from "@/apis";
+import { resumeIntroduce } from "@configs/api";
 import { Box, Title } from "ui";
 
 export const Introduce = () => {
-  const { data } = recentlyShared();
+  const { data } = resumeIntroduce();
 
   return (
     <Box height="100%" padding="32px" className="gap-6">

@@ -1,5 +1,8 @@
-import { feedbackConfirm, feedbackList, studentInfo } from "@/apis";
+import { feedbackConfirm, feedbackList, studentInform } from "@configs/api";
+import { Completion, Introduce } from "./Section";
+import { Document } from "@configs/type";
 import { toast } from "react-toastify";
+import { Feedback } from "./Feedback";
 import {
   Layout,
   sidebarType,
@@ -8,9 +11,6 @@ import {
   Profile,
   Title
 } from "ui";
-import { Completion, Introduce } from "./Section";
-import { Document } from "@configs/type";
-import { Feedback } from "./Feedback";
 
 const buttons: buttonType[] = [
   {
@@ -30,8 +30,8 @@ const types: Record<Document.sectionType, string> = {
 
 export const Home = () => {
   const { data: feedbackData, refetch: feedbackRefetch } = feedbackList();
-  const { data: studentData } = studentInfo();
   const { mutate: confirmMutate } = feedbackConfirm();
+  const { data: studentData } = studentInform();
   const { sideOpened } = useSideBarOpen();
 
   const handleUpload = (id: string) => {

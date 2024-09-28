@@ -33,6 +33,10 @@ export const ResumeCompletionPlace: Api.Resume.ResumeCompletion = {
   percent_complete: 0
 };
 
+export const TeacherPlace: Api.Info.Teacher = {
+  name: "홍길동"
+};
+
 export const StudentPlace: Api.Info.Student = {
   name: "홍길동",
   class_info: {

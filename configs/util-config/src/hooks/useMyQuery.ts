@@ -1,3 +1,4 @@
+// prettier-ignore
 // @ts-expect-error
 import { UseQueryResult, useQuery, keepPreviousData } from "@tanstack/react-query";
 import { instance, path, pathType } from "../apis";

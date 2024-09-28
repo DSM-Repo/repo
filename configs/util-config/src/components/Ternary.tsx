@@ -1,7 +1,9 @@
+import { childernType } from "@configs/type";
+
 interface IProp {
   data: any;
   onNull?: string;
-  children: React.ReactElement | React.ReactElement[];
+  children: childernType;
 }
 
 export const Ternary = ({ data, onNull, children }: IProp) => {

@@ -11,13 +11,13 @@ import { Preview } from "./Preview";
 import {
   feedbackConfirm,
   feedbackList,
-  recentlyShared,
   resumeCompletion,
   resumeDetail,
+  resumeIntroduce,
   resumeSave,
   resumeSubmit,
-  studentInfo
-} from "@/apis";
+  studentInform
+} from "@configs/api";
 
 const sections = [
   <Inform />,
@@ -39,11 +39,11 @@ export const Write = () => {
   const { id } = useParams();
   const { data: listData, refetch: listRefetch } = feedbackList();
   const { refetch: completionRefetch } = resumeCompletion();
-  const { refetch: sharedRefetch } = recentlyShared();
+  const { refetch: sharedRefetch } = resumeIntroduce();
   const { mutate: confirmMutate } = feedbackConfirm();
   const { data: resumeLocalData } = useResumeData();
   const { refetch: resumeRefetch } = resumeDetail();
-  const { refetch: studentRefetch } = studentInfo();
+  const { refetch: studentRefetch } = studentInform();
   const { mutate: submitMutate } = resumeSubmit();
   const { mutate: saveMutate } = resumeSave();
 
@@ -100,7 +100,7 @@ export const Write = () => {
       action: () =>
         saveMutate(resumeLocalData, {
           onSuccess: () => {
-            submitMutate(undefined, {
+            submitMutate(null, {
               onSuccess: () => {
                 toast.success(
                   `성공적으로 ${resumeLocalData.status === "ONGOING" ? "제출" : "제출 취소"}되었습니다`
@@ -130,7 +130,7 @@ export const Write = () => {
           action: () =>
             saveMutate(resumeLocalData, {
               onSuccess: () => {
-                submitMutate(undefined, {
+                submitMutate(null, {
                   onSuccess: () => {
                     toast.success(
                       `성공적으로 ${resumeLocalData.status === "ONGOING" ? "제출" : "제출 취소"}되었습니다`
