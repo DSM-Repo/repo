@@ -6,7 +6,6 @@ export const checkOverflow = (item: HTMLElement) => {
   let queue = [item];
   let pages: HTMLElement[][] = [];
   let height = 0;
-  let parentLocation = 0;
 
   while (queue.length) {
     const item = queue.shift();

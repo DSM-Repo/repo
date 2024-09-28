@@ -1,5 +1,3 @@
-import { Dispatch, SetStateAction } from "react";
-
 interface IProp {
   children: string;
   onClick: () => void;
