@@ -1,4 +1,4 @@
-import { resumeCompletion, resumeDetail, studentInform } from "@configs/api";
+import { resumeCompletion, resumeDetail, studentInform } from "@/api";
 import { Outlet } from "react-router-dom";
 import { useResumeData } from "@/hooks";
 import { useEffect } from "react";
