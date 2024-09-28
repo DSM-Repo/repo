@@ -1,4 +1,4 @@
-import { librarySpecific } from "@configs/api";
+import { librarySpecific } from "@/api";
 import { useParams } from "react-router-dom";
 import { Viewer } from "ui";
 

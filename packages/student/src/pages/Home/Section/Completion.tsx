@@ -1,4 +1,4 @@
-import { resumeCompletion } from "@configs/api";
+import { resumeCompletion } from "@/api";
 import { Chart, ArcElement } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import { Ternary } from "@configs/util";

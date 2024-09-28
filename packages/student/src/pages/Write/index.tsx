@@ -17,7 +17,7 @@ import {
   resumeSave,
   resumeSubmit,
   studentInform
-} from "@configs/api";
+} from "@/api";
 
 const sections = [
   <Inform />,

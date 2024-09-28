@@ -1,4 +1,4 @@
-import { noticeCheck, noticeList } from "@configs/api";
+import { noticeCheck, noticeList } from "@/api";
 import { Box, Icon, TitleLayout } from "ui";
 import { useRef, useState } from "react";
 
