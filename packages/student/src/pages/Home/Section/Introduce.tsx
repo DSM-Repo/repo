@@ -1,4 +1,4 @@
-import { resumeIntroduce } from "@configs/api";
+import { resumeIntroduce } from "@/api";
 import { Box, Title } from "ui";
 
 export const Introduce = () => {
