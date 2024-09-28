@@ -1,6 +1,6 @@
-import { noticeCheck, noticeList } from "@/apis";
+import { noticeCheck, noticeList } from "@configs/api";
+import { Box, Icon, TitleLayout } from "ui";
 import { useRef, useState } from "react";
-import { Layout, Title, Box, Icon } from "ui";
 
 export const Notice = () => {
   const [opened, setOpened] = useState<string | null>(null);
@@ -9,12 +9,8 @@ export const Notice = () => {
   const { mutate: check } = noticeCheck();
 
   return (
-    <Layout>
-      <div className="col-flex w-full px-[60px] py-6 gap-5">
-        <Title
-          title="공지"
-          subTitle="선생님이나 관리자가 작성한 공지를 확인해 보세요"
-        />
+    <TitleLayout title="공지" subTitle="선생님이 작성한 공지를 확인해 보세요">
+      <div className="w-full h-fit col-flex gap-2">
         {data?.data
           .sort(
             (i, j) =>
@@ -67,6 +63,6 @@ export const Notice = () => {
             </Box>
           ))}
       </div>
-    </Layout>
+    </TitleLayout>
   );
 };
