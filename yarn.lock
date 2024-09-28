@@ -277,7 +277,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@configs/api@workspace:^, @configs/api@workspace:configs/apis-config":
+"@configs/api@workspace:configs/apis-config":
   version: 0.0.0-use.local
   resolution: "@configs/api@workspace:configs/apis-config"
   dependencies:
@@ -6490,7 +6490,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "student@workspace:packages/student"
   dependencies:
-    "@configs/api": "workspace:^"
     "@configs/tailwindcss": "workspace:^"
     "@configs/type": "workspace:^"
     "@configs/util": "workspace:^"

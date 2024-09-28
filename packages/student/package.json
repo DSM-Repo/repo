@@ -7,7 +7,6 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@configs/api": "workspace:^",
     "@configs/tailwindcss": "workspace:^",
     "@configs/type": "workspace:^",
     "@configs/util": "workspace:^",
