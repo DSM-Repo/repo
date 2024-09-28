@@ -1,5 +1,4 @@
 import { findKeyWithValue } from "@configs/util";
-import { fileRemove, fileUpload } from "@/apis";
 import { Api, Document } from "@configs/type";
 import { useResumeData } from "@/hooks";
 import { Box } from "../Box";
@@ -14,6 +13,7 @@ import {
   Icon,
   File
 } from "ui";
+import { fileAdd, fileRemove } from "@configs/api";
 
 interface IProp {
   data: Document.Project_list;
@@ -33,7 +33,7 @@ const defaultSect: Document.sectionData = {
 
 export const Item = ({ data, index }: IProp) => {
   const { setDeepPartial, removeItem, moveItem } = useResumeData();
-  const { mutate: fileUploadMutate } = fileUpload();
+  const { mutate: fileUploadMutate } = fileAdd();
   const { mutate: fileReomoveMutate } = fileRemove();
 
   const set = (

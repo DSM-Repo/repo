@@ -1,13 +1,16 @@
-import { resumeCompletion, resumeDetail, studentInfo } from "@/apis";
+import { resumeCompletion, resumeDetail, studentInform } from "@configs/api";
 import { Outlet } from "react-router-dom";
 import { useResumeData } from "@/hooks";
 import { useEffect } from "react";
 import { Sidebar } from "ui";
 
 export const Layout = () => {
-  const { data: resumeLocalData, set } = useResumeData();
+  const {
+    data: { status },
+    set
+  } = useResumeData();
   const { data: completionData } = resumeCompletion();
-  const { data: studentData } = studentInfo();
+  const { data: studentData } = studentInform();
   const { data: resumeData } = resumeDetail();
 
   useEffect(() => {
@@ -21,7 +24,7 @@ export const Layout = () => {
           major: studentData?.major,
           name: studentData?.name,
           percent: completionData?.percent_complete,
-          status: resumeLocalData?.status
+          status: status
         }}
         items={[
           {

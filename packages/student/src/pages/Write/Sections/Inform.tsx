@@ -1,8 +1,8 @@
 import { Dropdown, Text, Label, List } from "ui";
 import { useResumeData } from "@/hooks";
-import { majorList } from "@/apis";
 import { Layout } from "./Layout";
 import { Box } from "./Box";
+import { majorList } from "@configs/api";
 
 const studId = {
   grade: ["1", "2", "3"],
