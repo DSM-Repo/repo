@@ -152,9 +152,7 @@ export const Write = () => {
                 studentRefetch();
                 sharedRefetch();
               }
-            }),
-          disabled: resumeLocalData.status !== "ONGOING",
-          disabledReason: "제출 / 공개 상태에선 저장할 수 없습니다."
+            })
         },
         {
           icon: "Edit",
