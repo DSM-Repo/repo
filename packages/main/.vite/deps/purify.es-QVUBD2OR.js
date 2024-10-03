@@ -1,6 +1,6 @@
 import "./chunk-WOOG5QLI.js";
 
-// ../../.yarn/cache/dompurify-npm-2.5.6-535512fe69-ee7e7d1798.zip/node_modules/dompurify/dist/purify.es.js
+// ../../.yarn/cache/dompurify-npm-2.5.7-18b27adcf8-23c4f73718.zip/node_modules/dompurify/dist/purify.es.js
 function _typeof(obj) {
   "@babel/helpers - typeof";
   return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(obj2) {
@@ -236,7 +236,7 @@ function createDOMPurify() {
   var DOMPurify = function DOMPurify2(root) {
     return createDOMPurify(root);
   };
-  DOMPurify.version = "2.5.6";
+  DOMPurify.version = "2.5.7";
   DOMPurify.removed = [];
   if (!window2 || !window2.document || window2.document.nodeType !== 9) {
     DOMPurify.isSupported = false;
@@ -462,7 +462,7 @@ function createDOMPurify() {
     CONFIG = cfg;
   };
   var MATHML_TEXT_INTEGRATION_POINTS = addToSet({}, ["mi", "mo", "mn", "ms", "mtext"]);
-  var HTML_INTEGRATION_POINTS = addToSet({}, ["foreignobject", "annotation-xml"]);
+  var HTML_INTEGRATION_POINTS = addToSet({}, ["annotation-xml"]);
   var COMMON_SVG_AND_HTML_ELEMENTS = addToSet({}, ["title", "style", "font", "a", "script"]);
   var ALL_SVG_TAGS = addToSet({}, svg$1);
   addToSet(ALL_SVG_TAGS, svgFilters);
@@ -747,10 +747,6 @@ function createDOMPurify() {
       hookEvent.forceKeepAttr = void 0;
       _executeHook("uponSanitizeAttribute", currentNode, hookEvent);
       value = hookEvent.attrValue;
-      if (SAFE_FOR_XML && regExpTest(/((--!?|])>)|<\/(style|title)/i, value)) {
-        _removeAttribute(name, currentNode);
-        continue;
-      }
       if (hookEvent.forceKeepAttr) {
         continue;
       }
@@ -774,6 +770,10 @@ function createDOMPurify() {
       if (SANITIZE_NAMED_PROPS && (lcName === "id" || lcName === "name")) {
         _removeAttribute(name, currentNode);
         value = SANITIZE_NAMED_PROPS_PREFIX + value;
+      }
+      if (SAFE_FOR_XML && regExpTest(/((--!?|])>)|<\/(style|title)/i, value)) {
+        _removeAttribute(name, currentNode);
+        continue;
       }
       if (trustedTypesPolicy && _typeof(trustedTypes) === "object" && typeof trustedTypes.getAttributeType === "function") {
         if (namespaceURI) ;
@@ -979,6 +979,6 @@ export {
 /*! Bundled license information:
 
 dompurify/dist/purify.es.js:
-  (*! @license DOMPurify 2.5.6 | (c) Cure53 and other contributors | Released under the Apache license 2.0 and Mozilla Public License 2.0 | github.com/cure53/DOMPurify/blob/2.5.6/LICENSE *)
+  (*! @license DOMPurify 2.5.7 | (c) Cure53 and other contributors | Released under the Apache license 2.0 and Mozilla Public License 2.0 | github.com/cure53/DOMPurify/blob/2.5.7/LICENSE *)
 */
-//# sourceMappingURL=purify.es-DXULT6RW.js.map
+//# sourceMappingURL=purify.es-QVUBD2OR.js.map
