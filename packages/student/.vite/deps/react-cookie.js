@@ -280,7 +280,7 @@ var Cookies = class {
   }
 };
 
-// ../../.yarn/__virtual__/react-cookie-virtual-d58fbc250f/0/cache/react-cookie-npm-7.2.0-ca92e0b084-434e8d8a48.zip/node_modules/react-cookie/esm/index.mjs
+// ../../.yarn/__virtual__/react-cookie-virtual-3efc9f970e/0/cache/react-cookie-npm-7.2.0-ca92e0b084-434e8d8a48.zip/node_modules/react-cookie/esm/index.mjs
 var React = __toESM(require_react(), 1);
 var import_react = __toESM(require_react(), 1);
 var CookiesContext = React.createContext(new Cookies());

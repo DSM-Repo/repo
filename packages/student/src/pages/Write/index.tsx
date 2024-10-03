@@ -4,7 +4,7 @@ import { Layout, Custom, Title, Button } from "ui";
 import { Introduce } from "./Sections/Introduce";
 import { Projects } from "./Sections/Projects";
 import { useParams } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useResumeData } from "@/hooks";
 import { toast } from "react-toastify";
 import { Preview } from "./Preview";
@@ -75,6 +75,29 @@ export const Write = () => {
     }
   ]);
 
+  const upload = () => {
+    if (resumeLocalData.status === "ONGOING") {
+      const check = confirm(
+        "정말로 제출하시겠습니까? (제출 후엔 저장이 불가합니다)"
+      );
+      if (check) {
+        submitMutate(null, {
+          onSuccess: () => {
+            toast.success(`성공적으로 제출되었습니다`);
+            resumeRefetch();
+          }
+        });
+      }
+    } else {
+      submitMutate(null, {
+        onSuccess: () => {
+          toast.success(`성공적으로 제출 취소되었습니다`);
+          resumeRefetch();
+        }
+      });
+    }
+  };
+
   useShortcut([
     {
       key: "s",
@@ -99,26 +122,10 @@ export const Write = () => {
       ctrl: true,
       action: () =>
         saveMutate(resumeLocalData, {
-          onSuccess: () => {
-            submitMutate(null, {
-              onSuccess: () => {
-                toast.success(
-                  `성공적으로 ${resumeLocalData.status === "ONGOING" ? "제출" : "제출 취소"}되었습니다`
-                );
-                resumeRefetch();
-              }
-            });
-          }
+          onSuccess: upload
         })
     }
   ]);
-
-  useEffect(() => {
-    const { status: staLoc } = resumeLocalData;
-    if (staLoc === "SUBMITTED" || staLoc === "RELEASED") {
-      toast.error("문서가 제출되어 내용을 저장할 수 없습니다.");
-    }
-  }, [resumeLocalData]);
 
   return (
     <Layout
@@ -127,19 +134,7 @@ export const Write = () => {
           icon: "Send",
           title:
             resumeLocalData.status === "ONGOING" ? "제출하기" : "제출 취소하기",
-          action: () =>
-            saveMutate(resumeLocalData, {
-              onSuccess: () => {
-                submitMutate(null, {
-                  onSuccess: () => {
-                    toast.success(
-                      `성공적으로 ${resumeLocalData.status === "ONGOING" ? "제출" : "제출 취소"}되었습니다`
-                    );
-                    resumeRefetch();
-                  }
-                });
-              }
-            })
+          action: upload
         },
         {
           icon: "Save",
