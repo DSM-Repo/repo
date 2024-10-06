@@ -3,7 +3,7 @@ import { Api } from "@configs/type";
 
 /** 이미지 업로드 API */
 export const fileAdd = () =>
-  useMyMutation<FormData, Api.File.Image>("post", "file", "/resume");
+  useMyMutation<FormData, Api.File.Image>("post", "file", "/image?type=resume");
 
 /** 이미지 제거 API */
 export const fileRemove = () =>
