@@ -3,10 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { IHeader, Layout, Resume } from "ui";
 import { useEffect, useState } from "react";
 import { Document } from "@configs/type";
-import { toast } from "react-toastify";
 import html2canvas from "html2canvas";
 import { saveAs } from "file-saver";
-import { jsPDF } from "jspdf";
 
 interface IProp extends IHeader {
   data?: Document.Resume;
@@ -89,54 +87,31 @@ export const JSONViewer = ({ data, buttons = [], sidebars = [] }: IProp) => {
           title: "다운로드",
           action: () => {
             const data = document.querySelector(".resume");
-            const loading = toast.loading("PDF로 변환하고 있습니다...");
+            const worker = new Worker(new URL("./worker.ts", import.meta.url), {
+              type: "module"
+            });
+
             html2canvas(data as HTMLElement, {
               useCORS: true,
               scale: 1.0,
               allowTaint: true
-            }).then((canvas: any) => {
+            }).then((canvas: HTMLCanvasElement) => {
               const imgWidth = 210;
               const pageHeight = 297.07;
               const imgHeight = (canvas.height * imgWidth) / canvas.width;
-              let heightLeft = imgHeight;
-              let position = 0;
-              heightLeft -= pageHeight;
-              const doc = new jsPDF("p", "mm");
-              doc.addImage(
-                canvas,
-                "PNG",
-                0,
-                position,
+              const url = canvas.toDataURL();
+
+              worker.postMessage({
                 imgWidth,
+                pageHeight,
                 imgHeight,
-                "",
-                "FAST"
-              );
-              while (heightLeft >= 0) {
-                position = heightLeft - imgHeight;
-                doc.addPage();
-                doc.addImage(
-                  canvas,
-                  "PNG",
-                  0,
-                  position,
-                  imgWidth,
-                  imgHeight,
-                  "",
-                  "FAST"
-                );
-                heightLeft -= pageHeight;
-              }
-              const blob = doc.output("blob");
-              const file = new File([blob], "Rendered_Resume.pdf");
-              saveAs(file);
-              toast.update(loading, {
-                render: "성공적으로 변환되었습니다",
-                type: "success",
-                autoClose: 1500,
-                closeButton: false,
-                isLoading: false
+                blobs: url
               });
+
+              worker.onmessage = ({ data }) => {
+                const file = new File([data], "Rendered_Resume.pdf");
+                saveAs(file);
+              };
             });
           }
         },
