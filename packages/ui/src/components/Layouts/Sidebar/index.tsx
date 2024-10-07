@@ -24,7 +24,7 @@ export const Sidebar = ({ profile, items }: IProp) => {
     <div className="flex-shrink-0 col-flex justify-between px-2 py-3 w-[260px] h-screen bg-gray-800 border-r-[1px] border-r-gray-700">
       <div className="col-flex gap-3">
         <Profile img="" name={profile.name} major={profile.major} />
-        <div className="col-flex gap-6">
+        <div className="col-flex gap-2">
           {items.map((i) => (
             <div className="col-flex gap-1">
               <span className="px-3 text-[14px] font-light text-gray-200">
