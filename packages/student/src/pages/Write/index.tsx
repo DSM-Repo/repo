@@ -46,6 +46,7 @@ export const Write = () => {
   const { refetch: studentRefetch } = studentInform();
   const { mutate: submitMutate } = resumeSubmit();
   const { mutate: saveMutate } = resumeSave();
+  const [lock, setLock] = useState(false);
 
   const [width, setWidth] = useState(
     document.body.clientWidth - 870 < 814
@@ -72,6 +73,14 @@ export const Write = () => {
     {
       eventType: "beforeunload",
       callback: (e) => e.preventDefault()
+    },
+    {
+      eventType: "keyup",
+      callback: () => {
+        if (lock) {
+          setLock(false);
+        }
+      }
     }
   ]);
 
@@ -107,23 +116,30 @@ export const Write = () => {
         reason: "제출 상태에선 저장할 수 없습니다"
       },
       action: () => {
-        saveMutate(resumeLocalData, {
-          onSuccess: () => {
-            toast.success("성공적으로 저장되었습니다");
-            completionRefetch();
-            studentRefetch();
-            sharedRefetch();
-          }
-        });
+        if (!lock) {
+          setLock(true);
+          saveMutate(resumeLocalData, {
+            onSuccess: () => {
+              toast.success("성공적으로 저장되었습니다");
+              completionRefetch();
+              studentRefetch();
+              sharedRefetch();
+            }
+          });
+        }
       }
     },
     {
       key: "u",
       ctrl: true,
-      action: () =>
-        saveMutate(resumeLocalData, {
-          onSuccess: upload
-        })
+      action: () => {
+        if (!lock) {
+          setLock(true);
+          saveMutate(resumeLocalData, {
+            onSuccess: upload
+          });
+        }
+      }
     }
   ]);
 
