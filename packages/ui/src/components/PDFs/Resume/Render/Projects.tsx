@@ -25,6 +25,14 @@ export const Projects = ({ data, setMax, keep, showPadding, scale }: IProp) => {
   const isFirst = useRef(true);
 
   useEffect(() => {
+    return () => {
+      isFirst.current = true;
+      setMax((prev) => ({ ...prev, projects: 0 }));
+      keep.current[data.element_id] = 0;
+    };
+  }, [data.element_id]);
+
+  useEffect(() => {
     if (!!pdf?.current) {
       const over = checkOverflow(pdf?.current);
       setPages(over);
