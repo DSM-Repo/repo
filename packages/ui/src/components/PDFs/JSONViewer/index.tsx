@@ -23,6 +23,8 @@ export const JSONViewer = ({ data, buttons = [], sidebars = [] }: IProp) => {
   const maxFull = max.projects + max.inform;
   const windowXl = window.innerWidth > 1280;
 
+  console.log(max);
+
   const handleMovePage = (to: number) => {
     if (to < 1 || to > maxFull) return;
     setPage(to);
