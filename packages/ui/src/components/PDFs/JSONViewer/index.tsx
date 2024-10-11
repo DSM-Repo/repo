@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Document } from "@configs/type";
 import html2canvas from "html2canvas";
 import { saveAs } from "file-saver";
+import { toast } from "react-toastify";
 
 interface IProp extends IHeader {
   data?: Document.Resume;
@@ -86,6 +87,7 @@ export const JSONViewer = ({ data, buttons = [], sidebars = [] }: IProp) => {
           icon: "Download",
           title: "다운로드",
           action: () => {
+            let id = toast.loading("변환하고 있습니다...");
             const data = document.querySelector(".resume");
             const worker = new Worker(new URL("./worker.ts", import.meta.url), {
               type: "module"
@@ -110,6 +112,12 @@ export const JSONViewer = ({ data, buttons = [], sidebars = [] }: IProp) => {
 
               worker.onmessage = ({ data }) => {
                 const file = new File([data], "Rendered_Resume.pdf");
+                toast.update(id, {
+                  isLoading: false,
+                  type: "success",
+                  autoClose: 1000,
+                  render: "성공적으로 변환되었습니다!"
+                });
                 saveAs(file);
               };
             });
@@ -143,7 +151,6 @@ export const JSONViewer = ({ data, buttons = [], sidebars = [] }: IProp) => {
         </div>
       </div>
       <div className="resume w-fit absolute overflow-hidden top-[100vh]">
-        <div className="w-[842px] h-[1191px] bg-white" />
         <Resume data={data} setMax={() => {}} showPadding />
       </div>
     </Layout>
