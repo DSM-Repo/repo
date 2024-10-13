@@ -57,5 +57,5 @@ export default {
       resumeItemContent: ["14px", { fontWeight: 400, lineHeight: "17px" }]
     }
   },
-  plugins: []
+  plugins: [require("@tailwindcss/typography")]
 } satisfies Config;

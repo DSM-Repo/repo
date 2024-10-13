@@ -28,8 +28,7 @@ label,
 input,
 textarea,
 input:focus,
-textarea:focus,
-li {
+textarea:focus {
   color: white;
   outline: none;
   background-color: transparent;
@@ -37,6 +36,15 @@ li {
   -moz-appearance: none;
   appearance: none;
   resize: none;
+}
+
+strong {
+  color: inherit !important;
+}
+
+.full {
+  width: 100% !important;
+  max-width: 100% !important;
 }
 
 body {
