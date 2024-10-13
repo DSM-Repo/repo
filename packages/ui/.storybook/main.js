@@ -69,6 +69,9 @@ const config = {
           "@": resolve(__dirname, "../src/components"),
           "@root": resolve(__dirname, "../src")
         }
+      },
+      worker: {
+        format: "es"
       }
     });
   }

@@ -6543,6 +6543,17 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["mdast-util-newline-to-break", [\
+      ["npm:2.0.0", {\
+        "packageLocation": "./.yarn/cache/mdast-util-newline-to-break-npm-2.0.0-1499468942-756a5660b0.zip/node_modules/mdast-util-newline-to-break/",\
+        "packageDependencies": [\
+          ["mdast-util-newline-to-break", "npm:2.0.0"],\
+          ["@types/mdast", "npm:4.0.4"],\
+          ["mdast-util-find-and-replace", "npm:3.0.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["mdast-util-phrasing", [\
       ["npm:4.1.0", {\
         "packageLocation": "./.yarn/cache/mdast-util-phrasing-npm-4.1.0-30939ebbcd-bf6c31d513.zip/node_modules/mdast-util-phrasing/",\
@@ -8660,6 +8671,18 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["remark-breaks", [\
+      ["npm:4.0.0", {\
+        "packageLocation": "./.yarn/cache/remark-breaks-npm-4.0.0-962f376971-d7b319a799.zip/node_modules/remark-breaks/",\
+        "packageDependencies": [\
+          ["remark-breaks", "npm:4.0.0"],\
+          ["@types/mdast", "npm:4.0.4"],\
+          ["mdast-util-newline-to-break", "npm:2.0.0"],\
+          ["unified", "npm:11.0.5"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["remark-gfm", [\
       ["npm:4.0.0", {\
         "packageLocation": "./.yarn/cache/remark-gfm-npm-4.0.0-8bb699e315-db0aa85ab7.zip/node_modules/remark-gfm/",\
@@ -9757,6 +9780,7 @@ const RAW_RUNTIME_STATE =
           ["react-qr-code", "virtual:9dce388d82c018b4a7af5edc7243e51f7023d1ab93a923b3959d0066ac6881c93b965a0932486426cbefa96c9c8e47849d5ff541d2404b8aca246480fa32f0d2#npm:2.0.15"],\
           ["react-router-dom", "virtual:9dce388d82c018b4a7af5edc7243e51f7023d1ab93a923b3959d0066ac6881c93b965a0932486426cbefa96c9c8e47849d5ff541d2404b8aca246480fa32f0d2#npm:6.26.2"],\
           ["react-toastify", "virtual:41ba414687e63b0ec9e18089b13f4703242871f01d9f121df92da169ab57ddcc9414104055bf2bae216396dc4b45038cf6bca022ccb6e06aa972f15ad15fdfc7#npm:10.0.5"],\
+          ["remark-breaks", "npm:4.0.0"],\
           ["remark-gfm", "npm:4.0.0"],\
           ["storybook", "npm:8.3.3"],\
           ["storybook-addon-remix-react-router", "virtual:9dce388d82c018b4a7af5edc7243e51f7023d1ab93a923b3959d0066ac6881c93b965a0932486426cbefa96c9c8e47849d5ff541d2404b8aca246480fa32f0d2#npm:3.0.1"],\

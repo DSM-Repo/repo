@@ -42,6 +42,20 @@ strong {
   color: inherit !important;
 }
 
+ul {
+  margin-top: 0px !important;
+  margin-left: -10px !important;
+}
+
+ol {
+  margin-bottom: 0 !important;
+}
+
+p {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
 .full {
   width: 100% !important;
   max-width: 100% !important;
