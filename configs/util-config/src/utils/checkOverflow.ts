@@ -1,6 +1,6 @@
 // 마진을 태그로 구분하여 삽입
 const MARGIN = { SPAN: 24, DIV: 10 };
-const MAXHEIGHT = 1050;
+const MAXHEIGHT = 1060;
 
 export const checkOverflow = (item: HTMLElement) => {
   let queue = [item];
