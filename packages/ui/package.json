@@ -31,6 +31,7 @@
     "jspdf": "^2.5.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-markdown": "^9.0.1",
     "react-pdf": "^9.1.0",
     "react-qr-code": "^2.0.15",
     "react-router-dom": "^6.24.1",
