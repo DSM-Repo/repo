@@ -1,6 +1,7 @@
 import { Ternary } from "@configs/util";
 import Markdown from "react-markdown";
 import remarkGFM from "remark-gfm";
+import remarkBreak from "remark-breaks";
 
 type dataType = {
   title?: string;
@@ -16,6 +17,7 @@ interface IProp {
 }
 
 export const ItemLayout = ({ title, type, isCheckAble, data }: IProp) => {
+  console.log(data);
   return (
     <Ternary data={Array.isArray(data) ? data.length !== 0 : !!data}>
       <div className={isCheckAble ? "checkAble" : ""}>
@@ -30,9 +32,9 @@ export const ItemLayout = ({ title, type, isCheckAble, data }: IProp) => {
           {type === "static" && (
             <Markdown
               className="text-resumeItemContent w-full text-black px-[15px] prose full"
-              remarkPlugins={[remarkGFM]}
+              remarkPlugins={[remarkGFM, remarkBreak]}
             >
-              {data as string}
+              {(data as string).replace(/  \n/gi, "\n &nbsp;")}
             </Markdown>
           )}
           {type === "list" && (
@@ -58,7 +60,7 @@ export const ItemLayout = ({ title, type, isCheckAble, data }: IProp) => {
                   <Ternary data={i.content}>
                     <Markdown
                       className="text-gray-100 text-resumeItemContent prose w-full full"
-                      remarkPlugins={[remarkGFM]}
+                      remarkPlugins={[remarkGFM, remarkBreak]}
                     >
                       {i.content}
                     </Markdown>
