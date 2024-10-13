@@ -14,6 +14,9 @@ export default () => {
       alias: [{ find: "@", replacement: path.resolve(__dirname, "src") }]
     },
     server: { port: 3001 },
-    define: { "process.env": process.env }
+    define: { "process.env": process.env },
+    worker: {
+      format: "es"
+    }
   });
 };

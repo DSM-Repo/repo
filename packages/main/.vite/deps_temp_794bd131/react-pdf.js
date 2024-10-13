@@ -1,9 +1,9 @@
 import {
-  dequal
-} from "./chunk-BY7PBT2N.js";
-import {
   clsx_default
 } from "./chunk-J2LXW5SU.js";
+import {
+  dequal
+} from "./chunk-BY7PBT2N.js";
 import {
   require_jsx_runtime
 } from "./chunk-T626GWXX.js";
