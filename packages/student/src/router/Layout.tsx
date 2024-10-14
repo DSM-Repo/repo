@@ -1,4 +1,9 @@
-import { resumeCompletion, resumeDetail, studentInform } from "@/api";
+import {
+  noticeList,
+  resumeCompletion,
+  resumeDetail,
+  studentInform
+} from "@/api";
 import { Outlet } from "react-router-dom";
 import { useResumeData } from "@/hooks";
 import { useEffect } from "react";
@@ -12,6 +17,7 @@ export const Layout = () => {
   const { data: completionData } = resumeCompletion();
   const { data: studentData } = studentInform();
   const { data: resumeData } = resumeDetail();
+  const { data: noticeData } = noticeList();
 
   useEffect(() => {
     if (resumeData) set((prev) => ({ ...prev, data: resumeData }));
@@ -33,7 +39,15 @@ export const Layout = () => {
               { icon: "House", name: "홈", urls: ["/"] },
               { icon: "Book", name: "도서관", urls: ["/library", "/book"] },
               { icon: "File", name: "내 레주메", urls: ["/preview"] },
-              { icon: "Bell", name: "공지", urls: ["/notice"] }
+              {
+                icon: "Bell",
+                name: "공지",
+                urls: ["/notice"],
+                subData:
+                  noticeData &&
+                  noticeData?.number_of_data -
+                    noticeData?.data.filter((i) => i.checked).length
+              }
             ]
           },
           {

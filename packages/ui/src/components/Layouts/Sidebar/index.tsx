@@ -37,6 +37,7 @@ export const Sidebar = ({ profile, items }: IProp) => {
                     urls={j.urls}
                     icon={j.icon}
                     checked={j.checked}
+                    subData={j.subData}
                   />
                 ))}
               </div>
