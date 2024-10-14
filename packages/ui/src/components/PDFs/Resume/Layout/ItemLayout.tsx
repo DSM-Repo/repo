@@ -67,7 +67,7 @@ export const ItemLayout = ({ title, type, isCheckAble, data }: IProp) => {
                         }
                       }}
                     >
-                      {i.content}
+                      {i.content?.replace(/  \n/gi, "\n &nbsp;")}
                     </Markdown>
                   </Ternary>
                 </div>
