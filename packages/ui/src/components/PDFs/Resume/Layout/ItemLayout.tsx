@@ -61,6 +61,11 @@ export const ItemLayout = ({ title, type, isCheckAble, data }: IProp) => {
                     <Markdown
                       className="text-gray-100 text-resumeItemContent prose w-full full"
                       remarkPlugins={[remarkGFM, remarkBreak]}
+                      components={{
+                        li(props) {
+                          return <li className="light" {...props} />;
+                        }
+                      }}
                     >
                       {i.content}
                     </Markdown>
