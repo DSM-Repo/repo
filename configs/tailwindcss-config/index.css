@@ -56,6 +56,11 @@ p {
   margin-bottom: 0 !important;
 }
 
+hr {
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
+}
+
 .full {
   width: 100% !important;
   max-width: 100% !important;
