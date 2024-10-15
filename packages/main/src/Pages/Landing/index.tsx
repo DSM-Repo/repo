@@ -11,7 +11,7 @@ export const Landing = () => {
   return (
     <div className="relative col-flex items-center">
       <div className="absolute w-full h-[421px] -z-10 bg-gradient-to-b from-[#000000] to-[#00000000]" />
-      <header className="fixed flex justify-between items-center w-full h-20 px-[100px] z-10">
+      <header className="fixed flex justify-between items-center w-full h-[70px] px-[100px] bg-[#000000AA] backdrop-blur-md z-10">
         <LogoFull />
         <Button onClick={() => setOpened((prev) => !prev)}>Login →</Button>
       </header>

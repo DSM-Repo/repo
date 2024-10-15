@@ -17,7 +17,6 @@ interface IProp {
 }
 
 export const ItemLayout = ({ title, type, isCheckAble, data }: IProp) => {
-  console.log(data);
   return (
     <Ternary data={Array.isArray(data) ? data.length !== 0 : !!data}>
       <div className={isCheckAble ? "checkAble" : ""}>

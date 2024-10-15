@@ -6,11 +6,13 @@ export const Second = () => {
       <Title direction="center">손쉽게 작성하는 이력서</Title>
       <div className="flex justify-center gap-6 w-full h-fit">
         <div className="col-flex w-fit mr-[24px]">
-          <img
-            src="/landing_award.png"
-            className="w-[528px] h-[228px]"
-            loading="lazy"
-          />
+          <div className="w-[538px] h-[228px] flex flex-center bg-[#333333] rounded-xl">
+            <img
+              src="/landing_nav.png"
+              width={348}
+              className="h-[180px] object-contain"
+            />
+          </div>
           <span className="text-[24px] font-bold text-gray-50 mt-4 w-[528px]">
             이력서 정보별 작성
           </span>
@@ -21,11 +23,9 @@ export const Second = () => {
           </span>
         </div>
         <div className="col-flex w-fit">
-          <img
-            src="/landing_nav.png"
-            className="w-[528px] h-[228px]"
-            loading="lazy"
-          />
+          <div className="w-[538px] h-[228px] flex flex-center bg-[#333333] rounded-xl">
+            <img src="/landing_award.png" width={348} height={180} />
+          </div>
           <span className="text-[24px] font-bold text-gray-50 mt-4 w-[528px]">
             다양한 입력
           </span>
