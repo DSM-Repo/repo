@@ -12,7 +12,7 @@ export const Introduce = () => {
   ) => setPartial("introduce", e.target.value, e.target.id);
 
   return (
-    <Layout title="Introduce" subTitle="자신을 다른사람에게 소개해 보세요.">
+    <Layout title="자기소개" subTitle="자신을 다른사람에게 소개해 보세요.">
       <Box>
         <Text
           required
