@@ -21,7 +21,7 @@ export const Layout = () => {
 
   useEffect(() => {
     if (resumeData) set((prev) => ({ ...prev, data: resumeData }));
-  }, [resumeData]);
+  }, [resumeData?.status]);
 
   return (
     <div className="w-full h-screen bg-black flex">
