@@ -19,7 +19,6 @@ export const Section = ({
 }: ISectionProp) => {
   const locs = useLocation()?.pathname;
   const navigate = useNavigate();
-  console.log(subData);
 
   const isSelected = urls.includes("/")
     ? urls?.map((i) => (i !== "/" ? locs.includes(i) : false)).find((i) => i) ||
