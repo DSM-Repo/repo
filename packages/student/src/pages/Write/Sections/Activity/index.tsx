@@ -9,7 +9,7 @@ export const Activity = () => {
 
   return (
     <Layout
-      title="Activity"
+      title="활동"
       subTitle="진행한 활동을 소개해 보세요."
       add={() =>
         addItem("activity_list", Placeholder.ResumeDetailPlace.activity_list[0])

@@ -183,8 +183,8 @@ export const Item = ({ data, index }: IProp) => {
             data.skill_set.filter((j) => j !== i)
           )
         }
-        label="Skillsets"
-        placeholder="Skilset을 입력하세요"
+        label="기술 스택"
+        placeholder="기술 스택을 입력하세요"
         onEnter={(i) => set("skill_set", [...data.skill_set, i])}
         listSize="large"
         values={data.skill_set.map((i) => ({ id: i, name: i }))}

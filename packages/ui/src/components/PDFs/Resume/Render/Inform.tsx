@@ -69,12 +69,12 @@ export const Inform = ({ data, setMax, showPadding, scale }: IProp) => {
           </div>
         </Ternary>
         <ItemLayout
-          title="Skillsets"
+          title="기술 스택"
           type="rowList"
           data={data.writer.skill_set}
         />
         <ItemLayout
-          title="Certification & Award"
+          title="자격증 & 수상"
           type="list"
           data={data?.achievement_list?.map((i) => ({
             title: i.name,
@@ -83,7 +83,7 @@ export const Inform = ({ data, setMax, showPadding, scale }: IProp) => {
           isCheckAble
         />
         <ItemLayout
-          title="Activity"
+          title="활동"
           type="list"
           data={data?.activity_list?.map((i) => ({
             title: i.name,

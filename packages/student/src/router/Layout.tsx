@@ -55,31 +55,31 @@ export const Layout = () => {
             sections: [
               {
                 icon: "User",
-                name: "My Information",
+                name: "내 정보",
                 urls: ["/write/1"],
                 checked: completionData?.writer_info
               },
               {
                 icon: "Document",
-                name: "Introduce",
+                name: "자기소개",
                 urls: ["/write/2"],
                 checked: completionData?.introduce
               },
               {
                 icon: "ChartCircle",
-                name: "Projects",
+                name: "프로젝트",
                 urls: ["/write/3"],
                 checked: completionData?.project
               },
               {
                 icon: "Chart",
-                name: "Certification & Award",
+                name: "자격증 & 수상",
                 urls: ["/write/4"],
                 checked: completionData?.certificate_and_award
               },
               {
                 icon: "Users",
-                name: "Activty",
+                name: "활동",
                 urls: ["/write/5"],
                 checked: completionData?.activity
               }
