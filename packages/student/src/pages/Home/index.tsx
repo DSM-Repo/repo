@@ -45,7 +45,7 @@ export const Home = () => {
 
   const sidebars: sidebarType[] = [
     {
-      width: "500px",
+      width: "450px",
       type: "standard",
       name: "피드백 목록",
       items: feedbackData
