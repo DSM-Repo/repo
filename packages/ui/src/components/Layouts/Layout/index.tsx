@@ -1,6 +1,7 @@
 import { SideBar, itemType } from "./Sidebar";
 import { Header, buttonType } from "./Header";
 import { useSideBarOpen } from "../../../hooks";
+import { useEffect } from "react";
 export * from "./Header";
 export * from "./Sidebar";
 
@@ -10,6 +11,7 @@ export type sidebarType = {
   name: string;
   width?: string;
   items?: itemType[];
+  default?: boolean;
 };
 
 export interface IHeader {
@@ -22,10 +24,17 @@ interface IProp extends IHeader {
 }
 
 export const Layout = ({ buttons, sidebars, children }: IProp) => {
-  const { sideOpened } = useSideBarOpen();
+  const { sideOpened, setSideOpened } = useSideBarOpen();
   const openedDetail = sidebars?.find((i) =>
     i ? i.name === sideOpened : false
   );
+
+  useEffect(() => {
+    const defaultData = sidebars?.find((i) => i.default);
+    if (!!defaultData) {
+      setSideOpened(defaultData.name);
+    }
+  }, []);
   const standardWidth = openedDetail?.width ? openedDetail.width : "300px";
 
   return (

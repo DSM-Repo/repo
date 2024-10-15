@@ -236,6 +236,7 @@ export const Write = () => {
         {
           type: "custom",
           name: "미리보기",
+          default: true,
           width: `${width}px`,
           component: (
             <Custom width={`${width}px`} name="미리보기">
