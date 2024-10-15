@@ -38,7 +38,7 @@ export const List = ({
           value={item}
           onChange={(e) => setItem(e.target.value)}
           onKeyDown={(e) => {
-            if (e.key === "Enter") {
+            if (e.key === "Enter" && e.nativeEvent.isComposing === false) {
               setItem("");
               onEnter(item, id);
             }
