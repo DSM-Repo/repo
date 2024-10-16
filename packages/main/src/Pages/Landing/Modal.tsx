@@ -61,7 +61,7 @@ export const Modal = ({ open, setOpened }: IProp) => {
 
   return (
     <div
-      className={`${!open ? "hidden" : ""} fixed flex flex-center w-full h-screen backdrop-blur-sm z-20 bg-[#00000055]`}
+      className={`${!open ? "hidden" : ""} fixed flex flex-center w-full h-screen backdrop-blur-sm z-50 bg-[#00000055]`}
     >
       <Box width="fit-content" height="fit-content" padding="40px">
         <button className="self-end modal">
