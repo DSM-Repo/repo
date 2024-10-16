@@ -30,7 +30,7 @@ export const Layout = ({ buttons, sidebars, children }: IProp) => {
   );
 
   useEffect(() => {
-    const defaultData = sidebars?.find((i) => i.default);
+    const defaultData = sidebars?.find((i) => i?.default);
     if (!!defaultData) {
       setSideOpened(defaultData.name);
     }
