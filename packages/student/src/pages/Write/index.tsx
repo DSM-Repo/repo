@@ -1,13 +1,17 @@
 import { Ternary, useEventListeners, useShortcut } from "@configs/util";
-import { Activity, Certification, Inform } from "./Sections";
 import { Layout, Custom, Title, Button } from "ui";
-import { Introduce } from "./Sections/Introduce";
-import { Projects } from "./Sections/Projects";
 import { useParams } from "react-router-dom";
 import { useRef, useState } from "react";
 import { useResumeData } from "@/hooks";
 import { toast } from "react-toastify";
 import { Preview } from "./Preview";
+import {
+  Activity,
+  Certification,
+  Inform,
+  Projects,
+  Introduce
+} from "./Sections";
 import {
   feedbackConfirm,
   feedbackList,
@@ -86,21 +90,23 @@ export const Write = () => {
 
   const upload = () => {
     if (resumeLocalData.status === "ONGOING") {
-      const check = confirm(
-        "정말로 제출하시겠습니까? (제출 후엔 저장이 불가합니다)"
-      );
-      if (check) {
-        submitMutate(null, {
-          onSuccess: () => {
-            toast.success(`성공적으로 제출되었습니다`);
-            resumeRefetch();
-          }
-        });
-      }
+      saveMutate(resumeLocalData, {
+        onSuccess: () => {
+          completionRefetch();
+          studentRefetch();
+          sharedRefetch();
+          submitMutate(null, {
+            onSuccess: () => {
+              toast.success("성공적으로 저장 후 제출되었습니다");
+              resumeRefetch();
+            }
+          });
+        }
+      });
     } else {
       submitMutate(null, {
         onSuccess: () => {
-          toast.success(`성공적으로 제출 취소되었습니다`);
+          toast.success("성공적으로 제출 취소되었습니다");
           resumeRefetch();
         }
       });
@@ -120,7 +126,7 @@ export const Write = () => {
           setLock(true);
           saveMutate(resumeLocalData, {
             onSuccess: () => {
-              toast.success("성공적으로 저장되었습니다");
+              toast.success("성공적으로 저장 후 저장되었습니다");
               completionRefetch();
               studentRefetch();
               sharedRefetch();
@@ -236,7 +242,7 @@ export const Write = () => {
         {
           type: "custom",
           name: "미리보기",
-          default: true,
+          default: resumeLocalData.status === "ONGOING",
           width: `${width}px`,
           component: (
             <Custom width={`${width}px`} name="미리보기">
@@ -246,6 +252,11 @@ export const Write = () => {
         }
       ]}
     >
+      <Ternary data={resumeLocalData.status !== "ONGOING"}>
+        <div className="w-full h-full bg-[#000000DD] absolute top-0 z-30 flex flex-center">
+          <span>제출 상태입니다. 제출 취소 후 수정하세요</span>
+        </div>
+      </Ternary>
       <div className="w-full max-w-[620px] flex justify-center py-[24px]">
         <div className="w-fit col-flex gap-6">{sections[idNum - 1]}</div>
       </div>
