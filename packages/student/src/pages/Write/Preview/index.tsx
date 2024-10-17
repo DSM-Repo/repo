@@ -1,6 +1,5 @@
 import { forwardRef, useState } from "react";
 import { useResumeData } from "@/hooks";
-import { useShortcut } from "@configs/util";
 import { Box, Resume } from "ui";
 import { Header } from "./Header";
 
@@ -28,11 +27,6 @@ export const Preview = forwardRef(({ width }: { width: number }, ref: any) => {
       setCur((prev) => ++prev);
     }
   };
-
-  useShortcut([
-    { key: "ArrowRight", shift: true, action: () => handleCur("right") },
-    { key: "ArrowLeft", shift: true, action: () => handleCur("left") }
-  ]);
 
   return (
     <Box
