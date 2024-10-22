@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { IHeader, Layout, Resume } from "ui";
 import { useEffect, useState } from "react";
 import { Document } from "@configs/type";
+import { toast } from "react-toastify";
 import html2canvas from "html2canvas";
 import { saveAs } from "file-saver";
-import { toast } from "react-toastify";
 
 interface IProp extends IHeader {
   data?: Document.Resume;
@@ -95,7 +95,7 @@ export const JSONViewer = ({ data, buttons = [], sidebars = [] }: IProp) => {
 
             html2canvas(data as HTMLElement, {
               useCORS: true,
-              scale: 1.0,
+              scale: 2.0,
               allowTaint: true
             }).then((canvas: HTMLCanvasElement) => {
               const imgWidth = 210;
@@ -121,6 +121,18 @@ export const JSONViewer = ({ data, buttons = [], sidebars = [] }: IProp) => {
                 saveAs(file);
               };
             });
+          }
+        },
+        {
+          icon: "Share",
+          title: "URL 복사",
+          action: () => {
+            navigator.clipboard
+              .writeText(
+                `${process.env.VITE_APP_URL_MAIN}/resume_viewer/${data?.id}`
+              )
+              .then(() => toast.success("성공적으로 복사되었습니다"))
+              .catch(() => toast.error("복사중 오류가 발생했습니다"));
           }
         },
         ...buttons
