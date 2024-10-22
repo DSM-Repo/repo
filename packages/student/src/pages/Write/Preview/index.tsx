@@ -1,7 +1,7 @@
 import { forwardRef, useState } from "react";
 import { useResumeData } from "@/hooks";
-import { Box, Resume } from "ui";
 import { Header } from "./Header";
+import { Box, Resume } from "ui";
 
 export type setType = React.Dispatch<
   React.SetStateAction<{
