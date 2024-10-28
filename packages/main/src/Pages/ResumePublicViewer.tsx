@@ -1,7 +1,7 @@
 import { Api, Placeholder } from "@configs/type";
 import { useParams } from "react-router-dom";
 import { useMyQuery } from "@configs/util";
-import { JSONViewer } from "ui";
+import { Resume } from "ui";
 
 export const ResumePublicViewer = () => {
   const { id } = useParams();
@@ -12,8 +12,10 @@ export const ResumePublicViewer = () => {
   );
 
   return (
-    <div className="w-full h-screen bg-[#111111]">
-      <JSONViewer data={detailData} disableDownload />
+    <div className="w-full h-fit bg-[#F1F3F5] flex flex-col items-center pt-20">
+      <div className="shadow-sm shadow-blue-100 rounded-md h-fit overflow-hidden">
+        <Resume data={detailData} />
+      </div>
     </div>
   );
 };
