@@ -44,7 +44,7 @@ const errFunc = (err: any) => {
     toast.error(
       `오류가 발생했습니다 (${response.status}: ${response.data.description || response.data})`
     );
-    throw new Error(err);
+    throw err;
   }
 };
 
