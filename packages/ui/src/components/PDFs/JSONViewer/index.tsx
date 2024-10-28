@@ -9,9 +9,15 @@ import { saveAs } from "file-saver";
 
 interface IProp extends IHeader {
   data?: Document.Resume;
+  disableDownload?: boolean;
 }
 
-export const JSONViewer = ({ data, buttons = [], sidebars = [] }: IProp) => {
+export const JSONViewer = ({
+  data,
+  buttons = [],
+  sidebars = [],
+  disableDownload
+}: IProp) => {
   const [scale, setScale] = useState(0);
   const [page, setPage] = useState(1);
   const [max, setMax] = useState({
@@ -86,6 +92,8 @@ export const JSONViewer = ({ data, buttons = [], sidebars = [] }: IProp) => {
         {
           icon: "Download",
           title: "다운로드",
+          disabled: disableDownload,
+          disabledReason: "다운로드가 비활성화된 상태입니다.",
           action: () => {
             let id = toast.loading("변환하고 있습니다...");
             const data = document.querySelector(".resume");
