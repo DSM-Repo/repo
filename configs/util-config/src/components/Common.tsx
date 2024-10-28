@@ -8,7 +8,7 @@ import "@configs/tailwindcss";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      retry: 3,
+      retry: false,
       staleTime: 1000 * 60 * 2,
       refetchOnWindowFocus: false
     }

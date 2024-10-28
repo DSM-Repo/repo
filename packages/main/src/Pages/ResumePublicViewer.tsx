@@ -13,7 +13,7 @@ export const ResumePublicViewer = () => {
 
   return (
     <div className="w-full h-screen bg-black">
-      <JSONViewer data={detailData} />
+      <JSONViewer data={detailData} disableDownload />
     </div>
   );
 };

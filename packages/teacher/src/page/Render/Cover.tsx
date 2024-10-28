@@ -177,7 +177,7 @@ export const Cover = ({ grade }: IProp) => {
             Resume
           </span>
           <span className="text-gray-300 font-light text-[25px] leading-none">
-            Daedeok Software Mester High School
+            Daedeok Software Meister High School
           </span>
         </div>
         <div

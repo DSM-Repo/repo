@@ -36,13 +36,15 @@ interface IProp {
   indexList?: Api.Library.indexData[];
   buttons?: buttonType[];
   sidebars?: sidebarType[];
+  disableDownload?: boolean;
 }
 
 export const Viewer = ({
   url,
   indexList,
   buttons = [],
-  sidebars = []
+  sidebars = [],
+  disableDownload
 }: IProp) => {
   const [index, setIndex] = useState<Api.Library.indexData[][]>([]);
   const [loading, setLoading] = useState(true);
@@ -84,7 +86,9 @@ export const Viewer = ({
     {
       icon: "Download",
       title: "다운로드",
-      action: () => url && saveAs(url, `Resume.pdf`)
+      action: () => url && saveAs(url, `Resume.pdf`),
+      disabled: disableDownload,
+      disabledReason: "다운로드가 비활성화된 상태입니다."
     },
     indexList
       ? {
