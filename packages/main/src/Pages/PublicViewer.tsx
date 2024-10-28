@@ -12,7 +12,7 @@ export const PublicViewer = () => {
   );
 
   return (
-    <div className="w-full h-screen bg-black flex flex-center">
+    <div className="w-full h-screen bg-[#111111] flex flex-center">
       {isError ? (
         <span>존재하지 않거나 접근 권한이 없는 레주메북입니다</span>
       ) : (
