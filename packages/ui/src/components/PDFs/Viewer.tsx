@@ -212,7 +212,7 @@ export const Viewer = ({
         <span className="absolute top-0">
           {page - 1} - {page} / {max}
         </span>
-        <div style={{ transform: `scale(${scale / 3.9})` }}>
+        <div style={{ transform: `scale(${scale / 2.9})` }}>
           <Document
             onLoadSuccess={({ numPages }) => {
               setMax(numPages - 1);
@@ -225,13 +225,13 @@ export const Viewer = ({
             <div className="flex gap-10 viewer">
               <Page
                 pageIndex={page - 1}
-                scale={4}
+                scale={3}
                 className={`${page - 1 === 0 ? "invisible" : ""} h-fit`}
               />
 
               <Page
                 pageIndex={page > max ? page - 1 : page}
-                scale={4}
+                scale={3}
                 className={`${page > max ? "invisible" : ""} h-fit`}
               />
             </div>
