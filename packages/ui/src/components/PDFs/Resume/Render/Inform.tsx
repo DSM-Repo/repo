@@ -11,14 +11,21 @@ interface IProp {
   setMax: setType;
   showPadding?: boolean;
   scale?: number;
+  noOverflow?: boolean;
 }
 
-export const Inform = ({ data, setMax, showPadding, scale }: IProp) => {
+export const Inform = ({
+  data,
+  setMax,
+  showPadding,
+  noOverflow,
+  scale
+}: IProp) => {
   const [pages, setPages] = useState<HTMLElement[][]>([]);
   const pdf = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    if (pdf?.current) {
+    if (pdf?.current && !!!noOverflow) {
       const over = checkOverflow(pdf?.current);
       setPages(over);
       setMax((prev) => ({ ...prev, inform: 1 + over.length })); // 기본 페이지 1개 + 오버된 페이지 n개
@@ -27,7 +34,12 @@ export const Inform = ({ data, setMax, showPadding, scale }: IProp) => {
 
   return (
     <>
-      <PageLayout ref={pdf} showPadding={showPadding} scale={scale}>
+      <PageLayout
+        ref={pdf}
+        showPadding={showPadding}
+        scale={scale}
+        noOverflow={noOverflow}
+      >
         <div className="flex w-full h-[60px] justify-between items-center">
           {/* 프로필 */}
           <div className="col-flex gap-2">
@@ -96,7 +108,9 @@ export const Inform = ({ data, setMax, showPadding, scale }: IProp) => {
         />
       </PageLayout>
 
-      <Overflow items={pages} showPadding={showPadding} scale={scale} />
+      {!!!noOverflow && (
+        <Overflow items={pages} showPadding={showPadding} scale={scale} />
+      )}
     </>
   );
 };
