@@ -12,6 +12,7 @@ interface IProp {
   keep?: any;
   showPadding?: boolean;
   scale?: number;
+  noOverflow?: boolean;
 }
 
 export const typeAgainChange = {
@@ -19,7 +20,14 @@ export const typeAgainChange = {
   TEAM: "팀"
 };
 
-export const Projects = ({ data, setMax, keep, showPadding, scale }: IProp) => {
+export const Projects = ({
+  data,
+  setMax,
+  keep,
+  showPadding,
+  noOverflow,
+  scale
+}: IProp) => {
   const pdf = useRef<HTMLElement>(null);
   const [pages, setPages] = useState<HTMLElement[][]>([]);
   const isFirst = useRef(true);
@@ -33,7 +41,7 @@ export const Projects = ({ data, setMax, keep, showPadding, scale }: IProp) => {
   }, [data.element_id]);
 
   useEffect(() => {
-    if (!!pdf?.current) {
+    if (!!pdf?.current && !!!noOverflow) {
       const over = checkOverflow(pdf?.current);
       setPages(over);
       if (keep && setMax) {
@@ -70,7 +78,12 @@ export const Projects = ({ data, setMax, keep, showPadding, scale }: IProp) => {
 
   return (
     <>
-      <PageLayout ref={pdf} showPadding={showPadding} scale={scale}>
+      <PageLayout
+        ref={pdf}
+        showPadding={showPadding}
+        scale={scale}
+        noOverflow={noOverflow}
+      >
         <div className="flex w-full justify-between items-center">
           <div className={`flex gap-[20px] h-[60px] items-center`}>
             <Ternary data={data?.logo}>
@@ -111,7 +124,9 @@ export const Projects = ({ data, setMax, keep, showPadding, scale }: IProp) => {
         </>
       </PageLayout>
 
-      <Overflow items={pages} showPadding={showPadding} scale={scale} />
+      {!!!noOverflow && (
+        <Overflow items={pages} showPadding={showPadding} scale={scale} />
+      )}
     </>
   );
 };

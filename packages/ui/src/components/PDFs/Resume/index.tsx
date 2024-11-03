@@ -7,13 +7,15 @@ interface IProp {
   setMax?: setType;
   showPadding?: boolean;
   scale?: number;
+  noOverflow?: boolean;
 }
 
 export const Resume = ({
   data,
   setMax = () => {},
   showPadding,
-  scale
+  scale,
+  noOverflow
 }: IProp) => {
   const keep = useRef<Record<string, number>>({});
 
@@ -25,6 +27,7 @@ export const Resume = ({
           setMax={setMax}
           showPadding={showPadding}
           scale={scale}
+          noOverflow={noOverflow}
         />
         {data?.project_list.map((i) => (
           <Projects
@@ -33,6 +36,7 @@ export const Resume = ({
             showPadding={showPadding}
             scale={scale}
             keep={keep}
+            noOverflow={noOverflow}
           />
         ))}
       </>
