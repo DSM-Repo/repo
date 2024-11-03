@@ -200,7 +200,7 @@ export const Viewer = ({
 
   return (
     <Layout buttons={_buttons} sidebars={_sidebars}>
-      <div className="w-full h-full flex flex-center">
+      <div className="w-full h-full flex flex-center relative">
         <Tutorial name="Viewer" steps={tutorialSteps} />
         <Ternary data={!!!url || loading}>
           <div className="z-30 left-0 top-0 w-full h-full bg-[#000000DD] flex flex-center absolute text-white">
@@ -209,34 +209,34 @@ export const Viewer = ({
               : "PDF를 렌더링하고 있습니다..."}
           </div>
         </Ternary>
-        <Document
-          onLoadSuccess={({ numPages }) => {
-            setMax(numPages - 1);
-            setLoading(false);
-          }}
-          file={url}
-          className="col-flex items-center h-fit gap-2"
-          onLoadStart={({ page }) => (page.style.background = "white")}
-        >
-          <span>
-            {page - 1} - {page} / {max}
-          </span>
-          <div className="flex gap-2 viewer">
-            <Page pageIndex={page} className="hidden absolute" />
-            <Page
-              pageIndex={page - 1}
-              scale={scale}
-              className={`${page - 1 === 0 ? "invisible" : ""} h-fit`}
-            />
+        <span className="absolute top-5">
+          {page - 1} - {page} / {max}
+        </span>
+        <div style={{ transform: `scale(${scale / 2})` }}>
+          <Document
+            onLoadSuccess={({ numPages }) => {
+              setMax(numPages - 1);
+              setLoading(false);
+            }}
+            file={url}
+            className="col-flex items-center h-fit gap-2"
+            onLoadStart={({ page }) => (page.style.background = "white")}
+          >
+            <div className="flex gap-2 viewer">
+              <Page
+                pageIndex={page - 1}
+                scale={2}
+                className={`${page - 1 === 0 ? "invisible" : ""} h-fit`}
+              />
 
-            <Page
-              pageIndex={page > max ? page - 1 : page}
-              scale={scale}
-              className={`${page > max ? "invisible" : ""} h-fit`}
-            />
-            <Page pageIndex={page + 2} className="hidden absolute" />
-          </div>
-        </Document>
+              <Page
+                pageIndex={page > max ? page - 1 : page}
+                scale={2}
+                className={`${page > max ? "invisible" : ""} h-fit`}
+              />
+            </div>
+          </Document>
+        </div>
       </div>
     </Layout>
   );
