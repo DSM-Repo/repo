@@ -200,19 +200,19 @@ export const Viewer = ({
 
   return (
     <Layout buttons={_buttons} sidebars={_sidebars}>
+      <Tutorial name="Viewer" steps={tutorialSteps} />
+      <Ternary data={!!!url || loading}>
+        <div className="z-30 left-0 top-0 w-full h-full bg-[#000000DD] flex flex-center absolute text-white">
+          {!!!url
+            ? "PDF를 다운로드하고 있습니다.."
+            : "PDF를 렌더링하고 있습니다..."}
+        </div>
+      </Ternary>
       <div className="w-full h-full flex flex-center relative">
-        <Tutorial name="Viewer" steps={tutorialSteps} />
-        <Ternary data={!!!url || loading}>
-          <div className="z-30 left-0 top-0 w-full h-full bg-[#000000DD] flex flex-center absolute text-white">
-            {!!!url
-              ? "PDF를 다운로드하고 있습니다.."
-              : "PDF를 렌더링하고 있습니다..."}
-          </div>
-        </Ternary>
-        <span className="absolute top-5">
+        <span className="absolute top-0">
           {page - 1} - {page} / {max}
         </span>
-        <div style={{ transform: `scale(${scale / 2})` }}>
+        <div style={{ transform: `scale(${scale / 3.9})` }}>
           <Document
             onLoadSuccess={({ numPages }) => {
               setMax(numPages - 1);
@@ -222,16 +222,16 @@ export const Viewer = ({
             className="col-flex items-center h-fit gap-2"
             onLoadStart={({ page }) => (page.style.background = "white")}
           >
-            <div className="flex gap-2 viewer">
+            <div className="flex gap-10 viewer">
               <Page
                 pageIndex={page - 1}
-                scale={2}
+                scale={4}
                 className={`${page - 1 === 0 ? "invisible" : ""} h-fit`}
               />
 
               <Page
                 pageIndex={page > max ? page - 1 : page}
-                scale={2}
+                scale={4}
                 className={`${page > max ? "invisible" : ""} h-fit`}
               />
             </div>
