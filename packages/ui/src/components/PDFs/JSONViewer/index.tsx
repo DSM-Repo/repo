@@ -127,6 +127,7 @@ export const JSONViewer = ({
                   render: "성공적으로 변환되었습니다!"
                 });
                 saveAs(file);
+                worker.terminate();
               };
             });
           }
