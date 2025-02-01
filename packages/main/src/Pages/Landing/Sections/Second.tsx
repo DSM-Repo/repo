@@ -2,16 +2,12 @@ import { Title } from "./Title";
 
 export const Second = () => {
   return (
-    <section className="col-flex items-center gap-8 w-full py-20">
+    <section className="col-flex items-center gap-8">
       <Title direction="center">손쉽게 작성하는 이력서</Title>
-      <div className="flex justify-center gap-6 w-full h-fit">
-        <div className="col-flex w-fit mr-[24px]">
+      <div className="flex justify-center gap-12 w-full h-fit">
+        <div className="col-flex">
           <div className="w-[538px] h-[228px] flex flex-center bg-[#333333] rounded-xl">
-            <img
-              src="/landing_nav.png"
-              width={348}
-              className="h-[180px] object-contain"
-            />
+            <img src="/lan_2_1.png" width={228} height={180} />
           </div>
           <span className="text-[24px] font-bold text-gray-50 mt-4 w-[528px]">
             이력서 정보별 작성
@@ -22,9 +18,9 @@ export const Second = () => {
             빠르게 오가며 채워나갈 수 있어요.
           </span>
         </div>
-        <div className="col-flex w-fit">
+        <div className="col-flex">
           <div className="w-[538px] h-[228px] flex flex-center bg-[#333333] rounded-xl">
-            <img src="/landing_award.png" width={348} height={180} />
+            <img src="/lan_2_2.png" width={348} height={180} />
           </div>
           <span className="text-[24px] font-bold text-gray-50 mt-4 w-[528px]">
             다양한 입력
