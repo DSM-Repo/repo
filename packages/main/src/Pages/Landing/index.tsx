@@ -11,13 +11,12 @@ export const Landing = () => {
   const [opened, setOpened] = useState(false);
 
   return (
-    <div className="col-flex items-center before:w-full before:h-[421px] before:absolute before:bg-gradient-to-b before:from-[#000000] before:to-[#00000000] before:-z-10">
-      <header className="fixed flex justify-between items-center w-full h-[70px] px-[100px] bg-[#000000AA] backdrop-blur-md z-10">
-        <LogoFull />
-        <Button>Login →</Button>
-      </header>
-
+    <div className="col-flex items-center before:w-full before:h-[421px] before:absolute before:bg-gradient-to-b before:from-[#000000] before:to-[#00000000] before:-z-10 overflow-hidden">
       <ModalContext.Provider value={{ toggle: () => setOpened((prev) => !prev), state: opened }}>
+        <header className="fixed flex justify-between items-center w-full h-[70px] px-[100px] bg-[#000000AA] backdrop-blur-md z-10">
+          <LogoFull />
+          <Button>Login →</Button>
+        </header>
         <Modal />
         <Sections />
         <SlideSection />
