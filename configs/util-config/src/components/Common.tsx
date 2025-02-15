@@ -22,9 +22,9 @@ const toastOptions = {
   className: "col-flex gap-2"
 };
 
-export const Common = ({ children }: { children: React.ReactElement }) => {
-  checkBuild();
+checkBuild();
 
+export const Common = ({ children }: { children: React.ReactElement }) => {
   return (
     <QueryClientProvider client={queryClient}>
       <ToastContainer {...toastOptions} />

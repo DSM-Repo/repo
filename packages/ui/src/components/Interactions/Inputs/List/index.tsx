@@ -15,18 +15,7 @@ interface IProp extends IDefaultProp {
   values?: itemType[];
 }
 
-export const List = ({
-  placeholder,
-  required,
-  disabled,
-  label,
-  size,
-  id,
-  listSize,
-  onDelete,
-  onEnter,
-  values
-}: IProp) => {
+export const List = ({ placeholder, required, disabled, label, size, id, listSize, onDelete, onEnter, values }: IProp) => {
   const [item, setItem] = useState("");
 
   return (
@@ -47,14 +36,9 @@ export const List = ({
       </Box>
       <div className={`flex flex-wrap gap-3 ${sizeTable[listSize]}`}>
         {values.map((i) => (
-          <div className="flex items-center gap-2 w-fit h-fit px-3 py-2 border-[1px] rounded-xl bg-gray-700 border-gray-600">
+          <div className="flex items-center gap-2 w-fit h-fit px-3 py-2 border-[1px] rounded-xl bg-gray-700 border-gray-600" key={i.id}>
             <span className="text-[14px] font-light">{i.name}</span>
-            <Icon
-              name="Close"
-              size={20}
-              onClick={() => onDelete(i.id, id)}
-              className="cursor-pointer"
-            />
+            <Icon name="Close" size={20} onClick={() => onDelete(i.id, id)} className="cursor-pointer" />
           </div>
         ))}
       </div>

@@ -1,4 +1,4 @@
-import { Ternary, useShortcut, useEventListeners } from "@configs/util";
+import { Ternary, useShortcut, useWindowEventListeners } from "@configs/util";
 import { Layout, sidebarType, buttonType, Items, Tutorial } from "ui";
 import { Page, pdfjs, Document } from "react-pdf";
 import "react-pdf/dist/Page/AnnotationLayer.css";
@@ -17,17 +17,14 @@ const tutorialSteps = [
   },
   {
     img: _.one,
-    content:
-      "먼저, 뷰어의 대부분의 기능은 헤더에서 사용합니다.\n배치는 위 이미지와 같습니다."
+    content: "먼저, 뷰어의 대부분의 기능은 헤더에서 사용합니다.\n배치는 위 이미지와 같습니다."
   },
   {
     img: _.two,
-    content:
-      "또한 방향키를 통해서도 페이지를 이동할 수 있습니다.\nShift키와 동시에 사용하면 학생별 이동이 가능합니다."
+    content: "또한 방향키를 통해서도 페이지를 이동할 수 있습니다.\nShift키와 동시에 사용하면 학생별 이동이 가능합니다."
   },
   {
-    content:
-      "이상 REPO 뷰어 사용법 안내였습니다.\n(해당 내용은 2024년 이후의 레주메북 내에서도 확인 가능합니다)"
+    content: "이상 REPO 뷰어 사용법 안내였습니다.\n(해당 내용은 2024년 이후의 레주메북 내에서도 확인 가능합니다)"
   }
 ];
 
@@ -39,13 +36,7 @@ interface IProp {
   disableDownload?: boolean;
 }
 
-export const Viewer = ({
-  url,
-  indexList,
-  buttons = [],
-  sidebars = [],
-  disableDownload
-}: IProp) => {
+export const Viewer = ({ url, indexList, buttons = [], sidebars = [], disableDownload }: IProp) => {
   const [index, setIndex] = useState<Api.Library.indexData[][]>([]);
   const [loading, setLoading] = useState(true);
   const [scale, setScale] = useState(1);
@@ -53,9 +44,7 @@ export const Viewer = ({
   const [max, setMax] = useState(1);
   const navigate = useNavigate();
 
-  const finded = indexList?.find(
-    (i) => i.page_number === page + 1 || i.page_number === page
-  );
+  const finded = indexList?.find((i) => i.page_number === page + 1 || i.page_number === page);
 
   const handleMovePage = (next: number) => {
     if (next < 0 || next > max + 1) {
@@ -103,20 +92,12 @@ export const Viewer = ({
   const ClassSection = (type: 1 | 2 | 3 | 4) => {
     return (
       <Items
-        selections={index[type - 1]?.map(
-          (i) => `${i.student_number} ${i.name}`
-        )}
+        selections={index[type - 1]?.map((i) => `${i.student_number} ${i.name}`)}
         selected={`${finded?.student_number} ${finded?.name}`}
         onClick={(value) => {
-          const findClicked = indexList.find(
-            (i) => i.student_number === Number(value.slice(0, 4))
-          );
+          const findClicked = indexList.find((i) => i.student_number === Number(value.slice(0, 4)));
           if (findClicked) {
-            setPage(
-              !!!(findClicked.page_number % 2)
-                ? findClicked.page_number - 1
-                : findClicked.page_number
-            );
+            setPage(!!!(findClicked.page_number % 2) ? findClicked.page_number - 1 : findClicked.page_number);
           }
         }}
       />
@@ -164,17 +145,14 @@ export const Viewer = ({
   }, [indexList]);
 
   const handleMoveStudent = (direction: "Left" | "Right") => {
-    const persons = indexList.filter((i) =>
-      direction === "Left" ? i.page_number < page - 1 : i.page_number > page + 1
-    );
-    const item =
-      persons[direction === "Left" ? persons.length - 1 : 0].page_number;
+    const persons = indexList.filter((i) => (direction === "Left" ? i.page_number < page - 1 : i.page_number > page + 1));
+    const item = persons[direction === "Left" ? persons.length - 1 : 0].page_number;
     if (persons.length !== 0 && item) {
       handleMovePage(!!!(item % 2) ? item - 1 : item);
     }
   };
 
-  useEventListeners([
+  useWindowEventListeners([
     {
       eventType: "resize",
       callback: () => {
@@ -201,13 +179,9 @@ export const Viewer = ({
   return (
     <Layout buttons={_buttons} sidebars={_sidebars}>
       <Tutorial name="Viewer" steps={tutorialSteps} />
-      <Ternary data={!!!url || loading}>
-        <div className="z-30 left-0 top-0 w-full h-full bg-[#000000DD] flex flex-center absolute text-white">
-          {!!!url
-            ? "PDF를 다운로드하고 있습니다.."
-            : "PDF를 렌더링하고 있습니다..."}
-        </div>
-      </Ternary>
+      {(!url || loading) && (
+        <div className="z-30 left-0 top-0 w-full h-full bg-[#000000DD] flex flex-center absolute text-white">{!!!url ? "PDF를 다운로드하고 있습니다.." : "PDF를 렌더링하고 있습니다..."}</div>
+      )}
       <div className="w-full h-full flex flex-center relative">
         <span className="absolute top-0">
           {page - 1} - {page} / {max}
@@ -223,17 +197,9 @@ export const Viewer = ({
             onLoadStart={({ page }) => (page.style.background = "white")}
           >
             <div className="flex gap-10 viewer">
-              <Page
-                pageIndex={page - 1}
-                scale={3}
-                className={`${page - 1 === 0 ? "invisible" : ""} h-fit`}
-              />
+              <Page pageIndex={page - 1} scale={3} className={`${page - 1 === 0 ? "invisible" : ""} h-fit`} />
 
-              <Page
-                pageIndex={page > max ? page - 1 : page}
-                scale={3}
-                className={`${page > max ? "invisible" : ""} h-fit`}
-              />
+              <Page pageIndex={page > max ? page - 1 : page} scale={3} className={`${page > max ? "invisible" : ""} h-fit`} />
             </div>
           </Document>
         </div>

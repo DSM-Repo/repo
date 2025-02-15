@@ -1,127 +1,85 @@
-import { useSideBarOpen, useOpen } from "../../../../hooks";
+import { useSideBarOpen } from "../../../../hooks";
+import { useOutsideClickRef } from "@configs/util";
 import { iconType, Icon } from "../../../";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
+import { Api } from "@configs/type";
 
-export type actionType = string | React.ReactElement | (() => void);
+export type actionType = {
+  type: "OPEN_SIDEBAR" | "OPEN_MODAL" | "CALLBACK";
+  sideBarName?: string;
+  modalElement?: React.ReactNode;
+  callback?: () => void;
+};
 
 interface IProp {
   action: actionType;
   icon: iconType;
   rotate?: "up" | "down" | "right" | "left";
   title: string;
-  disabled?: boolean;
-  disabledReason?: string;
+  disabled?: Api.DisableType;
 }
 
-const styles = {
-  wrapper: "relative col-flex",
-  icon: "transition-all duration-200"
-};
-
-export const Button = ({
-  action,
-  icon,
-  rotate = "up",
-  title,
-  disabled,
-  disabledReason
-}: IProp) => {
-  const { opened, setOpened } = useOpen();
-  const { sideOpened, setSideOpened } = useSideBarOpen();
+export const Button = ({ action, icon, rotate = "up", title, disabled }: IProp) => {
+  const { open: sideOpen, setOpen: setSideOpen } = useSideBarOpen();
+  const [open, setOpen] = useState(false);
   const [show, setShow] = useState(false);
-  const canShowTitle = useRef(false);
-  const animTimeout = useRef(null);
-  const [first, setFirst] = useState(true);
+  const [openAnim, setOpenAnim] = useState(false);
+  const showTimeout = useRef<NodeJS.Timeout | null>(null);
+  const outsideRef = useOutsideClickRef<HTMLDivElement>(() => controlModal("close"));
+  const openAnimRef = useRef<NodeJS.Timeout | null>(null);
 
-  const handleClick = () => {
-    if (!disabled) {
-      if (typeof action === "object") {
-        const object = {
-          name: title,
-          component: action
-        };
-        clearTimeout(animTimeout?.current);
-        if (opened?.name === title && opened) {
-          setOpened({ ...opened, name: undefined });
-          animTimeout.current = setTimeout(() => {
-            setOpened(undefined);
-          }, 200);
-        } else {
-          setOpened(object);
-        }
-      } else if (typeof action === "string") {
-        setSideOpened(sideOpened === action ? "" : action);
-      } else if (typeof action === "function") {
-        action();
-      }
-      canShowTitle.current = false;
+  const checkSelect = action.type === "OPEN_MODAL" ? open : sideOpen === action.sideBarName;
+
+  const handleHover = ({ type }: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    if (type === "mouseenter") showTimeout.current = setTimeout(() => setShow(true), 250);
+    else {
+      clearTimeout(showTimeout.current);
       setShow(false);
     }
   };
 
-  useEffect(() => {
-    setTimeout(() => {
-      setFirst(false);
-    }, 400);
-  }, []);
-
-  const checkSelect =
-    typeof action === "object"
-      ? opened && opened?.name === title
-      : sideOpened === action;
-
-  const handleHover = (type: "enter" | "leave") => {
-    if (type === "enter") {
-      canShowTitle.current = true;
-      setTimeout(() => {
-        if (canShowTitle.current) {
-          setShow(true);
-        }
-      }, 250);
+  const controlModal = (type: "open" | "close") => {
+    if (type === "open") {
+      requestAnimationFrame(() => setOpen(true));
+      setOpenAnim(true);
+      clearTimeout(openAnimRef.current);
     } else {
-      canShowTitle.current = false;
-      setShow(false);
+      setOpen(false);
+      openAnimRef.current = setTimeout(() => setOpenAnim(false), 500);
     }
+  };
+
+  const handleClick = () => {
+    if (!disabled?.state) {
+      if (action.type === "OPEN_MODAL") controlModal(open ? "close" : "open");
+      else if (action.type === "OPEN_SIDEBAR") setSideOpen(sideOpen === action.sideBarName ? "" : action.sideBarName);
+      else if (action.type === "CALLBACK") action.callback();
+    }
+    clearTimeout(showTimeout.current);
+    setShow(false);
   };
 
   return (
-    <div className={styles.wrapper}>
+    <div className="col-flex relative" ref={outsideRef}>
       <button
-        className={`flex flex-col p-[8px] rounded-[100px] transition-all ${disabled ? "cursor-not-allowed" : ""} duration-200 ${checkSelect ? "bg-[#0B4001]" : ""}`}
+        className={`col-flex p-2 rounded-full transition-all duration-200 ${disabled?.state && "cursor-not-allowed"} ${checkSelect && "bg-[#0B4001]"}`}
         onClick={handleClick}
-        onMouseEnter={() => handleHover("enter")}
-        onMouseLeave={() => handleHover("leave")}
+        onMouseEnter={handleHover}
+        onMouseLeave={handleHover}
       >
-        <Icon
-          name={icon}
-          rotate={rotate}
-          color={disabled ? "#777777" : checkSelect ? "#37E517" : "white"}
-          className={styles.icon}
-        />
+        <Icon name={icon} rotate={rotate} color={checkSelect ? "#37E517" : "white"} disabled={disabled?.state} className="transition-all duration-200" />
       </button>
-      <div
-        style={{ opacity: title && show && !checkSelect ? 1 : 0 }}
-        className={`top-[40px] z-50 transition-all duration-150 self-center absolute flex flex-col items-center`}
-      >
+      <div style={{ opacity: title && show && !checkSelect ? 1 : 0 }} className={`col-flex items-center self-center top-[40px] z-50 transition-all duration-150 absolute`}>
         <div className="[border-bottom:_calc(7px_*_1.732)_solid_white] [border-left:_7px_solid_transparent] [border-right:_7px_solid_transparent]" />
-        <div className="bg-white rounded-[8px] h-fit self-center px-[16px] py-[8px] whitespace-nowrap z-50">
-          <span className="text-[16px] font-light text-black leading-none">
-            {title}
-            {disabled && disabledReason ? ` (${disabledReason})` : ""}
-          </span>
+        <div className="bg-white rounded-[8px] h-fit self-center px-[16px] py-[8px] z-50">
+          <span className="text-[16px] font-light text-black whitespace-nowrap">{title + (disabled?.state ? `(${disabled?.reason})` : "")}</span>
         </div>
       </div>
       <div
-        className={`${first ? "preload" : ""} ${opened?.name === title ? "move-up" : "move-down"} self-center absolute top-[40px] flex flex-col items-center z-20 shadow-2xl shadow-gray-950`}
+        className={`col-flex items-center self-center transition-all duration-500 shadow-2xl shadow-gray-950 absolute top-[40px] z-20 ${open ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"} ${!openAnim && "hidden"} `}
       >
         <div className="[border-bottom:_calc(7px_*_1.732)_solid_#333333] [border-left:_7px_solid_transparent] [border-right:_7px_solid_transparent]" />
-        <div className="bg-gray-800 rounded-[8px] h-fit self-center p-5 border-[1px] border-gray-700">
-          {opened?.name === title || (!!!opened?.name && opened?.component) ? (
-            (action as React.ReactElement)
-          ) : (
-            <></>
-          )}
-        </div>
+        <div className="bg-gray-800 rounded-[8px] h-fit self-center p-5 border-[1px] border-gray-700">{action.type === "OPEN_MODAL" && (action.modalElement as React.ReactElement)}</div>
       </div>
     </div>
   );

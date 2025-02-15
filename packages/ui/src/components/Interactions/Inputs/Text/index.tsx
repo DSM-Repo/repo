@@ -1,36 +1,22 @@
-import { Box, IDefaultProp, Label, iconType } from "../Layout";
-import { ChangeEvent, useState } from "react";
+import { sizeType } from "@root/size";
+import { Box, Label } from "../Layout";
+import { forwardRef, useState } from "react";
 
-interface IProp extends IDefaultProp {
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+interface IProp extends Omit<React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>, "size"> {
+  label?: string;
   password?: boolean;
-  value?: string;
+  size: sizeType;
 }
 
-export const Text = ({
-  placeholder,
-  required,
-  disabled,
-  label,
-  size,
-  id,
-  onChange,
-  password,
-  value
-}: IProp) => {
+export const Text = forwardRef<HTMLInputElement, IProp>(({ label, size, password, ...rest }, ref) => {
   const [show, setShow] = useState(false);
 
-  const icon: iconType = {
-    name: show ? "Show" : "Hide",
-    rotate: "up",
-    action: () => setShow((prev) => !prev)
-  };
-
   return (
-    <Label size={size} label={label} required={required}>
+    <Label size={size} label={label} required={rest.required}>
       <Box
         size={size}
-        disabled={disabled}
+        disabled={rest.disabled}
+        readonly={rest.readOnly}
         icon={
           password && {
             name: show ? "Show" : "Hide",
@@ -39,15 +25,12 @@ export const Text = ({
         }
       >
         <input
-          className="w-full text-body5 disabled:text-gray-300 disabled:cursor-not-allowed"
-          placeholder={placeholder}
-          value={value}
-          disabled={disabled}
-          onChange={onChange}
-          id={id}
+          ref={ref}
+          {...rest}
+          className="w-full text-body5 disabled:text-gray-300 disabled:cursor-not-allowed read-only:text-gray-300 read-only:cursor-not-allowed"
           type={password && !show ? "password" : "text"}
         />
       </Box>
     </Label>
   );
-};
+});

@@ -1,14 +1,10 @@
 // @ts-expect-error
-import { UseMutationResult, useMutation } from "@tanstack/react-query";
+import { UseMutationResult, useMutation, UseMutationOptions } from "@tanstack/react-query";
 import { instance, path, pathType } from "../apis";
 
 type apiType = "post" | "patch" | "delete" | "put";
 
-export const useMyMutation = <T, K>(
-  type: apiType,
-  pathname: pathType,
-  url: string
-): UseMutationResult<K, Error, T> => {
+export const useMyMutation = <T, K>(type: apiType, pathname: pathType, url: string, options?: UseMutationOptions<K, Error, T, unknown>): UseMutationResult<K, Error, T> => {
   return useMutation<K, Error, T>({
     mutationFn: async (item: T | string): Promise<K> => {
       try {
@@ -25,6 +21,7 @@ export const useMyMutation = <T, K>(
       } catch (error) {
         throw new Error(error); // 에러 발생 시 throw
       }
-    }
+    },
+    ...options
   });
 };

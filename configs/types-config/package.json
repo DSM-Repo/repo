@@ -4,5 +4,8 @@
   "main": "./src/index.ts",
   "dependencies": {
     "typescript": "5.4.5"
+  },
+  "peerDependencies": {
+    "@tanstack/react-query": "^5.52.0"
   }
 }

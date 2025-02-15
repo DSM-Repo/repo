@@ -1,8 +1,17 @@
+// @ts-expect-error
+import { UseMutationOptions } from "@tanstack/react-query";
 import * as Document from "./Document";
 
 export type CommonLayout<T> = {
   data: T[];
   number_of_data: number;
+};
+
+export type MutationOption<T, K> = UseMutationOptions<T, Error, K, unknown>;
+
+export type DisableType = {
+  state: boolean;
+  reason: string;
 };
 
 export declare namespace Auth {

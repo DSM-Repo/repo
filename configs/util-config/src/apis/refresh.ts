@@ -1,8 +1,8 @@
-import { Cookies } from "react-cookie";
+import Cookies from "js-cookie";
 import axios from "axios";
 import { isDevelopment } from "../utils";
 
-const cookie = new Cookies();
+const cookie = Cookies;
 let lock = false;
 const option = {
   path: "/",
@@ -13,7 +13,7 @@ const wait = () => {
   let cnt = 0;
   return new Promise((res, rej) => {
     setInterval(() => {
-      const curExpStamp = cookie.get("access_expires");
+      const curExpStamp = Number(cookie.get("access_expires"));
       const curCurStamp = Math.round(Date.now() / 1000);
       cnt++;
       if (curExpStamp > curCurStamp) res("Token Changed!");
@@ -24,7 +24,7 @@ const wait = () => {
 
 export const refresh = () =>
   new Promise((resolve, reject) => {
-    const expireStamp = cookie.get("access_expires");
+    const expireStamp = Number(cookie.get("access_expires"));
     const currentStamp = Math.round(Date.now() / 1000);
 
     if (expireStamp <= currentStamp && !lock) {

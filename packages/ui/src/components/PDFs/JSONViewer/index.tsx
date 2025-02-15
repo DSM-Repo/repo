@@ -1,4 +1,4 @@
-import { useEventListeners, useShortcut } from "@configs/util";
+import { useWindowEventListeners, useShortcut } from "@configs/util";
 import { useNavigate } from "react-router-dom";
 import { IHeader, Layout, Resume } from "ui";
 import { useEffect, useState } from "react";
@@ -12,12 +12,7 @@ interface IProp extends IHeader {
   disableDownload?: boolean;
 }
 
-export const JSONViewer = ({
-  data,
-  buttons = [],
-  sidebars = [],
-  disableDownload
-}: IProp) => {
+export const JSONViewer = ({ data, buttons = [], sidebars = [], disableDownload }: IProp) => {
   const [scale, setScale] = useState(0);
   const [page, setPage] = useState(1);
   const [max, setMax] = useState({
@@ -38,7 +33,7 @@ export const JSONViewer = ({
     setPage(1);
   }, [window.location.href]);
 
-  useEventListeners([
+  useWindowEventListeners([
     {
       eventType: "resize",
       callback: () => {
@@ -137,11 +132,7 @@ export const JSONViewer = ({
       sidebars={sidebars}
     >
       <div className="w-full h-full col-flex items-center justify-center gap-3 overflow-hidden relative">
-        <span className="absolute self-center -top-1">
-          {showType
-            ? `${page} - ${page + 1} / ${maxFull}`
-            : `${page} / ${maxFull}`}
-        </span>
+        <span className="absolute self-center -top-1">{showType ? `${page} - ${page + 1} / ${maxFull}` : `${page} / ${maxFull}`}</span>
         <div
           style={{
             transform: `scale(${scale})`

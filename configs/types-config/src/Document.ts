@@ -13,19 +13,9 @@ export type classType = {
   generation?: number;
 };
 
-export type sectionType =
-  | "WRITER_INFO"
-  | "INTRODUCE"
-  | "PROJECT"
-  | "ACTIVITY"
-  | "ACHIEVEMENT";
+export type sectionType = "WRITER_INFO" | "INTRODUCE" | "PROJECT" | "ACTIVITY" | "ACHIEVEMENT";
 
-export type sectionKeyType =
-  | "writer"
-  | "introduce"
-  | "achievement_list"
-  | "activity_list"
-  | "project_list";
+export type sectionKeyType = "writer" | "introduce" | "achievement_list" | "activity_list" | "project_list";
 
 export type statusType = "ONGOING" | "SUBMITTED" | "RELEASED";
 export type achieveType = "AWARD" | "CERTIFICATE";
@@ -73,7 +63,7 @@ export type Achievement_list = {
   element_id: string;
   name: string;
   institution: string;
-  date: string;
+  date?: string;
   type: achieveType;
 };
 
