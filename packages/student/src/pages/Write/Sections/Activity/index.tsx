@@ -1,22 +1,16 @@
-import { Placeholder } from "@configs/type";
-import { useResumeData } from "@/hooks";
+import { useFieldArray, useFormContext } from "react-hook-form";
+import { Document, Placeholder } from "@configs/type";
 import { Layout } from "../Layout";
 import { Item } from "./Item";
 
 export const Activity = () => {
-  const { data: resume, addItem } = useResumeData();
-  const { activity_list } = resume;
+  const { control } = useFormContext<Document.Resume>();
+  const { fields, append } = useFieldArray({ control, name: "activity_list" });
 
   return (
-    <Layout
-      title="활동"
-      subTitle="진행한 활동을 소개해 보세요."
-      add={() =>
-        addItem("activity_list", Placeholder.ResumeDetailPlace.activity_list[0])
-      }
-    >
-      {activity_list.map((i, j) => (
-        <Item data={i} key={i.element_id} index={j} />
+    <Layout title="활동" subTitle="진행한 활동을 소개해 보세요." add={() => append({ ...Placeholder.ResumeDetailPlace.activity_list[0], element_id: crypto.randomUUID() })}>
+      {fields.map((i, j) => (
+        <Item key={i.element_id} index={j} />
       ))}
     </Layout>
   );

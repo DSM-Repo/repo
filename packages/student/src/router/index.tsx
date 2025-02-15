@@ -1,7 +1,7 @@
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import { RedirectDiff } from "@configs/util";
 import { Layout } from "./Layout";
-import * as _ from "@/pages";
+import * as _ from "../pages";
 
 export const Router = () => {
   return (

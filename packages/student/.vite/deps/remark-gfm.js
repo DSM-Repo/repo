@@ -1,7 +1,4 @@
 import {
-  findAndReplace
-} from "./chunk-MYMUWBMG.js";
-import {
   asciiAlpha,
   asciiAlphanumeric,
   asciiControl,
@@ -24,6 +21,9 @@ import {
   unicodeWhitespace,
   visit
 } from "./chunk-HD6BXIF4.js";
+import {
+  findAndReplace
+} from "./chunk-MYMUWBMG.js";
 import {
   EXIT,
   convert

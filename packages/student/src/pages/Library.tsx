@@ -1,27 +1,24 @@
 import { useNavigate } from "react-router-dom";
+import { Button, HeaderProvider } from "ui";
 import { libraryList } from "@/api";
-import { Button, TitleLayout } from "ui";
 
 export const Library = () => {
   const { data: listData } = libraryList();
+  const sortedListData = listData?.data.sort((prev, next) => (prev.year !== next.year ? next.year - prev.year : next.grade - prev.grade));
+
   const navigate = useNavigate();
 
   return (
-    <TitleLayout
-      title="도서관"
-      subTitle="지금까지 공개된 레주메북들을 읽어보세요"
-    >
-      <div className="flex w-full flex-wrap gap-5">
-        {listData?.data
-          .sort((i, j) =>
-            i.year !== j.year ? j.year - i.year : j.grade - i.grade
-          )
-          .map((i) => (
-            <Button size="medium" onClick={() => navigate(`/book/${i.id}`)}>
-              {`${i.year}년 ${i.grade}학년 ${i.generation}기`}
+    <HeaderProvider>
+      <div className="col-flex gap-4 px-[60px] py-6">
+        <div className="flex w-full flex-wrap gap-5">
+          {sortedListData?.map(({ id, year, grade, generation }) => (
+            <Button size="medium" onClick={() => navigate(`/book/${id}`)}>
+              {`${year}년 ${grade}학년 ${generation}기`}
             </Button>
           ))}
+        </div>
       </div>
-    </TitleLayout>
+    </HeaderProvider>
   );
 };

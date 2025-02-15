@@ -1,94 +1,63 @@
-import { findKeyWithValue } from "@configs/util";
+import { useFieldArray, useFormContext, Controller, UseFormReturn, UseFieldArrayReturn } from "react-hook-form";
+import { achieveType } from "@configs/type/src/Document";
 import { Icon, Date, Dropdown, Text } from "ui";
-import { Document } from "@configs/type";
-import { useResumeData } from "@/hooks";
 import { Box } from "../Box";
+import { Document } from "@configs/type";
 
-const typeLabel = {
-  AWARD: "수여",
-  CERTIFICATE: "발급"
+const typeTable = {
+  AWARD: ["수여", "수상"],
+  CERTIFICATE: ["발급", "자격증"]
 };
 
-const typeData = {
-  AWARD: "수상",
-  CERTIFICATE: "자격증"
-};
+const typeTypeTable = {
+  수상: "AWARD",
+  자격증: "CERTIFICATE"
+} as const;
 
 interface IProp {
-  data: Document.Achievement_list;
   index: number;
+  fieldArray: UseFieldArrayReturn<Document.Resume, "achievement_list", "id">;
 }
 
-export const Item = ({ data, index }: IProp) => {
-  const { moveItem, removeItem, setDeepPartial } = useResumeData();
-
-  const set = (id: string, value?: string) =>
-    setDeepPartial("achievement_list", data.element_id, value, id);
-
-  const handleChange = ({ target }: React.ChangeEvent<HTMLInputElement>) =>
-    set(target.id, target.value);
-
-  const handleType = (value: "수상" | "자격증") => {
-    set("type", findKeyWithValue(typeData, value));
-  };
+export const Item = ({ index, fieldArray }: IProp) => {
+  const name = `achievement_list.${index}` as const;
+  const { control, register, watch, setValue, getValues } = useFormContext();
+  const { remove, swap: swap } = fieldArray;
+  // const display = typeTable[watch(`${name}.type`) as achieveType][0];
 
   return (
     <Box>
       <div className="flex justify-between w-full">
-        <input
-          className="font-semibold text-[25px] w-[80%]"
-          placeholder="이름을 입력하세요"
-          value={data.name}
-          id="name"
-          onChange={handleChange}
-        />
+        <input className="font-semibold text-[25px] w-[80%]" placeholder="이름을 입력하세요" {...register(`${name}.name`)} />
         <div className="flex items-center gap-[10px]">
-          <Icon
-            name="Arrow"
-            rotate="up"
-            className="cursor-pointer"
-            onClick={() => moveItem("achievement_list", index, "down")}
-          />
-          <Icon
-            name="Arrow"
-            rotate="down"
-            className="cursor-pointer"
-            onClick={() => moveItem("achievement_list", index, "up")}
-          />
-          <Icon
-            name="Trash"
-            className="cursor-pointer"
-            onClick={() => removeItem("achievement_list", data.element_id)}
-          />
+          <Icon name="Arrow" rotate="up" className="cursor-pointer" disabled={index === 0} onClick={() => swap(index, index - 1)} />
+          <Icon name="Arrow" rotate="down" className="cursor-pointer" disabled={index === getValues("achievement_list").length - 1} onClick={() => swap(index, index + 1)} />
+          <Icon name="Trash" className="cursor-pointer" onClick={() => remove(index)} />
         </div>
       </div>
-      <Dropdown
-        id="type"
-        size="large"
-        label="형태"
-        placeholder="형태를 선택하세요"
-        selections={["수상", "자격증"]}
-        selected={typeData[data.type]}
-        onChange={(data: string) => handleType(data as "수상" | "자격증")}
+      <Controller
+        name={`${name}.type`}
+        control={control}
+        render={({ field: { value, onChange, ...rest } }) => (
+          <Dropdown
+            size="large"
+            label="형태"
+            placeholder="형태를 선택하세요"
+            selections={["수상", "자격증"]}
+            value={typeTable[value as achieveType][1]}
+            onChange={(item) => onChange(typeTypeTable[item as keyof typeof typeTypeTable])}
+            {...rest}
+          />
+        )}
       />
 
-      <Date
-        label={`${typeLabel[data.type]}일`}
-        onDelete={() => set("date", undefined)}
-        size="large"
-        id="date"
-        placeholder={`${typeLabel[data.type]}일을 입력하세요`}
-        value={data.date}
-        onChange={(item, id) => set(id as string, item)}
+      {/* <Controller
+        name={`${name}.date`}
+        control={control}
+        render={({ field }) => <Date label={`${display}일`} placeholder={`${display}일을 입력하세요`} size="large" onDelete={() => setValue(`${name}.date`, undefined)} {...field} />}
       />
-      <Text
-        id="institution"
-        size="large"
-        label={`${typeLabel[data.type]} 기관`}
-        placeholder={`${typeLabel[data.type]} 기관을 입력하세요`}
-        value={data.institution}
-        onChange={handleChange}
-      />
+
+      <Text label={`${display} 기관`} placeholder={`${display} 기관을 입력하세요`} size="large" {...register(`${name}.institution`)} /> */}
     </Box>
   );
 };
