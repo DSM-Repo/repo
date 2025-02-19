@@ -1,4 +1,5 @@
-import { Box, IDefaultProp, Label } from "../Layout";
+import { Box, IDefaultProp, Label } from "./Layout";
+import { useOutsideClickRef } from "@configs/util";
 import { forwardRef, useState } from "react";
 import { Icon } from "../../../";
 import dayjs from "dayjs";
@@ -11,13 +12,14 @@ interface IProp extends IDefaultProp {
   value?: string;
 }
 
-export const Date = forwardRef(({ placeholder, required, disabled, label, size, id, onChange, onDelete, value }: IProp, ref) => {
+export const Date = forwardRef(({ placeholder, required, error, disabled, label, size, id, onChange, onDelete, value }: IProp, ref) => {
   const [open, setOpen] = useState(false);
   const [sel, setSel] = useState({
     year: date.get("year"),
     month: date.get("month") + 1
   });
   const selToDate = dayjs(`${sel.year}-${sel.month}-1`);
+  const outsideRef = useOutsideClickRef(() => setOpen(false));
 
   const startDate = Array.from({ length: dayjs(selToDate).get("day") });
 
@@ -44,8 +46,8 @@ export const Date = forwardRef(({ placeholder, required, disabled, label, size, 
   };
 
   return (
-    <Label size={size} required={required} label={label}>
-      <Box size={size} disabled={disabled} icon={value && { name: "Trash", action: () => onDelete(id) }} action={() => setOpen((prev) => !prev)}>
+    <Label size={size} required={required} label={label} ref={outsideRef}>
+      <Box size={size} error={error} disabled={disabled} icon={value && { name: "Trash", action: () => onDelete(id) }} action={() => setOpen((prev) => !prev)}>
         <span className={`block w-full h-fit text-body5 leading-none ${!value ? "text-gray-300" : "cursor-pointer"} ${disabled ? "cursor-[not-allowed_!important]" : ""}`}>
           {value ? value : placeholder}
         </span>
@@ -76,7 +78,7 @@ export const Date = forwardRef(({ placeholder, required, disabled, label, size, 
                 key={j}
                 className="w-[30px] h-[30px] text-center content-center text-body5 inline cursor-pointer"
                 onClick={() => {
-                  onChange(`${sel.year}. ${sel.month.toString().padStart(2, "0")}. ${(j + 1).toString().padStart(2, "0")}`, id);
+                  onChange(`${sel.year}-${sel.month.toString().padStart(2, "0")}-${(j + 1).toString().padStart(2, "0")}`, id);
                   setCal();
                 }}
               >

@@ -25,16 +25,6 @@ export const Projects = ({ data, setMax, keep, showPadding, noOverflow, scale }:
   const [pages, setPages] = useState<HTMLElement[][]>([]);
   const isFirst = useRef(true);
 
-  console.log("실행은 됨;");
-
-  useEffect(() => {
-    return () => {
-      isFirst.current = true;
-      setMax((prev) => ({ ...prev, projects: 0 }));
-      keep.current[data.element_id] = 0;
-    };
-  }, [data.element_id]);
-
   useEffect(() => {
     if (!!pdf?.current && !!!noOverflow) {
       const over = checkOverflow(pdf?.current);
@@ -58,10 +48,12 @@ export const Projects = ({ data, setMax, keep, showPadding, noOverflow, scale }:
     // 지워지기 전에 실행햐야 함. 로직은 따로 없음
     return () => {
       if (keep && setMax) {
-        setMax((prev) => ({
-          ...prev,
-          projects: prev.projects - keep.current[data.element_id]
-        }));
+        setMax((prev) => {
+          return {
+            ...prev,
+            projects: prev.projects - keep.current[data.element_id]
+          };
+        });
       }
     };
   }, []);

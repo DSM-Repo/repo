@@ -1,62 +1,47 @@
-import { useEffect, useRef, useState } from "react";
 import { useSideBarOpen } from "../../../../hooks";
+import { HTMLAttributes, useEffect, useRef, useState } from "react";
 export * from "./Items";
-export * from "./Custom";
+export * from "./StandardSidebar";
 
-export interface itemType {
+export type elementsType = {
   name: string;
-  content?: React.ReactElement | React.ReactElement[];
-  key?: string;
-  keepOpen?: boolean;
+  element: React.ReactNode;
+  layoutProps?: HTMLAttributes<HTMLDivElement>;
+};
+
+interface IProps {
+  children: React.ReactNode;
+  elements: Array<elementsType>;
 }
 
-export interface ISidebarProp {
-  name: string;
-  width?: string;
-  items: itemType[];
-}
-
-export const SideBar = ({ name, width = "300px", items }: ISidebarProp) => {
-  const [opened, setOpened] = useState("");
+export const SidebarProvider = ({ children, elements }: IProps) => {
   const { open } = useSideBarOpen();
-  const ref = useRef<HTMLDivElement[]>([]);
-  const [state, setState] = useState(false);
+  const widths = useRef<Record<string, number>>({});
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    setState((prev) => !prev);
-  }, [items]);
+    setTimeout(() => setIsReady(true), 300);
+  }, []);
 
   return (
-    <div
-      style={{
-        width,
-        transform: `translateX(${open !== name ? "0" : `-${width}`})`
-      }}
-      className={`transition-all w-full duration-200 flex h-screen flex-col absolute bg-gray-800 border-l-[1px] border-gray-700 overflow-y-auto`}
-    >
-      <div className="px-4 h-14 border-b-[1px] border-gray-700 flex items-center flex-shrink-0">
-        <span className="text-[16px] font-semibold leading-none">{name}</span>
+    <div className="flex size-full overflow-hidden relative">
+      <div style={{ width: isReady && widths.current[open] ? `calc(100% - ${widths.current[open]}px)` : "100%" }} className="shrink transition-all h-full">
+        {children}
       </div>
-      {items.map((i, j) => {
-        return (
+      <div className="w-fit max-w-[900px] overflow-hidden transition-all h-full shrink-0 relative">
+        {elements.map(({ name, element, layoutProps = {} }) => (
           <div
-            key={j + 1}
-            style={{
-              height: i.keepOpen ? "fit-content" : opened === i.name ? ref.current[i.key || j + 1]?.offsetHeight + 56 + "px" : "56px"
+            {...layoutProps}
+            key={name}
+            className={`${open === name ? "translate-x-0" : "translate-x-full absolute"} ${!isReady && "invisible absolute"} h-full transition-transform`}
+            ref={(item) => {
+              if (item) widths.current[name] = item.getBoundingClientRect().width;
             }}
-            className={`${opened === i.name && !i.keepOpen ? "bg-gray-700" : "bg-gray-800"} flex-shrink-0 transition-all duration-300 overflow-hidden col-flex border-b-[1px] border-gray-700`}
           >
-            <div className={`px-4 h-14 flex-shrink-0 flex items-center ${!i.keepOpen && "cursor-pointer"}`} onClick={() => setOpened(opened === i.name ? "" : i.name)}>
-              <span className="text-[20px] font-bold leading-none">{i.name}</span>
-            </div>
-            {i.content && (
-              <div className="col-flex gap-4 px-4 h-fit pb-[18px]" ref={(item) => (ref.current[i.key || j + 1] = item)}>
-                {i.content}
-              </div>
-            )}
+            {element}
           </div>
-        );
-      })}
+        ))}
+      </div>
     </div>
   );
 };

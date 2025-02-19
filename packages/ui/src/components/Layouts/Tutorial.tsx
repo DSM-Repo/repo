@@ -50,7 +50,7 @@ export const Tutorial = ({ name, steps }: IProp) => {
               className="w-fit flex gap-20 transition-all duration-300"
             >
               {steps.map((i, j) => (
-                <div style={{ opacity: step === j ? 1 : 0 }} className="transition-all duration-300 w-[500px] h-[300px] col-flex gap-2 flex-center">
+                <div key={j} style={{ opacity: step === j ? 1 : 0 }} className="transition-all duration-300 w-[500px] h-[300px] col-flex gap-2 flex-center">
                   {i.img && <img src={i.img} />}
                   <span className="text-body4 whitespace-pre-wrap break-words text-center">{i.content}</span>
                 </div>
@@ -60,7 +60,7 @@ export const Tutorial = ({ name, steps }: IProp) => {
 
           <div className="flex gap-2 items-center">
             {Array.from({ length: steps.length }).map((_, j) => (
-              <div className={`w-[10px] h-[10px] ${step === j ? "bg-white" : "bg-gray-500"} transition-all duration-150 rounded-full`} />
+              <div key={j} className={`w-[10px] h-[10px] ${step === j ? "bg-white" : "bg-gray-500"} transition-all duration-150 rounded-full`} />
             ))}
           </div>
           <div className="flex gap-4 items-center">

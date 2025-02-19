@@ -5,7 +5,7 @@ import { useRef, useState } from "react";
 import { Api } from "@configs/type";
 
 export type actionType = {
-  type: "OPEN_SIDEBAR" | "OPEN_MODAL" | "CALLBACK";
+  type: "OPEN_SIDEBAR" | "OPEN_MODAL" | "CALLBACK" | "SUBMIT";
   sideBarName?: string;
   modalElement?: React.ReactNode;
   callback?: () => void;
@@ -50,7 +50,7 @@ export const Button = ({ action, icon, rotate = "up", title, disabled }: IProp) 
   };
 
   const handleClick = () => {
-    if (!disabled?.state) {
+    if (!disabled?.state && action.type !== "SUBMIT") {
       if (action.type === "OPEN_MODAL") controlModal(open ? "close" : "open");
       else if (action.type === "OPEN_SIDEBAR") setSideOpen(sideOpen === action.sideBarName ? "" : action.sideBarName);
       else if (action.type === "CALLBACK") action.callback();
@@ -66,6 +66,7 @@ export const Button = ({ action, icon, rotate = "up", title, disabled }: IProp) 
         onClick={handleClick}
         onMouseEnter={handleHover}
         onMouseLeave={handleHover}
+        type={action.type === "SUBMIT" ? "submit" : "button"}
       >
         <Icon name={icon} rotate={rotate} color={checkSelect ? "#37E517" : "white"} disabled={disabled?.state} className="transition-all duration-200" />
       </button>

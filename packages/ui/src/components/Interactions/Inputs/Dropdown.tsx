@@ -1,5 +1,6 @@
-import { IDefaultProp, Label, Box, iconType } from "../Layout";
+import { useOutsideClickRef } from "@configs/util";
 import { forwardRef, useState } from "react";
+import { IDefaultProp, Label, Box, iconType } from "./Layout";
 
 interface IProp extends IDefaultProp {
   selections?: (string | number)[];
@@ -8,8 +9,9 @@ interface IProp extends IDefaultProp {
   suffix?: string;
 }
 
-export const Dropdown = forwardRef(({ placeholder, required, disabled, label, size, id, selections, value, suffix, onChange }: IProp, ref) => {
+export const Dropdown = forwardRef(({ placeholder, error, required, disabled, label, size, id, selections, value, suffix, onChange }: IProp, ref) => {
   const [open, setOpen] = useState(false);
+  const outsideRef = useOutsideClickRef(() => setOpen(false));
 
   const icon: iconType = {
     name: "Arrow",
@@ -17,8 +19,8 @@ export const Dropdown = forwardRef(({ placeholder, required, disabled, label, si
   };
 
   return (
-    <Label size={size} required={required} label={label}>
-      <Box size={size} disabled={disabled} icon={icon} action={() => setOpen((prev) => !prev)}>
+    <Label size={size} required={required} label={label} ref={outsideRef}>
+      <Box error={error} size={size} disabled={disabled} icon={icon} action={() => setOpen((prev) => !prev)}>
         <span className={`block w-full h-fit text-body5 leading-none ${!value ? "text-gray-400" : ""} ${disabled ? "text-gray-300 cursor-not-allowed" : "cursor-pointer"}`}>
           {value + (suffix || "") || placeholder}
         </span>

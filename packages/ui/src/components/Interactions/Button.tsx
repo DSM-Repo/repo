@@ -1,4 +1,4 @@
-import { sizeTable, sizeType } from "../../../size";
+import { sizeTable, sizeType } from "../../size";
 import { Icon, iconType } from "../../";
 
 interface IProp {

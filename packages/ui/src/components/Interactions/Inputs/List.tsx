@@ -1,5 +1,5 @@
-import { sizeTable, sizeType } from "../../../../size";
-import { Box, IDefaultProp, Label } from "../Layout";
+import { sizeTable, sizeType } from "../../../size";
+import { Box, IDefaultProp, Label } from "./Layout";
 import { Icon } from "../../../";
 import { useState } from "react";
 
@@ -15,12 +15,12 @@ interface IProp extends IDefaultProp {
   values?: itemType[];
 }
 
-export const List = ({ placeholder, required, disabled, label, size, id, listSize, onDelete, onEnter, values }: IProp) => {
+export const List = ({ placeholder, error, required, disabled, label, size, id, listSize, onDelete, onEnter, values }: IProp) => {
   const [item, setItem] = useState("");
 
   return (
     <Label size={size} label={label} required={required}>
-      <Box size={size} disabled={disabled}>
+      <Box error={error} size={size} disabled={disabled}>
         <input
           className="w-full text-body5 disabled:text-gray-300 disabled:cursor-not-allowed"
           placeholder={placeholder + " (Enter 키로 추가)"}
@@ -28,13 +28,14 @@ export const List = ({ placeholder, required, disabled, label, size, id, listSiz
           onChange={(e) => setItem(e.target.value)}
           onKeyDown={(e) => {
             if (e.key === "Enter" && e.nativeEvent.isComposing === false) {
+              e.preventDefault();
               setItem("");
               onEnter(item, id);
             }
           }}
         />
       </Box>
-      <div className={`flex flex-wrap gap-3 ${sizeTable[listSize]}`}>
+      <div className={`${!values.length && "hidden"} flex flex-wrap gap-3 ${sizeTable[listSize]}`}>
         {values.map((i) => (
           <div className="flex items-center gap-2 w-fit h-fit px-3 py-2 border-[1px] rounded-xl bg-gray-700 border-gray-600" key={i.id}>
             <span className="text-[14px] font-light">{i.name}</span>

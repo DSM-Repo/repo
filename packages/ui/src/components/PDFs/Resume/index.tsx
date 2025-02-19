@@ -12,6 +12,7 @@ interface IProp {
 
 export const Resume = ({ data, setMax = () => {}, showPadding, scale, noOverflow }: IProp) => {
   const keep = useRef<Record<string, number>>({});
+
   if (data) {
     return (
       <>

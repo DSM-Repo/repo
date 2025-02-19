@@ -16,13 +16,13 @@ interface IProp {
 }
 
 export const ItemLayout = ({ title, type, isCheckAble, data }: IProp) => {
-  if (Array.isArray(data) ? data.length === 0 : data) {
+  if (Array.isArray(data) ? data.length !== 0 : data) {
     return (
-      <div className={isCheckAble ? "checkAble" : ""}>
+      <div className={`${isCheckAble ? "checkAble" : ""} w-full break-words`}>
         <span className={`mt-6 text-resumeSectionTitle block ${!!title ? "text-black" : "text-gray-50"}`}>{title || "이름 없는 섹션"}</span>
-        <div className={`checkAble ${type === "list" ? "" : "border-l-[3px] border-black mt-[10px]"}`}>
+        <div className={`checkAble w-full ${type === "list" ? "" : "border-l-[3px] border-black mt-[10px] "}`}>
           {type === "static" && (
-            <Markdown className="text-resumeItemContent w-full text-black px-[15px] prose full" remarkPlugins={[remarkGFM, remarkBreak]}>
+            <Markdown className="text-resumeItemContent w-full text-black px-[15px] " remarkPlugins={[remarkGFM, remarkBreak]}>
               {(data as string)?.replace(/  \n/gi, "\n &nbsp;")}
             </Markdown>
           )}

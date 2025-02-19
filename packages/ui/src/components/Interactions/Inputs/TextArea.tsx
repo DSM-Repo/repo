@@ -1,6 +1,5 @@
-import { Box, Label } from "../Layout";
-import { Ternary } from "@configs/util";
-import { sizeType } from "@root/size";
+import { Box, Label } from "./Layout";
+import { sizeType } from "../../../size";
 import { forwardRef } from "react";
 import { useFormContext } from "react-hook-form";
 
@@ -8,14 +7,15 @@ interface IProp extends React.DetailedHTMLProps<React.TextareaHTMLAttributes<HTM
   rows?: number;
   label?: string;
   size: sizeType;
+  error?: string;
 }
 
-export const TextArea = forwardRef<HTMLTextAreaElement, IProp>(({ label, size, rows = 5, ...rest }, ref) => {
+export const TextArea = forwardRef<HTMLTextAreaElement, IProp>(({ label, error, size, rows = 5, ...rest }, ref) => {
   const length = rest.name && rest.maxLength ? useFormContext().watch(rest.name).length : 0;
 
   return (
     <Label size={size} label={label} required={rest.required}>
-      <Box size={size} disabled={rest.disabled}>
+      <Box error={error} size={size} disabled={rest.disabled}>
         <textarea className="w-full text-body5 disabled:text-gray-300 disabled:cursor-not-allowed" rows={rows} ref={ref} {...rest} />
       </Box>
 

@@ -3,11 +3,12 @@ import { useEffect, useRef, useState } from "react";
 import { ItemLayout, PageLayout } from "../Layout";
 import { Overflow } from "./Overflow";
 import QRCode from "react-qr-code";
-import { Document } from "@configs/type";
+import { Document as DocuType } from "@configs/type";
+
 import { setType } from ".";
 
 interface IProp {
-  data: Document.Resume;
+  data: DocuType.Resume;
   setMax: setType;
   showPadding?: boolean;
   scale?: number;
@@ -49,10 +50,10 @@ export const Inform = ({ data, setMax, showPadding, noOverflow, scale }: IProp) 
             </a>
           )}
         </div>
-        {data.introduce.heading && data.introduce.introduce && (
+        {(data.introduce.heading || data.introduce.introduce) && (
           <div className="col-flex gap-3 mt-6 w-full">
-            <span className="text-resumeIntroduceHeading text-black">{data.introduce.heading}</span>
-            <span className="text-resumeIntroduce text-[#818181] inline w-full font-light break-words whitespace-pre-wrap">{data.introduce.introduce}</span>
+            {data.introduce.heading && <span className="text-resumeIntroduceHeading text-black">{data.introduce.heading}</span>}
+            {data.introduce.introduce && <span className="text-resumeIntroduce text-[#818181] inline w-full font-light break-words whitespace-pre-wrap">{data.introduce.introduce}</span>}
           </div>
         )}
         <ItemLayout title="기술 스택" type="rowList" data={data.writer.skill_set} />

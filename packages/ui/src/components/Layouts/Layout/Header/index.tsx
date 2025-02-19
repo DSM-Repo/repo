@@ -1,29 +1,36 @@
 import { default as Logo } from "./Logo.svg?react";
 import { Button, actionType } from "./Button";
-import { iconType } from "../../../";
+import { iconType } from "../../..";
 import { Api } from "@configs/type";
+import { HTMLAttributes } from "react";
 
-type buttonType = {
-  action: actionType;
-  icon: iconType;
-  rotate?: "up" | "down" | "right" | "left";
-  title: string;
-  disabled?: Api.DisableType;
-};
+export type buttonType =
+  | {
+      action: actionType;
+      icon: iconType;
+      rotate?: "up" | "down" | "right" | "left";
+      title: string;
+      disabled?: Api.DisableType;
+    }
+  | undefined;
 
-interface IProp {
+interface IProp extends HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
   buttons?: buttonType[];
 }
 
-export const Header = ({ buttons }: IProp) => {
+export const HeaderProvider = ({ children, buttons, ...rest }: IProp) => {
   return (
-    <div className="flex justify-center w-full h-fit py-3 z-50 ">
-      <div className="flex justify-between flex-shrink-0 w-[480px] h-[60px] p-[12px] items-center self-center bg-[#222222] border-[#333333] border-[1px] rounded-[100px]">
-        <div className="flex px-[16px] py-[8px] bg-[#333333] rounded-[100px]">
-          <Logo />
+    <div {...rest} className={`col-flex w-full h-full relative ${rest?.className}`}>
+      <header className="flex justify-center w-full h-fit py-3 z-40">
+        <div className="flex justify-between items-center shrink-0 w-[480px] h-[60px] p-3 border-[1px] rounded-full bg-[#222222] border-[#333333]">
+          <div className="px-4 py-2 bg-[#333333] rounded-full">
+            <Logo />
+          </div>
+          <div className="flex items-center gap-2">{buttons?.map((item) => item && <Button key={item.title} {...item} />)}</div>
         </div>
-        <div className="flex items-center gap-2 px-[12px]">{buttons?.map((item) => <Button key={item.title} {...item} />)}</div>
-      </div>
+      </header>
+      <div className="z-20 w-full h-full overflow-auto">{children}</div>
     </div>
   );
 };
