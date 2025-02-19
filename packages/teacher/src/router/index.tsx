@@ -1,12 +1,10 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { RedirectDiff, useAuth } from "@configs/util";
+import { RedirectDiff, auth } from "@configs/util";
 import { Layout } from "./Layout";
 import * as _ from "@/page";
 
 export const Router = () => {
-  const { getRole } = useAuth();
-
-  if (getRole() !== "teacher") {
+  if (auth.getRole() !== "teacher") {
     return <RedirectDiff />;
   }
 

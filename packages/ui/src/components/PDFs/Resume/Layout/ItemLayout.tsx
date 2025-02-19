@@ -1,4 +1,3 @@
-import { Ternary } from "@configs/util";
 import Markdown from "react-markdown";
 import remarkGFM from "remark-gfm";
 import remarkBreak from "remark-breaks";
@@ -17,46 +16,25 @@ interface IProp {
 }
 
 export const ItemLayout = ({ title, type, isCheckAble, data }: IProp) => {
-  return (
-    <Ternary data={Array.isArray(data) ? data.length !== 0 : !!data}>
-      <div className={isCheckAble ? "checkAble" : ""}>
-        <span
-          className={`mt-6 text-resumeSectionTitle block ${!!title ? "text-black" : "text-gray-50"}`}
-        >
-          {title || "이름 없는 섹션"}
-        </span>
-        <div
-          className={`checkAble ${type === "list" ? "" : "border-l-[3px] border-black mt-[10px]"}`}
-        >
+  if (Array.isArray(data) ? data.length !== 0 : data) {
+    return (
+      <div className={`${isCheckAble ? "checkAble" : ""} w-full break-words`}>
+        <span className={`mt-6 text-resumeSectionTitle block ${!!title ? "text-black" : "text-gray-50"}`}>{title || "이름 없는 섹션"}</span>
+        <div className={`checkAble w-full ${type === "list" ? "" : "border-l-[3px] border-black mt-[10px] "}`}>
           {type === "static" && (
-            <Markdown
-              className="text-resumeItemContent w-full text-black px-[15px] prose full"
-              remarkPlugins={[remarkGFM, remarkBreak]}
-            >
-              {(data as string).replace(/  \n/gi, "\n &nbsp;")}
+            <Markdown className="text-resumeItemContent w-full text-black px-[15px] " remarkPlugins={[remarkGFM, remarkBreak]}>
+              {(data as string)?.replace(/  \n/gi, "\n &nbsp;")}
             </Markdown>
           )}
           {type === "list" && (
             <div className={`col-flex ${isCheckAble ? "checkAble" : ""}`}>
               {(data as dataType[]).map((i, j) => (
-                <div
-                  className="col-flex w-full pl-4 pr-[5px] mt-[10px] py-2 h-fit flex justify-between border-l-[3px] border-black"
-                  key={j}
-                >
+                <div className="col-flex w-full pl-4 pr-[5px] mt-[10px] py-2 h-fit flex justify-between border-l-[3px] border-black" key={j}>
                   <div className="flex items-center justify-between w-full">
-                    <span
-                      className={`text-resumeItemTitle block ${!!i.title ? "text-black" : "text-gray-50"} ${i.subTitle && "w-[398px]"}`}
-                    >
-                      {i.title || "이름을 입력하세요"}
-                    </span>
-                    <Ternary data={i.subTitle}>
-                      <span className="text-resumeItemContent text-gray-100">
-                        {i.subTitle}
-                      </span>
-                    </Ternary>
+                    <span className={`text-resumeItemTitle block ${!!i.title ? "text-black" : "text-gray-50"} ${i.subTitle && "w-[398px]"}`}>{i.title || "이름을 입력하세요"}</span>
+                    {i.subTitle && <span className="text-resumeItemContent text-gray-100">{i.subTitle}</span>}
                   </div>
-
-                  <Ternary data={i.content}>
+                  {i.content && (
                     <Markdown
                       className="text-gray-100 text-resumeItemContent prose w-full full"
                       remarkPlugins={[remarkGFM, remarkBreak]}
@@ -68,7 +46,7 @@ export const ItemLayout = ({ title, type, isCheckAble, data }: IProp) => {
                     >
                       {i.content?.replace(/  \n/gi, "\n &nbsp;")}
                     </Markdown>
-                  </Ternary>
+                  )}
                 </div>
               ))}
             </div>
@@ -76,7 +54,7 @@ export const ItemLayout = ({ title, type, isCheckAble, data }: IProp) => {
           {type === "rowList" && (
             <div className="flex gap-1 px-[5px] flex-wrap w-full">
               {(data as string[]).map((i) => (
-                <span className="text-body7 text-resumeItemContent px-2 py-[2px] text-black">
+                <span key={i} className="text-body7 text-resumeItemContent px-2 py-[2px] text-black">
                   {i}
                 </span>
               ))}
@@ -84,6 +62,6 @@ export const ItemLayout = ({ title, type, isCheckAble, data }: IProp) => {
           )}
         </div>
       </div>
-    </Ternary>
-  );
+    );
+  }
 };

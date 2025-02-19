@@ -1,14 +1,12 @@
 import { toast } from "react-toastify";
 import { useEffect } from "react";
+import { Api } from "@configs/type";
 
 type propType = {
   key: string;
   shift?: boolean;
   ctrl?: boolean;
-  disabled?: {
-    state: boolean;
-    reason: string;
-  };
+  disabled?: Api.DisableType;
   action: (e: KeyboardEvent) => void;
 }[];
 

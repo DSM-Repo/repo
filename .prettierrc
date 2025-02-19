@@ -2,5 +2,6 @@
   "endOfLine": "lf",
   "tabWidth": 2,
   "trailingComma": "none",
-  "semi": true
+  "semi": true,
+  "printWidth": 200
 }

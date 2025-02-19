@@ -13,10 +13,7 @@ export const Layout = () => {
   return (
     <div className="w-full h-screen bg-black flex">
       <Sidebar
-        profile={{
-          major: "Teacher",
-          name: data?.name || ""
-        }}
+        profile={{ major: "Teacher", name: data?.name || "" }}
         items={[
           {
             name: "메인",

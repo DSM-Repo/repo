@@ -1,6 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { Icon, iconType } from "../../Others";
-import { Ternary } from "@configs/util";
 
 export interface ISectionProp {
   name: string;
@@ -10,20 +9,11 @@ export interface ISectionProp {
   subData?: string | number;
 }
 
-export const Section = ({
-  name,
-  urls,
-  icon,
-  checked,
-  subData
-}: ISectionProp) => {
+export const Section = ({ name, urls, icon, checked, subData }: ISectionProp) => {
   const locs = useLocation()?.pathname;
   const navigate = useNavigate();
 
-  const isSelected = urls.includes("/")
-    ? urls?.map((i) => (i !== "/" ? locs.includes(i) : false)).find((i) => i) ||
-      locs === "/"
-    : urls?.map((i) => locs.includes(i)).find((i) => i) || false;
+  const isSelected = urls.includes("/") ? urls?.map((i) => (i !== "/" ? locs.includes(i) : false)).find((i) => i) || locs === "/" : urls?.map((i) => locs.includes(i)).find((i) => i) || false;
 
   return (
     <div
@@ -31,24 +21,14 @@ export const Section = ({
       onClick={() => `/${navigate(urls[0])}`}
     >
       <div className="flex items-center gap-3">
-        <Icon
-          name={icon}
-          size={20}
-          color={isSelected ? "#ffffff" : "#888888"}
-        />
+        <Icon name={icon} size={20} color={isSelected ? "#ffffff" : "#888888"} />
         <span className="text-[14px] font-normal">{name}</span>
       </div>
-      <Ternary data={!!checked || !!subData}>
+      {(checked || subData) && (
         <div className="flex flex-center w-[24px] h-[24px] p-1 rounded-[100px] bg-green-800">
-          {!!subData ? (
-            <span className="text-green-400 font-bold text-[14px] leading-none">
-              {subData}
-            </span>
-          ) : (
-            <Icon name="Check" color="#37E517" size={16} />
-          )}
+          {!!subData ? <span className="text-green-400 font-bold text-[14px] leading-none">{subData}</span> : <Icon name="Check" color="#37E517" size={16} />}
         </div>
-      </Ternary>
+      )}
     </div>
   );
 };

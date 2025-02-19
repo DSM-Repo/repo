@@ -9,5 +9,6 @@ export interface IDefaultProp {
   disabled?: boolean;
   label?: string;
   size: sizeType;
+  error?: string;
   id?: string;
 }
