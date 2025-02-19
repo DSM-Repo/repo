@@ -1,121 +1,127 @@
 {
-  "hash": "5ee088b2",
+  "hash": "99031524",
   "configHash": "e7973673",
-  "lockfileHash": "a79de468",
-  "browserHash": "c9e11b0f",
+  "lockfileHash": "912dde1d",
+  "browserHash": "18cff8eb",
   "optimized": {
     "react": {
       "src": "../../../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/index.js",
       "file": "react.js",
-      "fileHash": "e0f352ab",
+      "fileHash": "4e78c4c5",
       "needsInterop": true
     },
     "react/jsx-dev-runtime": {
       "src": "../../../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/jsx-dev-runtime.js",
       "file": "react_jsx-dev-runtime.js",
-      "fileHash": "8590f60e",
+      "fileHash": "881c1c98",
       "needsInterop": true
     },
     "react/jsx-runtime": {
       "src": "../../../../.yarn/cache/react-npm-18.3.1-af38f3c1ae-283e8c5efc.zip/node_modules/react/jsx-runtime.js",
       "file": "react_jsx-runtime.js",
-      "fileHash": "555583ea",
+      "fileHash": "db094622",
       "needsInterop": true
     },
     "@tanstack/react-query": {
       "src": "../../../../.yarn/__virtual__/@tanstack-react-query-virtual-901a626004/0/cache/@tanstack-react-query-npm-5.56.2-fc27f4cc61-6e883b4ca1.zip/node_modules/@tanstack/react-query/build/modern/index.js",
       "file": "@tanstack_react-query.js",
-      "fileHash": "cbe8cb1d",
+      "fileHash": "07963c78",
       "needsInterop": false
     },
     "axios": {
       "src": "../../../../.yarn/cache/axios-npm-1.7.7-cfbedc233d-4499efc89e.zip/node_modules/axios/index.js",
       "file": "axios.js",
-      "fileHash": "f4b05b16",
+      "fileHash": "fa221f10",
       "needsInterop": false
     },
     "dayjs": {
       "src": "../../../../.yarn/cache/dayjs-npm-1.11.13-d478bb9479-a3caf6ac83.zip/node_modules/dayjs/dayjs.min.js",
       "file": "dayjs.js",
-      "fileHash": "f7eda85b",
+      "fileHash": "5d4a02fa",
       "needsInterop": true
     },
     "file-saver": {
       "src": "../../../../.yarn/cache/file-saver-npm-2.0.5-2c3bc40d53-0a361f6837.zip/node_modules/file-saver/dist/FileSaver.min.js",
       "file": "file-saver.js",
-      "fileHash": "003026b9",
+      "fileHash": "435e39fd",
       "needsInterop": true
     },
     "html2canvas": {
       "src": "../../../../.yarn/cache/html2canvas-npm-1.4.1-fa13983145-6de86f7576.zip/node_modules/html2canvas/dist/html2canvas.esm.js",
       "file": "html2canvas.js",
-      "fileHash": "6ac98967",
+      "fileHash": "bed87139",
       "needsInterop": false
     },
-    "react-cookie": {
-      "src": "../../../../.yarn/__virtual__/react-cookie-virtual-3efc9f970e/0/cache/react-cookie-npm-7.2.0-ca92e0b084-434e8d8a48.zip/node_modules/react-cookie/esm/index.mjs",
-      "file": "react-cookie.js",
-      "fileHash": "fdaa9d21",
+    "js-cookie": {
+      "src": "../../../../.yarn/cache/js-cookie-npm-3.0.5-8fc8fcc9b4-04a0e56040.zip/node_modules/js-cookie/dist/js.cookie.mjs",
+      "file": "js-cookie.js",
+      "fileHash": "098a61d5",
       "needsInterop": false
     },
     "react-dom/client": {
       "src": "../../../../.yarn/__virtual__/react-dom-virtual-dd29182353/0/cache/react-dom-npm-18.3.1-a805663f38-a752496c19.zip/node_modules/react-dom/client.js",
       "file": "react-dom_client.js",
-      "fileHash": "92eecd10",
+      "fileHash": "5a16a99c",
       "needsInterop": true
     },
     "react-hook-form": {
       "src": "../../../../.yarn/__virtual__/react-hook-form-virtual-fd3ae41b14/0/cache/react-hook-form-npm-7.54.2-9e7394f4c4-6eebead290.zip/node_modules/react-hook-form/dist/index.esm.mjs",
       "file": "react-hook-form.js",
-      "fileHash": "5662a5f2",
+      "fileHash": "bc6be8c9",
       "needsInterop": false
     },
     "react-markdown": {
       "src": "../../../../.yarn/__virtual__/react-markdown-virtual-8dd1d29b4c/0/cache/react-markdown-npm-9.0.1-02c77a4123-3a3895dbd5.zip/node_modules/react-markdown/index.js",
       "file": "react-markdown.js",
-      "fileHash": "f654e13b",
+      "fileHash": "c97e86ad",
       "needsInterop": false
     },
     "react-pdf": {
       "src": "../../../../.yarn/__virtual__/react-pdf-virtual-692e3bac0d/0/cache/react-pdf-npm-9.1.1-cd3585bdad-441faf64ef.zip/node_modules/react-pdf/dist/esm/index.js",
       "file": "react-pdf.js",
-      "fileHash": "33ed6ba5",
+      "fileHash": "aef72dd5",
       "needsInterop": false
     },
     "react-qr-code": {
       "src": "../../../../.yarn/__virtual__/react-qr-code-virtual-252e00f18c/0/cache/react-qr-code-npm-2.0.15-669b395b3b-6a9d739186.zip/node_modules/react-qr-code/lib/index.js",
       "file": "react-qr-code.js",
-      "fileHash": "40eb0e88",
+      "fileHash": "50f5f5eb",
       "needsInterop": true
     },
     "react-router-dom": {
       "src": "../../../../.yarn/__virtual__/react-router-dom-virtual-bd2009d837/0/cache/react-router-dom-npm-6.26.2-f8b4afffaf-7515128a98.zip/node_modules/react-router-dom/dist/index.js",
       "file": "react-router-dom.js",
-      "fileHash": "f70daafc",
+      "fileHash": "e09738d2",
       "needsInterop": false
     },
     "react-toastify": {
       "src": "../../../../.yarn/__virtual__/react-toastify-virtual-545ad562bb/0/cache/react-toastify-npm-10.0.5-86b63c99fc-66c68ec3d6.zip/node_modules/react-toastify/dist/react-toastify.esm.mjs",
       "file": "react-toastify.js",
-      "fileHash": "ad651578",
+      "fileHash": "34e96f15",
+      "needsInterop": false
+    },
+    "react-window": {
+      "src": "../../../../.yarn/__virtual__/react-window-virtual-eefb431a91/0/cache/react-window-npm-1.8.11-a1c126e8ef-5ae8da1bc5.zip/node_modules/react-window/dist/index.esm.js",
+      "file": "react-window.js",
+      "fileHash": "32583371",
       "needsInterop": false
     },
     "remark-breaks": {
       "src": "../../../../.yarn/cache/remark-breaks-npm-4.0.0-962f376971-d7b319a799.zip/node_modules/remark-breaks/index.js",
       "file": "remark-breaks.js",
-      "fileHash": "9eb11531",
+      "fileHash": "3af77755",
       "needsInterop": false
     },
     "remark-gfm": {
       "src": "../../../../.yarn/cache/remark-gfm-npm-4.0.0-8bb699e315-db0aa85ab7.zip/node_modules/remark-gfm/index.js",
       "file": "remark-gfm.js",
-      "fileHash": "2176c1bd",
+      "fileHash": "4f840777",
       "needsInterop": false
     },
     "zustand": {
       "src": "../../../../.yarn/__virtual__/zustand-virtual-c13320264d/0/cache/zustand-npm-4.5.5-678823f519-d04469d76b.zip/node_modules/zustand/esm/index.mjs",
       "file": "zustand.js",
-      "fileHash": "c6094605",
+      "fileHash": "090f7c39",
       "needsInterop": false
     }
   },

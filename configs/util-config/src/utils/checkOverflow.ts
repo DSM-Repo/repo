@@ -31,6 +31,5 @@ export const checkOverflow = (item: HTMLElement) => {
       Array.from(item.childNodes).forEach((i) => queue.push(i as HTMLElement));
     }
   }
-  console.log(pages, "cof");
   return pages;
 };
