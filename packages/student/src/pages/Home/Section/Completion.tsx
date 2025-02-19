@@ -1,9 +1,7 @@
-import { useFormContext } from "react-hook-form";
 import { Chart, ArcElement } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
-import { Document } from "@configs/type";
 import { Box, Title } from "ui";
-import { resumeCompletion } from "@/api";
+import { resumeCompletion, resumeDetail } from "@/api";
 
 interface IProp {
   title: string;
@@ -21,9 +19,7 @@ const Item = ({ title, complete }: IProp) => (
 
 export const Completion = () => {
   const { data: completeData } = resumeCompletion();
-  const { watch } = useFormContext<Document.Resume>();
-
-  const status = watch("status");
+  const { data: resumeData } = resumeDetail();
 
   let data = [
     { label: "", value: completeData?.percent_complete || 0, color: "#37E517", cutout: "50%" },
@@ -59,10 +55,10 @@ export const Completion = () => {
         <div className="w-full h-fit flex items-center justify-center px-2">
           <div className="w-[240px] h-[240px] relative">
             <div className="w-full h-full absolute flex flex-center">
-              {status === "ONGOING" ? (
+              {resumeData?.status === "ONGOING" ? (
                 <span className="text-green-400 text-[48px] font-bold after:content-['%'] after:text-32px after:font-medium">{completeData?.percent_complete}</span>
               ) : (
-                <span className="text-green-400 text-[48px] font-bold">{status === "SUBMITTED" ? "제출됨" : "공개됨"}</span>
+                <span className="text-green-400 text-[48px] font-bold">{resumeData?.status === "SUBMITTED" ? "제출됨" : "공개됨"}</span>
               )}
             </div>
             <Doughnut data={finalData} options={{ cutout: 90, maintainAspectRatio: false, aspectRatio: 1, animation: { duration: 1000 } }} />

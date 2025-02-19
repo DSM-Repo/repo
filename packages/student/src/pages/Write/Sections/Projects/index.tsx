@@ -1,6 +1,7 @@
 import { useFieldArray, useFormContext } from "react-hook-form";
-import { Placeholder, Document } from "@configs/type";
+import { Placeholder } from "@configs/type";
 import { Layout } from "../Layout";
+import { Document } from "@configs/type";
 import { Item } from "./Item";
 
 export const Projects = () => {

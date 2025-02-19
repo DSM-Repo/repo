@@ -1,4 +1,4 @@
-import { useFieldArray, useFormContext, Controller, UseFormReturn, UseFieldArrayReturn } from "react-hook-form";
+import { Controller, UseFieldArrayReturn, useFormContext } from "react-hook-form";
 import { achieveType } from "@configs/type/src/Document";
 import { Icon, Date, Dropdown, Text } from "ui";
 import { Box } from "../Box";
@@ -21,9 +21,10 @@ interface IProp {
 
 export const Item = ({ index, fieldArray }: IProp) => {
   const name = `achievement_list.${index}` as const;
-  const { control, register, watch, setValue, getValues } = useFormContext();
+  const { control, register, watch, setValue, getValues, formState } = useFormContext<Document.Resume>();
   const { remove, swap: swap } = fieldArray;
-  // const display = typeTable[watch(`${name}.type`) as achieveType][0];
+  const { errors } = formState;
+  const display = typeTable[watch(`${name}.type`) as achieveType][0];
 
   return (
     <Box>
@@ -51,13 +52,29 @@ export const Item = ({ index, fieldArray }: IProp) => {
         )}
       />
 
-      {/* <Controller
+      <Controller
         name={`${name}.date`}
         control={control}
-        render={({ field }) => <Date label={`${display}일`} placeholder={`${display}일을 입력하세요`} size="large" onDelete={() => setValue(`${name}.date`, undefined)} {...field} />}
+        render={({ field }) => (
+          <Date
+            error={errors?.achievement_list?.[index]?.date?.message}
+            label={`${display}일`}
+            placeholder={`${display}일을 입력하세요`}
+            size="large"
+            onDelete={() => setValue(`${name}.date`, undefined)}
+            {...field}
+          />
+        )}
       />
 
-      <Text label={`${display} 기관`} placeholder={`${display} 기관을 입력하세요`} size="large" {...register(`${name}.institution`)} /> */}
+      <Text
+        label={`${display} 기관`}
+        error={errors?.achievement_list?.[index]?.institution?.message}
+        placeholder={`${display} 기관을 입력하세요`}
+        size="large"
+        {...register(`${name}.institution`)}
+        required
+      />
     </Box>
   );
 };

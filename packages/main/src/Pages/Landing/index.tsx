@@ -1,8 +1,8 @@
+import { createContext, useState } from "react";
 import { SlideSection } from "./SlideSection";
 import { Sections } from "./Sections";
 import { LogoFull } from "@/assets";
 import { Button } from "./Button";
-import { createContext, useState } from "react";
 import { Modal } from "./Modal";
 
 export const ModalContext = createContext({ toggle: () => {}, state: false });

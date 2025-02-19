@@ -1,4 +1,4 @@
-import { useFieldArray, useFormContext, Controller, UseFieldArrayReturn } from "react-hook-form";
+import { useFieldArray, Controller, UseFieldArrayReturn, useFormContext } from "react-hook-form";
 import { Button, Date, Dropdown, Text, Label, TextArea, List, Icon, File } from "ui";
 
 import { findKeyWithValue } from "@configs/util";
@@ -24,9 +24,15 @@ const disableTable: Record<string, boolean> = {
 
 export const Item = ({ fieldMethod: { remove, swap }, index }: IProp) => {
   const name = `project_list.${index}` as const;
-  const { control, register, watch, setValue, getValues } = useFormContext<Document.Resume>();
+  const {
+    control,
+    register,
+    watch,
+    setValue,
+    getValues,
+    formState: { errors }
+  } = useFormContext<Document.Resume>();
   const { fields: fieldsSections, append: appendSection, remove: removeSection, swap: swapSection } = useFieldArray({ control, name: `${name}.sections` });
-
   const { mutate: fileUploadMutate } = fileAdd();
   const { mutate: fileReomoveMutate } = fileRemove();
 
@@ -56,12 +62,20 @@ export const Item = ({ fieldMethod: { remove, swap }, index }: IProp) => {
           <Icon name="Trash" className="cursor-pointer" onClick={() => remove(index)} />
         </div>
       </div>
-      <Label label="진행 기간" size="full">
+      <Label label="진행 기간" size="full" required>
         <div className="w-full h-fit flex justify-between items-center">
           <Controller
             name={`${name}.date.start_date`}
             control={control}
-            render={({ field }) => <Date placeholder="시작일을 선택하세요" size="medium" onDelete={() => setValue(`${name}.date.start_date`, undefined)} {...field} />}
+            render={({ field }) => (
+              <Date
+                error={errors.project_list?.[index]?.date?.start_date?.message}
+                placeholder="시작일을 선택하세요"
+                size="medium"
+                onDelete={() => setValue(`${name}.date.start_date`, undefined)}
+                {...field}
+              />
+            )}
           />
           <span>~</span>
           <Controller
@@ -106,14 +120,8 @@ export const Item = ({ fieldMethod: { remove, swap }, index }: IProp) => {
           />
         )}
       />
-      
-      <Text
-        placeholder="관련된 URL을 입력하세요"
-        label="URL"
-        title="'https://example.com' 과 같은 형식이어야 합니다."
-        size="large"
-        {...register(`${name}.url`, { pattern: /https?:\/\/[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}/ })}
-      />
+
+      <Text placeholder="관련된 URL을 입력하세요" label="URL" size="large" {...register(`${name}.url`)} />
       <Label label="섹션" size="full">
         <div className="w-full col-flex gap-8">
           <Button size="full" onClick={() => appendSection({ description: "", title: "", element_id: crypto.randomUUID() })} icon="Add" direction="center">
@@ -134,7 +142,13 @@ export const Item = ({ fieldMethod: { remove, swap }, index }: IProp) => {
                     <Icon name="Trash" size={20} disabled={disableTable[i.element_id]} onClick={() => removeSection(j)} className="cursor-pointer" />
                   </div>
                 </div>
-                <TextArea placeholder="내용을 입력하세요" size="large" rows={7} {...register(`${name}.sections.${j}.description`)} />
+                <TextArea
+                  error={errors.project_list?.[index]?.sections?.[j]?.description?.message}
+                  placeholder="내용을 입력하세요"
+                  size="large"
+                  rows={7}
+                  {...register(`${name}.sections.${j}.description`)}
+                />
               </div>
             </div>
           ))}

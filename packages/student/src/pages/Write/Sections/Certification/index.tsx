@@ -1,10 +1,11 @@
 import { useFieldArray, useFormContext } from "react-hook-form";
-import { Placeholder, Document } from "@configs/type";
+import { Placeholder } from "@configs/type";
 import { Layout } from "../Layout";
 import { Item } from "./Item";
+import { Document } from "@configs/type";
 
 export const Certification = () => {
-  const { control, ...formRest } = useFormContext<Document.Resume>();
+  const { control } = useFormContext<Document.Resume>();
   const fieldArray = useFieldArray({ control, name: "achievement_list" });
   const { fields, append } = fieldArray;
 

@@ -1,7 +1,7 @@
 import { useOutsideClickRef } from "@configs/util";
 import { useRef, useState } from "react";
 import { Box, Icon } from "ui";
-import { noticeCheck } from "@/api";
+import { noticeCheck, noticeList } from "@/api";
 
 interface IProp {
   checked: boolean;
@@ -12,9 +12,10 @@ interface IProp {
   content: string;
 }
 
-export const Item = ({ checked, title, writer_name, created_at, content }: IProp) => {
+export const Item = ({ checked, title, writer_name, created_at, content, id }: IProp) => {
   const height = useRef<number>(0);
   const { mutate: check } = noticeCheck();
+  const { refetch } = noticeList();
   const [open, setOpen] = useState(false);
   const outSideRef = useOutsideClickRef(() => setOpen(false));
 
@@ -26,7 +27,7 @@ export const Item = ({ checked, title, writer_name, created_at, content }: IProp
       className="overflow-hidden gap-4 cursor-pointer transition-all duration-300"
       onClick={() => {
         setOpen((prev) => !prev);
-        // if (checked === false) check(`/${id}`, { onSuccess: () => refetch() });
+        if (checked === false) check(`/${id}`, { onSuccess: () => refetch() });
       }}
       ref={outSideRef}
     >

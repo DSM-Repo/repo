@@ -5,7 +5,7 @@ export const Feedback = () => {
   const { data: feedbackData } = feedbackList();
 
   return (
-    <div className={`w-[580px] transition-all duration-200 flex h-full flex-col bg-gray-800 border-l-[1px] border-gray-700 overflow-y-auto`}>
+    <div className={`w-[480px] transition-all duration-200 flex h-full flex-col bg-gray-800 border-l-[1px] border-gray-700 overflow-y-auto`}>
       <div className="px-4 h-14 border-b-[1px] border-gray-700 flex items-center flex-shrink-0">
         <span className="text-[16px] font-semibold leading-none">피드백 목록</span>
       </div>

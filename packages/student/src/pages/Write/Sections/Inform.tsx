@@ -1,8 +1,9 @@
-import { useFormContext, Controller } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 import { Dropdown, Text, Label, List } from "ui";
 import { Layout } from "./Layout";
 import { majorList } from "@/api";
 import { Box } from "./Box";
+import { Document } from "@configs/type";
 
 const studId = {
   grade: Array.from({ length: 3 }, (_, i) => i + 1),
@@ -11,13 +12,19 @@ const studId = {
 };
 
 export const Inform = () => {
-  const { register, getValues, control } = useFormContext();
+  const {
+    register,
+    getValues,
+    control,
+    watch,
+    formState: { errors }
+  } = useFormContext<Document.Resume>();
   const { data: majors } = majorList();
 
   return (
     <Layout title="내 정보" subTitle="기본적인 정보에 대해 작성해 보세요.">
       <Box>
-        <Text label="이름" placeholder="이름을 입력하세요" size="large" value={getValues("writer.name")} readOnly required />
+        <Text label="이름" placeholder="이름을 입력하세요" size="large" value={watch("writer.name")} readOnly required />
         <Label label="학번" size="full" required>
           <div className="w-full flex items-center justify-between">
             <Dropdown placeholder="학년" suffix="학년" size="small" selections={studId.grade} value={getValues("writer.class_info.grade")} disabled />
@@ -29,7 +36,9 @@ export const Inform = () => {
           name="writer.major"
           control={control}
           rules={{ required: true }}
-          render={({ field }) => <Dropdown label="전공" placeholder="전공을 선택하세요" selections={majors?.data?.map((i) => i.id) || []} size="large" required {...field} />}
+          render={({ field }) => (
+            <Dropdown error={errors?.writer?.major?.message} label="전공" placeholder="전공을 선택하세요" selections={majors?.data?.map((i) => i.id) || []} size="large" required {...field} />
+          )}
         />
         <Controller
           name="writer.skill_set"
@@ -40,6 +49,7 @@ export const Inform = () => {
               placeholder="기술 스택을 입력하세요"
               size="large"
               listSize="large"
+              error={errors?.writer?.skill_set?.message}
               values={value.map((i: string) => ({ id: i, name: i }))}
               onEnter={(item) => onChange([...value, item])}
               onDelete={(i) => onChange(value.filter((j: string) => j !== i))}
@@ -47,20 +57,8 @@ export const Inform = () => {
             />
           )}
         />
-        <Text
-          label="이메일"
-          placeholder="이메일을 입력하세요"
-          size="large"
-          title="'example@example.com' 과 같은 형식이어야 합니다."
-          {...register("writer.email", { pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ })}
-        />
-        <Text
-          label="추가 URL"
-          placeholder="포트폴리오나, 깃허브의 URL 등을 입력하세요"
-          title="'https://example.com' 과 같은 형식이어야 합니다."
-          size="large"
-          {...register("writer.url", { pattern: /https?:\/\/[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}/ })}
-        />
+        <Text label="이메일" error={errors?.writer?.email?.message} placeholder="이메일을 입력하세요" size="large" {...register("writer.email")} />
+        <Text label="추가 URL" error={errors?.writer?.url?.message} placeholder="포트폴리오나, 깃허브의 URL 등을 입력하세요" size="large" {...register("writer.url")} />
       </Box>
     </Layout>
   );

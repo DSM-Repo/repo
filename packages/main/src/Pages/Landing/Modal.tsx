@@ -1,4 +1,4 @@
-import { useMyMutation, useAuth } from "@configs/util";
+import { useMyMutation, auth } from "@configs/util";
 import { Box, Button, Icon, Text } from "ui";
 import { useContext, useState } from "react";
 import { ModalContext } from ".";
@@ -15,32 +15,29 @@ interface ILogin_ {
   refresh_expired_at: number;
 }
 
-export const Modal = () => {
-  const { state, toggle } = useContext(ModalContext);
+const { VITE_APP_URL_STUDENT: URL_STUDENT, VITE_APP_URL_TEACHER: URL_TEACHER } = import.meta.env;
 
+export const Modal = () => {
   const { mutate: teacher } = useMyMutation<_ILogin, ILogin_>("post", "auth", "/teacher");
   const { mutate: student } = useMyMutation<_ILogin, ILogin_>("post", "auth", "/student");
 
-  const { setToken } = useAuth();
+  const [data, setData] = useState({ account_id: "", password: "" });
+  const { state, toggle } = useContext(ModalContext);
+  const { setToken } = auth;
 
-  const [data, setData] = useState({
-    account_id: "",
-    password: ""
-  });
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => setData((prev) => ({ ...prev, [e.target.id]: e.target.value }));
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setData((prev) => ({ ...prev, [e.target.id]: e.target.value }));
-  };
+  const handleLogin = (role: "teacher" | "student") => {
+    const isStudent = role === "student";
 
-  const handleLogin = (type: "teacher" | "student") => {
     const options = {
       onSuccess: (res: ILogin_) => {
-        setToken({ ...res, role: type });
-        window.location.replace(`${import.meta.env.VITE_APP_URL_STUDENT}`);
+        setToken({ ...res, role });
+        window.location.replace(`${isStudent ? URL_STUDENT : URL_TEACHER}`);
       }
     };
 
-    if (type === "student") student(data, options);
+    if (isStudent) student(data, options);
     else teacher(data, options);
   };
 
