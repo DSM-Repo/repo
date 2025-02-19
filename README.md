@@ -19,7 +19,7 @@
 ```
 (VSC를 사용할 경우, 'zipFS' 확장 설치)
 $ yarn install
-$ yarn dlx @yarnpkq/sdks vscode
+$ yarn dlx @yarnpkg/sdks vscode
 (IDE의 안내에 따라 typescript 버전을 워크스페이스 버전으로 변경)
 ```
 
