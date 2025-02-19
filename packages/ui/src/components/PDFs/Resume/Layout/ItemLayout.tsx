@@ -22,7 +22,7 @@ export const ItemLayout = ({ title, type, isCheckAble, data }: IProp) => {
         <span className={`mt-6 text-resumeSectionTitle block ${!!title ? "text-black" : "text-gray-50"}`}>{title || "이름 없는 섹션"}</span>
         <div className={`checkAble w-full ${type === "list" ? "" : "border-l-[3px] border-black mt-[10px] "}`}>
           {type === "static" && (
-            <Markdown className="text-resumeItemContent w-full text-black px-[15px] " remarkPlugins={[remarkGFM, remarkBreak]}>
+            <Markdown className="text-resumeItemContent w-full text-black px-[15px] prose" remarkPlugins={[remarkGFM, remarkBreak]}>
               {(data as string)?.replace(/  \n/gi, "\n &nbsp;")}
             </Markdown>
           )}
