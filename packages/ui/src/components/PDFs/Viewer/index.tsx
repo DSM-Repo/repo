@@ -45,7 +45,7 @@ export const Viewer = React.memo(({ url, indexList, buttons = [], sidebars = [],
   const [max, setMax] = useState(1);
   const navigate = useNavigate();
 
-  const finded = indexList?.find((i) => i.page_number === page + 1 || i.page_number === page);
+  const finded = indexList?.filter((i) => i.page_number === page - 1 || i.page_number === page);
 
   const handleMovePage = (next: number) => {
     if (next < 0 || next > max + 1) return;
@@ -76,11 +76,11 @@ export const Viewer = React.memo(({ url, indexList, buttons = [], sidebars = [],
     return (
       <Items
         selections={index[type - 1]?.map((i) => `${i.student_number} ${i.name}`)}
-        selected={`${finded?.student_number} ${finded?.name}`}
+        selected={finded.map(({ student_number, name }) => `${student_number} ${name}`)}
         onClick={(value) => {
           const findClicked = indexList.find((i) => i.student_number === Number(value.slice(0, 4)));
           if (findClicked) {
-            setPage(!!!(findClicked.page_number % 2) ? findClicked.page_number - 1 : findClicked.page_number);
+            setPage(findClicked.page_number % 2 ? findClicked.page_number : findClicked.page_number + 1);
           }
         }}
       />
@@ -119,10 +119,10 @@ export const Viewer = React.memo(({ url, indexList, buttons = [], sidebars = [],
   }, [indexList]);
 
   const handleMoveStudent = (direction: "Left" | "Right") => {
-    const persons = indexList.filter((i) => (direction === "Left" ? i.page_number < page - 1 : i.page_number > page + 1));
+    const persons = indexList.filter((i) => (direction === "Left" ? i.page_number < page - 1 : i.page_number >= page + 1));
     const item = persons[direction === "Left" ? persons.length - 1 : 0].page_number;
     if (persons.length !== 0 && item) {
-      handleMovePage(!!!(item % 2) ? item - 1 : item);
+      handleMovePage(item % 2 ? item : item + 1);
     }
   };
 
@@ -174,7 +174,7 @@ export const Viewer = React.memo(({ url, indexList, buttons = [], sidebars = [],
                       {selected_chunks.map((i) => (
                         <div key={i} className="flex flex-col relative">
                           <span className="scale-[3] absolute z-20 bottom-6 text-black text-[12px] self-center">{`- ${i} -`}</span>
-                          <Page scale={3} renderTextLayer={false} key={i} pageIndex={i} renderMode="canvas" className={i === 0 ? "invisible" : ""} />
+                          <Page scale={3} width={594.8} renderTextLayer={false} key={i} pageIndex={i} renderMode="canvas" className={`${i === 0 ? "invisible" : ""} `} />
                         </div>
                       ))}
                       {page >= max && <Page pageIndex={0} scale={3} className="invisible" />}

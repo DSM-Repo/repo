@@ -2,7 +2,6 @@ import { Percentage } from "./Percentage";
 import { auth } from "@configs/util";
 import { Profile } from "./Profile";
 import { ISectionProp, Section } from "./Section";
-import { Ternary } from "@configs/util";
 
 interface IProp {
   profile: {

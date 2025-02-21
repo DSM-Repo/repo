@@ -39,7 +39,7 @@ export const Layout = () => {
           }
         ]}
       />
-      <div className="w-full h-full relative">
+      <div className="w-full h-full relative overflow-hidden">
         <div className="absolute w-full h-[200px] bg-gradient-to-b from-[#222222FF] to-[#22222200] z-0" />
         <Outlet />
       </div>

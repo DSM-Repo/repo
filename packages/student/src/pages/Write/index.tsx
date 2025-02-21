@@ -134,14 +134,14 @@ export const Write = () => {
               disabled: { state: status === "RELEASED", reason: "공개 상태에서는 취소할 수 없습니다." }
             },
             { icon: "Save", title: "저장하기", action: { type: "SUBMIT" }, disabled: { state: status !== "ONGOING", reason: "제출 / 공개 상태에선 저장할 수 없습니다." } },
-            { icon: "Edit", title: "피드백", action: { type: "OPEN_MODAL", modalElement: <Feedback name={sections[id].name} type={sections[id].type} /> } },
+            { icon: "Edit", title: "피드백", action: { type: "OPEN_MODAL", modalElement: <Feedback name={sections[id]?.name} type={sections[id]?.type} /> } },
             { icon: "BarRight", title: "미리보기", action: { type: "OPEN_SIDEBAR", sideBarName: "미리보기" } }
           ]}
         >
           <span className={`${status === "ONGOING" && "hidden"} flex flex-center size-full absolute top-0 z-30 bg-[#000000DD]`}>제출 상태입니다. 제출 취소 후 수정하세요</span>
           <FormProvider {...method}>
             <div className="overflow-auto min-h-full">
-              <div className="flex justify-center w-full  max-w-[620px] py-[24px]">{sections[id].item}</div>
+              <div className="flex justify-center w-full  max-w-[620px] py-[24px]">{sections[id]?.item}</div>
             </div>
           </FormProvider>
         </HeaderProvider>
