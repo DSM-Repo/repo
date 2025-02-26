@@ -2,42 +2,7 @@ import { PageLayout } from "../Layout";
 
 interface IProp {
   items: HTMLElement[][];
-  showPadding?: boolean;
-  scale?: number;
 }
 
-const OverFlowContent = ({ item }: { item: HTMLElement }) => (
-  <div
-    ref={(items) => {
-      items?.childNodes.forEach((item) => {
-        (item as HTMLElement).style.visibility = "visible";
-      });
-    }}
-    dangerouslySetInnerHTML={{ __html: item.outerHTML }}
-  />
-);
-
-export const Overflow = ({ items, showPadding, scale }: IProp) => {
-  return items?.map((item, index) => (
-    <PageLayout
-      key={index}
-      showPadding={showPadding}
-      ref={(item: HTMLElement) => {
-        if (item?.childNodes) {
-          item?.childNodes?.forEach((i, j) => {
-            if (!!!j) {
-              const item = i.childNodes[0] as HTMLElement;
-              if (!!item.childNodes.length) {
-                (item.childNodes[0] as HTMLElement).style.marginTop = "0";
-              }
-              item.style.marginTop = "0";
-            }
-          });
-        }
-      }}
-      scale={scale}
-    >
-      {item?.map((i, j) => <OverFlowContent item={i} key={j} />)}
-    </PageLayout>
-  ));
-};
+export const Overflow = ({ items }: IProp) =>
+  items?.map((item, index) => <PageLayout key={index}>{item?.map((item, index) => <div key={index} dangerouslySetInnerHTML={{ __html: item.outerHTML }} />)}</PageLayout>);

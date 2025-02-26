@@ -17,17 +17,13 @@ interface IProp {
 export const JSONViewer = ({ data, buttons = [], sidebars = [], disableDownload }: IProp) => {
   const [scale, setScale] = useState(0);
   const [page, setPage] = useState(1);
-  const [max, setMax] = useState({
-    projects: 0,
-    inform: 0
-  });
+  const [count, setCount] = useState(1);
   const navigate = useNavigate();
   const [showType, setShowType] = useState(window.innerWidth > 1280);
-  const maxFull = max.projects + max.inform;
   const windowXl = window.innerWidth > 1280;
 
   const handleMovePage = (to: number) => {
-    if (to < 1 || to > maxFull) return;
+    if (to < 1 || to > count) return;
     setPage(to);
   };
 
@@ -139,7 +135,7 @@ export const JSONViewer = ({ data, buttons = [], sidebars = [], disableDownload 
         ]}
       >
         <div className="w-full h-full col-flex items-center justify-center gap-3 overflow-hidden relative">
-          <span className="absolute self-center -top-1">{showType ? `${page} - ${page + 1} / ${maxFull}` : `${page} / ${maxFull}`}</span>
+          <span className="absolute self-center -top-1">{showType ? `${page} - ${page + 1} / ${count}` : `${page} / ${count}`}</span>
           <div
             style={{
               transform: `scale(${scale})`
@@ -152,13 +148,13 @@ export const JSONViewer = ({ data, buttons = [], sidebars = [], disableDownload 
                 }}
                 className="flex gap-3 items-center"
               >
-                <Resume data={data} setMax={setMax} showPadding />
+                <Resume data={data} getCount={(count) => setCount(count)} showPadding />
               </div>
             </div>
           </div>
         </div>
         <div className="resume w-fit absolute overflow-hidden top-[100vh]">
-          <Resume data={data} setMax={() => {}} showPadding />
+          <Resume data={data} showPadding />
         </div>
       </HeaderProvider>
     </SidebarProvider>

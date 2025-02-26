@@ -1,23 +1,18 @@
-import { forwardRef } from "react";
+import { forwardRef, useContext } from "react";
+import { Context } from "..";
 
 interface IProp {
-  showPadding?: boolean;
-  children: React.ReactElement | React.ReactElement[];
-  scale?: number;
-  noOverflow?: boolean;
+  children: React.ReactNode;
 }
 
-export const PageLayout = forwardRef(({ showPadding, children, noOverflow, scale }: IProp, ref: any) => {
+export const PageLayout = forwardRef(({ children }: IProp, ref: any) => {
+  const { scale, showPadding, noOverflow } = useContext(Context);
   return (
     <div
-      style={{
-        transform: scale !== undefined ? `scale(${scale})` : "scale(1)",
-        willChange: scale !== undefined ? "transform" : "",
-        transformOrigin: "center center"
-      }}
-      className={`${showPadding && !!!noOverflow ? "w-[842px] h-[1191px] flex flex-center bg-gray-50" : scale ? "w-fit h-fit" : "w-[inherit] h-full"} overflow-auto flex-shrink-0 layout`}
+      style={{ transform: scale !== undefined ? `scale(${scale})` : "scale(1)" }}
+      className={`overflow-auto origin-center flex-shrink-0 layout ${scale !== undefined && "will-change-transform"} ${showPadding && !noOverflow ? "w-[842px] h-[1191px] flex flex-center bg-gray-50" : scale ? "w-fit h-fit" : "w-[inherit] h-full"}`}
     >
-      <div className={`w-[794px] ${noOverflow ? "h-fit" : "h-[1123px]"} p-[30px] col-flex bg-white checkAble border-none flex-shrink-0 overflow-hidden`} ref={ref}>
+      <div className={`w-[794px] p-[30px] col-flex bg-white traversable border-none flex-shrink-0 overflow-hidden ${noOverflow ? "h-fit" : "h-[1123px]"}`} ref={ref}>
         {children}
       </div>
     </div>

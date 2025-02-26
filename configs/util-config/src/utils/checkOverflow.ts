@@ -1,35 +1,29 @@
 // 마진을 태그로 구분하여 삽입
 const MARGIN = { SPAN: 24, DIV: 10 };
-const MAXHEIGHT = 1060;
+const MAXHEIGHT = 1080;
 
 export const checkOverflow = (item: HTMLElement) => {
-  let queue = [item];
-  let pages: HTMLElement[][] = [];
-  let height = 0;
+  let queue = [];
+  let pages: Array<{ element: HTMLElement; height: number }[]> = [[]];
+
+  Array.from(item.childNodes).forEach((item) => queue.push(item as HTMLElement));
 
   while (queue.length) {
-    const item = queue.shift();
+    const item: HTMLElement = queue.shift();
+    const location = item.offsetTop + item.offsetHeight;
 
-    if (!item) break;
-
-    item.style.visibility = "visible"; // 요소 visible 활성화 (오버플로우되어 넘어갔다가 다시 돌아왔을 경우에도 안 보이는 문제 해결)
-
-    const itemLocation = item.offsetTop + item.offsetHeight - 51;
-    const isCheckAble = item.classList.contains("checkAble");
-    if (itemLocation > MAXHEIGHT && !isCheckAble) {
-      if (!!!pages.length) pages.push([]);
-      height = pages[pages.length - 1].reduce((acc, i) => {
-        const addedHeight = acc + i.offsetHeight; // 이전 높이 + 이번 요소의 높이
-        return !!!acc ? addedHeight : addedHeight + MARGIN[i.tagName]; // 첫 요소인지 아닌지 구분 (마진 구분을 위해)
-      }, 0);
-      if (height + item.offsetHeight + MARGIN[item.tagName] > MAXHEIGHT) {
-        pages.push([]);
-      }
-      item.style.visibility = "hidden"; // 오버플로우된 요소는 숨김 처리 ('display: none'으로 설정하면 요소 복사 불가)
-      pages[pages.length - 1].push(item);
-    } else if (isCheckAble) {
-      Array.from(item.childNodes).forEach((i) => queue.push(i as HTMLElement));
+    if (item.classList.contains("traversable")) Array.from(item.childNodes).forEach((item) => queue.push(item as HTMLElement));
+    else if (location < MAXHEIGHT) item.style.visibility = "visible";
+    else if (location >= MAXHEIGHT) {
+      const copiedItem = item.cloneNode(true) as HTMLElement;
+      item.style.visibility = "hidden";
+      copiedItem.style.visibility = "visible";
+      const height = pages[pages.length - 1].reduce((acc, prev) => acc + prev.height + (acc ? MARGIN[prev.element.tagName] : 0), 0);
+      if (height + item.offsetHeight + MARGIN[item.tagName] >= MAXHEIGHT) pages.push([]);
+      if (height === 0) copiedItem.style.marginTop = "0";
+      pages[pages.length - 1].push({ element: copiedItem, height: item.offsetHeight });
     }
   }
-  return pages;
+
+  return pages.filter((item) => item.length).map((item) => item.map((innerItem) => innerItem.element));
 };

@@ -1,24 +1,31 @@
 import { Document } from "@configs/type";
-import { Inform, Projects, setType } from "./Render";
-import { useRef } from "react";
+import { Inform, Projects } from "./Render";
+import { createContext, useEffect, useState } from "react";
 
 interface IProp {
   data?: Document.Resume;
-  setMax?: setType;
+  getCount?: (count: number) => void;
   showPadding?: boolean;
   scale?: number;
   noOverflow?: boolean;
 }
 
-export const Resume = ({ data, setMax = () => {}, showPadding, scale, noOverflow }: IProp) => {
-  const keep = useRef<Record<string, number>>({});
+export const Context = createContext({ noOverflow: false, scale: 1, showPadding: true });
+
+export const Resume = ({ data, showPadding, getCount, scale, noOverflow }: IProp) => {
+  const [count, setCount] = useState<{ projects: number[]; inform: number }>({
+    projects: [],
+    inform: 1
+  });
+
+  useEffect(() => getCount && getCount(count.projects.reduce((acc, prev) => acc + prev, 0) + count.inform), [count]);
 
   if (data) {
     return (
-      <>
-        <Inform data={data} setMax={setMax} showPadding={showPadding} scale={scale} noOverflow={noOverflow} />
-        {data?.project_list.map((i) => <Projects key={i.element_id} data={i} setMax={setMax} showPadding={showPadding} scale={scale} keep={keep} noOverflow={noOverflow} />)}
-      </>
+      <Context.Provider value={{ noOverflow, scale, showPadding }}>
+        <Inform data={data} setter={setCount} />
+        {data?.project_list.map((item, index) => <Projects key={item.element_id} index={index} data={item} setter={setCount} />)}
+      </Context.Provider>
     );
   }
 };
