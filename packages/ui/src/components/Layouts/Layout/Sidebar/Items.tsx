@@ -10,7 +10,7 @@ export const Items = ({ selections, selected, onClick }: IProp) => {
   return (
     <>
       {selections?.map((i) => {
-        const isSelected = isMultipleSelected ? selected === i : selected.find((j) => j === i);
+        const isSelected = isMultipleSelected ? selected === i : selected?.find((j) => j === i);
         return (
           <span
             key={i}

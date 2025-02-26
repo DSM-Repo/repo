@@ -39,7 +39,7 @@ export const Library = () => {
             modalElement: (
               <div className="col-flex gap-6 w-[220px]">
                 <Title title="변환" titleSize="20px" subTitle="변환할 레주메를 선택하여 변환해보세요" subTitleSize="14px" />
-                <Dropdown onChange={(item) => setGrade(item as string)} placeholder="학년" suffix="학년" value={grade} size="full" selections={["1학년", "2학년", "학년"]} />
+                <Dropdown onChange={(item) => setGrade(item as string)} placeholder="학년" suffix="학년" value={grade} size="full" selections={["1", "2", "3"]} />
                 <Button disabled={!!!grade} onClick={handleConvert} size="full" direction="center" icon="Add">
                   변환
                 </Button>

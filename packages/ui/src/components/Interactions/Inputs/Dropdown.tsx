@@ -22,7 +22,7 @@ export const Dropdown = forwardRef(({ placeholder, error, required, disabled, la
     <Label size={size} required={required} label={label} ref={outsideRef}>
       <Box error={error} size={size} disabled={disabled} icon={icon} action={() => setOpen((prev) => !prev)}>
         <span className={`block w-full h-fit text-body5 leading-none ${!value ? "text-gray-400" : ""} ${disabled ? "text-gray-300 cursor-not-allowed" : "cursor-pointer"}`}>
-          {value + (suffix || "") || placeholder}
+          {value ? value + (suffix || "") : placeholder}
         </span>
       </Box>
       {open && (
