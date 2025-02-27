@@ -1,12 +1,11 @@
-import { checkOverflow } from "@configs/util";
-import { useContext, useEffect, useRef, useState } from "react";
+import { Document as DocuType } from "@configs/type";
+import { useOverflow } from "@configs/util";
+import QRCode from "react-qr-code";
+import { useContext } from "react";
 import { ItemLayout, PageLayout } from "../Layout";
 import { Overflow } from "./Overflow";
-import QRCode from "react-qr-code";
-import { Document as DocuType } from "@configs/type";
-
-import { setType } from ".";
 import { Context } from "..";
+import { setType } from ".";
 
 interface IProp {
   data: DocuType.Resume;
@@ -15,20 +14,11 @@ interface IProp {
 
 export const Inform = ({ data, setter }: IProp) => {
   const { noOverflow } = useContext(Context);
-  const [pages, setPages] = useState<HTMLElement[][]>([]);
-  const pdf = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    if (pdf?.current && !noOverflow) {
-      const over = checkOverflow(pdf?.current);
-      setPages(over);
-      setter((prev) => ({ ...prev, inform: 1 + over.length })); // 기본 페이지 1개 + 오버된 페이지 n개
-    }
-  }, [data]);
+  const [target, pages] = useOverflow({ observeTarget: data, onCalc: ({ length }) => setter((prev) => ({ ...prev, inform: 1 + length })) });
 
   return (
     <>
-      <PageLayout ref={pdf}>
+      <PageLayout ref={target}>
         <header className="flex w-full h-[60px] justify-between items-center">
           {/* 프로필 */}
           <div className="col-flex gap-2">

@@ -1,11 +1,11 @@
-import { checkOverflow } from "@configs/util";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect } from "react";
+import { useOverflow } from "@configs/util";
+import { Document } from "@configs/type";
+import QRCode from "react-qr-code";
 import { PageLayout, ItemLayout } from "../Layout";
 import { Overflow } from "./Overflow";
-import QRCode from "react-qr-code";
-import { setType } from ".";
-import { Document } from "@configs/type";
 import { Context } from "..";
+import { setType } from ".";
 
 interface IProp {
   data: Document.Project_list;
@@ -20,26 +20,25 @@ export const typeAgainChange = {
 
 export const Projects = ({ data, setter, index }: IProp) => {
   const { noOverflow } = useContext(Context);
-  const pdf = useRef<HTMLElement>(null);
-  const [pages, setPages] = useState<HTMLElement[][]>([]);
-
-  useEffect(() => {
-    if (pdf?.current && !noOverflow) {
-      const over = checkOverflow(pdf?.current);
-      setPages(over);
+  const [target, pages] = useOverflow({
+    observeTarget: data,
+    onCalc: ({ length }) => {
       setter((prev) => {
         const cur = { ...prev };
         if (cur.projects[index] === undefined) cur.projects[index] = 0;
-        cur.projects[index] = 1 + over.length;
+        cur.projects[index] = 1 + length;
         return cur;
       });
     }
+  });
+
+  useEffect(() => {
     return () => setter((prev) => ({ ...prev, projects: prev.projects.filter((_, innerIndex) => innerIndex !== index) }));
   }, [data]);
 
   return (
     <>
-      <PageLayout ref={pdf}>
+      <PageLayout ref={target}>
         <div className="flex w-full justify-between items-center">
           <div className={`flex gap-[20px] h-[60px] items-center`}>
             {data?.logo && <img src={data?.logo?.image_path} className="w-[54px] h-[54px]" crossOrigin="anonymous" />}

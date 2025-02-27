@@ -1959,6 +1959,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@types/trusted-types", [\
+      ["npm:2.0.7", {\
+        "packageLocation": "./.yarn/cache/@types-trusted-types-npm-2.0.7-a07fc44f59-4c4855f10d.zip/node_modules/@types/trusted-types/",\
+        "packageDependencies": [\
+          ["@types/trusted-types", "npm:2.0.7"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@types/unist", [\
       ["npm:2.0.11", {\
         "packageLocation": "./.yarn/cache/@types-unist-npm-2.0.11-44eea90bde-24dcdf25a1.zip/node_modules/@types/unist/",\
@@ -2841,6 +2850,14 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/dompurify-npm-2.5.7-18b27adcf8-23c4f73718.zip/node_modules/dompurify/",\
         "packageDependencies": [\
           ["dompurify", "npm:2.5.7"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
+      ["npm:3.2.4", {\
+        "packageLocation": "./.yarn/cache/dompurify-npm-3.2.4-d8ea6c7c6a-6be56810fb.zip/node_modules/dompurify/",\
+        "packageDependencies": [\
+          ["dompurify", "npm:3.2.4"],\
+          ["@types/trusted-types", "npm:2.0.7"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -6615,6 +6632,7 @@ const RAW_RUNTIME_STATE =
           ["@types/react-router-dom", "npm:5.3.3"],\
           ["autoprefixer", "virtual:a590d0162dc49f20ec171ca7176afade16a11d396abe66c70bb6bf4eff64d25844d41b6775d91b945a24bf41375ba552a574afa32f9bc2d6a50fd3f5aab8886b#npm:10.4.20"],\
           ["dayjs", "npm:1.11.13"],\
+          ["dompurify", "npm:3.2.4"],\
           ["file-saver", "npm:2.0.5"],\
           ["html2canvas", "npm:1.4.1"],\
           ["jspdf", "npm:2.5.2"],\
