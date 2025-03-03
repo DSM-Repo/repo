@@ -2,17 +2,14 @@
 const MARGIN = { SPAN: 24, DIV: 10 };
 
 export const checkOverflow = (item: HTMLElement, maxHeight: number = 1080) => {
-  const queue = [];
+  const queue = Array.from(item.childNodes).map((i) => i as HTMLElement);
   const pages: Array<{ element: HTMLElement; height: number }[]> = [[]];
 
-  Array.from(item.childNodes).forEach((item) => queue.push(item as HTMLElement));
-
-  while (queue.length) {
-    const item: HTMLElement = queue.shift();
+  for (let i = 0; i < queue.length; i++) {
+    const item = queue[i];
     const location = item.offsetTop + item.offsetHeight;
 
-    if (item.classList.contains("traversable")) Array.from(item.childNodes).forEach((item) => queue.push(item as HTMLElement));
-    else if (location < maxHeight) item.style.visibility = "visible";
+    if (location < maxHeight) item.style.visibility = "visible";
     else if (location >= maxHeight) {
       const copiedItem = item.cloneNode(true) as HTMLElement;
       item.style.visibility = "hidden";

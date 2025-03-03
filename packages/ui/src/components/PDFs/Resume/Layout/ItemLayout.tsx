@@ -49,12 +49,12 @@ const RowList = ({ data }: { data: string[] }) => (
 export const ItemLayout = memo(({ title, type, data }: IProp) => {
   if (Array.isArray(data) ? data.length !== 0 : data) {
     return (
-      <div className="traversable w-full flex-col">
+      <>
         <span className={`mt-6 text-resumeSectionTitle block ${title ? "text-black" : "text-gray-50"}`}>{title || "이름 없는 섹션"}</span>
         {type === "static" && <Static data={data as string} />}
         {type === "list" && <List data={data as dataType[]} />}
         {type === "rowList" && <RowList data={data as string[]} />}
-      </div>
+      </>
     );
   }
 });
