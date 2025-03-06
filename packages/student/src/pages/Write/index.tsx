@@ -11,6 +11,7 @@ import { Activity, Certification, Inform, Projects, Introduce } from "./Sections
 import { resumeCompletion, resumeDetail, resumeSave, resumeSubmit } from "@/api";
 import { Feedback } from "./Feedback";
 import { Preview } from "./Preview";
+import { useParams } from "react-router-dom";
 
 const registerSchema = z.object({
   writer: z.object({
@@ -60,6 +61,7 @@ export const Write = () => {
   };
 
   const { id } = useEssentialParams<{ id: keyof typeof sections }>();
+  const value = useParams();
   const method = useForm<Document.Resume>({ defaultValues: Placeholder.ResumeDetailPlace, resolver: zodResolver(registerSchema) });
   const { watch, getValues, setValue, handleSubmit, control, reset } = method;
   useEffect(() => reset(resumeData), [resumeData?.status]);
@@ -122,7 +124,7 @@ export const Write = () => {
     { key: "u", ctrl: true, action: submit }
   ]);
 
-  console.log(sections, id, sections[id]);
+  console.log(value, sections, id, sections[id]);
 
   return (
     <SidebarProvider elements={[{ name: "미리보기", element: <Preview control={control} />, layoutProps: {} }]}>
