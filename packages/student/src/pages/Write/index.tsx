@@ -122,6 +122,8 @@ export const Write = () => {
     { key: "u", ctrl: true, action: submit }
   ]);
 
+  console.log(sections[id]);
+
   return (
     <SidebarProvider elements={[{ name: "미리보기", element: <Preview control={control} />, layoutProps: {} }]}>
       <form onSubmit={handleSubmit(save, (e) => console.log(e))} className="w-full h-full">
