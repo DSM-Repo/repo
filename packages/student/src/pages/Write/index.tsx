@@ -48,16 +48,16 @@ const registerSchema = z.object({
   )
 });
 
-const sections = {
-  inform: { item: <Inform />, name: "내 정보", type: "WRITER_INFO" },
-  introduce: { item: <Introduce />, name: "자기소개", type: "INTRODUCE" },
-  projects: { item: <Projects />, name: "프로젝트", type: "PROJECT" },
-  certifications: { item: <Certification />, name: "자격증 & 수상", type: "ACHIEVEMENT" },
-  activities: { item: <Activity />, name: "활동", type: "ACTIVITY" }
-};
-
 export const Write = () => {
   const { data: resumeData } = resumeDetail();
+
+  const sections = {
+    inform: { item: <Inform />, name: "내 정보", type: "WRITER_INFO" },
+    introduce: { item: <Introduce />, name: "자기소개", type: "INTRODUCE" },
+    projects: { item: <Projects />, name: "프로젝트", type: "PROJECT" },
+    certifications: { item: <Certification />, name: "자격증 & 수상", type: "ACHIEVEMENT" },
+    activities: { item: <Activity />, name: "활동", type: "ACTIVITY" }
+  };
 
   const { id } = useEssentialParams<{ id: keyof typeof sections }>();
   const method = useForm<Document.Resume>({ defaultValues: Placeholder.ResumeDetailPlace, resolver: zodResolver(registerSchema) });
@@ -122,7 +122,7 @@ export const Write = () => {
     { key: "u", ctrl: true, action: submit }
   ]);
 
-  console.log(sections[id]);
+  console.log(sections, sections[id]);
 
   return (
     <SidebarProvider elements={[{ name: "미리보기", element: <Preview control={control} />, layoutProps: {} }]}>
