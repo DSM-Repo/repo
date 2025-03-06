@@ -122,7 +122,7 @@ export const Write = () => {
     { key: "u", ctrl: true, action: submit }
   ]);
 
-  console.log(sections, sections[id]);
+  console.log(sections, id, sections[id]);
 
   return (
     <SidebarProvider elements={[{ name: "미리보기", element: <Preview control={control} />, layoutProps: {} }]}>
