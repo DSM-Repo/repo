@@ -16,11 +16,8 @@ interface IProp {
 }
 
 const Static = ({ data }: { data: string }) => (
-  <Markdown
-    className="text-resumeItemContent w-full whitespace-pre-wrap text-black px-[15px] prose border-l-[3px] border-black mt-[10px] max-w-none [&>*]:w-full break-words"
-    remarkPlugins={[remarkGFM, remarkBreak]}
-  >
-    {data.replace(/  \n/gi, "\n &nbsp;")}
+  <Markdown className="text-resumeItemContent w-full text-black px-[15px] prose border-l-[3px] border-black mt-[10px] max-w-none break-words" remarkPlugins={[remarkGFM, remarkBreak]}>
+    {data}
   </Markdown>
 );
 
@@ -32,8 +29,8 @@ const List = ({ data }: { data: dataType[] }) =>
         {subTitle && <span className="text-resumeItemContent text-gray-100">{subTitle}</span>}
       </div>
       {content && (
-        <Markdown className="text-gray-100 text-resumeItemContent prose w-full max-w-none [&>*]:w-full break-words" remarkPlugins={[remarkGFM, remarkBreak]}>
-          {content?.replace(/  \n/gi, "\n &nbsp;")}
+        <Markdown className="text-gray-100 text-resumeItemContent prose w-full max-w-none break-words" remarkPlugins={[remarkGFM, remarkBreak]}>
+          {content}
         </Markdown>
       )}
     </div>
