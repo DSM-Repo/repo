@@ -1,5 +1,6 @@
 FROM node:18-alpine AS builder 
 RUN apk add --no-cache libc6-compat git curl unzip
+
 # Corepack 활성화 및 Yarn 설치
 RUN corepack enable && corepack prepare yarn@4.3.0 --activate
 
