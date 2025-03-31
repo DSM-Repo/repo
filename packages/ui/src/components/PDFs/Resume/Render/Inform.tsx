@@ -6,6 +6,9 @@ import { ItemLayout, PageLayout } from "../Layout";
 import { Overflow } from "./Overflow";
 import { Context } from "..";
 import { setType } from ".";
+import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import remarkBreaks from "remark-breaks";
 
 interface IProp {
   data: DocuType.Resume;
@@ -42,7 +45,11 @@ export const Inform = ({ data, setter }: IProp) => {
         {(data.introduce.heading || data.introduce.introduce) && (
           <div className="col-flex gap-3 mt-6 w-full">
             {data.introduce.heading && <span className="text-resumeIntroduceHeading text-black">{data.introduce.heading}</span>}
-            {data.introduce.introduce && <span className="text-resumeIntroduce text-[#818181] inline w-full font-light break-words whitespace-pre-wrap">{data.introduce.introduce}</span>}
+            {data.introduce.introduce && (
+              <Markdown className="text-gray-100 text-resumeItemContent prose w-full max-w-none break-words -ml-2" remarkPlugins={[remarkGfm, remarkBreaks]}>
+                {"   " + data.introduce.introduce.replace(/\n/g, "\n&nbsp;  ")}
+              </Markdown>
+            )}
           </div>
         )}
         <ItemLayout title="기술 스택" type="rowList" data={data.writer.skill_set} />
