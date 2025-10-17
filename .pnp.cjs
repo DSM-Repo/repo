@@ -2196,7 +2196,7 @@ const RAW_RUNTIME_STATE =
           ["autoprefixer", "virtual:a590d0162dc49f20ec171ca7176afade16a11d396abe66c70bb6bf4eff64d25844d41b6775d91b945a24bf41375ba552a574afa32f9bc2d6a50fd3f5aab8886b#npm:10.4.20"],\
           ["@types/postcss", null],\
           ["browserslist", "npm:4.24.0"],\
-          ["caniuse-lite", "npm:1.0.30001664"],\
+          ["caniuse-lite", "npm:1.0.30001751"],\
           ["fraction.js", "npm:4.3.7"],\
           ["normalize-range", "npm:0.1.2"],\
           ["picocolors", "npm:1.1.0"],\
@@ -2304,7 +2304,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/browserslist-npm-4.24.0-6b67324c87-95e76ad522.zip/node_modules/browserslist/",\
         "packageDependencies": [\
           ["browserslist", "npm:4.24.0"],\
-          ["caniuse-lite", "npm:1.0.30001664"],\
+          ["caniuse-lite", "npm:1.0.30001751"],\
           ["electron-to-chromium", "npm:1.5.29"],\
           ["node-releases", "npm:2.0.18"],\
           ["update-browserslist-db", "virtual:6b67324c878ea06e56ed3caefea53f7683e6ecc2f59a5ccb4eed038528684d5d9ad5763adbad2b939021498b8316c469d622a567bb66012ffd14e8022cf45739#npm:1.1.1"]\
@@ -2370,10 +2370,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["caniuse-lite", [\
-      ["npm:1.0.30001664", {\
-        "packageLocation": "./.yarn/cache/caniuse-lite-npm-1.0.30001664-55249fe665-db2b431aba.zip/node_modules/caniuse-lite/",\
+      ["npm:1.0.30001751", {\
+        "packageLocation": "./.yarn/cache/caniuse-lite-npm-1.0.30001751-1e03ddb5a2-c3f2d448f3.zip/node_modules/caniuse-lite/",\
         "packageDependencies": [\
-          ["caniuse-lite", "npm:1.0.30001664"]\
+          ["caniuse-lite", "npm:1.0.30001751"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -9821,7 +9821,7 @@ class MountFS extends BasePortableFakeFS {
         if (this.notMount.has(filePath))
           continue;
         try {
-          if (this.typeCheck !== null && (this.baseFs.statSync(filePath).mode & fs.constants.S_IFMT) !== this.typeCheck) {
+          if (this.typeCheck !== null && (this.baseFs.lstatSync(filePath).mode & fs.constants.S_IFMT) !== this.typeCheck) {
             this.notMount.add(filePath);
             continue;
           }
@@ -12834,20 +12834,18 @@ Require stack:
     }
     return false;
   };
-  if (!process.features.require_module) {
-    const originalExtensionJSFunction = require$$0.Module._extensions[`.js`];
-    require$$0.Module._extensions[`.js`] = function(module, filename) {
-      if (filename.endsWith(`.js`)) {
-        const pkg = readPackageScope(filename);
-        if (pkg && pkg.data?.type === `module`) {
-          const err = ERR_REQUIRE_ESM(filename, module.parent?.filename);
-          Error.captureStackTrace(err);
-          throw err;
-        }
+  const originalExtensionJSFunction = require$$0.Module._extensions[`.js`];
+  require$$0.Module._extensions[`.js`] = function(module, filename) {
+    if (filename.endsWith(`.js`)) {
+      const pkg = readPackageScope(filename);
+      if (pkg && pkg.data?.type === `module`) {
+        const err = ERR_REQUIRE_ESM(filename, module.parent?.filename);
+        Error.captureStackTrace(err);
+        throw err;
       }
-      originalExtensionJSFunction.call(this, module, filename);
-    };
-  }
+    }
+    originalExtensionJSFunction.call(this, module, filename);
+  };
   const originalDlopen = process.dlopen;
   process.dlopen = function(...args) {
     const [module, filename, ...rest] = args;

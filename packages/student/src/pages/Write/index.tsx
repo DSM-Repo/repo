@@ -123,9 +123,18 @@ export const Write = () => {
     { key: "u", ctrl: true, action: submit }
   ]);
 
+  // --- v0 dirty code ---
+
+  /**
+   * 인풋 필드별로 채우지 않은(required) input으로 navigate
+   */
+
+  // 나중에 리팩토링할 예정
+
   return (
     <SidebarProvider elements={[{ name: "미리보기", element: <Preview control={control} />, layoutProps: {} }]}>
-      <form onSubmit={handleSubmit(save, (e) => console.log(e))} className="w-full h-full">
+      {/* TODO: dirty fix */}
+      <form onSubmit={handleSubmit(save, save)} className="w-full h-full">
         <HeaderProvider
           buttons={[
             {
