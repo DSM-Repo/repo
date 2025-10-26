@@ -102,7 +102,7 @@ export const Item = ({ fieldMethod: { remove, swap }, index }: IProp) => {
         )}
       />
 
-      <File size="large" label="로고" placeholder="로고" accept="image/*" value={watch(`${name}.logo`)} onChange={handleLogo} onDelete={() => fileReomoveMutate(`?url=${getValues(`${name}.logo`)}`)} />
+      <File size="large" label="로고" placeholder="로고" accept="image/*" value={watch(`${name}.logo`)} onChange={handleLogo} onDelete={() => fileReomoveMutate(`?url=${getValues(`${name}.logo`)}`, { onSuccess: () => setValue(`${name}.logo`, undefined) })} />
 
       <Controller
         name={`${name}.skill_set`}
