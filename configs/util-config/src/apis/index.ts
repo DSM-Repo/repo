@@ -12,6 +12,8 @@ const option = {
   domain: isDevelopment ? "" : "dsm-repo.com"
 };
 
+console.log(process.env.VITE_APP_BASE_URL);
+
 export const instance = axios.create({
   baseURL: process.env.VITE_APP_BASE_URL,
   timeout: 5000
