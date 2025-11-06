@@ -10,7 +10,7 @@ export const Activity = () => {
   const { fields, append } = fieldArray;
 
   return (
-    <Layout title="활동" subTitle="진행한 활동을 소개해 보세요." add={() => append({ ...Placeholder.ResumeDetailPlace.activity_list[0], element_id: crypto.randomUUID() })}>
+    <Layout title="활동" subTitle="진행한 활동을 소개해 보세요." add={() => append({ ...Placeholder.ActivityPlace, element_id: crypto.randomUUID() })}>
       {fields.map((i, j) => (
         <Item key={i.element_id} fieldArray={fieldArray} index={j} />
       ))}

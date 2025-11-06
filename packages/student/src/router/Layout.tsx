@@ -34,7 +34,7 @@ export const Layout = () => {
               { icon: "Document", name: "자기소개", urls: ["/write/introduce"], checked: introduce },
               { icon: "ChartCircle", name: "프로젝트", urls: ["/write/projects"], checked: project },
               { icon: "Chart", name: "자격증 & 수상", urls: ["/write/certifications"], checked: certificate_and_award },
-              { icon: "Users", name: "활동", urls: ["/write/activities"], checked: activity }
+              { icon: "Users", name: "활동", urls: ["/write/activities"], checked: activity },
             ]
           }
         ]}

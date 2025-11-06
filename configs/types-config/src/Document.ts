@@ -70,6 +70,7 @@ export type Achievement_list = {
 export type Activity_list = {
   element_id: string;
   name: string;
+  section_name: string;
   date: dateType;
   description: string;
   is_period: boolean;

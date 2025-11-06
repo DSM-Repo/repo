@@ -84,6 +84,7 @@ export const AchievePlace: Document.Achievement_list = { element_id: "", name: "
 export const ActivityPlace: Document.Activity_list = {
   element_id: "",
   name: "",
+  section_name: "",
   date: {
     start_date: "",
     end_date: undefined

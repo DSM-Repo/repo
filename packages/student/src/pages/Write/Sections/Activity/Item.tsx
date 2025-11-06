@@ -1,5 +1,5 @@
 import { Controller, UseFieldArrayReturn, useFormContext } from "react-hook-form";
-import { Date, CheckBox, Label, TextArea, Icon } from "ui";
+import { Date, CheckBox, Label, TextArea, Icon, Text } from "ui";
 import { Box } from "../Box";
 import { Document } from "@configs/type";
 
@@ -24,13 +24,22 @@ export const Item = ({ index, fieldArray }: IProp) => {
   return (
     <Box>
       <div className="flex justify-between w-full">
-        <input className="font-semibold text-[25px] w-[80%]" placeholder="이름을 입력하세요" {...register(`${name}.name`)} />
+        <input className="font-semibold text-[25px] w-[80%]" placeholder="섹션명을 입력하세요" {...register(`${name}.section_name`)} />
         <div className="flex items-center gap-[10px]">
           <Icon name="Arrow" onClick={() => swap(index, index - 1)} rotate="up" className="cursor-pointer" disabled={index === 0} />
           <Icon name="Arrow" rotate="down" className="cursor-pointer" disabled={index === getValues("activity_list").length - 1} onClick={() => swap(index, index + 1)} />
           <Icon name="Trash" className="cursor-pointer" onClick={() => remove(index)} />
         </div>
       </div>
+
+      <Label label="활동명" size="full" required>
+        <Text
+          error={errors?.activity_list?.[index]?.name?.message}
+          placeholder="활동명을 입력하세요"
+          size="large"
+          {...register(`${name}.name`, { required: "활동명을 입력해주세요" })}
+        />
+      </Label>
       <Label label="진행일" size="full" required>
         <div className="w-full col-flex gap-3">
           <div className="w-full h-fit justify-between items-center flex">

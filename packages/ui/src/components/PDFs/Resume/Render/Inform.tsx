@@ -61,15 +61,30 @@ export const Inform = ({ data, setter }: IProp) => {
             subTitle: `${i.institution || "기관 미정"} | ${i.date || "날짜 미정"}`
           }))}
         />
-        <ItemLayout
-          title="활동"
-          type="list"
-          data={data?.activity_list?.map((i) => ({
-            title: i.name,
-            subTitle: i.is_period ? `${i?.date?.start_date || "시작일을 작성해주세요"} ~ ${i?.date?.end_date || "진행중"}` : i?.date?.start_date,
-            content: i.description
-          }))}
-        />
+        {data?.activity_list && data.activity_list.length > 0 && (
+          <>
+            {/* 섹션명별로 그룹화 */}
+            {Object.entries(
+              data.activity_list.reduce((acc, activity) => {
+                const sectionName = activity.section_name || "활동";
+                if (!acc[sectionName]) acc[sectionName] = [];
+                acc[sectionName].push(activity);
+                return acc;
+              }, {} as Record<string, typeof data.activity_list>)
+            ).map(([sectionName, activities]) => (
+              <ItemLayout
+                key={sectionName}
+                title={sectionName}
+                type="list"
+                data={activities.map((i) => ({
+                  title: i.name,
+                  subTitle: i.is_period ? `${i?.date?.start_date || "시작일을 작성해주세요"} ~ ${i?.date?.end_date || "진행중"}` : i?.date?.start_date,
+                  content: i.description
+                }))}
+              />
+            ))}
+          </>
+        )}
       </PageLayout>
 
       {!noOverflow && <Overflow items={pages} />}
