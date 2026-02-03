@@ -7,5 +7,6 @@
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
+| #482 | 5:17 PM | 🔴 | HeaderProvider Scroll Container Fixed with Flexbox | ~493 |
 | #454 | 3:24 PM | 🔵 | HeaderProvider Component Creates Scroll Container | ~436 |
 </claude-mem-context>

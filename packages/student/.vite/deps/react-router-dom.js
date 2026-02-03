@@ -8,11 +8,11 @@ import {
   __toESM
 } from "./chunk-WOOG5QLI.js";
 
-// ../../.yarn/__virtual__/react-router-dom-virtual-bd2009d837/0/cache/react-router-dom-npm-6.26.2-f8b4afffaf-7515128a98.zip/node_modules/react-router-dom/dist/index.js
+// ../../.yarn/__virtual__/react-router-dom-virtual-63f2c590db/0/cache/react-router-dom-npm-6.26.2-f8b4afffaf-7515128a98.zip/node_modules/react-router-dom/dist/index.js
 var React2 = __toESM(require_react());
 var ReactDOM = __toESM(require_react_dom());
 
-// ../../.yarn/__virtual__/react-router-virtual-9ed12dc5b9/0/cache/react-router-npm-6.26.2-3f4f7686d6-0d15a39b41.zip/node_modules/react-router/dist/index.js
+// ../../.yarn/__virtual__/react-router-virtual-cb084cdaed/0/cache/react-router-npm-6.26.2-3f4f7686d6-0d15a39b41.zip/node_modules/react-router/dist/index.js
 var React = __toESM(require_react());
 
 // ../../.yarn/cache/@remix-run-router-npm-1.19.2-3b51b8b09c-ac7fc81335.zip/node_modules/@remix-run/router/dist/router.js
@@ -3740,7 +3740,7 @@ function persistAppliedTransitions(_window, transitions) {
   }
 }
 
-// ../../.yarn/__virtual__/react-router-virtual-9ed12dc5b9/0/cache/react-router-npm-6.26.2-3f4f7686d6-0d15a39b41.zip/node_modules/react-router/dist/index.js
+// ../../.yarn/__virtual__/react-router-virtual-cb084cdaed/0/cache/react-router-npm-6.26.2-3f4f7686d6-0d15a39b41.zip/node_modules/react-router/dist/index.js
 function _extends2() {
   _extends2 = Object.assign ? Object.assign.bind() : function(target) {
     for (var i = 1; i < arguments.length; i++) {
@@ -4739,7 +4739,7 @@ function createMemoryRouter(routes, opts) {
   }).initialize();
 }
 
-// ../../.yarn/__virtual__/react-router-dom-virtual-bd2009d837/0/cache/react-router-dom-npm-6.26.2-f8b4afffaf-7515128a98.zip/node_modules/react-router-dom/dist/index.js
+// ../../.yarn/__virtual__/react-router-dom-virtual-63f2c590db/0/cache/react-router-dom-npm-6.26.2-f8b4afffaf-7515128a98.zip/node_modules/react-router-dom/dist/index.js
 function _extends3() {
   _extends3 = Object.assign ? Object.assign.bind() : function(target) {
     for (var i = 1; i < arguments.length; i++) {

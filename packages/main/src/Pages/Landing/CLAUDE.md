@@ -7,5 +7,6 @@
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
-| #366 | 3:09 PM | 🔵 | Tailwind CSS Configuration Package | ~303 |
+| #479 | 5:15 PM | 🔴 | Removed Horizontal Overflow Hidden from Landing Page | ~326 |
+| #473 | 5:12 PM | 🔴 | Landing Page Horizontal Scroll Fixed | ~416 |
 </claude-mem-context>
