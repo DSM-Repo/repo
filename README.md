@@ -46,3 +46,4 @@ $ yarn dlx @yarnpkg/sdks vscode
   - student
   - teacher
   - ui
+.
