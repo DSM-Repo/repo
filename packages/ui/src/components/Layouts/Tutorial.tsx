@@ -3,7 +3,7 @@ import { Ternary, useShortcut } from "@configs/util";
 import { Icon } from "../Others";
 
 type stepType = {
-  img?: any;
+  img?: string;
   content: string;
 };
 

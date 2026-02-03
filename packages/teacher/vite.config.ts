@@ -2,14 +2,19 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
 import svgr from "vite-plugin-svgr";
-//@ts-ignore
-import { getEnv } from "../../config.ts";
+import compression from "vite-plugin-compression";
+import { getEnv } from "../../config";
 
 // https://vitejs.dev/config/
 export default () => {
   getEnv();
   return defineConfig({
-    plugins: [react(), svgr()],
+    plugins: [
+      react(),
+      svgr(),
+      compression({ algorithm: "gzip" }),
+      compression({ algorithm: "brotliCompress", ext: ".br" })
+    ],
     cacheDir: "./.vite",
     resolve: {
       alias: [{ find: "@", replacement: path.resolve(__dirname, "src") }]

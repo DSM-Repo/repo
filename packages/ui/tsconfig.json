@@ -1,25 +1,26 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
-
-    "module": "ESNext" /* Specify what module code is generated. */,
-
+    "module": "ESNext",
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "typeRoots": ["./svg.d.ts", "./vite-env.d.ts", "**/**/*.tsx"],
-
-    "esModuleInterop": true /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */,
-    "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
-
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
     "paths": {
       "@/*": ["src/components/*"]
     }
-  }
+  },
+  "include": ["src", "svg.d.ts", "vite-env.d.ts"]
 }

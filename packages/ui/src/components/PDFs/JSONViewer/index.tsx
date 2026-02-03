@@ -1,7 +1,7 @@
 import { useWindowEventListeners, useShortcut } from "@configs/util";
 import { useNavigate } from "react-router-dom";
 import { elementsType, HeaderProvider, Resume, SidebarProvider, buttonType } from "ui";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Document } from "@configs/type";
 import { toast } from "react-toastify";
 import html2canvas from "html2canvas";
@@ -21,6 +21,7 @@ export const JSONViewer = ({ data, buttons = [], sidebars = [], disableDownload 
   const navigate = useNavigate();
   const [showType, setShowType] = useState(window.innerWidth > 1280);
   const windowXl = window.innerWidth > 1280;
+  const resumeRef = useRef<HTMLDivElement>(null);
 
   const handleMovePage = (to: number) => {
     if (to < 1 || to > count) return;
@@ -94,7 +95,7 @@ export const JSONViewer = ({ data, buttons = [], sidebars = [], disableDownload 
               type: "CALLBACK",
               callback: () => {
                 let id = toast.loading("변환하고 있습니다...");
-                const data = document.querySelector(".resume");
+                const data = resumeRef.current;
                 const worker = new Worker(new URL("./worker.ts", import.meta.url), {
                   type: "module"
                 });
@@ -153,7 +154,7 @@ export const JSONViewer = ({ data, buttons = [], sidebars = [], disableDownload 
             </div>
           </div>
         </div>
-        <div className="resume w-fit absolute overflow-hidden top-[100vh]">
+        <div ref={resumeRef} className="resume w-fit absolute overflow-hidden top-[100vh]">
           <Resume data={data} showPadding />
         </div>
       </HeaderProvider>

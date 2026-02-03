@@ -2,8 +2,7 @@ import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import svgr from "vite-plugin-svgr";
 import path from "path";
-//@ts-ignore
-import { getEnv } from "../../config.ts";
+import { getEnv } from "../../config";
 import compression from "vite-plugin-compression";
 
 // https://vitejs.dev/config/

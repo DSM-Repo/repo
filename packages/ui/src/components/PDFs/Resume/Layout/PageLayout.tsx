@@ -5,7 +5,7 @@ interface IProp {
   children: React.ReactNode;
 }
 
-export const PageLayout = forwardRef(({ children }: IProp, ref: any) => {
+export const PageLayout = forwardRef(({ children }: IProp, ref: React.ForwardedRef<HTMLDivElement>) => {
   const { scale, showPadding, noOverflow } = useContext(Context);
   return (
     <div

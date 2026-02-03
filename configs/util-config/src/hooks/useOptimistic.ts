@@ -5,7 +5,7 @@ type returnType<T> = [
   (data: Partial<T>) => Promise<{
     [x: string]: unknown;
   }>,
-  (prev: any) => void,
+  (prev: T | undefined) => void,
   () => void
 ];
 
@@ -21,7 +21,7 @@ export const useOptimistic = <T>(queryKey: string[], name: string): returnType<T
     return { [name]: prev };
   };
 
-  const onError = (prev: any) => {
+  const onError = (prev: T | undefined) => {
     client.setQueryData(queryKey, prev);
   };
 

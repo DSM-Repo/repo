@@ -29,7 +29,6 @@
     },
 
     /* Imported Types */
-    "typeRoots": ["./svg.d.ts", "./vite-env.d.ts"]
   },
-  "include": ["vite.config.ts", "src", "**/*.tsx"]
+  "include": ["vite.config.ts", "src", "svg.d.ts", "vite-env.d.ts"]
 }

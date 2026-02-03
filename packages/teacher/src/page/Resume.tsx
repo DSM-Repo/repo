@@ -46,16 +46,15 @@ export const Resume = () => {
   };
 
   const filter = () => {
-    const classNumber = data?.writer.class_info.grade + "";
-    let list: Api.Resume.resumeStudentData[][] = [];
-    resumes?.data
-      .filter(({ student_info }) => student_info.school_number[0] === classNumber)
-      .forEach((i) => {
-        const classNumber = Number(i.student_info.school_number[1]) - 1;
-        if (!!!list[classNumber]) list[classNumber] = [];
-        list[classNumber] = [...list[classNumber], i];
-      });
-    return list;
+    const gradeNumber = data?.writer.class_info.grade + "";
+    const filtered = resumes?.data.filter(({ student_info }) => student_info.school_number[0] === gradeNumber) ?? [];
+    return filtered.reduce<Api.Resume.resumeStudentData[][]>((acc, i) => {
+      const classIdx = Number(i.student_info.school_number[1]) - 1;
+      const updated = [...acc];
+      while (updated.length <= classIdx) updated.push([]);
+      updated[classIdx] = [...(updated[classIdx] || []), i];
+      return updated;
+    }, []);
   };
 
   return (
@@ -125,7 +124,7 @@ export const Resume = () => {
                               setFeed(defaultFeed);
                               refetchFeedbacks();
                             },
-                            onError: () => console.log("err")
+                            onError: () => toast.error("피드백 추가에 실패했습니다")
                           })
                         }
                         direction="center"

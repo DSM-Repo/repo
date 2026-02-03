@@ -109,12 +109,18 @@ export const Viewer = React.memo(({ url, indexList, buttons = [], sidebars = [],
 
   useEffect(() => {
     if (indexList) {
-      let item: Api.Library.indexData[][] = [[], [], [], []];
-      indexList.forEach((i) => {
-        const cls = Math.floor((i.student_number % 1000) / 100);
-        item[cls - 1]?.push(i);
-      });
-      setIndex(item);
+      const grouped = indexList.reduce<Api.Library.indexData[][]>(
+        (acc, i) => {
+          const cls = Math.floor((i.student_number % 1000) / 100);
+          const idx = cls - 1;
+          if (idx >= 0 && idx < 4) {
+            return acc.map((group, j) => j === idx ? [...group, i] : group);
+          }
+          return acc;
+        },
+        [[], [], [], []]
+      );
+      setIndex(grouped);
     }
   }, [indexList]);
 

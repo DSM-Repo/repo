@@ -30,7 +30,7 @@ export const HeaderProvider = ({ children, buttons, ...rest }: IProp) => {
           <div className="flex items-center gap-2">{buttons?.map((item) => item && <Button key={item.title} {...item} />)}</div>
         </div>
       </header>
-      <div className="z-20 w-full h-full overflow-auto">{children}</div>
+      <div className="z-20 w-full flex-1 min-h-0 overflow-auto">{children}</div>
     </div>
   );
 };

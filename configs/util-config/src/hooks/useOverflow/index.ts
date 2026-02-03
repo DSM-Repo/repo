@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { checkOverflow } from "./checkOverflow";
 
 interface IProp {
-  observeTarget?: any;
+  observeTarget?: unknown;
   onCalc?: ({ pages, length }: { pages: Array<HTMLElement[]>; length: number }) => void;
 }
 

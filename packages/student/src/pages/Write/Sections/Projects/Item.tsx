@@ -5,6 +5,7 @@ import { findKeyWithValue } from "@configs/util";
 import { fileAdd, fileRemove } from "@/api";
 import { Document } from "@configs/type";
 import { Box } from "../Box";
+import { toast } from "react-toastify";
 
 interface IProp {
   fieldMethod: UseFieldArrayReturn<Document.Resume, "project_list", "id">;
@@ -22,6 +23,9 @@ const disableTable: Record<string, boolean> = {
   re: true
 };
 
+const MAX_FILE_SIZE = 5 * 1024 * 1024;
+const ALLOWED_IMAGE_TYPES = ["image/jpeg", "image/png", "image/webp", "image/svg+xml"];
+
 export const Item = ({ fieldMethod: { remove, swap }, index }: IProp) => {
   const name = `project_list.${index}` as const;
   const {
@@ -38,6 +42,18 @@ export const Item = ({ fieldMethod: { remove, swap }, index }: IProp) => {
 
   const handleLogo = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
     const file = (target.files as FileList)[0];
+    if (!file) return;
+
+    if (file.size > MAX_FILE_SIZE) {
+      toast.error("파일 크기는 5MB를 초과할 수 없습니다");
+      return;
+    }
+
+    if (!ALLOWED_IMAGE_TYPES.includes(file.type)) {
+      toast.error("허용되지 않는 파일 형식입니다 (JPG, PNG, WebP, SVG만 가능)");
+      return;
+    }
+
     const prevLogo = getValues(`${name}.logo`);
 
     const upload = () => {
@@ -46,10 +62,8 @@ export const Item = ({ fieldMethod: { remove, swap }, index }: IProp) => {
       fileUploadMutate(form, { onSuccess: (res) => setValue(`${name}.logo`, res) });
     };
 
-    if (file) {
-      if (prevLogo) fileReomoveMutate(`?url=${prevLogo}`, { onSuccess: upload });
-      else upload();
-    }
+    if (prevLogo) fileReomoveMutate(`?url=${prevLogo}`, { onSuccess: upload });
+    else upload();
   };
 
   return (

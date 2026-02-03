@@ -17,7 +17,7 @@ const registerSchema = z.object({
   writer: z.object({
     major: z.string().nonempty("전공을 선택해주세요"),
     skill_set: z.array(z.string()).nonempty("기술 스택을 입력하세요"),
-    url: z.string().url("URL이 유효하지 않습니다"),
+    url: z.string().url("URL이 유효하지 않습니다").refine((val) => !val || /^https?:\/\//.test(val), "HTTP(S) URL만 허용됩니다"),
     email: z.string().email("이메일 주소가 유효하지 않습니다")
   }),
   project_list: z.array(
@@ -30,7 +30,7 @@ const registerSchema = z.object({
           description: z.string().nonempty("설명을 입력해주세요")
         })
       ),
-      url: z.string().url("URL이 유효하지 않습니다")
+      url: z.string().url("URL이 유효하지 않습니다").refine((val) => !val || /^https?:\/\//.test(val), "HTTP(S) URL만 허용됩니다")
     })
   ),
   achievement_list: z.array(
@@ -154,7 +154,7 @@ export const Write = () => {
         >
           <span className={`${status === "ONGOING" && "hidden"} flex flex-center size-full absolute top-0 z-30 bg-[#000000DD]`}>제출 상태입니다. 제출 취소 후 수정하세요</span>
           <FormProvider {...method}>
-            <div className="overflow-auto min-h-full">
+            <div className="min-h-full">
               <div className="flex justify-center w-full  max-w-[620px] py-[24px]">{sections[id as keyof typeof sections]?.item}</div>
             </div>
           </FormProvider>

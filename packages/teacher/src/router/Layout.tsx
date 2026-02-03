@@ -2,7 +2,12 @@ import { Sidebar } from "ui";
 import { Outlet } from "react-router-dom";
 import { teacher } from "@/apis";
 
-export const userDefault: any = {
+interface UserDefault {
+  name: string;
+  type: string;
+}
+
+export const userDefault: UserDefault = {
   name: "김윤이",
   type: "teacher"
 };

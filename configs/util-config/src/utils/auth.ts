@@ -3,7 +3,9 @@ import { isDevelopment } from "../utils";
 
 const option = {
   path: "/",
-  domain: isDevelopment ? "" : "dsm-repo.com"
+  domain: isDevelopment ? "" : "dsm-repo.com",
+  secure: !isDevelopment,
+  sameSite: "strict" as const
 };
 
 const { get, set, remove } = Cookies;
