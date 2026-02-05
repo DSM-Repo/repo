@@ -32,6 +32,8 @@ export const JSONViewer = ({ data, buttons = [], sidebars = [], disableDownload 
     setPage(1);
   }, [window.location.href]);
 
+  const headerHeight = 86; // header(60px) + padding(26px)
+
   useWindowEventListeners([
     {
       eventType: "resize",
@@ -44,7 +46,9 @@ export const JSONViewer = ({ data, buttons = [], sidebars = [], disableDownload 
         } else if (windowWidth < 1280 && showType) {
           setShowType(false);
         }
-        const newScale = windowHeight / 1450; // 예시로 A4 크기(842px)에 맞추는 방법
+        // 헤더 영역을 제외한 콘텐츠 영역 높이로 스케일 계산
+        const contentHeight = windowHeight - headerHeight;
+        const newScale = contentHeight / 1230; // A4 높이(1191px) + 여백을 고려
         setScale(newScale);
       },
       useCallbackOnLoad: true
