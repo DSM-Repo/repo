@@ -33,6 +33,7 @@ export const JSONViewer = ({ data, buttons = [], sidebars = [], disableDownload 
   }, [window.location.href]);
 
   const headerHeight = 86; // header(60px) + padding(26px)
+  const a4Height = 1191; // A4 원본 높이 (px)
 
   useWindowEventListeners([
     {
@@ -47,8 +48,10 @@ export const JSONViewer = ({ data, buttons = [], sidebars = [], disableDownload 
           setShowType(false);
         }
         // 헤더 영역을 제외한 콘텐츠 영역 높이로 스케일 계산
-        const contentHeight = windowHeight - headerHeight;
-        const newScale = contentHeight / 1230; // A4 높이(1191px) + 여백을 고려
+        const contentHeight = windowHeight - headerHeight - 40; // 추가 여백
+        const calculatedScale = contentHeight / a4Height;
+        // 최대 스케일 0.85로 제한
+        const newScale = Math.min(calculatedScale, 0.85);
         setScale(newScale);
       },
       useCallbackOnLoad: true
@@ -139,11 +142,12 @@ export const JSONViewer = ({ data, buttons = [], sidebars = [], disableDownload 
           ...buttons
         ]}
       >
-        <div className="w-full h-full col-flex items-center justify-center gap-3 overflow-hidden relative">
-          <span className="absolute self-center -top-1">{showType ? `${page} - ${page + 1} / ${count}` : `${page} / ${count}`}</span>
+        <div className="w-full h-full col-flex items-center justify-start gap-3 overflow-hidden relative pt-14">
+          <span className="absolute self-center top-3">{showType ? `${page} - ${page + 1} / ${count}` : `${page} / ${count}`}</span>
           <div
             style={{
-              transform: `scale(${scale})`
+              transform: `scale(${scale})`,
+              transformOrigin: "top center"
             }}
           >
             <div className="w-[1696px] max-xl:w-[842px] overflow-hidden">
