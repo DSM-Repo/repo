@@ -132,6 +132,13 @@ export const Viewer = React.memo(({ url, indexList, buttons = [], sidebars = [],
     }
   };
 
+  const actualScale = scale / 2.9;
+  const pageWidth = 594.8 * 3; // single page rendered width
+  const twoPageWidth = pageWidth * 2 + 40; // two pages + gap
+  const pageHeight = 841.8 * 3; // single page rendered height
+  const scaledWidth = twoPageWidth * actualScale;
+  const scaledHeight = pageHeight * actualScale;
+
   useWindowEventListeners([{ eventType: "resize", callback: () => setScale(window.innerHeight / 1050), useCallbackOnLoad: true }]);
 
   useShortcut([
@@ -158,38 +165,40 @@ export const Viewer = React.memo(({ url, indexList, buttons = [], sidebars = [],
         {(!url || loading) && (
           <div className="z-30 left-0 top-0 w-full h-full bg-[#000000DD] flex flex-center absolute text-white">{!url ? "PDF를 다운로드하고 있습니다.." : "PDF를 렌더링하고 있습니다..."}</div>
         )}
-        <div className="w-full h-full flex flex-col items-center relative">
-          <span className="z-10">
+        <div className="w-full flex flex-col items-center" style={{ height: "calc(100vh - 84px)" }}>
+          <span className="z-10 shrink-0">
             {page - 1} - {page} / {max}
           </span>
-          <div className="flex-1 flex items-center justify-center w-full overflow-hidden">
-            <div style={{ transform: `scale(${scale / 2.9})`, transformOrigin: "top center" }}>
-              <Document
-                onLoadSuccess={({ numPages }) => {
-                  setMax(numPages - 1);
-                  setLoading(false);
-                }}
-                file={url}
-                className="col-flex items-center h-fit gap-2 shrink-0"
-                onLoadStart={({ page }) => (page.style.background = "white")}
-                renderMode="canvas"
-              >
-                <div className="h-full overflow-hidden relative" style={{ width: `${594.8 * 3 * 2 + 40}px` }}>
-                  <div style={{ transform: `translateX(calc(-${((page - 1) % CHUNK_SIZE) / 2} * (${594.8 * 3}px + ${48}px)))` }} className="flex gap-10 items-center viewer">
-                    {!loading && (
-                      <>
-                        {selected_chunks.map((i) => (
-                          <div key={i} className="flex flex-col relative">
-                            <span className="scale-[3] absolute z-20 bottom-6 text-black text-[12px] self-center">{`- ${i} -`}</span>
-                            <Page scale={3} width={594.8} renderTextLayer={false} key={i} pageIndex={i} renderMode="canvas" className={`${i === 0 ? "invisible" : ""} `} />
-                          </div>
-                        ))}
-                        {page >= max && <Page pageIndex={0} scale={3} className="invisible" />}
-                      </>
-                    )}
+          <div className="flex-1 w-full flex items-center justify-center">
+            <div className="relative overflow-hidden" style={{ width: `${scaledWidth}px`, height: `${scaledHeight}px` }}>
+              <div style={{ transform: `scale(${actualScale})`, transformOrigin: "top left" }}>
+                <Document
+                  onLoadSuccess={({ numPages }) => {
+                    setMax(numPages - 1);
+                    setLoading(false);
+                  }}
+                  file={url}
+                  className="col-flex items-center h-fit gap-2 shrink-0"
+                  onLoadStart={({ page }) => (page.style.background = "white")}
+                  renderMode="canvas"
+                >
+                  <div className="h-full overflow-hidden relative" style={{ width: `${twoPageWidth}px` }}>
+                    <div style={{ transform: `translateX(-${((page - 1) % CHUNK_SIZE) / 2 * (pageWidth + 48)}px)` }} className="flex gap-10 items-center viewer">
+                      {!loading && (
+                        <>
+                          {selected_chunks.map((i) => (
+                            <div key={i} className="flex flex-col relative">
+                              <span className="scale-[3] absolute z-20 bottom-6 text-black text-[12px] self-center">{`- ${i} -`}</span>
+                              <Page scale={3} width={594.8} renderTextLayer={false} key={i} pageIndex={i} renderMode="canvas" className={`${i === 0 ? "invisible" : ""} `} />
+                            </div>
+                          ))}
+                          {page >= max && <Page pageIndex={0} scale={3} className="invisible" />}
+                        </>
+                      )}
+                    </div>
                   </div>
-                </div>
-              </Document>
+                </Document>
+              </div>
             </div>
           </div>
         </div>
