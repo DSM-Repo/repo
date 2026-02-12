@@ -158,11 +158,12 @@ export const Viewer = React.memo(({ url, indexList, buttons = [], sidebars = [],
         {(!url || loading) && (
           <div className="z-30 left-0 top-0 w-full h-full bg-[#000000DD] flex flex-center absolute text-white">{!url ? "PDF를 다운로드하고 있습니다.." : "PDF를 렌더링하고 있습니다..."}</div>
         )}
-        <div className="w-full h-full flex flex-center relative">
-          <span className="absolute top-0">
+        <div className="w-full h-full flex flex-col items-center relative overflow-hidden">
+          <span className="z-10">
             {page - 1} - {page} / {max}
           </span>
-          <div style={{ transform: `scale(${scale / 2.9})` }}>
+          <div className="flex-1 flex items-center justify-center w-full">
+          <div style={{ transform: `scale(${scale / 2.9})`, transformOrigin: "center center" }}>
             <Document
               onLoadSuccess={({ numPages }) => {
                 setMax(numPages - 1);
@@ -189,6 +190,7 @@ export const Viewer = React.memo(({ url, indexList, buttons = [], sidebars = [],
                 </div>
               </div>
             </Document>
+          </div>
           </div>
         </div>
       </HeaderProvider>
