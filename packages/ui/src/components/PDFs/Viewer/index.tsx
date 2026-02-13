@@ -166,7 +166,7 @@ export const Viewer = React.memo(({ url, indexList, buttons = [], sidebars = [],
           <div className="z-30 left-0 top-0 w-full h-full bg-[#000000DD] flex flex-center absolute text-white">{!url ? "PDF를 다운로드하고 있습니다.." : "PDF를 렌더링하고 있습니다..."}</div>
         )}
         <div className="w-full flex flex-col items-center" style={{ height: "calc(100vh - 84px)" }}>
-          <span className="z-10 shrink-0">
+          <span className="z-10 shrink-0 py-2">
             {page - 1} - {page} / {max}
           </span>
           <div className="flex-1 w-full flex items-center justify-center">
@@ -183,7 +183,7 @@ export const Viewer = React.memo(({ url, indexList, buttons = [], sidebars = [],
                   renderMode="canvas"
                 >
                   <div className="h-full overflow-hidden relative" style={{ width: `${twoPageWidth}px` }}>
-                    <div style={{ transform: `translateX(-${((page - 1) % CHUNK_SIZE) / 2 * (pageWidth + 48)}px)` }} className="flex gap-10 items-center viewer">
+                    <div style={{ transform: `translateX(-${((page - 1) % CHUNK_SIZE) / 2 * (pageWidth + 40)}px)` }} className="flex gap-10 items-center viewer">
                       {!loading && (
                         <>
                           {selected_chunks.map((i) => (
