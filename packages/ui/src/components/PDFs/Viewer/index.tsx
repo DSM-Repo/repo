@@ -133,11 +133,8 @@ export const Viewer = React.memo(({ url, indexList, buttons = [], sidebars = [],
   };
 
   const actualScale = scale / 2.9;
-  const pageWidth = 594.8 * 3; // single page rendered width
-  const twoPageWidth = pageWidth * 2 + 40; // two pages + gap
-  const pageHeight = 841.8 * 3; // single page rendered height
-  const scaledWidth = twoPageWidth * actualScale;
-  const scaledHeight = pageHeight * actualScale;
+  const innerWidth = 3600;
+  const innerHeight = 841.8 * 3;
 
   useWindowEventListeners([{ eventType: "resize", callback: () => setScale(window.innerHeight / 1050), useCallbackOnLoad: true }]);
 
@@ -169,36 +166,42 @@ export const Viewer = React.memo(({ url, indexList, buttons = [], sidebars = [],
           <span className="z-10 shrink-0 py-2">
             {page - 1} - {page} / {max}
           </span>
-          <div className="flex-1 w-full flex items-center justify-center">
-            <div className="relative overflow-hidden" style={{ width: `${scaledWidth}px`, height: `${scaledHeight}px` }}>
-              <div style={{ transform: `scale(${actualScale})`, transformOrigin: "top left" }}>
-                <Document
-                  onLoadSuccess={({ numPages }) => {
-                    setMax(numPages - 1);
-                    setLoading(false);
-                  }}
-                  file={url}
-                  className="col-flex items-center h-fit gap-2 shrink-0"
-                  onLoadStart={({ page }) => (page.style.background = "white")}
-                  renderMode="canvas"
-                >
-                  <div className="h-full overflow-hidden relative" style={{ width: `${twoPageWidth}px` }}>
-                    <div style={{ transform: `translateX(-${((page - 1) % CHUNK_SIZE) / 2 * (pageWidth + 40)}px)` }} className="flex gap-10 items-center viewer">
-                      {!loading && (
-                        <>
-                          {selected_chunks.map((i) => (
-                            <div key={i} className="flex flex-col relative">
-                              <span className="scale-[3] absolute z-20 bottom-6 text-black text-[12px] self-center">{`- ${i} -`}</span>
-                              <Page scale={3} width={594.8} renderTextLayer={false} key={i} pageIndex={i} renderMode="canvas" className={`${i === 0 ? "invisible" : ""} `} />
-                            </div>
-                          ))}
-                          {page >= max && <Page pageIndex={0} scale={3} className="invisible" />}
-                        </>
-                      )}
-                    </div>
+          <div className="flex-1 w-full flex items-center justify-center overflow-hidden">
+            <div
+              style={{
+                transform: `scale(${actualScale})`,
+                transformOrigin: "center center",
+                width: `${innerWidth}px`,
+                height: `${innerHeight}px`,
+                margin: `${innerHeight * (actualScale - 1) / 2}px ${innerWidth * (actualScale - 1) / 2}px`,
+              }}
+            >
+              <Document
+                onLoadSuccess={({ numPages }) => {
+                  setMax(numPages - 1);
+                  setLoading(false);
+                }}
+                file={url}
+                className="w-full col-flex items-center h-fit gap-2 shrink-0"
+                onLoadStart={({ page }) => (page.style.background = "white")}
+                renderMode="canvas"
+              >
+                <div className="w-[3600px] h-full overflow-hidden relative">
+                  <div style={{ transform: `translateX(calc(-${((page - 1) % CHUNK_SIZE) / 2} * (100% + ${48}px)))` }} className="flex gap-10 items-center viewer">
+                    {!loading && (
+                      <>
+                        {selected_chunks.map((i) => (
+                          <div key={i} className="flex flex-col relative">
+                            <span className="scale-[3] absolute z-20 bottom-6 text-black text-[12px] self-center">{`- ${i} -`}</span>
+                            <Page scale={3} width={594.8} renderTextLayer={false} key={i} pageIndex={i} renderMode="canvas" className={`${i === 0 ? "invisible" : ""} `} />
+                          </div>
+                        ))}
+                        {page >= max && <Page pageIndex={0} scale={3} className="invisible" />}
+                      </>
+                    )}
                   </div>
-                </Document>
-              </div>
+                </div>
+              </Document>
             </div>
           </div>
         </div>
